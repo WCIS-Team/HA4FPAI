@@ -226,30 +226,68 @@ class VoiceKit:
             keywords_threshold=float(c.get("keywords_threshold", 0.25)),
         )
 
+    def _tts_profile(self):
+        """Resolve tts profile the same way asr does.
+
+        cfg['tts']['profile'] picks a key under cfg['tts_profiles']; when the
+        key is absent we fall back to the flat cfg['tts'] block, which keeps
+        older configs (piper-only) working unchanged.
+        """
+        t = self.cfg["tts"]
+        prof = t.get("profile")
+        profiles = self.cfg.get("tts_profiles") or {}
+        if prof and prof in profiles:
+            merged = dict(t)
+            merged.update(profiles[prof])
+            return merged
+        return t
+
     def _load_tts(self):
-        c = self.cfg["tts"]
-        d = c["data_dir"]
+        """Load TTS, honouring tts.profile.
+
+        Two engine families are supported:
+          matcha  -> OfflineTtsMatchaModelConfig
+                     requires acoustic_model + a SEPARATE vocoder onnx.
+                     Passing the acoustic model as the vocoder segfaults the
+                     C++ side ("Unsupported model_type: matcha-tts").
+          vits    -> OfflineTtsVitsModelConfig (piper and plain vits)
+                     Chinese piper MUST be built with a lexicon, otherwise the
+                     C++ side aborts the whole process. lexicon-first order
+                     was verified on this board.
+        """
+        c = self._tts_profile()
+        kind = c.get("kind", "vits")
+        nth = int(c.get("num_threads", 3))
+        d = c.get("data_dir", "")
+
+        if kind == "matcha":
+            mc = sherpa_onnx.OfflineTtsMatchaModelConfig(
+                acoustic_model=c["model"],
+                vocoder=c["vocoder"],
+                tokens=c["tokens"],
+                lexicon=c.get("lexicon", ""),
+            )
+            m = sherpa_onnx.OfflineTtsModelConfig(matcha=mc, num_threads=nth)
+            self._tts = sherpa_onnx.OfflineTts(sherpa_onnx.OfflineTtsConfig(model=m))
+            return
+
         model = c["model"]
         tokens = c.get("tokens", "")
-        # ORDER MATTERS: the Chinese piper model aborts the process if constructed
-        # without a lexicon. lexicon-first was verified on this board.
         attempts = [
             {"model": model, "tokens": tokens, "data_dir": d,
-             "lexicon": os.path.join(d, "lexicon.txt")},
+             "lexicon": c.get("lexicon") or os.path.join(d, "lexicon.txt")},
             {"model": model, "tokens": tokens, "data_dir": d},
         ]
-        nth = int(c.get("num_threads", 3))
         last = None
         for kwargs in attempts:
             try:
                 pc = sherpa_onnx.OfflineTtsVitsModelConfig(**kwargs)
                 m = sherpa_onnx.OfflineTtsModelConfig(vits=pc, num_threads=nth)
-                ocfg = sherpa_onnx.OfflineTtsConfig(model=m)
-                self._tts = sherpa_onnx.OfflineTts(ocfg)
+                self._tts = sherpa_onnx.OfflineTts(sherpa_onnx.OfflineTtsConfig(model=m))
                 return
             except Exception as e:      # noqa: BLE001 - probe both shapes
                 last = e
-        raise RuntimeError("tts load failed: %r" % (last,))
+        raise RuntimeError("tts load failed (kind=%s): %r" % (kind, last))
 
     # -- public --------------------------------------------------------------
     def new_vad(self):

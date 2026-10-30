@@ -96,21 +96,38 @@ def asr_info(cfg):
 
 
 def tts_info(cfg):
+    """Describe the ACTIVE tts profile, resolved the same way voice_kit does."""
     t = cfg["tts"]
-    voice_name = os.path.basename(t["model"]).replace(".onnx", "")
+    prof = t.get("profile")
+    profiles = cfg.get("tts_profiles") or {}
+    eff = dict(t)
+    if prof and prof in profiles:
+        eff.update(profiles[prof])
+    kind = eff.get("kind", "vits")
+    voice_name = os.path.basename(eff["model"]).replace(".onnx", "")
+    if kind == "matcha":
+        prog_name = "sherpa-onnx-matcha"
+        prog_desc = "matcha acoustic + vocos vocoder via sherpa-onnx (shared onnxruntime)"
+        voice_desc = "matcha icefall, %d Hz" % int(eff.get("output_sample_rate", 22050))
+        langs = ["zh-CN"]
+    else:
+        prog_name = "sherpa-onnx-piper"
+        prog_desc = "piper/vits via sherpa-onnx (shared onnxruntime)"
+        voice_desc = "piper medium, %d Hz" % int(eff.get("output_sample_rate", 22050))
+        langs = ["zh-CN"]
     return Info(tts=[TtsProgram(
-        name="sherpa-onnx-piper",
+        name=prog_name,
         attribution=SHERPA_ATTR,
         installed=True,
-        description="piper zh_CN vits via sherpa-onnx (shared onnxruntime)",
+        description=prog_desc,
         version="2.0.1",
         voices=[TtsVoice(
             name=voice_name,
             attribution=SHERPA_ATTR,
             installed=True,
-            description="piper medium, %d Hz" % int(t.get("output_sample_rate", 22050)),
+            description=voice_desc,
             version=None,
-            languages=["zh-CN"],
+            languages=langs,
         )],
         supports_synthesize_streaming=False,
     )], asr=[], handle=[], intent=[], wake=[], mic=[], snd=[])

@@ -43,11 +43,12 @@
 | ASR-A | `encoder-epoch-99-avg-1.int8.onnx` + dec/join | `streaming-zipformer-small-bilingual-zh-en-2023-02-16` | 14M 主体 | **0.40** ✅实时 |
 | ASR-B | `encoder.int8.onnx` (161 MB) | `icefall-asr-multi-zh-hans-zipformer-large`（2025-06-30 转换） | 163M 主体 | **0.96–1.19** ❌非实时 |
 | KWS | `encoder-...-chunk-8-left-64.int8.onnx` | zipformer zh-en chunk-8 | 4.6 MB | — |
-| TTS | `zh_CN-xiao_ya-medium.onnx` | piper 中文 vits | 18.6 MB | warm **2.94–3.05**（3 线程）❌慢 |
+| **TTS（现用）** | `model-steps-3.onnx` + `vocos-22khz-univ.onnx` | matcha-icefall-zh-baker（data-baker 数据集） | 75.6 MB + 53.9 MB | **1.38–1.82**（3 线程）✅ |
+| TTS（兜底档） | `zh_CN-xiao_ya-medium.onnx` | piper 中文 vits | 18.6 MB | 2.94–3.05（3 线程） |
 
 > **关键取舍**：用户指定的 `sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30` 在 A55 上 **RTF 0.96–1.19（>1，跟不上实时）**，冷加载 46 s、峰值 RSS 308 MB。14M 小模型 RTF 0.40 满足实时。故配置里 **A 为默认、B 保留为可选档**（`asr.profile` 切换），两个都在板上，不删。
 >
-> TTS 走 piper 中文 vits，单线程 RTF 4.05，3 线程饱和到 2.94；普通回复必须走短语预缓存，否则首响 3 s+。
+> TTS 默认走 **matcha-icefall-zh-baker + vocos vocoder**（RTF 1.38–1.82，比 piper 快约 2 倍，多占 64 MB）。`tts_profiles` 里保留 `piper-xiao-ya` 可随时切回。matcha 的声学模型**不能**当 vocoder 用（会 segfault），必须外挂 vocos。
 
 ## 目录
 

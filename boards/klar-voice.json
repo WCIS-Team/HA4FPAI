@@ -83,19 +83,49 @@
   },
 
   "tts": {
-    "dir": "/mnt/data/models/tts-piper",
-    "model": "/mnt/data/models/tts-piper/zh_CN-xiao_ya-medium.onnx",
-    "tokens": "/mnt/data/models/tts-piper/tokens.txt",
-    "data_dir": "/mnt/data/models/tts-piper",
-    "lexicon": "/mnt/data/models/tts-piper/lexicon.txt",
+    "profile": "matcha-zh-baker",
+    "kind": "matcha",
+    "dir": "/mnt/data/models/tts-matcha/matcha-icefall-zh-baker",
+    "model": "/mnt/data/models/tts-matcha/matcha-icefall-zh-baker/model-steps-3.onnx",
+    "vocoder": "/mnt/data/models/tts-matcha/vocos-22khz-univ.onnx",
+    "tokens": "/mnt/data/models/tts-matcha/matcha-icefall-zh-baker/tokens.txt",
+    "lexicon": "/mnt/data/models/tts-matcha/matcha-icefall-zh-baker/lexicon.txt",
     "output_sample_rate": 22050,
     "num_threads": 3,
     "speed": 1.0,
     "sid": 0,
-    "rtf_measured": 3.05,
-    "rtf_range": [2.94, 4.05],
-    "cold_load_s": 26.0,
-    "note": "piper 中文 vits = sherpa-onnx 的 OfflineTtsVitsModelConfig，必须带 lexicon 构造（无 lexicon 会 abort 进程）。num_threads 1→3 使 RTF 4.05→2.94，3 线程即饱和。普通回复必须短语预缓存。"
+    "rtf_measured": 1.40,
+    "rtf_range": [1.29, 1.82],
+    "peak_rss_mb": 212,
+    "cold_load_s": 25.6,
+    "note": "matcha-icefall-zh-baker（中文单女声，data-baker 数据集，非商用许可）。实测 t3 RTF 1.40–1.62，比 piper 快约 2 倍，但多占 64MB（vocoder 代价）。必须外挂 vocos-22khz-univ.onnx，把声学模型当 vocoder 会 segfault。"
+  },
+
+  "tts_profiles": {
+    "matcha-zh-baker": {
+      "label": "matcha-icefall-zh-baker (Chinese female, matcha+vocos)",
+      "kind": "matcha",
+      "model": "/mnt/data/models/tts-matcha/matcha-icefall-zh-baker/model-steps-3.onnx",
+      "vocoder": "/mnt/data/models/tts-matcha/vocos-22khz-univ.onnx",
+      "tokens": "/mnt/data/models/tts-matcha/matcha-icefall-zh-baker/tokens.txt",
+      "lexicon": "/mnt/data/models/tts-matcha/matcha-icefall-zh-baker/lexicon.txt",
+      "rtf_measured": 1.40,
+      "peak_rss_mb": 212,
+      "realtime": true
+    },
+    "piper-xiao-ya": {
+      "label": "piper zh_CN-xiao_ya-medium (vits, fallback)",
+      "kind": "vits",
+      "dir": "/mnt/data/models/tts-piper",
+      "model": "/mnt/data/models/tts-piper/zh_CN-xiao_ya-medium.onnx",
+      "tokens": "/mnt/data/models/tts-piper/tokens.txt",
+      "data_dir": "/mnt/data/models/tts-piper",
+      "lexicon": "/mnt/data/models/tts-piper/lexicon.txt",
+      "rtf_measured": 3.05,
+      "peak_rss_mb": 148,
+      "realtime": true,
+      "note": "保留为可切换的兜底档；vits 路径必须 lexicon 优先构造。"
+    }
   },
 
   "server": {
