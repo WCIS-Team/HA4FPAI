@@ -233,7 +233,7 @@ def act_door_status(slots):
         parts.append("人脸 %s" % d.get("status", "?"))
         parts.append("防伪 %s" % ("已标定" if d.get("pad_security_calibrated") else "未标定"))
     else:
-        parts.append("人脸 异常(%s)" % st)
+        parts.append("人脸 %s" % _svc_state(st, d))
         ok = False
     try:
         import voiceprint as vp
