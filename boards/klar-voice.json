@@ -1,0 +1,138 @@
+{
+  "version": 2,
+  "created": "2026-10-30",
+  "updated": "2026-10-30",
+  "note": "统一 option JSON。板上唯一入口是 ~/klar-voice.json，可用 KLAR_VOICE_JSON 覆盖。四个组件共享同一进程的 onnxruntime（来自 sherpa-onnx 2.0.1 内置），各自独立 session。",
+
+  "audio": {
+    "in_sample_rate": 48000,
+    "in_width": "int16-le-mono-or-use-device-layout",
+    "work_sample_rate": 16000,
+    "resample_mode": "decimate3-mavg3",
+    "chunk_ms": 30,
+    "note": "板上 /dev/snd 不存在（实测 aplay -l 无卡）。此段留给 HA 侧 mic 用：48k 进来经 decimate3-mavg3 降到 16k。"
+  },
+
+  "vad": {
+    "model": "/mnt/data/models/vad/silero_vad_v5.onnx",
+    "sample_rate": 16000,
+    "threshold": 0.5,
+    "min_silence_duration": 0.25,
+    "min_speech_duration": 0.25,
+    "window_samples": 512,
+    "num_threads": 1,
+    "note": "silero v5, 2.3MB. 串流窗口 512 样本 @16k = 32ms。"
+  },
+
+  "asr": {
+    "profile": "small-14m-2023",
+    "dir": "/mnt/data/models/asr",
+    "encoder": "/mnt/data/models/asr/encoder-epoch-99-avg-1.int8.onnx",
+    "decoder": "/mnt/data/models/asr/decoder-epoch-99-avg-1.onnx",
+    "joiner": "/mnt/data/models/asr/joiner-epoch-99-avg-1.int8.onnx",
+    "tokens": "/mnt/data/models/asr/tokens.txt",
+    "num_threads": 2,
+    "sample_rate": 16000,
+    "feature_dim": 80,
+    "decoding_method": "greedy_search",
+    "note": "默认档。config 级实测 RTF 0.40（4 条 test_wavs），实时可用。来源 streaming-zipformer-small-bilingual-zh-en-2023-02-16（见模型目录 notes.md）。"
+  },
+
+  "asr_profiles": {
+    "small-14m-2023": {
+      "label": "14M small bilingual zh-en int8 (2023-02-16)",
+      "dir": "/mnt/data/models/asr",
+      "encoder": "/mnt/data/models/asr/encoder-epoch-99-avg-1.int8.onnx",
+      "decoder": "/mnt/data/models/asr/decoder-epoch-99-avg-1.onnx",
+      "joiner": "/mnt/data/models/asr/joiner-epoch-99-avg-1.int8.onnx",
+      "tokens": "/mnt/data/models/asr/tokens.txt",
+      "tokens_count": 6257,
+      "rtf_measured": 0.40,
+      "realtime": true
+    },
+    "zh-large-2025-06-30": {
+      "label": "sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30 (from icefall multi_zh-hans zipformer-large)",
+      "dir": "/mnt/data/models/asr-zh-2025",
+      "encoder": "/mnt/data/models/asr-zh-2025/encoder.int8.onnx",
+      "decoder": "/mnt/data/models/asr-zh-2025/decoder.onnx",
+      "joiner": "/mnt/data/models/asr-zh-2025/joiner.int8.onnx",
+      "tokens": "/mnt/data/models/asr-zh-2025/tokens.txt",
+      "tokens_count": 2002,
+      "rtf_measured": 0.96,
+      "rtf_range": [0.96, 1.19],
+      "cold_load_s": 46.0,
+      "peak_rss_mb": 308,
+      "realtime": false
+    }
+  },
+
+  "kws": {
+    "dir": "/mnt/data/models/kws",
+    "encoder": "/mnt/data/models/kws/encoder-epoch-13-avg-2-chunk-8-left-64.int8.onnx",
+    "decoder": "/mnt/data/models/kws/decoder-epoch-13-avg-2-chunk-8-left-64.onnx",
+    "joiner": "/mnt/data/models/kws/joiner-epoch-13-avg-2-chunk-8-left-64.int8.onnx",
+    "tokens": "/mnt/data/models/kws/tokens.txt",
+    "keywords_file": "/mnt/data/models/kws/keywords.txt",
+    "num_threads": 1,
+    "sample_rate": 16000,
+    "feature_dim": 80,
+    "keywords_score": 1.0,
+    "keywords_threshold": 0.25,
+    "tail_paddings_s": 0.66,
+    "wake_word_hint": "唤醒词 小克/小克小克：往 keywords.txt 追加拼音行 'x iǎo k è @小克'（按该模型 tokens.txt 的拼音片段拼）后用 piper 自合成“小克”喂回去验闭环。"
+  },
+
+  "tts": {
+    "dir": "/mnt/data/models/tts-piper",
+    "model": "/mnt/data/models/tts-piper/zh_CN-xiao_ya-medium.onnx",
+    "tokens": "/mnt/data/models/tts-piper/tokens.txt",
+    "data_dir": "/mnt/data/models/tts-piper",
+    "lexicon": "/mnt/data/models/tts-piper/lexicon.txt",
+    "output_sample_rate": 22050,
+    "num_threads": 3,
+    "speed": 1.0,
+    "sid": 0,
+    "rtf_measured": 3.05,
+    "rtf_range": [2.94, 4.05],
+    "cold_load_s": 26.0,
+    "note": "piper 中文 vits = sherpa-onnx 的 OfflineTtsVitsModelConfig，必须带 lexicon 构造（无 lexicon 会 abort 进程）。num_threads 1→3 使 RTF 4.05→2.94，3 线程即饱和。普通回复必须短语预缓存。"
+  },
+
+  "server": {
+    "wyoming_bind": "0.0.0.0",
+    "asr_port": 10301,
+    "tts_port": 10302,
+    "wake_port": 10300,
+    "log": "/mnt/data/klar/voice_kit.log"
+  },
+
+  "nlu": {
+    "kind": "klar-ha-nlu",
+    "engine_bin": "/mnt/data/klar/klar",
+    "engine_release": "2026.10.10",
+    "engine_asset": "klar-linux-aarch64.tar.gz",
+    "wyoming_host": "127.0.0.1",
+    "wyoming_port": 10500,
+    "http_port": 10520,
+    "http_api": "POST /api/v2/parse  (schema_version 2.0; /api/parse removed in V2)",
+    "mode": "engine-on-this-board-via-aarch64-tarball",
+    "note": "engine 是 Rust 单二进制（4.5MB aarch64 tarball），跑在本板；HA 本体在别的机器上，靠 HACS 集成做 conversation agent。V2 起 HTTP 只有 /api/v2/parse。"
+    },
+
+  "ha": {
+    "host": "NOT-THIS-BOARD",
+    "why": "HA Core 最新 requires_python>=3.14.2（PyPI 实测），本板 py3.8.10；homeassistant 2024.6.0 在 arm64/py3.8 上 No matching distribution found；无 docker/podman；993MB 内存不够。",
+    "integration": "HACS custom integration (klar_nlu), 纯 Python 几百 KB, 装 HA 主机",
+    "pipeline": "mic -> wyoming ASR 10301 -> klar engine 10500 -> HA conversation agent -> intent -> device"
+  },
+
+  "llm": {
+    "enabled": false,
+    "base_url": "",
+    "api_key": "",
+    "model": "",
+    "wire_format": "openai-compatible /v1/chat/completions",
+    "scope_hint": "预留位。只做聊天兜底与回复改写（rewrite/polish），绝不参与设备控制——设备意图由 klar engine 决定。",
+    "note": "字段先留空；未来填 base_url/api_key/model 即可，不需要改代码。"
+  }
+}

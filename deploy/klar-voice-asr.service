@@ -1,0 +1,19 @@
+[Unit]
+Description=klar voice ASR (Wyoming, sherpa-onnx streaming zipformer)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/data/klar
+Environment=KLAR_VOICE_JSON=/root/klar-voice.json
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /mnt/data/klar/klar_asr.py --uri tcp://0.0.0.0:10301
+Restart=on-failure
+RestartSec=5
+# board has 993 MB total; keep the voice chain from crowding WCIS services
+MemoryMax=320M
+StandardOutput=append:/mnt/data/klar/asr.log
+StandardError=append:/mnt/data/klar/asr.log
+
+[Install]
+WantedBy=multi-user.target

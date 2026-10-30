@@ -1,0 +1,19 @@
+[Unit]
+Description=klar voice TTS (Wyoming, piper zh_CN vits)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/data/klar
+Environment=KLAR_VOICE_JSON=/root/klar-voice.json
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /mnt/data/klar/klar_tts.py --uri tcp://0.0.0.0:10302
+Restart=on-failure
+RestartSec=5
+# piper vits is the heaviest model; cap it so ASR/KWS survive alongside it
+MemoryMax=384M
+StandardOutput=append:/mnt/data/klar/tts.log
+StandardError=append:/mnt/data/klar/tts.log
+
+[Install]
+WantedBy=multi-user.target

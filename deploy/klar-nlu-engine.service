@@ -1,0 +1,17 @@
+[Unit]
+Description=klar NLU engine (Rust, Wyoming intent 10500 + HTTP parse 10520)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/data/klar/engine
+ExecStart=/mnt/data/klar/engine/klar --http 0.0.0.0:10520 --wyoming 0.0.0.0:10500 --config-dir /mnt/data/klar/ha-config --data-dir /mnt/data/klar/ha-data
+Restart=on-failure
+RestartSec=5
+# static musl-style binary; rustls keeps the footprint small
+MemoryMax=256M
+StandardOutput=append:/mnt/data/klar/klar.log
+StandardError=append:/mnt/data/klar/klar.log
+
+[Install]
+WantedBy=multi-user.target
