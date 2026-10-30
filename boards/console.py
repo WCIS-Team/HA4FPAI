@@ -262,6 +262,12 @@ h1{font-size:19px;margin:0 0 4px}
 section{margin-bottom:22px}
 section>h2{font-size:15px;margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .cmds{display:flex;flex-wrap:wrap;gap:8px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.tab{background:#222836;color:var(--fg);border:1px solid var(--line);border-radius:8px;
+       padding:6px 15px;cursor:pointer;font-size:12.5px;
+       display:inline-block;text-decoration:none}
+.tab:hover{background:#2b3344;border-color:var(--acc)}
+.tab.active{background:#1d3a5c;border-color:#2f5d95;color:#fff}
 button{background:#222836;color:var(--fg);border:1px solid var(--line);border-radius:8px;
        padding:7px 13px;cursor:pointer;font-size:13px}
 button:hover{background:#2b3344;border-color:var(--acc)}
@@ -301,6 +307,22 @@ th{color:var(--dim);font-weight:600}
   <div class="card"><h3>gateway</h3><pre id="log-gw" class="logrow"></pre></div>
   <div class="card" style="margin-top:12px"><h3>klar engine</h3><pre id="log-klar" class="logrow"></pre></div>
 </section>
+
+<section><h2>内嵌页面（三个现成前端）</h2>
+ <div class="card" style="padding:10px">
+  <div class="tabs">
+    <button class="tab active" onclick="pick('klar')">Klar NLU 控制台</button>
+    <button class="tab" onclick="pick('stream')">SDI 直播</button>
+    <button class="tab" onclick="pick('record')">录像管理</button>
+    <button class="tab" onclick="pick('face')">NPU 人脸</button>
+    <a class="tab" id="extlink" href="http://192.168.1.113:10520/" target="_blank"
+       style="text-decoration:none;display:inline-block">↗ 新窗口打开</a>
+  </div>
+  <div id="embednote" class="kv" style="margin:8px 0"></div>
+  <iframe id="embed" src="http://192.168.1.113:10520/"
+          style="width:100%;height:620px;border:1px solid var(--line);border-radius:8px;background:#fff"></iframe>
+ </div>
+</section>
 </div>
 <script>
 const fmt=(o)=>typeof o==='string'?o:JSON.stringify(o,null,1);
@@ -315,6 +337,22 @@ function stateDot(x){
     return 'warn';
   } return 'warn';
 }
+const EMBED={
+ klar:{url:'http://192.168.1.113:10520/',note:'klar 引擎自带 SPA：语言包、自定义短语、播报模板、settings、对话历史、LLM 配置。写入需要 token（已配好）。'},
+ stream:{url:'http://192.168.1.113:8092/',note:'SDI 内网直播（H.264 实时画面）。当前摄像头源不可用时会显示"暂无新鲜摄像头画面"。'},
+ record:{url:'http://192.168.1.113:8093/',note:'摄像头录像管理：开关录制、存储配额、回收站、录像列表。'},
+ face:{url:'http://192.168.1.113:8091/',note:'NPU 人脸识别与 gallery 管理。当前服务 503 时页面打不开。'}
+};
+function pick(k){
+  document.querySelectorAll('.tab').forEach(b=>{if(b.classList.contains('tab'))b.classList.remove('active');});
+  event.target.classList.add('active');
+  const e=EMBED[k];
+  document.getElementById('embed').src=e.url;
+  document.getElementById('embednote').textContent=e.note;
+  document.getElementById('extlink').href=e.url;
+}
+</script>
+<script>
 async function loadHealth(){
   const h=await (await fetch('/api/health')).json();
   let html='';

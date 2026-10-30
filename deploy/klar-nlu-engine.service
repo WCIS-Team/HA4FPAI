@@ -5,7 +5,11 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/mnt/data/klar/engine
-ExecStart=/mnt/data/klar/engine/klar --http 0.0.0.0:10520 --wyoming 0.0.0.0:10500 --config-dir /mnt/data/klar/ha-config --data-dir /mnt/data/klar/ha-data
+# klar 的 UI 是 tower-http serve_dir，默认找 /usr/share/klar/ui；
+# 官方 aarch64 tarball 把 ui 放在 ./ui 下，必须显式指过去，
+# 否则 http://板:10520 只显示 "Klar UI nicht gebaut"。
+Environment=KLAR_UI_DIR=/mnt/data/klar/engine/ui
+ExecStart=/mnt/data/klar/engine/klar --http 0.0.0.0:10520 --wyoming 0.0.0.0:10500 --config-dir /mnt/data/klar/ha-config --data-dir /mnt/data/klar/ha-data --token-file /mnt/data/klar/.klar-token
 Restart=on-failure
 RestartSec=5
 # static musl-style binary; rustls keeps the footprint small
@@ -15,3 +19,14 @@ StandardError=append:/mnt/data/klar/klar.log
 
 [Install]
 WantedBy=multi-user.target
+#
+# 关于 401 "Set the same string as the token...":
+#   klar 没配 token 时只允许 localhost 写入。浏览器从别的机器访问
+#   http://板:10520 的 App 会拿到 401 和一个"设置 token"的提示页。
+#   修法：先在那台机上生成一个 token 写进 /mnt/data/klar/.klar-token
+#   （chmod 600），然后给服务加 --token-file 指向它并重启。
+#   token 值就是 UI Settings 里要填的同一个字符串。
+#
+#   生成：python3 -c 'import secrets;print(secrets.token_hex(16))'
+#
+# 注意：token 是凭据，不要提交进仓库。本文件只写路径，不写值。
