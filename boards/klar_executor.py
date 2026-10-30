@@ -168,6 +168,48 @@ def act_status(slots):
 
 
 # ---------------------------------------------------------------------------
+# 多因子开门：口令 + 人脸 + 防伪 + 声纹（实现见 door_unlock.py）
+# 这里只做动作包装，真正的四道闸在 door_unlock.unlock() 里。
+# ---------------------------------------------------------------------------
+def act_unlock(slots):
+    """语音开门。需要调用方把本次音频路径放进 slots['wav']。"""
+    txt = slots.get("text") or "我回来了，开门"
+    wav = slots.get("wav")
+    try:
+        import door_unlock
+    except Exception as e:                       # noqa: BLE001
+        return False, "开门模块加载失败: %s" % e, None
+    out = door_unlock.unlock(txt, wav, dry_run=slots.get("dry_run", False))
+    st = out.get("steps") or {}
+    detail = {"phrase": (st.get("phrase") or {}).get("ok"),
+              "face": (st.get("face") or {}).get("ok"),
+              "face_names": (st.get("face") or {}).get("names"),
+              "pad": (st.get("pad") or {}).get("status"),
+              "voiceprint": (st.get("voiceprint") or {}).get("matched"),
+              "voiceprint_score": (st.get("voiceprint") or {}).get("score")}
+    return out.get("ok", False), out.get("speech", ""), detail
+
+
+def act_door_status(slots):
+    """查门禁状态（人脸服务 + PAD 标定 + 声纹库人数）。"""
+    parts, ok = [], True
+    st, d = http(BOARD["face"] + "/api/health")
+    if st == 200 and isinstance(d, dict):
+        parts.append("人脸 %s" % d.get("status", "?"))
+        parts.append("防伪 %s" % ("已标定" if d.get("pad_security_calibrated") else "未标定"))
+    else:
+        parts.append("人脸 异常(%s)" % st)
+        ok = False
+    try:
+        import voiceprint as vp
+        n = len((vp.load_store().get("speakers") or {}))
+        parts.append("声纹库 %d 人" % n)
+    except Exception:                            # noqa: BLE001
+        parts.append("声纹库 读不到")
+    return ok, "；".join(parts), None
+
+
+# ---------------------------------------------------------------------------
 # CHANNEL B: direct command table (bypasses klar entirely)
 #
 # WHY THIS EXISTS
@@ -185,6 +227,10 @@ def act_status(slots):
 # (phrases, action, default_slots)
 # ---------------------------------------------------------------------------
 DIRECT_COMMANDS = [
+    # --- 开门（多因子，见 door_unlock.py）注意：必须排在普通命令之前判断 ---
+    (["我回来了开门", "我回来了，开门", "我回家了开门", "开门吧", "帮我开门",
+      "把门打开", "门开一下", "开一下门", "我回来了"],  act_unlock, {}),
+    (["门禁状态", "门能开吗", "门锁状态"],              act_door_status, {}),
     # --- 人脸 / NPU ---
     (["打开人脸识别", "开始人脸识别", "识别一下", "看看是谁", "谁来了",
       "人脸识别", "识别画面", "看看有人吗"],        act_face_recognize, {}),
@@ -219,11 +265,15 @@ def match_direct(text):
     return None
 
 
-def run_direct(text, dry_run=False):
+def run_direct(text, dry_run=False, extra=None):
     hit = match_direct(text)
     if not hit:
         return None
     fn, slots, phrase = hit
+    if extra:
+        for k, v in extra.items():
+            slots.setdefault(k, v)
+        slots["text"] = text
     if dry_run:
         return {"ok": True, "channel": "direct", "matched": phrase,
                 "dry_run": True}
@@ -313,26 +363,57 @@ def execute(parse_result, dry_run=False):
             "kind": "execute", "speech": speech, "actions": results}
 
 
-def handle_text(text, dry_run=False):
+def handle_text(text, dry_run=False, speak_reply=False, wav=None):
     """Main entry: try CHANNEL B (direct) first, fall back to CHANNEL A (klar).
 
     Channel B first because it is deterministic and instant; klar is only
     consulted for sentences we don't own (household words it understands).
-    """
-    direct = run_direct(text, dry_run=dry_run)
-    if direct is not None:
-        return {"channel": "direct", "input": text, **direct}
 
-    parsed = klar_parse(text)
-    if "error" in parsed:
-        return {"ok": False, "channel": "klar", "input": text,
-                "error": parsed.get("error"), "detail": parsed.get("detail")}
-    out = execute(parsed, dry_run=dry_run)
-    out["channel"] = "klar"
-    out["input"] = text
-    out["klar_decision"] = (parsed.get("decision") or {}).get("type")
-    out["klar_speech"] = parsed.get("speech")
+    speak_reply=True 时把最终结果通过 Wyoming TTS 播出去（板上无 /dev/snd，
+    所以只落 wav，外部喇叭/HDMI 再播）。
+    wav 传给需要音频的动作（目前是开门，做声纹校验）。
+    """
+    # 需要音频的动作在这里补 slots
+    direct = run_direct(text, dry_run=dry_run, extra={"text": text, "wav": wav})
+    if direct is not None:
+        out = {"channel": "direct", "input": text, **direct}
+    else:
+        parsed = klar_parse(text)
+        if "error" in parsed:
+            out = {"ok": False, "channel": "klar", "input": text,
+                   "error": parsed.get("error"), "detail": parsed.get("detail")}
+        else:
+            out = execute(parsed, dry_run=dry_run)
+            out["channel"] = "klar"
+            out["input"] = text
+            out["klar_decision"] = (parsed.get("decision") or {}).get("type")
+            out["klar_speech"] = parsed.get("speech")
+
+    if speak_reply and not dry_run:
+        out["speech_result"] = _speak_out(out)
     return out
+
+
+def _speak_out(out):
+    """把执行结果念出来。优先用动作返回的 message，其次 klar 的 speech。"""
+    msg = out.get("message")
+    if not msg:
+        for a in (out.get("actions") or []):
+            if a.get("message"):
+                msg = a["message"]
+                break
+    if not msg:
+        msg = out.get("klar_speech")
+    if not msg and out.get("error"):
+        msg = "出错了：%s" % out["error"]
+    if not msg:
+        return None
+    try:
+        import speak as _s
+        ok, info = _s.speak(msg)
+        return {"ok": ok, "info": info, "text": msg}
+    except Exception as e:                       # noqa: BLE001
+        return {"ok": False, "error": str(e), "text": msg}
 
 
 def _area_default_on(area):
@@ -355,6 +436,8 @@ def handle_wyoming_intent(payload):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--do", help="一句话端到端：parse -> execute -> 打印结果")
+    ap.add_argument("--wav", help="本次说话的音频（开门做声纹校验用）")
+    ap.add_argument("--speak", action="store_true", help="把结果用 TTS 播报出去")
     ap.add_argument("--dry-run", action="store_true", help="只解析不执行")
     ap.add_argument("--json", "-j", action="store_true", help="输出 JSON")
     ap.add_argument("--debug", action="store_true")
@@ -367,7 +450,8 @@ def main():
         ap.print_help()
         return 0
 
-    out = handle_text(args.do, dry_run=args.dry_run)
+    out = handle_text(args.do, dry_run=args.dry_run,
+                      speak_reply=args.speak, wav=args.wav)
     if args.json:
         print(json.dumps(out, ensure_ascii=False, indent=1))
         return 0 if out.get("ok") else 1
