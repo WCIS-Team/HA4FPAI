@@ -153,18 +153,53 @@ def act_record_purge(slots):
     return True, "回收站里有 %d 条，需要逐条删除（用网页端）" % trash, d
 
 
+def _svc_state(st, d):
+    """把 HTTP 结果翻译成人话。区分几种失败：
+
+      None  -> 连不上（服务没起 / 网络不通）
+      503   -> 服务在、但当前不可用（例如 NPU 后端在但拿不到有效帧）
+      200   -> 正常
+      其他  -> 服务报错，带上错误体
+    """
+    if st is None:
+        return "连接失败"
+    if st == 200:
+        return "正常"
+    if st == 503:
+        detail = ""
+        if isinstance(d, dict):
+            detail = d.get("status") or d.get("error") or ""
+        return "服务不可用(503)%s" % ((":" + str(detail)) if detail else "")
+    if isinstance(d, dict) and (d.get("error") or d.get("reason")):
+        return "异常(%s:%s)" % (st, d.get("error") or d.get("reason"))
+    return "异常(%s)" % st
+
+
 # 状态查询：一次读三个服务，安全的只读操作（必须定义在 DIRECT_COMMANDS 之前）
 def act_status(slots):
-    parts, ok = [], True
+    """查三个服务状态。ok 只在全部正常时为 True。"""
+    parts, all_ok = [], True
+
     st, d = http(BOARD["face"] + "/api/health")
-    parts.append("NPU %s" % ("正常" if st == 200 else "异常(%s)" % st))
+    parts.append("NPU %s" % _svc_state(st, d))
+    all_ok = all_ok and st == 200
+
     st, d = http(BOARD["record"] + "/api/status")
     if st == 200 and isinstance(d, dict):
         parts.append("录制 %s" % d.get("mode"))
+    else:
+        parts.append("录制 %s" % _svc_state(st, d))
+        all_ok = False
+
     st, d = http(BOARD["stream"] + "/api/status")
     if st == 200 and isinstance(d, dict):
-        parts.append("画面 %s" % ("就绪" if d.get("ready") else "断开"))
-    return ok, "；".join(parts), None
+        parts.append("画面 %s" % ("就绪" if d.get("ready") else "无有效帧"))
+        all_ok = all_ok and bool(d.get("ready"))
+    else:
+        parts.append("画面 %s" % _svc_state(st, d))
+        all_ok = False
+
+    return all_ok, "；".join(parts), None
 
 
 # ---------------------------------------------------------------------------
