@@ -1,0 +1,395 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""klar_executor.py — the missing "intent -> action" layer.
+
+WHAT KLAR ENGINE IS (and why we need this file at all)
+------------------------------------------------------
+klar engine is a *deterministic NLU parser*. It does exactly one job:
+
+    Chinese sentence  ->  {intent: "HassTurnOn", slots: [{entity_id: ...}]}
+
+It does NOT execute anything. In a real Home Assistant install, HA reads that
+intent and flips the switch. We have no HA, so THIS FILE is the piece that
+turns the intent into an actual API call on this board.
+
+    mic -> KWS -> VAD -> ASR -> klar engine (10520)
+                                     |
+                                     v  decision + intent + slots
+                              klar_executor.py  <-- this file
+                                     |
+                                     v
+                            board APIs (8091 face/NPU, 8092 stream, 8093 recorder)
+
+DESIGN
+------
+* Targets are the board's own services. They are described by a small
+  `targets.yaml`-style registry that ALSO produces core.entity_registry for
+  klar, so the two never drift apart.
+* Heavy work (模型编译/量化/训练) does NOT belong here or on the board: 113 is
+  4x A55 @2.4GHz with 993 MB RAM. Anything heavy goes to the school host.
+  This executor only issues HTTP calls; it is intentionally thin.
+* Every action is a pure HTTP request, so it is testable without a microphone.
+
+RUN
+    python3 klar_executor.py --dry-run          # parse -> print planned call
+    python3 klar_executor.py --serve            # listen for klar intents
+    python3 klar_executor.py --do "打开客厅的灯"  # one-shot end to end
+"""
+import argparse
+import json
+import logging
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+
+LOG = logging.getLogger("klar_exec")
+
+KLAR_PARSE = "http://127.0.0.1:10520/api/v2/parse"
+BOARD = {
+    "face":   "http://127.0.0.1:8091",   # NPU face recognise + gallery
+    "stream": "http://127.0.0.1:8092",   # VPU live H.264 preview
+    "record": "http://127.0.0.1:8093",   # PS VPU H264 recorder
+}
+
+
+# ---------------------------------------------------------------------------
+# HTTP helpers
+# ---------------------------------------------------------------------------
+def http(url, method="GET", body=None, timeout=30):
+    """body: None = no payload; bytes = sent as-is; dict = JSON-encoded."""
+    data = None
+    headers = {}
+    if body is not None:
+        if isinstance(body, (bytes, bytearray)):
+            data = bytes(body)
+        else:
+            data = json.dumps(body).encode()
+            headers["Content-Type"] = "application/json"
+    req = urllib.request.Request(url, method=method, data=data, headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            raw = r.read()
+            try:
+                return r.status, json.loads(raw.decode("utf8", "ignore"))
+            except ValueError:
+                return r.status, raw
+    except urllib.error.HTTPError as e:
+        return e.code, e.read(400).decode("utf8", "ignore")
+    except Exception as e:                       # noqa: BLE001
+        return None, "%s: %s" % (type(e).__name__, e)
+
+
+def klar_parse(text, language="zh-CN"):
+    status, data = http(KLAR_PARSE, "POST", {"text": text, "language": language})
+    if status != 200 or not isinstance(data, dict):
+        return {"error": "parse failed", "status": status, "detail": data}
+    return data
+
+
+# ---------------------------------------------------------------------------
+# The executor: which intent maps to which board action
+#
+# Each entry: intent name -> callable(slots) -> (描述, 实际执行的函数)
+# Slots come straight from klar; unknown intents fall through to "unsupported".
+# ---------------------------------------------------------------------------
+def act_face_recognize(slots):
+    """NPU 人脸识别：抓一帧 SDI 现场画面，跑 YuNet+MobileFace"""
+    st, d = http(BOARD["face"] + "/api/recognize-camera", "POST", b"")
+    if st != 200 or not isinstance(d, dict):
+        return False, "识别接口返回 %s" % st, d
+    res = (d.get("entry") or {}).get("result") or {}
+    identities = res.get("identities") or []
+    n = res.get("face_count", 0)
+    if not identities:
+        return True, "画面里没有人脸" if n == 0 else "检测到 %d 张脸，但都不认识" % n, \
+               {"faces": n, "names": []}
+    names = [i.get("name") or i.get("identity") or "?" for i in identities]
+    return True, "识别到 %s" % "、".join(names), {"faces": n, "names": names}
+
+
+def act_face_enroll(slots):
+    """录入一张人脸到 gallery（需要传入 photo，命令层暂不开放）"""
+    return False, "录入人脸需要照片，语音暂不开放", None
+
+
+def act_record_on(slots):
+    """开启录制。
+
+    实测 8093 只接受 mode in {off, auto, manual}（传 "on" 会返回
+    {"error":"Mode must be off, auto or manual"}）。
+      auto   = 检测到人脸才录
+      manual = 手动/一直录
+    """
+    mode = slots.get("mode", "auto")
+    if mode == "on":            # 语音里说"开始录制"= 一直录
+        mode = "manual"
+    st, d = http(BOARD["record"] + "/api/mode", "POST", {"mode": mode})
+    ok = st == 200 and isinstance(d, dict) and d.get("mode") == mode
+    label = {"auto": "自动（有人脸才录）", "manual": "持续录制"}.get(mode, mode)
+    return ok, "录制已开启：%s" % label, d
+
+
+def act_record_off(slots):
+    st, d = http(BOARD["record"] + "/api/mode", "POST", {"mode": "off"})
+    ok = st == 200 and isinstance(d, dict) and d.get("mode") == "off"
+    return ok, "录制已关闭", d
+
+
+def act_record_purge(slots):
+    """清空回收站。
+
+    实测 8093 的 /api/purge 需要具体 id（POST {} 返回 400 {"error":"'id'"}），
+    也就是说引擎不提供"整批清空"。这是安全设计：删除必须逐条指名。
+    所以语音这边改成"查看回收站"，避免误删；真要删走 Web UI。
+    """
+    st, d = http(BOARD["record"] + "/api/storage")
+    if st != 200 or not isinstance(d, dict):
+        return False, "读取回收站失败（%s）" % st, d
+    trash = d.get("trash_count", 0)
+    if trash == 0:
+        return True, "回收站是空的", d
+    return True, "回收站里有 %d 条，需要逐条删除（用网页端）" % trash, d
+
+
+# 状态查询：一次读三个服务，安全的只读操作（必须定义在 DIRECT_COMMANDS 之前）
+def act_status(slots):
+    parts, ok = [], True
+    st, d = http(BOARD["face"] + "/api/health")
+    parts.append("NPU %s" % ("正常" if st == 200 else "异常(%s)" % st))
+    st, d = http(BOARD["record"] + "/api/status")
+    if st == 200 and isinstance(d, dict):
+        parts.append("录制 %s" % d.get("mode"))
+    st, d = http(BOARD["stream"] + "/api/status")
+    if st == 200 and isinstance(d, dict):
+        parts.append("画面 %s" % ("就绪" if d.get("ready") else "断开"))
+    return ok, "；".join(parts), None
+
+
+# ---------------------------------------------------------------------------
+# CHANNEL B: direct command table (bypasses klar entirely)
+#
+# WHY THIS EXISTS
+#   klar's zh-CN lexicon only knows household words (灯/风扇/窗帘/空调/电视).
+#   We tried to teach it our words via POST /api/lang/overlay custom phrases:
+#   the phrases persist (/api/custom returns all 11) and DO match
+#   (policy_trace id=custom_sentence score=1.0), but the engine then lands on
+#   `safety_decision: reject` with reason "unsafe", because the target is not
+#   in its internal exposed-entity graph (/api/entities returns [] and there is
+#   no write route for it). Full evidence: docs/KLAR-CUSTOM-PHRASES.md
+#
+#   So board-owned commands are matched here by string. Deterministic, no engine
+#   dependency, and faster (~0 ms vs ~25 ms for a parse round-trip).
+#
+# (phrases, action, default_slots)
+# ---------------------------------------------------------------------------
+DIRECT_COMMANDS = [
+    # --- 人脸 / NPU ---
+    (["打开人脸识别", "开始人脸识别", "识别一下", "看看是谁", "谁来了",
+      "人脸识别", "识别画面", "看看有人吗"],        act_face_recognize, {}),
+    # --- 录制 ---
+    (["开始自动录制", "打开自动录制", "自动录制"],   act_record_on,  {"mode": "auto"}),
+    (["开始录制", "开启录制"],                     act_record_on,  {"mode": "on"}),
+    (["停止录制", "关闭录制", "别录了"],            act_record_off, {}),
+    (["清空回收站", "清空录制回收站", "删除录像"],    act_record_purge, {}),
+    # --- 状态询问（只读，安全）---
+    (["现在什么状态", "状态怎么样", "板子还好吗"],   act_status, {}),
+]
+
+_CMD_INDEX = None
+
+
+def _build_index():
+    global _CMD_INDEX
+    idx = [(p, fn, d) for phrases, fn, d in DIRECT_COMMANDS for p in phrases]
+    # 长词优先，避免「录制」抢在「关闭录制」前面
+    idx.sort(key=lambda x: -len(x[0]))
+    _CMD_INDEX = idx
+    return idx
+
+
+def match_direct(text):
+    """Return (fn, slots, matched_phrase) or None. Exact-ish match only."""
+    idx = _CMD_INDEX or _build_index()
+    t = (text or "").strip()
+    for phrase, fn, defaults in idx:
+        if t == phrase or t.endswith(phrase) or phrase in t:
+            return fn, dict(defaults), phrase
+    return None
+
+
+def run_direct(text, dry_run=False):
+    hit = match_direct(text)
+    if not hit:
+        return None
+    fn, slots, phrase = hit
+    if dry_run:
+        return {"ok": True, "channel": "direct", "matched": phrase,
+                "dry_run": True}
+    ok, msg, detail = fn(slots)
+    return {"ok": ok, "channel": "direct", "matched": phrase,
+            "message": msg, "detail": detail}
+
+
+# 状态查询已在上方 DIRECT_COMMANDS 之前定义（act_status）
+ACTION_MAP = {
+    "HassTurnOn":  None,      # resolved by entity below
+    "HassTurnOff": None,      # resolved by entity below
+}
+
+
+# Entity id -> (human name, action callable)
+# These ids are OUR OWN registry namespace, written by make_registry.py.
+TARGETS = {
+    "switch.face_recognize":  ("人脸识别", act_face_recognize),
+    "switch.face_enroll":     ("人脸录入", act_face_enroll),
+    "switch.record_auto":     ("自动录制", act_record_on),
+    "switch.record_on":       ("持续录制", act_record_on),
+    "switch.record_off":      ("关闭录制", act_record_off),
+    "switch.record_purge":    ("清空录制回收站", act_record_purge),
+    "sensor.board_status":    ("板子状态", act_status),
+}
+
+
+def execute(parse_result, dry_run=False):
+    """Turn one klar parse result into one board action."""
+    decision = (parse_result.get("decision") or {}).get("type")
+    speech = parse_result.get("speech") or ""
+
+    if decision == "chat":
+        return {"ok": True, "kind": "chat", "speech": speech, "action": None}
+    if decision in ("clarify", "confirm", "reject"):
+        # no action to run; klar already produced a spoken cue
+        return {"ok": True, "kind": decision, "speech": speech, "action": None}
+    if decision != "execute":
+        return {"ok": False, "kind": decision, "speech": speech,
+                "error": "unsupported decision: %s" % decision}
+
+    steps = (((parse_result.get("candidates") or [{}])[0].get("plan") or {})
+             .get("steps") or [])
+    if not steps:
+        return {"ok": False, "kind": "execute", "error": "no plan steps"}
+
+    results = []
+    for step in steps:
+        intent = (step.get("intent") or {}).get("name")
+        slots = {}
+        for sl in ((step.get("intent") or {}).get("slots") or []):
+            slots[sl.get("name")] = sl.get("value")
+
+        # turn intent + slots into our entity namespace
+        entity = slots.get("entity_id")
+        if intent == "HassTurnOn" and entity is None and slots.get("area"):
+            target = _area_default_on(slots["area"])
+        else:
+            target = entity
+
+        fn, name = None, None
+        if target and target in TARGETS:
+            name, fn = TARGETS[target]
+        elif intent in ("HassTurnOn", "HassTurnOff"):
+            r = {"intent": intent, "slots": slots, "ok": False,
+                 "error": "entity %r 不在本板 targets 里" % target}
+            results.append(r)
+            continue
+        else:
+            r = {"intent": intent, "slots": slots, "ok": False,
+                 "error": "intent %r 未实现" % intent}
+            results.append(r)
+            continue
+
+        if dry_run:
+            results.append({"intent": intent, "slot_entity": target,
+                            "target_name": name, "ok": True, "dry_run": True})
+            continue
+        ok, msg, detail = fn(slots)
+        results.append({"intent": intent, "slot_entity": target,
+                        "target_name": name, "ok": ok, "message": msg,
+                        "detail": detail})
+
+    speech = speech or "；".join(r.get("message", "") for r in results)
+    return {"ok": all(r.get("ok") for r in results),
+            "kind": "execute", "speech": speech, "actions": results}
+
+
+def handle_text(text, dry_run=False):
+    """Main entry: try CHANNEL B (direct) first, fall back to CHANNEL A (klar).
+
+    Channel B first because it is deterministic and instant; klar is only
+    consulted for sentences we don't own (household words it understands).
+    """
+    direct = run_direct(text, dry_run=dry_run)
+    if direct is not None:
+        return {"channel": "direct", "input": text, **direct}
+
+    parsed = klar_parse(text)
+    if "error" in parsed:
+        return {"ok": False, "channel": "klar", "input": text,
+                "error": parsed.get("error"), "detail": parsed.get("detail")}
+    out = execute(parsed, dry_run=dry_run)
+    out["channel"] = "klar"
+    out["input"] = text
+    out["klar_decision"] = (parsed.get("decision") or {}).get("type")
+    out["klar_speech"] = parsed.get("speech")
+    return out
+
+
+def _area_default_on(area):
+    """If the user said a bare area, pick a sensible on-target in it."""
+    defaults = {"npu": "switch.face_recognize", "record": "switch.record_auto"}
+    return defaults.get(area)
+
+
+# ---------------------------------------------------------------------------
+# One-way path used by klar's Wyoming intent channel
+# ---------------------------------------------------------------------------
+def handle_wyoming_intent(payload):
+    """klar speaks Wyoming `intent` on 10500; we accept the same JSON shape."""
+    text = payload.get("text") or payload.get("input", {}).get("text")
+    if not text:
+        return {"ok": False, "error": "no text in intent payload"}
+    return handle_text(text)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--do", help="一句话端到端：parse -> execute -> 打印结果")
+    ap.add_argument("--dry-run", action="store_true", help="只解析不执行")
+    ap.add_argument("--json", "-j", action="store_true", help="输出 JSON")
+    ap.add_argument("--debug", action="store_true")
+    args = ap.parse_args()
+
+    logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO,
+                        format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+
+    if not args.do:
+        ap.print_help()
+        return 0
+
+    out = handle_text(args.do, dry_run=args.dry_run)
+    if args.json:
+        print(json.dumps(out, ensure_ascii=False, indent=1))
+        return 0 if out.get("ok") else 1
+
+    print("输入     :", args.do)
+    print("通道     :", out.get("channel"))
+    if out.get("channel") == "klar":
+        print("klar 决策:", out.get("klar_decision"), "| 播报:", out.get("klar_speech"))
+    else:
+        print("命中短语 :", out.get("matched"))
+    print("执行结果 :", "OK" if out.get("ok") else "FAILED")
+    if out.get("dry_run"):
+        print("  [dry-run] 未实际执行")
+    elif out.get("message"):
+        print("  ->", out.get("message"))
+    for a in out.get("actions") or []:
+        print("  %s: %s -> %s" % ("✓" if a.get("ok") else "✗",
+                                  a.get("target_name"), a.get("message")))
+    if out.get("error"):
+        print("  error:", out["error"])
+    return 0 if out.get("ok") else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

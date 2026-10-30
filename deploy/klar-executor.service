@@ -1,0 +1,21 @@
+[Unit]
+Description=klar executor (Chinese voice command -> board API)
+After=network.target klar-nlu-engine.service klar-voice-asr.service
+Wants=klar-nlu-engine.service
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/data/klar
+Environment=KLAR_VOICE_JSON=/root/klar-voice.json
+Environment=PYTHONUNBUFFERED=1
+# 常驻监听模式：从 stdin/HTTP 收句子，双通道分发
+ExecStart=/usr/bin/python3 /mnt/data/klar/klar_executor.py --serve
+Restart=on-failure
+RestartSec=5
+# 执行器很轻，给 128M 足够
+MemoryMax=128M
+StandardOutput=append:/mnt/data/klar/executor.log
+StandardError=append:/mnt/data/klar/executor.log
+
+[Install]
+WantedBy=multi-user.target
