@@ -86,31 +86,80 @@ def check_face():
         if nm:
             names.append(nm)
 
-    # PAD 判定
+    # ------------------------------------------------------------------
+    # PAD 判定 —— 两个字段含义必须分清（源码依据见文末注释）
+    #
+    #   security_calibrated : 是否完成「现场安全标定 + 误放/误拒验证」。
+    #                         现在恒为 False。**但它不代表没有判断逻辑**：
+    #                         融合器早就按最高分类分数产出 model_live /
+    #                         model_non_live / inconclusive。
+    #
+    #   status              : 本次这一帧的真实处理结果。取值域：
+    #                           not_applicable  -> 这帧没检测到人脸，PAD 模型
+    #                                              根本没跑（通常配 reason=no_face）
+    #                           model_live      -> 模型判为活体
+    #                           model_non_live  -> 模型判为非活体（照片/屏幕等）
+    #                           inconclusive    -> 两模型分类分数打平，无法判定
+    #                           stale           -> 帧过期，结果作废
+    #                           not_evaluated   -> 超出 face_limit 未评估
+    #
+    #   ⇒ status 不是"阈值有没有标定"，而是"这一帧的模型结论是什么"。
+    # ------------------------------------------------------------------
     pad_status = pad.get("status")
-    pad_calibrated = pad.get("security_calibrated", False)
-    # 已标定时 status 会是 pass/fail 之类；未标定是 not_applicable
-    pad_ok = True
-    pad_reason = ""
+    pad_calibrated = bool(pad.get("security_calibrated", False))
+    pad_reason_raw = pad.get("reason")
+
+    # 按真实取值域映射
     if pad_status in ("not_applicable", None, ""):
-        pad_ok = True
-        pad_reason = "PAD 未标定（security_calibrated=false），本次记录但不阻断"
-    elif str(pad_status).lower() in ("pass", "ok", "genuine", "live", "real"):
-        pad_ok = True
-        pad_reason = "PAD 通过：%s" % pad_status
-    elif str(pad_status).lower() in ("fail", "spoof", "attack", "fake", "print", "replay"):
+        # 没跑 PAD 推理 —— 不是"通过"，是"没有证据"
         pad_ok = False
-        pad_reason = "PAD 判定为攻击：%s" % pad_status
+        pad_have_evidence = False
+        pad_reason = "PAD 未执行（%s）：这帧没有可评估的人脸" % (pad_reason_raw or "no_face")
+    elif pad_status == "model_live":
+        pad_ok = True
+        pad_have_evidence = True
+        pad_reason = "PAD 模型判为活体（未经安全标定，仅供参考）"
+    elif pad_status == "model_non_live":
+        pad_ok = False
+        pad_have_evidence = True
+        pad_reason = "PAD 模型判为非活体（疑似照片/屏幕/回放，未经安全标定）"
+    elif pad_status == "inconclusive":
+        pad_ok = False
+        pad_have_evidence = True
+        pad_reason = "PAD 两模型分类打平，无法判定"
+    elif pad_status == "stale":
+        pad_ok = False
+        pad_have_evidence = False
+        pad_reason = "PAD 结果作废：帧已过期（%s）" % (pad_reason_raw or "frame_expired")
+    elif pad_status == "not_evaluated":
+        pad_ok = False
+        pad_have_evidence = False
+        pad_reason = "PAD 未评估：超出人脸数上限"
     else:
-        pad_reason = "PAD 未知状态 %s" % pad_status
+        pad_ok = False
+        pad_have_evidence = False
+        pad_reason = "PAD 未知状态 %r" % (pad_status,)
+
+    # live_score 作为参考记录（未标定概率，不当作通过依据）
+    pad_live_score = None
+    mres = pad.get("model_result") or {}
+    if isinstance(mres, dict):
+        pad_live_score = mres.get("live_score")
 
     face_ok = bool(names)
+    # 开门时的 PAD 门槛：
+    #   enforce -> 必须有 model_live 证据才放行
+    #   warn    -> 记录+播报提醒，但不阻断（当前默认，因为未标定）
+    pad_gate_ok = pad_ok if PAD_MODE == "enforce" else True
+
     return {
-        "ok": face_ok and (pad_ok or PAD_MODE == "warn"),
+        "ok": face_ok and pad_gate_ok,
         "face_ok": face_ok,
         "pad_ok": pad_ok,
+        "pad_have_evidence": pad_have_evidence,
         "pad_calibrated": pad_calibrated,
         "pad_status": pad_status,
+        "pad_live_score": pad_live_score,
         "pad_reason": pad_reason,
         "names": names,
         "face_count": res.get("face_count", 0),
@@ -181,8 +230,11 @@ def unlock(text, wav_path, dry_run=False):
     # ②③ 人脸 + 防伪
     face = check_face()
     steps["face"] = face
-    steps["pad"] = {"ok": face.get("pad_ok"), "status": face.get("pad_status"),
+    steps["pad"] = {"ok": face.get("pad_ok"),
+                    "status": face.get("pad_status"),
+                    "have_evidence": face.get("pad_have_evidence"),
                     "calibrated": face.get("pad_calibrated"),
+                    "live_score": face.get("pad_live_score"),
                     "reason": face.get("pad_reason")}
 
     # ④ 声纹
@@ -194,12 +246,15 @@ def unlock(text, wav_path, dry_run=False):
     if all_ok:
         done, msg = actuate_unlock(dry_run=dry_run)
         speech = "验证通过，%s。" % msg
+        # 未标定时，即使放行也要在播报里明确说出来
+        if not face.get("pad_calibrated"):
+            speech += "（注意：防伪未经安全标定，本次不依据其结论。）"
     else:
         bad = []
         if not face.get("face_ok"):
             bad.append("人脸没认出来")
-        if not face.get("pad_ok"):
-            bad.append("疑似照片或屏幕")
+        elif not face.get("pad_ok") and PAD_MODE == "enforce":
+            bad.append(face.get("pad_reason") or "防伪未通过")
         if not voice.get("ok"):
             bad.append("声音不像")
         speech = "不能开门：%s。" % "，".join(bad)

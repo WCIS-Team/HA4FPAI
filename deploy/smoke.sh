@@ -52,16 +52,14 @@ out=$(run "cd /mnt/data/klar && timeout 40 python3 wyoming_probe.py wake --wav /
 echo "$out" | sed 's/^/    /'
 chk "KWS hit on zh_3" "not_detected=False" "$out"
 
-echo "=== 5. klar engine Chinese NLU ==="
-out=$(run "python3 - <<'PY'
-import urllib.request, json
-body=json.dumps({'text':'打开客厅的灯','language':'zh-CN'}).encode()
-req=urllib.request.Request('http://127.0.0.1:10520/api/v2/parse',data=body,headers={'Content-Type':'application/json'})
-r=json.load(urllib.request.urlopen(req,timeout=20))
-print('decision',r['decision']['type'],'| speech',r['speech'])
-PY" 2>&1)
+echo "=== 5. executor 双通道 ==="
+# 注意：不能只测 klar 原生解析。本板 registry 里放的是板子自有实体
+# (switch.face_recognize 等)，不在 klar 的 zh-CN 家居词表里，原生 parse 会 reject。
+# 真正该验收的是 executor 的双通道：直连命令必须 100% 命中。
+out=$(run "cd /mnt/data/klar && python3 klar_executor.py --do '现在什么状态' --json 2>&1")
 echo "$out" | sed 's/^/    /'
-chk "klar parsed as execute" "decision execute" "$out"
+chk "executor direct channel" '"channel": "direct"' "$out"
+chk "executor ran action" '"ok": true' "$out"
 
 echo
 if [ "$FAIL" -eq 0 ]; then echo "ALL SMOKE CHECKS PASSED"; else echo "SMOKE FAILED"; fi
