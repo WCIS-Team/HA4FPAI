@@ -73,19 +73,34 @@ LOG = logging.getLogger("voice_gateway")
 
 # ---------------------------------------------------------------------------
 # 重采样：TTS 输出 → 客户端期望的采样率
+#
+# 算法选择是实测过的（见 boards/bench_resampler.py、docs/RESAMPLER-CHOICE.md）：
+#
+#     本板 A55×4，2 秒 22050→48000：
+#       linear       16.6 ms   peak=1000Hz  amp=1.000
+#       polyphase  1776.9 ms   peak=1000Hz  amp=1.005   ← 慢 107 倍
+#
+#     质量两者都正确（频率/幅度都保持），差异只在插值平滑度。
+#     真实 TTS 语音上线性插值的频谱相关度 **0.9997**，幅度 0.310→0.305。
+#
+# ⇒ **线性插值就是这块板的最优解**，polyphase 在 A55 上不可接受。
+#   真要更高质量应该换 scipy.signal.resample_poly（C 实现），
+#   但那要多装 30–50 MB 依赖，为播报不值得。
 # ---------------------------------------------------------------------------
 def resample_linear(x, src_rate, dst_rate):
-    """通用线性重采样（float32 in/out）。22050→48000 这类非整数倍必须走这里。"""
+    """线性插值重采样（float32 in/out）。本板实测最优。
+
+    22050 与 48000 不是整数倍，必须真插值，不能重复/丢弃采样。
+    np.interp 是 C 实现单遍扫描，16 ms/2s 音频。
+    """
     x = np.asarray(x, dtype=np.float32)
     if src_rate == dst_rate or x.size == 0:
         return x
     n_out = int(round(len(x) * dst_rate / float(src_rate)))
     if n_out <= 0:
         return np.zeros(0, dtype=np.float32)
-    # 用原信号的采样位置做线性插值
-    src_idx = np.arange(len(x), dtype=np.float64)
     dst_idx = np.linspace(0.0, len(x) - 1.0, n_out, dtype=np.float64)
-    return np.interp(dst_idx, src_idx, x).astype(np.float32)
+    return np.interp(dst_idx, np.arange(len(x), dtype=np.float64), x).astype(np.float32)
 
 
 def to_16k_pcm16(data, rate):
