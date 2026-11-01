@@ -315,11 +315,11 @@ th{color:var(--dim);font-weight:600}
     <button class="tab" onclick="pick('stream')">SDI 直播</button>
     <button class="tab" onclick="pick('record')">录像管理</button>
     <button class="tab" onclick="pick('face')">NPU 人脸</button>
-    <a class="tab" id="extlink" href="http://192.168.1.113:10521/" target="_blank"
+    <a class="tab" id="extlink" href="http://127.0.0.1:10521/" target="_blank"
        style="text-decoration:none;display:inline-block">↗ 新窗口打开</a>
   </div>
   <div id="embednote" class="kv" style="margin:8px 0"></div>
-  <iframe id="embed" src="http://192.168.1.113:10521/"
+  <iframe id="embed" src="http://127.0.0.1:10521/"
           style="width:100%;height:620px;border:1px solid var(--line);border-radius:8px;background:#fff"></iframe>
  </div>
 </section>
@@ -338,7 +338,7 @@ function stateDot(x){
   } return 'warn';
 }
 const EMBED={
- klar:{url:'http://192.168.1.113:10521/',note:'klar 引擎自带 SPA（经免 401 代理 10521）：语言包、自定义短语、播报模板、settings、对话历史、LLM 配置。无需手填 token。'},
+ klar:{url:'http://127.0.0.1:10521/',note:'klar 引擎自带 SPA（经你电脑上的本地代理 127.0.0.1:10521）：语言包、自定义短语、播报模板、settings、对话历史、LLM 配置。token 由本机代理持有，无需手填。'},
  stream:{url:'http://192.168.1.113:8092/',note:'SDI 内网直播（H.264 实时画面）。当前摄像头源不可用时会显示"暂无新鲜摄像头画面"。'},
  record:{url:'http://192.168.1.113:8093/',note:'摄像头录像管理：开关录制、存储配额、回收站、录像列表。'},
  face:{url:'http://192.168.1.113:8091/',note:'NPU 人脸识别与 gallery 管理。当前服务 503 时页面打不开。'}
