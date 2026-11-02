@@ -94,7 +94,7 @@ plink -ssh -batch -pw fmsh root@192.168.1.113 "cat /mnt/data/klar/.klar-token" >
 
 ### 每次使用
 
-双击 `repos/HA4FPAI/tools/klar-local-proxy.cmd`，窗口别关。
+双击 `workenv/klar-local-proxy/klar-local-proxy.cmd`，窗口别关。
 
 浏览器开 **http://127.0.0.1:10521/**
 
@@ -147,8 +147,8 @@ rootChildren   = 3            ← SPA 正常渲染
 
 | 文件 | 作用 |
 |---|---|
-| `tools/klar_local_proxy.py` | 本地代理本体（只监听 127.0.0.1） |
-| `tools/klar-local-proxy.cmd` | 双击启动脚本 |
+| `workenv/klar-local-proxy/klar_local_proxy.py` | 本地代理本体（只监听 127.0.0.1）。**不在仓库里**——个人工具按 AGENTS 硬规矩落 workenv |
+| `workenv/klar-local-proxy/klar-local-proxy.cmd` | 双击启动脚本。**不在仓库里** |
 | `%USERPROFILE%\.klar-token` | 本机 token（**已 gitignore**） |
 | `/mnt/data/klar/.klar-token` | 板子服务端 secret（chmod 600，不入库） |
 
