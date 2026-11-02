@@ -55,7 +55,9 @@ KLAR_TOKEN  KLAR_UI_DIR  KLAR_UI_LOCALE
 ```
 
 **这是漏洞**：任何能访问板子 10521 的人 `curl` 一下就能拿到 token。
-已彻底删除（服务、脚本、日志全部移除，板子 10521 端口已释放）。
+已彻底删除——**板上**（服务、脚本、日志全部移除，10521 端口已释放）与**仓库里**
+（`boards/klar_autotoken.py`、`deploy/klar-autotoken.service` 均已删除）都已清掉。
+此处只留作教训，**不要复活这条路**。
 
 ## 四、现在的正确做法：token 只在你电脑上
 
