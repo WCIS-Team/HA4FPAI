@@ -203,6 +203,47 @@ def act_status(slots):
 
 
 # ---------------------------------------------------------------------------
+# 新话术示例：板子自己的新情况 -> 新回应（直接命令，不走 klar 话术包）
+# ---------------------------------------------------------------------------
+def act_time(slots):
+    """现在几点：板上本地时间 HH:MM（纯本地，无服务依赖）。"""
+    now = time.strftime("%H:%M")
+    return True, "现在 %s" % now, {"time": time.strftime("%H:%M:%S")}
+
+
+SNAPSHOT_DIR = "/mnt/data/klar/snapshots"
+
+
+def act_snapshot(slots):
+    """拍照存档：抓一帧 SDI 现场 JPEG，存到板上 snapshots/ 目录。
+
+    实测 8091（wcis-face-photo）的 GET /api/camera/preview.jpg：
+      200 -> Content-Type: image/jpeg，裸 JPEG 字节
+      503 -> {"error":"暂无新鲜摄像头画面"}（无新鲜帧 / 相机被占）
+    照片服务没起时 http() 返回 (None, 连接错误)。
+    """
+    st, data = http(BOARD["face"] + "/api/camera/preview.jpg", "GET")
+    if st == 200 and isinstance(data, (bytes, bytearray)):
+        try:
+            os.makedirs(SNAPSHOT_DIR, exist_ok=True)
+        except OSError as e:                     # noqa: PERF203
+            return False, "存档目录不可写：%s" % e, None
+        name = "snap-%s.jpg" % time.strftime("%Y%m%d-%H%M%S")
+        path = os.path.join(SNAPSHOT_DIR, name)
+        try:
+            with open(path, "wb") as f:
+                f.write(bytes(data))
+        except OSError as e:                     # noqa: PERF203
+            return False, "写盘失败：%s" % e, None
+        return True, "已存一张：%s" % name, {"path": path, "bytes": len(data)}
+    if st == 503:
+        return False, "拍不了：暂无新鲜摄像头画面", data
+    if st is None:
+        return False, "拍照服务没在跑", data
+    return False, "拍照接口返回 %s" % st, data
+
+
+# ---------------------------------------------------------------------------
 # 多因子开门：口令 + 人脸 + 防伪 + 声纹（实现见 door_unlock.py）
 # 这里只做动作包装，真正的四道闸在 door_unlock.unlock() 里。
 # ---------------------------------------------------------------------------
@@ -276,6 +317,9 @@ DIRECT_COMMANDS = [
     (["清空回收站", "清空录制回收站", "删除录像"],    act_record_purge, {}),
     # --- 状态询问（只读，安全）---
     (["现在什么状态", "状态怎么样", "板子还好吗"],   act_status, {}),
+    # --- 新话术：板子自有命令（直接匹配，不依赖 klar）---
+    (["现在几点", "几点了", "现在时间", "看下时间"],  act_time, {}),
+    (["拍照存档", "拍一张照片", "拍张照片", "存一张照片"], act_snapshot, {}),
 ]
 
 _CMD_INDEX = None
