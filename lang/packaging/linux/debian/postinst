@@ -112,5 +112,14 @@ if [ -d /run/systemd/system ]; then
             </dev/null >/dev/null 2>&1 || true) &
     fi
 fi
-printf '%s\n' 'lang-server configured online; set ASR/LLM authentication in online.yaml or /etc/lang-server/lang-server.env.'
+printf '%s\n' \
+    'lang-server configured ONLINE; local models are not loaded or tested.' \
+    'Set ASR/LLM authentication in online.yaml or /etc/lang-server/lang-server.env.' \
+    'Services: lang-server-http (18091), lang-server-voice (10300/10301/10302), lang-server-loop (microphone/speaker).' \
+    'Background download: lang-server-model-download; only ASR/KWS/Silero-VAD/Matcha-TTS/Vocos files are managed.' \
+    'NOT PROVIDED BY THIS PACKAGE: Ekho native engine/voice data; ERNIE/Qwen2/Qwen3 NPU artifacts, drivers and iCraft runtime.' \
+    'Ekho requires a compatible prebuilt ARM64 kit plus matching voice data, or an off-board native/cross build.' \
+    'NPU LLM weights require iCraft target-model compilation or compatible precompiled artifacts; C/C++ components may additionally require ARM64 cross-compilation.' \
+    'Python drivers do not themselves require cross-compilation. Never compile or run model validation on the board during installation.' \
+    'See /usr/share/doc/lang-server/README.md for asset sources, build prerequisites and coverage limits.'
 exit 0

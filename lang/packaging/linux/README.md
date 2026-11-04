@@ -32,6 +32,42 @@ sudo apt install ./lang-server_0.1.0+20261104_arm64.deb
 
 包内不附带 API 密钥。ASR/LLM 在线调用需要你在目标机配置认证；安装服务成功不代表云端认证或供应商响应已验证。
 
+## 后台服务具体做什么
+
+安装后启用三个常驻服务和一个独立下载任务：
+
+| 单元 | 工作 | 默认是否加载本地模型 |
+|---|---|---|
+| lang-server-http | HTTP API，监听18091 | 否，remote-api/openai/edge，带 --no-warm |
+| lang-server-voice | Wyoming wake/ASR/TTS接口，监听10300/10301/10302 | 否，复用在线选档，带 --no-warm |
+| lang-server-loop | 麦克风/扬声器常驻循环，有设备时采集音频并交在线链处理 | 否，带 --no-warm；无此需求可停用该单元 |
+| lang-server-model-download | 下载并检查五组CPU模型文件 | 不构造或执行模型；成功后退出，失败每300秒重试 |
+
+日志用 `journalctl -u 单元名` 查看。下载结果是模型目录内的 `download-status.json`，不是离线推理可用性证明。
+
+## 安装覆盖范围与外部产物
+
+**当前发布的0.1.1并不是全部离线组件安装包**。自动下载清单只有 [models.json](models.json) 的五组CPU资产：ASR、KWS、Silero VAD、Matcha TTS、Vocos；全部使用Hugging Face官方客户端获取，支持同仓库镜像回退。
+
+| 组件 | 获取来源/所需产物 | 当前包是否自动处理 |
+|---|---|---|
+| 五组CPU模型 | manifests指定的HF仓库与文件 | 自动下载文件，不自动启用 |
+| Ekho | [Linux源码fork](https://github.com/takomitkm/ekho-Linux)；[SourceForge语音源](https://sourceforge.net/projects/e-guidedog/files/Ekho-Voice-Data/0.2/)；可复用匹配目标的预编译kit | 不自动安装引擎、语音库或Ekho单元 |
+| ERNIE-4.5-0.3B-PT | 原始来源为ModelScope PaddlePaddle/ERNIE-4.5-0.3B-PT；还需要目标NPU编译件、tokenizer、驱动和SDK | 不下载或编译NPU产物，不安装其运行链 |
+| Qwen3-0.6B | 原始来源为ModelScope/HF Qwen/Qwen3-0.6B；还需要目标NPU编译件与驱动 | 不下载或编译NPU产物，不安装其运行链 |
+| Qwen2 | 厂商ModelScope AIBS/Qwen2_0.5B_zg3.36.1_axi_demo配方/ONNX；底座Qwen/Qwen2-0.5B-Instruct | 不把厂商版本产物视作可在任意SDK直接运行 |
+
+Ekho不是一份HF权重。最小可用交付需要兼容aarch64/glibc2.31的 `ekho-server`、完整匹配的 `pinyin.index/pinyin.voice`、字典和字母数据，以及所用构建路线的espeak数据/共享库闭包。Git没有携带大体积voice数据；已有 `scripts/fetch-voice.sh` 只说明原始44.1k/16k语音数据的获取和后续生成/转换流程，当前deb没有调用它，不能把源码clone或原始音频下载当作Ekho已可用。现有手工 `lang-ekho.service` 使用旧机路径，也没有集成进本包。
+
+三个LLM的编译需要区分两件事：
+
+1. **模型目标编译**：原始权重/ONNX按各自迁移配方经过iCraft的parse、optimize、quantize、adapt、generate，生成匹配ZG330（target=zhuge）的模型产物。它不是gcc交叉编译，普通HF snapshot不能直接替代已编译的 `_ZG.json/.raw`。
+2. **本机程序构建**：如果还需要构建C/C++驱动或运行库，才涉及aarch64工具链与Ubuntu20.04 sysroot的交叉编译。已有Python驱动本身不需交叉编译，但依赖匹配的板端icraft CP38 wheel、SDK、固件及模型布局。
+
+已有经核验的模型/程序产物可以复用，不必每台设备重新编译；应核对NPU target、iCraft/运行库版本、模型输入输出与KV布局、tokenizer、CPU ABI及产物校验值。仓库的模型迁移README和TOML是各自配方入口，不能仅凭目录名判断可用。
+
+**安装器应把这些列为“本包未管理的外部组件”，不能只报“全部模型已安装”。** 新源码的postinst已补覆盖范围与构建前提提示；apt安装不等待用户交互，不自动拉起交叉编译、不在目标板构建，也不尝试加载或验证这些模型。已发布的旧deb不会因源码修改自动改变行为，需后续打包发布才带上新提示。
+
 ## 配置与状态
 
 | 用途 | 位置 |

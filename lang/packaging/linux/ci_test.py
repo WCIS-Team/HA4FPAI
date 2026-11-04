@@ -22,6 +22,7 @@ import time
 import traceback
 import urllib.error
 import urllib.request
+import uuid
 
 
 ROOT = Path('/usr/lib/lang-server')
@@ -279,9 +280,10 @@ def fixture_checks(package):
     online = CONFIG / 'online.yaml'
     require(online.is_file(), 'Expected seeded online.yaml for preservation test')
     online.write_bytes(online.read_bytes() + b'\n# CI preservation sentinel, not a credential\n')
+    fixture_id = uuid.uuid4().hex[:12]
     fixtures = {online: online.read_bytes(),
-                CONFIG / 'ci-preserved.yaml': b'ci_preserved:\n  value: keep-me\n',
-                STATE / 'models/ci-user-cache.txt': b'CI fixture; this is not a model\n'}
+                CONFIG / ('ci-preserved-' + fixture_id + '.yaml'): b'ci_preserved:\n  value: keep-me\n',
+                STATE / ('models/ci-user-cache-' + fixture_id + '.txt'): b'CI fixture; this is not a model\n'}
     for path, content in fixtures.items():
         if path != online:
             require(not path.exists(), 'Fixture path already exists: ' + str(path))
