@@ -24,7 +24,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 NPUSERV = os.path.dirname(HERE)                      # lang/npuserv
 LANG = os.path.dirname(NPUSERV)                       # lang/, the registry's "root"
-ADAPTER = os.path.join(LANG, "llm", "ERNIE-4.5-0.3B-PT4icraft430tai",
+ADAPTER = os.path.join(LANG, "llm", "models", "ERNIE-4.5-0.3B-PT4icraft430tai",
                        "board", "npuserv_adapter.py")
 ERNIE_BOARD = os.path.dirname(ADAPTER)
 if ERNIE_BOARD not in sys.path:

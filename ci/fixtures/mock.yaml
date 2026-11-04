@@ -1,0 +1,32 @@
+server:
+  host: 127.0.0.1
+  port: 18091
+  out_rate: 48000
+  chunk_gap_ms: 0
+  max_concurrent: 1
+  gate_timeout_s: 0.05
+env:
+  single_runtime: true
+chain:
+  sar: auto
+  rms: energy
+  kws: passthrough
+  kws_route: default
+  vad: none
+  asr: echo
+  router: echo
+  spk: none
+  llm: echo
+  tokenizer: tts_split
+  tts: sine
+tokenizer_profiles:
+  tts_split:
+    max_chars: 20
+    strict: true
+kws_route_profiles:
+  default:
+    on_miss: stop
+    default: general
+tts_profiles:
+  sine:
+    rate: 16000

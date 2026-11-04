@@ -250,14 +250,13 @@ def main():
                 pass
         srv.terminate()
         wait_gone(srv, 15)
+    leftovers = [p for p in (pid1, pid2, pid3, pid4) if pid_alive(p)]
+    check("no live mock workers remain after supervisor shutdown", not leftovers, str(leftovers))
     print("\n%d checks passed, %d failed" % (n_ok["c"], len(fails)))
     if fails:
         print("FAILED: " + ", ".join(fails))
         print("--- server log ---")
         print(open(log_file, encoding="utf-8", errors="replace").read()[-3000:])
-    leftovers = [p for p in (pid1, pid2, pid3, pid4) if pid_alive(p)]
-    if leftovers:
-        print("NOTE: mock worker pids still alive at exit: %s" % leftovers)
     return 1 if fails else 0
 
 
@@ -277,7 +276,12 @@ def pid_alive(pid):
         out = subprocess.run(["tasklist", "/NH", "/FI", "PID eq %d" % pid],
                              capture_output=True, text=True)
         return str(pid) in out.stdout
-    return os.path.exists("/proc/%d" % pid)
+    try:
+        with open("/proc/%d/stat" % pid, encoding="utf-8") as stream:
+            state = stream.read().rpartition(")")[2].split()[0]
+        return state not in ("Z", "X")
+    except (OSError, IndexError):
+        return False
 
 
 if __name__ == "__main__":

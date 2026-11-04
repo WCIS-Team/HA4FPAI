@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "deployment_id": "fmql30tai-packaged-online-v1",
+  "source_root": "/usr/lib/lang-server/lang",
+  "configuration_root": "/etc/lang-server/config",
+  "source_files": ["server/core.py", "server/app.py", "server/backends/asr.py", "server/backends/tts.py", "split/tts_split.py"],
+  "configuration_files": ["server.yaml", "split.yaml"],
+  "process_patterns": ["/usr/lib/lang-server/lang/server/app.py", "/usr/lib/lang-server/lang/server/wyoming_gateway.py"],
+  "samples": 5,
+  "warmup": 1,
+  "soak_iterations": 50,
+  "max_rss_growth_kib": 16384,
+  "services": [
+    {"id": "lang", "enabled": true, "host": "127.0.0.1", "port": 18091, "timeout_s": 45,
+     "checks": [{"path": "/health", "expect": {"ok": true, "service": "lang-server"}}, {"path": "/components", "expect": {}}]}
+  ],
+  "wyoming": [
+    {"id": "wake-info", "enabled": true, "port": 10300, "capability": "wake"},
+    {"id": "asr-info", "enabled": true, "port": 10301, "capability": "asr"},
+    {"id": "tts-info", "enabled": true, "port": 10302, "capability": "tts"}
+  ],
+  "workloads": [
+    {"id": "tts-short", "enabled": true, "service": "lang", "kind": "tts", "path": "/tts", "text": "这是一条自动化测试。"},
+    {"id": "asr-file", "enabled": true, "service": "lang", "kind": "asr", "path": "/api/v1/asr", "audio_file": "ci/fixtures/asr-zh.wav.b64", "audio_encoding": "base64", "corpus_metadata": "ci/fixtures/asr-zh.json", "max_cer": 0.2}
+  ],
+  "regression_gates": {
+    "latency_ms.p95": {"direction": "lower", "relative": 0.20, "absolute": 100.0},
+    "services.rss_kib.value": {"direction": "lower", "relative": 0.15, "absolute": 16384}
+  }
+}
