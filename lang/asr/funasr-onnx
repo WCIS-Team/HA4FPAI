@@ -1,0 +1,22 @@
+#!/bin/sh
+# /funasr-onnx —— 链路 B 入口（音质档；2026-11-04 后链路内已无 ONNX）
+#
+#   WebRTC VAD（纯 C，2026-11-04 起替代 FSMN-VAD）→ 远程 ASR（HTTP）→ Piper 本机出声
+#   （piper-tts，conda env，独立常驻进程里自带 onnxruntime）。
+#
+# 用法：
+#   ASR_REMOTE_URL=http://192.168.1.102:10095/api/v1/asr /funasr-onnx
+#   SRC=wav WAV=/root/funasr/testdata/c247_60.wav ASR_REMOTE_URL=... /funasr-onnx
+#   BG=1 ASR_REMOTE_URL=... /funasr-onnx          # 后台，日志 /root/funasr/logs/onnx_chain.log
+#   LENGTH_SCALE=0.8 ... /funasr-onnx             # piper 说得快一点（板上 RTF≈1.1~1.8）
+#   TTS=ekho ... /funasr-onnx                     # 想换 ekho 出声也行
+#   /funasr-onnx --help
+#
+# 其它参数会原样传给 asr_chain.py。
+case "${1:-}" in
+  -h|--help)
+    sed -n '2,25p' /root/funasr/asr/run_onnx_chain.sh
+    exit 0
+    ;;
+esac
+exec bash /root/funasr/asr/run_onnx_chain.sh "$@"

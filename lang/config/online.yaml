@@ -1,0 +1,63 @@
+# lang/config/online.yaml —— 在线（外部）ASR / LLM / TTS 的 API 与密钥来源
+#
+# 本文件是所有"在线调用"的唯一记录处（本地 sherpa / 板上 npuserv 不在这里）。
+# 链路里选档：server.yaml 的 chain.asr=remote-api / chain.llm=openai / chain.tts=http 即用下面各节。
+#
+# ⚠️ 密钥纪律（D-27）：**推荐**只记 env 名（api_key_env）或 keyfile 路径；把明文 key 写进
+#    `api_key` 只是为本地跑通方便的临时做法，**提交前务必改成 env/keyfile**（否则会随仓库扩散）。
+
+online:
+  asr:                       # 外部 ASR API —— 当前接的是 SiliconFlow 的 OpenAI 兼容转写口
+    url: "https://api.siliconflow.cn/v1/audio/transcriptions"
+    proto: openai            # ← 该口是 OpenAI 兼容（不是 funasr）；可选 funasr|openai|json
+    field: file              # OpenAI 协议上传字段名＝file
+    model: "XingChenAGI/XingChenASR-V3.2-Ultra"   # SiliconFlow 列出的 speech-to-text 模型
+    api_key_env: SILICONFLOW_API_KEY   # 优先从该环境变量取
+    api_key: "sk-yalykxojforelafptqxrjtrmwxakycyotzslydlxqebxghyz"   # 临时；提交前删
+    keyfile: ""
+    timeout: 60
+    retry: 1
+
+  llm:                       # 云 LLM（OpenAI 兼容 chat/completions）—— SiliconFlow
+    base_url: https://api.siliconflow.cn/v1
+    model: Qwen/Qwen2.5-7B-Instruct
+    api_key_env: SILICONFLOW_API_KEY
+    api_key: "sk-yalykxojforelafptqxrjtrmwxakycyotzslydlxqebxghyz"   # 临时；提交前删
+    keyfile: ""
+    reasoning: none          # 关思考链（板上实测省 1~8 s）；空串＝完全不传该字段
+    max_tokens: 128
+    history_turns: 2
+
+  tts:                       # 外部 TTS 服务（piper_tts_server :5002 / ekho-server :2046 / 任意 POST）
+    proto: piper             # piper（POST JSON {"text"}）| ekho（POST 文本 body）| json
+    url: ""                  # 空＝环境变量 TTS_URL；piper 形如 http://127.0.0.1:5002/tts
+    api_key_env: TTS_API_KEY
+    keyfile: ""
+    length_scale: 1.0
+    timeout: 60
+
+  # Edge「大声朗读」在线中文 TTS（无需 key，需联网；产出 mp3，靠 ffmpeg 转 wav）
+  # 实现在 lang/tts/models/edge/；chain.tts: edge 或请求 ?tts=edge 时用它。
+  edge:
+    voice: zh-CN-XiaoxiaoNeural   # 中文女声；另有 YunxiNeural(男)/YunjianNeural(男)/XiaoyiNeural(女)…
+    rate: "+0%"                   # 语速，如 "+20%" / "-10%"
+    volume: "+0%"
+    pitch: "+0Hz"
+    proxy: ""                     # 需要时填 http://127.0.0.1:7897（板上可能要走代理）
+    ffmpeg: ""                    # ffmpeg 路径；空＝PATH 找
+    decoder: miniaudio            # mp3→pcm：改用 miniaudio（~0.1 MB，边缘首选）；可换 soundfile/mpg123/ffmpeg/auto
+    sample_rate: 24000            # 目标采样率（单声道）
+
+  # archive/mimo_bridge.py（老 ASR+LLM 云桥）的配置搬到这里（原在 lang/config.yaml 的 mimo 节）。
+  # 它自己不认目录布局：要用它，export MIMO_* 环境变量，或另给 LANG_CONFIG 指到单文件。
+  mimo:
+    base_url: https://api.xiaomimimo.com/v1
+    asr_model: mimo-v2.5-asr
+    llm_model: mimo-v2.6-flash
+    asr_lang: zh
+    api_key_env: MIMO_API_KEY
+    keyfile: ""
+    llm_enable: true
+    history_turns: 2
+    llm_reasoning: none
+    llm_max_tokens: 128

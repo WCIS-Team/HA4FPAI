@@ -1,0 +1,34 @@
+# 这份目录是 113 板 `/root/funasr` 的正本镜像。下面三类一律不入库。
+
+# 运行产物：每次跑都重写，进库只会把真实版本史盖掉
+out/
+segments/
+logs/
+tts/
+__pycache__/
+*.pyc
+
+# 板端 aarch64 的解释器环境——换机器就是废的（README 的"没带什么"那节写了它为什么没带）
+venv/
+
+# 明文密钥（2026-11-03 已处理）：原先 `asr/mimo_bridge.py:59` 与
+# `asr/start_mimo_bridge.sh:18` 各写死一把 `MIMO_API_KEY`。现已按 D-27
+# 「凭据值全库只记一处」改掉：
+#   * `mimo_bridge.py`  —— `API_KEY` 只从环境变量取，缺失直接退出，无兜底字面量
+#   * `start_mimo_bridge.sh` —— 环境变量优先，其次读 `KEYFILE`（板上
+#     `/root/funasr/.mimo-key`，chmod 600），两处都没有就 exit 5
+# ⇒ 这两支**已经不含任何密钥**，技术上可以入库了。暂仍留在未跟踪状态，
+#    只因是否入库要单独决定（入库会让「密钥放哪」这件事被更多人看到）。
+asr/mimo_bridge.py
+asr/start_mimo_bridge.sh
+
+# 密钥文件本体（板端单点位置，绝不入库）
+.mimo-key
+asr/.mimo-key
+
+# 模型权重（2026-11-04 起本地唯一 ASR 档：sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30）
+# 单文件 encoder.int8.onnx = 153.7 MB，**超过 git push 的 100 MiB 硬闸**，且权重可随时用官方渠道重取：
+#   hf download csukuangfj/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30 \
+#       --local-dir lang/asr/models/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30
+# ⇒ 一律不入库；路径由 lang/config/asr.yaml 的 asr_profiles.sherpa 指过来。
+models/

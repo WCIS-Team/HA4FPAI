@@ -37,7 +37,7 @@ Assist 语音流水线          ◀────▶  ├ voice TTS   10302
 
 ```bash
 cd repos/HA4FPAI
-BOARD=root@192.168.1.113 ./deploy/install-voice.sh
+BOARD=root@192.168.1.113 ./archiver/install-voice.sh
 ```
 
 脚本做六件事：查磁盘 → 推 py 服务 + `~/klar-voice.json` → 板上 `py_compile` → 装 4 个 systemd 单元 → 缺则下 klar engine（`klar-linux-aarch64.tar.gz`，tag `2026.10.10`）→ `daemon-reload` + restart + 报告。

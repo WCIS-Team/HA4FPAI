@@ -1,0 +1,12 @@
+# lang/config/vertify.yaml —— 声纹验证（CAM++）档
+# 参数口径见 lang/vertify/para.md（sherpa-onnx v2.0.1 源码级 4 实例参数 + 判决级 threshold）；
+# 选型与现状见 lang/vertify/README.md。
+# 注意：档位**尚未实现**——Chain.STAGES 没有 spk 这一级，backends/__init__.py 的 REGISTRY 也没有。
+# 接进链路时按 para.md §七 的契约（档名 spk: sherpa）补档位，本文件只是参数正本。
+spk_profiles:
+  sherpa:                    # 复用 lang/vertify/models 的 CAM++（本机副本不入库）
+    model: ""                # 空＝取 vertify/models/3dspeaker_speech_campplus_sv_zh-cn_16k-common.onnx
+    num_threads: 1           # 板上给 1（993 MB，与 kws/asr 抢核）
+    threshold: 0.5           # 余弦门限（本仓实测 0.5 起跨人零误接受；0.30–0.45 有误接受）
+    # 档位建议：run(segs) -> (name, score)，逐 VAD 段各算一个嵌入；不要拿整条录音算一个。
+    # 登记库用 SpeakerEmbeddingManager(dim=192)；enroll 用 add(name, [多段嵌入])（多段平均＋归一化库内做）。

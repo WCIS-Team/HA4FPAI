@@ -1,0 +1,19 @@
+[Unit]
+Description=lang/server voice (Wyoming wake:10300 / asr:10301 / tts:10302; replaces HA4FPAI voice_gateway)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/data/langserver
+Environment=LANG_CONFIG_DIR=/mnt/data/langserver/config
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /mnt/data/langserver/wyoming_gateway.py
+Restart=on-failure
+RestartSec=5
+# 三语音合一进程的上限参考 HA4FPAI 旧值（合并前 368 MB，合并后 ~308 MB）；按实测再调
+MemoryMax=420M
+StandardOutput=append:/mnt/data/langserver/voice.log
+StandardError=append:/mnt/data/langserver/voice.log
+
+[Install]
+WantedBy=multi-user.target

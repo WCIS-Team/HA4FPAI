@@ -35,6 +35,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# klar_executor.py 已迁至仓库 klar/；板上仍是平铺同一目录，两种布局都能 import
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "klar"))
 
 LOG = logging.getLogger("console")
 
@@ -143,8 +145,10 @@ def health():
     h = {}
 
     h["gateway"] = {
-        "unit": svc_unit("klar-voice-gateway"),
-        "rss_mb": unit_rss("klar-voice-gateway"),
+        # 语音已移交 lang/server（她 2026-11-04 定）：单元名是 lang-server-voice，
+        # 端口仍是 10300/10301/10302（对客户端透明）
+        "unit": svc_unit("lang-server-voice"),
+        "rss_mb": unit_rss("lang-server-voice"),
     }
     h["engine"] = {
         "unit": svc_unit("klar-nlu-engine"),

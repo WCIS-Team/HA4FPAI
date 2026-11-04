@@ -94,9 +94,9 @@
 
 | 文件 | 作用 |
 |---|---|
-| `boards/klar_executor.py` | 双通道执行器，CLI 可直接测 |
-| `boards/make_registry.py` | 生成 `core.entity_registry`/`core.area_registry` 给 klar |
-| `docs/KLAR-CUSTOM-PHRASES.md` | klar 自定义短语的完整证据链 |
+| `klar/klar_executor.py` | 双通道执行器，CLI 可直接测 |
+| `klar/make_registry.py` | 生成 `core.entity_registry`/`core.area_registry` 给 klar |
+| `klar/docs/KLAR-CUSTOM-PHRASES.md` | klar 自定义短语的完整证据链 |
 | `deploy/klar-executor.service` | （待加）常驻服务 |
 
 用法：

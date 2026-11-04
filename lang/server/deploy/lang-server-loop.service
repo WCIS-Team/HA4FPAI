@@ -1,0 +1,23 @@
+[Unit]
+Description=lang/server voice loop (fsm turn-taking on mic+speaker; auto-match default device)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/data/lang/server
+Environment=LANG_CONFIG_DIR=/mnt/data/lang/config
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /mnt/data/lang/server/loop.py --run
+Restart=on-failure
+RestartSec=15
+MemoryMax=200M
+StandardOutput=append:/mnt/data/lang/server/loop.log
+StandardError=append:/mnt/data/lang/server/loop.log
+
+[Install]
+WantedBy=multi-user.target
+#
+# 现在板上一麦一喇叭都没接：本单元可 enable——loop.py 无麦时**不退出**，每 10 s 重探，
+# 麦克风一插即自动开麦；无声卡时回复落盘 /tmp/loop_reply.wav，喇叭到位即自动改 aplay。
+# 判据：journalctl -u lang-server-loop 或 /mnt/data/lang/server/loop.log 出现
+#   "真实循环起来：capture=default ..." 即为已接上麦；说一句话应见 run_asr/start_tts 轨迹。

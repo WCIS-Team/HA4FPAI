@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>lang 语音链试验台</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%2340b478%27/%3E%3C/svg%3E">
+<style>
+  :root{--bg:#14181f;--card:#1c2430;--line:#2a3441;--fg:#e9edf2;--dim:#8d97a3;
+        --ok:#40b478;--warn:#f0c878;--bad:#d65450}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;padding:1.2rem}
+  h1{font-size:1.15rem;margin:0 0 .2rem}
+  .sub{color:var(--dim);font-size:.85rem;margin-bottom:1rem}
+  .tabs{display:flex;gap:.5rem;margin-bottom:1rem}
+  .tab{padding:.45rem 1rem;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:#1a222c}
+  .tab.on{background:var(--ok);color:#0f1a14;border-color:var(--ok);font-weight:600}
+  .pane{display:none}.pane.on{display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem 1.2rem;margin-bottom:1rem}
+  .row{display:flex;gap:1rem;flex-wrap:wrap}
+  .col{flex:1;min-width:260px}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid #232c38;vertical-align:top}
+  th{color:var(--dim);font-weight:500;font-size:.82rem}
+  code,.mono{font-family:ui-monospace,Consolas,monospace;font-size:.86rem}
+  .path{color:#9ad;cursor:pointer}
+  .desc{color:var(--dim);font-size:.8rem;display:block;margin-top:.1rem;white-space:pre-wrap}
+  input,select,textarea{background:#10151c;color:var(--fg);border:1px solid var(--line);
+        border-radius:5px;padding:.3rem .45rem;font:inherit;width:100%}
+  input[type=checkbox]{width:auto}
+  button{background:#2a3441;color:var(--fg);border:1px solid #3a4654;border-radius:6px;
+        padding:.45rem .9rem;cursor:pointer;font:inherit}
+  button.primary{background:var(--ok);border-color:var(--ok);color:#0f1a14;font-weight:600}
+  button:hover{filter:brightness(1.12)}
+  #log{color:var(--warn);font-size:.88rem;margin-left:.6rem}
+  .filetabs{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.8rem}
+  .ft{padding:.25rem .6rem;border:1px solid var(--line);border-radius:5px;cursor:pointer;font-size:.85rem}
+  .ft.on{background:#2f3d4d;border-color:#4a5a6d}
+  .stage{display:flex;align-items:center;gap:.5rem;padding:.3rem 0}
+  .badge{font-size:.75rem;padding:.05rem .4rem;border-radius:4px;background:#2a3441;color:var(--dim)}
+  .rnum{color:#5ad19a;font-family:ui-monospace,Consolas,monospace;font-size:.82rem;min-width:3.4rem;text-align:right}
+  input[type=range]{padding:0;accent-color:#40b478;cursor:pointer}
+  .radio{display:inline-flex;align-items:center;gap:.3rem;white-space:nowrap;cursor:pointer;font-size:.9rem}
+  .radio input{margin:0}
+  .art a{color:#7fd1a8}
+  .err{color:var(--bad)}
+  .tone-bad{color:var(--bad)}
+  .tone-warn{color:var(--warn)}
+  select.tone-bad{color:var(--bad)} select.tone-warn{color:var(--warn)}
+  .chip{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:.05rem .4rem;
+        margin:.15rem .25rem 0 0;font-size:.78rem}
+  pre{background:#0e131a;border:1px solid var(--line);border-radius:6px;padding:.7rem;overflow:auto;max-height:22rem}
+  /* 窄屏（手机）：单选行→下拉；横滑条→竖滑条；参数表堆叠 */
+  .cw-narrow{display:none}
+  .radio-row{display:flex;flex-wrap:wrap;gap:.15rem .9rem}
+  .radio-row{display:flex;flex-wrap:wrap;gap:.15rem .9rem}
+  @media (max-width:640px){
+    .cw-wide{display:none}
+    .cw-narrow{display:block;width:100%}
+    input[type=range]{writing-mode:vertical-lr;direction:rtl;height:130px;width:30px;flex:none;margin:0 auto}
+    [data-rng]{flex-direction:column;align-items:center;gap:.2rem}
+    table,thead,tbody,tr,td,th{display:block;width:100%}
+    thead{display:none}
+    tr{border-bottom:1px solid #232c38;padding:.5rem 0}
+    td{border:none;padding:.15rem 0}
+    .desc{font-size:.8rem}
+  }
+</style>
+</head>
+<body>
+<h1>lang 语音链试验台</h1>
+<div class="sub">① 参数面板：lang/config/*.yaml 全量可调（说明取自注释）　② 逐段试验台：任选子集跑，产物可下载</div>
+
+<div class="tabs">
+  <div class="tab on" data-pane="cfg">① 参数</div>
+  <div class="tab" data-pane="run">② 逐段跑</div>
+</div>
+
+<div class="pane on" id="pane-cfg">
+  <div class="card" id="srvcard">
+    <b>lang-server 服务</b>
+    <span id="srvstate" style="color:var(--dim);font-size:.85rem;margin-left:.6rem">探测中…</span>
+    <div style="margin-top:.6rem">
+      <button class="primary" id="srvRestart">重启服务</button>
+      <button id="srvStart">启动</button>
+      <button id="srvStop">停止</button>
+      <button id="srvLog">看日志</button>
+      <span id="srvlog" style="color:var(--warn);font-size:.88rem;margin-left:.6rem"></span>
+    </div>
+    <div class="desc" style="margin-top:.4rem">改完参数必须重启才生效：lang-server 只在**启动时**读一次 lang/config/。
+      本控制台用 <code>--serve</code> 起的话这里能直接重启它；若端口上是别人起的服务，只显示状态、不接管。</div>
+    <pre id="srvlogbox" style="display:none"></pre>
+  </div>
+
+  <div class="card">
+    <b>TTS 组合</b>
+    <span style="color:var(--dim);font-size:.85rem;margin-left:.5rem">
+      口径：<span class="tone-bad">红=不可用</span> · <span class="tone-warn">黄=实测可用但非交付</span> ·
+      <span>正常=现役交付</span>
+    </span>
+    <div class="row" style="margin-top:.6rem">
+      <div class="col"><label style="color:var(--dim);font-size:.82rem">前端（mel）</label>
+        <select id="ttsFront"></select></div>
+      <div class="col"><label style="color:var(--dim);font-size:.82rem">声学模型</label>
+        <select id="ttsAc"></select></div>
+      <div class="col"><label style="color:var(--dim);font-size:.82rem">声码器</label>
+        <select id="ttsVoc"></select></div>
+      <div class="col"><label style="color:var(--dim);font-size:.82rem">一体 TTS（仅前端为空时）</label>
+        <select id="ttsInt"></select></div>
+    </div>
+    <div style="margin-top:.6rem">
+      <button class="primary" id="ttsApply">应用组合到配置</button>
+      <span id="ttsLog" style="color:var(--warn);font-size:.88rem;margin-left:.6rem"></span>
+    </div>
+    <div class="desc" style="margin-top:.4rem">前端选了就**禁用一体 TTS**（mel+vits / mel+ekho 不存在）；前端为空才能选一体的 piper/ekho。
+      mel+matcha+vocos 是唯一成功上板的神经组合（整链 RTF 0.716–0.777）；其余实测结果见 <code>lang/tts/README.md</code>。</div>
+    <div id="ttsLegend" style="margin-top:.5rem"></div>
+  </div>
+
+  <div class="card">
+    <div class="filetabs" id="filetabs"></div>
+    <div style="color:var(--dim);font-size:.82rem" id="cfgdir"></div>
+    <table><thead><tr><th style="width:32%">参数</th><th style="width:30%">值</th><th>说明</th></tr></thead>
+      <tbody id="cfgrows"></tbody></table>
+    <div style="margin-top:.8rem">
+      <button class="primary" id="saveCfg">保存到 YAML</button>
+      <button id="saveReload">保存并重载链路</button>
+      <button id="resetCfg" style="border-color:#a06a3a;color:#f0c878">恢复默认</button>
+      <span id="log"></span>
+    </div>
+  </div>
+</div>
+
+<div class="pane" id="pane-run">
+  <div class="card">
+    <div class="row">
+      <div class="col">
+        <b>选段</b>
+        <div id="stages"></div>
+        <div style="margin-top:.5rem">
+          <button id="presetKws">只过 KWS</button>
+          <button id="presetKwsAsr">KWS→ASR</button>
+          <button id="presetFull">全链</button>
+          <button id="presetTts">文本→LLM→TTS</button>
+        </div>
+      </div>
+      <div class="col">
+        <b>输入</b>
+        <label style="display:block;color:var(--dim);font-size:.82rem;margin:.4rem 0 .2rem">音频文件（含音频段时必填）</label>
+        <input type="file" id="afile" accept=".wav,audio/wav,audio/*">
+        <label style="display:block;color:var(--dim);font-size:.82rem;margin:.6rem 0 .2rem">文本（文本段输入；留空则用 ASR 结果）</label>
+        <textarea id="text" rows="3" placeholder="你好，今天天气怎么样？"></textarea>
+        <div class="row" style="margin-top:.5rem">
+          <div class="col"><label style="color:var(--dim);font-size:.82rem">session</label><input id="session" value="default"></div>
+          <div class="col"><label style="color:var(--dim);font-size:.82rem">out_rate</label><input id="outRate" value="0"></div>
+        </div>
+        <div style="margin-top:.7rem">
+          <button class="primary" id="run">运行选中段</button>
+          <span id="runlog" style="color:var(--warn);font-size:.88rem"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <b>结果</b>
+    <table><thead><tr><th style="width:12%">段</th><th style="width:9%">耗时</th><th style="width:40%">结果</th><th>下载</th></tr></thead>
+      <tbody id="runrows"><tr><td colspan="4" style="color:var(--dim)">还没跑</td></tr></tbody></table>
+    <pre id="raw" style="display:none"></pre>
+  </div>
+</div>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+  document.querySelectorAll(".pane").forEach(x=>x.classList.remove("on"));
+  t.classList.add("on"); $("#pane-"+t.dataset.pane).classList.add("on");
+  if(t.dataset.pane==="run") loadStages();
+});
+
+/* ---------------- 参数面板 ---------------- */
+let CFG=null, curFile=null;
+
+async function loadCfg(){
+  const r=await fetch("/api/config"); CFG=await r.json();
+  $("#cfgdir").textContent="配置目录: "+CFG.dir;
+  const tabs=$("#filetabs"); tabs.innerHTML="";
+  CFG.files.forEach((f,i)=>{
+    const d=document.createElement("div");
+    d.className="ft"+(i===0?" on":""); d.textContent=f.name;
+    d.onclick=()=>{curFile=f.name;document.querySelectorAll(".ft").forEach(x=>x.classList.remove("on"));d.classList.add("on");renderCfg()};
+    tabs.appendChild(d);
+  });
+  curFile=CFG.files.length?CFG.files[0].name:null;
+  renderCfg();
+  fillTtsCombo();
+}
+
+/* ---------------- TTS 组合（前端/声学/声码器/一体，按依赖联动） ---------------- */
+let TTC=null;
+function toneOf(kind,v){const a=(TTC&&TTC[kind])||[];const f=a.find(x=>x.v===v);return f?f.tone:null}
+function paintSel(sel,kind){
+  const t=toneOf(kind,sel.value);
+  sel.classList.remove("tone-bad","tone-warn");
+  if(t) sel.classList.add("tone-"+t);
+}
+function syncCombo(){
+  const mel=!!$("#ttsFront").value;
+  $("#ttsAc").disabled=!mel; $("#ttsVoc").disabled=!mel; $("#ttsInt").disabled=mel;
+  paintSel($("#ttsFront"),"frontend"); paintSel($("#ttsAc"),"acoustic");
+  paintSel($("#ttsVoc"),"vocoder"); paintSel($("#ttsInt"),"integrated");
+}
+function fillTtsCombo(){
+  TTC=CFG.tts_combo||null; if(!TTC) return;
+  const put=(sel,arr)=>{sel.innerHTML=arr.map(o=>'<option value="'+esc(o.v)+'">'+esc(o.v||"（空）")+'</option>').join("")};
+  put($("#ttsFront"),TTC.frontend); put($("#ttsAc"),TTC.acoustic);
+  put($("#ttsVoc"),TTC.vocoder); put($("#ttsInt"),TTC.integrated);
+  ["ttsFront","ttsAc","ttsVoc","ttsInt"].forEach(id=>$("#"+id).onchange=syncCombo);
+  if(TTC.frontend.some(x=>x.v==="sherpa-mel") && TTC.acoustic.some(x=>x.v==="matcha")
+     && TTC.vocoder.some(x=>x.v==="vocos")){
+    $("#ttsFront").value="sherpa-mel"; $("#ttsAc").value="matcha"; $("#ttsVoc").value="vocos";
+  }
+  syncCombo();
+  $("#ttsLegend").innerHTML=
+    '<span class="chip tone-warn">mel+matcha+vocos</span> 唯一成功上板（整链 0.716–0.777）'+
+    '<span class="chip tone-warn">mel+matcha+HiFi-GAN</span> 声码器可换，但权重未配到 tts.yaml（应用会被拒）'+
+    '<span class="chip">ekho</span> 现役交付（RTF 0.49）';
+}
+$("#ttsApply").onclick=async()=>{
+  const body={frontend:$("#ttsFront").value,acoustic:$("#ttsAc").value,
+              vocoder:$("#ttsVoc").value,
+              integrated:$("#ttsInt").disabled?"":$("#ttsInt").value};
+  const r=await fetch("/api/tts-combo",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(body)});
+  const o=await r.json();
+  $("#ttsLog").textContent=r.ok?("已写回 "+(o.written||[]).length+" 项；重启服务后生效")
+                               :("不可用："+(o.error||r.status));
+  if(r.ok) await loadCfg();
+};
+
+// 选项型参数：**宽屏→一行单选点；窄屏（手机）→下拉框**（2026-11-04 她定）。
+// 同一参数同时渲染两套控件，CSS 媒体查询切显示，collectItems 只收"可见"那套。
+// 来源三档：registry（chain 档位表）/ curate（手工登记的值域）/ comment（从注释里抠的 a|b|c）。
+const RADIO_MAX=6;
+
+function radioRow(p, opts, id, cur, list){
+  const name="r_"+id;
+  return '<div class="cw cw-wide radio-row">'+
+    list.map(o=>{
+      const on=(o===cur);
+      const tone=(p.tone||{})[o];
+      const tcls=tone==="bad"?" class=\"tone-bad\"":(tone==="warn"?" class=\"tone-warn\"":"");
+      const odd=(opts.map(String).indexOf(o)<0)?' style="color:var(--warn)"':'';
+      return '<label class="radio"><input type="radio" name="'+name+'" value="'+esc(o)+'"'+
+        (on?' checked':'')+' data-path="'+esc(p.path)+'"><span'+tcls+odd+'>'+esc(o)+'</span></label>';
+    }).join("")+'</div>';
+}
+function selCtrl(p, id, cur, list){
+  const tone=(p.tone||{})[cur];
+  const tcls=tone?" class=\"cw cw-narrow tone-"+tone+"\"":' class="cw cw-narrow"';
+  return '<select id="'+id+'"'+tcls+' data-path="'+esc(p.path)+'">'+
+    list.map(o=>'<option value="'+esc(o)+'"'+(o===cur?" selected":"")+'>'+esc(o)+'</option>').join("")+
+    '</select>';
+}
+function choiceCtrl(p, opts, id){
+  const cur=String(p.value), list=opts.map(String);
+  if(list.indexOf(cur)<0) list.push(cur);          // 现值不在候选里也要能显示（标黄提示）
+  if(list.length<=RADIO_MAX)
+    return radioRow(p, opts, id, cur, list)+selCtrl(p, id, cur, list);
+  const tone=(p.tone||{})[cur];
+  const tcls=tone?" class=\"tone-"+tone+"\"":"";
+  return '<select id="'+id+'"'+tcls+' data-path="'+esc(p.path)+'">'+
+    list.map(o=>'<option value="'+esc(o)+'"'+(o===cur?" selected":"")+'>'+esc(o)+'</option>').join("")+
+    '</select>';
+}
+
+function ctrlFor(p){
+  const id="p_"+p.path.replace(/[^A-Za-z0-9_]/g,"_");
+  if(p.secret){
+    return '<input id="'+id+'" type="password" data-path="'+esc(p.path)+'" value="'+esc(p.value)+
+           '" placeholder="（掩码，原样不动）">';
+  }
+  if(p.options && p.options.length)
+    return choiceCtrl(p, p.options, id);
+  if(p.type==="bool")
+    return choiceCtrl(p, ["true","false"], id);
+  if(p.range){
+    const [mn,mx,st]=p.range;
+    const cur=Number(p.value)||mn;
+    return '<div data-rng style="display:flex;align-items:center;gap:.5rem">'+
+      '<input type="range" id="'+id+'" data-path="'+esc(p.path)+'" min="'+mn+'" max="'+mx+'" step="'+st+
+      '" value="'+cur+'" style="flex:1"><span class="rnum" id="n_'+id+'">'+esc(p.value)+'</span></div>';
+  }
+  const ty=(p.type==="int"||p.type==="float")?"number":"text";
+  return '<input id="'+id+'" type="'+ty+'" data-path="'+esc(p.path)+'" value="'+esc(p.value)+'">';
+}
+
+function renderCfg(){
+  const f=CFG.files.find(x=>x.name===curFile);
+  const tb=$("#cfgrows"); tb.innerHTML="";
+  if(!f){tb.innerHTML='<tr><td colspan="3" style="color:var(--dim)">没有配置文件</td></tr>';return}
+  if(f.error){tb.innerHTML='<tr><td colspan="3" class="err">'+esc(f.error)+'</td></tr>';return}
+  f.params.forEach(p=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td><span class="path mono" title="点击复制">'+esc(p.path)+'</span></td>'+
+      '<td>'+ctrlFor(p)+'</td>'+
+      '<td><span class="desc">'+esc(p.desc||"—")+'</span></td>';
+    tb.appendChild(tr);
+  });
+  tb.querySelectorAll(".path").forEach(el=>el.onclick=()=>{
+    if(navigator.clipboard) navigator.clipboard.writeText(el.textContent);
+  });
+  // 滑条动 → 数字实时刷新（横向滑条旁边的读数）
+  tb.querySelectorAll("input[type=range]").forEach(el=>{
+    el.oninput=()=>{const n=document.getElementById("n_"+el.id); if(n) n.textContent=el.value;};
+  });
+}
+
+function visible(el){ return el.offsetParent !== null; }
+function collectItems(){
+  const items=[], seen={};
+  document.querySelectorAll("#cfgrows [data-path]").forEach(el=>{
+    if(!visible(el)) return;                    // 只看"当前宽度下显示的那套"控件
+    const p=el.dataset.path;
+    if(el.type==="radio"){ if(el.checked) items.push({path:p, value:el.value}); return; }
+    if(seen[p]) return; seen[p]=1;
+    items.push({path:p, value:el.value});
+  });
+  return items;
+}
+
+async function saveCfg(reload){
+  const r=await fetch("/api/config",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({file:curFile, items:collectItems(), reload:!!reload})});
+  const o=await r.json();
+  $("#log").textContent=r.ok?("已写回 "+o.written.length+" 项"+(o.reloaded?"，链路已重载":"")):("失败: "+(o.error||r.status));
+  if(r.ok) await loadCfg();
+}
+$("#resetCfg").onclick=async()=>{
+  if(!confirm("把当前文件恢复到控制台启动时的值？改动会被覆盖。")) return;
+  const r=await fetch("/api/config/reset",{method:"POST"});
+  const o=await r.json();
+  $("#log").textContent=r.ok?("已恢复 "+(o.reset||0)+" 项（服务需重启）"):("失败 "+(o.error||r.status));
+  if(r.ok) await loadCfg();
+};
+$("#saveCfg").onclick=()=>saveCfg(false);
+$("#saveReload").onclick=()=>saveCfg(true);
+
+/* ---------------- 服务（托管 lang-server） ---------------- */
+async function loadServer(){
+  const r=await fetch("/api/server"); const o=await r.json();
+  const el=$("#srvstate");
+  const h=o.health;
+  if(o.managed){
+    el.innerHTML='<span style="color:var(--ok)">托管中</span> · pid '+o.pid+' · 已跑 '+o.uptime_s+'s · :'+o.port+
+      (h?(' · '+Object.entries(h.stages||{}).map(([k,v])=>k+'='+v).join(' ')):' · 未应答 /health');
+  }else if(o.external){
+    el.innerHTML='<span style="color:var(--warn)">外部服务</span> · :'+o.port+'（别人起的，本控制台不接管重启）';
+  }else{
+    el.innerHTML='<span style="color:var(--bad)">未运行</span> · 期望 :'+o.port+'（用 --serve 托管，或点「启动」）';
+  }
+  return o;
+}
+async function srvAction(act){
+  $("#srvlog").textContent=act+" …";
+  const r=await fetch("/api/server/"+act,{method:"POST"});
+  const o=await r.json();
+  $("#srvlog").textContent=(o.result||"")+" ";
+  await loadServer();
+  if(act==="restart"||act==="start") await loadCfg();
+}
+$("#srvRestart").onclick=()=>srvAction("restart");
+$("#srvStart").onclick=()=>srvAction("start");
+$("#srvStop").onclick=()=>srvAction("stop");
+$("#srvLog").onclick=async()=>{
+  const r=await fetch("/api/server/log"); const t=await r.text();
+  const b=$("#srvlogbox"); b.style.display="block"; b.textContent=t||"（没有日志）";
+};
+loadServer();
+setInterval(loadServer, 5000);
+
+/* ---------------- 逐段跑 ---------------- */
+let STAGES=[];
+
+async function loadStages(){
+  const r=await fetch("/api/stages"); const o=await r.json(); STAGES=o.stages;
+  const box=$("#stages"); box.innerHTML="";
+  STAGES.forEach(s=>{
+    const d=document.createElement("label");
+    d.className="stage";
+    const on=(s.name==="kws"||s.name==="asr")?" checked":"";
+    d.innerHTML='<input type="checkbox" value="'+s.name+'"'+on+'>'+
+      '<span class="mono">'+s.name+'</span><span class="badge">'+esc(s.active)+'</span>'+
+      '<span style="color:var(--dim);font-size:.8rem">'+esc(s.io)+' · '+esc(s.desc)+'</span>';
+    box.appendChild(d);
+  });
+}
+
+function chosen(){return [...document.querySelectorAll("#stages input:checked")].map(x=>x.value)}
+function setChosen(list){document.querySelectorAll("#stages input").forEach(x=>x.checked=list.indexOf(x.value)>=0)}
+$("#presetKws").onclick=()=>setChosen(["kws"]);
+$("#presetKwsAsr").onclick=()=>setChosen(["kws","vad","asr"]);
+$("#presetFull").onclick=()=>setChosen(["sar","kws","vad","asr","llm","tokenizer","tts"]);
+$("#presetTts").onclick=()=>setChosen(["llm","tokenizer","tts"]);
+
+$("#run").onclick=async()=>{
+  const stages=chosen();
+  if(!stages.length){$("#runlog").textContent="先勾几段";return}
+  const fd=new FormData();
+  fd.append("stages", stages.join(","));
+  fd.append("text", $("#text").value||"");
+  fd.append("session", $("#session").value||"default");
+  fd.append("out_rate", $("#outRate").value||"0");
+  const f=$("#afile").files[0];
+  if(f) fd.append("file", f, f.name);
+  $("#runlog").textContent="跑 "+stages.join(" → ")+" …";
+  const t0=Date.now();
+  const r=await fetch("/api/run",{method:"POST",body:fd});
+  const o=await r.json();
+  $("#runlog").textContent=r.ok?("完成，用时 "+((Date.now()-t0)/1000).toFixed(2)+" s"):("失败 "+(o.error||r.status));
+  renderRun(o);
+};
+
+function renderRun(o){
+  const tb=$("#runrows"); tb.innerHTML="";
+  if(!o.ok && o.error){
+    tb.innerHTML='<tr><td colspan="4" class="err">'+esc(o.error)+'</td></tr>';
+    $("#raw").style.display="block"; $("#raw").textContent=o.trace||""; return;
+  }
+  (o.stages||[]).forEach(s=>{
+    let res="";
+    if(s.result) res=esc(JSON.stringify(s.result)).slice(0,600);
+    if(s.note) res+=(res?" · ":"")+esc(s.note);
+    if(s.error) res='<span class="err">'+esc(s.error)+'</span>';
+    if(!res) res='<span style="color:var(--dim)">—</span>';
+    const arts=(s.artifacts||[]).map(a=>'<a href="/api/artifact/'+encodeURIComponent(a)+'" download>'+esc(a)+'</a>').join("<br>")||"—";
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td class="mono">'+esc(s.name)+'</td><td>'+(s.ms||0)+' ms</td>'+
+                 '<td class="mono">'+res+'</td><td class="art">'+arts+'</td>';
+    tb.appendChild(tr);
+  });
+  if(!(o.stages||[]).length) tb.innerHTML='<tr><td colspan="4" style="color:var(--dim)">没有段被执行</td></tr>';
+  $("#raw").style.display="block"; $("#raw").textContent=JSON.stringify(o.result||{},null,2);
+}
+
+loadCfg();
+</script>
+</body>
+</html>

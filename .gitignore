@@ -5,3 +5,35 @@ boards/klar-voice.json.bak*
 
 # 凭据：klar 写入 token 的值绝不入库（只提交路径）
 *.klar-token
+
+# 2026-11-04：HA4FPAI 语音链路退役件归档（从 lang/server/archive 迁入），仅存本机、不入库
+archiver/
+
+# ---- 2026-11-04：lang/ 随语音链移入本仓（repos/lang -> HA4FPAI/lang），模型权重与运行时规则跟进 ----
+# 模型权重与轮子（体积类，正本在官方发布页 / 板上；口径同 repos/.gitignore D-62）
+*.onnx
+*.onnx.data
+*.raw
+*.safetensors
+*.whl
+*.pt
+*.pth
+*.torchscript
+*.deb
+# 预编译二进制与静态库（能从 SDK / 重新编译取回）
+*.so
+*.so.*
+*.dll
+*.pyd
+*.obj
+*.exe
+*.lib
+*.a
+*.o
+# Python 虚拟环境（平台相关二进制 + pyvenv.cfg 绝对路径，换机器必废）
+venv/
+.venv/
+virtualenv/
+# lang 内运行期落点（重启服务即重新生成，入库只会制造 perpetual diff）
+lang/asr/runtime/
+lang/npuserv/state/

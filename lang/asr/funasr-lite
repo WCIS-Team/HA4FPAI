@@ -1,0 +1,21 @@
+#!/bin/sh
+# /funasr-lite —— 链路 A 入口（无 ONNX）
+#
+#   WebRTC VAD（纯 C）→ 远程 ASR（HTTP）→ ekho 本机出声（纯 C++）
+#   板上不装载任何模型，链路进程 VmHWM ≈ 23 MB。
+#
+# 用法：
+#   ASR_REMOTE_URL=http://192.168.1.102:10095/api/v1/asr /funasr-lite
+#   SRC=wav WAV=/root/funasr/testdata/c247_60.wav ASR_REMOTE_URL=... /funasr-lite
+#   BG=1 ASR_REMOTE_URL=... /funasr-lite          # 后台，日志 /root/funasr/logs/remote_chain.log
+#   TTS=none ... /funasr-lite                     # 关掉出声
+#   /funasr-lite --help                           # 看全部环境变量（=起链脚本头注释）
+#
+# 其它参数会原样传给 asr_chain.py（例如 --max-seconds 30）。
+case "${1:-}" in
+  -h|--help)
+    sed -n '2,25p' /root/funasr/asr/run_remote_chain.sh
+    exit 0
+    ;;
+esac
+exec bash /root/funasr/asr/run_remote_chain.sh "$@"

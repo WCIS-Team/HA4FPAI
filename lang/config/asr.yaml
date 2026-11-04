@@ -1,0 +1,25 @@
+# lang/config/asr.yaml —— ASR 档（**只放本地**）
+# 外部 ASR API（url/proto/key）统一在 `online.yaml` 的 `online.asr`；
+# 链路切 `chain.asr: remote-api` 时后端会读 online.asr，本文件不必重复。
+asr_profiles:
+  sherpa:                    # 本地流式 zipformer（**本地就用这一个**，她 2026-11-04 定）
+    # 模型：sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30
+    #   transducer 三件套 + tokens（2002 行）；encoder int8 153.7 MB / decoder 4.9 MB / joiner int8 1.0 MB
+    #   上游 = yuekai/icefall-asr-multi-zh-hans-zipformer-large（icefall multi_zh-hans streaming large）
+    #   本机实测（2026-11-04，sherpa_onnx 2.0.1）：装载 8.31 s；test_wavs 三句全对，8k 档自动重采样也认
+    dir: S:/work/WCIS/repos/HA4FPAI/lang/asr/models/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30
+    encoder: S:/work/WCIS/repos/HA4FPAI/lang/asr/models/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/encoder.int8.onnx
+    decoder: S:/work/WCIS/repos/HA4FPAI/lang/asr/models/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/decoder.onnx
+    joiner: S:/work/WCIS/repos/HA4FPAI/lang/asr/models/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/joiner.int8.onnx
+    tokens: S:/work/WCIS/repos/HA4FPAI/lang/asr/models/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/tokens.txt
+    num_threads: 2
+    sample_rate: 16000
+    feature_dim: 80
+    decoding_method: greedy_search
+    # 板上（/mnt/data/models/asr）那档 = sherpa-onnx-streaming-zipformer-zh-14M-2023-02-23，
+    # 文件名带 epoch-99-avg-1，与本机这套不是同一颗；板上单独给路径，别把本机绝对路径推上板。
+    #   板端原值：dir: /mnt/data/models/asr
+    #            encoder: /mnt/data/models/asr/encoder-epoch-99-avg-1.int8.onnx
+    #            decoder: /mnt/data/models/asr/decoder-epoch-99-avg-1.onnx
+    #            joiner:  /mnt/data/models/asr/joiner-epoch-99-avg-1.int8.onnx
+    #            tokens:  /mnt/data/models/asr/tokens.txt

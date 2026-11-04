@@ -1,0 +1,35 @@
+# lang/config/klar.yaml —— klar 上层（NLU/HA 接入）＋ 本地板端 LLM 档
+# claro 是确定性 NLU 引擎（不是 LLM）：只把文本解析成 intent/slots，不执行、不合成。
+# HA 本体不在板上；本服务把语音链路做好后，HA 侧通过 HTTP 或 Wyoming 调本服务。
+#
+# 外部/在线 LLM（openai 云 API）与 legacy mimo 桥的设置都在 `online.yaml`，这里不重复。
+klar:
+  nlu:
+    kind: klar-ha-nlu
+    engine_bin: /mnt/data/klar/klar
+    wyoming_port: 10500
+    http_port: 10520
+  ha:
+    host: NOT-THIS-BOARD
+    pipeline: "mic -> wyoming ASR 10301 -> klar engine 10500 -> HA conversation agent -> intent -> device"
+
+# 本地板端 LLM 档（NPU 槽位；**留空：不接板端推理**；ERNIE 是 ids-in/ids-out 需 tokenizer 桥）
+# 云端 openai 档在 online.yaml 的 online.llm（chain.llm: openai 时读它）。
+llm_profiles:
+  npuserv:
+    base_url: http://127.0.0.1:18080
+    model: ""                # npuserv models.json 里的件 id；空＝该档不可用
+    max_new: 128
+
+# ASR 之后的意图路由（chain.router: klar 时用）：klar NLP 决定「进 LLM / 固定回应 / verify」
+# verify 还没实装：core 见到 action=verify 会留空并跳过。
+router_profiles:
+  klar:
+    url: ""                  # 空＝http://127.0.0.1:<klar.nlu.http_port>
+    path: /parse
+    timeout: 3
+    actions:                 # intent → llm|fixed|verify（响应里也可直接给 action 字段）
+      chat: llm
+      qa: llm
+      timer: fixed
+      verify: verify

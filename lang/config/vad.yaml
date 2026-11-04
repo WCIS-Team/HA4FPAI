@@ -1,0 +1,25 @@
+# lang/config/vad.yaml —— VAD 档（全部复用 lang/vad/ 的现成件）
+# 参数口径与四档能力对照见 lang/vad/README.md（silero/ten 有 min_silence_duration；webrtc 没有，靠外层）。
+vad_profiles:
+  sherpa:                    # 板端现役档（sherpa_onnx.Vad，支持 min_silence_duration 秒）
+    model: /mnt/data/models/vad/silero_vad_v5.onnx
+    threshold: 0.5
+    min_silence_duration: 0.25
+    min_speech_duration: 0.25
+    window_samples: 512
+    num_threads: 1
+  silero:                    # raw-ORT 档（本机/板上都能跑）；空 model＝取 lang/vad/models/silero_vad_v5.onnx
+    model: ""
+    threshold: 0.5
+    min_speech_ms: 200
+  webrtc:                    # 复用 lang/vad/webrtc/webrtcseg.py（.so 仅 aarch64，本机跑不了）
+    mode: 2
+    open_ratio: 0.6
+    close_ratio: 0.3
+    min_speech_ms: 200
+    min_gap_ms: 300
+  rms:                       # 复用 lang/vad/rms.py（纯标准库）
+    open_dbfs: -35
+    close_dbfs: -40
+    min_speech_ms: 200
+    min_gap_ms: 300

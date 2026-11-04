@@ -1,0 +1,15 @@
+# lang/config/tts.yaml —— TTS 档（**只放本地**）
+# 外部 TTS 服务（url/proto/key）统一在 `online.yaml` 的 `online.tts`；
+# 链路切 `chain.tts: http` 时后端会读 online.tts，本文件不必重复。
+tts_profiles:
+  sherpa:                    # 本地 sherpa-onnx OfflineTts（板端路径）
+    kind: matcha             # matcha（当前）| vits（piper 兜底：kind=vits + model 指 piper onnx + lexicon）
+    model: /mnt/data/models/tts-matcha/matcha-icefall-zh-baker/model-steps-3.onnx
+    vocoder: /mnt/data/models/tts-matcha/vocos-22khz-univ.onnx   # matcha 必须外挂，否则 segfault
+    tokens: /mnt/data/models/tts-matcha/matcha-icefall-zh-baker/tokens.txt
+    lexicon: /mnt/data/models/tts-matcha/matcha-icefall-zh-baker/lexicon.txt
+    num_threads: 3
+    speed: 1.0
+    sid: 0
+    # piper 兜底档：kind: vits / model: /mnt/data/models/tts-piper/zh_CN-xiao_ya-medium.onnx
+    #                / data_dir: /mnt/data/models/tts-piper / lexicon: .../lexicon.txt（必须，否则 abort）

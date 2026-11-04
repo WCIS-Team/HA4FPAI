@@ -1,6 +1,7 @@
 [Unit]
 Description=HA4FPAI unified console (voice chain + klar + board APIs, one page)
-After=network.target klar-nlu-engine.service klar-voice-gateway.service
+# 语音已移交 lang/server：依赖的新语音单元是 lang-server-voice（10300-10302 不变）
+After=network.target klar-nlu-engine.service lang-server-voice.service
 
 [Service]
 Type=simple

@@ -1,0 +1,17 @@
+[Unit]
+Description=lang/server HTTP (chain/LLM/TTS over HTTP, :18091)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/mnt/data/langserver
+Environment=LANG_CONFIG_DIR=/mnt/data/langserver/config
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /mnt/data/langserver/app.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/mnt/data/langserver/http.log
+StandardError=append:/mnt/data/langserver/http.log
+
+[Install]
+WantedBy=multi-user.target

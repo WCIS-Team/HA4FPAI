@@ -38,7 +38,7 @@
    ↓ decimate3-mavg3（实测 −12.3 dB @20 kHz 抗混叠）
  16kHz
    ↓
- voice_gateway.py  ← 单进程：一个 VoiceKit，一份 onnxruntime（约 300 MB）
+  lang/server 的 wyoming_gateway.py  ← 单进程：一份 sherpa-onnx（共用 env，约 300 MB）
    ├ 10300 KWS「小克」   → 命中才往下走
    ├ VAD silero v5       → 判断说话起止
    └ 10301 ASR           → 中文文本，RTF 0.40（14M zipformer）
@@ -51,7 +51,7 @@
    8091 NPU 人脸   8092 画面   8093 录制
    开门另过四道闸（door_unlock.py）：口令 → 人脸 → 防伪 PAD → 声纹
    ↓ 结果
- speak.py → 10302 TTS（matcha，RTF 1.16 热机）
+ speak.py → 10302 TTS（matcha，RTF 1.16 热机；TTS 服务由 lang/server 起）
    ↓ 22050 → linear 升采样 → 48000
  落盘 /mnt/data/klar/speech/*.wav（板上无声卡，等喇叭方案）
 ```
@@ -60,7 +60,7 @@
 
 | 端口 | 是什么 | systemd 单元 |
 |---|---|---|
-| 10300 | Wyoming 唤醒（KWS） | `klar-voice-gateway` |
+| 10300 | Wyoming 唤醒（KWS） | `lang-server-voice`（**在 lang/server**） |
 | 10301 | Wyoming ASR | 同上（单进程） |
 | 10302 | Wyoming TTS | 同上（单进程） |
 | 10500 | klar Wyoming intent | `klar-nlu-engine` |
@@ -78,8 +78,8 @@ HA 在这条链上负责 4 件事：
 
 | # | HA 原职责 | 本仓库实现 | 状态 |
 |---|---|---|---|
-| 1 | 实体表（房间/设备命名真值） | `boards/make_registry.py` 生成 `core.entity_registry` + `core.area_registry` | ✅ 日志 `6 Entitäten, 3 Räume` |
-| 2 | 意图执行器 | `boards/klar_executor.py` 双通道 | ✅ 8/8 实测 |
+| 1 | 实体表（房间/设备命名真值） | `klar/make_registry.py` 生成 `core.entity_registry` + `core.area_registry` | ✅ 日志 `6 Entitäten, 3 Räume` |
+| 2 | 意图执行器 | `klar/klar_executor.py` 双通道 | ✅ 8/8 实测 |
 | 3 | 设备接入 | 不用 Zigbee 等——被控设备就是板子自己的 HTTP API | ✅ 全端点实测 |
 | 4 | 状态查询 | `act_status()` 并发读三服务 | ✅ |
 
@@ -117,28 +117,32 @@ HA 在这条链上负责 4 件事：
 ## 五、目录
 
 ```
-boards/                板上运行的代码（Python 3.8 兼容）
-  voice_kit.py         VoiceKit 单例：四组件共享一份 onnxruntime，各自独立 session
-  voice_common.py      公共工具：to_16k / asr_info / tts_info / wake_info
-  voice_gateway.py     ASR+TTS+KWS 合并单进程（10300/10301/10302）
-  klar_executor.py     双通道执行器（通道A klar 解析，通道B 直连命令）
-  klar_nlu 相关        make_registry.py 实体表生成
-  voiceprint.py        声纹录入/校验（campplus-zh 192 维）
-  door_unlock.py       多因子开门：口令+人脸+防伪+声纹
-  speak.py             TTS 播报（ Wyoming），无声卡时落盘
+boards/                被控设备侧代码（Python 3.8 兼容）
   console.py           统一控制台（10900）
-  klar-voice.json      统一 option JSON（装到板上 /root/klar-voice.json）
-  wyoming_probe.py     验收客户端
-  bench_resampler.py   重采样算法实测
-deploy/                systemd 单元 + 安装脚本 + smoke.sh
+  door_unlock.py       多因子开门：口令+人脸+防伪+声纹
+  voiceprint.py        声纹录入/校验（campplus-zh 192 维）
+klar/                  klar 部分（NLU 集成 + 语言包 + 文档 + 部署件，详见 klar/README.md）
+  klar_executor.py     双通道执行器（通道A klar 解析，通道B 直连命令）
+  make_registry.py     生成 core.entity_registry/core.area_registry 给 klar
+  langpacks/           zh-CN 话术包原机翻版 + 手工重译版 + en 参考包 + _verify.py
+  docs/                KLAR-401-BYPASS.md、KLAR-CUSTOM-PHRASES.md
+  deploy/              klar-nlu-engine.service、deploy-klar-ui.sh
+deploy/                上层 systemd 单元（`klar-console` / `klar-executor`）；语音单元与 smoke 已移交 lang/server
 docs/                  实测记录与决策
 ha/                    HA 侧接入说明（占位，本板不装 HA）
-tools/                 本机工具（token 代理、UI 部署脚本）
+tools/                 （空；UI 部署脚本已并入 klar/deploy/）
+archiver/              HA4FPAI 语音链路退役件归档（从 lang/server/archive 迁入，2026-11-04；见 archiver/ha4fpai-voice/README.md）
 ```
+
+> 语音链（`voice_*`／`klar_asr·tts·wake`／`speak`／`wyoming_probe`／`bench_resampler`／`klar-voice.json`）
+> 已按决定迁到 `lang/server` 实现，旧实现存档在 `archiver/ha4fpai-voice/`（原在 lang/server/archive，2026-11-04 迁入本仓归档）。
 
 ---
 
 ## 六、模型与 RTF（config 级实测，非目录名推断）
+
+> 语音模型与 RTF 读数现由 **`lang/server`** 的现役实现承接（本仓不再装载语音模型）；
+> 下表保留作实测记录，配置正本在 `repos/HA4FPAI/lang/config/`。
 
 | 组件 | 模型 | 大小 | RTF 实测 |
 |---|---|---|---|
@@ -173,7 +177,7 @@ tools/                 本机工具（token 代理、UI 部署脚本）
 
 | 服务 | RSS |
 |---|---|
-| klar-voice-gateway（三语音合一） | 318–328 MB |
+| lang-server-voice（三语音合一，原 klar-voice-gateway） | 318–328 MB |
 | klar-nlu-engine | 5.4 MB |
 | klar-console | <10 MB |
 | WCIS 系（face/record/stream 等） | 98 MB |
@@ -187,7 +191,7 @@ tools/                 本机工具（token 代理、UI 部署脚本）
 
 | 项 | 状态 |
 |---|---|
-| gateway / engine / console | ✅ active + enabled |
+| 语音（lang-server-voice）/ engine / console | ✅ active + enabled |
 | VAD/ASR/KWS/TTS | ✅ 全在跑 |
 | ASR | ✅ RTF 0.40 |
 | TTS | ✅ 热机 RTF 1.16 |
@@ -231,7 +235,7 @@ tools/                 本机工具（token 代理、UI 部署脚本）
 | `docs/MEMORY-BREAKDOWN.md` | 逐组件内存实测与优化方案 |
 | `docs/RESAMPLER-CHOICE.md` | 重采样算法实测与选型 |
 | `docs/PAD-SEMANTICS.md` | PAD 字段语义（源码级核对） |
-| `docs/KLAR-401-BYPASS.md` | klar 401 根因与本机 token 代理 |
+| `klar/docs/KLAR-401-BYPASS.md` | klar 401 根因与本机 token 代理 |
 | `docs/CONSOLE-AND-TOKEN.md` | 控制台与 `KLAR_UI_DIR` |
 | `docs/ROUTE2-IMPLEMENTED.md` | 路线 2 实施记录 |
 | `docs/NO-HA-CHECKLIST.md` | 不装 HA 的能力对照 |

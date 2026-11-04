@@ -1,0 +1,89 @@
+{
+  "proto": 1,
+  "root": "..",
+  "_comment": [
+    "npuserv registry.  One entry per model that can go on the ZG330.",
+    "'root' is where the 'adapter' paths hang off, relative to this file: .. = lang/,",
+    "because the server lives in lang/npuserv and the models live in lang/<kind>/.",
+    "Any 件 can be registered that way -- the mechanics in npuserv know nothing about",
+    "tokens; model-specific steps stay in the model's own directory as npuserv_adapter.py.",
+    "'defaults' is merged under the params of a POST /load; 'env' is set before the",
+    "worker is spawned.  Paths here are the BOARD's paths (the server runs on 113), so",
+    "artifacts_present in GET /models is a real on-disk check, not a repo check.",
+    "No credentials in this file (D-27: a secret value is written once, in its own file)."
+  ],
+  "models": [
+    {
+      "id": "ernie-4.5-0.3b",
+      "adapter": "llm/ERNIE-4.5-0.3B-PT4icraft430tai/board/npuserv_adapter.py",
+      "artifacts": {
+        "decode_json": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.json",
+        "decode_raw": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.raw"
+      },
+      "capabilities": {
+        "ids_in": true,
+        "text_in": true,
+        "text_out": true,
+        "reason_text": "board-side via board/e41_tok.py (pure stdlib, reads the prebuilt e41_tok.pack; no tokenizers). Verified on PC id-for-id and string-for-string equal to tokenizers 0.23.3 over 219,085 comparisons (scripts/tok_parity.py, 0 mismatches). Board execution not yet run -- board is not back. The npuserv adapter applies NO chat template: text_in encodes raw text, text_out decodes the generated ids."
+      },
+      "defaults": {
+        "max_new": 96,
+        "padfix": true,
+        "pos_offset": 1,
+        "max_new_cap": 192,
+        "stop_ids": [2, 100272]
+      },
+      "env": {
+        "E41_JSON": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.json",
+        "E41_RAW": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.raw",
+        "E41_PADFIX": "1"
+      },
+      "note": "现役产品链那一颗（台账 #241 同一条路的常驻件）；KV 窗口编死 NS=512 ⇒ 上限 511 槽（e41_chatd.py:61）。窄读是 daemon 里的现役写法，不是旋钮（info.read 报告它）。apply ≈50-95 s。"
+    },
+    {
+      "id": "qwen3-0.6b",
+      "adapter": "llm/Qwen3-0.6B/board/npuserv_adapter.py",
+      "artifacts": {
+        "decode_json": "/root/qwen3/jr_path/decode/Q3V1-decoder_ZG.json",
+        "decode_raw": "/root/qwen3/jr_path/decode/Q3V1-decoder_ZG.raw",
+        "tokenizer": "/root/qwen3/config/qwen3/tokenizer.json",
+        "modelzoo_utils": "/root/qwen2/modelzoo_utils"
+      },
+      "capabilities": {
+        "ids_in": true,
+        "text_in": true,
+        "text_out": true,
+        "reason_text": "text paths call tokenizers.Tokenizer.from_file on the board and have NEVER been executed -- neither generation nor this tokenizer file's loadability is proven (#210 vs #220). Send ids and pass decode:false until the board says otherwise."
+      },
+      "defaults": {
+        "max_new": 32,
+        "stop_ids": [151645, 151643],
+        "pos_rule": "vendor",
+        "vocab_size": 151936,
+        "n_layers": 28,
+        "n_kv_heads": 8,
+        "head_dim": 128,
+        "max_decode_length": 512,
+        "config_path": "/root/qwen3/config/qwen3"
+      },
+      "note": "件在板上叫 Q3V1-、库里叫 Q3I-（同一张图，台账 #208）；库里 board/tokenizer.json 与板上那颗不同一份，分词一律以板上 #210 为准。四档预检到 apply 全过，生成从未跑过 ⇒ 这条 adapter 是写好未验证的状态，而且它依赖的 patch/q3_infer_board.py 也从没上过板（#208-#211 那次 push 只有 json/raw/tokenizer 三份）。点火要推三件：npuserv/、这颗 adapter、q3_infer_board.py。pos_rule=vendor 逐字复现厂商 run_prompt＋run_decode 两条循环（Qwen2 出通顺中文用的就是这套位置口径）；uniform 是消融档。"
+    },
+    {
+      "id": "mock",
+      "adapter": "npuserv/tests/mock_adapter.py",
+      "capabilities": {
+        "ids_in": true,
+        "text_in": true,
+        "text_out": true,
+        "reason_text": "no NPU, no icraft: replays ids and sleeps load_ms/step_ms so the server, the protocol and the lifecycle get tested on a PC"
+      },
+      "defaults": {
+        "load_ms": 1500,
+        "step_ms": 40,
+        "max_new": 8,
+        "stop_ids": [2]
+      },
+      "note": "test fixture only.  Load this to exercise /load /generate /unload and the one-slot rules."
+    }
+  ]
+}

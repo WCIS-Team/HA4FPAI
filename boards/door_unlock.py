@@ -35,6 +35,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# klar_executor.py 已迁至仓库 klar/（板上仍平铺同一目录）
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "klar"))
 
 import voiceprint as vp  # noqa: E402
 

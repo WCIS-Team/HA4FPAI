@@ -1,0 +1,14 @@
+# lang/config/kws.yaml —— 唤醒词（KWS）档（复用 lang/kws/models 的 int8 副本）
+# 参数口径见 lang/kws/para.md（sherpa-onnx v2.0.1 源码级 13 项）；选型见 lang/kws/README.md。
+kws_profiles:
+  sherpa:
+    model_dir: ""            # 空＝取 kws/models/<model>/（权重不入库，本机副本）
+    model: sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20
+    keywords_file: keywords.txt   # 相对 model_dir，或绝对路径；找不到会回退 test_wavs/keywords.txt
+    keywords_score: 1.0      # boost 加权——加权提升，不是硬约束
+    keywords_threshold: 0.25 # 判决门限（越大越难命中）
+    num_trailing_blanks: 1
+    num_threads: 1           # 板上给 1：993 MB，多线程跟 ASR 抢核
+    tail_paddings_s: 0.66    # 末尾补静音冲尾部 blank；给 0 可能漏最后一个字
+    # encoder / decoder / joiner 可单独覆盖，默认取 model_dir 下 int8 优先的同名前缀文件。
+    # chunk 必须三件一致：wenetspeech 3.3M 是 chunk-16，zh-en 3M 是 chunk-8。
