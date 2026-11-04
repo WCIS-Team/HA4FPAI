@@ -49,6 +49,7 @@ class KlarRouter(Stage):
         self.timeout = float(p.get("timeout", 3) or 3)
         self.actions = p.get("actions") or {}       # intent -> llm|fixed|verify
         self.session_field = p.get("session_field", "session")
+        self.direct = p.get("direct") or {}
 
     # ---- 映射 --------------------------------------------------------------
     def _map(self, obj):
@@ -71,6 +72,14 @@ class KlarRouter(Stage):
     def run(self, args):
         """args = (text, session)。失败回落 llm（不抛）。"""
         text, session = (args + ("", None))[:2]
+        # 短应答按完整短语匹配，容忍 ASR 插入标点；不把长句里的“再见”截走。
+        def normalize(value):
+            return "".join(ch for ch in str(value or "")
+                           if not ch.isspace() and ch not in "，。！？、；：,.!?;:")
+        key = normalize(text)
+        for phrase, reply in self.direct.items():
+            if key and key == normalize(phrase):
+                return {"action": "fixed", "reply": str(reply), "end_request": True}
         payload = {"text": text}
         if session:
             payload[self.session_field] = session

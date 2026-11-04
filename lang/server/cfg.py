@@ -47,7 +47,8 @@ def parse(text):
     """yaml 子集 → 嵌套 dict。**支持任意层级**（靠缩进栈）。
 
     只认 `key: value`、`key:`（开子节）与 `# 注释`；值一律字符串。
-    之所以要嵌套：`asr_profiles.sherpa.encoder` 是两层，旧的一层解析器会把它压平。
+    键**不限 ASCII**（2026-11-04 修：唤醒词路由要用中文 tag 当键，旧正则 `[A-Za-z_]` 会把整行跳过，
+    `routes` 解析成空表——这个坑很隐蔽，因为不报错，只是路由永远走默认）。
     """
     cfg = {}
     stack = [(-1, cfg)]                       # (缩进, 该层 dict)
@@ -56,14 +57,20 @@ def parse(text):
             continue
         stripped = raw.lstrip(" ")
         indent = len(raw) - len(stripped)
-        m = re.match(r"^([A-Za-z_][A-Za-z0-9_\-]*):(.*)$", stripped)
+        m = re.match(r"^([^:\s][^:]*?):(.*)$", stripped)   # 键＝首个冒号前的非空串（可中文）
         if not m:
             continue
-        key, val = m.group(1), _clean(m.group(2))
+        key_raw = m.group(1)
+        key = _clean(key_raw)
+        val_txt = m.group(2).strip()
+        if val_txt.startswith("#"):
+            val_txt = ""
+        body = re.sub(r"\s+#.*$", "", val_txt).strip()      # 有实际内容（含显式 ""）才算标量值
+        val = _clean(m.group(2))
         while stack and stack[-1][0] >= indent:   # 回到同级或更浅的父层
             stack.pop()
         parent = stack[-1][1]
-        if val:
+        if body:
             parent[key] = val
         else:
             child = {}
