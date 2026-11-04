@@ -1,0 +1,116 @@
+#!/bin/sh
+set -eu
+
+case "${1:-}" in
+    configure) ;;
+    abort-upgrade|abort-remove|abort-deconfigure) exit 0 ;;
+    *) exit 0 ;;
+esac
+
+if ! getent group lang-server >/dev/null; then
+    addgroup --system lang-server
+fi
+if ! getent passwd lang-server >/dev/null; then
+    adduser --system --ingroup lang-server --home /var/lib/lang-server \
+        --no-create-home --shell /usr/sbin/nologin lang-server
+fi
+if ! getent group audio >/dev/null; then
+    addgroup --system audio
+fi
+adduser lang-server audio
+
+install -d -o root -g lang-server -m 0750 /etc/lang-server /etc/lang-server/config
+install -d -o root -g lang-server -m 0750 /var/lib/lang-server
+install -d -o lang-server -g lang-server -m 0750 \
+    /var/lib/lang-server/models /var/lib/lang-server/cache /var/lib/lang-server/speakers
+
+# Keep existing settings and authentication. Only seed missing files.
+for source in /usr/lib/lang-server/default-config/*.yaml; do
+    [ -f "$source" ] || continue
+    target="/etc/lang-server/config/${source##*/}"
+    if [ ! -e "$target" ] && [ ! -L "$target" ]; then
+        install -o root -g lang-server -m 0640 "$source" "$target"
+    fi
+done
+
+# This package-owned overlay never contains the user's online credentials.
+if [ -L /etc/lang-server/config/zz-package-online.yaml ]; then
+    echo 'Refusing a symlink at the package-owned online overlay' >&2
+    exit 1
+fi
+cat > /etc/lang-server/config/zz-package-online.yaml <<'EOF'
+# Package-managed online selection; credentials belong in online.yaml or env.
+server:
+  bind: 0.0.0.0
+  port: 18091
+  wyoming_bind: 0.0.0.0
+  wake_port: 10300
+  asr_port: 10301
+  tts_port: 10302
+chain:
+  sar: auto
+  rms: energy
+  kws: passthrough
+  kws_route: default
+  vad: none
+  asr: remote-api
+  router: none
+  spk: none
+  llm: openai
+  tokenizer: tts_split
+  tts: edge
+env:
+  single_runtime: true
+  allow_pip_onnxruntime: false
+EOF
+chown root:lang-server /etc/lang-server/config/zz-package-online.yaml
+chmod 0640 /etc/lang-server/config/zz-package-online.yaml
+if [ -f /etc/lang-server/lang-server.env ]; then
+    chown root:lang-server /etc/lang-server/lang-server.env
+    chmod 0640 /etc/lang-server/lang-server.env
+fi
+
+# All Python packages come from bundled wheels. Never use the system pip.
+if [ -L /var/lib/lang-server/venv ]; then
+    echo 'Refusing a symlink at the private virtual environment' >&2
+    exit 1
+fi
+python3 -m venv /var/lib/lang-server/venv
+/var/lib/lang-server/venv/bin/python -m pip --isolated install \
+    --no-index --find-links /usr/lib/lang-server/wheelhouse \
+    --only-binary=:all: --require-hashes --ignore-installed --no-cache-dir \
+    -r /usr/lib/lang-server/requirements.lock
+
+units='lang-server-http.service lang-server-voice.service lang-server-loop.service'
+for unit in $units lang-server-model-download.service; do
+    deb-systemd-helper unmask "$unit" >/dev/null || true
+    if [ "$unit" = lang-server-model-download.service ] && \
+            [ -e /etc/lang-server/no-model-download ]; then
+        deb-systemd-helper disable "$unit" >/dev/null || true
+    elif deb-systemd-helper --quiet was-enabled "$unit"; then
+        deb-systemd-helper enable "$unit" >/dev/null || true
+    else
+        deb-systemd-helper update-state "$unit" >/dev/null || true
+    fi
+done
+
+# In containers/chroots, configure succeeds without contacting systemd.
+if [ -d /run/systemd/system ]; then
+    systemctl --system daemon-reload || true
+    if [ -n "${2:-}" ]; then
+        action=restart
+    else
+        action=start
+    fi
+    deb-systemd-invoke "$action" $units || true
+    if [ -e /etc/lang-server/no-model-download ]; then
+        deb-systemd-invoke stop lang-server-model-download.service || true
+    else
+        # Focal's deb-systemd-invoke has no --no-block option. Detach this
+        # policy-aware invocation so a download oneshot cannot hold dpkg open.
+        (deb-systemd-invoke start lang-server-model-download.service \
+            </dev/null >/dev/null 2>&1 || true) &
+    fi
+fi
+printf '%s\n' 'lang-server configured online; set ASR/LLM authentication in online.yaml or /etc/lang-server/lang-server.env.'
+exit 0

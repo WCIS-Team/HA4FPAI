@@ -387,6 +387,7 @@ def main():
     ap.add_argument("--oneshot", metavar="WAV", help="单轮：跑链＋有喇叭就播")
     ap.add_argument("--run", action="store_true", help="真实麦克风常驻循环")
     ap.add_argument("--debug", action="store_true")
+    ap.add_argument("--no-warm", action="store_true", help="Skip runtime/model preload")
     a = ap.parse_args()
     logging.basicConfig(level=logging.DEBUG if a.debug else logging.INFO,
                         format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -402,8 +403,9 @@ def main():
         print("fsm: idle/listening/thinking/speaking/error，超时 listening=8s thinking=15s speaking=60s")
         return 0
     chain = Chain(cfg)
-    info = chain.warm()                             # online/edge 档下基本 no-op，保持与 app 一致
-    LOG.info("warm: %s", info.get("stages"))
+    if not a.no_warm:
+        info = chain.warm()
+        LOG.info("warm: %s", info.get("stages"))
     if a.simulate:
         simulate(a.simulate, chain, dev)
         return 0

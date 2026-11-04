@@ -3,13 +3,15 @@
 本目录是 WCIS 语音链（`lang/`）的 README，2026-11-04 随 `lang` 移入 `HA4FPAI/`（板上层）内，路径统一为 `repos/HA4FPAI/lang/`。**权重/模型不入库**（`.gitignore` 挡 `*.onnx` 等）。
 下面按"跑哪一块需要装什么"列，避免多装、避免为转码背 ffmpeg。
 
+Ubuntu20.04 arm64 的原生 deb、Linux 安装入口和 GitHub Actions 产物下载见 [Linux 安装与自动打包](packaging/linux/README.md)。Linux 包使用 mpg123 解码、私有 Python 环境和默认在线选档；模型由安装后的后台任务下载，不在 CI 中下载或执行。
+
 ---
 
 ## 1. `server`（语音对话服务编排层）—— Python 依赖
 
 | 依赖 | 必需？ | 用途 | 装法 |
 |---|---|---|---|
-| **miniaudio** | **✅ 必需**（Edge TTS 的 mp3→PCM 解码，~0.1 MB） | `chain.tts: edge` 时把 Edge 的 mp3 解成采样 | `pip install miniaudio` |
+| **miniaudio / mpg123** | Edge TTS 的 MP3 解码后端择一；Linux 安装包默认 mpg123 | `chain.tts: edge` 时把 MP3 解成采样 | 复用现有解码器；包管理器负责 Linux 依赖 |
 | **edge-tts** | 用 edge 档才需要 | 调 Edge「大声朗读」在线中文 TTS（无需 key，需联网） | `pip install edge-tts` |
 | **sherpa-onnx** | 用本地 VAD/ASR/KWS/TTS 才需要 | 本地模型推理；**它自带 onnxruntime**（与 pip 的 ORT 是两份库，别混用） | `pip install sherpa-onnx`（板上用厂商/官方轮子） |
 | **numpy** | 本地 sherpa 档 / silero-VAD / 加速路径需要 | 特征与张量 | `pip install numpy` |
