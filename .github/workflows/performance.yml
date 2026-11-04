@@ -1,0 +1,95 @@
+name: Compare orchestration performance
+
+on:
+  workflow_dispatch:
+    inputs:
+      baseline_ref:
+        description: 'Baseline commit, tag or branch; empty means the default branch'
+        required: false
+        type: string
+      baseline_variant:
+        description: 'Optional same-run parameter experiment: baseline variant ID (for example split-12)'
+        required: false
+        type: string
+      candidate_variant:
+        description: 'Optional candidate variant ID (for example split-20-16k); fill both IDs'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: host-performance-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  compare:
+    name: Same runner, same harness, two source trees
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out the candidate and its harness
+        uses: actions/checkout@v4
+        with:
+          path: candidate
+          persist-credentials: false
+          submodules: false
+      - name: Check out the baseline source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.baseline_ref || github.event.repository.default_branch }}
+          path: baseline
+          persist-credentials: false
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Require both parameter variant IDs when selecting an experiment
+        if: (inputs.baseline_variant != '') != (inputs.candidate_variant != '')
+        run: exit 1
+      - name: Verify candidate correctness first
+        run: python -I -B candidate/ci/run.py --profile quick --output "$RUNNER_TEMP/performance-checks"
+      - name: Measure baseline using the candidate harness and configuration
+        run: python -I -B candidate/ci/bench.py --source baseline --output "$RUNNER_TEMP/performance/baseline.json"
+      - name: Measure candidate
+        run: python -I -B candidate/ci/bench.py --source candidate --output "$RUNNER_TEMP/performance/candidate.json"
+      - name: Compare correctness, conditions and regression gates
+        run: >-
+          python -I -B candidate/ci/report.py
+          --baseline "$RUNNER_TEMP/performance/baseline.json"
+          --candidate "$RUNNER_TEMP/performance/candidate.json"
+          --output "$RUNNER_TEMP/performance/comparison"
+      - name: Compare declared parameter variants in the candidate run
+        if: inputs.baseline_variant != '' && inputs.candidate_variant != '' && !cancelled()
+        env:
+          BASELINE_VARIANT: ${{ inputs.baseline_variant }}
+          CANDIDATE_VARIANT: ${{ inputs.candidate_variant }}
+        run: >-
+          python -I -B candidate/ci/experiment.py
+          --measurement "$RUNNER_TEMP/performance/candidate.json"
+          --baseline-variant "$BASELINE_VARIANT"
+          --candidate-variant "$CANDIDATE_VARIANT"
+          --output "$RUNNER_TEMP/performance/parameters"
+      - name: Publish parameter experiment to the job summary
+        if: inputs.baseline_variant != '' && inputs.candidate_variant != '' && !cancelled()
+        run: python -I -B candidate/ci/actions.py summary --directory "$RUNNER_TEMP/performance" --file parameters.md
+      - name: Publish comparison to the job summary
+        if: always()
+        run: python -I -B candidate/ci/actions.py summary --directory "$RUNNER_TEMP/performance" --file comparison.md
+      - name: Preserve raw samples and visual comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: host-performance-${{ github.run_number }}
+          path: |
+            ${{ runner.temp }}/performance/*
+            ${{ runner.temp }}/performance-checks/*.json
+            ${{ runner.temp }}/performance-checks/*.xml
+            ${{ runner.temp }}/performance-checks/*.log
+          if-no-files-found: error
+          retention-days: 30

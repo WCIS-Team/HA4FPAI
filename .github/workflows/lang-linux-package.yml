@@ -7,16 +7,6 @@ on:
         description: 'Optional Debian version, for example 0.1.1'
         required: false
         type: string
-  push:
-    branches: [master]
-    tags: ['lang-v*']
-    paths:
-      - 'lang/**'
-      - '.github/workflows/lang-linux-package.yml'
-  pull_request:
-    paths:
-      - 'lang/**'
-      - '.github/workflows/lang-linux-package.yml'
 
 permissions:
   contents: read
@@ -26,12 +16,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  checks:
+    name: Source checks before packaging
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
   package:
+    needs: checks
     name: Package ${{ matrix.architecture }}
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         architecture: [arm64, amd64]
     steps:
@@ -74,6 +72,12 @@ jobs:
           --version '${{ steps.meta.outputs.version }}'
           --wheelhouse "$RUNNER_TEMP/lang-wheelhouse-${{ matrix.architecture }}"
           --output "$RUNNER_TEMP/lang-dist-${{ matrix.architecture }}"
+      - name: Validate the final deb and install archive without executing them
+        run: >-
+          python -I -B ci/package_check.py
+          --directory "$RUNNER_TEMP/lang-dist-${{ matrix.architecture }}"
+          --architecture ${{ matrix.architecture }}
+          --output "$RUNNER_TEMP/lang-ci-report/package-static.json"
       - name: Inspect production ARM64 package metadata
         if: matrix.architecture == 'arm64'
         run: |

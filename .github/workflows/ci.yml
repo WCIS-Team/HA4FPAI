@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  plan:
+    name: Read CI configuration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate GitHub Actions syntax and expressions
+        run: docker run --rm --network none -v "$PWD:/repo:ro" -w /repo rhysd/actionlint:1.7.7 -color -shellcheck= -pyflakes=
+      - id: matrix
+        run: python -I -B ci/actions.py matrix
+
+  tests:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }} / ${{ matrix.profile }}
+    needs: plan
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run the selected suites sequentially
+        env:
+          CI_PROFILE: ${{ matrix.profile }}
+        run: python -I -B ci/run.py --profile "$CI_PROFILE" --output "$RUNNER_TEMP/ha4fpai-tests"
+      - name: Write job summary
+        if: always()
+        run: python -I -B ci/actions.py summary --directory "$RUNNER_TEMP/ha4fpai-tests"
+      - name: Preserve logs, JUnit and calibration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-${{ matrix.os }}-py${{ matrix.python }}-${{ matrix.profile }}
+          path: |
+            ${{ runner.temp }}/ha4fpai-tests/*.json
+            ${{ runner.temp }}/ha4fpai-tests/*.md
+            ${{ runner.temp }}/ha4fpai-tests/*.xml
+            ${{ runner.temp }}/ha4fpai-tests/*.log
+          if-no-files-found: error
+          retention-days: 21
+
+  required:
+    name: CI required
+    if: always()
+    needs: [plan, tests]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Reject failed, skipped or cancelled dependencies
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: python -I -B ci/actions.py status
