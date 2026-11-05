@@ -324,15 +324,23 @@ def main(argv=None):
     parser.add_argument('--host', default='127.0.0.1')
     parser.add_argument('--port', type=int, default=18100)
     parser.add_argument('--token', help='预置 Bearer 令牌（也会写入会话表）')
+    parser.add_argument('--token-file', help='从文件首行读令牌（systemd 单元用，避免令牌进 ps）')
     args = parser.parse_args(argv)
 
-    if args.host not in ('127.0.0.1', 'localhost') and not args.token:
-        raise SystemExit('拒绝启动：放开非回环监听必须配置 --token（规划 §安全与事件反馈）')
+    token = args.token
+    if not token and args.token_file:
+        try:
+            with open(args.token_file, 'r', encoding='utf-8') as f:
+                token = f.readline().strip()
+        except OSError as exc:
+            raise SystemExit('token-file 不可读: %s' % exc)
+    if args.host not in ('127.0.0.1', 'localhost') and not token:
+        raise SystemExit('拒绝启动：放开非回环监听必须配置 --token/--token-file（规划 §安全与事件反馈）')
 
     db_dir = os.path.dirname(os.path.abspath(args.db))
     if not os.path.isdir(db_dir):
         os.makedirs(db_dir)
-    app = App(args.db, args.exports_dir, token=args.token)
+    app = App(args.db, args.exports_dir, token=token)
 
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     server.daemon_threads = True

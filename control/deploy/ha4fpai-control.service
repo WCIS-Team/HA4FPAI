@@ -1,0 +1,22 @@
+# systemd 单元：HA4FPAI 统一控制服务（unified-control 分支交付物）
+# 安装：cp ha4fpai-control.service /etc/systemd/system/ && systemctl daemon-reload
+#       systemctl enable --now ha4fpai-control
+# 前置：代码部署在 /root/ha4fpai-control（含 control/ 包）；
+#       令牌文件 /var/lib/ha4fpai-control/token（0600，首行为令牌）；
+#       数据目录 /var/lib/ha4fpai-control 归服务用户可写。
+# 约定：所有工作流只手动运行（本仓 AGENTS 约定）；本单元与 Actions 无关。
+[Unit]
+Description=HA4FPAI unified control service (/v1)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/ha4fpai-control
+ExecStart=/usr/bin/python3 -B -X utf8 -m control.service --host 127.0.0.1 --port 18100 --db /var/lib/ha4fpai-control/business.sqlite3 --exports-dir /var/lib/ha4fpai-control/exports --token-file /var/lib/ha4fpai-control/token
+Restart=always
+RestartSec=2
+MemoryMax=200M
+StandardOutput=append:/var/log/ha4fpai-control.log
+
+[Install]
+WantedBy=multi-user.target

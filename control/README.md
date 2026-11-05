@@ -50,16 +50,17 @@ python -B -X utf8 -m control.service --db data/business.sqlite3 --token <token>
 | POST/GET/DELETE | /v1/tasks… · /v1/tasks/run-due | 任务管理与幂等触发 |
 | POST | /v1/voiceprint/import-preview | 旧声纹库只读预览 |
 
-## 既有入口的接入（后续工作包，本分支未动它们）
+## 既有入口的接入（本分支状态：阶段02 已接线，未部署）
 
-| 现有入口 | 现状 | 接法（规划依据） |
+| 现有入口 | 阶段02 状态 | 说明 |
 |---|---|---|
-| `boards/console.py` GET `/api/run` | GET 会执行命令、无鉴权 | WP2：GET 改只读，动作走 POST /v1/commands；控制台作控制服务的客户端 |
-| `klar/klar_executor.py` | 自带 /api/v2/parse 解析 + direct 子串匹配 | 换 `control/adapters/klar.py` 统一解析 + 整句匹配；动作落注册表 |
-| `lang/server` KlarRouter | /parse 平铺协议，不调执行器 | 同上适配器；`router: klar` 与执行统一（WP9 六场景） |
-| `web/ggradio` 配置写回 | 逐项覆盖 YAML、无事务 | 业务设置改 PATCH /v1/settings；YAML 只留启动/硬件默认 |
-| `deploy/klar-executor.service` | `--serve` 参数源码已漂移 | WP1 核对：unit 与 argparse 对齐后再接入 |
-| 两套声纹库 | 格式不兼容、同名覆盖 | `voiceprint_import` 预览 → WP6/7 显式迁移与切换（单一写入口=业务库） |
+| `boards/console.py` | ✅ 已接线（分支上） | GET `/api/run` 已退役（405，副作用走 POST）；POST 在 `HA4FPAI_CONTROL_URL` 配置时走控制服务，未配置走旧路径 |
+| `klar/klar_executor.py` | ✅ 已接线（分支上） | 同上开关；控制服务不可达如实报错，不静默回退旧路径 |
+| `lang/server` 语音链 | ⏳ HTTP 桥就绪 | `/bridge/text`（token 保护）供 ASR 后调用；lang 侧文件未动（共享树有其他会话未提交改动，避免冲突），部署时接 |
+| `web/ggradio` 配置写回 | ⏳ 未动 | 业务设置应改 PATCH /v1/settings；YAML 只留启动/硬件默认 |
+| 两套声纹库 | 🔄 迁移器交付中 | `voiceprint_import` 预览＋`migrate.py` 写路径；切换按 WP6/7 |
+
+部署单元与上板步骤：`control/deploy/`＋[docs/DEPLOY-CONTROL.md](../docs/DEPLOY-CONTROL.md)。
 
 ## 边界声明
 

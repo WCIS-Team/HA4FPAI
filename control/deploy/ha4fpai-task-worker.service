@@ -1,0 +1,18 @@
+# systemd 单元：HA4FPAI 持久任务 worker（unified-control 分支交付物）
+# 与 ha4fpai-control.service 配套；restore_epoch 变化时 worker 自行退出(3)，
+# 由本单元的 Restart=always 以新世代重启（跨世代栅栏，见 control/worker.py）。
+[Unit]
+Description=HA4FPAI control task worker (run_due with epoch fencing)
+After=ha4fpai-control.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/ha4fpai-control
+ExecStart=/usr/bin/python3 -B -X utf8 -m control.worker --db /var/lib/ha4fpai-control/business.sqlite3 --exports-dir /var/lib/ha4fpai-control/exports --interval 60
+Restart=always
+RestartSec=5
+MemoryMax=150M
+StandardOutput=append:/var/log/ha4fpai-task-worker.log
+
+[Install]
+WantedBy=multi-user.target
