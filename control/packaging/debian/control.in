@@ -8,7 +8,9 @@ Maintainer: WCIS <takomitkm@users.noreply.github.com>
 Description: HA4FPAI unified control service (/v1)
  SQLite business store with versioned migrations, unified command pipeline
  with idempotency and confirmations, unified person identity, settings with
- revision fencing, event log, receipts ingest, media upload and task worker.
- Ships two systemd units (service + task worker). Units are NOT enabled
- automatically; start with systemctl enable --now ha4fpai-control
- ha4fpai-task-worker after reviewing docs/DEPLOY-CONTROL.md.
+ revision fencing, event log, receipts ingest, media upload and a built-in
+ task scheduler. Code installs to /usr/lib/ha4fpai-control, state under
+ /var/lib/ha4fpai-control, token under /etc/ha4fpai-control. The service unit
+ is NOT enabled automatically; start with systemctl enable --now
+ ha4fpai-control after reviewing docs/REFACTOR-CHECKLIST.md (A02/A03).
+ The legacy standalone task-worker unit is deprecated for standby use.

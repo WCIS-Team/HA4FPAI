@@ -1,18 +1,23 @@
-# systemd 单元：HA4FPAI 持久任务 worker（unified-control 分支交付物）
-# 与 ha4fpai-control.service 配套；restore_epoch 变化时 worker 自行退出(3)，
-# 由本单元的 Restart=always 以新世代重启（跨世代栅栏，见 control/worker.py）。
+# systemd 单元：ha4fpai-task-worker（**已废弃为常驻部署方式**，清单 A02）
+#
+# 背景：本单元曾以独立进程直写业务库，与"控制服务是业务库唯一写进程"冲突。
+# 任务调度已内建进 ha4fpai-control（--scheduler-interval，见 control/scheduler.py）。
+#
+# 本文件保留的唯一用途：手工对账/补跑时的 --once 工具入口
+#   /usr/bin/python3 -m control.worker --once --db /var/lib/ha4fpai-control/business.sqlite3 ...
+# （运行前必须先停 ha4fpai-control，见 docs/REFACTOR-CHECKLIST.md A02）
+#
+# 不应 enable/start 本单元。若误启，它与控制服务并发写库——这是要消除的缺陷，不是新设计。
+
 [Unit]
-Description=HA4FPAI control task worker (run_due with epoch fencing)
+Description=HA4FPAI control task worker (DEPRECATED for standby; manual --once only)
 After=ha4fpai-control.service
 
 [Service]
-Type=simple
-WorkingDirectory=/root/ha4fpai-control
-ExecStart=/usr/bin/python3 -B -X utf8 -m control.worker --db /var/lib/ha4fpai-control/business.sqlite3 --exports-dir /var/lib/ha4fpai-control/exports --interval 60
-Restart=always
-RestartSec=5
-MemoryMax=150M
-StandardOutput=append:/var/log/ha4fpai-task-worker.log
+Type=oneshot
+WorkingDirectory=/usr/lib/ha4fpai-control
+# --once：跑一轮即退出。保留 exec 形态仅为手工核对；不做 Restart 常驻。
+ExecStart=/usr/bin/python3 -B -X utf8 -m control.worker --once --db /var/lib/ha4fpai-control/business.sqlite3 --exports-dir /var/lib/ha4fpai-control/exports
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=

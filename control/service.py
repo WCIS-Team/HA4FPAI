@@ -36,7 +36,8 @@ PUBLIC_GETS = ('/healthz', '/v1/capabilities', '/v1/status')
 
 
 class App(object):
-    def __init__(self, db_path, exports_dir, token=None, media_root=None):
+    def __init__(self, db_path, exports_dir, token=None, media_root=None,
+                 scheduler_interval=0):
         self.store = Store(db_path)
         self.events = EventLog(self.store)
         self.settings = Settings(self.store)
@@ -46,6 +47,11 @@ class App(object):
         # 视频快照与上传共用同一媒体根＋业务库（V2/V9 一致性）
         video_mod.configure(store=self.store, media_root=media_root)
         self._bootstrap_principal('cli', token)
+        # A02：调度内置本进程（单写者）；interval=0 时不启动（测试/一次性工具）
+        self.scheduler = None
+        if scheduler_interval:
+            from control.scheduler import Scheduler
+            self.scheduler = Scheduler(self, interval=scheduler_interval).start()
 
     def _bootstrap_principal(self, kind, token):
         principal_id = kind
@@ -196,13 +202,24 @@ class Handler(BaseHTTPRequestHandler):
 
     def _public_get(self, path):
         if path == '/healthz':
-            return {'ok': True}
+            sched = self.app.scheduler
+            health = {'ok': True}
+            if sched is not None:
+                # 调度线程退出请求（世代变更）会让整体退出；健康面如实反映
+                health['scheduler'] = {'running': sched.status()['running'],
+                                       'exit_requested': sched.exit_requested}
+                if sched.exit_requested:
+                    health['ok'] = False
+            return health
         if path == '/v1/capabilities':
             return actions_mod.capabilities_payload(self.app.store, self.app.registry)
         if path == '/v1/status':
             spec = self.app.registry['system.status']
             outcome = spec['run']({}, None, None, None, None)
-            return outcome['data']
+            data = outcome['data']
+            if self.app.scheduler is not None:
+                data['scheduler'] = self.app.scheduler.status()
+            return data
 
     def do_POST(self):
         try:
@@ -360,6 +377,8 @@ def main(argv=None):
     parser.add_argument('--port', type=int, default=18100)
     parser.add_argument('--token', help='预置 Bearer 令牌（也会写入会话表）')
     parser.add_argument('--token-file', help='从文件首行读令牌（systemd 单元用，避免令牌进 ps）')
+    parser.add_argument('--scheduler-interval', type=int, default=60,
+                        help='内置任务调度秒数（最小30；0=关闭调度，测试/一次性用）')
     args = parser.parse_args(argv)
 
     token = args.token
@@ -375,23 +394,31 @@ def main(argv=None):
     db_dir = os.path.dirname(os.path.abspath(args.db))
     if not os.path.isdir(db_dir):
         os.makedirs(db_dir)
-    app = App(args.db, args.exports_dir, token=token, media_root=args.media_root)
+    app = App(args.db, args.exports_dir, token=token, media_root=args.media_root,
+              scheduler_interval=args.scheduler_interval)
 
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     server.daemon_threads = True
     server.app = app
     print('ha4fpai-control listening on http://%s:%d' % (args.host, args.port))
-    print('store_id=%s generation=%s epoch=%s' % (
+    print('store_id=%s generation=%s epoch=%s scheduler=%s' % (
         app.store.meta('store_id'), app.store.meta('generation'),
-        app.store.meta('restore_epoch')))
+        app.store.meta('restore_epoch'),
+        ('every %ds' % app.scheduler.interval) if app.scheduler else 'off'))
     if not args.token:
         print('（未配置 --token：请先 POST /v1/session 建立操作员会话）')
     try:
-        server.serve_forever()
+        while server.serve_forever(poll_interval=0.5):
+            pass
     except KeyboardInterrupt:
         pass
     finally:
+        if app.scheduler is not None:
+            app.scheduler.stop()
         server.server_close()
+    if app.scheduler is not None and app.scheduler.exit_requested:
+        # restore_epoch 变化：按栅栏约定退出码 3，交 systemd Restart 以新世代重启
+        raise SystemExit(3)
 
 
 if __name__ == '__main__':

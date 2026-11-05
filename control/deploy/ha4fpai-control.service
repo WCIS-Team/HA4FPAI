@@ -1,18 +1,20 @@
-# systemd 单元：HA4FPAI 统一控制服务（unified-control 分支交付物）
-# 安装：cp ha4fpai-control.service /etc/systemd/system/ && systemctl daemon-reload
-#       systemctl enable --now ha4fpai-control
-# 前置：代码部署在 /root/ha4fpai-control（含 control/ 包）；
-#       令牌文件 /var/lib/ha4fpai-control/token（0600，首行为令牌）；
-#       数据目录 /var/lib/ha4fpai-control 归服务用户可写。
-# 约定：所有工作流只手动运行（本仓 AGENTS 约定）；本单元与 Actions 无关。
+# systemd 单元：HA4FPAI 统一控制服务（/v1 + 内置任务调度，A02/A03 布局）
+# 安装（deb）：包把代码放 /usr/lib/ha4fpai-control，本单元随包进 /lib/systemd/system
+# 安装（源码）：代码放同一路径，或改 WorkingDirectory/ExecStart 的 --directory 指向实际位置
+# 数据：/var/lib/ha4fpai-control（business.sqlite3、exports/、media/）
+# 凭据：/etc/ha4fpai-control/token（0600，首行为令牌；postinst 首装生成）
+# 调度：--scheduler-interval 内建于本服务（单写者，A02）；不再部署独立 worker 单元
+# 约定：单元不自动启用；启动 = systemctl enable --now ha4fpai-control（审查后手动）
+# restore_epoch 变化时调度线程请求整体退出（退出码 3），Restart=always 以新世代重启
 [Unit]
-Description=HA4FPAI unified control service (/v1)
+Description=HA4FPAI unified control service (/v1, built-in task scheduler)
 After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/root/ha4fpai-control
-ExecStart=/usr/bin/python3 -B -X utf8 -m control.service --host 127.0.0.1 --port 18100 --db /var/lib/ha4fpai-control/business.sqlite3 --exports-dir /var/lib/ha4fpai-control/exports --token-file /var/lib/ha4fpai-control/token
+User=root
+WorkingDirectory=/usr/lib/ha4fpai-control
+ExecStart=/usr/bin/python3 -B -X utf8 -m control.service --host 127.0.0.1 --port 18100 --db /var/lib/ha4fpai-control/business.sqlite3 --exports-dir /var/lib/ha4fpai-control/exports --media-root /var/lib/ha4fpai-control/media --token-file /etc/ha4fpai-control/token --scheduler-interval 60
 Restart=always
 RestartSec=2
 MemoryMax=200M

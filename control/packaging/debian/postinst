@@ -1,12 +1,20 @@
 #!/bin/sh
-# ha4fpai-control postinst: create state dirs and bootstrap the API token.
+# ha4fpai-control postinst (A03 layout): state dirs + token + deb/code path notes.
 # Idempotent; never prints or logs the token value.
 set -e
 STATE=/var/lib/ha4fpai-control
-mkdir -p "$STATE/exports" "$STATE/media"
-if [ ! -s "$STATE/token" ]; then
-  python3 -c 'import secrets; print(secrets.token_urlsafe(32))' > "$STATE/token"
+CONF=/etc/ha4fpai-control
+mkdir -p "$STATE/exports" "$STATE/media" "$CONF"
+if [ ! -s "$CONF/token" ]; then
+  python3 -c 'import secrets; print(secrets.token_urlsafe(32))' > "$CONF/token"
 fi
-chmod 600 "$STATE/token" 2>/dev/null || true
-# Repo convention: units stay manual-start; this package enables nothing.
-#HA4FPAI-AGENTS: workflows manual-only; no timers or auto triggers shipped.
+chmod 700 "$CONF" 2>/dev/null || true
+chmod 600 "$CONF/token" 2>/dev/null || true
+# Unit files ship with the package into /lib/systemd/system; enable manually:
+#   systemctl daemon-reload && systemctl enable --now ha4fpai-control
+# The old ha4fpai-task-worker unit is deprecated for standby use (checklist A02);
+# disable it on upgrade if it was enabled before this package version.
+if systemctl is-enabled ha4fpai-task-worker >/dev/null 2>&1; then
+  systemctl disable ha4fpai-task-worker >/dev/null 2>&1 || true
+fi
+#HA4FPAI-AGENTS: workflows manual-only; units not auto-enabled by this package.

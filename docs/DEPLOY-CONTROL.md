@@ -1,7 +1,8 @@
 # 控制服务部署与上板前清单（unified-control 分支）
 
-> 状态：**部署准备就绪，未部署**。上板动作（拷文件、装单元、迁移数据）等她当次授权。
-> 配套单元：`control/deploy/ha4fpai-control.service`、`control/deploy/ha4fpai-task-worker.service`。
+> 状态（2026-11-06纠正）：**部署方案草案，存在阻断项，不可按下文直接宣布就绪。** 包安装路径与unit不符（总清单A03），独立worker直写库与单写进程目标不符（A02）；先修再生产部署。板端183项模块检查不是正式安装验收。
+> [重构总清单](REFACTOR-CHECKLIST.md)是实施状态正本；下文保留既有部署草案供修订。原unified-control已合主线并删名，旧主线归档在archive-2026-11-06。
+> 配套单元：`control/deploy/ha4fpai-control.service`、`control/deploy/ha4fpai-task-worker.service`；按目标架构重做调度部署前，不将两个单元直接启用为最终方案。
 
 ## 一、板上布局（目标）
 

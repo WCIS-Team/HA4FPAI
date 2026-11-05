@@ -26,6 +26,7 @@ class Store(object):
         self.conn = sqlite3.connect(self.path, isolation_level=None, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self._configure()
+        self.verify_pragmas(file_db=(self.path != ':memory:'))
         self._migrate()
         self._ensure_meta()
 
@@ -34,6 +35,32 @@ class Store(object):
         self.conn.execute('PRAGMA busy_timeout=5000')
         self.conn.execute('PRAGMA journal_mode=WAL')
         self.conn.execute('PRAGMA synchronous=FULL')
+
+    def verify_pragmas(self, file_db=True):
+        """读回实际生效的 PRAGMA；文件库必须 WAL+FULL（A05 门禁）。
+
+        :memory: 库回读 journal_mode=memory，属测试豁免（不在 production 名义下使用）。
+        任何一项不符即 RuntimeError：静默降级会让"持久化"成为假承诺。
+        """
+        actual = {
+            'foreign_keys': self.conn.execute('PRAGMA foreign_keys').fetchone()[0],
+            'busy_timeout': self.conn.execute('PRAGMA busy_timeout').fetchone()[0],
+            'journal_mode': self.conn.execute('PRAGMA journal_mode').fetchone()[0],
+            'synchronous': self.conn.execute('PRAGMA synchronous').fetchone()[0],
+        }
+        problems = []
+        if int(actual['foreign_keys']) != 1:
+            problems.append('foreign_keys=%r' % actual['foreign_keys'])
+        if int(actual['busy_timeout']) != 5000:
+            problems.append('busy_timeout=%r' % actual['busy_timeout'])
+        if file_db:
+            if str(actual['journal_mode']).lower() != 'wal':
+                problems.append('journal_mode=%r (want wal)' % actual['journal_mode'])
+            if int(actual['synchronous']) != 2:
+                problems.append('synchronous=%r (want 2=FULL)' % actual['synchronous'])
+        if problems:
+            raise RuntimeError('SQLite 持久化门禁未通过: ' + '; '.join(problems))
+        return actual
 
     def _migrate(self):
         with self.tx() as conn:

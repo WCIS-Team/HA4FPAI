@@ -9,6 +9,12 @@
 > **这不是 HA 的 fork。** 本仓库是我方自有代码；klar 以**官方发布二进制**引入，
 > 前端源码单独取自上游并可本地重建（见下方「与上游的关系」）。
 
+## 重构实施入口
+
+[重构总清单](docs/REFACTOR-CHECKLIST.md)是本轮实施项的唯一勾选正本：包含26项已完成模块/调查与46项待办，每项列组件、实现方式、验收和证据边界。每做完一步更新对应复选框，不以测试数量当产品完成率。
+
+[目标架构](docs/REFACTOR-ARCHITECTURE.md)定义控制单写者、视频owner/recorder所有权、JSON1迁移桥与配置applier；[起点与实施历史](docs/REFACTOR-HISTORY.md)记录c670285分叉、archive-2026-11-06封存及后续合流/实验。旧章节为既有系统说明，不代表新架构已生产切换。
+
 CI、打包检查、性能前后对比及 SSH 实机检查见 [CI 使用与维护](docs/CI.md)。
 测试覆盖见 [失效模式清单](docs/CI-FAILURE-MODES.md)，实跑结果和边界见 [CI 验证记录](docs/CI-VALIDATION.md)。
 
