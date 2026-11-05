@@ -6,6 +6,7 @@
 （部署时切换，见阶段02 取舍记录）。连接失败如实上抛/报错，不伪造成功。
 """
 import json
+import os
 import uuid
 import urllib.error
 import urllib.request
@@ -14,6 +15,9 @@ import urllib.request
 class ControlClient(object):
     def __init__(self, base_url, token=None, timeout=30):
         self.base = base_url.rstrip('/')
+        if token is None:
+            # 部署形态：executor/console 单元经环境变量携带令牌（配合 --token-file）
+            token = os.environ.get('HA4FPAI_CONTROL_TOKEN') or None
         self.token = token
         self.timeout = timeout
 

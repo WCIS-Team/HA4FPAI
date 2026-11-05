@@ -179,8 +179,8 @@ def run_all(tmp):
            DomainError, '缺必填参数拒绝')
     rv = commands.create(store, registry, events, 'camera.recognize')
     check(rv['command']['status'] == 'failed'
-          and rv['command']['code'] == 'video_domain_not_connected',
-          '视频域留空桩返回明确错误码（不假成功）')
+          and rv['command']['code'] == 'video_unreachable',
+          '视频动作：板端服务不在时如实 video_unreachable（不假成功）')
     raises(lambda: commands.create(store, registry, events, 'person.delete',
                                    params={'person_id': alice2['person_id']}),
            ConfirmationRequired, '危险动作无确认拒绝')
@@ -266,9 +266,16 @@ def run_all(tmp):
                     klar_post=lambda url, payload, timeout: (0, None))
     check(out['source'] == 'llm_handoff', 'klar 不可用 → 交 LLM，不假执行')
 
-    # ---- 视频适配器状态 ----
-    check(video.status()['connected'] is False, '视频域状态：未接')
-    raises(lambda: video.recognize(), VideoDomainNotConnected, 'video.recognize 留空桩')
+    # ---- 视频适配器状态（阶段02 起：HTTP 客户端已接，板端未验）----
+    st = video.status()
+    check(st['connected'] is True and st['board_verified'] is False,
+          '视频适配器：已接（HTTP 客户端）且 board_verified=False')
+    try:
+        video.recognize()
+        check(False, 'video.recognize 无服务时报错（未抛）')
+    except DomainError as exc:
+        check(exc.code == 'video_unreachable',
+              'video.recognize 板端不在 → video_unreachable')
 
     # ---- HTTP 面 ----
     http_checks(tmp)
@@ -309,8 +316,35 @@ def http_checks(tmp):
                               body={'action': 'recording.set_mode',
                                     'params': {'mode': 'manual'}}, token='test-token')
         check(status == 200 and obj['command']['status'] == 'failed'
-              and obj['command']['code'] == 'video_domain_not_connected',
-              'HTTP 层同样拿到留空错误码')
+              and obj['command']['code'] == 'video_unreachable',
+              'HTTP 层同样拿到 video_unreachable（不假成功）')
+        status, obj = request(base, 'POST', '/bridge/text',
+                              body={'text': '现在几点'}, token='test-token')
+        check(status == 200 and obj.get('ok') is True
+              and '现在' in (obj.get('reply') or ''),
+              '语音桥：现在几点 → 执行成功且回复可念')
+        status, obj = request(base, 'POST', '/bridge/text',
+                              body={'text': '不要开始录制'}, token='test-token')
+        check(status == 200 and obj.get('results') == [] and obj.get('ok') is not True,
+              '语音桥：否定句不执行任何设备动作')
+        status, obj = request(base, 'POST', '/bridge/text',
+                              body={'text': '开始录制'}, token='test-token')
+        check(status == 200 and obj.get('ok') is False
+              and '没做成' in (obj.get('reply') or ''),
+              '语音桥：设备动作失败时回复如实说没做成')
+        # executor 统一路径（env 开关）：本机起服务 + 令牌，走 /v1/interpret + /v1/commands
+        os.environ['HA4FPAI_CONTROL_URL'] = base
+        os.environ['HA4FPAI_CONTROL_TOKEN'] = 'test-token'
+        try:
+            sys.path.insert(0, os.path.join(ROOT, 'klar'))   # klar_executor 在 klar/ 子目录
+            import klar_executor as kex
+            out = kex.handle_text('现在几点')
+            check(out.get('ok') is True and out.get('channel') == 'control'
+                  and out.get('message'),
+                  'executor：CONTROL_URL 配置后走统一路径且成功')
+        finally:
+            os.environ.pop('HA4FPAI_CONTROL_URL', None)
+            os.environ.pop('HA4FPAI_CONTROL_TOKEN', None)
         status, obj = request(base, 'POST', '/v1/interpret',
                               body={'text': '不要开始录制'}, token='test-token')
         check(status == 200 and not obj['proposals'], 'HTTP interpret 否定句不产生提案')
