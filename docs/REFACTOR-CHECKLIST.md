@@ -100,9 +100,10 @@
 
 ## 3. A组：纠错与部署前置
 
-- [ ] **A01｜修复三级仓库指针链。组件：Git、.gitmodules、gitlink。**
-  - 方法：HA4FPAI目标SHA先在其远端；WCIS-FPAI-repos只提交HA4FPAI条目；主库只指该中间仓提交。先记录当前远端，采用前向修复，不盲目force。
-  - 验收：对象与URL归属匹配；每级远端可取；隔离clone逐级更新成功。历史空树恢复不能替代此项。
+- [x] **A01｜修复三级仓库指针链。组件：Git、.gitmodules、gitlink。**（2026-11-06 完成）
+  - 实施：`WCIS-FPAI-repos` 提交 `9240706a`（HA4FPAI gitlink → `1d2ddb7`，staged 仅此一条，未夹带 ha-small/ 等他人条目）；主库提交 `832f1c4` 把 `repos` gitlink 从误指的 HA4FPAI 提交（1308804，对象不在中间仓）改回中间仓提交 `9240706a`（index-info 安全写法，diff 仅一行）。
+  - 证据：隔离 clone `workenv/tmp/a01-clone-verify` 逐级 `submodule update` 成功——主库 repos 指针 `9240706a` → repos 检出 → HA4FPAI gitlink `1d2ddb7` → 检出 HEAD 即 `1d2ddb7`；三级远端均可取。
+  - 边界：wiki gitlink 独立维护不在本验收内；此前空树事故的止损提交（0ea884d/a9feba8）不能替代本项。
 - [x] **A02｜建立唯一写入协调器与同进程调度。组件：sqlite3、Scheduler、control.service。**（2026-11-06 完成）
   - 实施：新增 `control/scheduler.py`（线程内周期 run_due；epoch 变化置 exit_requested，服务整体退出码 3 交 systemd 重启）；`App(scheduler_interval=)` 启动即建并 start 调度线程，与 HTTP 请求共享同一 App/写路径；`/healthz`、`/v1/status` 暴露调度状态；`ha4fpai-task-worker.service` 降级 `Type=oneshot` 手工工具并标 DEPRECATED，不再常驻直写库。
   - 证据：`control/tests/test_a_group.py` 12/12（run_once 执行到期任务、任务命令经同一 App 落库、occurrence 幂等不重跑、epoch 栅栏请求退出、/healthz 调度线程 running、单元 oneshot 化）；CI quick 10 套 PASSED（control-a-group 注册进 quick/full）。
