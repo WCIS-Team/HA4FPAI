@@ -33,7 +33,13 @@ python -B -X utf8 -m control.service --db data/business.sqlite3 --token <token>
 | `tasks.py` | 持久任务：(task_id, occurrence) 唯一；破坏性任务只生成待确认；worker 循环留待部署层 |
 | `actions.py` | 动作注册表（单一来源）+ 直接短语表（整句匹配，否定/询问不误触）+ interpret |
 | `adapters/klar.py` | klar V2 统一解析（执行器与语言路由共用）；safety_decision 不当系统鉴权 |
-| `adapters/video.py` | **视频域留空桩**：全部返回 `video_domain_not_connected`，端点备忘在文件头 |
+| `adapters/video.py` | **视频域 HTTP 客户端（V1–V5 已接，板端未验）**；`enabled=False` 保留 501 语义；接回登记见 docs/VIDEO-DOMAIN-PLACEHOLDER.md |
+| `media.py` | V9 受控上传/读取：类型白名单、32MiB 上限、原子落盘、防路径逃逸 |
+| `receipts.py` | V6 HA 侧回执接收：operation_id 幂等、回执不复活、只镜像 recorder 不发明状态 |
+| `migrate.py` | 旧数据迁移：声纹写路径（identity 幂等、隔离迁移、同名需显式决策）＋实体种子 |
+| `control_client.py` | 统一路径客户端（executor/console 共用；令牌 env 回退） |
+| `voice_bridge.py` | 语音桥：ASR 文本 → 提案 → 执行 → 可念回复 |
+| `worker.py` | 持久任务 worker：周期 run_due＋restore_epoch 栅栏 |
 | `service.py` | /v1 HTTP 面：GET 只读、Bearer 会话、Origin 校验、8 MiB 上限、非回环必须带令牌 |
 
 ## /v1 端点（本分支骨架，未部署）

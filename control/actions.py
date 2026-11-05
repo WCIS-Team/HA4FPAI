@@ -150,6 +150,31 @@ def build_registry(store, events, settings=None):
                 'source': {'type': 'enum', 'choices': ['boards', 'lang']}},
         summary='旧声纹库只读预览；入库迁移属 WP6/7，本动作不写库')
 
+    def run_import_apply(params, target, expected_revision, principal_id, command_id):
+        from . import migrate
+        result = migrate.import_voiceprints(
+            store, events, params['path'], params['source'], params['model_id'],
+            decisions=params.get('decisions') or {},
+            activate=bool(params.get('activate')))
+        return {'message': '迁移完成：新建 %d 人 / 登记 %d 样本'
+                           % (result['created'], result['enrolled']),
+                'data': result}
+    add('voiceprint.import_apply', run_import_apply,
+        params={'path': {'type': 'str', 'required': True},
+                'source': {'type': 'enum', 'choices': ['boards', 'lang'], 'required': True},
+                'model_id': {'type': 'str', 'required': True},
+                'decisions': {'type': 'obj'},
+                'activate': {'type': 'enum', 'choices': [True, False]}},
+        destructive=True,
+        summary='正式迁移旧声纹库（危险：写人员/样本；默认隔离不激活；重跑幂等）')
+
+    def run_seed_entities(params, target, expected_revision, principal_id, command_id):
+        from . import migrate
+        result = migrate.seed_entities(store, events)
+        return {'message': '实体/区域种子完成', 'data': result}
+    add('entities.seed', run_seed_entities,
+        summary='从 klar 注册表幂等种子实体/区域（存在即更新，不重复插）')
+
     # ---- settings（desired/applied）----
     def run_settings_update(params, target, expected_revision, principal_id, command_id):
         new_revisions = settings.update(params['updates'],

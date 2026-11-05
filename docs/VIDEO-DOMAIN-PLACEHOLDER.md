@@ -28,11 +28,11 @@
 | V3 | 实时画面打开 | `video.py::open_view`（**已实现，板端未验**） | 已实现：先 GET `8092 /api/status`，`ready` 为真才返回 `8092 /h264/manifest.json` 系播放地址（未就绪→`video_service_error`）；「已看到画面」以客户端回执为准（`camera.open_view` 结果只代表地址可用，不播假成功）；编码切换时播放器按新 session 重建 | 验收10 |
 | V4 | 录像模式控制 | `video.py::set_mode`（**已实现，板端未验**） | 已实现：POST `8093 /api/mode` → 回读校验（不一致→`video_service_error`）→ `{mode, armed:True, actively_recording:None}`；urllib 默认不发 Origin，落在服务端同源允许集（None）天然通过，不伪造 Origin 头；`settings.apply_feedback('recorder', …)` 回执接线仍待集成层（actions/service 不在本次改动范围） | 验收09/10/11 |
 | V5 | 录像列表与回放 | `video.py::list_recordings` / `play`（**已实现，板端未验**） | 已实现：GET `8093 /api/recordings`（page/limit/from/to/trash）→ 透传 `{status, data}`，结构未知处原样不猜，**入库映射（`recordings` 表）仍留 V6**；`play` 按 `recording_id` 构造 `8093 /api/recordings/<id>/video` 地址，不发请求不取体（Range 由播放端核实）；另 `purge` HTTP 客户端已实现（客户端校验 `confirm==id` 再发，服务端再校验；`trash`/`restore` 未实现，属 V6） | 验收10 |
-| V6 | 录像/媒体目录写入口 | `recordings`／`media_operations` 表（已建，无写入方） | 接回时由视频侧 recorder 适配器经 outbox 协议提交：operation_id → 媒体封段完成回执 → 业务库目录行；回收站/`purging` 状态机按规划 §录像迁移不变量保留 | 验收08/09 |
+| V6 | 录像/媒体目录写入口 | **HA 侧接收端已实现**（`control/receipts.py`＋`POST /v1/recordings/receipts`：operation_id 幂等去重、回执不复活 purging/purged、abandon 只记操作） | **视频侧发送端待接**（视频仓工作）：recorder 适配器在封段/软删/清理的持久化节点发回执；segment-complete 需声明文件齐备，业务库只镜像回执不发明状态；trash/restore/purge **动作注册**随发送端一起接（迁移不变量：库行≠媒体提交协议） | 验收08/09 |
 | V7 | 人脸登记执行端 | `person.enroll_face`（只收显式向量） | 接回：调 `8091 /api/enroll` 或本地提特征 → 模型/质量证据齐全后经 `samples.enroll` 入业务库；真实提取端在视频侧，本服务不复制推理代码 | 验收03 |
 | V8 | 特征历史库（独立 SQLite） | 未建（视频侧模块持有） | 历史库继续由视频提取模块写入；与本库只按 `event_id`／frame 标识对账，不做伪外键；历史检测永不自动升级为登记身份 | 验收02 |
-| V9 | 媒体上传/读取端点 | `POST /v1/uploads`、`GET /v1/media/{id}`（未实现） | 接回时实现受控上传（类型/大小/时长上限）与按 `media_assets` 白名单读取；不做任意路径代理 | 验收11 |
-| V10 | 任务 worker 常驻循环 | `control/tasks.py::run_due`（幂等，可手工触发） | 部署层起独立 worker（或 systemd timer）周期调 `run_due`；worker 必须带 lease 与 fencing（restore_epoch），旧世代不得执行 | 验收12/13 |
+| V9 | 媒体上传/读取端点 | ✅ 已实现（`control/media.py`＋`POST /v1/uploads`＋`GET /v1/media/{id}`：类型白名单/32MiB 上限/原子落盘/media_assets 行/realpath+commonpath 防逃逸；删除态不提供读取） | 已实现；上传限 4 类（jpeg/png/wav/mp4），更大或更多类型按需求扩白名单 | 验收11 |
+| V10 | 任务 worker 常驻循环 | ✅ 已实现（`control/worker.py`＋`ha4fpai-task-worker.service`：周期 run_due；restore_epoch 变化即退出(3)交 systemd 重启＝跨世代栅栏） | 部署时 enable 两个单元即可；occurrence 幂等已测 | 验收12/13 |
 
 > **同步说明（2026-11-05，V1–V5 接回时登记）**：`video.status()` 变为
 > `{connected: CONFIG.enabled, mode: 'http-client', board_verified: False, targets}`——

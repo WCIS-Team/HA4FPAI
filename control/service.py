@@ -23,8 +23,9 @@ if __package__ in (None, ''):
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from control import actions as actions_mod
-from control import commands, ids, outbox, persons, samples, tasks
+from control import commands, ids, outbox, persons, samples, tasks  # noqa: F401
 from control import voiceprint_import
+from control.adapters import video as video_mod
 from control.errors import AuthError, DomainError, ForbiddenError
 from control.events import EventLog
 from control.settings import Settings
@@ -35,12 +36,15 @@ PUBLIC_GETS = ('/healthz', '/v1/capabilities', '/v1/status')
 
 
 class App(object):
-    def __init__(self, db_path, exports_dir, token=None):
+    def __init__(self, db_path, exports_dir, token=None, media_root=None):
         self.store = Store(db_path)
         self.events = EventLog(self.store)
         self.settings = Settings(self.store)
         self.registry = actions_mod.build_registry(self.store, self.events, self.settings)
         self.exports_dir = exports_dir
+        self.media_root = media_root
+        # 视频快照与上传共用同一媒体根＋业务库（V2/V9 一致性）
+        video_mod.configure(store=self.store, media_root=media_root)
         self._bootstrap_principal('cli', token)
 
     def _bootstrap_principal(self, kind, token):
@@ -162,6 +166,19 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(200, persons.get(self.app.store, person_id))
             if path == '/v1/settings':
                 return self._send(200, {'settings': self.app.settings.effective()})
+            if path.startswith('/v1/media/'):
+                # V9：按 media_id 白名单读取（防路径逃逸在 media.open_asset）
+                from control import media as media_mod
+                media_id = path.split('/')[3]
+                full, row = media_mod.open_asset(self.app.store, media_id)
+                with open(full, 'rb') as f:
+                    data = f.read()
+                self.send_response(200)
+                self.send_header('Content-Type', row['kind'])
+                self.send_header('Content-Length', str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+                return None
             if path == '/v1/events':
                 cursor = int(query.get('after', ['0'])[0])
                 limit = int(query.get('limit', ['100'])[0])
@@ -192,8 +209,20 @@ class Handler(BaseHTTPRequestHandler):
             if not self._origin_ok():
                 raise ForbiddenError('cross_origin', '跨源变更请求被拒绝')
             principal = self._principal()
-            body = self._read_json()
             path = self.path.split('?')[0]
+            if path == '/v1/uploads':
+                # V9：原始字节上传（必须在 JSON 解析之前接管请求体）；
+                # Content-Type 即媒体类型（白名单校验在 media 层）
+                from control import media as media_mod
+                n = int(self.headers.get('Content-Length') or 0)
+                if n > media_mod.MAX_UPLOAD:
+                    raise ForbiddenError('upload_too_large',
+                                         '上传超过上限 %d 字节' % media_mod.MAX_UPLOAD)
+                raw = self.rfile.read(n) if n else b''
+                ctype = (self.headers.get('Content-Type') or '').split(';')[0].strip()
+                row = media_mod.save_upload(self.app.store, self.app.media_root, raw, ctype)
+                return self._send(200, {'media': dict(row)})
+            body = self._read_json()
             if path == '/v1/session':
                 name = str(body.get('principal') or 'operator')[:40]
                 return self._send(200, self.app.create_session(name))
@@ -224,6 +253,10 @@ class Handler(BaseHTTPRequestHandler):
                     self.app, str(body.get('text') or ''),
                     session=body.get('session'),
                     client_id=body.get('client_id') or 'voice'))
+            if path == '/v1/recordings/receipts':
+                # V6（HA 侧半边）：recorder 回执接收；幂等、不复活、只镜像不发明
+                from . import receipts
+                return self._send(200, receipts.ingest(self.app.store, self.app.events, body))
             if path == '/v1/confirmations':
                 info = commands.create_confirmation(
                     self.app.store, self.app.registry, str(body.get('action') or ''),
@@ -321,6 +354,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description='HA4FPAI 统一控制服务（/v1）')
     parser.add_argument('--db', default=os.path.join('data', 'business.sqlite3'))
     parser.add_argument('--exports-dir', default=os.path.join('data', 'exports'))
+    parser.add_argument('--media-root', default=os.path.join('data', 'media'),
+                        help='上传/快照的受控媒体根目录（V2/V9）')
     parser.add_argument('--host', default='127.0.0.1')
     parser.add_argument('--port', type=int, default=18100)
     parser.add_argument('--token', help='预置 Bearer 令牌（也会写入会话表）')
@@ -340,7 +375,7 @@ def main(argv=None):
     db_dir = os.path.dirname(os.path.abspath(args.db))
     if not os.path.isdir(db_dir):
         os.makedirs(db_dir)
-    app = App(args.db, args.exports_dir, token=token)
+    app = App(args.db, args.exports_dir, token=token, media_root=args.media_root)
 
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     server.daemon_threads = True

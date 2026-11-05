@@ -283,7 +283,7 @@ def run_all(tmp):
 
 def http_checks(tmp):
     app = App(os.path.join(tmp, 'http.sqlite3'), os.path.join(tmp, 'exports-http'),
-              token='test-token')
+              token='test-token', media_root=os.path.join(tmp, 'media-http'))
     server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
     server.daemon_threads = True
     server.app = app
@@ -345,6 +345,98 @@ def http_checks(tmp):
         finally:
             os.environ.pop('HA4FPAI_CONTROL_URL', None)
             os.environ.pop('HA4FPAI_CONTROL_TOKEN', None)
+        # ---- V9 上传/读取 ----
+        png = b'\x89PNG\r\n\x1a\n' + b'0' * 64
+        status, obj = request(base, 'POST', '/v1/uploads', raw=png, ctype='image/png',
+                              token='test-token')
+        check(status == 200 and obj['media']['media_id']
+              and obj['media']['sha256'], 'V9 上传：白名单类型落盘入库')
+        mid = obj['media']['media_id']
+        status, payload = request(base, 'GET', '/v1/media/' + mid, token='test-token')
+        check(status == 200 and payload == png, 'V9 读取：字节逐位一致')
+        status, obj = request(base, 'POST', '/v1/uploads', raw=png, ctype='x-thing/other',
+                              token='test-token')
+        check(status == 409, 'V9 上传：非白名单类型 409')
+        status, obj = request(base, 'GET', '/v1/media/no-such-id', token='test-token')
+        check(status == 404, 'V9 读取：未知 media_id 404')
+        # ---- V6 回执（HA 侧接收端）----
+        rid = 'rec-20261105T000000Z-test000001'
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-1', 'kind': 'segment-complete',
+                                    'recording_id': rid,
+                                    'recording': {'format': 'mp4', 'duration_s': 3.2}},
+                              token='test-token')
+        check(status == 200 and obj['recording']['trash_state'] == 'none',
+              'V6 回执：segment-complete 落 recordings（目录权威=recorder 回执）')
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-1', 'kind': 'segment-complete',
+                                    'recording_id': rid}, token='test-token')
+        check(status == 200 and obj.get('deduplicated') is True,
+              'V6 回执：同 op 重复投递幂等去重')
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-1b', 'kind': 'segment-complete',
+                                    'recording_id': rid, 'recording': {'format': 'other'}},
+                              token='test-token')
+        check(status == 200, 'V6 回执：recorder 重发同录像新 op 可更新元数据')
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-2', 'kind': 'trash',
+                                    'recording_id': rid}, token='test-token')
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-3', 'kind': 'purge-progress',
+                                    'recording_id': rid}, token='test-token')
+        check(status == 200, 'V6 回执：purge-progress')
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-4', 'kind': 'restore',
+                                    'recording_id': rid}, token='test-token')
+        check(status == 409, 'V6 回执：purging 后 restore 拒绝（回执不复活）')
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-5', 'kind': 'purge-done',
+                                    'recording_id': rid}, token='test-token')
+        check(status == 200, 'V6 回执：purge-done')
+        status, obj = request(base, 'POST', '/v1/recordings/receipts',
+                              body={'operation_id': 'op-6', 'kind': 'no-such-kind',
+                                    'recording_id': rid}, token='test-token')
+        check(status == 400, 'V6 回执：未知 kind 400')
+        # ---- 迁移 apply（危险动作走确认绑定）----
+        vp_path = os.path.join(tmp, 'http-voiceprints.json')
+        with open(vp_path, 'w', encoding='utf-8') as f:
+            json.dump({'version': 1, 'dim': 4,
+                       'speakers': {'网页迁移的人': [0.5] * 4}}, f)
+        status, obj = request(base, 'POST', '/v1/commands',
+                              body={'action': 'voiceprint.import_apply',
+                                    'params': {'path': vp_path, 'source': 'boards',
+                                               'model_id': 'campplus-mock'}},
+                              token='test-token')
+        check(status == 403 and obj['error']['code'] == 'confirmation_required',
+              '迁移 apply：无确认拒绝（危险动作）')
+        status, obj = request(base, 'POST', '/v1/commands',
+                              body={'action': 'models.register',
+                                    'params': {'model_id': 'campplus-mock',
+                                               'modality': 'voice', 'dim': 4}},
+                              token='test-token')
+        check(status == 200 and obj['command']['status'] == 'succeeded',
+              '迁移前置：模型经动作登记')
+        status, obj = request(base, 'POST', '/v1/confirmations',
+                              body={'action': 'voiceprint.import_apply',
+                                    'params': {'path': vp_path, 'source': 'boards',
+                                               'model_id': 'campplus-mock'}},
+                              token='test-token')
+        conf = obj['confirmation_id']
+        status, obj = request(base, 'POST', '/v1/commands',
+                              body={'action': 'voiceprint.import_apply',
+                                    'params': {'path': vp_path, 'source': 'boards',
+                                               'model_id': 'campplus-mock'},
+                                    'confirmation_id': conf},
+                              token='test-token')
+        check(status == 200 and obj['command']['status'] == 'succeeded'
+              and obj['command']['data']['created'] == 1
+              and obj['command']['data']['enrolled'] == 1,
+              '迁移 apply：确认后执行，报告可读（隔离 active=False）')
+        status, obj = request(base, 'POST', '/v1/commands',
+                              body={'action': 'entities.seed', 'params': {}},
+                              token='test-token')
+        check(status == 200 and obj['command']['status'] == 'succeeded',
+              'entities.seed：注册表种子动作可执行')
         status, obj = request(base, 'POST', '/v1/interpret',
                               body={'text': '不要开始录制'}, token='test-token')
         check(status == 200 and not obj['proposals'], 'HTTP interpret 否定句不产生提案')
@@ -353,18 +445,24 @@ def http_checks(tmp):
         server.server_close()
 
 
-def request(base, method, path, body=None, token=None, origin=None):
-    data = json.dumps(body).encode('utf-8') if body is not None else None
+def request(base, method, path, body=None, token=None, origin=None, raw=None, ctype=None):
+    data = json.dumps(body).encode('utf-8') if body is not None else raw
     req = urllib.request.Request(base + path, data=data, method=method)
     if body is not None:
         req.add_header('Content-Type', 'application/json')
+    elif raw is not None and ctype:
+        req.add_header('Content-Type', ctype)
     if token:
         req.add_header('Authorization', 'Bearer ' + token)
     if origin:
         req.add_header('Origin', origin)
     try:
         with urllib.request.urlopen(req, timeout=10) as resp:
-            return resp.status, json.loads(resp.read().decode('utf-8'))
+            payload = resp.read()
+            try:
+                return resp.status, json.loads(payload.decode('utf-8'))
+            except ValueError:
+                return resp.status, payload
     except urllib.error.HTTPError as exc:
         try:
             return exc.code, json.loads(exc.read().decode('utf-8'))
