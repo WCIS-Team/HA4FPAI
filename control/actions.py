@@ -160,29 +160,29 @@ def build_registry(store, events, settings=None):
         params={'updates': {'type': 'obj', 'required': True}},
         summary='保存设置（预期修订不符返回 409）')
 
-    # ---- 视频域：留空桩（capability=video, connected=False）----
+    # ---- 视频域：HTTP 客户端实现（阶段02 接回；板端验收前 board_verified=False）----
     add('camera.recognize', lambda params, target, expected_revision, principal_id, command_id:
         video.recognize(target=target),
-        capability='video', connected=False, summary='当前画面单帧识别（留空）')
+        capability='video', connected=True, summary='当前画面单帧识别（调板端 8091，板端未验）')
     add('camera.snapshot', lambda params, target, expected_revision, principal_id, command_id:
         video.snapshot(target=target),
-        capability='video', connected=False, summary='拍照存档（留空）')
+        capability='video', connected=True, summary='拍照存档（调板端 8091，板端未验）')
     add('camera.open_view',
         lambda params, target, expected_revision, principal_id, command_id:
         video.open_view(client_id=params.get('client_id')),
         params={'client_id': {'type': 'str'}},
-        capability='video', connected=False, summary='打开实时画面（留空）')
+        capability='video', connected=True, summary='打开实时画面（8092 地址，播放确认归客户端）')
     add('recording.set_mode', lambda params, target, expected_revision, principal_id, command_id:
         video.set_mode(mode=params['mode'], device_id=target),
         params={'mode': {'type': 'enum', 'choices': ['off', 'auto', 'manual'], 'required': True}},
-        capability='video', connected=False, summary='设置录像模式（留空；不做假 applied）')
+        capability='video', connected=True, summary='设置录像模式（8093 回读校验，板端未验）')
     add('recording.list', lambda params, target, expected_revision, principal_id, command_id:
         video.list_recordings(target=target),
-        capability='video', connected=False, summary='查询录像列表（留空）')
+        capability='video', connected=True, summary='查询录像列表（8093 透传）')
     add('recording.play', lambda params, target, expected_revision, principal_id, command_id:
         video.play(recording_id=params['recording_id']),
         params={'recording_id': {'type': 'str', 'required': True}},
-        capability='video', connected=False, summary='回放指定录像（留空）')
+        capability='video', connected=True, summary='回放指定录像（8093 MP4 地址）')
 
     return reg
 

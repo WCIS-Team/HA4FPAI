@@ -48,6 +48,8 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # 板上 python 平铺在 /mnt/data/klar/；仓库里 door_unlock 仍在 ../boards
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "boards"))
+# 统一路径（HA4FPAI_CONTROL_URL）要 import 仓库根的 control/ 包；板上平铺时走 fallback
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 LOG = logging.getLogger("klar_exec")
 
@@ -516,7 +518,18 @@ def handle_text(text, dry_run=False, speak_reply=False, wav=None):
     speak_reply=True 时把最终结果通过 Wyoming TTS 播出去（板上无 /dev/snd，
     所以只落 wav，外部喇叭/HDMI 再播）。
     wav 传给需要音频的动作（目前是开门，做声纹校验）。
+
+    统一路径（阶段02 接线）：配置 HA4FPAI_CONTROL_URL 后，文本改走控制服务
+    /v1/interpret + /v1/commands（control/control_client.py）；未配置保持
+    旧双通道行为不变。控制服务不可达时如实报错，不静默回退。
     """
+    control_url = os.environ.get("HA4FPAI_CONTROL_URL", "")
+    if control_url and not dry_run:
+        out = _control_handle_text(control_url, text)
+        if speak_reply:
+            out["speech_result"] = _speak_out(out)
+        return out
+
     # 需要音频的动作在这里补 slots
     direct = run_direct(text, dry_run=dry_run, extra={"text": text, "wav": wav})
     if direct is not None:
@@ -536,6 +549,20 @@ def handle_text(text, dry_run=False, speak_reply=False, wav=None):
     if speak_reply and not dry_run:
         out["speech_result"] = _speak_out(out)
     return out
+
+
+def _control_handle_text(base_url, text):
+    """统一控制路径的薄封装；仓库布局与板上平铺布局都能 import。"""
+    try:
+        try:
+            from control.control_client import ControlClient      # 仓库布局（control/ 包）
+        except ImportError:
+            from control_client import ControlClient               # 板上平铺布局
+        client = ControlClient(base_url, timeout=20)
+        return client.handle_text(text, client_id="executor")
+    except Exception as e:                                       # noqa: BLE001
+        return {"ok": False, "channel": "control", "input": text,
+                "error": "control service unreachable: %s" % e}
 
 
 def _speak_out(out):

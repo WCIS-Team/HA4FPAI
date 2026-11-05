@@ -217,6 +217,13 @@ class Handler(BaseHTTPRequestHandler):
                     session=body.get('session'),
                     klar_url=body.get('klar_url') or None)
                 return self._send(200, result)
+            if path == '/bridge/text':
+                # 语音链执行面（WP9）：文本 → 提案 → 执行 → 可念回复
+                from . import voice_bridge
+                return self._send(200, voice_bridge.run_text(
+                    self.app, str(body.get('text') or ''),
+                    session=body.get('session'),
+                    client_id=body.get('client_id') or 'voice'))
             if path == '/v1/confirmations':
                 info = commands.create_confirmation(
                     self.app.store, self.app.registry, str(body.get('action') or ''),

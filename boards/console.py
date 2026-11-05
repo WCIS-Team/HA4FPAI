@@ -204,19 +204,36 @@ def commands():
         return [{"error": str(e)}]
 
 
+CONTROL_URL = os.environ.get("HA4FPAI_CONTROL_URL", "")
+
+
 def run_command(text, speak=False, dry_run=False, wav=None):
-    try:
-        import klar_executor as ex
-    except Exception as e:                       # noqa: BLE001
-        return {"ok": False, "error": "loading executor: %s" % e}
-    out = ex.handle_text(text, dry_run=dry_run, speak_reply=speak, wav=wav)
+    """执行一条命令：配置 HA4FPAI_CONTROL_URL 时走统一控制服务（POST /v1），
+    否则走旧 executor 双通道。两条路都写同一份 history。"""
+    if CONTROL_URL and not dry_run:
+        try:
+            try:
+                from control.control_client import ControlClient   # 仓库布局
+            except ImportError:
+                from control_client import ControlClient            # 板上平铺布局
+            out = ControlClient(CONTROL_URL, timeout=20).handle_text(
+                text, client_id="console")
+        except Exception as e:                                   # noqa: BLE001
+            out = {"ok": False, "channel": "control", "input": text,
+                   "error": "control service unreachable: %s" % e}
+    else:
+        try:
+            import klar_executor as ex
+        except Exception as e:                                   # noqa: BLE001
+            return {"ok": False, "error": "loading executor: %s" % e}
+        out = ex.handle_text(text, dry_run=dry_run, speak_reply=speak, wav=wav)
     rec = {"ts": time.time(), "text": text, "channel": out.get("channel"),
            "ok": out.get("ok"), "message": out.get("message") or out.get("error"),
            "speech": out.get("speech_result")}
     try:
         with open(HISTORY_FILE, "a", encoding="utf-8") as f:
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-    except Exception:                            # noqa: BLE001
+    except Exception:                                            # noqa: BLE001
         pass
     return out
 
@@ -389,9 +406,10 @@ async function loadCmds(){
 async function doRun(text){
   const speak=document.getElementById('speak').checked;
   const dry=document.getElementById('dry').checked;
-  const url=`/api/run?text=${encodeURIComponent(text)}&speak=${speak?1:0}&dry=${dry?1:0}`;
   document.getElementById('result').textContent='执行中…';
-  const r=await (await fetch(url)).json();
+  const r=await (await fetch('/api/run',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({text:text,speak:speak?1:0,dry_run:dry?1:0})})).json();
   document.getElementById('result').textContent=fmt(r);
   loadHealth(); loadHist();
 }
@@ -466,13 +484,12 @@ class Handler(BaseHTTPRequestHandler):
                     else "/mnt/data/klar/klar.log")
             return self._send(200, "application/json", {"name": name, "lines": tail(path)})
         if p == "/api/run":
-            text = q.get("text", [""])[0]
-            if not text:
-                return self._send(400, "application/json", {"error": "missing text"})
-            out = run_command(text,
-                              speak=q.get("speak", ["0"])[0] == "1",
-                              dry_run=q.get("dry", ["0"])[0] == "1")
-            return self._send(200, "application/json", out)
+            # 阶段02 整改（WP2）：GET 执行入口退役——带副作用的 GET 是事故面
+            # （旧版 GET /api/run 无鉴权即可执行重启/删除类动作）。
+            return self._send(
+                405, "application/json",
+                {"error": "GET /api/run retired: side effects must use POST /api/run",
+                 "howto": "POST {'text':..., 'speak':0|1, 'dry_run':0|1}"})
         return self._send(404, "text/plain; charset=utf-8", "not found")
 
     def do_POST(self):

@@ -290,8 +290,8 @@ def http_checks(tmp):
         status, obj = request(base, 'GET', '/v1/capabilities')
         video_actions = [a for a in obj['actions'] if a['capability'] == 'video']
         check(status == 200 and video_actions
-              and all(not a['connected'] for a in video_actions),
-              '能力清单：视频域如实标未接')
+              and all(a['connected'] for a in video_actions),
+              '能力清单：视频动作已接（执行端=HTTP 适配器，板端未验）')
         status, _ = request(base, 'GET', '/v1/persons')
         check(status == 401, '无令牌 401')
         status, obj = request(base, 'POST', '/v1/commands',
