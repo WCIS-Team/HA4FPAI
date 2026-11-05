@@ -17,6 +17,11 @@
   POST /llm   {"text"}          只跑 LLM（?tts=1 连 TTS）
   POST /tts   {"text"}          只跑 分词器→TTS→合成（默认回 wav；?format=json 回 b64）
   POST /reset [?session=]       清 LLM 多轮上下文（不给 session 清全部）
+  GET  /api/v1/spk/status       声纹档状态（**默认不入链**；未装载时 loaded=false，查库零代价）
+  POST /api/v1/spk/enroll?name=X  音频 → 登记一段声纹（同名可多次累加；?replace=1 覆盖）
+  POST /api/v1/spk/verify      音频 → 跟库比（?name=X 走 1:1，不给走 1:N）
+  POST /api/v1/spk/unload      丢掉声纹会话（**不常驻**：闲置 vertify.yaml 的 idle_unload_s 也会自动丢）
+  POST /api/v1/spk/library?delete=X  删掉一个名字
   GET  /health /stats /components /
 配置：lang/config/ 目录（一组件一 YAML；LANG_CONFIG_DIR / LANG_CONFIG 可指定）；环境变量优先，键名沿用既有约定
 （ASR_REMOTE_* / MIMO_* / TTS_* / BIND / PORT）。密钥不进 config（D-27）。
@@ -39,10 +44,10 @@ from pathlib import Path
 if __package__ in (None, ""):                     # 直接运行：python server/app.py
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from cfg import Config, as_bool, as_int
-    from core import Chain
+    from core import Chain, WORK_RATE
 else:
     from .cfg import Config, as_bool, as_int
-    from .core import Chain
+    from .core import Chain, WORK_RATE
 
 _STATS = {"started": time.strftime("%Y-%m-%dT%H:%M:%S"), "requests": 0, "ok": 0,
           "errors": 0, "bytes_in": 0, "last_total_ms": None}
@@ -79,13 +84,16 @@ def parse_multipart(body, boundary):
         if data.endswith(b"\r\n"):
             data = data[:-2]
         htxt = head.decode("latin-1", "replace")
-        m = re.search(r'name="([^"]*)"', htxt)
+        # 引号可有可无：浏览器 fetch/FormData 写 name="audio"，PowerShell -Form 写 name=audio
+        m = re.search(r'name=(?:"([^"]*)"|([^\s;]+))', htxt)
         if not m:
             continue
-        fm = re.search(r'filename="([^"]*)"', htxt)
+        name = m.group(1) if m.group(1) is not None else m.group(2)
+        fm = re.search(r'filename=(?:"([^"]*)"|([^\s;]+))', htxt)
+        fname = (fm.group(1) if fm.group(1) is not None else fm.group(2)) if fm else ""
         cm = re.search(r"Content-Type:\s*([^\r\n;]+)", htxt, re.I)
-        out[m.group(1)] = (fm.group(1) if fm else "",
-                           cm.group(1).strip() if cm else "", data)
+        out[name] = (fname,
+                     cm.group(1).strip() if cm else "", data)
     return out
 
 
@@ -156,10 +164,26 @@ class Handler(BaseHTTPRequestHandler):
             pass
 
     def _read_body(self):
+        # 正常客户端（curl / fetch / requests）都带 Content-Length；PowerShell 的 -Form 走
+        # chunked ⇒ 只按 Content-Length 读会拿到**空 body**，报"multipart 里没有音频字段"。
         n = int(self.headers.get("Content-Length") or 0)
+        te = (self.headers.get("Transfer-Encoding") or "").lower()
+        buf = bytearray()
+        if n <= 0 and "chunked" in te:                 # 分块传输：按 chunk 头读
+            while True:
+                line = self.rfile.readline().strip()
+                try:
+                    size = int(line.split(b";")[0], 16)
+                except ValueError:
+                    break
+                if size == 0:
+                    self.rfile.readline()
+                    break
+                buf += self.rfile.read(size)
+                self.rfile.read(2)                     # 每块末尾的 CRLF
+            return bytes(buf)
         if n <= 0:
             return b""
-        buf = bytearray()
         while len(buf) < n:
             got = self.rfile.read(min(65536, n - len(buf)))
             if not got:
@@ -169,6 +193,56 @@ class Handler(BaseHTTPRequestHandler):
 
     def log_message(self, fmt, *args):
         sys.stderr.write("[%s] %s\n" % (time.strftime("%H:%M:%S"), fmt % args))
+
+    # ---- 声纹（spk）：**默认不入链**，接口可以点名用；第一次调用才装模型 --------------
+    def _spk_send(self, action, query, body, ctype):
+        res = self._spk(action, query, body, ctype)
+        return self._send(200 if res.get("code") == 0 else 400, res)
+
+    def _spk(self, action, query, body, ctype):
+        from backends import audioio
+        q = urllib.parse.parse_qs(query or "")
+
+        def one(k, d=None):
+            return q.get(k, [d])[0] if k in q else d
+
+        action = (action or "status").strip().lower()
+        try:
+            st = _CHAIN.stage("spk", "sherpa")     # 强制 sherpa 档（chain.spk 默认 none）
+            if st is None:
+                raise RuntimeError("声纹档不可用（REGISTRY 里没有 spk.sherpa）")
+            if action == "status":
+                return dict({"code": 0}, **st.status())
+            if action == "library":
+                name = (one("delete") or "").strip()
+                if name:
+                    return dict({"code": 0}, **st.forget(name))
+                return {"code": 0, "library": st.library_path, "speakers": st.speakers()}
+            if action == "unload":
+                return {"code": 0, "unloaded": bool(st.drop())}
+            if action == "enroll":
+                name = (one("name") or "").strip()
+                if not name:
+                    raise RuntimeError("缺 name（?name=某某）")
+                samples, rate = self._spk_audio(body, ctype, audioio)
+                return dict({"code": 0}, **st.enroll(name, samples, rate,
+                                                     replace=as_bool(one("replace"), False)))
+            if action == "verify":
+                samples, rate = self._spk_audio(body, ctype, audioio)
+                return dict({"code": 0}, **st.verify(samples, rate,
+                                                     name=(one("name") or "").strip() or None))
+            raise RuntimeError("未知声纹动作 %r（status/enroll/verify/unload/library）" % action)
+        except Exception as exc:                    # 声纹失败只回错误，不炸服务
+            _stat("errors")
+            return {"code": 1, "msg": ("%s: %s" % (type(exc).__name__, exc))[:300]}
+
+    def _spk_audio(self, body, ctype, audioio):
+        if not body:
+            raise RuntimeError("缺音频（multipart 字段 audio / JSON audio_b64 / 裸 wav）")
+        smp, rate = audioio.decode_payload(pick_audio(body, ctype), work_rate=WORK_RATE)
+        if not smp:
+            raise RuntimeError("空音频")
+        return smp, rate
 
     # ---- GET
     def do_GET(self):
@@ -180,9 +254,15 @@ class Handler(BaseHTTPRequestHandler):
                 "stages": {s: _CHAIN.active(s) or "none" for s in Chain.STAGES}})
         if path == "/stats":
             with _LOCK:
-                return self._send(200, dict(_STATS))
+                stats = dict(_STATS)
+            stats["gate"] = _CHAIN.gate_snapshot() if _CHAIN else {}
+            return self._send(200, stats)
         if path == "/components":
             return self._send(200, {s: _config_section(s) for s in Chain.STAGES})
+        if path in ("/api/v1/spk/status", "/api/v1/spk/library"):
+            return self._spk_send(path.rsplit("/", 1)[-1],
+                                  self.path.split("?", 1)[1] if "?" in self.path else "",
+                                  b"", "")
         if path == "/":
             return self._send(200, HELP_TEXT, "text/plain; charset=utf-8")
         return self._send(404, {"code": 404, "msg": "no such path: " + path})
@@ -203,6 +283,10 @@ class Handler(BaseHTTPRequestHandler):
                 sid = q.get("session", [None])[0]
                 _CHAIN.reset_session(sid)
                 return self._send(200, {"code": 0, "cleared": sid or "all"})
+
+            if path.startswith("/api/v1/spk"):
+                act = path[len("/api/v1/spk/"):] if path.startswith("/api/v1/spk/") else "status"
+                return self._spk_send(act, query, body, ctype)
 
             if path in ("/api/v1/chain", "/api/v1/asr", "/v1/audio/transcriptions"):
                 opts = parse_opts(query, {
@@ -265,6 +349,12 @@ HELP_TEXT = """lang-server —— 语音对话服务的编排层（链路① sar
   curl -s -H 'Content-Type: application/json' -d '{"text":"你好"}' http://127.0.0.1:18091/llm
   curl -s -H 'Content-Type: application/json' -d '{"text":"你好"}' http://127.0.0.1:18091/tts -o out.wav
   curl -s http://127.0.0.1:18091/components
+
+声纹（默认不入链；第一次真用才装模型，闲置自动卸）：
+  curl -s -F audio=@me.wav "http://127.0.0.1:18091/api/v1/spk/enroll?name=alice"
+  curl -s -F audio=@test.wav "http://127.0.0.1:18091/api/v1/spk/verify?name=alice"
+  curl -s http://127.0.0.1:18091/api/v1/spk/status
+  curl -s -X POST http://127.0.0.1:18091/api/v1/spk/unload
 
 换组件：改 lang/config/server.yaml 的 chain 节（档位清单 curl /components 或看 backends/__init__.py）。
 """

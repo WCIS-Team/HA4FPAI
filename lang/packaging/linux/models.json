@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "description": "Download-only CPU model assets; never load or execute models.",
+  "models": [
+    {"id":"asr","repo_id":"csukuangfj/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30","revision":"main","path":"asr/models/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30","allow_patterns":["encoder.int8.onnx","decoder.onnx","joiner.int8.onnx","tokens.txt"],"required":["encoder.int8.onnx","decoder.onnx","joiner.int8.onnx","tokens.txt"]},
+    {"id":"kws","repo_id":"csukuangfj/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20","revision":"main","path":"kws/models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20","allow_patterns":["encoder*.int8.onnx","decoder*.onnx","joiner*.int8.onnx","tokens.txt","test_wavs/keywords.txt"],"required":["encoder*.int8.onnx","decoder*.onnx","joiner*.int8.onnx","tokens.txt","test_wavs/keywords.txt"]},
+    {"id":"vad","repo_id":"onnx-community/silero-vad","revision":"main","path":"vad/models/silero","allow_patterns":["onnx/model.onnx","LICENSE"],"required":["onnx/model.onnx"]},
+    {"id":"tts","repo_id":"csukuangfj/matcha-icefall-zh-baker","revision":"main","path":"tts/models/matcha-icefall-zh-baker","allow_patterns":["model-steps-3.onnx","tokens.txt","lexicon.txt","*.fst","dict/**"],"required":["model-steps-3.onnx","tokens.txt","lexicon.txt","*.fst","dict/**/*"]},
+    {"id":"vocoder","repo_id":"k2-fsa/sherpa-onnx-models","revision":"main","path":"tts/models/vocoder","allow_patterns":["vocoder-models/vocos-22khz-univ.onnx"],"copies":{"vocoder-models/vocos-22khz-univ.onnx":"vocos-22khz-univ.onnx"},"required":["vocos-22khz-univ.onnx"]}
+  ]
+}

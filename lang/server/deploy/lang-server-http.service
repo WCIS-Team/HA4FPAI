@@ -4,14 +4,19 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/mnt/data/langserver
-Environment=LANG_CONFIG_DIR=/mnt/data/langserver/config
+WorkingDirectory=/mnt/data/lang/server
+Environment=LANG_CONFIG_DIR=/mnt/data/lang/config
+EnvironmentFile=-/etc/lang-server.env
+ExecStartPre=/usr/bin/mkdir -p /mnt/data/lang/server/cache
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/bin/python3 /mnt/data/langserver/app.py
-Restart=on-failure
+ExecStart=/usr/bin/python3 /mnt/data/lang/server/app.py
+Restart=always
 RestartSec=5
-StandardOutput=append:/mnt/data/langserver/http.log
-StandardError=append:/mnt/data/langserver/http.log
+# 常驻主链：启动即 warm（sherpa runtime + active 档），内存上限按"跑起来以后"给。
+# 993 MB 板上别同时开 http/voice/loop 三个（上限相加会超物理内存）。
+MemoryMax=480M
+StandardOutput=append:/mnt/data/lang/server/http.log
+StandardError=append:/mnt/data/lang/server/http.log
 
 [Install]
 WantedBy=multi-user.target

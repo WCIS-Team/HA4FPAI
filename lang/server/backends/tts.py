@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """tts.py —— TTS 档。契约：run(chunk) -> (samples, rate)；失败抛给链（丢音频不丢文本）。
 
-http     接现役两个常驻 TTS 服务（REMOTE_CHAIN.md 的姿势，本服务不自己装载模型）：
-           proto=piper  POST {url} JSON {"text","length_scale"} → wav（piper_tts_server.py，:5002）
+http     接现役外部 TTS 服务（REMOTE_CHAIN.md 的姿势，本服务不自己装载模型）：
            proto=ekho   POST {url}?wait=1 body=文本           → wav（ekho-server，:2046，48k 立体声）
+           proto=json   POST {url} JSON {"text","length_scale"} → wav（任意 JSON 服务）
+           （piper 档及其 piper_tts_server 已于 2026-11-04 删除；代码里保留 piper 形状仅为兼容旧客户端）
          env：TTS_URL / TTS_PROTO / TTS_TIMEOUT / LENGTH_SCALE。
          采样率不一致没关系——链尾的「合成+SAR」统一重采样（她定的链尾两环）。
 sine     自检档：每块出一段正弦（时长随字数走），无声卡/无模型环境的全链自检用。

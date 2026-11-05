@@ -1,7 +1,7 @@
 # lang/asr 可调参数全录
 
 **口径**：以 2026-11-04 的现行代码为准（`asr_chain.py` / `asr/backends.py` / `asr/remote_asr.py` /
-`asr/tts_*.py` / `../server/archive/mimo_bridge.py` / `../server/archive/piper_tts_server.py` / 两个
+`asr/tts_ekho.py` / `../server/archive/mimo_bridge.py` / 两个
 起链脚本），逐个从代码里挖出来的默认值，不是转述记忆。`--help` 没写默认值的参数，本文标了
 ★（默认值来自 argparse 的 `default=`）。
 
@@ -144,24 +144,17 @@ CLI 参数 > env 兜底）。
 
 ---
 
-## 三、piper_tts_server.py（:5002，TTS 服务）
+## 三、piper_tts_server.py —— **已删除（2026-11-04 她裁）**
 
-| CLI | 默认 | 说明 |
-|---|---|---|
-| `--host` | `127.0.0.1` | |
-| `--port` | `5002` | |
-| `--model` | `/root/ttsbench/models/piper/zh_CN-huayan-medium.onnx` | 63 MB，22050 Hz |
-| `--length-scale` | `1.0` | 同链路 `--tts-length-scale`；服务端设了就是全局默认 |
-
-**启动器另给**：`PIPER_PY`（默认 `/root/mf3/envs/tts/bin/python`，py3.11+ORT 1.31.0——**必须**这个 env，
-链路 python 不用装 piper）、`PIPER_MODEL`、`SVC_DIR`。装载 23~27 s，`VmHWM 165 MB`，RTF 1.25~1.79。
+`piper_tts_server.py`（服务）、`tts_piper.py`（客户端）、`start_piper_server.sh`（launcher）三件
+连同 `TTS=piper` 档一起删了；剩下的 TTS 只有 ekho（:2046）。
 
 ## 四、TTS 客户端细节（链路内）
 
-| 项 | ekho（:2046） | piper（:5002） |
-|---|---|---|
-| 超时默认 | 60 s（env `TTS_EKHO_TIMEOUT`） | 120 s（env `TTS_PIPER_TIMEOUT`） |
-| `voice` | env `TTS_EKHO_VOICE`，空=服务端默认（Mandarin, 48 kHz 立体声） | —（模型定音色） |
+| 项 | ekho（:2046） |
+|---|---|
+| 超时默认 | 60 s（env `TTS_EKHO_TIMEOUT`） |
+| `voice` | env `TTS_EKHO_VOICE`，空=服务端默认（Mandarin, 48 kHz 立体声） |
 
 ## 五、ASR 客户端细节（remote_asr.py，链路内）
 

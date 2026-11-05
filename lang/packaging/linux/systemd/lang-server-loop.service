@@ -1,0 +1,29 @@
+[Unit]
+Description=Language server microphone and speaker loop
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=lang-server
+Group=lang-server
+SupplementaryGroups=audio
+WorkingDirectory=/var/lib/lang-server
+Environment=LANG_CONFIG_DIR=/etc/lang-server/config
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=HOME=/var/lib/lang-server
+Environment=XDG_CACHE_HOME=/var/lib/lang-server/cache
+EnvironmentFile=-/etc/lang-server/lang-server.env
+ExecStart=/var/lib/lang-server/venv/bin/python /usr/lib/lang-server/lang/server/loop.py --run --no-warm
+Restart=on-failure
+RestartSec=15
+UMask=0027
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/var/lib/lang-server
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

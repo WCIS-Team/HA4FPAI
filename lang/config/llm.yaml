@@ -1,14 +1,9 @@
-# lang/config/llm.yaml —— LLM 档（**只放本地/板端 NPU 槽位**）
-# 外部 LLM API（url/proto/key）统一在 `online.yaml` 的 `online.llm`；
-# 链路切 `chain.llm: openai` 时后端会读 online.llm，本文件不必重复。
-# 参数口径见 lang/llm/para.md（三颗 NPU 迁移件：编译期 toml + 运行期驱动项）；选型见 lang/llm/README.md。
-# 板上现役 = ERNIE-4.5-0.3B-PT4icraft430tai（门 4 已通，0.42 s/步；板端 NPU 槽位服务见 lang/server 的 npuserv 档）。
+# Local NPU slot settings. See ../llm/para.md and server/backends/llm.py.
+# Cloud settings belong to online.yaml. An empty model disables this slot.
 llm_profiles:
-  npuserv:                   # 板端 NPU 槽位（ids-in/ids-out；ERNIE 是 ids-in/ids-out 需 tokenizer 桥）
-    # 留空：不接板端推理（klar.yaml 的同名节注释）；接上时指板端槽位服务地址与模型名。
-    url: ""                  # 如 http://127.0.0.1:18080/api/v1/llm
-    model: ""                # 空＝服务端默认（板上现役 ERNIE）；Qwen3-0.6B 待驱动上板
-    max_new_tokens: 96       # 生成长度上限（ERNIE 默认 96 容易撞，撞限以 limit 截断；要说完 /max 160）
-    num_threads: 1           # 板端推理核数
-    # 板侧分词：ERNIE 用纯标准库 e41_tok（tokenizers 0.13.3 读不了它的 tokenizer.json）；
-    #           Qwen3 要 tokenizers >= 0.15（实测 0.20.3）。详见 lang/llm/para.md 各节。
+  npuserv:
+    base_url: http://127.0.0.1:18080
+    model: ""
+    max_new: 128
+    timeout: 900
+    wait_s: 10

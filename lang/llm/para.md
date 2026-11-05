@@ -9,7 +9,13 @@
 
 ---
 
-## 一、ERNIE-4.5-0.3B-PT4icraft430tai（板上现役）
+## 一、ERNIE-4.5-0.3B-PT4icraft430tai（历史上板验证件）
+
+上板通过记录不代表当前 lang 链正在使用该模型。当前是否启用由 `chain.llm` 与 npuserv 的 `/status` 决定。
+
+### lang 服务实际配置键
+
+`config/llm.yaml` 对应 `server/backends/llm.py:NpuServ.__init__`，支持 `base_url`（默认 `http://127.0.0.1:18080`）、`model`（必填，空值表示该档不可用）、`max_new`（128）、`timeout`（900 秒）、`wait_s`（10 秒）。可分别通过 `NPUSERV_URL`、`NPUSERV_MODEL`、`NPUSERV_MAX_NEW`、`NPUSERV_TIMEOUT`、`NPUSERV_WAIT_S` 覆盖。后端不读取 `url`、`max_new_tokens` 或 `num_threads`。
 
 ### 编译期（`compile/E41_parse.toml`，五段 icraft）
 
@@ -17,8 +23,8 @@
 |---|---|---|
 | `target` | **`zhuge`** | **只能写 `zhuge`**（写 `ZG` 会静默报错埋进度条后，同 `tts/README.md` §3.1 那条坑） |
 | `qdtype` | `fp16` | 现役量化档（权重全 BF16 导出，量化面未做） |
-| `max_prompt_length` | 板端按驱动 | 现役驱动按 `SLOTS` 喂 |
-| `max_tokens_length` | — | 生成长度上限（板端另由 `--max_new` 控制） |
+| `max_prompt_length` | 32 | `models/ERNIE-4.5-0.3B-PT4icraft430tai/compile/E41_parse.toml:7`，编译期设置 |
+| `max_tokens_length` | 512 | 同一 TOML 第 8 行，编译期设置；运行期生成长度另由驱动控制 |
 
 ### 运行期（`board/e41_chatd.py` / `e41_chat_console.py`）
 

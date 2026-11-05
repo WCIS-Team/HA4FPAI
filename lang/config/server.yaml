@@ -11,6 +11,8 @@ server:
   tts_port: 10302
   out_rate: 48000            # 链尾「合成+SAR」的输出重采样目标（0＝保持 TTS 原生率）
   chunk_gap_ms: 80           # 多段 TTS 拼接时的段间静音
+  max_concurrent: 1          # 准入闸：**本进程内**同时允许几条链（1＝串行）；不跨进程，视频不受影响
+  gate_timeout_s: 30         # 排队超过这么多秒就回 429；0＝一直等
 
 audio:
   in_sample_rate: 48000      # 板上麦克风原始率
@@ -21,21 +23,27 @@ audio:
 # 链路选档：换组件＝改这里（每级可选档见 server/backends/__init__.py 或 GET /components）
 chain:
   sar: auto                  # auto（48k→16k 走 decimate3，其余线性）| linear | decimate3
-  vad: none                  # none | sherpa（板上）| silero（raw-ORT）| webrtc | rms
+  rms: energy                # energy（sar 之后的能量门，KWS 之前）| none；参数在 vad.yaml 的 rms_profiles
   kws: passthrough           # passthrough（留空占位，她定）| sherpa（本地 zipformer KWS）
-  asr: sherpa                # sherpa（本地流式 zipformer，**2026-11-04 起本地就用这一个**）
+  kws_route: default         # default（**KWS 之后的路由**，规则在 lang/kws/router.py）| none
+  vad: none                  # none | sherpa（板上）| silero（raw-ORT）| webrtc | rms
+  asr: remote-api            # Online by default; local sherpa models are installed but not loaded.
                              #   | echo（自检档：不识别，回固定文本，tests/smoke.py 自己钉它）
                              #   | remote-api（外部 ASR API，配置在 online.yaml 的 online.asr）
-  llm: echo                  # echo | openai（云 API）| npuserv（板上 NPU 槽位，留空）
+  llm: openai                # Online default; echo is for lightweight self-tests.
   router: none               # none（跳过，等价 llm）| klar（ASR 后交 klar NLP 定：llm/fixed/verify）
-                             #   verify 还没实装：core 见到就留空并跳过；参数在 klar.yaml 的 router_profiles
-  tokenizer: punct        # tts_split（默认：标点优先＋严格 20 字上限）| punct（原标点档）| window
+                             #   参数在 klar.yaml 的 router_profiles；verify 会去调下一级 spk
+  spk: none                  # **声纹默认不入链**（她 2026-11-04 定）：none | sherpa
+                             #   sherpa ＝ 被 router/kws_route 的 verify 点名时才装载，
+                             #   跑完不常驻、闲置 spk_profiles.sherpa.idle_unload_s 秒自动卸载。
+                             #   参数与门限在 vertify.yaml；模型/参数面见 lang/vertify/。
+  tokenizer: tts_split        # tts_split（默认：标点优先＋严格 20 字上限）| punct（原标点档）| window
                               #   三档实现都在 lang/split/；参数在 split.yaml 的 tokenizer_profiles
-  tts: sine                  # sine | sherpa（本地 matcha/vits）| http（外部 TTS 服务）| edge（Edge 在线中文）
+  tts: edge                  # Online default; downloaded sherpa models stay unloaded.
 
 # 共享运行时：**sherpa-onnx 是唯一 onnx 运行时**（它自带 ORT）；VAD/KWS/ASR/TTS 全在同一份里跑。
 # pip 的 onnxruntime 是第二份运行时，single_runtime=true 时禁止加载（raw-ORT 的 vad:silero 用不了）。
-# 板上建议把 chain 的 vad/kws/asr/tts 全设成 sherpa，server 启动即热、四模型共用一份 runtime。
+# Default execution stays online. Installed sherpa model files are not preloaded or auto-activated.
 env:
   single_runtime: true       # 只用 sherpa-onnx 那一份；要 raw-ORT 档才设 false
   allow_pip_onnxruntime: false

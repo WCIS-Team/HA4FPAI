@@ -11,7 +11,9 @@ import signal
 import time
 
 from .display import SCREEN_W, SCREEN_H
-from .ui import Canvas, Theme, Cursor
+from .ui import Canvas, Theme, Cursor, Button
+
+THEME_TOGGLE = (1400, 8, 180, 48)
 
 
 class App:
@@ -42,6 +44,12 @@ class App:
 
     def on_click(self, key: str):
         pass
+
+    def handle_click(self, key: str):
+        if key == "__theme":
+            self.theme.toggle()
+        else:
+            self.on_click(key)
 
     def on_tick(self, state: dict):
         """每 ~1 s 唤醒一次（时钟/轮询）。默认只更新时钟。"""
@@ -87,7 +95,7 @@ class App:
                     self.last_input = time.time()
                     for b in self.buttons:
                         if b.hit(self.x, self.y):
-                            self.on_click(b.key)
+                            self.handle_click(b.key)
                             dirty = True
                             break
                 now = time.time()
@@ -127,6 +135,8 @@ class App:
     def _present(self, force: bool):
         c = Canvas(self.theme)
         self.buttons = self.build(c, self.state) or []
+        label = "深色模式" if self.theme.scheme == "light" else "浅色模式"
+        self.buttons.append(Button("__theme", THEME_TOGGLE, label))
         # 带标签的按钮由这里统一绘制（build 里只负责放位置）；
         # 空标签按钮是"热点区"（如列表行），由 build 自己画内容。
         for b in self.buttons:

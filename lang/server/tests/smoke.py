@@ -189,7 +189,7 @@ def t_chain():
     ok("kws 门控短路", out3.get("wake") is False and not out3.get("asr_text"))
     del chain._stages[("kws", chain.active("kws"))]
 
-    # 顺序：kws 先于 vad（她 2026-11-04 定）——注掉真 rms，注入探针记录调用序
+    # 顺序：sar → rms → kws → kws_route → vad → asr（她 2026-11-04 定）——注入探针记录调用序
     c2 = Config()
     c2.data["chain"]["vad"] = "rms"
     ch2 = Chain(c2)
@@ -203,16 +203,25 @@ def t_chain():
 
         def run(self, *a):
             calls.append(self.name)
-            return (True, "ok") if self.name == "kws" else [a[0]]
+            if self.name == "rms":
+                return {"silent": False, "peak_dbfs": -3.0, "voiced_ms": 1000}
+            if self.name == "kws":
+                return True, "ok"
+            if self.name == "kws_route":
+                return {"action": "continue", "route": "general"}
+            return [a[0]]
 
-    ch2._stages[("kws", ch2.active("kws"))] = Probe("kws")
-    ch2._stages[("vad", ch2.active("vad"))] = Probe("vad")
+    for stage, tier in (("rms", "energy"), ("kws", ch2.active("kws")),
+                        ("kws_route", "default"), ("vad", ch2.active("vad"))):
+        ch2._stages[(stage, tier)] = Probe(stage)
     try:
         ch2.run_audio(wav_in)
     finally:
-        del ch2._stages[("kws", ch2.active("kws"))]
-        del ch2._stages[("vad", ch2.active("vad"))]
-    ok("顺序: kws 先于 vad", calls[:2] == ["kws", "vad"], str(calls))
+        for stage, tier in (("rms", "energy"), ("kws", ch2.active("kws")),
+                            ("kws_route", "default"), ("vad", ch2.active("vad"))):
+            del ch2._stages[(stage, tier)]
+    ok("顺序: rms→kws→kws_route→vad",
+       calls[:4] == ["rms", "kws", "kws_route", "vad"], str(calls))
 
     # router 接线：fixed 跳过 LLM 用 klar 的 reply 走分词+TTS；verify 留空跳过
     c3 = Config()
@@ -340,8 +349,15 @@ def t_runtime():
 
 def t_router():
     """router 级：ASR 后交给 klar NLP 定去向；echo 档三条路都能测。"""
-    from backends.router import EchoRouter
+    from backends.router import EchoRouter, KlarRouter
+    from unittest.mock import patch
     c = Config()
+    local = KlarRouter(c, c.profile("router", "klar"), None)
+    with patch("urllib.request.urlopen", side_effect=AssertionError("固定应答不应调用 HTTP")):
+        for text, expected in (("小克小克", "我在。"), ("小克，小克！", "我在。"), ("再见。", "拜拜。")):
+            result = local.run((text, None))
+            ok("klar 本地应答: " + text, result.get("action") == "fixed" and
+               result.get("reply") == expected and result.get("end_request") is True, str(result))
     r = EchoRouter(c, {}, None)
     ok("router: 默认 llm", r.run(("你好", None))["action"] == "llm")
     dec = r.run(("固定:现在几点", None))
@@ -352,6 +368,105 @@ def t_router():
        str(sorted(REGISTRY["router"])))
 
 
+def t_rms_route():
+    """rms 能量门（静音短路）＋ KWS 之后路由（默认/直达/停）。"""
+    from backends.kws_route import KwsRoute
+    from backends.rms import RmsEnergy
+    c = Config()
+    gate = RmsEnergy(c, c.profile("rms", "energy"), None)
+    quiet = gate.run([0.0] * 16000)
+    ok("rms: 静音判 silent", quiet.get("silent") is True and quiet.get("peak_dbfs") <= -100,
+       str(quiet))
+    loud = gate.run(audioio.sine(16000, 1.0, 220.0))
+    ok("rms: 有声不短路", loud.get("silent") is False, str(loud))
+
+    prof = c.profile("kws_route", "default")
+    rt = KwsRoute(c, prof, None)
+    ok("kws_route: 未登记 tag 走默认 general",
+       rt.run(([], (True, "没登记的词"))).get("route") == "general")
+    dec = rt.run(([], (True, "小克小克")))
+    ok("kws_route: direct 固定回应", dec.get("action") == "direct" and dec.get("reply") == "我在。",
+       str(dec))
+    farewell = rt.run(([], (True, "再见")))
+    ok("kws_route: 再见先说拜拜", farewell.get("action") == "direct" and
+       farewell.get("reply") == "拜拜。", str(farewell))
+    ok("kws_route: miss 停",
+       KwsRoute(c, {"on_miss": "stop"}, None).run(([], (False, None))).get("action") == "stop")
+
+
+def t_kws_time():
+    """动态时钟、未知动作与完整 TTS 短路路径；不加载模型或调用外网。"""
+    from backends.kws_route import KwsRoute
+    from unittest.mock import patch
+    import time
+    c = Config()
+    rt = KwsRoute(c, c.profile("kws_route", "default"), None)
+    early = time.struct_time((2026, 11, 4, 15, 4, 0, 2, 308, -1))
+    late = time.struct_time((2026, 11, 4, 16, 9, 0, 2, 308, -1))
+    with patch("time.localtime", return_value=early):
+        dec = rt.run(([], (True, "现在几点")))
+    ok("kws_route: 动态报时", dec.get("action") == "direct" and
+       dec.get("reply") == "现在是15点04分。", str(dec))
+    with patch("time.localtime", return_value=late):
+        dec = rt.run(([], (True, "现在几点")))
+    ok("kws_route: 每次读取新时间", dec.get("reply") == "现在是16点09分。", str(dec))
+    with patch("time.localtime", return_value=early):
+        for tag in ("几点了", "现在时间", "看下时间"):
+            dec = rt.run(([], (True, tag)))
+            ok("kws_route: 报时别名 " + tag, dec.get("reply") == "现在是15点04分。", str(dec))
+        dec = rt.run(([], (True, "今天几号")))
+        ok("kws_route: 本地日期", dec.get("reply") == "今天是2026年11月04日。", str(dec))
+        dec = rt.run(([], (True, "今天星期几")))
+        ok("kws_route: 本地星期", dec.get("reply") == "今天是星期三。", str(dec))
+    sunday = time.struct_time((2026, 11, 8, 0, 0, 0, 6, 312, -1))
+    with patch("time.localtime", return_value=sunday):
+        dec = rt.run(([], (True, "今天星期几")))
+    ok("kws_route: 星期日边界", dec.get("reply") == "今天是星期日。", str(dec))
+    bad = KwsRoute(c, {"handlers": {"测试": "unknown"}}, None).run(([], (True, "测试")))
+    ok("kws_route: 未知动态动作停止", bad.get("action") == "stop", str(bad))
+
+    class TimeKws(object):
+        def run(self, segs):
+            return True, "现在几点"
+
+    class MustSkip(object):
+        def run(self, *args):
+            raise AssertionError("报时不应调用 VAD/ASR/klar/LLM")
+
+    ch = Chain(c)
+    ch._stages[("kws", ch.active("kws"))] = TimeKws()
+    for name in ("vad", "asr", "router", "llm"):
+        ch._stages[(name, ch.active(name))] = MustSkip()
+    wav_in = audioio.encode_wav(audioio.sine(16000, 0.2, 220.0), 16000)
+    with patch("time.localtime", return_value=early):
+        result = ch.run_audio(wav_in)
+    ok("kws 报时全链: 跳过识别与 LLM 且 TTS 出音频",
+       result.get("text") == "现在是15点04分。" and bool(result.get("audio_b64")) and
+       not result.get("stages_error") and
+       not any(name in result.get("stages_ms", {}) for name in ("vad", "asr", "router", "llm")),
+       str(result.get("stages_ms")))
+
+
+def t_gate():
+    """准入闸：进程内限并发；满且超时 → code 429（不影响别的进程）。"""
+    c = Config()
+    c.data["server"]["max_concurrent"] = "1"
+    c.data["server"]["gate_timeout_s"] = "0.2"
+    ch = Chain(c)
+    ch._gate.acquire()                                    # 人为占满
+    try:
+        out = ch.run_text("你好", opts={"llm": False, "tts": False})
+    finally:
+        ch._gate.release()
+    ok("准入闸: 满时回 429", out.get("code") == 429 and "准入闸" in (out.get("msg") or ""),
+       str(out.get("msg")))
+    out2 = ch.run_text("你好", opts={"llm": False, "tts": False})
+    ok("准入闸: 放行后正常", out2.get("code") == 0)
+    snap = ch.gate_snapshot()
+    ok("准入闸: 统计可看", snap.get("max_concurrent") == 1 and snap.get("timeouts") >= 1,
+       str(snap))
+
+
 def main():
     print("=" * 68)
     print("lang/server smoke —— python %s" % sys.version.split()[0])
@@ -360,6 +475,9 @@ def main():
     t_config()
     t_runtime()
     t_router()
+    t_rms_route()
+    t_gate()
+    t_kws_time()
     t_audioio()
     t_tokenizer()
     t_chain()

@@ -3,9 +3,29 @@
 > **参数全录在 [para.md](para.md)**（sherpa-onnx v2.0.1 源码级：4 个实例参数、判决级 `threshold`、
 > fbank 固定面、运行时纪律、int8 三档实测）。本页只管**选型**——用 fp32 还是本仓量化 int8。
 
-**一句话**：声纹（说话人验证）档在 `lang/server` **还没实现**——`Chain.STAGES`（`server/core.py:111`）
-没有 `spk`/`verify` 这一级，`backends/__init__.py` 的 `REGISTRY` 里也没有。本目录只落**模型与参数面**
-（`models/`＋`para.md`），接进链路时按 `para.md` §七 的契约做。
+**一句话**：声纹（说话人验证）档 **2026-11-04 已实装进 `lang/server`**，档名 `spk:sherpa`
+（`backends/spk.py`），但**默认不入链**（`chain.spk: none`）：只有 `router`（klar NLP）或
+`kws_route`（唤醒词的 `verify:` 表）给出 `action=verify` 时才装载，跑完不常驻、闲置
+`idle_unload_s`（默认 300 s）自动卸。模型在 `models/`，参数在 `para.md` 与 `config/vertify.yaml`。
+
+## 〇、怎么用（三分钟）
+
+```bash
+# 1) 起服务（enroll/verify 不依赖 asr/tts 档）
+cd repos/HA4FPAI/lang/server && python -X utf8 app.py --no-warm
+
+# 2) 登记一段（同名可多次累加，越多人声越稳；?replace=1 覆盖）
+curl -s -F audio=@me.wav "http://127.0.0.1:18091/api/v1/spk/enroll?name=alice"
+# 3) 验证（给 name 是 1:1，不给是 1:N；match 为空＝没过门限 0.5）
+curl -s -F audio=@test.wav "http://127.0.0.1:18091/api/v1/spk/verify?name=alice"
+# 4) 看/卸
+curl -s http://127.0.0.1:18091/api/v1/spk/status
+curl -s -X POST http://127.0.0.1:18091/api/v1/spk/unload
+```
+
+网页试验台 `web/ggradio` 有「记录声纹」按钮（浏览器麦克风 → WAV → enroll），见那边的 README。
+自检：`server/tests/spk_smoke.py`（模型在位 19/19；本机同人 0.777、异人 0.143）。
+**登记库**默认 `vertify/library.json`（运行时数据，别提交；路径在 `vertify.yaml` 里可改）。
 
 ## 一、选型结论
 
@@ -60,15 +80,19 @@ https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-mode
 
 ```
 lang/vertify/
-├─ README.md        本页（选型＋现状）
+├─ README.md        本页（选型＋怎么用）
 ├─ para.md          参数全录（源码级，含 int8 三档实测）
 ├─ models/          模型（fp32＋本仓 int8＋官方 test_wavs＋checksum.txt；本机副本不入库）
-└─ （接进链路后）档位实现在 lang/server/backends/
+└─ library.json     声纹登记库（**运行时才有**，默认路径；别提交）
 ```
+
+档位实现在 `lang/server/backends/spk.py`，参数在 `lang/config/vertify.yaml`。
 
 ## 六、相关
 
-- 参数面与契约：`para.md`（§七 接进 `lang/server` 的建议契约）
-- 链路现状：`lang/server/core.py`（`STAGES` 无 `spk`）、`lang/server/backends/__init__.py`（`REGISTRY` 无 `verify`）
+- 参数面与契约：`para.md`（§七 是链路接法与端点）
+- 链路现状：`../server/core.py`（`STAGES` 含 `spk`；默认 `chain.spk: none`）、
+  `../server/backends/spk.py`（档位实现）、`../server/app.py`（`/api/v1/spk/*`）
+- 自检：`../server/tests/spk_smoke.py`
 - 同类参数面：`../kws/para.md`、`../vad/para.md`、`../asr/para.md`、`../tts/para.md`
-- 复跑入口：`workenv/vertify/`（`quant.py` 出 int8、`verify_kws.py`/`probe_per_keyword.py` 出读数）
+- 复跑入口：`workenv/vertify/`（`quant.py` 出 int8、`probe2.py` 出读数）

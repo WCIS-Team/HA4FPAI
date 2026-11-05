@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "test_matrix": [
+    {"os": "ubuntu-24.04", "python": "3.8", "profile": "quick"},
+    {"os": "ubuntu-24.04", "python": "3.13", "profile": "full"},
+    {"os": "windows-2022", "python": "3.13", "profile": "quick"}
+  ],
+  "source_roots": ["boards", "klar", "lang/server", "lang/split", "lang/kws", "lang/npuserv", "lang/packaging/linux", "web/ggradio", "web/offlineHMI", "ci"],
+  "exclude_parts": ["archive", "__pycache__", "models", "ekho-linux"],
+  "python_compatibility": [3, 8],
+  "test_timeout_s": 180,
+  "legacy_suites": [
+    {"id": "split", "path": "lang/split/selftest.py", "profiles": ["quick", "full", "adapters"], "platforms": ["all"]},
+    {"id": "fsm", "path": "lang/server/tests/test_fsm.py", "profiles": ["quick", "full", "adapters"], "platforms": ["all"]},
+    {"id": "npu-lifecycle", "path": "lang/npuserv/tests/lifecycle_check.py", "profiles": ["full", "adapters"], "platforms": ["linux"]},
+    {"id": "npu-adapter", "path": "lang/npuserv/tests/adapter_stub_check.py", "profiles": ["adapters"], "platforms": ["linux"]},
+    {"id": "npu-q3-adapter", "path": "lang/npuserv/tests/q3_adapter_stub_check.py", "profiles": ["adapters"], "platforms": ["linux"]}
+  ],
+  "adapter_sources": [
+    {"id": "ernie", "repository": "takomitkm/ERNIE-4.5-0.3B-PT4icraft430tai", "path": "lang/llm/models/ERNIE-4.5-0.3B-PT4icraft430tai", "files": ["board/npuserv_adapter.py", "board/e41_tok.py"]}
+  ],
+  "benchmark": {
+    "workload_version": "mock-chain-v1",
+    "warmup": 5,
+    "samples": 60,
+    "input_rate": 48000,
+    "input_seconds": 0.25,
+    "text": "第一句话。第二句话用于验证严格切块、内容守恒和处理速度。",
+    "variants": [
+      {"id": "split-12", "max_chars": 12, "out_rate": 16000},
+      {"id": "split-20", "max_chars": 20, "out_rate": 48000},
+      {"id": "split-20-16k", "max_chars": 20, "out_rate": 16000}
+    ],
+    "gates": {
+      "chain_ms.p95": {"direction": "lower", "relative": 0.15, "absolute": 5.0},
+      "split_ms.p95": {"direction": "lower", "relative": 0.20, "absolute": 0.05}
+    }
+  },
+  "soak": {"iterations": 100, "max_rss_growth_kib": 16384}
+}

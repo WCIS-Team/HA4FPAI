@@ -1,11 +1,12 @@
 # ggradio —— lang 语音链试验台（参数全暴露 ＋ 逐段可跑可下载）
 
 **一句话**：把 `repos/HA4FPAI/lang/config/*.yaml` 的**每一个参数**摊平成网页表单（说明取自 YAML 注释，
-写回保留注释与顺序），并把 `repos/HA4FPAI/lang/server` 的**八级链路**（`sar → kws → vad → asr → router →
-llm → tokenizer → tts`）做成"**任选子集、上传就跑到、每级产物都能下载**"的试验台。
+写回保留注释与顺序），并把 `repos/HA4FPAI/lang/server` 的**十级链路**（`sar → rms → kws →
+kws_route → vad → asr → router → llm → tokenizer → tts`）做成"**任选子集、上传就跑到、每级产物都能下载**"的试验台。
+另有一个**按需装载**的声纹段 `spk`（CAM++，排在 `router` 之后；默认 `chain.spk: none`＝不入链，点它才装）。
 
-> `kws` 先于 `vad`（她 2026-11-04 定）；`router` 是 ASR 之后由 klar NLP 决定去 LLM／固定回应／
-> verify（verify 还没实装，留空跳过）。
+> `rms`（能量门）在 KWS 前，`kws_route` 在 KWS 之后（她 2026-11-04 定）；`router` 是 ASR 之后由
+> klar NLP 决定去 LLM／固定回应／verify（verify 还没实装，留空跳过）。
 
 ## 颜色与 TTS 组合（2026-11-04 她定）
 
@@ -26,8 +27,12 @@ llm → tokenizer → tts`）做成"**任选子集、上传就跑到、每级产
 | 文件 | 作用 |
 |---|---|
 | `console.py` | stdlib `ThreadingHTTPServer`：参数读写 + 逐段运行 + 产物下载 |
-| `page.html` | 单页（无框架）：① 参数面板 ② 逐段试验台 |
+| `page.html` | 单页（无框架）：① 参数面板 ② 逐段试验台、麦克风录音与浏览器播放 |
+| `recorder.js` | **普通链路「录音」卡**用的 Web Audio 采集/单声道混音/重采样/16 kHz PCM16 WAV 编码（**声纹卡不用它**：声纹录音内联在 `page.html`，15 s 上限、采样率原样不重采样） |
+| `../shared/console-theme.js` | 统一控制台内嵌主题适配器；由 `/console-theme.js` 提供，部署时需一并带上 `web/shared/` |
 | `README.md` | 本页 |
+
+内嵌统一控制台时，ggradio 的明暗按钮隐藏并跟随父控制台；独立打开保留原按钮与 `ggradio-theme` 偏好。协议、部署与验收正本见 `../shared/README.md`。新增路由需重启 ggradio 进程后生效。
 
 产物落在**系统临时目录**（`CONSOLE_ARTIFACTS` / `--artifacts` 可改），不进库。
 
@@ -44,6 +49,18 @@ python3 console.py --lang-dir /root/HA4FPAI/lang
 ```
 
 浏览器开 `http://127.0.0.1:7861/`。**路径优先级**：`--lang-dir` > `LANG_DIR` > 从本文件向上找 `lang/`。
+
+## 网页录音与浏览器播放
+
+「逐段跑」中点击「开始录音」并授权，停止后可试听，再选择「使用录音」运行选中段。网页按真实采样率处理数据，混为单声道、重采样至 16 kHz，编码为 PCM16 小端 WAV 后上传；原上传文件入口保留。录音最多 5 分钟，停止或离页释放麦克风。手机访问需受信任 HTTPS；localhost 可用 HTTP，普通局域网 HTTP 会显示权限限制。
+
+音频输出默认选「浏览器播放」：`TTS → 原生率拼接 → WAV 下载 → 网页播放器 → 当前手机或电脑扬声器`。`POST /api/run` 传 `audio_output=browser`，忽略 `out_rate`，不经过服务端输出 SAR；不同采样率的 TTS 块会报错，不隐式重采样。浏览器／操作系统可自行适配声卡。自动播放被拦时点播放器播放。
+
+选择 `audio_output=server` 保留原有输出目标采样率流程（未传字段的旧客户端也保持此行为）；这仍是产物导出，不等于调用板端扬声器。浏览器路径只跳过 **TTS 后的输出 SAR**，上传录音在识别前仍可选择输入 SAR。回包 `result` 含 `audio_output`、`audio_rate`、`output_sar`，WAV 链接在 `artifacts`。
+
+本机离线复核：WCIS 根运行 `python -B -X utf8 workenv/hdmi-kiosk/test_browser_audio.py`。检查原生 24 kHz 路径无重采样、server 48 kHz 和 multipart 尾字节保真；浏览器合成 MediaStream 已验证 48 kHz 单声道 PCM16 编码、上传及原生 22050 Hz sine TTS 播放器解码。此证据不等同于手机真麦／真喇叭验收，无需新增第三方依赖。
+
+当前录音输入目标已改为 **16 kHz**。运行 `node workenv/hdmi-kiosk/test-wav-16k.cjs` 可复核 16／44.1／48 kHz 各一秒输入都输出 16000 帧、单声道 PCM16 WAV，并检查降采样的高频抑制。上段 48 kHz 浏览器联调为改目标采样率之前的历史证据。
 
 ## ① 参数面板
 
@@ -70,6 +87,7 @@ python3 console.py --lang-dir /root/HA4FPAI/lang
 | `vad` | audio → [seg…] | `vad-segs.zip`（逐段 wav） | 没切出段＝整段直通 |
 | `kws` | audio → (hit,tag) | `kws.json` | `passthrough` 恒放行 |
 | `asr` | audio → text | `asr.txt` | 多段逐识别再拼 |
+| `spk` | audio → json | `spk.json` | 声纹（CAM++）；`segs or [samples]` 喂进去，**默认不入链、勾了才强制 sherpa 档** |
 | `llm` | text → reply | `llm.txt` | 失败降级回输入文本 |
 | `tokenizer` | text → [chunk…] | `chunks.json` | 长句切短（压 TTS 峰值） |
 | `tts` | text → audio | `tts-<rate>.wav` | 每个 chunk 都合成后拼接 |
@@ -80,6 +98,61 @@ python3 console.py --lang-dir /root/HA4FPAI/lang
 - 四个预设：`只过 KWS`、`KWS→ASR`、`全链`、`文本→LLM→TTS`。
 - 每一级都回耗时、结果 JSON、产物下载链接；某一级失败只标红该行，不炸整次运行
   （与 `core.run_audio` 的"失败不断链"语义一致）。
+
+## 声纹（spk）：记录 / 登记 / 删库 / 卸载（2026-11-04）
+
+`spk` 是排在 `router` 之后的第 11 段，档名 `sherpa`（CAM++，`sherpa_onnx.SpeakerEmbeddingExtractor`）。
+**默认 `chain.spk: none`＝不入链**，这一档是"按需装载"的：不点它就不装模型、不占内存。
+界面在「② 逐段跑」的**输入列**那张小卡片里，**两条路**（互不依赖，最后都走同一个 `enroll`）：
+
+- **① 录音**（麦克风）：只有 `localhost`/`https` 打开才给麦（见下面「为什么 192.168.x.x 报拿不到麦克风」）。
+- **② 上传**（卡内自带选文件）：任何机器都行，**不需要麦克风**——用的是卡片里自己的
+  `音频`（`#spkFile`），不是上面逐段跑面板那份。
+
+- **`● 记录声纹`**：点一次开始录，按钮变红底 `■ 记录中 0.0s（点击结束）`；再点一次结束，
+  **立刻编码成 16-bit PCM WAV 并上传登记**。上限 **15 s**（到点自动停并登记），下限 **0.8 s**
+  （太短只提示「太短，至少说一句话」、不上传）。名字取左边的 `名字` 输入框（默认 `user1`）。
+- **点下去先出字、再等授权**：按钮**先**变成置灰的 `请求权限中…`、状态行写「正在请求麦克风权限…」，
+  才去 `await getUserMedia`；**8 s 内没有结果就报超时错误**并复原按钮（顺手把迟到的 stream 关掉）。
+  为什么要这样：无头浏览器/没人点授权框时，`getUserMedia` 可以**一直不 settle**，按钮看起来就是死的
+  （2026-11-04 用 Playwright 在无头 Chromium 里实测踩到）。
+- **两行分开写**：`#spkState` 只显示**档位状态**（已装载/未装载 · 维度 · 门限 · 说话人数 · 库路径），
+  `#spkMsg` 只显示**本次操作结果与错误**。分开的原因：状态行会随页面打开/切页签刷新，
+  写在同一行会把刚出现的错误提示盖掉；**登记/删除成功后会自动再刷一次状态行**（说话人数跟着变），
+  不用手点刷新。
+- **`上传并登记`**：卡内那一行「上传登记」里选一个 16-bit PCM WAV，再点这颗按钮，
+  **同一个 `spkEnroll()`** 发去登记；没选文件会明确提示「先选一个 wav 文件」。上传中按钮置灰，
+  成功后状态行的说话人数跟着刷新。**这是 http 非 localhost / 没有麦的机器上的那条路**。
+- **`声纹库`**：每行 `名字 · N 段 · 更新时间` ＋ 一颗「删」（`POST /api/spk/library?delete=`）；
+  页面打开或切到「② 逐段跑」时刷新。
+- **`卸载模型`**：调 `/api/spk/unload` 把 CAM++ 放掉，显示「已卸载（下次验证按需再装）」。
+
+**录的是哪只麦**：`getUserMedia` 拿到的是**打开页面那台机器**的麦克风——不是板载麦、也不是 113
+的麦。要在板上录，就在板上开页面（或者把录音文件拷过来走卡里的「上传并登记」）。
+
+**为什么 `http://192.168.x.x:7861` 一点就报"拿不到麦克风"**：浏览器只在**安全上下文**
+（`localhost` / `127.0.0.1` / `https`）才给 `getUserMedia`。局域网 IP 打开时页面照常能跑，
+但录音按钮会**明写原因**（不静默失败）：这时走卡内自带的「上传登记」，或者
+`ssh -L 7861:127.0.0.1:7861 <对方机>` 把端口转回本机再用 `localhost:7861` 打开。
+
+**为什么不用 MediaRecorder**：服务端 `backends/audioio.decode_payload()` **只认 16-bit PCM WAV**
+（或裸 PCM16），MediaRecorder 出的是 webm/opus，解不了。所以页面用 WebAudio 的
+`createScriptProcessor(4096,1,1)` 抓原始 PCM，在 JS 里自己拼 44 字节 WAV 头；
+采样率**原样写头**（`ctx.sampleRate`，48k 也认——服务端自己 resample 到 16k），页面不重采样。
+
+### `/api/spk/*` 五条端点（console 进程内调 `CHAIN`，不绕 18091）
+
+| 方法 | 路径 | 传什么 | 回什么 |
+|---|---|---|---|
+| GET | `/api/spk/status` | — | `{"ok":true,"active":"none","loaded":bool,"dim":192,"threshold":0.5,"speakers":[{"name","count","updated"}],"library":"…","idle_unload_s":N}`；档位不可用/模型不在 → `{"ok":false,"msg":"…"}`（**HTTP 仍是 200**，页面要能显示原因） |
+| POST | `/api/spk/enroll?name=NAME[&replace=1]` | multipart 字段 `audio`（也认 `file`）或 JSON `{"audio_b64":"…"}` | `{"code":0,"name":..,"dim":..,"total":..,"speakers":[..]}`；失败 → `{"code":1,"msg":..}`（HTTP 400） |
+| POST | `/api/spk/verify[?name=X]` | 同上（body 同 enroll） | 档位返回**原样**：`{"match":"…","score":0.87,"scores":{..},"threshold":0.5,"speech_s":2.3,"ms":41}` |
+| POST | `/api/spk/unload` | — | `{"code":0,"unloaded":true}` |
+| POST | `/api/spk/library?delete=NAME` | — | `{"code":0,"speakers":[..]}`（`delete` 留空＝只回列表） |
+
+这五条都**强制取 sherpa 档**（`CHAIN.stage("spk","sherpa")`）——因为 `chain.spk` 默认 `none`，
+不强制取，"按需装载"就永远装不上。档位没实现或模型文件不在时，这五条**都回 `msg`**，
+不会把 500 堆栈丢给页面。
 
 ## 参数控件：选项型自动变单选/下拉
 
@@ -164,6 +237,13 @@ Wyoming 侧是 `asyncio`；两边共用同一个 `Chain`。**没有持久化队�
 | GET | `/api/server` | **托管服务状态**：managed/external、pid、uptime、port、`/health` 内容 |
 | POST | `/api/server/restart` `/start` `/stop` | **重启／启动／停止** lang-server |
 | GET | `/api/server/log` | 服务日志末尾 80 行 |
+| GET | `/api/spk/status` | 声纹档状态：`loaded`/`dim`/`threshold`/`speakers`/`library`/`idle_unload_s`（不可用 → `ok:false`+`msg`） |
+| POST | `/api/spk/enroll?name=NAME[&replace=1]` | 登记声纹（multipart `audio`/`file` 或 JSON `audio_b64`） |
+| POST | `/api/spk/verify[?name=X]` | 比对声纹（body 同上；档位结果原样回） |
+| POST | `/api/spk/unload` | 卸载 CAM++ 模型（下次按需再装） |
+| POST | `/api/spk/library?delete=NAME` | 删一个声纹；`delete` 留空＝只回说话人列表 |
+| GET | `/recorder.js` | **普通链路录音**那张卡用的采集/编码模块（`HERE/recorder.js` 读盘；声纹卡不用它） |
+| GET | `/console-theme.js` | 主题切换模块（`web/shared/console-theme.js` 读盘，几个控制台共用） |
 
 | 方法 | 路径 | 作用 |
 |---|---|---|
@@ -185,8 +265,10 @@ Wyoming 侧是 `asyncio`；两边共用同一个 `Chain`。**没有持久化队�
    切到 `sherpa`/`silero`/`edge` 才需要模型与对应库）。
 3. **模型路径是板端路径**（`/mnt/data/models/...`）：本机/School 机看到这些参数能改，
    但真跑那些档会报"路径不在"——面板照实显示，不做假默认值。
-4. **麦克风**：本试验台不做浏览器录音（那是 webui.py 的事）。音频靠上传文件；
-   要现场录，就用 `HA4FPAI/web/offlineHMI` 的原生录音，或另配。
+4. **麦克风**：页面有两处能录音——① 声纹卡片的「记录声纹」（`page.html` 内联实现，15 s 上限，
+   录完**立刻**登记）；② 普通链路那张「录音」卡（`recorder.js`，最长 5 分钟，16 kHz PCM16 WAV，
+   录完要勾「使用录音」才进本次运行）。两处都只在 `localhost`/`https` 给麦；局域网 IP 打开时
+   声纹走卡内自带的「上传登记」（不需要麦克风）。要现场录给板上用，就用 `HA4FPAI/web/offlineHMI` 的原生录音，或另配。
 5. 单位：`out_rate` 是链尾输出重采样目标（0＝跟随 `server.out_rate`）；`session` 只影响
    有上下文的 LLM 档（`echo` 档只把它回显在 meta 里）。
 

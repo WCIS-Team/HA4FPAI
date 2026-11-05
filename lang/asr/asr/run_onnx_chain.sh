@@ -19,8 +19,9 @@
 #   DEV=plughw:MCP01,0  采集卡；SRC=mic 时先查在位，查不到就退出 3（不回落默认卡）
 #   SEG=webrtc|rms（默认 webrtc，纯 C）  VAD_SIL=400（句尾静音 ms）
 #   WR_MODE=0..3（WebRTC 严格度，3 最严）  WR_OPEN=0.4（起段语音占比）  WR_OPEN_FRAMES=1
-#   TTS=none|piper|ekho（默认 piper）  TTS_URL=（默认 http://127.0.0.1:5002）  TTS_DIR
-#   PIPER_MODEL=（默认 zh_CN-huayan-medium）  LENGTH_SCALE=1.0（<1 更快）
+#   TTS=none|ekho（默认 ekho；piper 档与 piper_tts_server 已于 2026-11-04 删除）
+#   TTS_URL=（默认 http://127.0.0.1:2046）  TTS_DIR
+#   LENGTH_SCALE=1.0（<1 更快）
 #   PUNC=0|1  BG=1  JSONL/STATE/SEGS  AVAIL_MIN=300000
 set -u
 CHAIN=/root/funasr/asr_chain.py
@@ -48,7 +49,7 @@ WR_OPEN=${WR_OPEN:-0.4}
 WR_OPEN_FRAMES=${WR_OPEN_FRAMES:-1}
 VAD_SIL=${VAD_SIL:-400}
 PUNC=${PUNC:-0}
-TTS=${TTS:-piper}
+TTS=${TTS:-ekho}
 TTS_DIR=${TTS_DIR:-/root/funasr/tts}
 LENGTH_SCALE=${LENGTH_SCALE:-1.0}
 SECS=${SECS:-0}
@@ -87,15 +88,13 @@ mic_gate() {
 [ "$SRC" = "mic" ] && mic_gate
 
 case "$TTS" in
-  piper) TTS_URL=${TTS_URL:-http://127.0.0.1:5002}; PORT=$(echo "$TTS_URL" | sed 's|.*:\([0-9]*\).*|\1|') ;;
   ekho)  TTS_URL=${TTS_URL:-http://127.0.0.1:2046}; PORT=$(echo "$TTS_URL" | sed 's|.*:\([0-9]*\).*|\1|') ;;
   *)     TTS_URL=${TTS_URL:-}; PORT="" ;;
 esac
 if [ "$TTS" != "none" ] && [ -n "$PORT" ]; then
   if ! timeout 2 bash -c "echo > /dev/tcp/127.0.0.1/$PORT" 2>/dev/null; then
-    echo "== TTS 服务($TTS) 没在 $PORT 上，先拉起来（piper 装载约 23 s）" | tee -a "$LOG"
-    if [ "$TTS" = "piper" ]; then bash /root/funasr/asr/start_piper_server.sh
-    else bash /root/funasr/asr/start_ekho_server.sh; fi
+    echo "== TTS 服务($TTS) 没在 $PORT 上，先拉起来" | tee -a "$LOG"
+    bash /root/funasr/asr/start_ekho_server.sh
   fi
 fi
 

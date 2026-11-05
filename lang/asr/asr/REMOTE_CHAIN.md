@@ -45,12 +45,12 @@ SRC=wav WAV=/root/funasr/testdata/c247_60.wav SECS=30 ASR_REMOTE_URL=... BG=1 /f
 > 坑：这套 kit 编译时把 espeak-ng-data 路径烤成了 `D:/yzd/ekho-x/kit-espeak/share/...`，在 Linux 上它是**相对路径**，
 > 所以 start 脚本会在 `kitcwd/` 下补出这层目录指向板上真正的 `espeak-ng-data`，语音数据用 `EKHO_DATA_PATH=/root/ekho-bench/p44`。
 
-**Piper（链路 B 默认，:5002）** — `piper-tts 1.8.0`（conda env `/root/mf3/envs/tts`，py3.11 + onnxruntime 1.31.0），
-模型 `zh_CN-huayan-medium.onnx`（63 MB，22050 Hz）。CLI 是一次性进程、每句重装 23 s，所以这里做成常驻服务
-`lang/server/archive/piper_tts_server.py`（stdlib HTTP）：`GET /health`、`POST /tts {"text":...}` → wav。
-起服务：`bash /root/funasr/asr/start_piper_server.sh`（装载约 23 s，launcher 会自动等端口）。
+**Piper —— 已删除（2026-11-04 她裁）**
 
-切换：`TTS=ekho|piper|none`，`TTS_URL=` 指定地址（默认按引擎 2046 / 5002）。
+`piper_tts_server.py`（服务）、`tts_piper.py`（客户端）、`start_piper_server.sh`（launcher）三件
+连同 `TTS=piper` 档一起删掉了；现役 TTS 只剩 **ekho-server**（:2046，纯 C++，不吃 ONNX）。
+
+切换：`TTS=ekho|none`，`TTS_URL=` 指定地址（默认 2046）。
 
 ## ASR 口子（两条链路共用）
 

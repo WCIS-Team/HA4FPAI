@@ -29,7 +29,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 NPUSERV = os.path.dirname(HERE)                      # lang/npuserv
 LANG = os.path.dirname(NPUSERV)                       # lang/, the registry's "root"
-Q3 = os.path.join(LANG, "llm", "Qwen3-0.6B")
+Q3 = os.path.join(LANG, "llm", "models", "Qwen3-0.6B")
 ADAPTER = os.path.join(Q3, "board", "npuserv_adapter.py")
 DRIVER = os.path.join(Q3, "patch", "q3_infer_board.py")
 

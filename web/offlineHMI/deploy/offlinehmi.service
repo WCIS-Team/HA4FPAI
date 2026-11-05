@@ -1,0 +1,31 @@
+[Unit]
+# WCIS offlineHMI —— 开机门卫 + kiosk 自启动（"打包成一个单元"）
+# 语义（对齐 2026-11-04 要求）：
+#   每次开机 → hdmi_probe.py 判定"这块 HDMI 屏有没有人在用"（默认 60 s 窗口）
+#   · 判定"有" → exec kiosk（进程替换，本单元继续跑 kiosk）
+#   · 判定"没有" → 进程以 0 退出（unit 停在 inactive，**不再检测**，直到下次开机/手动）
+# 为什么是"人确认"而不是真·HPD：板上 HDMI 是 PL 单向 TMDS 输出，
+#   引脚约束只有 4 个输出（AC17/AA15/Y16/W16）、无 HPD/DDC；/sys/class/drm 无 connector；
+#   /dev/i2c-* 不存在；/sys/kernel/debug/gpio 无 HPD 线（全部 2026-11-04 板上实测，A）。
+#   ⇒ 真·自动检测做不到，只能"人确认"；等换了带 DRM 的位流或把 HPD 接进 PS，
+#      把 /usr/bin/python3 /root/offlineHMI/hdmi_probe.py 的 --no-ui 换成自动档即可。
+Description=WCIS offline HMI (HDMI gate + kiosk)
+After=multi-user.target
+# 没有 udmabuf 显示缓冲就不该起这个单元（Condition 短路 = 既不检测也不启动）
+ConditionPathExists=/dev/udmabuf0
+
+[Service]
+Type=simple
+# 60 秒判定窗口；有 → 启动 kiosk（exec 进程替换），无 → 退出 0（不重试）。
+# systemd 对 ExecStart 内引号做词切分：--then-exec= 后面整段作为一个参数传给脚本。
+ExecStart=/usr/bin/python3 /root/offlineHMI/hdmi_probe.py \
+  --backend udmabuf --mouse evdev --timeout 60 \
+  --then-exec="/usr/bin/python3 /root/offlineHMI/kiosk.py --backend udmabuf --mouse evdev --host 127.0.0.1 --asr http://127.0.0.1:18090 --source arecord:hw:0,0"
+# 只在"判定出错(3)"或 kiosk 崩溃时重启；"没有显示器"（退出 0）不会触发重试
+Restart=on-failure
+RestartSec=3
+StandardOutput=append:/var/log/offlinehmi.log
+StandardError=append:/var/log/offlinehmi.log
+
+[Install]
+WantedBy=multi-user.target

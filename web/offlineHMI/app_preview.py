@@ -66,7 +66,7 @@ class PreviewApp(App):
         Frame.header(c, state)
         btns: list[Button] = []
         # 预览窗（每 tick 换一帧 → 直显下就是 1 fps；可改 --pollhz 提到更高）
-        c.rect(PREVIEW_BOX, fill=(8, 12, 16), outline=(60, 70, 80))
+        c.rect(PREVIEW_BOX, fill=c.theme.colors["well"], outline=c.theme.colors["border"])
         try:
             jpeg = self.board.camera_preview_jpeg()
             c.jpeg_to_rgb(jpeg, PREVIEW_BOX)
@@ -75,7 +75,7 @@ class PreviewApp(App):
             self._stale += 1
             c.text((PREVIEW_BOX[0] + 20, PREVIEW_BOX[1] + 20),
                    "预览不可用(%ds): %s" % (self._stale, str(e)[:70]),
-                   fill=(150, 150, 150))
+                   fill=c.theme.colors["muted"])
         x, y = RIGHT_X, 96
         b = Button("shot", (x, y, BTN_W, BTN_H), "拍照", "accent"); btns.append(b); y += BTN_H + 16
         b = Button("refresh", (x, y, BTN_W, BTN_H), "清除提示"); btns.append(b); y += BTN_H + 16
@@ -83,11 +83,11 @@ class PreviewApp(App):
             c.text((x, y), "%sx%s %sfps" % (self.status.get("width", "?"),
                                             self.status.get("height", "?"),
                                             self.status.get("fps", "?")),
-                   fill=(150, 158, 166)); y += 34
+                   fill=c.theme.colors["muted"]); y += 34
         for name in self.shots:
-            c.text((x, y), name, fill=(150, 158, 166)); y += 30
+            c.text((x, y), name, fill=c.theme.colors["muted"]); y += 30
         if self.note:
-            c.text((24, SCREEN_H - 40), self.note, fill=(240, 200, 120))
+            c.text((24, SCREEN_H - 40), self.note, fill=c.theme.colors["notice"])
         return btns
 
 
@@ -97,13 +97,15 @@ def main():
     ap.add_argument("--mouse", default="mock:[[[300,300,0],[900,900,0],[900,900,1]]]")
     ap.add_argument("--server", default=None, help="http://<板IP>:8091")
     ap.add_argument("--font", default=None)
+    ap.add_argument("--theme", choices=("dark", "light"), default="dark",
+                    help="Color theme (default: dark)")
     ap.add_argument("--frames", type=int, default=None)
     args = ap.parse_args()
 
     board = Board(args.server) if args.server else MockServer()
     os.environ.setdefault("OFFLINEHMI_OUT", ".")
     app = PreviewApp(make_backend(args.backend), make_mouse(args.mouse), board,
-                     theme=Theme(args.font))
+                     theme=Theme(args.font, scheme=args.theme))
     n = app.run(max_frames=args.frames)
     print("presented %d frames" % n)
 

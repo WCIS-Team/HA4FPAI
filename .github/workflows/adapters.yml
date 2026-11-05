@@ -1,0 +1,76 @@
+name: Verify external NPU adapters
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: adapter-ci-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  trusted_ref:
+    name: Require the default branch
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - env:
+          CURRENT_REF: ${{ github.ref }}
+          ALLOWED_REF: refs/heads/${{ github.event.repository.default_branch }}
+        run: test "$CURRENT_REF" = "$ALLOWED_REF"
+
+  adapters:
+    name: Full checks with pinned external adapter source
+    needs: trusted_ref
+    runs-on: ubuntu-24.04
+    environment: adapter-ci
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Read the exact gitlink and source location from CI configuration
+        id: source
+        run: python -I -B ci/actions.py adapter-pin
+      - name: Check out only the required model repository at its pinned commit
+        uses: actions/checkout@v4
+        env:
+          GIT_LFS_SKIP_SMUDGE: '1'
+        with:
+          repository: ${{ steps.source.outputs.repository }}
+          ref: ${{ steps.source.outputs.ref }}
+          path: ${{ steps.source.outputs.path }}
+          token: ${{ secrets.ERNIE_SOURCE_TOKEN || github.token }}
+          persist-credentials: false
+          submodules: false
+          lfs: false
+      - name: Install the array dependency for adapter stubs
+        run: >-
+          python -I -m pip install --disable-pip-version-check --only-binary=:all: -r ci/requirements-adapters.txt
+      - name: Run core checks and both adapter integrations
+        run: python -I -B ci/run.py --profile adapters --output "$RUNNER_TEMP/adapter-results"
+      - name: Write job summary
+        if: always()
+        run: python -I -B ci/actions.py summary --directory "$RUNNER_TEMP/adapter-results"
+      - name: Preserve logs, source fingerprints and calibration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-adapter-checks
+          path: |
+            ${{ runner.temp }}/adapter-results/*.json
+            ${{ runner.temp }}/adapter-results/*.xml
+            ${{ runner.temp }}/adapter-results/*.md
+            ${{ runner.temp }}/adapter-results/*.log
+          if-no-files-found: error
+          retention-days: 21

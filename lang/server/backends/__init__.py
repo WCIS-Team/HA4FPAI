@@ -15,7 +15,10 @@ from backends.asr import Echo as AsrEcho, RemoteApi, SherpaAsr
 from backends.front import (KwsPassthrough, KwsSherpa, SarAuto, SarDecimate3,
                             SarLinear, VadRms, VadSherpa, VadSilero, VadWebrtc)
 from backends.llm import Echo as LlmEcho, NpuServ, OpenAI
+from backends.kws_route import KwsRoute
+from backends.rms import RmsEnergy
 from backends.router import EchoRouter, KlarRouter
+from backends.spk import SpkSherpa
 from backends.text import Punct, TtsSplit, Window
 from backends.tts import EdgeTts, Http as TtsHttp, SherpaTts, Sine as TtsSine
 
@@ -27,11 +30,15 @@ REGISTRY = {
             "rms": VadRms},                    # 复用 lang/vad/rms.py（纯标准库）
     "kws": {"passthrough": KwsPassthrough,     # 留空占位（她定 2026-11-04）
             "sherpa": KwsSherpa},              # 复用 lang/kws/models（int8 副本本机在盘）
+    "kws_route": {"default": KwsRoute},        # KWS 之后的路由（实现写在 lang/kws/router.py）
+    "rms": {"energy": RmsEnergy},              # sar 之后的能量门/电平（KWS 之前）
     "asr": {"sherpa": SherpaAsr,               # 本地流式 zipformer（板路径）
             "remote-api": RemoteApi,           # **外部 ASR API**（multipart/openai/json）
             "echo": AsrEcho},
     "router": {"klar": KlarRouter,             # ASR 后交给 klar 的 NLP 定去向（llm/fixed/verify）
                "echo": EchoRouter},            # 自检档：恒 llm
+    "spk": {"sherpa": SpkSherpa},              # 声纹（CAM++）：**默认不入链**，被路由点名才装载
+                                               #   ——闲置 idle_unload_s 秒自动卸载；参数在 vertify.yaml
     "llm": {"openai": OpenAI,
             "npuserv": NpuServ,                # 板上 NPU 槽位（留空，不接板端推理）
             "echo": LlmEcho},

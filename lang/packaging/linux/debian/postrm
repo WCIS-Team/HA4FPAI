@@ -1,0 +1,35 @@
+#!/bin/sh
+set -eu
+
+units='lang-server-http.service lang-server-voice.service lang-server-loop.service lang-server-model-download.service'
+case "${1:-}" in
+    remove)
+        for unit in $units; do
+            deb-systemd-helper mask "$unit" >/dev/null || true
+        done
+        ;;
+    purge)
+        for unit in $units; do
+            deb-systemd-helper purge "$unit" >/dev/null || true
+            deb-systemd-helper unmask "$unit" >/dev/null || true
+        done
+        # Remove only package-owned state. User configuration and models survive.
+        rm -f -- /etc/lang-server/config/zz-package-online.yaml
+        rm -f -- /etc/lang-server/no-model-download
+        if [ -L /var/lib/lang-server/venv ]; then
+            rm -f -- /var/lib/lang-server/venv
+        elif [ -d /var/lib/lang-server/venv ]; then
+            rm -rf -- /var/lib/lang-server/venv
+        fi
+        rmdir /etc/lang-server/config /etc/lang-server 2>/dev/null || true
+        # Keep the service account: it still owns retained models and caches.
+        ;;
+esac
+case "${1:-}" in
+    remove|purge|disappear)
+        if [ -d /run/systemd/system ]; then
+            systemctl --system daemon-reload || true
+        fi
+        ;;
+esac
+exit 0

@@ -87,14 +87,12 @@ mic_gate() {
 # TTS：按引擎给默认地址，端口没开就把服务拉起来
 case "$TTS" in
   ekho)  TTS_URL=${TTS_URL:-http://127.0.0.1:2046}; PORT=$(echo "$TTS_URL" | sed 's|.*:\([0-9]*\).*|\1|') ;;
-  piper) TTS_URL=${TTS_URL:-http://127.0.0.1:5002}; PORT=$(echo "$TTS_URL" | sed 's|.*:\([0-9]*\).*|\1|') ;;
   *)     TTS_URL=${TTS_URL:-}; PORT="" ;;
 esac
 if [ "$TTS" != "none" ] && [ -n "$PORT" ]; then
   if ! timeout 2 bash -c "echo > /dev/tcp/127.0.0.1/$PORT" 2>/dev/null; then
     echo "== TTS 服务($TTS) 没在 $PORT 上，先拉起来" | tee -a "$LOG"
-    if [ "$TTS" = "ekho" ]; then bash /root/funasr/asr/start_ekho_server.sh
-    else bash /root/funasr/asr/start_piper_server.sh; fi
+    bash /root/funasr/asr/start_ekho_server.sh
   fi
 fi
 

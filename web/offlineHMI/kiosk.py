@@ -78,6 +78,8 @@ def main():
     ap.add_argument("--asr", default="mock", help="mock | http://host:18090")
     ap.add_argument("--source", default="synth", help="synth | arecord[:dev]")
     ap.add_argument("--font", default=None, help="TTF 路径（默认自动找 CJK 字体）")
+    ap.add_argument("--theme", choices=("dark", "light"), default="dark",
+                    help="Color theme (default: dark)")
     ap.add_argument("--idle", type=float, default=120.0, help="空闲归位秒数（0=关）")
     ap.add_argument("--no-admin-exit", action="store_true", help="关掉管理员手势退出")
     ap.add_argument("--no-single-instance", action="store_true", help="跳过单实例锁（调试用）")
@@ -93,7 +95,7 @@ def main():
     mouse = make_mouse(args.mouse)
     shell = KioskShell(backend, mouse, None,
                        build_registry(args.host, args.mock, args.asr, args.source),
-                       theme=Theme(args.font),
+                       theme=Theme(args.font, scheme=args.theme),
                        idle_reset_s=(args.idle or None),
                        allow_admin_exit=not args.no_admin_exit)
     try:

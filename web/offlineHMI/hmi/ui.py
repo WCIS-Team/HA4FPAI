@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 from .display import SCREEN_W, SCREEN_H, rgb_to_rgb565
 
-# ---- 调色板（1080p 深底，与 8092 页面同色系） --------------------------------
+# Legacy dark aliases remain available for external callers.
 BG = (16, 24, 32)
 PANEL = (26, 36, 48)
 ACCENT = (64, 180, 120)
@@ -26,9 +26,29 @@ DANGER = (214, 84, 80)
 TEXT = (235, 235, 235)
 MUTED = (130, 140, 150)
 
+PALETTES = {
+    "dark": {
+        "bg": BG, "panel": PANEL, "accent": ACCENT, "danger": DANGER,
+        "text": TEXT, "muted": MUTED, "well": (8, 12, 16),
+        "border": (60, 70, 80), "selected": (36, 50, 64),
+        "focus": (255, 255, 255), "notice": (240, 200, 120),
+        "error": (240, 120, 120), "button_text": (20, 26, 32),
+        "icon": (90, 100, 110),
+    },
+    "light": {
+        "bg": (247, 249, 252), "panel": (232, 238, 245),
+        "accent": (205, 234, 221), "danger": (246, 214, 214),
+        "text": (28, 43, 57), "muted": (88, 106, 124),
+        "well": (255, 255, 255), "border": (184, 197, 210),
+        "selected": (213, 229, 245), "focus": (32, 76, 115),
+        "notice": (132, 87, 24), "error": (164, 40, 40),
+        "button_text": (28, 43, 57), "icon": (88, 106, 124),
+    },
+}
+
 
 class Theme:
-    """字体：优先找一个能显示中文的 TTF；找不到退化到 PIL 位图字体（仅 ASCII）。"""
+    """Shared font and color settings; missing CJK fonts fall back to ASCII."""
 
     CJK_CANDIDATES = (
         # Windows（校机/本机预演）
@@ -43,7 +63,9 @@ class Theme:
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     )
 
-    def __init__(self, ttf_path: str | None = None, size: int = 28):
+    def __init__(self, ttf_path: str | None = None, size: int = 28,
+                 scheme: str = "dark"):
+        self.set_scheme(scheme)
         self.ttf = ttf_path or self._find()
         self.size = size
         try:
@@ -53,6 +75,15 @@ class Theme:
         self._ascii_only = self.font is None
         if self.font is None:
             self.font = ImageFont.load_default()
+
+    def set_scheme(self, scheme: str):
+        if scheme not in PALETTES:
+            raise ValueError("unknown color theme: %s" % scheme)
+        self.scheme = scheme
+        self.colors = dict(PALETTES[scheme])
+
+    def toggle(self):
+        self.set_scheme("light" if self.scheme == "dark" else "dark")
 
     @classmethod
     def _find(cls):
@@ -79,7 +110,7 @@ class Canvas:
 
     def __init__(self, theme: Theme):
         self.theme = theme
-        self.img = Image.new("RGB", (SCREEN_W, SCREEN_H), BG)
+        self.img = Image.new("RGB", (SCREEN_W, SCREEN_H), theme.colors["bg"])
         self.d = ImageDraw.Draw(self.img)
 
     def to_rgb565(self) -> "np.ndarray":
@@ -104,7 +135,9 @@ class Canvas:
         self.d.rectangle((x, y, x + w - 1, y + h - 1), fill=fill,
                          outline=outline, width=width)
 
-    def text(self, xy, s, fill=TEXT, anchor=None, size=None):
+    def text(self, xy, s, fill=None, anchor=None, size=None):
+        if fill is None:
+            fill = self.theme.colors["text"]
         f = self.theme.font
         if size and not self.theme._ascii_only and self.theme.ttf:
             if size != self.theme.size:
@@ -126,12 +159,13 @@ class Button:
         return self.enabled and bx <= x < bx + bw and by <= y < by + bh
 
     def draw(self, c: Canvas, hot: bool):
-        fill = {"normal": PANEL, "accent": ACCENT, "danger": DANGER}[self.kind]
-        outline = (255, 255, 255) if hot else None
+        colors = c.theme.colors
+        fill = colors["panel" if self.kind == "normal" else self.kind]
+        outline = colors["focus"] if hot else None
         c.rect(self.box, fill=fill, outline=outline, width=3)
         bx, by, bw, bh = self.box
         c.text((bx + bw // 2, by + bh // 2), self.label,
-               fill=(20, 26, 32) if self.kind != "normal" else TEXT,
+               fill=colors["button_text" if self.kind != "normal" else "text"],
                anchor="mm")
 
 
@@ -189,7 +223,7 @@ class Frame:
 
     @staticmethod
     def header(c: Canvas, state: dict):
-        c.rect((0, 0, SCREEN_W, 64), fill=PANEL)
+        c.rect((0, 0, SCREEN_W, 64), fill=c.theme.colors["panel"])
         c.text((24, 32), state.get("title", ""), anchor="lm", size=36)
         if state.get("clock"):
-            c.text((SCREEN_W - 24, 32), state["clock"], fill=MUTED, anchor="rm")
+            c.text((SCREEN_W - 24, 32), state["clock"], fill=c.theme.colors["muted"], anchor="rm")

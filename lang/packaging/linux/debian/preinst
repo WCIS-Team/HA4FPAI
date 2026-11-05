@@ -1,0 +1,24 @@
+#!/bin/sh
+set -eu
+# A hand-installed unit in /etc would silently override the packaged unit.
+# Keep legacy installations untouched until their administrator migrates them.
+case "${1:-}" in
+    install|upgrade)
+        for name in lang-server-http lang-server-voice lang-server-loop lang-server-model-download; do
+            old="/etc/systemd/system/$name.service"
+            if [ -L "$old" ]; then
+                target=$(readlink "$old")
+                case "$target" in
+                    /dev/null|/lib/systemd/system/*|/usr/lib/systemd/system/*) continue ;;
+                esac
+            fi
+            if [ -e "$old" ] || [ -L "$old" ]; then
+                echo "Legacy systemd unit found: $old" >&2
+                echo 'Back up and migrate the hand-installed unit before installing this package.' >&2
+                echo 'The existing installation and its models have not been modified.' >&2
+                exit 1
+            fi
+        done
+        ;;
+esac
+exit 0

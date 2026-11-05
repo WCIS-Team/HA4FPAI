@@ -1,0 +1,99 @@
+name: Check deployed device
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Health is read-only; benchmark and soak perform configured ASR/TTS inference'
+        required: true
+        default: health
+        type: choice
+        options: [health, benchmark, soak]
+      allow_inference:
+        description: 'Explicitly allow ASR/TTS calls (may use a paid cloud provider)'
+        required: true
+        default: false
+        type: boolean
+      manifest:
+        description: 'Reviewed manifest path in the default branch'
+        default: ci/device.package.json
+        type: string
+      baseline_run_id:
+        description: 'Optional successful run ID for the same mode/device/manifest'
+        required: false
+        type: string
+      allow_config_change:
+        description: 'Accept deployed config hash changes for this parameter experiment'
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  actions: read
+
+# One lock for the physical board, independent of branch and selected mode.
+concurrency:
+  group: ha4fpai-fmql30tai-device
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  trusted_ref:
+    name: Require the default branch
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Verify the selected workflow ref before accessing the device runner
+        env:
+          CURRENT_REF: ${{ github.ref }}
+          ALLOWED_REF: refs/heads/${{ github.event.repository.default_branch }}
+        run: test "$CURRENT_REF" = "$ALLOWED_REF"
+
+  probe:
+    name: Device ${{ inputs.mode }}
+    needs: trusted_ref
+    runs-on: [self-hosted, linux, ha4fpai-device]
+    environment: device-ci
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Download the explicitly selected prior baseline
+        if: inputs.baseline_run_id != '' && inputs.mode != 'health'
+        uses: actions/download-artifact@v4
+        with:
+          name: device-${{ inputs.mode }}
+          path: ${{ runner.temp }}/device-baseline
+          run-id: ${{ inputs.baseline_run_id }}
+          github-token: ${{ github.token }}
+      - name: Probe existing deployment and compare when a baseline is supplied
+        env:
+          DEVICE_MODE: ${{ inputs.mode }}
+          DEVICE_MANIFEST: ${{ inputs.manifest }}
+          DEVICE_ALLOW_INFERENCE: ${{ inputs.allow_inference }}
+          DEVICE_ALLOW_CONFIG_CHANGE: ${{ inputs.allow_config_change }}
+          DEVICE_TARGET: ${{ vars.HA4FPAI_SSH_TARGET }}
+          DEVICE_SSH_KEY: ${{ secrets.HA4FPAI_SSH_KEY }}
+          DEVICE_KNOWN_HOSTS: ${{ secrets.HA4FPAI_KNOWN_HOSTS }}
+          DEVICE_BASELINE: ${{ inputs.baseline_run_id != '' && format('{0}/device-baseline/device.json', runner.temp) || '' }}
+        run: python -I -B ci/actions.py device --directory "$RUNNER_TEMP/device-results"
+      - name: Write device checks to the job summary
+        if: always()
+        run: python -I -B ci/actions.py summary --directory "$RUNNER_TEMP/device-results"
+      - name: Preserve device evidence without SSH material
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: device-${{ inputs.mode }}
+          path: ${{ runner.temp }}/device-results/*
+          if-no-files-found: error
+          retention-days: 30

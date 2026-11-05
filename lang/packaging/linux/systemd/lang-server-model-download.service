@@ -1,0 +1,33 @@
+[Unit]
+Description=Download language server model files without loading models
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=!/etc/lang-server/no-model-download
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+User=lang-server
+Group=lang-server
+WorkingDirectory=/var/lib/lang-server
+Environment=HOME=/var/lib/lang-server
+Environment=HF_HOME=/var/lib/lang-server/cache/huggingface
+Environment=HF_HUB_DISABLE_XET=1
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+EnvironmentFile=-/etc/lang-server/lang-server.env
+ExecStart=/var/lib/lang-server/venv/bin/python /usr/lib/lang-server/model_install.py --manifest /usr/lib/lang-server/models.json --dest /var/lib/lang-server/models
+TimeoutStartSec=infinity
+Restart=on-failure
+RestartSec=300
+MemoryMax=160M
+Nice=10
+UMask=0027
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/var/lib/lang-server
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

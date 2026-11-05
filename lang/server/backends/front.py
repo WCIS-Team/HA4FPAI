@@ -217,22 +217,21 @@ class VadRms(Stage):
 
 
 class VadSherpa(Stage):
-    """sherpa_onnx.Vad 档——板端现役那一档（移植 `voice_kit.VadSession`）。
+    """Silero VAD using the official VoiceActivityDetector API.
 
-    用 sherpa 自带的 silero VAD 包装，支持 `min_silence_duration`（**秒**，默认 0.5）与
-    `min_speech_duration`（秒），窗口 512/1024/1536。
-
-    ⚠️ **本机 pip 版 sherpa-onnx 2.0.1 没暴露 `Vad` 类**（实测 hasattr False），只有板上
-    那份 wheel 有 ⇒ 本档**只能在板上跑**；本机装载会明确报错并提示改用 silero/raw-ORT 档。
+    Older vendor wheels exposing Vad remain supported. Each run is a complete
+    independent stream; reset and flush prevent state leakage and lost tails.
     """
     name = "sherpa"
 
     def __init__(self, *a, **kw):
         Stage.__init__(self, *a, **kw)
         sherpa_onnx = self.shared.sherpa()       # 唯一运行时（与 VAD/KWS/ASR/TTS 共用）
-        if not hasattr(sherpa_onnx, "Vad"):
-            raise ValueError("本机 pip 版 sherpa-onnx 没有 Vad 类（Windows 轮子不暴露），"
-                             "sherpa VAD 档只能板上跑；本机请用 vad=silero 或 vad=rms")
+        factory = getattr(sherpa_onnx, "VoiceActivityDetector", None)
+        if factory is None:
+            factory = getattr(sherpa_onnx, "Vad", None)
+        if factory is None:
+            raise ValueError("sherpa-onnx wheel exposes neither VoiceActivityDetector nor Vad")
         c = self.profile
         mcfg = sherpa_onnx.VadModelConfig()
         model = c.get("model", "")
@@ -245,19 +244,35 @@ class VadSherpa(Stage):
         mcfg.sample_rate = int(c.get("sample_rate", WORK_RATE) or WORK_RATE)
         mcfg.num_threads = int(c.get("num_threads", 1) or 1)
         self.win = int(c.get("window_samples", 512) or 512)
-        self.vad = sherpa_onnx.Vad(mcfg)
+        mcfg.silero_vad.window_size = self.win
+        self.vad = factory(mcfg)
+        import threading
+        self._lock = threading.Lock()
 
     def run(self, samples):
         import numpy as np
-        segs = []
         x = np.asarray(samples, dtype=np.float32)
-        i = 0
-        while i + self.win <= x.size:
-            self.vad.accept_waveform(x[i:i + self.win])
-            i += self.win
+        segs = []
+        with self._lock:
+            self.vad.reset()
+            # Some wheels retain queued segments across reset.
             while not self.vad.empty():
-                segs.append(np.asarray(self.vad.front.samples, dtype=np.float32).tolist())
                 self.vad.pop()
+            try:
+                for i in range(0, x.size, self.win):
+                    frame = x[i:i + self.win]
+                    if frame.size < self.win:
+                        frame = np.pad(frame, (0, self.win - frame.size))
+                    self.vad.accept_waveform(frame)
+                    while not self.vad.empty():
+                        segs.append(np.asarray(self.vad.front.samples, dtype=np.float32).tolist())
+                        self.vad.pop()
+                self.vad.flush()
+                while not self.vad.empty():
+                    segs.append(np.asarray(self.vad.front.samples, dtype=np.float32).tolist())
+                    self.vad.pop()
+            finally:
+                self.vad.reset()
         return [s for s in segs if s]
 
 

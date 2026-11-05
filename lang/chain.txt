@@ -1,0 +1,14 @@
+┌──────────────── 三个入口 ────────────────┐
+                      │ ① HTTP  app.py            :18091           │
+                      │ ② Wyoming wyoming_gateway.py 10300/1/2     │
+                      │ ③ 本地麦克风 loop.py（arecord/aplay＋FSM） │
+                      └───────────────┬───────────────────────────┘
+                                      ▼
+  音频 ─▶ sar ──▶ rms ──▶ kws ──▶ kws_route ──▶ vad ──▶ asr ──▶ router ──▶ llm ──▶ tokenizer ──▶ tts ──▶ 合成/拼 ──▶ SAR ──▶ wav
+        前处理   能量门   唤醒    KWS 后路由     切段    转文本   意图路由   对话     切短(≤20字)    合成     多段拼     输出重采样
+        48k→16k  energy  passthrough  default     none   remote-api  klar    openai  tts_split     edge     段间 80ms   48000
+        decimate3        /sherpa                 /sherpa           /none    /echo             /sine
+
+  另注：spk 声纹（CAM++）**默认 none／不进链**（她 2026-11-04 定）。
+        router（klar NLP）或 kws_route 给出 action=verify 时，才把**当前这段音频**交给它
+        （第一次调用才装载、闲置自动卸载），结论经 tokenizer→tts 念出来；参数在 config/vertify.yaml。

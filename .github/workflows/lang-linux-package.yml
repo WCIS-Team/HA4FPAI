@@ -1,0 +1,150 @@
+name: Build lang Ubuntu 20.04 packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Optional Debian version, for example 0.1.1'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lang-linux-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Source checks before packaging
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
+  package:
+    needs: checks
+    name: Package ${{ matrix.architecture }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        architecture: [arm64, amd64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Select a safe Debian version
+        id: meta
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          python - <<'PY'
+          import os, re
+          version = os.environ.get('REQUESTED_VERSION', '').strip()
+          if not version and os.environ['GITHUB_REF'].startswith('refs/tags/lang-v'):
+              version = os.environ['GITHUB_REF'].split('refs/tags/lang-v', 1)[1]
+          version = version or ('0.1.0+ci.' + os.environ['GITHUB_RUN_NUMBER'])
+          if not re.fullmatch(r'[0-9][A-Za-z0-9.+~\-]*', version):
+              raise SystemExit('Invalid Debian version')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('version=' + version + '\n')
+          PY
+      - uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/lang-wheelhouse-${{ matrix.architecture }}
+          key: lang-cp38-${{ matrix.architecture }}-${{ hashFiles(format('lang/packaging/linux/requirements-{0}.lock', matrix.architecture)) }}
+      - name: Fetch and audit locked binary wheels
+        run: >-
+          python lang/packaging/linux/prepare_wheels.py
+          --architecture ${{ matrix.architecture }}
+          --output "$RUNNER_TEMP/lang-wheelhouse-${{ matrix.architecture }}"
+      - name: Build deb and Linux install archive
+        run: >-
+          python lang/packaging/linux/build_deb.py
+          --architecture ${{ matrix.architecture }}
+          --version '${{ steps.meta.outputs.version }}'
+          --wheelhouse "$RUNNER_TEMP/lang-wheelhouse-${{ matrix.architecture }}"
+          --output "$RUNNER_TEMP/lang-dist-${{ matrix.architecture }}"
+      - name: Validate the final deb and install archive without executing them
+        run: >-
+          python -I -B ci/package_check.py
+          --directory "$RUNNER_TEMP/lang-dist-${{ matrix.architecture }}"
+          --architecture ${{ matrix.architecture }}
+          --output "$RUNNER_TEMP/lang-ci-report/package-static.json"
+      - name: Inspect production ARM64 package metadata
+        if: matrix.architecture == 'arm64'
+        run: |
+          dpkg-deb --info "$RUNNER_TEMP/lang-dist-arm64/"*.deb
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          for name in ['build_deb.py', 'model_install.py', 'prepare_wheels.py']:
+              ast.parse((Path('lang/packaging/linux') / name).read_text(), feature_version=(3, 8))
+          PY
+      - name: Install and test lifecycle on Ubuntu 20.04 without models
+        if: matrix.architecture == 'amd64'
+        run: |
+          mkdir -p "$RUNNER_TEMP/lang-ci-report"
+          docker run --rm --memory 512m \
+            -v "$PWD:/src:ro" \
+            -v "$RUNNER_TEMP/lang-dist-amd64:/dist:ro" \
+            -v "$RUNNER_TEMP/lang-ci-report:/reports" \
+            -e DEBIAN_FRONTEND=noninteractive ubuntu:20.04 sh -ec '
+              apt-get update
+              apt-get install -y --no-install-recommends python3 python3-venv ca-certificates alsa-utils mpg123 adduser init-system-helpers systemd
+              python3 /src/lang/packaging/linux/ci_test.py --package /dist/*.deb --report /reports/lifecycle.json
+            '
+      - name: Write artifact checksums
+        run: |
+          cd "$RUNNER_TEMP/lang-dist-${{ matrix.architecture }}"
+          sha256sum ./*.deb ./*.tar.gz > SHA256SUMS
+      - name: Upload installable artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lang-ubuntu20.04-${{ matrix.architecture }}
+          path: ${{ runner.temp }}/lang-dist-${{ matrix.architecture }}/*
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload dependency and lifecycle evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lang-validation-${{ matrix.architecture }}
+          path: |
+            ${{ runner.temp }}/lang-wheelhouse-${{ matrix.architecture }}/metadata-audit.json
+            ${{ runner.temp }}/lang-wheelhouse-${{ matrix.architecture }}/wheelhouse.SHA256
+            ${{ runner.temp }}/lang-ci-report/*
+          if-no-files-found: warn
+          retention-days: 30
+
+  release:
+    name: Publish tagged ARM64 release
+    if: startsWith(github.ref, 'refs/tags/lang-v')
+    needs: package
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lang-ubuntu20.04-arm64
+          path: release-assets
+      - name: Publish release files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" release-assets/* --clobber
+          else
+            gh release create "$RELEASE_TAG" release-assets/* \
+              --verify-tag --title "$RELEASE_TAG" --generate-notes
+          fi

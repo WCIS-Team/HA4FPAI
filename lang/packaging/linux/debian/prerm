@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+case "${1:-}" in
+    remove|deconfigure)
+        if [ -d /run/systemd/system ]; then
+            deb-systemd-invoke stop lang-server-loop.service \
+                lang-server-voice.service lang-server-http.service \
+                lang-server-model-download.service || true
+        fi
+        ;;
+    upgrade|failed-upgrade)
+        # Keep services running until postinst restarts the upgraded package.
+        ;;
+esac
+exit 0

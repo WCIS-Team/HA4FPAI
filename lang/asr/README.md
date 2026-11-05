@@ -14,9 +14,9 @@
 |---|---|---|
 | 分段 | WebRTC VAD（纯 C，见 `lang/vad/webrtc/`） | **WebRTC VAD**（2026-11-04 起；原 FSMN-VAD 已删） |
 | ASR | 远程 HTTP | 远程 HTTP |
-| TTS 产物 | ekho-server 以 `--no-save` 流式回传，`tts_ekho.py` 落 `/root/funasr/tts/*.wav` | `piper_tts_server.py` 把 wav 回给调用方，`tts_piper.py` 落同一目录 |
+| TTS 产物 | ekho-server 以 `--no-save` 流式回传，`tts_ekho.py` 落 `/root/funasr/tts/*.wav` | 同左（ekho-server；piper 服务已于 2026-11-04 删除） |
 | 链路进程 | ≈24 MB | ≈24 MB（改 WebRTC 后不再装 ORT，原 FSMN 档 ≈60 MB） |
-| 链路进程是否用 onnxruntime | **不用** | **不用**（只剩 Piper 那个独立常驻进程用 ORT） |
+| 链路进程是否用 onnxruntime | **不用** | **不用**（piper 服务删除后，整条链路不再有 ORT 进程） |
 
 **2026-11-04 她裁「把 fsmn 和 funasr 删了」**：FSMN-VAD 权重、`vadseg.py`、`puncseg.py`、
 `env_probe.py`、`shims/`、funasr 取模型脚本与 funasr-onnx 四个后端全删；链路 B 的分段器
@@ -34,13 +34,12 @@ funasrarm/
 ├─ asr/                    后端、分段器、TTS 客户端、起链脚本
 │  ├─ remote_asr.py        远程 ASR 客户端（funasr / openai / json 三协议）
 │  ├─ tts_ekho.py          链路 A 的 TTS 客户端（合成→落盘 `/root/funasr/tts/`）
-│  ├─ tts_piper.py         链路 B 的 TTS 客户端（合成→落盘 `/root/funasr/tts/`）
-│  ├─ piper_tts_server.py  常驻 Piper 服务（stdlib HTTP，:5002）
+│  ├─ # tts_piper.py / piper_tts_server.py / start_piper_server.sh 已于 2026-11-04 删除
 │  ├─ mimo_bridge.py       板上 ASR+LLM 桥（MiMo ASR → MiMo LLM，:18090）
 │  ├─ mock_asr_server.py   假远端 ASR，验口子用（:18095）
 │  ├─ run_remote_chain.sh  链路 A 起链（自动拉 ekho）
-│  ├─ run_onnx_chain.sh    链路 B 起链（自动拉 piper）
-│  ├─ start_ekho_server.sh / start_piper_server.sh / start_mimo_bridge.sh
+│  ├─ run_onnx_chain.sh    链路 B 起链（自动拉 ekho；piper 已删）
+│  ├─ start_ekho_server.sh / start_mimo_bridge.sh
 │  ├─ t_bridge.py          临时验证脚本（t_strict / t_vaddbg3 已随 FSMN 删除）
 │  └─ REMOTE_CHAIN.md      板上的原始说明文档（更详细）
 ├─ models/Fsmn-vad/        FSMN-VAD 权重（524 KB，链路 B 用）
