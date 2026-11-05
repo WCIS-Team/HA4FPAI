@@ -87,7 +87,7 @@ def _check_vector(vector, dim, require_unit_norm):
 
 def enroll(store, events, modality, person_id, model_id, vector,
            dtype='float32-le', require_unit_norm=False,
-           source_media_id=None, source_ref=None, quality=None):
+           source_media_id=None, source_ref=None, quality=None, active=True):
     if modality not in ('face', 'voice'):
         raise ConflictError('invalid_modality', 'modality 只能是 face/voice')
     table = modality + '_samples'
@@ -111,9 +111,10 @@ def enroll(store, events, modality, person_id, model_id, vector,
         conn.execute(
             'INSERT INTO %s(sample_id, person_id, model_id, dim, dtype, blob, blob_sha256,'
             ' source_media_id, source_ref, quality, active, created_at)'
-            ' VALUES(?,?,?,?,?,?,?,?,?,?,1,?)' % table,
+            ' VALUES(?,?,?,?,?,?,?,?,?,?,?,?)' % table,
             (sample_id, person_id, model_id, model['dim'], dtype, blob,
-             ids.digest_of(blob), source_media_id, source_ref, quality, now))
+             ids.digest_of(blob), source_media_id, source_ref, quality,
+             1 if active else 0, now))
         conn.execute('UPDATE persons SET revision=revision+1, updated_at=? WHERE person_id=?',
                      (now, person_id))
         store.bump_domain_revision(conn)
