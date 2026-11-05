@@ -62,11 +62,25 @@ def main():
     return 0 if passed == len(RESULTS) else 1
 
 
+def dead_port():
+    """拿一个当前无人监听的端口：让「服务不在」的断言与所在机器环境无关。"""
+    s = socket.socket()
+    try:
+        s.bind(('127.0.0.1', 0))
+        return s.getsockname()[1]
+    finally:
+        s.close()
+
+
 def run_all(tmp):
     db = os.path.join(tmp, 'business.sqlite3')
     store = Store(db)
     events = EventLog(store)
     settings = Settings(store)
+    # 适配器默认指向板上真实 8091/8092/8093；本套测试断言的是「服务不在」的语义，
+    # 必须钉死一个必然关闭的端口，否则在板上（服务在跑）会假失败（2026-11-06 实测）。
+    _dead = 'http://127.0.0.1:%d' % dead_port()
+    video.configure(targets={'face': _dead, 'stream': _dead, 'record': _dead})
     registry = build_registry(store, events, settings)
 
     # ---- store / meta ----
