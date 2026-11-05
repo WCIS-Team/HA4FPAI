@@ -507,18 +507,17 @@ def main():
                     help="失败重试次数（不含首次）；asr_ms 记的是含重试的真实往返")
     ap.add_argument("--asr-extra", default="", help="额外字段，形如 language=zh,itn=1")
     # —— 本地标点（默认关：CT_Transformer 装载 35~43 s、VmHWM 530+ MiB）——
-    # —— TTS（Piper，常驻服务）：ASR 文本 → wav；服务见 asr/piper_tts_server.py ——
-    ap.add_argument("--tts", choices=["none", "piper", "ekho"], default="none",
-                    help="piper＝板上 ONNX 档（服务见 asr/piper_tts_server.py，默认 5002）；"
-                         "ekho＝板上 ekho-server（纯 C++、不吃 ONNX，默认 2046）")
+    # —— TTS（ekho，常驻服务）：ASR 文本 → wav；piper 档与 piper_tts_server 已于 2026-11-04 删除 —
+    ap.add_argument("--tts", choices=["none", "ekho"], default="none",
+                    help="ekho＝板上 ekho-server（纯 C++、不吃 ONNX，默认 2046）")
     ap.add_argument("--tts-url", default="",
-                    help="TTS 服务地址；不填用引擎默认（piper 5002 / ekho 2046）")
+                    help="TTS 服务地址；不填用引擎默认（ekho 2046）")
     ap.add_argument("--tts-dir", default="/root/funasr/tts")
     ap.add_argument("--tts-timeout", type=float,
-                    default=float(os.environ.get("TTS_PIPER_TIMEOUT", 120)))
+                    default=float(os.environ.get("TTS_TIMEOUT", 120)))
     ap.add_argument("--tts-length-scale", type=float,
                     default=float(os.environ.get("TTS_LENGTH_SCALE", 1.0)),
-                    help="<1 说得更快；板上 piper RTF≈1.1~1.8，想追实时可以试 0.8")
+                    help="<1 说得更快（ekho 档一般用不到）")
     ap.add_argument("--sv-language", default="zh", help="SenseVoice 语言标签，auto＝自动")
     ap.add_argument("--sv-textnorm", default="withitn",
                     help="SenseVoice 逆文本规整：withitn＝数字转阿拉伯字符")
@@ -627,15 +626,9 @@ def main():
     if args.tts != "none":
         sys.path.insert(0, os.path.join(HERE, "asr"))
         t_load = time.time()
-        if args.tts == "piper":
-            import tts_piper
-            tts = tts_piper.PiperTts({"url": args.tts_url, "timeout": args.tts_timeout,
-                                      "length_scale": args.tts_length_scale,
-                                      "out_dir": args.tts_dir})
-        else:
-            import tts_ekho
-            tts = tts_ekho.EkhoTts({"url": args.tts_url, "timeout": args.tts_timeout,
-                                    "out_dir": args.tts_dir})
+        import tts_ekho
+        tts = tts_ekho.EkhoTts({"url": args.tts_url, "timeout": args.tts_timeout,
+                                "out_dir": args.tts_dir})
         tts_info = tts.describe() if hasattr(tts, "describe") else None
         tts_health = tts.health() if hasattr(tts, "health") else None
         print("tts=%s endpoint=%s load_s=%.2f health=%s"

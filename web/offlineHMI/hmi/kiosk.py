@@ -13,7 +13,7 @@ from __future__ import annotations
 import time
 
 from .app import App
-from .ui import Button, Canvas, MUTED
+from .ui import Button, Canvas
 from .display import SCREEN_W, SCREEN_H
 from .lockfile import SingleInstance  # noqa: F401  （对外导出，入口从这里取）
 
@@ -25,8 +25,10 @@ ADMIN_WINDOW_S = 5.0
 
 
 def draw_home_icon(c: "Canvas", cx: int, cy: int, size: int = 26,
-                   fill=(90, 100, 110)):
+                   fill=None):
     """画一个房子（不用字形，避免字体缺字变豆腐）。"""
+    if fill is None:
+        fill = c.theme.colors["icon"]
     half, roof = size // 2, size // 2
     x0, y0 = cx - half, cy
     # 屋顶三角
@@ -122,7 +124,7 @@ class KioskShell(App):
             state["clock"] = ""
             btns = self.current.build(c, state) or []
             state["clock"] = clock
-            c.text((SCREEN_W - 210, 34), clock, fill=MUTED, anchor="rm")
+            c.text((SCREEN_W - 210, 34), clock, fill=c.theme.colors["muted"], anchor="rm")
             # 子页上叠一个回首页热区（kiosk 里这是"隐藏入口"，只画个房子）
             btns.append(Button("home", HOT, ""))
             btns.append(Button("__admin", HOT_ADMIN, ""))
@@ -130,9 +132,9 @@ class KioskShell(App):
             return btns
 
         # 首页：四宫格
-        c.rect((0, 0, SCREEN_W, 96), fill=(26, 36, 48))
+        c.rect((0, 0, SCREEN_W, 96), fill=c.theme.colors["panel"])
         c.text((40, 48), "WCIS 端侧智能终端", anchor="lm", size=40)
-        c.text((SCREEN_W - 40, 48), state.get("clock", ""), fill=(130, 140, 150),
+        c.text((SCREEN_W - 40, 48), state.get("clock", ""), fill=c.theme.colors["muted"],
                anchor="rm", size=28)
         btns = []
         labels = dict((k, label) for k, label, _f in self.registry)
@@ -144,5 +146,5 @@ class KioskShell(App):
             btns.append(Button("open:" + key, (x, y, cell_w, cell_h), label, "accent"))
         btns.append(Button("__admin", HOT_ADMIN, ""))
         if self.note:
-            c.text((40, SCREEN_H - 48), self.note, fill=(240, 200, 120))
+            c.text((40, SCREEN_H - 48), self.note, fill=c.theme.colors["notice"])
         return btns

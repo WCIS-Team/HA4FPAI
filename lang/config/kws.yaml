@@ -4,7 +4,8 @@ kws_profiles:
   sherpa:
     model_dir: ""            # 空＝取 kws/models/<model>/（权重不入库，本机副本）
     model: sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20
-    keywords_file: keywords.txt   # 相对 model_dir，或绝对路径；找不到会回退 test_wavs/keywords.txt
+    keywords_file: ../../keywords.txt  # 相对默认 model_dir，指向 lang/kws/keywords.txt（实际命令词表）
+    # 若自定义 model_dir，须相应改 keywords_file，推荐绝对路径。原模型演示词表保留未改。
     keywords_score: 1.0      # boost 加权——加权提升，不是硬约束
     keywords_threshold: 0.25 # 判决门限（越大越难命中）
     num_trailing_blanks: 1
@@ -12,3 +13,53 @@ kws_profiles:
     tail_paddings_s: 0.66    # 末尾补静音冲尾部 blank；给 0 可能漏最后一个字
     # encoder / decoder / joiner 可单独覆盖，默认取 model_dir 下 int8 优先的同名前缀文件。
     # chunk 必须三件一致：wenetspeech 3.3M 是 chunk-16，zh-en 3M 是 chunk-8。
+
+# 路由怎么写（实现：lang/kws/router.py；server 负责调用）
+#
+# 例：听到“现在几点” → 读取当前时间 → “现在是15点04分。” → 分句/TTS/输出重采样。
+# 这条路跳过 VAD、ASR、klar 和 LLM；time 每次读取系统时间，不是固定回答。
+# 下面已登记 handlers: 现在几点: time，但默认 chain.kws 仍是 passthrough，尚未启用检测。
+# 要启用，在 server.yaml 现有 chain 节改两项（不要再新建一个 chain）：
+#   kws: sherpa
+#   kws_route: default
+# 配套词表已放 lang/kws/keywords.txt；例如：x iàn z ài j ǐ d iǎn @现在几点
+# @后面的“现在几点”就是路由匹配的 tag。以后增词时，词表和下面路由都要登记。
+# 新词需按模型 tokens.txt 写拼音；更换词表/配置后重启相应 server。
+# 报时四种说法来自 klar/klar_executor.py 的 act_time；日期/星期为同类本地时钟扩展。
+# 不把录制、拍照、开门、重启等设备操作当作简单直达动作；这些仍留在原有执行链。
+# 模型文件需在位；本例是配置与动作接线，真实麦克风命中率还要实录验证。
+# time 取运行 server 的机器本地时区；上板前核对 date 与时区，板子 UTC 会报 UTC 时间。
+#
+# 五张表的写法（均为 tag: 值，中文键可用）：
+#   handlers: 现在几点: time    动态动作：time=时间、date=日期、weekday=星期；未知动作停止。
+#   direct:   小克小克: "我在。"  固定文字直达 TTS；播完即结束当前请求。
+#             再见: "拜拜。"     同样直达 TTS，播完结束当前请求，不退出服务。
+#   stop:     某个静默词: 1     立即结束且不调用 TTS；再见已放 direct，不要再放 stop。
+#   verify:   验证声纹: 1       这段音频直接交声纹（chain.spk；默认 none ＝ 只记 skipped）。
+#   routes:   小助手: general   继续 VAD→ASR，仅保存路由标签，不执行设备或身份验证。
+# 上面压在一行只是解释；实际 YAML 要按下面的缩进分行写。
+# 匹配表顺序：handlers > direct > stop > verify > routes > default_action/default_route。
+# 每张表内先精确匹配，再双向子串（按书写顺序取首个）；避免含糊的短 tag/重复登记。
+# on_miss 是独立 route() 的选项；全链在 KWS miss 时已提前返回，不会走到这里。
+# action：continue=继续识别；stop=结束；direct=用已有/动态生成的 reply 直达 TTS。
+kws_route_profiles:
+  default:
+    on_miss: stop            # 没命中唤醒词：stop | continue
+    default_action: continue
+    default_route: general
+    handlers:                # tag → 动态动作；每次查询本地时钟，结果直接送 TTS
+      现在几点: time
+      几点了: time
+      现在时间: time
+      看下时间: time
+      今天几号: date
+      今天星期几: weekday
+    routes:                  # tag → 路由名（继续 vad/asr，不负责执行设备动作）
+      小助手: general
+      开门: device
+    direct:                  # tag → 固定回应；跳过 vad/asr/klar/llm，播完结束当前请求
+      小克小克: "我在。"
+      再见: "拜拜。"
+    # stop 表暂不设置：再见需要先播报，不能走静默 stop。
+    verify:                  # tag → 走声纹（action=verify，跳过 vad/asr；chain.spk 默认 none）
+      验证声纹: 1

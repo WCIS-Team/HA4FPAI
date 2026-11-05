@@ -47,8 +47,25 @@
 | 23 | **真起服务时每个请求都 500**（自检却全绿） | `app.main()` 里 `_CHAIN = Chain(cfg)` 漏了 `global _CHAIN` ⇒ Handler 读到的模块级 `_CHAIN` 永远是 `None`。smoke 的 HTTP 测试是**手工注入** `app_mod._CHAIN`，抓不到这个 | 已修：`main()` 加 `global _CHAIN`。判据＝**真起进程** `curl /health` 返回 200（`ok=True`），不能只靠自检 |
 | 24 | Edge 在线档**长文本被静默丢掉尾巴**（不报错、不抛异常，只是音频变短） | 实测（edge-tts 7.3.1，2026-11-04，探针 `workenv/tts-limit-probe/`）：单次 `Communicate` 的音频累计上限 **600 s = 3,600,000 B**（≈**2,827 汉字**，每字≈0.21 s）。2800 字 → 594.3 s 完整；3000/3200/6400 字 → **都恰好 600.0 s**，超出的字直接没念。库自己按 4096 字节切请求，切完仍在同一个 session 里累计，所以顶穿的是这个 600 s 天花板 | 靠**切块**躲开：`tokenizer_profiles.tts_split.max_chars: 20`（占上限 0.7%）。代码里有 `MAX_CHARS_TRIPWIRE=1000`，超过就 stderr 告警。**别为了减请求数把 `max_chars` 抬进 2800 字区间**——那是丢字，不是变慢 |
 | 25 | UI 里出现「mel+vits」「mel+ekho」这类组合，选了必失败 | **结构上不存在**：vits/piper 是整链模型（自带前端+声学+声码器，不吃外部 mel）；ekho 是录音拼接，压根没有 mel 输入 | 只有**前端选空**时才允许选一体 TTS；前端非空时只给 声学(matcha)×声码器(vocos/HiFi-GAN)。ggradio 前端联动禁用＋后端 `tts_combo_items` 再拒（HTTP 400），两道都留 |
+| 26 | 配置里的中文键**整行被跳过**（不报错），例如 KWS 路由的 tag 表解析成**空**，路由永远走默认 | `cfg.parse` 的键正则原来是 `^([A-Za-z_][A-Za-z0-9_\-]*):`，**只认 ASCII 开头**；中文 tag 行匹配不上就 `continue` 掉了。三层嵌套映射（`routes.<tag>.<field>`）也会被拍平（解析器只做两层） | ① 正则放宽成 `^([^:\s][^:]*?):`（可中文键）；② 配置改用**扁平表**（`routes` / `direct` / `stop`），别写三层。判据：`Config().profile('kws_route','default')` 的 `routes`/`direct` 非空 |
+| 27 | 配置里 `key: ""` 被解析成**空字典**而不是空串（`url`/`proxy`/`model_dir` 这类），下游报类型错或静默走默认 | `cfg.parse` 用"`_clean` 后是否为空"判定开子节；`_clean('""')` 返回空串 ⇒ 被当成 `key:` 子节 | 判定改成"冒号后是否有实际内容（含显式引号）"：`key:` / `key: # 注释` 才是子节。判据：`Config().section('online')['tts']['url'] == ''` 且 `type is str` |
+| 28 | 准入闸被误以为会"挡住跑视频" | 闸是 `Chain` 里的 `BoundedSemaphore`，**只在本进程内**限并发；别的进程/GPU 上的视频任务不受影响 | 默认 `server.max_concurrent: 1`、`gate_timeout_s: 30`；满且超时回 `code 429`。判据：`/stats` 的 `gate` 段；`tests/smoke.py` 的 `t_gate`（占满→429、放行→0） |
 
 ## 五、迁移遗留（待办）
 
 - ~~`HA4FPAI/deploy/` 的 `klar-voice-*.service` 仍指旧文件~~ **已处理（2026-11-04）**：四个语音单元退掉、搬到 `HA4FPAI/archiver/ha4fpai-voice/deploy/`；语音改由 `lang/server/deploy/lang-server-voice.service` 起（她定"语音不再 HA 起"）。
 - `HA4FPAI` 的 `docs/` 仍按旧架构描述语音链路（voice_gateway 在 boards/），后续以本服务为准。
+
+---
+
+## 六、声纹（spk）：默认不入链、按需装载
+
+| # | 现象 | 根因 | 绕法 / 判据 |
+|---|---|---|---|
+| 27 | `router` 说 `verify`，但**什么都没发生**，回包里只有 `verify_skipped` | `chain.spk` 默认 `none`（她 2026-11-04 定）⇒ 这一级整级跳过 | 要开就把 `chain.spk` 设 `sherpa`（参数在 `vertify.yaml`）。判据：`GET /api/v1/spk/status` 的 `active=sherpa`，且回包里有 `spk.match/score` |
+| 28 | 把 `idle_unload_s` 设 0（＝常驻）后常驻内存明显抬升 | 声纹会话**真占内存**：fp32 装载后 +66 MB（int8 +14.5 MB），独占进程峰值 ~126 MB（本机 x86 实测，见 `lang/vertify/para.md` §四） | 默认 300 s 闲置自动卸；"每次只测一下"就保持默认。判据：闲置后 `status.loaded` 变 `false`，或 `POST /api/v1/spk/unload` 后立即 false |
+| 29 | PowerShell `Invoke-RestMethod -Form` 传音频，服务端报 `multipart 里没有音频字段，收到的是 []` | PS 的 `Content-Disposition` 写 `name=audio`（**不带引号**），解析器原来只认 `name="audio"` | 已修：`app.parse_multipart` 的 name/filename 正则改成**引号可有可无**；curl 与 PS 两路都复测过（同人 0.824／0.802） |
+| 30 | 浏览器点「记录声纹」没反应，或报 `getUserMedia` 不可用 | 浏览器只在 **`localhost` / https** 下给麦克风；用 `http://192.168.x.x:7861` 开页面会被拦 | 用「用已上传的音频登记」那条退路（照 `#afile` 选 wav 直接 enroll），或把页面开在 `127.0.0.1:7861`。**不是服务端问题** |
+| 31 | MediaRecorder 录出来的 blob 直接上传，服务端解不了 | `audioio.decode_payload` 只认 **16-bit PCM WAV**（或裸 pcm16），不认 webm/opus | 浏览器端用 WebAudio 抓 PCM、在 JS 里自己编 WAV 再上传（ggradio 就是这么做的）；**别用 MediaRecorder** |
+| 32 | 录到的人声"听起来是本人"，验证分数却偏低 | 浏览器录的是**打开页面那台机的麦克风**，不是板载 MCP01（48k→16k 那条链）；跨通道余弦会掉多少**本机未测** | 登记与验证尽量走同一条采集路（同机、同麦、同距离）。本机同麦实测：同人 0.777–0.824、异人 0.143–0.192（门限 0.5） |
+| 33 | 再录一次以为"覆盖"，库里旧样本还在 | `enroll` 同名默认**累加**（多段平均更稳）；覆盖要显式 `?replace=1` | 判据看 `status.speakers[].count`；重建就 `?replace=1`，或先 `POST /api/v1/spk/library?delete=名` |

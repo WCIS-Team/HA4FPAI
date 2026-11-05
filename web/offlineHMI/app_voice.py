@@ -29,7 +29,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from hmi import (App, Canvas, Theme, Button, Frame, make_backend, make_mouse,
                  SCREEN_W, SCREEN_H)
-from hmi.ui import PANEL, MUTED
 from hmi.asr import (RemoteAsr, MockAsr, ArecordSource, SynthSource,
                      StreamWorker, read_wav, to_target_rate, fine_split,
                      iter_frames, TARGET, write_wav)
@@ -165,7 +164,8 @@ class VoiceApp(App):
                    "accent" if self.tab == 2 else "normal"); btns.append(b)
 
         # 文本区
-        c.rect((24, 140, 1280, 620), fill=(8, 12, 16), outline=(60, 70, 80))
+        c.rect((24, 140, 1280, 620), fill=c.theme.colors["well"],
+               outline=c.theme.colors["border"])
         if self.tab == 1:
             src = self.text or ("（录完点开始识别）" if not self.recording
                                 else "录音中 %.1fs…" % (len(self._rec_pcm) / 2.0 / TARGET))
@@ -184,7 +184,7 @@ class VoiceApp(App):
         if self.tab == 1:
             y = 780
             for r in self.rows[-8:]:
-                c.text((40, y), r[:100], fill=MUTED); y += 28
+                c.text((40, y), r[:100], fill=c.theme.colors["muted"]); y += 28
 
         # 右侧按钮列
         x = RIGHT_X
@@ -205,9 +205,9 @@ class VoiceApp(App):
         b = Button("reset", (x, y, BTN_W, BTN_H), "清空"); btns.append(b); y += BTN_H + 16
 
         if self.note:
-            c.text((24, SCREEN_H - 40), self.note[:110], fill=(240, 200, 120))
+            c.text((24, SCREEN_H - 40), self.note[:110], fill=c.theme.colors["notice"])
         if self.worker and self.worker.error:
-            c.text((24, SCREEN_H - 76), self.worker.error[:110], fill=(240, 120, 120))
+            c.text((24, SCREEN_H - 76), self.worker.error[:110], fill=c.theme.colors["error"])
         return btns
 
 
@@ -218,12 +218,14 @@ def main():
     ap.add_argument("--asr", default="mock", help="mock | http://<板IP>:18090")
     ap.add_argument("--source", default="synth", help="synth | arecord[:device]")
     ap.add_argument("--font", default=None)
+    ap.add_argument("--theme", choices=("dark", "light"), default="dark",
+                    help="Color theme (default: dark)")
     ap.add_argument("--frames", type=int, default=None)
     args = ap.parse_args()
 
     app = VoiceApp(make_backend(args.backend), make_mouse(args.mouse), None,
                    asr=make_asr(args.asr), source=make_source(args.source),
-                   theme=Theme(args.font))
+                   theme=Theme(args.font, scheme=args.theme))
     n = app.run(max_frames=args.frames)
     print("presented %d frames" % n)
 

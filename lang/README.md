@@ -1,13 +1,19 @@
-# repos —— 依赖与运行前提
+# lang —— 语音链与服务接口
 
-本目录是 WCIS 语音链（`lang/`）的 README，2026-11-04 随 `lang` 移入 `HA4FPAI/`（板上层）内，路径统一为 `repos/HA4FPAI/lang/`。**权重/模型不入库**（`.gitignore` 挡 `*.onnx` 等）。
-下面按"跑哪一块需要装什么"列，避免多装、避免为转码背 ffmpeg。
+本目录是 WCIS 的语音链，位于 `repos/HA4FPAI/lang/`。依赖、模型和配套 HMI 的运行前提统一见 [DEPENDENCIES](DEPENDENCIES.md)；权重/模型不入库。
 
+## 导航
 Ubuntu20.04 arm64 的原生 deb、Linux 安装入口和 GitHub Actions 产物下载见 [Linux 安装与自动打包](packaging/linux/README.md)。Linux 包使用 mpg123 解码、私有 Python 环境和默认在线选档；模型由安装后的后台任务下载，不在 CI 中下载或执行。
 
 ---
 
-## 1. `server`（语音对话服务编排层）—— Python 依赖
+- [链路图](chain.txt)：HTTP、Wyoming、麦克风三个入口与各处理阶段。
+- [依赖与模型前提](DEPENDENCIES.md)：按自检、板端在线、本地 sherpa 档探测和补齐依赖。
+- [服务运行说明](server/README.md)：语音服务与运行入口。
+- [一键部署与模型获取](DEPLOYMENT.md)：探测环境、补缺失依赖、获取模型、备份部署和验收。
+- [Ubuntu 20.04 Linux 安装包](packaging/linux/README.md)：解包运行 `sudo ./install.sh` 或 `sudo apt install ./lang-server_版本_arm64.deb`；apt 安装系统依赖，模型后台下载，默认全在线。
+- [服务部署说明](server/deploy/README.md)：systemd 单元与部署布局。
+- [offlineHMI](../web/offlineHMI/README.md)：配套 HDMI 原生界面。
 
 | 依赖 | 必需？ | 用途 | 装法 |
 |---|---|---|---|
@@ -136,24 +142,24 @@ Edge 输出 mp3，本仓用 **miniaudio** 解码（~0.1 MB）。**不需要 ffmp
 
 ---
 
-## 6. 通信：`ggradio`（试验台）↔ `server`
+## 通信：`ggradio`（试验台）↔ `server`
 
 **一句话**：`ggradio` 不拿 HTTP 打 `server`。它是**双通道**——试验台把链路嵌进自己进程跑（逐段粒度、可下载产物）；配置改动要靠**重启**才生效，重启由它托管 `app.py` 子进程完成。
 
-### 6.1 试验台通道（进程内）
+### 试验台通道（进程内）
 
 `../web/ggradio/console.py` 把 `server` 的 `sys.path` 插进来后直接 `import core`，
 调 `core.Chain.stage(...)` 逐级跑（sar/vad/kws/asr/llm/tokenizer/tts）。**这是为了逐段粒度**——
 HTTP 面没有"只跑 KWS"这种端点。副作用：试验台与运行中的 server **各自独立**，试验台改档不碰服务。
 
-### 6.2 配置生效通道（托管子进程）
+### 配置生效通道（托管子进程）
 
 `app.py` 在**启动时**读一次 `config/`（无热加载）。要让服务用上新配置，唯一办法是重启进程。
 `console.py --serve` 把 `app.py` 拉起为子进程（默认 `:18091`），页面上「重启服务」=
 `terminate → 等退出 → 同参数 respawn → 探 /health`（实测冷启动 ~8 s，等待窗 30 s）。
 端口上已有别人起的服务时只显示状态、**不接管**。
 
-### 6.3 lang/server 对外接口（ggradio 之外的真实面）
+### lang/server 对外接口（ggradio 之外的真实面）
 
 **HTTP（`app.py`，`:18091`）**
 
@@ -171,14 +177,14 @@ HTTP 面没有"只跑 KWS"这种端点。副作用：试验台与运行中的 se
 **Wyoming（`wyoming_gateway.py`，三个 TCP 口）**：`wake :10300`、`asr :10301`、`tts :10302`，
 给 Home Assistant 原生集成（`Detect/Transcribe/Synthesize`），协议不变。
 取舍：Wyoming 分块推流、后端契约"整段" ⇒ 网关把 chunk 累积到 `AudioStop` 再一次性回结果，
-**不支持部分转写**。依赖 `wyoming` 包（板上/HA 侧才有）。
+**不支持部分转写**。所需依赖见 [DEPENDENCIES](DEPENDENCIES.md)。
 
-### 6.4 调度
+### 调度
 
 `core.Chain` 进程内单例；组件按 `(stage, 档名)` 懒建缓存；TTS 合成带锁串行；LLM 按 `session` 隔离；
 HTTP 侧 `ThreadingHTTPServer`（每请求一线程）、Wyoming 侧 `asyncio`，共用同一 `Chain`。**无队列**：请求即跑即回。
 
-### 6.5 控制台自己的端点（`ggradio/console.py`，默认 `:7861`）
+### 控制台自己的端点（`ggradio/console.py`，默认 `:7861`）
 
 `GET /`（页面）· `GET/POST /api/config`（读/写 119 参数；`value="***"`=不改；回 `needs_restart`）·
 `POST /api/config/reset`（恢复到启动快照）· `POST /api/reload`（只重载**控制台**链路）·

@@ -80,24 +80,24 @@ class PhotosApp(App):
         Frame.header(c, state)
         btns: list[Button] = []
         box = PREVIEW_BOX
-        c.rect(box, fill=(8, 12, 16), outline=(60, 70, 80))
+        c.rect(box, fill=c.theme.colors["well"], outline=c.theme.colors["border"])
         if self.result_jpeg:
             try:
                 c.jpeg_to_rgb(self.result_jpeg, box)
             except Exception:
-                c.text((box[0] + 20, box[1] + 20), "结果图不可显示", fill=(150, 150, 150))
+                c.text((box[0] + 20, box[1] + 20), "结果图不可显示", fill=c.theme.colors["muted"])
         else:
-            c.text((box[0] + 20, box[1] + 20), "点击右侧操作开始", fill=(120, 128, 136))
+            c.text((box[0] + 20, box[1] + 20), "点击右侧操作开始", fill=c.theme.colors["muted"])
         x, y = RIGHT_X, 96
         b = Button("recognize", (x, y, BTN_W, BTN_H), "相机识别", "accent"); btns.append(b); y += BTN_H + 16
         b = Button("enroll", (x, y, BTN_W, BTN_H), "录入:" + self.person_input); btns.append(b); y += BTN_H + 16
         b = Button("gallery", (x, y, BTN_W, BTN_H), "图库"); btns.append(b); y += BTN_H + 16
         for t in self.result_text[:8]:
-            c.text((x, y), t[:40], fill=(150, 158, 166)); y += 30
+            c.text((x, y), t[:40], fill=c.theme.colors["muted"]); y += 30
         for pid in self.gallery_ids:
-            c.text((x, y), pid, fill=(110, 118, 126)); y += 28
+            c.text((x, y), pid, fill=c.theme.colors["muted"]); y += 28
         if self.note:
-            c.text((24, SCREEN_H - 40), self.note, fill=(240, 200, 120))
+            c.text((24, SCREEN_H - 40), self.note, fill=c.theme.colors["notice"])
         return btns
 
 
@@ -107,12 +107,14 @@ def main():
     ap.add_argument("--mouse", default="mock:[[[300,300,0],[300,900,0],[300,900,1]]]")
     ap.add_argument("--server", default=None, help="http://<板IP>:8091")
     ap.add_argument("--font", default=None)
+    ap.add_argument("--theme", choices=("dark", "light"), default="dark",
+                    help="Color theme (default: dark)")
     ap.add_argument("--frames", type=int, default=None)
     args = ap.parse_args()
 
     board = Board(args.server) if args.server else MockServer()
     app = PhotosApp(make_backend(args.backend), make_mouse(args.mouse), board,
-                    theme=Theme(args.font))
+                    theme=Theme(args.font, scheme=args.theme))
     n = app.run(max_frames=args.frames)
     print("presented %d frames" % n)
 

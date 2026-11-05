@@ -364,7 +364,14 @@ def act_cancel_reboot(slots):
 #
 # (phrases, action, default_slots)
 # ---------------------------------------------------------------------------
+def act_dialogue_reply(slots):
+    """单次固定回应；调用方照常播报 message，播完结束当前请求。"""
+    return True, slots["reply"], {"end_request": True}
+
+
 DIRECT_COMMANDS = [
+    (["小克小克"], act_dialogue_reply, {"reply": "我在。"}),
+    (["再见"], act_dialogue_reply, {"reply": "拜拜。"}),
     # --- 开门（多因子，见 door_unlock.py）注意：必须排在普通命令之前判断 ---
     (["我回来了开门", "我回来了，开门", "我回家了开门", "开门吧", "帮我开门",
       "把门打开", "门开一下", "开一下门", "我回来了"],  act_unlock, {}),
@@ -406,6 +413,12 @@ def match_direct(text):
     idx = _CMD_INDEX or _build_index()
     t = (text or "").strip()
     for phrase, fn, defaults in idx:
+        if fn is act_dialogue_reply:
+            normalized = "".join(ch for ch in t if not ch.isspace()
+                                 and ch not in "，。！？、；：,.!?;:")
+            if normalized == phrase:
+                return fn, dict(defaults), phrase
+            continue
         if t == phrase or t.endswith(phrase) or phrase in t:
             return fn, dict(defaults), phrase
     return None

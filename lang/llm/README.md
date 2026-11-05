@@ -4,20 +4,20 @@
 Qwen2-0.5B / Qwen3-0.6B）收进 `models/`，本页只管**索引与选型结论**，参数面在 [`para.md`](para.md)。
 
 **参数全录在 [para.md](para.md)**（三颗模型的可调项与板端实测）。
-**本页只管选型**——现在板上现役是 **ERNIE-4.5-0.3B-PT4icraft430tai**（门 4 已通，0.42 s/步）。
+本页索引历史 NPU 迁移验证件。ERNIE 曾完成上板验证；这不代表当前 lang 链正在使用它。当前服务是否使用 NPU 由 `chain.llm` 以及 npuserv 的 `/status` 决定，部署时不自动装载 NPU 模型。
 
-## 一、选型结论（板上现役）
+## 一、选型结论（历史上板验证）
 
 | 模型 | 参数 | 板上状态 | 速度（实测） | 结论 |
 |---|---|---:|---|---|
-| **ERNIE-4.5-0.3B-PT4icraft430tai** | 360.7M（0.36B），18 层／hidden 1024／16 Q＋2 KV head／head_dim 128／vocab 103,424 | ✅ **门 4 已通**（11-01：`precheck=True`、逐 token 与 PC 对上、62 步到 eos 无泄漏） | **0.42 s/步＝2.38 token/s**（驱动 `dt` 口径；轮级墙钟 0.47 s/步） | **板上现役**，`padfix` 默认开 |
+| **ERNIE-4.5-0.3B-PT4icraft430tai** | 360.7M（0.36B），18 层／hidden 1024／16 Q＋2 KV head／head_dim 128／vocab 103,424 | ✅ **门 4 已通**（11-01：`precheck=True`、逐 token 与 PC 对上、62 步到 eos 无泄漏） | **0.42 s/步＝2.38 token/s**（驱动 `dt` 口径；轮级墙钟 0.47 s/步） | **历史上板验证**，`padfix` 默认开 |
 | **Qwen3-0.6B**（Qwen3-0.6B-Instruct） | 0.6B 档 instruct 系本尊（2504 混合思考版） | ⚠️ 模型件已上板，**驱动未上板、零 token**；四档预检 `apply` 75.1 s 压到 CMA 个位数 MB | 未出 token | **待驱动上板**；`tokenizers` ≥ 0.15（实测 0.20.3） |
 | **Qwen2-0.5B**（厂商 ZG330 demo） | 厂商 `AIBS/Qwen2_0.5B_zg3.36.1_axi_demo` | ⚠️ **10-28 已从板出库**（省 1.7 G）；第五轮点火跑通过 | 20 token／7.08 s／**2.83 tok/s**（247.71 ms/token，CMA 谷底 8,860 kB） | 参考件（厂商配方基线），不再现役 |
 
 **要点**：
 - **只有 ERNIE 是「板上真跑出 token 且通顺」的现役件**；Qwen3 卡在驱动，Qwen2 已出库。
 - Qwen3 的 0.6B 与 ERNIE 的 0.36B 不是同量级，别按名字里的数字直接比——**ERNIE 的 0.36B 是 18 层小头数模型**（360,748,032 参数，全 BF16），Qwen3-0.6B 是 0.6B 档 instruct。
-- 三颗都是 **ids-in / ids-out 的 NPU 件**（不是 HF 文本接口）：板端只吃 token id、回 id，**分词/解码在主机侧**（ERNIE 用纯标准库 `e41_tok`，Qwen3 用 `tokenizers`）。
+- 三颗都是 **ids-in / ids-out 的 NPU 件**（不是 HF 文本接口）：板端只吃 token id、回 id，分词/解码由驱动完成，可在板端运行（ERNIE 用纯标准库 `e41_tok`，Qwen3 用 `tokenizers`）。
 
 ## 二、模型清单（`models/`，本机副本不入库）
 

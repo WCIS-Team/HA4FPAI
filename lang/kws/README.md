@@ -49,3 +49,41 @@ https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-k
 > hf-mirror 三条路都一样；`hf auth whoami` 显示未登录且无 token 文件）⇒ 走 GitHub Release。
 > 上游另有同名 HF 仓库（`k2-fsa/sherpa-onnx-kws-zipformer-*`）与 ModelScope 镜像，
 > 内容一致。
+
+## KWS 之后的那次路由（`router.py`，server 调用）
+
+链路（`lang/server`）：`sar → rms → kws ──[router.route()]──▶ vad → asr → router(klar) → …`
+
+KWS 只负责给 `(hit, tag)`；**接下来往哪走由本目录的 `router.py` 决定**——她 2026-11-04 定的
+"具体写在 kws 文件夹里，server 去调用"。server 侧只有薄调用层
+（`lang/server/backends/kws_route.py`），要改路由请改这里 ＋ `lang/config/kws.yaml`。
+
+返回：`{"action": "continue"|"stop"|"direct", "route": "…", "reply": "…", "reason": "…"}`
+
+- `continue` → 进 vad → asr（常规：唤醒后说话）
+- `stop` → 就此打住（只唤醒不说话／噪声误触）
+- `direct` → 跳过 vad/asr，用 `reply` 直接走分词＋TTS（如"我在。"）
+
+### 配置（`kws.yaml → kws_route_profiles.default`）
+
+⚠️ 用**三张扁平表**，别写 `routes.<tag>.{...}` 三层嵌套——本仓配置解析器只支持两层嵌套，
+三层会被拍平（见 `server/PITFALLS.md` #26）。
+
+```yaml
+kws_route_profiles:
+  default:
+    on_miss: stop          # 没命中：stop | continue
+    default_action: continue
+    default_route: general
+    routes:                # tag → 路由名（继续 vad/asr）
+      小助手: general
+      开门: device
+      验证: verify
+    direct:                # tag → 固定回应（action=direct）
+      我在: "我在。"
+    stop:                  # tag → 停
+      再见: 1
+```
+
+匹配顺序：`direct` → `stop` → `routes` → `default_*`；tag 精确优先，再双向子串。
+中文 tag 当键是支持的（`cfg.parse` 已放宽到非 ASCII 键，2026-11-04 修）。

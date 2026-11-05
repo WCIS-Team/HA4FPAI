@@ -76,6 +76,66 @@ rc.local 兜底（不想引入 unit 时）：`setsid python3 /root/offlineHMI/ki
 ⚠️ 日志必须封顶（板上 `/tmp` 在根分区，历史上 `asr_status.jsonl` 2 MB/分钟爬满盘）——
 用 `StandardOutput=append:` 到 `/var/log/` 并配 logrotate，或直接用 `journald` 的上限 drop-in。
 
+## 开机门卫（hdmi_probe + 单个 systemd 单元）
+
+正本：`deploy/offlinehmi.service`（**一个单元，`systemctl enable offlinehmi` 即全部**）。
+
+**行为（对齐 2026-11-04 要求）**：
+
+```
+开机 → 门卫判定（默认 60 s）
+  ├─ 判"有显示器" → exec 启动 kiosk（进程替换，单元继续跑 kiosk）
+  └─ 判"没有"     → 以 0 退出（单元停在 inactive，**不再检测**，直到下次开机/手动）
+```
+
+**判定阶梯**（`hdmi_probe.py`）：
+
+| 级 | 信号 | 现状 |
+|---|---|---|
+| L1 | DRM connector `status`（`/sys/class/drm/card*-*/status`） | 板子没有（无 DRM） |
+| L2 | PS GPIO 里名字带 `hpd` 的线（`/sys/kernel/debug/gpio`） | 板子没有 |
+| L3 | **一分钟人确认**：HDMI 上画倒计时，期间收到鼠标点击＝有人在看这块屏 | ✅ **今天唯一可用的** |
+| L4 | `--assume yes|no` 强制结论 | 无屏调试用 |
+
+**为什么 L3 不是真·HPD**（2026-11-04 板上实测，A）：引脚约束只有 4 个 TMDS 输出
+（`AC17/AA15/Y16/W16`），**无 HPD、无 DDC**；`/sys/class/drm` 无 connector；`/dev/i2c-*` 不存在；
+`/sys/kernel/debug/gpio` 4 个芯片只有 2 条线被占（PHY reset / SPI）；设备树、dmesg 搜
+`hdmi|hpd|edid` 零命中 ⇒ **板子没有任何"显示器在不在"的回读信号**。等换了带 DRM 的位流、
+或把 HPD 接进 PS GPIO，把 L1/L2 的 `--no-ui` 路径启用即变自动。
+
+**部署（板上，属 OS 层改动，登记 `os.md` 第七节）**：
+
+```bash
+cp deploy/offlinehmi.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now offlinehmi      # enable=每次开机跑门卫；now=立即跑一次
+# 手动只跑检测不启动：python3 hdmi_probe.py --no-ui    （纯检测，不画屏）
+# 绕过门卫直接起 kiosk：systemctl start offlinehmi-kiosk  不存在——单元就一个，
+#   不想等 60s 就 systemctl start offlinehmi && 手动点一下屏幕
+```
+
+⚠️ 两个注意：
+1. **日志封顶**：`StandardOutput=append:/var/log/offlinehmi.log`，配 logrotate 或改用 journald
+   （板上历史上 `asr_status.jsonl` 2 MB/min 爬满过盘，见 `wiki/PS` 磁盘清理 SOP）。
+2. **判定依赖鼠标参与**：没有鼠标就没有"人确认"信号 ⇒ 无鼠标时永远判"没有"。
+   这是 L3 的固有代价，不是 bug；真要自动检测只有 L1/L2 两条路。
+
+## 深浅颜色主题
+
+首页和预览、录像、人脸、语音四个功能页共用 `Theme`，内置 `dark`（原深色，默认）与 `light`（报告中的浅色配色）。五个入口均支持 `--theme dark|light`；顶部“浅色模式／深色模式”按钮即时切换，不重建页面或清空业务状态，回首页及再进入其他页也沿用当前主题。按钮文字表示点击后要切到的模式。
+
+```bash
+# 离线预演；不访问显示/音频设备或板端服务
+python -B kiosk.py --theme light --backend png:S:/work/WCIS/workenv/hdmi-kiosk/light --mouse "mock:[]" --mock --frames 1 --no-single-instance
+python -B app_voice.py --theme light --backend png:S:/work/WCIS/workenv/hdmi-kiosk/voice-light --mouse "mock:[]" --asr mock --source synth --frames 1
+# 真 HDMI/鼠标验收就绪后的参数示例，本轮未在板上执行
+sudo python3 kiosk.py --theme light --backend udmabuf --mouse evdev --host 127.0.0.1
+```
+
+运行时选择只保留在当前进程，重启按命令行值恢复。要固定浅色启动，在自己的 kiosk 启动命令（门卫单元则为 `--then-exec` 内的 kiosk 命令）加 `--theme light`；不会自动修改系统服务。颜色只影响界面，不改变照片/录像像素或语音后端；本机界面与回环服务无需外网，在线 ASR／云问答／Edge TTS 仍需网络。
+
+2026-11-04 本机离线回归 `workenv/hdmi-kiosk/test_themes.py` 六项通过，覆盖运行中切换、四页共享/状态保留、鼠标点击分发、媒体不变、五入口深浅出图与非法值拒绝、Python 3.8 语法解析。图片及结果在 `workenv/hdmi-kiosk/theme-validation/`。未访问开发板，真 HDMI／USB 鼠标联合验收仍待做。
+
 ## 运行环境（按她 2026-11-04 定：不在板上跑，先校机/102 验证）
 
 ### 板上要装什么（一张清单，照着做）

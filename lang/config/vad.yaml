@@ -23,3 +23,13 @@ vad_profiles:
     close_dbfs: -40
     min_speech_ms: 200
     min_gap_ms: 300
+
+# 链路 1.5 环：sar 之后的能量门/电平（KWS 之前）。档名 energy，实现在 backends/rms.py。
+# gate=true 时整段静音直接短路（不跑 KWS/VAD/ASR）；她 2026-11-04 定的顺序 sar → rms → kws。
+rms_profiles:
+  energy:
+    frame_ms: 100
+    silence_dbfs: -45        # 越小越宽松（纯静音约 -120）
+    min_voiced_ms: 150       # 至少这么多毫秒超阈值才算"有内容"
+    gate: true               # false＝只测不挡（只把 peak/voiced_ms 记进 out["rms"]）
+    rate: 16000              # 级内按工作采样率算帧

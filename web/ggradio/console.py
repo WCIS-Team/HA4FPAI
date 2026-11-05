@@ -27,6 +27,7 @@ RSS 250–400 MB；本文件纯标准库，RSS ≈ 18–25 MB，py3.8/3.13 通�
 from __future__ import annotations
 
 import argparse
+import base64
 import io
 import json
 import os
@@ -253,8 +254,10 @@ def tts_combo_items(front, ac, voc, integ):
                 ("tts.yaml", "tts_profiles.sherpa.kind", "matcha")]
     if ac or voc:
         raise ValueError("前端为空时不能选声学/声码器；请选一体 TTS")
-    if integ not in ("piper", "ekho"):
-        raise ValueError("一体 TTS 只能是 piper 或 ekho")
+    if integ == "edge":
+        return [("server.yaml", "chain.tts", "edge")]
+    if integ not in ("edge", "ekho"):
+        raise ValueError("一体 TTS 只能是 edge 或 ekho（piper 档与服务已于 2026-11-04 删除）")
     return [("server.yaml", "chain.tts", "http"),
             ("online.yaml", "online.tts.proto", integ)]
 
@@ -278,7 +281,7 @@ def chain_options():
 LLM_LOCAL_MODELS = ["ernie-4.5-0.3b", "qwen3-0.6b", "mock"]   # npuserv 的 3 个本地件 → 全红
 TONE = {
     "llm_profiles.npuserv.model": dict((m, "bad") for m in LLM_LOCAL_MODELS),
-    "online.tts.proto": {"piper": "warn", "json": "warn"},     # ekho 保持正常色
+    "online.tts.proto": {"json": "warn"},    # ekho 保持正常色
 }
 
 # TTS 组合：前端(mel) × 声学 × 声码器，或前端为空时的一体 TTS。
@@ -291,7 +294,7 @@ TTS_COMBO = {
     "vocoder": [{"v": "", "tone": "warn"},
                 {"v": "vocos", "tone": "warn"},
                 {"v": "HiFi-GAN-v2", "tone": "warn"}],
-    "integrated": [{"v": "piper", "tone": "warn"},
+    "integrated": [{"v": "edge", "tone": None},
                    {"v": "ekho", "tone": None}],
 }
 # 实测唯一成功上板的神经组合（整链相对实时 0.716–0.777）；其余见 lang/tts/README.md §3。
@@ -303,7 +306,7 @@ TTS_COMBO_OK = {"frontend": "sherpa-mel", "acoustic": "matcha", "vocoder": "voco
 # 没登记的再从行内注释里"猜"：注释里成串出现 `a | b | c` 且都是标识符样子的，就当选项。
 ENUMS = {
     "online.asr.proto": ["funasr", "openai", "json"],
-    "online.tts.proto": ["piper", "ekho", "json"],
+    "online.tts.proto": ["ekho", "json"],
     "online.llm.reasoning": ["none", "low", "medium", "high"],
     "audio.resample_mode": ["decimate3-mavg3", "linear"],
     "sar.resample_mode": ["decimate3-mavg3", "linear"],
@@ -464,13 +467,17 @@ def write_param(fname, path, value):
 
 
 # ---------------------------------------------------------------- 逐段运行
-STAGE_ORDER = ("sar", "kws", "vad", "asr", "router", "llm", "tokenizer", "tts")
+STAGE_ORDER = ("sar", "rms", "kws", "kws_route", "vad", "asr", "router", "spk",
+               "llm", "tokenizer", "tts")
 STAGE_IO = {
     "sar": ("audio", "audio", "音频前处理/重采样（48k→16k 走 decimate3）"),
-    "kws": ("audio", "json", "唤醒门控（passthrough＝恒放行）——先于 VAD"),
+    "rms": ("audio", "json", "能量门/电平（KWS 之前；整段静音直接短路）"),
+    "kws": ("audio", "json", "唤醒门控（passthrough＝恒放行）"),
+    "kws_route": ("audio", "json", "KWS 之后的路由（规则在 lang/kws/router.py）"),
     "vad": ("audio", "segs", "说话段切分；没切出＝整段直通"),
     "asr": ("audio", "json", "语音转文本（多段逐识别再拼）"),
     "router": ("text", "json", "klar NLP 定去向（llm/固定回应/verify；verify 暂留空跳过）"),
+    "spk": ("audio", "json", "声纹验证（CAM++；默认不入链，按需装载）"),
     "llm": ("text", "json", "对话；失败降级回输入文本"),
     "tokenizer": ("text", "json", "长句切短（压 TTS 峰值 RSS）"),
     "tts": ("text", "audio", "逐块合成（本试验台把每个 chunk 都合成并拼接）"),
@@ -491,11 +498,13 @@ def _save(name, data: bytes):
 
 
 def run_stages(stages, raw_audio=None, rate_hint=None, text=None,
-               session="default", out_rate=0, tts_tier=None):
+               session="default", out_rate=0, tts_tier=None, audio_output="server"):
     """按 STAGE_ORDER 跑选中的段；每段的产物落 artifacts 并回链接。"""
     from backends import audioio
     import core as langcore
 
+    if audio_output not in ("browser", "server"):
+        raise ValueError("audio_output 只能是 browser 或 server")
     want = [s for s in STAGE_ORDER if s in stages]
     if not want:
         raise ValueError("没选任何段")
@@ -518,7 +527,15 @@ def run_stages(stages, raw_audio=None, rate_hint=None, text=None,
         t0 = time.time()
         row = {"name": name, "io": "%s→%s" % STAGE_IO[name][:2], "ok": True}
         try:
-            inst = CHAIN.stage(name)
+            if name == "spk":
+                # chain.spk 默认 none（她 2026-11-04 定：不入链、按需装载）。
+                # 试验台里**勾了 spk 段就是"要用"** ⇒ none 时退一步强制 sherpa 档，
+                # 与 /api/spk/status 同口径；档位没实现/模型不在会抛出来落到本行 error。
+                inst = CHAIN.stage("spk")
+                if inst is None:
+                    inst = CHAIN.stage("spk", "sherpa")
+            else:
+                inst = CHAIN.stage(name, tts_tier if name == "tts" else None)
             if inst is None:
                 row.update(ok=False, note="该级档位为 none/空，已跳过", ms=0)
                 out["stages"].append(row)
@@ -531,6 +548,13 @@ def run_stages(stages, raw_audio=None, rate_hint=None, text=None,
                     row["artifacts"] = [_save("sar-%d.wav" % rate, data)]
                     out["result"]["out_rate"] = rate
                     out["result"]["out_seconds"] = round(len(samples) / float(rate), 3)
+
+            elif name == "rms":
+                meta = inst.run(samples) or {}
+                row["result"] = meta
+                row["note"] = ("静音（短路）" if meta.get("silent")
+                               else "peak %.1f dBFS" % meta.get("peak_dbfs", -120))
+                out["result"]["rms"] = meta
 
             elif name == "vad":
                 segs = inst.run(samples) or [samples]
@@ -552,8 +576,19 @@ def run_stages(stages, raw_audio=None, rate_hint=None, text=None,
                 hit, tag = inst.run(segs)
                 row["result"] = {"hit": bool(hit), "tag": tag}
                 out["result"]["wake"] = bool(hit)
+                out["result"]["kws_tag"] = tag
                 row["artifacts"] = [_save("kws.json", json.dumps(
                     {"hit": bool(hit), "tag": tag}, ensure_ascii=False, indent=2).encode())]
+
+            elif name == "kws_route":
+                hit = bool(out["result"].get("wake"))
+                tag = out["result"].get("kws_tag")
+                dec = inst.run((samples, (hit, tag))) or {}
+                row["result"] = dec
+                out["result"]["kws_route"] = dec.get("route")
+                out["result"]["kws_route_action"] = dec.get("action")
+                row["artifacts"] = [_save("kws_route.json", json.dumps(
+                    dec, ensure_ascii=False, indent=2).encode())]
 
             elif name == "asr":
                 if segs is None:
@@ -577,6 +612,21 @@ def run_stages(stages, raw_audio=None, rate_hint=None, text=None,
                     row["note"] = "verify 还没实装：留空并跳过"
                 row["artifacts"] = [_save("router.json", json.dumps(
                     dec, ensure_ascii=False, indent=2).encode())]
+
+            elif name == "spk":
+                # 逐 VAD 段各算一个嵌入（vertify/para.md §七：别拿整条录音算一个）；
+                # 没勾 vad／没切出段就整段算一条。返回 dict 原样进 row["result"]。
+                dec = inst.run(segs or [samples])
+                if isinstance(dec, (tuple, list)):      # 兼容 (name, score) 口径
+                    dec = {"match": dec[0] if len(dec) > 0 else None,
+                           "score": dec[1] if len(dec) > 1 else None}
+                dec = dec or {}
+                row["result"] = dec
+                out["result"]["spk"] = dec
+                if dec.get("match") is not None or dec.get("score") is not None:
+                    row["note"] = "match=%s score=%s" % (dec.get("match"), dec.get("score"))
+                row["artifacts"] = [_save("spk.json", json.dumps(
+                    dec, ensure_ascii=False, indent=2, default=str).encode())]
 
             elif name == "llm":
                 if not cur_text:
@@ -608,9 +658,24 @@ def run_stages(stages, raw_audio=None, rate_hint=None, text=None,
                         pieces.append((smp, rt))
                 if not pieces:
                     raise ValueError("TTS 没合成出音频")
-                merged, mrate = audioio.concat(
-                    pieces, gap_s=float(CHAIN.cfg.get("server", "chunk_gap_ms", 80) or 80) / 1000.0,
-                    out_rate=int(out_rate or CHAIN.cfg.get("server", "out_rate", 0) or 0))
+                gap_s = float(CHAIN.cfg.get("server", "chunk_gap_ms", 80) or 80) / 1000.0
+                if audio_output == "browser":
+                    # 浏览器接收 TTS 原生率；此路径禁止任何服务端输出重采样。
+                    mrate = int(pieces[0][1])
+                    if mrate <= 0 or any(int(rt) != mrate for _, rt in pieces):
+                        raise ValueError("TTS 各块采样率不一致，原生播放路径拒绝隐式重采样")
+                    merged = []
+                    gap = [0.0] * max(0, int(mrate * gap_s))
+                    for index, (smp, _) in enumerate(pieces):
+                        if index:
+                            merged.extend(gap)
+                        merged.extend(smp)
+                else:
+                    merged, mrate = audioio.concat(
+                        pieces, gap_s=gap_s,
+                        out_rate=int(out_rate or CHAIN.cfg.get("server", "out_rate", 0) or 0))
+                out["result"]["audio_output"] = audio_output
+                out["result"]["output_sar"] = audio_output != "browser"
                 data = _wav_bytes(merged, mrate)
                 row["result"] = {"rate": mrate, "seconds": round(len(merged) / float(mrate), 3),
                                  "chunks": len(pieces)}
@@ -629,32 +694,196 @@ def run_stages(stages, raw_audio=None, rate_hint=None, text=None,
     return out
 
 
+# ---------------------------------------------------------------- 声纹（spk）
+# 口径（她 2026-11-04 定）：`chain.spk` 默认 none＝**不入链**，按需装载。
+# 所以控制台这几条路由**强制取 sherpa 档**（`CHAIN.stage("spk", "sherpa")`）：
+# 打一次「记录声纹」才第一次装模型；点「卸载模型」把它放掉。
+# 档位没实现/模型不在时**不抛 500**，回 {"ok":false,"msg":...} 让页面显示原因。
+_SPK_TIER = "sherpa"
+
+
+def spk_inst():
+    """→ spk 的 sherpa 档实例（按需装载）。不可用就抛，由调用方转成人话。"""
+    if CHAIN is None:
+        raise RuntimeError("链路还没装配")
+    inst = CHAIN.stage("spk", _SPK_TIER)
+    if inst is None:
+        raise RuntimeError("spk 档位 %r 不可用（chain.spk=%s）"
+                           % (_SPK_TIER, CHAIN.active("spk") or "none"))
+    return inst
+
+
+def _spk_attr(inst, name, default=None):
+    """取实例上的标量/无参方法（实现写成属性或方法都认）。"""
+    v = getattr(inst, name, None)
+    if callable(v):
+        try:
+            v = v()
+        except Exception:
+            return default
+    return default if v is None else v
+
+
+def spk_speakers(inst):
+    """→ [{"name","count","updated"}]（形状固定，页面与 README 都按这个用）。"""
+    raw = None
+    for nm in ("speakers", "list_speakers", "all_speakers"):
+        raw = _spk_attr(inst, nm, None)
+        if raw:
+            break
+    out = []
+    for s in (raw or []):
+        if isinstance(s, dict):
+            out.append({"name": str(s.get("name") or s.get("speaker") or ""),
+                        "count": int(s.get("count") or s.get("segments") or 0),
+                        "updated": str(s.get("updated") or s.get("mtime") or "")})
+        else:
+            out.append({"name": str(s), "count": 0, "updated": ""})
+    return out
+
+
+def spk_status():
+    """GET /api/spk/status 的形状；档位不可用 → {"ok":false,"msg":...}（HTTP 仍是 200）。
+
+    档位自己报了 `status()` 就以它为准（`loaded`/`dim`/`library` 这些它最清楚）；
+    没有就按属性猜——两种实现都不用改控制台。
+    """
+    try:
+        inst = spk_inst()
+    except Exception as exc:                          # noqa: BLE001
+        return {"ok": False, "msg": ("%s: %s" % (type(exc).__name__, exc))[:400]}
+    st = _spk_attr(inst, "status", None)
+    st = st if isinstance(st, dict) else {}
+
+    th = st.get("threshold", _spk_attr(inst, "threshold", None))
+    if th in (None, ""):                              # 兜底：档位没暴露就读 YAML 的 profile
+        th = CHAIN.cfg.profile("spk", _SPK_TIER).get("threshold")
+    try:
+        th = float(th)
+    except (TypeError, ValueError):
+        th = 0.0
+    try:
+        dim = int(st.get("dim") or _spk_attr(inst, "dim", 0) or 0)
+    except (TypeError, ValueError):
+        dim = 0
+    try:
+        idle = int(st.get("idle_unload_s") or _spk_attr(inst, "idle_unload_s", 0) or 0)
+    except (TypeError, ValueError):
+        idle = 0
+    lib = st.get("library") or _spk_attr(inst, "library", "") or ""
+    if isinstance(lib, dict):
+        lib = lib.get("path") or lib.get("dir") or json.dumps(lib, ensure_ascii=False)
+    speakers = st.get("speakers")
+    if not isinstance(speakers, list):
+        speakers = spk_speakers(inst)
+    return {"ok": True,
+            # active ＝ **配置里的档**（chain.spk，默认 none）——与 /api/stages 的口径一致；
+            # 这五条路由本身是强制取 sherpa 的，这点看 `loaded` 与 msg 就够。
+            "active": CHAIN.active("spk") or "none",
+            "loaded": bool(st.get("loaded", _spk_attr(inst, "loaded", False))),
+            "dim": dim, "threshold": th,
+            "speakers": speakers,
+            "library": str(lib), "idle_unload_s": idle}
+
+
+def read_audio_body(body, ctype):
+    """请求体 → 音频字节。multipart 认 `audio`/`file` 字段；JSON 认 `audio_b64`。
+
+    服务端只解 16-bit PCM WAV（或裸 PCM16）——页面那边是 WebAudio 抓 PCM 自己编 WAV 传上来的，
+    不是 MediaRecorder 的 webm/opus（那个 decode_payload 解不了）。
+    """
+    if "multipart/form-data" in (ctype or "").lower():
+        m = re.search(r'boundary="?([^";]+)"?', ctype, re.I)
+        if not m:
+            raise ValueError("multipart 缺 boundary")
+        parts = parse_multipart(body, m.group(1))
+        for key in ("audio", "file"):
+            if key in parts:
+                return parts[key][2]
+        raise ValueError("multipart 里没有 audio/file 字段")
+    try:
+        obj = json.loads(body.decode("utf-8") or "{}")
+    except Exception:
+        raise ValueError("body 既不是 multipart 也不是 JSON")
+    b64 = (obj or {}).get("audio_b64") or ""
+    if not b64:
+        raise ValueError("JSON 里没有 audio_b64")
+    if b64.startswith("data:"):                       # 容忍 data URI 前缀
+        b64 = b64.split(",", 1)[-1]
+    try:
+        return base64.b64decode(b64)
+    except Exception as exc:
+        raise ValueError("audio_b64 解不动: %s" % exc)
+
+
+def spk_decode(raw):
+    """→ (samples, rate)；解不出就报错（别把空音频喂进模型）。"""
+    from backends import audioio
+    samples, rate = audioio.decode_payload(raw or b"", work_rate=16000)
+    if not samples:
+        raise ValueError("空音频（只认 16-bit PCM WAV 或裸 PCM16）")
+    return samples, int(rate or 16000)
+
+
+def spk_enroll(name, raw, replace=False):
+    """登记一个人的一段音频 → {"code":0,...}；失败抛，路由转成 400。"""
+    name = (name or "").strip()
+    if not name:
+        raise ValueError("缺 name（?name=NAME）")
+    samples, rate = spk_decode(raw)
+    inst = spk_inst()
+    res = inst.enroll(name, samples, rate, replace=bool(replace))
+    res = res if isinstance(res, dict) else {}
+    spk = spk_speakers(inst)
+    total = res.get("total") or res.get("count")
+    if not total:                                     # 档位没回总数就从说话人表里读
+        for s in spk:
+            if s["name"] == name:
+                total = s["count"]
+                break
+    return {"code": 0, "name": name,
+            "dim": int(res.get("dim") or _spk_attr(inst, "dim", 0) or 0),
+            "total": int(total or 0), "speakers": spk}
+
+
+def spk_verify(raw, name=None):
+    """比对一段音频 → 档位返回原样（match/score/scores/threshold/speech_s/ms）。"""
+    samples, rate = spk_decode(raw)
+    inst = spk_inst()
+    return inst.verify(samples, rate, name=(name or None))
+
+
+def spk_unload():
+    inst = spk_inst()
+    inst.drop()
+    return {"code": 0, "unloaded": True}
+
+
+def spk_forget(name):
+    """删一个声纹；name 为空就只回列表。"""
+    inst = spk_inst()
+    name = (name or "").strip()
+    if name:
+        inst.forget(name)
+    return {"code": 0, "speakers": spk_speakers(inst)}
+
+
 # ---------------------------------------------------------------- multipart
 def parse_multipart(body, boundary):
-    """极简 multipart 解析（只取字段）：{name: (filename, ctype, data)}。"""
+    """标准库 MIME 解析，保留音频末尾的 CR/LF 字节，禁止 strip 二进制内容。"""
+    from email import policy
+    from email.parser import BytesParser
+    header = ('Content-Type: multipart/form-data; boundary="%s"\r\n'
+              'MIME-Version: 1.0\r\n\r\n' % boundary).encode("latin-1")
+    message = BytesParser(policy=policy.default).parsebytes(header + body)
     out = {}
-    sep = b"--" + boundary.encode("latin-1")
-    for part in body.split(sep):
-        part = part.strip(b"\r\n")
-        if not part or part == b"--":
-            continue
-        head, _, data = part.partition(b"\r\n\r\n")
-        if not _:
-            continue
-        name = fname = ctype = None
-        for line in head.split(b"\r\n"):
-            t = line.decode("latin-1", "replace")
-            if "content-disposition" in t.lower():
-                m = re.search(r'name="([^"]*)"', t)
-                if m:
-                    name = m.group(1)
-                m = re.search(r'filename="([^"]*)"', t)
-                if m:
-                    fname = m.group(1)
-            elif t.lower().startswith("content-type:"):
-                ctype = t.split(":", 1)[1].strip()
+    if not message.is_multipart():
+        raise ValueError("无效的 multipart 音频上传")
+    for part in message.iter_parts():
+        name = part.get_param("name", header="content-disposition")
         if name:
-            out[name] = (fname, ctype, data.rstrip(b"\r\n"))
+            out[name] = (part.get_filename(), part.get_content_type(),
+                         part.get_payload(decode=True) or b"")
     return out
 
 
@@ -675,6 +904,8 @@ _NOPROXY = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
 def _probe(host, port, timeout=2.5):
+    # Wildcard addresses are bind targets, not client destinations on Windows.
+    host = "127.0.0.1" if host in ("", "0.0.0.0") else host
     try:
         with _NOPROXY.open("http://%s:%d/health" % (host, port), timeout=timeout) as r:
             return json.loads(r.read().decode("utf-8", "replace"))
@@ -705,7 +936,7 @@ def start_server(logpath=None):
     lf = open(str(logpath), "wb")
     cmd = [sys.executable, "-X", "utf8", str(SERVER_DIR / "app.py"),
            "--config", str(LANG_DIR / "config"),
-           "--host", SRV["host"], "--port", str(SRV["port"])]
+           "--host", SRV["host"], "--port", str(SRV["port"]), "--no-warm"]
     SRV["proc"] = subprocess.Popen(cmd, stdout=lf, stderr=subprocess.STDOUT,
                                    cwd=str(SERVER_DIR))
     SRV["started"] = time.time()
@@ -793,6 +1024,12 @@ class Handler(BaseHTTPRequestHandler):
         path = urllib.parse.urlsplit(self.path).path.rstrip("/") or "/"
         if path == "/":
             return self._send(200, PAGE.read_bytes(), "text/html; charset=utf-8")
+        if path == "/console-theme.js":
+            return self._send(200, (HERE.parent / "shared" / "console-theme.js").read_bytes(),
+                              "text/javascript; charset=utf-8")
+        if path == "/recorder.js":
+            return self._send(200, (HERE / "recorder.js").read_bytes(),
+                              "text/javascript; charset=utf-8")
         if path == "/api/config":
             files = []
             for fp in config_files():
@@ -826,6 +1063,13 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(200, {"ok": True, "lang": str(LANG_DIR),
                                     "config": str(CHAIN.cfg.path),
                                     "actives": {s: (CHAIN.active(s) or "none") for s in STAGE_ORDER}})
+        if path == "/api/spk/status":
+            # 档位不可用也是 200：页面要把原因显示出来，不能吃 500 堆栈。
+            try:
+                return self._json(200, spk_status())
+            except Exception as exc:                  # noqa: BLE001
+                return self._json(200, {"ok": False,
+                                        "msg": ("%s: %s" % (type(exc).__name__, exc))[:400]})
         if path == "/api/server":
             return self._json(200, server_status())
         if path == "/api/server/log":
@@ -933,8 +1177,43 @@ class Handler(BaseHTTPRequestHandler):
                                  text=fields.get("text"),
                                  session=fields.get("session") or "default",
                                  out_rate=int(fields.get("out_rate") or 0),
-                                 tts_tier=fields.get("tts_tier") or None)
+                                 tts_tier=fields.get("tts_tier") or None,
+                                 audio_output=fields.get("audio_output") or "server")
                 return self._json(200, res)
+
+            # ---- 声纹（spk）：全部**进程内**调 CHAIN，不绕去 18091 的 lang-server。
+            # 失败一律 code:1 + msg（enroll/verify 用 400，unload/library 用 200），绝不漏 500 堆栈。
+            if path == "/api/spk/enroll":
+                name = (query.get("name") or [""])[0]
+                replace = (query.get("replace") or ["0"])[0].lower() in ("1", "true", "yes", "on")
+                try:
+                    return self._json(200, spk_enroll(name, read_audio_body(body, ctype), replace))
+                except Exception as exc:              # noqa: BLE001
+                    return self._json(400, {"code": 1,
+                                            "msg": ("%s: %s" % (type(exc).__name__, exc))[:400]})
+
+            if path == "/api/spk/verify":
+                name = (query.get("name") or [""])[0]
+                try:
+                    return self._json(200, spk_verify(read_audio_body(body, ctype), name))
+                except Exception as exc:              # noqa: BLE001
+                    return self._json(400, {"code": 1,
+                                            "msg": ("%s: %s" % (type(exc).__name__, exc))[:400]})
+
+            if path == "/api/spk/unload":
+                try:
+                    return self._json(200, spk_unload())
+                except Exception as exc:              # noqa: BLE001
+                    return self._json(200, {"code": 1,
+                                            "msg": ("%s: %s" % (type(exc).__name__, exc))[:400]})
+
+            if path == "/api/spk/library":
+                name = (query.get("delete") or query.get("name") or [""])[0]
+                try:
+                    return self._json(200, spk_forget(name))
+                except Exception as exc:              # noqa: BLE001
+                    return self._json(200, {"code": 1,
+                                            "msg": ("%s: %s" % (type(exc).__name__, exc))[:400]})
 
             return self._json(404, {"error": "no path " + path})
         except Exception as exc:

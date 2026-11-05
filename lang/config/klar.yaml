@@ -21,14 +21,49 @@ llm_profiles:
     model: ""                # npuserv models.json 里的件 id；空＝该档不可用
     max_new: 128
 
-# ASR 之后的意图路由（chain.router: klar 时用）：klar NLP 决定「进 LLM / 固定回应 / verify」
-# verify 还没实装：core 见到 action=verify 会留空并跳过。
+# 路由怎么写（ASR 出文字之后；实现 lang/server/backends/router.py）
+# 开关在 server.yaml 现有 chain 节：router: none（默认跳过）| klar（HTTP 调 NLU）| echo（自检）。
+# fixed/llm/verify 是返回的动作，不是 chain.router 的可选档名。
+#
+# 先查本地 direct 表（精确匹配，忽略空白和常见标点），命中就不调用 klar HTTP/LLM：
+#   小克小克 → 我在。；再见 → 拜拜。；这两条播报后结束当前请求，不退出服务。
+# 同样的短语也在 KWS 配置里，保证 ASR 后的文本路径有相同回应。
+# 本表属于 router:klar 档；router:none 时本级被跳过，run_text 入口也不走本级。
+# 独立 klar/klar_executor.py 的直接命令入口也保留这两条应答。
+#
+# HTTP 接口约定（本地 direct 未命中后才调用，本适配器实际读取的是平铺字段）：
+#   请求：{"text":"你好"}；有会话时另带 session 字段（session_field 可改名）。
+#   返回：{"action":"llm"}                         → 交给 LLM。
+#   返回：{"action":"fixed","reply":"你好。"}      → 不调用 LLM，reply 直接分句/TTS。
+#   返回：{"action":"verify"}                      → 未实现，标记 verify_skipped 后结束，无音频。
+# fixed 的 reply 是文字；写“现在几点”只会念这几个字，不会查询时钟。
+# “现在几点”直接取时间的例子在 kws.yaml：handlers 下 现在几点: time，走 ASR 前的 KWS 路由。
+# URL：环境变量 KLAR_NLU_URL > 下面 url > http://127.0.0.1:<klar.nlu.http_port>，然后拼 path。
+# 超时、连不上、JSON 不合法时回落 LLM；这是音频主链 ASR 后的路由，run_text 直接走尾链会跳过它。
+#
+# 没返回合法 action 时，代码才查 actions。实际方向是“动作: 意图名”，例如：
+#   actions:
+#     llm: chat
+#     fixed: timer
+#     verify: verify
+# 键只用 llm/fixed/verify；值是响应中 intent 的名字（忽略大小写）。不要写 chat: llm。
+# 本加载器不支持 YAML 列表语法；上例只演示每种动作对应一个 intent。
+# 没匹配则 intent 含 verify→verify，含 fixed/reply→fixed，其余→llm。
+#
+# 当前下面保留的 chat:llm / qa:llm / timer:fixed 是旧方向，不能当作已生效的意图映射。
+# 默认 router:none，因此这里尚未参与运行；真正启用时按上例改映射。
+# 另：当前 path:/parse 与官方 klar V2 /api/v2/parse 不同；官方 V2 又是嵌套 decision/plan，
+# 本适配器只读平铺 action/intent/reply/text。只改 path 不能宣称已接通，需先做响应适配。
+# router 不调用 klar_executor 的设备执行动作；verify 标签也不等于已完成身份认证。
 router_profiles:
   klar:
+    direct:                  # 文字 → 固定回应；跳过 HTTP/LLM，播完结束当前请求
+      小克小克: "我在。"
+      再见: "拜拜。"
     url: ""                  # 空＝http://127.0.0.1:<klar.nlu.http_port>
     path: /parse
     timeout: 3
-    actions:                 # intent → llm|fixed|verify（响应里也可直接给 action 字段）
+    actions:                 # 实现方向为 action→intent；下三行是待迁移旧配置，详见上方注释
       chat: llm
       qa: llm
       timer: fixed

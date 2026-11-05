@@ -6,11 +6,15 @@ After=network.target
 Type=simple
 WorkingDirectory=/mnt/data/lang/server
 Environment=LANG_CONFIG_DIR=/mnt/data/lang/config
+EnvironmentFile=-/etc/lang-server.env
+ExecStartPre=/usr/bin/mkdir -p /mnt/data/lang/server/cache
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/usr/bin/python3 /mnt/data/lang/server/loop.py --run
-Restart=on-failure
+Restart=always
 RestartSec=15
-MemoryMax=200M
+# loop 是真麦克风常驻：启动即 warm，ASR 权重 153 MB + sherpa runtime + Python，
+# 200M 会被 systemd OOM 杀；给到 480M（与 http 同档，别同时 enable 三个）。
+MemoryMax=480M
 StandardOutput=append:/mnt/data/lang/server/loop.log
 StandardError=append:/mnt/data/lang/server/loop.log
 

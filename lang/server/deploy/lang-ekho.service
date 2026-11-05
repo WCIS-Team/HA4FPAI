@@ -1,0 +1,23 @@
+[Unit]
+Description=ekho TTS server (pure C++, :2046; external TTS for lang-server http)
+After=network.target
+
+[Service]
+Type=simple
+# 这套 kit 把 espeak-ng-data 路径烤成了 Windows 风格相对路径（D:/yzd/...），
+# 所以必须在 kitcwd 下补出这层目录，指向板上真正的 espeak-ng-data。
+WorkingDirectory=/root/ekho-bench/kitcwd
+Environment=EKHO_DATA_PATH=/root/ekho-bench/p44
+Environment=ESPEAK_DATA_PATH=/root/ekho-bench/espeak-ng-data
+ExecStartPre=/bin/mkdir -p "/root/ekho-bench/kitcwd/D:/yzd/ekho-x/kit-espeak/share"
+ExecStartPre=/bin/ln -sfn /root/ekho-bench/espeak-ng-data "/root/ekho-bench/kitcwd/D:/yzd/ekho-x/kit-espeak/share/espeak-ng-data"
+ExecStart=/root/ekho-bench/bin/ekho-server --host 127.0.0.1 --port 2046 --no-save
+Restart=always
+RestartSec=2
+# ekho 很小（RSS ~20 MB）；给 96M 富余。**只绑 127.0.0.1**：这是无鉴权 HTTP。
+MemoryMax=96M
+StandardOutput=append:/mnt/data/lang/server/ekho.log
+StandardError=append:/mnt/data/lang/server/ekho.log
+
+[Install]
+WantedBy=multi-user.target

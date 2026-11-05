@@ -9,20 +9,31 @@
 ## 一、三条链与组件契约
 
 ```
-音频 ──▶ ① sar 前处理/重采样 ──▶ vad 切段 ──▶ kws 唤醒 ──▶ asr 转文本
-                                                          │
-                            ② llm 对话 ◀──────────────────┘
-                                 │
-                            ③ 分词器切句 ──▶ tts 逐块合成 ──▶ 合成（拼接）──▶ SAR（输出重采样）──▶ wav
+音频 ──▶ ① sar 前处理/重采样 ──▶ rms 能量门 ──▶ kws 唤醒 ──▶ kws_route 路由
+                                                                    │
+                                                          vad 切段 ──▶ asr 转文本
+                                                                          │
+                                                                  router（klar NLP）
+                                                                          │
+                    ② llm 对话 ◀──────────────────────────────────────────┤（或 固定回应 / spk 声纹）
+                        │
+                    ③ 分词器切句 ──▶ tts 逐块合成 ──▶ 合成（拼接）──▶ SAR（输出重采样）──▶ wav
 ```
+
+> **`spk`（声纹）默认不入链**（`chain.spk: none`，她 2026-11-04 定）：只有 `router`（klar NLP）或
+> `kws_route`（唤醒词的 `verify:` 表）给出 `action=verify` 时，才拿**当前这条请求的那段音频**
+> 去跟声纹库比；它**不预热、不常驻**——第一次真用才装模型，闲置 `idle_unload_s` 秒自动卸。
 
 | 级 | 契约（输入 → 输出） | 现役档 | 说明 |
 |---|---|---|---|
 | `sar` | (samples, rate) → (samples, rate) | `auto` / `linear` / `decimate3` | **前处理/重采样段**（她定）。48k→16k 走 decimate3-mavg3（HA4FPAI 实测正解），其余方向线性 |
-| `vad` | samples → [seg, ...] | `none` / `sherpa` / `silero` / `webrtc` / `rms` | 说话段切分，**在 kws 之后跑**（她 2026-11-04 定）；`sherpa`＝`sherpa_onnx.Vad`（板上 wheel 才有）；`silero` 直跑 `vad/models/silero_vad_v5.onnx`（raw-ORT＝第二运行时，默认被 `single_runtime` 禁）；`webrtc` 复用 `vad/webrtc/webrtcseg.py`（`.so` 只有 aarch64 ⇒ 仅板上）；`rms` 纯标准库 |
-| `kws` | samples → (hit, tag) | `passthrough` / `sherpa` | **先于 VAD**（她 2026-11-04 定：先唤醒门控再切段）。`passthrough`＝留空占位（恒放行，**默认**）；`sherpa`＝复用 `lang/kws/models/` 的 int8 副本，参数照 `kws/para.md` |
+| `rms` | samples → {peak_dbfs, voiced_ms, silent} | `energy` | **sar 之后、KWS 之前**的能量门（她 2026-11-04 定）：帧能量算峰值/有声时长；`gate: true` 时整段静音直接短路（不跑 KWS/VAD/ASR）。参数在 `vad.yaml` 的 `rms_profiles.energy` |
+| `vad` | samples → [seg, ...] | `none` / `sherpa` / `silero` / `webrtc` / `rms` | 说话段切分，**在 kws/kws_route 之后跑**；没切出＝整段直通 |
+| `kws` | samples → (hit, tag) | `passthrough` / `sherpa` | **在 rms 之后、vad 之前**（她 2026-11-04 定）。`passthrough`＝留空占位（恒放行，**默认**）；`sherpa`＝复用 `lang/kws/models/` 的 int8 副本 |
+| `kws_route` | (samples, (hit, tag)) → {action, route, reply} | `default` | **KWS 之后的那次路由**（她 2026-11-04 定）：`continue` 进 vad/asr、`stop` 就此打住、`direct` 固定回应直达 TTS。**规则实现在 `lang/kws/router.py`**，server 只薄调用（`backends/kws_route.py`）；配置在 `kws.yaml` 的 `kws_route_profiles` |
 | `asr` | [seg] → (text, [meta]) | `sherpa` / `remote-api` / `echo` | `sherpa`＝本地流式 zipformer（移植 `voice_kit.AsrSession`）；`remote-api`＝**外部 ASR API**（multipart/openai/json 三协议，形状同 `lang/asr/asr/remote_asr.py`，失败只记 meta 不断链） |
-| `router` | (text, session) → {action, reply} | `none` / `klar` / `echo` | **ASR 之后**交给 klar 的 NLP 决定：`llm`（照常进 LLM）／`fixed`（固定回应，跳过 LLM）／`verify`（**还没实装：留空并跳过**）。`klar` 档 HTTP 调 klar NLU，失败一律回落 llm |
+| `router` | (text, session) → {action, reply} | `none` / `klar` / `echo` | **ASR 之后**交给 klar 的 NLP 决定：`llm`（照常进 LLM）／`fixed`（固定回应，跳过 LLM）／`verify`（**交给下一级 `spk`**，拿当前这段音频做声纹）。`klar` 档 HTTP 调 klar NLU，失败一律回落 llm |
+| `spk` | (segs) → {match, score, scores, threshold, dim} | `none` / `sherpa` | **声纹（CAM++），默认不入链**（她 2026-11-04 定）：`none`＝整级跳过（只记 `verify_skipped`）；`sherpa`＝被 `router`/`kws_route` 的 verify 点名时**才装载**，嵌入 192 维、余弦门限 0.5，跑完不常驻、闲置自动卸。参数在 `vertify.yaml`，模型与参数面见 `lang/vertify/` |
 | `llm` | (text, session) → (reply, meta) | `openai` / `npuserv` / `echo` | 云 API（mimo 调用形状）＋板上 NPU 槽位（`lang/npuserv/`，**server 管辖、留空、不接板端推理**）；失败降级回 asr 文本 |
 | `tokenizer` | text → [chunk, ...] | `tts_split` / `punct` / `window` | **长句切短**（她定）：LLM 输出的长句切块后再进 TTS，**压 TTS 峰值 RSS**。三档实现都在 `lang/split/`；默认 `tts_split`＝标点优先＋**严格 20 字上限**（超了就强制切开，不丢字） |
 | `tts` | chunk → (samples, rate) | `sherpa` / `http` / `edge` / `sine` | `sherpa`＝本地 matcha+vocos（`kind=vits` 可切 piper 兜底）；`http`＝**外部 TTS 服务**；`edge`＝**Edge 在线中文**（`lang/tts/models/edge/`，用 miniaudio 解 mp3，需联网） |
@@ -47,6 +58,10 @@
   `vad: silero` 档必须显式 `env.single_runtime: false`（或 `allow_pip_onnxruntime: true`）。
 - **另一条硬边界**：**NPU 槽位（npuserv）必须独立 worker 进程**——CMA 池随进程退出才归还、
   一次一模型、apply 50–132 s ⇒ LLM 那一级只能 HTTP 编排，不能进本进程。
+- **声纹档（`spk`）故意不预热**：`Chain.SHERPA_STAGES` 里没有它——`chain.spk` 默认 `none`，
+  第一次被 `verify` 点名才建 `SpeakerEmbeddingExtractor`，闲置 `idle_unload_s`（默认 300 s）
+  由它自己丢掉；`POST /api/v1/spk/unload` 可手动卸。实测代价：fp32 会话装载 0.4–0.5 s、
+  常驻 +14.5 MB（int8）/ +66 MB（fp32），峰值 ~126 MB（独占进程）——见 `lang/vertify/para.md` §四。
 - 实测（本机 py3.13）：`warm()` 5.8 s 装好 ASR（zh-int8 153 MB），`sherpa_onnx=True`、
   `onnxruntime=False`；`tests/smoke.py` 有 4 条断言钉住这条（37/37）。
 
@@ -64,6 +79,11 @@
 | POST | `/llm` | `{"text":...}` 只跑 LLM（`?tts=1` 连 TTS） |
 | POST | `/tts` | `{"text":...}` 走 分词器→TTS→合成→SAR；默认回 wav，`?format=json` 回 b64 |
 | POST | `/reset` | 清 LLM 多轮上下文（`?session=` 指定一个，不给＝清全部） |
+| GET | `/api/v1/spk/status` | 声纹档状态：`loaded`（**默认 false，不入链也不装载**）、`dim`、`threshold`、`speakers`。**查库不装载模型** |
+| POST | `/api/v1/spk/enroll?name=X` | 音频 → 给 `X` 登记一段声纹（同名可多次累加；`?replace=1` 覆盖）。音频走 multipart 字段 `audio`／JSON `audio_b64`／裸 wav |
+| POST | `/api/v1/spk/verify[?name=X]` | 音频 → 跟库比：给 `name` 是 1:1，不给是 1:N。回 `{match, score, scores, threshold, speech_s, ms}`，`match=""` ＝ 过不了门限 |
+| POST | `/api/v1/spk/unload` | 丢掉声纹会话（**不常驻**：闲置也会自动丢，见 `vertify.yaml` 的 `idle_unload_s`） |
+| POST | `/api/v1/spk/library?delete=X` | 删掉一个登记名 |
 | GET | `/health` `/stats` `/components` `/` | 健康／计数／档位清单／用法 |
 
 公共 query 参数：`llm=0|1`、`tts=0|1`、`out_rate=<Hz>`、`session=<id>`、`format=wav|json`。
@@ -88,13 +108,14 @@
 
 | 文件 | 管什么 |
 |---|---|
-| `server.yaml` | 本服务：`server`（HTTP/Wyoming 端口、out_rate）/`audio`/`chain`（选档）/`env`（共用 onnxrt） |
+| `server.yaml` | 本服务：`server`（HTTP/Wyoming 端口、out_rate、**准入闸 `max_concurrent`/`gate_timeout_s`**）/`audio`/`chain`（选档）/`env`（共用 onnxrt） |
 | `split.yaml` | 分词器三档参数 `tokenizer_profiles.tts_split`（max_chars 20/strict 1）/`punct`/`window`；三档实现在 `lang/split/` |
 | `sar.yaml` | 音频前处理/重采样段 |
 | `sherpa-onnx.yaml` | sherpa 家族共享设置（`models_root`/provider/线程） |
 | `vad.yaml` / `kws.yaml` / `asr.yaml` / `tts.yaml` | 各自 `*_profiles`——**只放本地档**（sherpa 等） |
 | `online.yaml` | **所有在线/外部 API 的 API 与密钥来源**：`online.asr`/`online.llm`/`online.tts`/`online.mimo` |
 | `klar.yaml` | klar NLU/HA 接入 ＋ 本地板端 `llm_profiles.npuserv` |
+| `vertify.yaml` | 声纹档参数 `spk_profiles.sherpa`：模型位置／`prefer_int8`／登记库 JSON 路径／**余弦门限 0.5**／`idle_unload_s`（**不常驻**的关键）／三句口头回复 |
 
 > **本地 vs 在线**：`asr.yaml`/`tts.yaml` 只放本地档；`chain.asr: remote-api`、`chain.llm: openai`、`chain.tts: http` 时，后端读 `online.yaml` 的 `online.asr/llm/tts`（`Config.online(kind)`）。密钥只记 env 名/keyfile 路径，**不写字面值**（D-27）。
 
@@ -113,7 +134,8 @@ python -X utf8 app.py --check          # 打印装配（哪级用哪档）就退
 python -X utf8 app.py                   # 起 HTTP 服务（默认 0.0.0.0:18091），**启动即 warm**
 python -X utf8 app.py --no-warm         # 不预热 sherpa runtime（省启动时间，首个请求才装载）
 python -X utf8 wyoming_gateway.py       # 起 Wyoming 三端口（板上/装了 wyoming 的机器）
-python -X utf8 tests/smoke.py           # 31 项契约自检（自检档，不依赖模型）
+python -X utf8 tests/smoke.py           # 契约自检（自检档，不依赖模型）
+python -X utf8 tests/spk_smoke.py       # 声纹自检：接线 12 项＋**真模型 6 项**（模型不在就跳过；--live 强制）
 python -X utf8 tests/tiers.py           # 真档装载实测（rms/silero/webrtc/sherpa-vad/asr/tts/kws）
 python -X utf8 tests/test_fsm.py        # 对话状态机单测 16 项
 ```
@@ -129,6 +151,12 @@ python -X utf8 tests/test_fsm.py        # 对话状态机单测 16 项
 `rms` ✅ 切 1 段；`silero` ✅ 真实语音切 2–4 段（2.88–6.21 s）；`sherpa` ✅ 真命中
 （zh_3→法国、zh_4→女儿、zh_5→落实、zh_6→见面会）；`webrtc` ⚠️ 本机缺 `_webrtcvad` 扩展
 （`pylite/` 里只有 aarch64 版 `.so`），**只能板上验**。
+
+`spk_smoke` 为什么单独一个文件：`tests/smoke.py` 的性质是"**纯标准库、无模型、无网络**都能跑"
+（它自己的头注钉住了），声纹要 `sherpa_onnx` ＋ 27 MB 权重，塞进去会破坏它。`spk_smoke` 先验接线
+（默认 `none`、不在 `SHERPA_STAGES`、构造不碰 onnx、router/kws_route 的 verify 会点名），
+模型在位时再验真模型（本机 2026-11-04：登记 alice → 同人 1:1 **0.777** 过门限、异人 **0.143** 不过、
+1:N 不误认、卸载后 `loaded=False`、再验自动重装；19/19 全绿）。
 
 ---
 
@@ -185,7 +213,7 @@ server/
   tools/wyoming_probe.py  Wyoming 验收客户端（从 HA4FPAI 移交）
   deploy/            板上 systemd 单元（lang-server-voice / lang-server-http）＋装法
   # npuserv/ → lang/npuserv/（与 asr/kws/tts 平级；NPU 槽位监督，仍由本服务管辖；2026-11-04 从 lang/llm/ 移入）
-  archive/           归档参考（mimo_bridge / piper_tts_server / server_app / webui）
+  archive/           归档参考（mimo_bridge / server_app / webui；piper_tts_server 已于 2026-11-04 删除）
   # archive/ha4fpai-voice/ 已移到 HA4FPAI/archiver/ha4fpai-voice/（2026-11-04）
 ```
 

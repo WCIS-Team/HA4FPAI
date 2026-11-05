@@ -8,7 +8,6 @@
 | 文件 | 类型 | 端口 | 状态 | 外部依赖 |
 |---|---|---|---|---|
 | `mimo_bridge.py` | ASR + LLM 桥 | 18090 | ✅ **能用**（从 `asr/` 移入） | 无（纯标准库）＋ MiMo API key |
-| `piper_tts_server.py` | TTS 服务 | 5002 | ✅ **能用**（从 `asr/` 移入） | piper-tts（conda env，py3.11 + ORT） |
 | `server_app.py` | ASR 服务（双协议） | 9000（配置里定） | ❌ **不能直接跑**（从 git 恢复） | fastapi + uvicorn + `asr.engine`（已删） |
 | `webui.py` | Web UI | 7860 | ❌ **不能直接跑**（从 git 恢复） | gradio + numpy + `asr.engine` + `asr.wavio`（均已删） |
 
@@ -50,15 +49,10 @@ ASR 714 ms + LLM 1514 ms；`rtf_mean` 0.899（关思考链后）。
 
 ---
 
-## piper_tts_server.py —— Piper TTS 服务（✅ 可用）
+## piper_tts_server.py —— **已删除（2026-11-04 她裁）**
 
-文本进、wav 出。**为什么必须常驻**：piper 每装载一次模型要 **22~27 s**（63 MB onnx + ORT），
-一次性 CLI 没法进链路。
-
-**端点**：`GET /health`（回 `load_s`）、`POST /tts {"text": "..."}` → wav。
-
-**跑在哪个 python**：**必须**是装了 piper-tts 的那个 conda env（默认
-`/root/mf3/envs/tts/bin/python`，py3.11 + onnxruntime 1.31.0）。**链路的 python 不需要装 piper。**
+服务、客户端（`tts_piper.py`）与 launcher（`start_piper_server.sh`）三件一起删了；
+现役外部 TTS 只剩 ekho-server（:2046）。
 
 **模型**：`zh_CN-huayan-medium.onnx`（63 MB，22050 Hz），默认路径
 `/root/ttsbench/models/piper/`。

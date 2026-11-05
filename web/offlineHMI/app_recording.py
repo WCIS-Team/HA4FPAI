@@ -23,7 +23,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from hmi import (App, Canvas, Theme, Button, Frame, make_backend, make_mouse,
                  Board, MockServer, SCREEN_W, SCREEN_H)
-from hmi.ui import PANEL, MUTED
 
 BTN_W, BTN_H = 260, 72
 TOP = 96
@@ -116,13 +115,13 @@ class RecordingApp(App):
         y = TOP
 
         # 左：预览窗
-        c.rect(PREVIEW_BOX, fill=(8, 12, 16), outline=(60, 70, 80))
+        c.rect(PREVIEW_BOX, fill=c.theme.colors["well"], outline=c.theme.colors["border"])
         try:
             jpeg = self.board.camera_preview_jpeg()
             c.jpeg_to_rgb(jpeg, PREVIEW_BOX)
         except Exception as e:
             c.text((PREVIEW_BOX[0] + 20, PREVIEW_BOX[1] + 20), "预览不可用: %s" % str(e)[:80],
-                   fill=(150, 150, 150))
+                   fill=c.theme.colors["muted"])
 
         # 右：控制列
         x = RIGHT_X
@@ -136,24 +135,24 @@ class RecordingApp(App):
             b = Button(key, (x, y, BTN_W, BTN_H), lab); btns.append(b); y += BTN_H + 16
         y += 8
         if self.storage:
-            c.text((x, y), "存储: %s" % self.storage, fill=(150, 158, 166)); y += 34
+            c.text((x, y), "存储: %s" % self.storage, fill=c.theme.colors["muted"]); y += 34
 
         # 下方：录像列表
         ly = TOP + PREVIEW_BOX[3] + 24
         c.text((24, ly), ("回收站" if self.trash_view else "录像") + "（点击选中）",
-               fill=(150, 158, 166)); ly += 34
+               fill=c.theme.colors["muted"]); ly += 34
         for i, r in enumerate(self.recs[:8]):
             rid = r.get("id", "?")
             box = (24, ly, 1280, 52)
             hot = self.sel == rid
-            c.rect(box, fill=(36, 50, 64) if hot else PANEL,
-                   outline=(255, 255, 255) if hot else None, width=2)
+            c.rect(box, fill=c.theme.colors["selected" if hot else "panel"],
+                   outline=c.theme.colors["focus"] if hot else None, width=2)
             c.text((36, ly + 26), "%s   %ss  %s帧" % (rid, r.get("duration", "?"), r.get("frames", "?")),
                    anchor="lm")
             btns.append(Button("sel:" + rid, box, ""))
             ly += 60
         if self.note:
-            c.text((24, SCREEN_H - 40), self.note, fill=(240, 200, 120))
+            c.text((24, SCREEN_H - 40), self.note, fill=c.theme.colors["notice"])
         return btns
 
 
@@ -163,12 +162,14 @@ def main():
     ap.add_argument("--mouse", default="mock:[[[300,200,0],[300,900,0],[300,900,1],[300,300,0]]]")
     ap.add_argument("--server", default=None, help="http://<板IP>:8093；不给则用内置 mock")
     ap.add_argument("--font", default=None, help="TTF 路径（中文）")
+    ap.add_argument("--theme", choices=("dark", "light"), default="dark",
+                    help="Color theme (default: dark)")
     ap.add_argument("--frames", type=int, default=None, help="最多重画几帧退出（预演/CI 用）")
     args = ap.parse_args()
 
     board = Board(args.server) if args.server else MockServer()
     app = RecordingApp(make_backend(args.backend), make_mouse(args.mouse), board,
-                       theme=Theme(args.font))
+                       theme=Theme(args.font, scheme=args.theme))
     n = app.run(max_frames=args.frames)
     print("presented %d frames" % n)
 

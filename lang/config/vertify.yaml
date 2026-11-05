@@ -1,12 +1,33 @@
-# lang/config/vertify.yaml —— 声纹验证（CAM++）档
-# 参数口径见 lang/vertify/para.md（sherpa-onnx v2.0.1 源码级 4 实例参数 + 判决级 threshold）；
-# 选型与现状见 lang/vertify/README.md。
-# 注意：档位**尚未实现**——Chain.STAGES 没有 spk 这一级，backends/__init__.py 的 REGISTRY 也没有。
-# 接进链路时按 para.md §七 的契约（档名 spk: sherpa）补档位，本文件只是参数正本。
+# lang/config/vertify.yaml —— 声纹验证（CAM++）档的参数（档名 `spk: sherpa`）
+#
+# 她 2026-11-04 定（三条，别改口径）：
+#   1. **默认不入链**：`server.yaml` 的 `chain.spk: none`；本文件只是档位参数。
+#   2. **不常驻**：进程启动不装载模型（`core.Chain.SHERPA_STAGES` 没有 spk）；第一次真用才建
+#      `SpeakerEmbeddingExtractor`，闲置 `idle_unload_s` 秒自动丢掉；也可 POST /api/v1/spk/unload。
+#   3. **被点名才测**：`router`（klar NLP）或 `kws_route`（唤醒词的 `verify:` 表）给出
+#      `action=verify` 时，拿**当前这条请求的那段音频**去跟库里的某个声纹比。
+#
+# 档位实现在 `lang/server/backends/spk.py`；参数面与实测（192 维嵌入、余弦门限、int8 三档、
+# fbank 固定面、运行时纪律）见 `lang/vertify/para.md`；选型见 `lang/vertify/README.md`。
+# 手动口子（HTTP 18091，试验台 :7861 同名口在 /api/spk/*）：
+#   GET  /api/v1/spk/status          POST /api/v1/spk/enroll?name=X
+#   POST /api/v1/spk/verify[?name=]  POST /api/v1/spk/unload
+#   POST /api/v1/spk/library?delete=X
+
 spk_profiles:
-  sherpa:                    # 复用 lang/vertify/models 的 CAM++（本机副本不入库）
-    model: ""                # 空＝取 vertify/models/3dspeaker_speech_campplus_sv_zh-cn_16k-common.onnx
-    num_threads: 1           # 板上给 1（993 MB，与 kws/asr 抢核）
-    threshold: 0.5           # 余弦门限（本仓实测 0.5 起跨人零误接受；0.30–0.45 有误接受）
-    # 档位建议：run(segs) -> (name, score)，逐 VAD 段各算一个嵌入；不要拿整条录音算一个。
-    # 登记库用 SpeakerEmbeddingManager(dim=192)；enroll 用 add(name, [多段嵌入])（多段平均＋归一化库内做）。
+  sherpa:
+    # 模型：给 model（文件，绝对路径或相对 lang/ 的路径）优先；否则在 model_dir 里挑 *.onnx
+    # （prefer_int8=1 时优先拿 .int8.onnx 那件）。要指定单件就加一行：
+    #   model: vertify/models/<...>/<xxx>.onnx
+    model_dir: vertify/models/3dspeaker_speech_campplus_sv_zh-cn_16k-common
+    prefer_int8: 0             # 1＝用本仓动态量化那件：常驻省 14.5 MB，但本机实测慢 16×
+    library: vertify/library.json   # 登记库（每人几百字节～几 KB）；运行期数据，已进 .gitignore
+    threshold: 0.5             # 余弦门限（0..1）：实测 0.50 起跨人零误接受，0.30–0.45 会误接受
+    num_threads: 1             # 与 KWS/ASR 抢核；板上给 1
+    idle_unload_s: 300         # 闲置这么多秒就丢会话（0＝不卸，变成常驻——不推荐）
+    min_speech_ms: 600         # 太短的段直接拒（实测 2.18 s 已能出 192 维；登记建议 ≥3 s）
+    # 结论怎么念（走链尾 分词→TTS；{name}/{score} 会被替换）
+    reply_ok: "声纹通过，是{name}。"
+    reply_unknown: "这个声音没在库里。"
+    reply_empty: "没听到声音，再试一次。"
+    reply_tts: 1               # 0＝只回 JSON 不念（板端静默核对时用）

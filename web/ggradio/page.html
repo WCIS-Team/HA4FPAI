@@ -3,70 +3,111 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>lang 语音链试验台</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%2340b478%27/%3E%3C/svg%3E">
+<title>lang 语音链试验台</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%273%27 fill=%27%2338BDF8%27/%3E%3C/svg%3E">
+<script>
+try { document.documentElement.dataset.theme=localStorage.getItem('ggradio-theme')==='light'?'light':'dark'; } catch(e) {}
+</script>
+<script src="/console-theme.js"></script>
 <style>
-  :root{--bg:#14181f;--card:#1c2430;--line:#2a3441;--fg:#e9edf2;--dim:#8d97a3;
-        --ok:#40b478;--warn:#f0c878;--bad:#d65450}
+  :root{color-scheme:dark;--bg:#111827;--panel:#1F2937;--text:#E5E7EB;
+        --muted:#9CA3AF;--accent:#38BDF8;--warning:#FBBF24;--border:#374151;
+        --card:var(--panel);--fg:var(--text);--dim:var(--muted);--line:var(--border);
+        --ok:var(--accent);--warn:var(--warning);--bad:#F87171}
+  :root{--field:#172030;--secondary:#374151;--selected:#26394A;--button-text:#111827}
+  :root[data-theme="light"]{color-scheme:light;--bg:#F3F6FA;--panel:#FFFFFF;--text:#1F2937;
+    --muted:#526174;--accent:#0369A1;--warning:#925A00;--border:#CBD5E1;
+    --bad:#B91C1C;--field:#F8FAFC;--secondary:#E2E8F0;--selected:#E0F2FE;--button-text:#FFFFFF}
   *{box-sizing:border-box}
+  .theme-toggle{position:fixed;right:18px;bottom:18px;z-index:100;width:42px;height:42px;
+    padding:0;border-radius:50%;background:var(--card);color:var(--fg);border:1px solid var(--line);
+    display:grid;place-items:center;box-shadow:0 2px 8px #0002}
+  .theme-toggle svg{width:20px;height:20px}
+  input:disabled,select:disabled,button:disabled{opacity:.55;cursor:not-allowed}
   body{background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;padding:1.2rem}
   h1{font-size:1.15rem;margin:0 0 .2rem}
   .sub{color:var(--dim);font-size:.85rem;margin-bottom:1rem}
   .tabs{display:flex;gap:.5rem;margin-bottom:1rem}
-  .tab{padding:.45rem 1rem;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:#1a222c}
-  .tab.on{background:var(--ok);color:#0f1a14;border-color:var(--ok);font-weight:600}
+  .tab{padding:.45rem 1rem;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--card)}
+  .tab.on{background:var(--ok);color:var(--button-text);border-color:var(--ok);font-weight:600}
   .pane{display:none}.pane.on{display:block}
   .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem 1.2rem;margin-bottom:1rem}
   .row{display:flex;gap:1rem;flex-wrap:wrap}
-  .col{flex:1;min-width:260px}
+  .col{flex:1 1 260px;min-width:0;max-width:100%}
+  .tabs{flex-wrap:wrap}
+  .card{min-width:0}
+  .stage{flex-wrap:wrap}
+  .stage input,.stage .badge{flex-shrink:0}
+  .stage>span:last-child{flex:1 1 170px;min-width:0}
+  .path,.desc,.mono{overflow-wrap:anywhere}
+  [data-rng]{min-width:0;flex-wrap:wrap}
+  input[type=range]{min-width:100px;writing-mode:horizontal-tb;direction:ltr}
   table{width:100%;border-collapse:collapse}
-  th,td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid #232c38;vertical-align:top}
+  th,td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
   th{color:var(--dim);font-weight:500;font-size:.82rem}
   code,.mono{font-family:ui-monospace,Consolas,monospace;font-size:.86rem}
-  .path{color:#9ad;cursor:pointer}
+  .path{color:var(--accent);cursor:pointer}
   .desc{color:var(--dim);font-size:.8rem;display:block;margin-top:.1rem;white-space:pre-wrap}
-  input,select,textarea{background:#10151c;color:var(--fg);border:1px solid var(--line);
+  input,select,textarea{background:var(--field);color:var(--fg);border:1px solid var(--line);
         border-radius:5px;padding:.3rem .45rem;font:inherit;width:100%}
   input[type=checkbox]{width:auto}
-  button{background:#2a3441;color:var(--fg);border:1px solid #3a4654;border-radius:6px;
+  button{background:var(--secondary);color:var(--fg);border:1px solid var(--line);border-radius:6px;
         padding:.45rem .9rem;cursor:pointer;font:inherit}
-  button.primary{background:var(--ok);border-color:var(--ok);color:#0f1a14;font-weight:600}
+  button.primary{background:var(--ok);border-color:var(--ok);color:var(--button-text);font-weight:600}
   button:hover{filter:brightness(1.12)}
+  button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  input[type=radio],input[type=checkbox]{accent-color:var(--accent)}
+  .tab.on{box-shadow:inset 0 -2px 0 var(--accent)}
   #log{color:var(--warn);font-size:.88rem;margin-left:.6rem}
   .filetabs{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.8rem}
   .ft{padding:.25rem .6rem;border:1px solid var(--line);border-radius:5px;cursor:pointer;font-size:.85rem}
-  .ft.on{background:#2f3d4d;border-color:#4a5a6d}
+  .ft.on{background:var(--selected);border-color:var(--accent)}
   .stage{display:flex;align-items:center;gap:.5rem;padding:.3rem 0}
-  .badge{font-size:.75rem;padding:.05rem .4rem;border-radius:4px;background:#2a3441;color:var(--dim)}
-  .rnum{color:#5ad19a;font-family:ui-monospace,Consolas,monospace;font-size:.82rem;min-width:3.4rem;text-align:right}
-  input[type=range]{padding:0;accent-color:#40b478;cursor:pointer}
+  .badge{font-size:.75rem;padding:.05rem .4rem;border-radius:4px;background:var(--secondary);color:var(--dim)}
+  .rnum{color:var(--accent);font-family:ui-monospace,Consolas,monospace;font-size:.82rem;min-width:3.4rem;text-align:right}
+  input[type=range]{padding:0;accent-color:var(--accent);cursor:pointer}
   .radio{display:inline-flex;align-items:center;gap:.3rem;white-space:nowrap;cursor:pointer;font-size:.9rem}
   .radio input{margin:0}
-  .art a{color:#7fd1a8}
+  .art a{color:var(--accent)}
   .err{color:var(--bad)}
   .tone-bad{color:var(--bad)}
   .tone-warn{color:var(--warn)}
   select.tone-bad{color:var(--bad)} select.tone-warn{color:var(--warn)}
   .chip{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:.05rem .4rem;
         margin:.15rem .25rem 0 0;font-size:.78rem}
-  pre{background:#0e131a;border:1px solid var(--line);border-radius:6px;padding:.7rem;overflow:auto;max-height:22rem}
-  /* 窄屏（手机）：单选行→下拉；横滑条→竖滑条；参数表堆叠 */
+  /* 声纹：录音中＝红底（沿用 --bad，不另起一套配色） */
+  #spkRec.rec{background:var(--bad);border-color:var(--bad);color:#fff;font-weight:600}
+  #spkLib .srow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin:.15rem 0}
+  #spkLib .srow button{padding:.05rem .5rem;font-size:.8rem;line-height:1.4}
+  pre{background:var(--field);border:1px solid var(--line);border-radius:6px;padding:.7rem;overflow:auto;max-height:22rem}
+  /* 每行根据实际可用宽度自动折行；滑条始终横向。 */
+  #pane-cfg table,#pane-cfg thead,#pane-cfg tbody{display:block}
+  #pane-cfg tr{display:flex;flex-wrap:wrap;gap:.4rem 1rem;border-bottom:1px solid var(--line);padding:.6rem 0}
+  #pane-cfg td,#pane-cfg th{border:0;min-width:0;max-width:100%;padding:.15rem 0;width:auto!important}
+  #pane-cfg tr>:nth-child(1){flex:1 1 230px}
+  #pane-cfg tr>:nth-child(2){flex:1 1 270px;container-type:inline-size}
+  #pane-cfg tr>:nth-child(3){flex:1.3 1 300px}
   .cw-narrow{display:none}
   .radio-row{display:flex;flex-wrap:wrap;gap:.15rem .9rem}
-  .radio-row{display:flex;flex-wrap:wrap;gap:.15rem .9rem}
-  @media (max-width:640px){
+  @container (max-width:360px){
     .cw-wide{display:none}
     .cw-narrow{display:block;width:100%}
-    input[type=range]{writing-mode:vertical-lr;direction:rtl;height:130px;width:30px;flex:none;margin:0 auto}
-    [data-rng]{flex-direction:column;align-items:center;gap:.2rem}
-    table,thead,tbody,tr,td,th{display:block;width:100%}
-    thead{display:none}
-    tr{border-bottom:1px solid #232c38;padding:.5rem 0}
-    td{border:none;padding:.15rem 0}
-    .desc{font-size:.8rem}
+  }
+  @media(max-width:640px){
+    #pane-cfg thead{display:none}
+    #pane-run table,#pane-run tbody,#pane-run tr,#pane-run td{display:block;width:100%}
+    #pane-run thead{display:none}
+    #pane-run td{border:none;overflow-wrap:anywhere}
   }
 </style>
 </head>
 <body>
+<button type="button" id="themeToggle" class="theme-toggle" aria-label="切换到浅色模式" title="切换到浅色模式"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
+<script>
+const themeButton=document.getElementById('themeToggle');
+function themeLabel(){const light=document.documentElement.dataset.theme==='light';const label=light?'切换到深色模式':'切换到浅色模式';themeButton.title=label;themeButton.setAttribute('aria-label',label);themeButton.setAttribute('aria-pressed',String(light));}
+themeButton.onclick=()=>{const theme=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=theme;try{localStorage.setItem('ggradio-theme',theme)}catch(e){}themeLabel();};
+themeLabel();
+</script>
 <h1>lang 语音链试验台</h1>
 <div class="sub">① 参数面板：lang/config/*.yaml 全量可调（说明取自注释）　② 逐段试验台：任选子集跑，产物可下载</div>
 
@@ -111,7 +152,7 @@
       <button class="primary" id="ttsApply">应用组合到配置</button>
       <span id="ttsLog" style="color:var(--warn);font-size:.88rem;margin-left:.6rem"></span>
     </div>
-    <div class="desc" style="margin-top:.4rem">前端选了就**禁用一体 TTS**（mel+vits / mel+ekho 不存在）；前端为空才能选一体的 piper/ekho。
+    <div class="desc" style="margin-top:.4rem">前端选了就**禁用一体 TTS**（mel+vits / mel+ekho 不存在）；前端为空才能选一体 TTS（edge / ekho；piper 已删）。
       mel+matcha+vocos 是唯一成功上板的神经组合（整链 RTF 0.716–0.777）；其余实测结果见 <code>lang/tts/README.md</code>。</div>
     <div id="ttsLegend" style="margin-top:.5rem"></div>
   </div>
@@ -124,7 +165,7 @@
     <div style="margin-top:.8rem">
       <button class="primary" id="saveCfg">保存到 YAML</button>
       <button id="saveReload">保存并重载链路</button>
-      <button id="resetCfg" style="border-color:#a06a3a;color:#f0c878">恢复默认</button>
+      <button id="resetCfg" style="border-color:var(--warning);color:var(--warning)">恢复默认</button>
       <span id="log"></span>
     </div>
   </div>
@@ -145,13 +186,57 @@
       </div>
       <div class="col">
         <b>输入</b>
-        <label style="display:block;color:var(--dim);font-size:.82rem;margin:.4rem 0 .2rem">音频文件（含音频段时必填）</label>
+        <div class="radio-row" style="margin:.4rem 0">
+          <label class="radio"><input type="radio" name="audioSource" value="file" checked>上传文件</label>
+          <label class="radio"><input type="radio" name="audioSource" value="recording" id="useRecording" disabled>使用录音</label>
+        </div>
+        <label for="afile" class="desc">音频文件（含音频段时必填；只上传当前选中的来源）</label>
         <input type="file" id="afile" accept=".wav,audio/wav,audio/*">
+        <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap">
+          <button type="button" id="micStart">开始录音</button>
+          <button type="button" id="micStop" disabled>停止录音</button>
+          <button type="button" id="micPreview" disabled>试听录音</button>
+        </div>
+        <div id="micStatus" class="desc" role="status" aria-live="polite">录制本机麦克风，最长 5 分钟；编码为单声道 16 kHz PCM16 WAV。停止后请明确选择「使用录音」。</div>
+        <audio id="micAudio" controls hidden style="width:100%;margin-top:.4rem" aria-label="录音试听"></audio>
+        <!-- 声纹（spk）：**两条路各自独立**——① 录音（麦克风，localhost/https 才给）
+             ② 上传（卡内自带选文件，任何机器都行）。两条最后都走同一个 spkEnroll()。 -->
+        <div class="card" style="margin-top:.7rem;padding:.7rem .85rem">
+          <div class="row" style="align-items:flex-end">
+            <div class="col" style="flex:0 1 120px">
+              <label style="display:block;color:var(--dim);font-size:.82rem;margin-bottom:.2rem">名字</label>
+              <input id="spkName" value="user1">
+            </div>
+            <div class="col">
+              <label style="display:block;color:var(--dim);font-size:.82rem;margin-bottom:.2rem">录音登记（麦克风 · localhost/https 才给）</label>
+              <button class="primary" id="spkRec">● 记录声纹</button>
+            </div>
+          </div>
+          <div style="margin-top:.45rem">
+            <label style="display:block;color:var(--dim);font-size:.82rem;margin-bottom:.2rem">上传登记（任意机器，不需要麦克风）</label>
+            <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center">
+              <input type="file" id="spkFile" accept=".wav,audio/wav,audio/*" style="flex:1 1 190px">
+              <button id="spkUpload">上传并登记</button>
+            </div>
+          </div>
+          <!-- 两行分开：档位状态会被定时/切页签刷新，**操作结果不能让它盖掉**（Lead 2026-11-04 实测踩到） -->
+          <div id="spkState" style="color:var(--dim);font-size:.85rem;margin-top:.5rem">声纹档状态读取中…</div>
+          <div id="spkMsg" role="status" aria-live="polite" style="color:var(--dim);font-size:.85rem;margin-top:.2rem">—</div>
+          <div style="margin-top:.5rem">
+            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+              <b style="font-size:.9rem">声纹库</b>
+              <button id="spkUnload" style="padding:.05rem .5rem;font-size:.8rem">卸载模型</button>
+              <span style="color:var(--dim);font-size:.8rem">卸载后下次登记/验证按需再装</span>
+            </div>
+            <div id="spkLib" style="color:var(--dim);font-size:.85rem;margin-top:.2rem">读取中…</div>
+          </div>
+        </div>
         <label style="display:block;color:var(--dim);font-size:.82rem;margin:.6rem 0 .2rem">文本（文本段输入；留空则用 ASR 结果）</label>
         <textarea id="text" rows="3" placeholder="你好，今天天气怎么样？"></textarea>
         <div class="row" style="margin-top:.5rem">
           <div class="col"><label style="color:var(--dim);font-size:.82rem">session</label><input id="session" value="default"></div>
-          <div class="col"><label style="color:var(--dim);font-size:.82rem">out_rate</label><input id="outRate" value="0"></div>
+          <div class="col"><label for="audioOutput" style="color:var(--dim);font-size:.82rem">音频输出</label><select id="audioOutput"><option value="browser" selected>浏览器播放（TTS 原生采样率）</option><option value="server">server（现有输出流程）</option></select></div>
+          <div class="col"><label for="outRate" style="color:var(--dim);font-size:.82rem">out_rate（仅 server）</label><input id="outRate" value="0" disabled></div>
         </div>
         <div style="margin-top:.7rem">
           <button class="primary" id="run">运行选中段</button>
@@ -163,12 +248,17 @@
 
   <div class="card">
     <b>结果</b>
+    <div id="ttsPlayback" hidden style="margin:.6rem 0">
+      <audio id="ttsAudio" controls preload="metadata" style="width:100%" aria-label="TTS 浏览器播放"></audio>
+      <div id="ttsPlaybackStatus" class="desc" role="status" aria-live="polite"></div>
+    </div>
     <table><thead><tr><th style="width:12%">段</th><th style="width:9%">耗时</th><th style="width:40%">结果</th><th>下载</th></tr></thead>
       <tbody id="runrows"><tr><td colspan="4" style="color:var(--dim)">还没跑</td></tr></tbody></table>
     <pre id="raw" style="display:none"></pre>
   </div>
 </div>
 
+<script src="/recorder.js"></script>
 <script>
 "use strict";
 const $=s=>document.querySelector(s);
@@ -178,7 +268,7 @@ document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
   document.querySelectorAll(".pane").forEach(x=>x.classList.remove("on"));
   t.classList.add("on"); $("#pane-"+t.dataset.pane).classList.add("on");
-  if(t.dataset.pane==="run") loadStages();
+  if(t.dataset.pane==="run"){ loadStages(); loadSpk(); }
 });
 
 /* ---------------- 参数面板 ---------------- */
@@ -209,20 +299,26 @@ function paintSel(sel,kind){
 }
 function syncCombo(){
   const mel=!!$("#ttsFront").value;
+  if(mel){if(!$("#ttsAc").value) $("#ttsAc").value="matcha";if(!$("#ttsVoc").value) $("#ttsVoc").value="vocos";}
   $("#ttsAc").disabled=!mel; $("#ttsVoc").disabled=!mel; $("#ttsInt").disabled=mel;
   paintSel($("#ttsFront"),"frontend"); paintSel($("#ttsAc"),"acoustic");
   paintSel($("#ttsVoc"),"vocoder"); paintSel($("#ttsInt"),"integrated");
 }
 function fillTtsCombo(){
   TTC=CFG.tts_combo||null; if(!TTC) return;
-  const put=(sel,arr)=>{sel.innerHTML=arr.map(o=>'<option value="'+esc(o.v)+'">'+esc(o.v||"（空）")+'</option>').join("")};
+  const put=(sel,arr)=>{sel.innerHTML=arr.map(o=>'<option value="'+esc(o.v)+'">'+esc(o.v||(sel.id==="ttsFront"?"不使用外部前端（一体 TTS）":"不适用"))+'</option>').join("")};
   put($("#ttsFront"),TTC.frontend); put($("#ttsAc"),TTC.acoustic);
   put($("#ttsVoc"),TTC.vocoder); put($("#ttsInt"),TTC.integrated);
   ["ttsFront","ttsAc","ttsVoc","ttsInt"].forEach(id=>$("#"+id).onchange=syncCombo);
-  if(TTC.frontend.some(x=>x.v==="sherpa-mel") && TTC.acoustic.some(x=>x.v==="matcha")
-     && TTC.vocoder.some(x=>x.v==="vocos")){
-    $("#ttsFront").value="sherpa-mel"; $("#ttsAc").value="matcha"; $("#ttsVoc").value="vocos";
-  }
+  const params=CFG.files.flatMap(f=>f.params||[]);
+  const value=path=>{const p=params.find(p=>p.path===path);return p?String(p.value):""};
+  const tier=value("chain.tts");
+  const split=tier==="sherpa"&&value("tts_profiles.sherpa.kind")==="matcha";
+  $("#ttsFront").value=split?"sherpa-mel":"";
+  $("#ttsAc").value=split?"matcha":"";
+  $("#ttsVoc").value=split?"vocos":"";
+  const integrated=tier==="edge"?"edge":value("online.tts.proto");
+  $("#ttsInt").value=TTC.integrated.some(x=>x.v===integrated)?integrated:"";
   syncCombo();
   $("#ttsLegend").innerHTML=
     '<span class="chip tone-warn">mel+matcha+vocos</span> 唯一成功上板（整链 0.716–0.777）'+
@@ -230,8 +326,8 @@ function fillTtsCombo(){
     '<span class="chip">ekho</span> 现役交付（RTF 0.49）';
 }
 $("#ttsApply").onclick=async()=>{
-  const body={frontend:$("#ttsFront").value,acoustic:$("#ttsAc").value,
-              vocoder:$("#ttsVoc").value,
+  const body={frontend:$("#ttsFront").value,acoustic:$("#ttsAc").disabled?"":$("#ttsAc").value,
+              vocoder:$("#ttsVoc").disabled?"":$("#ttsVoc").value,
               integrated:$("#ttsInt").disabled?"":$("#ttsInt").value};
   const r=await fetch("/api/tts-combo",{method:"POST",headers:{"Content-Type":"application/json"},
     body:JSON.stringify(body)});
@@ -313,6 +409,15 @@ function renderCfg(){
   tb.querySelectorAll(".path").forEach(el=>el.onclick=()=>{
     if(navigator.clipboard) navigator.clipboard.writeText(el.textContent);
   });
+  // 单选点与下拉同步，窗口变宽或变窄时保留未保存的选择。
+  tb.querySelectorAll('[data-path]').forEach(el=>el.addEventListener('change',()=>{
+    if(el.type!=='radio'&&el.tagName!=='SELECT') return;
+    tb.querySelectorAll('[data-path]').forEach(peer=>{
+      if(peer===el||peer.dataset.path!==el.dataset.path) return;
+      if(peer.type==='radio') peer.checked=peer.value===el.value;
+      else if(peer.tagName==='SELECT') peer.value=el.value;
+    });
+  }));
   // 滑条动 → 数字实时刷新（横向滑条旁边的读数）
   tb.querySelectorAll("input[type=range]").forEach(el=>{
     el.oninput=()=>{const n=document.getElementById("n_"+el.id); if(n) n.textContent=el.value;};
@@ -401,27 +506,110 @@ async function loadStages(){
 
 function chosen(){return [...document.querySelectorAll("#stages input:checked")].map(x=>x.value)}
 function setChosen(list){document.querySelectorAll("#stages input").forEach(x=>x.checked=list.indexOf(x.value)>=0)}
-$("#presetKws").onclick=()=>setChosen(["kws"]);
-$("#presetKwsAsr").onclick=()=>setChosen(["kws","vad","asr"]);
-$("#presetFull").onclick=()=>setChosen(["sar","kws","vad","asr","llm","tokenizer","tts"]);
+$("#presetKws").onclick=()=>setChosen(["rms","kws","kws_route"]);
+$("#presetKwsAsr").onclick=()=>setChosen(["rms","kws","kws_route","vad","asr"]);
+$("#presetFull").onclick=()=>setChosen(["sar","rms","kws","kws_route","vad","asr","llm","tokenizer","tts"]);
 $("#presetTts").onclick=()=>setChosen(["llm","tokenizer","tts"]);
 
+/* 普通链路录音与声纹登记各自保留明确的入口。 */
+let micBlob=null, micURL=null, micClock=null, micStarted=0, runBusy=false;
+const micAPI=window.GGRadioRecorder;
+function micSay(message){ $("#micStatus").textContent=message; }
+function micButtons(busy){
+  $("#micStart").disabled=busy||runBusy;
+  $("#micStop").disabled=!busy;
+  $("#micPreview").disabled=busy||!micBlob;
+  $("#useRecording").disabled=busy||!micBlob;
+  $("#spkRec").disabled=busy;
+}
+function clearMicPreview(){
+  const audio=$("#micAudio"); audio.pause(); audio.removeAttribute("src"); audio.load(); audio.hidden=true;
+  if(micURL) URL.revokeObjectURL(micURL);
+  micURL=null; micBlob=null;
+}
+function acceptMic(blob, error, automatic){
+  clearInterval(micClock);
+  if(blob){
+    clearMicPreview(); micBlob=blob; micURL=URL.createObjectURL(blob);
+    $("#micAudio").src=micURL; $("#micAudio").hidden=false;
+    micSay((automatic?"录音已自动停止（达到 5 分钟上限或设备断开）。":"录音已停止。")+
+      "已编码为单声道 16 kHz PCM16 WAV，"+((blob.size-44)/(micAPI.WAV_RATE*2)).toFixed(2)+" 秒。可试听后选择「使用录音」。");
+  }else micSay(error ? error.message : "没有录到音频，请重新录制。");
+  micButtons(false);
+}
+const micRecorder=micAPI ? new micAPI.Recorder((blob,error)=>acceptMic(blob,error,true)) : null;
+if(!micAPI){ $("#micStart").disabled=true; micSay("录音脚本加载失败，请刷新页面；仍可上传文件。"); }
+else if(!window.isSecureContext) micSay("麦克风需要 HTTPS 或 http://localhost；普通局域网 HTTP 地址不允许录音，仍可上传文件。");
+$("#micStart").onclick=async()=>{
+  if(!micRecorder||micRecorder.state!=="idle") return;
+  if(typeof spkRec!=="undefined"&&spkRec){ micSay("请先结束声纹录音。"); return; }
+  micButtons(true); $("#micStop").disabled=true; micSay("正在申请麦克风权限…请在浏览器中选择允许。");
+  $("#micAudio").pause();
+  try {
+    if(!await micRecorder.start()) return;
+    clearMicPreview();
+    document.querySelector('[name="audioSource"][value="file"]').checked=true;
+    $("#micStop").disabled=false; micStarted=Date.now();
+    micSay("录音中… 0 秒 / 300 秒；停止后编码为单声道 16 kHz PCM16 WAV。");
+    micClock=setInterval(()=>micSay("录音中… "+Math.floor((Date.now()-micStarted)/1000)+" 秒 / 300 秒；点击「停止录音」结束。"),1000);
+  }catch(error){ micSay(micAPI.microphoneError(error)); micButtons(false); }
+};
+$("#micStop").onclick=()=>{
+  if(!micRecorder||micRecorder.state!=="recording") return;
+  try { acceptMic(micRecorder.stop()); } catch(error) { acceptMic(null,error); }
+};
+$("#micPreview").onclick=async()=>{
+  try { await $("#micAudio").play(); } catch(error) { micSay("试听未能自动开始，请点击录音播放器的播放按钮。" ); }
+};
+$("#afile").addEventListener("change",()=>{ document.querySelector('[name="audioSource"][value="file"]').checked=true; });
+$("#audioOutput").onchange=()=>{ $("#outRate").disabled=$("#audioOutput").value==="browser"; };
+function clearTtsPlayback(){
+  const audio=$("#ttsAudio"); audio.pause(); audio.removeAttribute("src"); audio.load();
+  $("#ttsPlayback").hidden=true; $("#ttsPlaybackStatus").textContent="";
+}
+function playTts(o){
+  if(!o.result||o.result.audio_output!=="browser") return;
+  const artifact=(o.artifacts||[]).find(a=>a.stage==="tts"&&typeof a.url==="string"&&/\.wav(?:[?#]|$)/i.test(a.url));
+  if(!artifact) return;
+  const url=new URL(artifact.url,location.href);
+  if(url.origin!==location.origin||!/^https?:$/.test(url.protocol)) return;
+  const audio=$("#ttsAudio"), status=$("#ttsPlaybackStatus");
+  $("#ttsPlayback").hidden=false; audio.src=url.href;
+  const rate=o.result.audio_rate;
+  status.textContent="TTS 原生采样率"+(rate?" "+rate+" Hz":"")+"；正在尝试播放…";
+  audio.onerror=()=>{ status.textContent="音频加载或解码失败，请检查产物下载链接。"; };
+  audio.play().then(()=>{if(audio.src===url.href) status.textContent="浏览器播放 · TTS 原生采样率"+(rate?" "+rate+" Hz":"");})
+    .catch(()=>{if(audio.src===url.href) status.textContent="浏览器未自动播放，请点击上方播放器的播放按钮。";});
+}
+window.addEventListener("pagehide",()=>{ clearInterval(micClock); if(micRecorder) micRecorder.dispose(); clearMicPreview(); clearTtsPlayback(); });
+
 $("#run").onclick=async()=>{
+  if(runBusy) return;
+  if(micRecorder&&micRecorder.state!=="idle"){ $("#runlog").textContent="请先停止录音，再选择音频来源。"; return; }
   const stages=chosen();
   if(!stages.length){$("#runlog").textContent="先勾几段";return}
+  const recorded=document.querySelector('[name="audioSource"]:checked').value==="recording";
+  const f=recorded?micBlob:$("#afile").files[0];
+  const needsAudio=stages.some(name=>["sar","rms","kws","kws_route","vad","asr","router","spk"].includes(name));
+  if(needsAudio&&!f){ $("#runlog").textContent=recorded?"请先完成录音。":"请选择上传文件，或完成录音后选择「使用录音」。"; return; }
+  const output=$("#audioOutput").value;
   const fd=new FormData();
   fd.append("stages", stages.join(","));
   fd.append("text", $("#text").value||"");
   fd.append("session", $("#session").value||"default");
-  fd.append("out_rate", $("#outRate").value||"0");
-  const f=$("#afile").files[0];
-  if(f) fd.append("file", f, f.name);
+  fd.append("audio_output", output);
+  fd.append("out_rate", output==="browser"?"0":($("#outRate").value||"0"));
+  if(f) fd.append("file", f, recorded?"microphone-16000-mono-pcm16.wav":f.name);
+  clearTtsPlayback(); runBusy=true; $("#run").disabled=true; $("#micStart").disabled=true;
   $("#runlog").textContent="跑 "+stages.join(" → ")+" …";
   const t0=Date.now();
-  const r=await fetch("/api/run",{method:"POST",body:fd});
-  const o=await r.json();
-  $("#runlog").textContent=r.ok?("完成，用时 "+((Date.now()-t0)/1000).toFixed(2)+" s"):("失败 "+(o.error||r.status));
-  renderRun(o);
+  try {
+    const r=await fetch("/api/run",{method:"POST",body:fd});
+    const o=await r.json();
+    $("#runlog").textContent=r.ok?("完成，用时 "+((Date.now()-t0)/1000).toFixed(2)+" s"):("失败 "+(o.error||r.status));
+    renderRun(o); playTts(o);
+  }catch(error){ $("#runlog").textContent="请求失败："+error.message; }
+  finally { runBusy=false; $("#run").disabled=false; $("#micStart").disabled=!micAPI; }
 };
 
 function renderRun(o){
@@ -446,7 +634,225 @@ function renderRun(o){
   $("#raw").style.display="block"; $("#raw").textContent=JSON.stringify(o.result||{},null,2);
 }
 
+/* ---------------- 声纹（spk）：浏览器录音 → WAV → 登记 / 删库 / 卸载 ---------------- */
+// 关键口径：服务端 backends/audioio.decode_payload **只认 16-bit PCM WAV（或裸 PCM16）**，
+// 所以这里用 WebAudio 抓原始 PCM、在 JS 里自己编 44 字节 WAV 头再上传；
+// **不用 MediaRecorder**（它出 webm/opus，服务端解不了）。
+// 采样率原样写进 WAV 头（ctx.sampleRate，48k 也认——服务端自己 resample 到 16k），这里绝不重采样。
+const SPK_MAX_S=15, SPK_MIN_S=0.8, SPK_PERM_MS=8000;
+let spkRec=null, spkAsking=false;         // spkRec={ctx,stream,src,node,mute,bufs,rate,timer}；spkAsking=正在等授权
+
+// 两行分工（Lead 2026-11-04 实测：错误会被状态刷新盖掉）：
+//   #spkState ← 只由 loadSpk() 写（档位状态，会随切页签刷新）
+//   #spkMsg   ← 只由 spkSay() 写（本次操作结果/错误，刷新不会覆盖它）
+function spkStateSay(text, tone){
+  const el=$("#spkState");
+  el.textContent=text;
+  el.style.color=(tone==="bad")?"var(--bad)":(tone==="ok"?"var(--ok)":"var(--dim)");
+}
+function spkSay(text, tone){
+  const el=$("#spkMsg");
+  el.textContent=text;
+  el.style.color=(tone==="bad")?"var(--bad)":(tone==="ok"?"var(--ok)":"var(--dim)");
+}
+function spkLen(bufs){ let n=0; bufs.forEach(b=>n+=b.length); return n; }
+function spkBtn(recording){
+  const b=$("#spkRec");
+  b.classList.toggle("rec", !!recording);
+  b.textContent=recording?"■ 记录中 0.0s（点击结束）":"● 记录声纹";
+}
+function spkWav(chunks, rate){
+  const n=spkLen(chunks);
+  const ab=new ArrayBuffer(44+n*2), v=new DataView(ab);
+  const put=(off,s)=>{for(let i=0;i<s.length;i++) v.setUint8(off+i,s.charCodeAt(i));};
+  put(0,"RIFF"); v.setUint32(4,36+n*2,true); put(8,"WAVE");
+  put(12,"fmt "); v.setUint32(16,16,true);
+  v.setUint16(20,1,true);                                   // PCM
+  v.setUint16(22,1,true);                                   // 单声道
+  v.setUint32(24,rate,true); v.setUint32(28,rate*2,true);    // 采样率 / 字节率
+  v.setUint16(32,2,true); v.setUint16(34,16,true);           // 16-bit
+  put(36,"data"); v.setUint32(40,n*2,true);
+  let o=44;
+  for(const c of chunks){
+    for(let i=0;i<c.length;i++){
+      const s=Math.max(-1,Math.min(1,c[i]));
+      v.setInt16(o, s<0?s*0x8000:s*0x7FFF, true); o+=2;
+    }
+  }
+  return new Blob([ab],{type:"audio/wav"});
+}
+
+async function spkStart(){
+  if(spkRec||spkAsking) return;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    spkSay("这浏览器没有 getUserMedia（非 https/localhost 打开时浏览器也不给麦）"+
+           "——先用卡片里的「上传并登记」","bad");
+    return;
+  }
+  // **先上屏、再 await**：授权框没人点时按钮不能看起来死掉（Lead 2026-11-04 在无头 Chromium 里实测踩到）。
+  spkAsking=true;
+  $("#spkRec").disabled=true;
+  $("#spkRec").textContent="请求权限中…";
+  spkSay("正在请求麦克风权限…（浏览器会弹授权框；"+Math.round(SPK_PERM_MS/1000)+" s 内没有结果就报错）");
+  let timer=null, stream=null;
+  const req=navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:false,
+    noiseSuppression:false,autoGainControl:false}});
+  const guard=new Promise((_ok,rej)=>{
+    timer=setTimeout(()=>rej(Object.assign(new Error("getUserMedia 超时"),{name:"TimeoutError"})),SPK_PERM_MS);
+  });
+  try{
+    stream=await Promise.race([req,guard]);
+  }catch(e){
+    spkAsking=false;
+    $("#spkRec").disabled=false; spkBtn(false);
+    // 超时之后 stream 可能迟到：就地关掉，别让它偷偷开着麦
+    req.then(s=>{ try{ s.getTracks().forEach(t=>t.stop()); }catch(_e){} }).catch(()=>{});
+    if(e&&e.name==="TimeoutError")
+      spkSay("没等到麦克风授权（"+Math.round(SPK_PERM_MS/1000)+" s）：授权框可能没人点，或页面不在 localhost/https"+
+             "——用卡片里的「上传并登记」","bad");
+    else
+      spkSay("拿不到麦克风："+((e&&e.name)||e)+"——浏览器只在 localhost/https 给麦，"+
+             "http://192.168.x.x 打开请用卡片里的「上传并登记」","bad");
+    return;
+  }finally{
+    if(timer) clearTimeout(timer);
+  }
+  spkAsking=false;
+  $("#spkRec").disabled=false;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC){ stream.getTracks().forEach(t=>t.stop()); spkSay("这浏览器没有 WebAudio（AudioContext）","bad"); return; }
+  const ctx=new AC();
+  let src,node,mute;
+  try{
+    src=ctx.createMediaStreamSource(stream);
+    node=ctx.createScriptProcessor(4096,1,1);               // 简单且兼容性够（不用 AudioWorklet）
+    mute=ctx.createGain(); mute.gain.value=0;               // 必须接 destination 才被调度；gain=0 免得回授
+  }catch(e){
+    try{ctx.close()}catch(_e){}
+    stream.getTracks().forEach(t=>t.stop());
+    spkSay("WebAudio 建不起来："+e,"bad"); return;
+  }
+  const bufs=[];
+  spkRec={ctx:ctx,stream:stream,src:src,node:node,mute:mute,bufs:bufs,rate:ctx.sampleRate,timer:null};
+  node.onaudioprocess=ev=>{
+    if(!spkRec) return;
+    bufs.push(new Float32Array(ev.inputBuffer.getChannelData(0)));   // 拷一份（输入缓冲会复用）
+  };
+  src.connect(node); node.connect(mute); mute.connect(ctx.destination);
+  spkBtn(true);
+  spkSay("录音中…上限 "+SPK_MAX_S+" s，到点自动结束并登记；再点一次按钮＝立刻结束");
+  spkRec.timer=setInterval(()=>{
+    if(!spkRec) return;
+    const secs=spkLen(spkRec.bufs)/spkRec.rate;
+    $("#spkRec").textContent="■ 记录中 "+secs.toFixed(1)+"s（点击结束）";
+    if(secs>=SPK_MAX_S) spkStop(true);
+  },200);
+}
+
+async function spkStop(auto){
+  const R=spkRec; if(!R) return;
+  spkRec=null;                                              // 先摘掉，防重入
+  if(R.timer) clearInterval(R.timer);
+  try{ R.node.onaudioprocess=null; R.node.disconnect(); R.src.disconnect(); R.mute.disconnect(); }catch(e){}
+  try{ await R.ctx.close(); }catch(e){}
+  try{ R.stream.getTracks().forEach(t=>t.stop()); }catch(e){}
+  spkBtn(false);
+  const secs=spkLen(R.bufs)/R.rate;
+  if(secs<SPK_MIN_S){
+    spkSay("太短（"+secs.toFixed(2)+" s）：太短，至少说一句话（≥"+SPK_MIN_S+" s）再点结束——这次不上传","bad");
+    return;
+  }
+  spkSay((auto?("到 "+SPK_MAX_S+" s 上限自动结束；"):"")+
+         "录到 "+secs.toFixed(1)+" s @"+R.rate+" Hz，编码 WAV 上传登记 …");
+  await spkEnroll(spkWav(R.bufs,R.rate));
+}
+
+async function spkEnroll(blob, filename){
+  const name=($("#spkName").value||"").trim();
+  if(!name){ spkSay("先在上面填一个名字（默认 user1）","bad"); return false; }
+  const fd=new FormData();
+  fd.append("audio", blob, filename||"spk.wav");            // 字段名 audio（服务端也认 file）
+  try{
+    const r=await fetch("/api/spk/enroll?name="+encodeURIComponent(name),{method:"POST",body:fd});
+    const o=await r.json();
+    if(o.code===0){
+      spkSay("✓ 已登记 "+o.name+" · 共 "+o.total+" 段 · 嵌入 "+o.dim+" 维","ok");
+      renderSpkLib(o.speakers);
+      loadSpk();                     // 顺手刷新 #spkState 里的说话人数（它只由 loadSpk 写）
+      return true;
+    }
+    spkSay("登记失败："+(o.msg||("HTTP "+r.status)),"bad");
+  }catch(e){ spkSay("登记失败："+e,"bad"); }
+  return false;
+}
+
+function renderSpkLib(list){
+  const box=$("#spkLib");
+  if(!list||!list.length){ box.innerHTML='<span style="color:var(--dim)">（空）还没有登记任何声纹</span>'; return; }
+  box.innerHTML="";
+  list.forEach(s=>{
+    const row=document.createElement("div");
+    row.className="srow";
+    row.innerHTML='<span class="mono">'+esc(s.name)+'</span>'+
+      '<span style="color:var(--dim)">· '+esc(s.count)+' 段</span>'+
+      '<span style="color:var(--dim)">· '+esc(s.updated||"—")+'</span>';
+    const b=document.createElement("button");
+    b.textContent="删"; b.title="从声纹库里删掉这个名字";
+    b.onclick=()=>spkForget(s.name);
+    row.appendChild(b);
+    box.appendChild(row);
+  });
+}
+
+async function spkForget(name){
+  try{
+    const r=await fetch("/api/spk/library?delete="+encodeURIComponent(name),{method:"POST"});
+    const o=await r.json();
+    if(o.code===0){ spkSay("✓ 已删 "+name,"ok"); renderSpkLib(o.speakers); loadSpk(); }
+    else spkSay("删除失败："+(o.msg||("HTTP "+r.status)),"bad");
+  }catch(e){ spkSay("删除失败："+e,"bad"); }
+}
+
+async function loadSpk(){
+  try{
+    const r=await fetch("/api/spk/status");
+    const o=await r.json();
+    if(!o.ok){                                    // 档位没实现/模型不在：照实显示原因，不静默失败
+      spkStateSay("声纹档不可用："+(o.msg||("HTTP "+r.status)),"bad");
+      $("#spkLib").innerHTML='<span style="color:var(--dim)">—</span>';
+      return;
+    }
+    spkStateSay((o.loaded?"模型已装载":"模型未装载（下次登记/验证时按需装）")+
+      " · 嵌入 "+o.dim+" 维 · 门限 "+o.threshold+
+      " · 说话人 "+(o.speakers||[]).length+
+      (o.library?(" · 库 "+o.library):"")+
+      (o.idle_unload_s?(" · 空闲 "+o.idle_unload_s+" s 自动卸载"):""));
+    renderSpkLib(o.speakers);
+  }catch(e){ spkStateSay("读声纹档状态失败："+e,"bad"); }
+}
+
+$("#spkRec").onclick=()=>{ if(spkRec) spkStop(false); else spkStart(); };
+$("#spkUpload").onclick=async()=>{
+  const f=$("#spkFile").files[0];
+  if(!f){ spkSay("先选一个 wav 文件（16-bit PCM WAV）再点「上传并登记」","bad"); return; }
+  const name=($("#spkName").value||"").trim();
+  const fname=(name.replace(/\.[^.]+$/,"")||"spk")+".wav";   // 只影响 FormData 里的文件名
+  const btn=$("#spkUpload");
+  btn.disabled=true;
+  spkSay("上传 "+f.name+" 登记 …");
+  try{ await spkEnroll(f, fname); } finally { btn.disabled=false; }
+};
+$("#spkUnload").onclick=async()=>{
+  try{
+    const r=await fetch("/api/spk/unload",{method:"POST"});
+    const o=await r.json();
+    if(o.code===0) spkSay("✓ 已卸载（下次验证按需再装）","ok");
+    else spkSay("卸载失败："+(o.msg||("HTTP "+r.status)),"bad");
+  }catch(e){ spkSay("卸载失败："+e,"bad"); }
+};
+
 loadCfg();
+loadSpk();
 </script>
 </body>
 </html>

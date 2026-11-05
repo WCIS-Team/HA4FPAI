@@ -228,22 +228,29 @@ fangjun vs 另两人 0.007–0.28）。⇒ 余量约 0.33。
 
 ---
 
-## 七、接进 `lang/server` 的现状与契约
+## 七、接进 `lang/server` 的现状与契约（2026-11-04 已实装）
 
-**现状（2026-11-04）**：链的 `Chain.STAGES = ("sar","vad","kws","asr","llm","tokenizer","tts")`
-（`server/core.py:111`）**没有声纹这一级**；`server/backends/__init__.py` 的 `REGISTRY` 里也没有 `spk`/`verify`。
-⇒ **本页只落模型与参数面，档位没实现**，`lang/config/server.yaml` 的 `chain` 节里也不存在这一档。
+**实装位置**：`Chain.STAGES` 加了 `spk`（`server/core.py`）、档位在 `server/backends/spk.py`
+（`REGISTRY["spk"] = {"sherpa": SpkSherpa}`）、参数在 `lang/config/vertify.yaml`、
+HTTP 口在 `server/app.py` 的 `/api/v1/spk/*`。
 
-要接进来时（按 `backends/__init__.py` 头注那三步走）建议的契约：
+**三条口径（她 2026-11-04 定，已写进代码）**：
 
-| 项 | 建议 | 理由 |
+| 口径 | 落法 |
+|---|---|
+| **默认不入链** | `server.yaml` 的 `chain.spk: none`。被点名 `verify` 时若 spk 仍为 none，只记 `verify_skipped` 就返回（老行为不变） |
+| **不常驻** | `Chain.SHERPA_STAGES` **不含 spk**（启动预热只拉 vad/kws/asr/tts）；`SpkSherpa.__init__` 不碰 onnx，第一次 `run/embed` 才建会话；闲置 `idle_unload_s`（默认 300 s）由档自己 `drop()`；`POST /api/v1/spk/unload` 手动卸 |
+| **被路由点名才测** | `router`（klar NLP）给 `action=verify` ⇒ 用**本次请求的 `segs`**；`kws_route`（唤醒词的 `verify:` 表）给 `verify` ⇒ 用**整段 `samples`**；两条都跳过 vad/asr/router/llm，结论经 tokenizer→tts 念出来 |
+
+| 项 | 实际值 | 出处 |
 |---|---|---|
-| 档名 | `spk: {sherpa: …}`（与 `kws: sherpa` 同款命名） | 一组件一文件、一档一名 |
-| `run(segs) -> (name, score)` | 逐 VAD 段各算一个嵌入；**不要拿整条录音算一个** | 一录多段时"先说 A 后说 B"要分得开 |
-| 运行时 | `self.shared.sherpa()`（**共用那一份 sherpa-onnx 运行时**） | 她的口径（`core.py:21-24`）：VAD/KWS/ASR/TTS 共用同一个 env，别新开 ORT |
-| 登记库 | `SpeakerEmbeddingManager(dim)`；enroll 用 `add(name, [多段嵌入])` | 多段平均＋归一化是库内做的（`manager.cc:43-87`） |
-| 门限 | **0.5**（§三） | 本机实测 0.5 起跨人零误接受 |
-| 内存 | 本机峰值 126 MB 是**独占进程**的数；同进程叠加按 session 增量估（权重 27 MiB / 8.2 MiB） | `rss_probe.py` |
+| 档名 | `spk: {sherpa: …}`（与 `kws: sherpa` 同款） | `backends/__init__.py` |
+| 链路签名 | `run(segs) -> {match, score, scores, threshold, speech_s, dim, ms}` | `backends/spk.py` |
+| 运行时 | `self.shared.sherpa()`（**共用那份 sherpa-onnx**，不另开 ORT） | `core.SharedEnv` |
+| 登记库 | 不用 `SpeakerEmbeddingManager`，改存 **JSON**（每人多条向量），打分＝**每人取向量最大余弦** | `spk.py` 的 `_lib` |
+| 门限 | **0.5**（`spk_profiles.sherpa.threshold`） | §三 |
+| 口头回复 | `reply_ok` / `reply_unknown` / `reply_empty` ＋ `reply_tts`（0＝只回 JSON） | `vertify.yaml` |
+| 自检 | `server/tests/spk_smoke.py`（接线 12 项＋真模型 6 项；本机 19/19） | 同目录 |
 
 ---
 
