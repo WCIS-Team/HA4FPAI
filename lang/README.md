@@ -3,6 +3,9 @@
 本目录是 WCIS 的语音链，位于 `repos/HA4FPAI/lang/`。依赖、模型和配套 HMI 的运行前提统一见 [DEPENDENCIES](DEPENDENCIES.md)；权重/模型不入库。
 
 ## 导航
+Ubuntu20.04 arm64 的原生 deb、Linux 安装入口和 GitHub Actions 产物下载见 [Linux 安装与自动打包](packaging/linux/README.md)。Linux 包使用 mpg123 解码、私有 Python 环境和默认在线选档；模型由安装后的后台任务下载，不在 CI 中下载或执行。
+
+---
 
 - [链路图](chain.txt)：HTTP、Wyoming、麦克风三个入口与各处理阶段。
 - [依赖与模型前提](DEPENDENCIES.md)：按自检、板端在线、本地 sherpa 档探测和补齐依赖。
@@ -12,7 +15,122 @@
 - [服务部署说明](server/deploy/README.md)：systemd 单元与部署布局。
 - [offlineHMI](../web/offlineHMI/README.md)：配套 HDMI 原生界面。
 
-## 端口一览（`config/server.yaml`）
+| 依赖 | 必需？ | 用途 | 装法 |
+|---|---|---|---|
+| **miniaudio / mpg123** | Edge TTS 的 MP3 解码后端择一；Linux 安装包默认 mpg123 | `chain.tts: edge` 时把 MP3 解成采样 | 复用现有解码器；包管理器负责 Linux 依赖 |
+| **edge-tts** | 用 edge 档才需要 | 调 Edge「大声朗读」在线中文 TTS（无需 key，需联网） | `pip install edge-tts` |
+| **sherpa-onnx** | 用本地 VAD/ASR/KWS/TTS 才需要 | 本地模型推理；**它自带 onnxruntime**（与 pip 的 ORT 是两份库，别混用） | `pip install sherpa-onnx`（板上用厂商/官方轮子） |
+| **numpy** | 本地 sherpa 档 / silero-VAD / 加速路径需要 | 特征与张量 | `pip install numpy` |
+| **onnxruntime** | **默认不需要**（单运行时）；只有 `vad: silero`（raw-ORT）＋显式关掉 `env.single_runtime` 才要 | 直接跑 silero VAD onnx＝**第二份运行时**（费内存，不推荐） | `pip install onnxruntime`（优先 `vad: sherpa`） |
+| **wyoming**（1.10.2） | 用 `wyoming_gateway.py`（HA 上层对接）才需要 | Wyoming TCP 协议外壳 | `pip install wyoming==1.10.2` |
+| webrtcvad | 用 `vad: webrtc` 才需要 | WebRTC VAD；`vad/webrtc/pylite/` 已带 **aarch64** 版 `.so`，板上不用另装 | （板上用 pylite；本机需 win 版） |
+
+> **核心服务本身是纯标准库**（`app.py`/`cfg.py`/`core.py`/`fsm.py`/`audioio.py`），不装上面这些也能起服务、跑自检档（`echo`/`sine`）。
+>
+> **只有一份 onnx 运行时**：sherpa-onnx 自带 ORT，VAD/KWS/ASR/TTS 全共用这一份；`pip onnxruntime` 是第二份，
+> 默认被 `env.single_runtime: true` 禁掉。`app.py` / `wyoming_gateway.py` 启动时会 **warm**
+> （先拉 sherpa runtime，再装 active 档；`--no-warm` 可跳过）。
+
+### 最小安装（本机自检）
+```bash
+pip install miniaudio numpy
+```
+
+### 上板（Ubuntu 20.04 arm64 / py3.8）跑全链
+```bash
+pip install miniaudio edge-tts numpy
+pip install sherpa-onnx          # 本地 VAD/ASR/KWS/TTS
+pip install wyoming==1.10.2      # 如果要 Wyoming 面给 HA
+# vad: silero 档另装 onnxruntime
+```
+
+---
+
+## 2. `../web/offlineHMI`（板端 HDMI 原生 HMI / kiosk）—— 板端依赖最小集
+
+**完整运行前提**（含命令、寄存器、坑）在 `../web/offlineHMI/README.md`；
+这里只回答"**要装什么、最小的那个是什么**"。
+
+### 2.1 软件包：**除中文字体，一个都不用装**
+
+| 依赖 | 必需？ | 板上现状（2026-11-03 只读取证，A） | 大小 |
+|---|---|---|---|
+| `python3` | ✅ | 3.8.10 | 已装 |
+| **Pillow** | ✅ 界面全靠它画 | **9.3.0** | 已装 |
+| `numpy` | ✅ RGB565 打包／重采样 | 1.23.0 | 已装 |
+| `arecord`（alsa-utils） | 只有语音页要 | 1.2.2 | 已装 |
+| 中文字体 | 可选（见 2.2） | **只有 6 个字体，无 CJK** | 见下 |
+| X / 浏览器 / GStreamer / Electron / ffmpeg | **不需要** | —— | —— |
+
+### 2.2 中文字体：`fonts-wqy-zenhei` **不是最小的**
+
+不装就全是豆腐块（板上 `fc-list` 只有 6 个字体）。
+**focal 上两个 wqy 都可装**（2026-11-04 板上 `apt-cache policy` ＋ `apt-get -s install`
+＋ `apt-get download` 解包实测，A 级；**只下载解包，没有安装**）：
+
+| 包（focal 版本） | `.deb` | Installed-Size | 字体文件本体 | 许可证（包内 `copyright` 原文） |
+|---|---|---|---|---|
+| **`fonts-wqy-microhei` 0.2.0-beta-3** | **1,606,976 B（1.53 MiB）** | **5,134 KB** | `wqy-microhei.ttc` **5,177,387 B** | **`Apache-2.0 or GPL-3+ with Font exception`** |
+| `fonts-wqy-zenhei` 0.9.45-7ubuntu1 | 7,468,354 B（7.12 MiB） | 16,430 KB | `wqy-zenhei.ttc` 16,791,251 B | `GPL-2 with Font embedding exception and M+ FONTS License` |
+| `fonts-arphic-ukai` | — | 17,249 KB（Debian 13 读数） | — | 未核 |
+| `fonts-arphic-uming` | — | 21,009 KB（同上） | — | 未核 |
+| `fonts-noto-cjk` | — | 91,217 KB（同上） | — | 未核（太重，别用） |
+
+⇒ 板端装法：`apt-get install -y fonts-wqy-microhei`——`1 个新装包、无依赖`，
+比 zenhei **省 11.3 MB 安装空间 / 5.9 MB 下载**。
+
+**CJK 覆盖（A）**：`fc-query` 读 microhei 的 charset ＝ `4e00-9fc3`，即基本 CJK 全区；
+本 HMI 实际用到的 **546 个汉字**（实测统计）全在该区间内 ⇒ 显示不会缺字。
+
+**许可证（A，包内 `/usr/share/doc/<pkg>/copyright` 原文）**：
+
+| 包 | 字体许可证 | 对"随仓库分发子集"的含义 |
+|---|---|---|
+| `fonts-wqy-microhei` | `Apache-2.0 or GPL-3+ with Font exception`（可择一，**双授权**） | ✅ **Apache-2.0 档允许再分发**：带上 NOTICE/许可证即可把子集 ttf 放进仓库 |
+| `fonts-wqy-zenhei` | `GPL-2 with Font embedding exception and M+ FONTS License` | ⚠️ 「Font embedding exception」只豁免**把字形嵌进文档**；字体文件本身随仓库走仍按 GPL-2，还要带上 M+ 的条款 ⇒ **不适合做仓库内子集** |
+
+> 两个包 `debian/*` 打包部分另有 GPL-3+／GPL-2，但那管的是打包脚本，不影响字体使用。
+
+### 2.3 比"装字体"更小的两条路（真·零依赖）
+
+1. **界面文案只用 ASCII**（英文/拼音/图标）⇒ 字体依赖直接归零，最省；
+2. **把固定文案做成子集字体**：本 HMI 源码里出现 **546 个不同汉字**（实测统计），
+   以 **microhei（Apache-2.0）** 为基底用 `fonttools` 裁子集，预计 0.2–0.5 MB（C，未裁过），
+   随仓库走、不装系统包。**别用 zenhei 做基底**（GPL-2 + M+，见上表）。
+   代价：吃新字符要重新裁一次；许可证声明文件（Apache-2.0 全文 + NOTICE）要一起入库。
+
+### 2.4 除软件包外还必须有（硬件／权限，不是"装"）
+
+| 项 | 说明 |
+|---|---|
+| **root** | `/dev/mem` 是 `crw------- root root`；sink 要写 `0x40080054` |
+| `/dev/udmabuf0` | 128 MiB @ phys `0x30100000`，`u_dma_buf` 模块已加载 |
+| **USB 鼠标** | 板上目前没插；插上后设备号现场查（不是写死） |
+| 麦克风（MCP01 USB 声卡） | 只有语音页要 |
+| **1080p 显示器** | PL 时序写死 1920×1080；不接 SDI 相机时刷新率约 81 Hz（详见 offlineHMI/README 的警告） |
+
+---
+
+## 3. ffmpeg / mpg123 —— **不是必需**
+
+Edge 输出 mp3，本仓用 **miniaudio** 解码（~0.1 MB）。**不需要 ffmpeg**（完整版 200 MB+）。
+若不想装 miniaudio，也可换 `mpg123`（`apt install mpg123`，~0.2 MB），在
+`config/online.yaml` 的 `online.edge.decoder` 指定即可（`miniaudio|mpg123|soundfile|ffmpeg|auto`）。
+
+---
+
+## 4. 模型权重（不入库，运行前自备）
+
+| 用途 | 目录/路径 | 来源 |
+|---|---|---|
+| 本地 VAD/ASR/KWS/TTS | `/mnt/data/models/**`（板上） | sherpa-onnx 官方发布页（见 `vad/README.md`、`kws/README.md`、`tts/README.md`） |
+| Edge TTS | 无需权重 | 在线服务 |
+| NPU LLM（ERNIE/Qwen3） | `/mnt/data/...`、`/root/qwen3/...` | iCraft 编译产物（见 `llm/`、`npuserv/`） |
+| ekho TTS | `tts/ekho-linux/`（源码）＋板上 48k 音库 | 见 `tts/README.md` |
+
+---
+
+## 5. 端口一览（`config/server.yaml`）
 
 | 端口 | 服务 |
 |---|---|
