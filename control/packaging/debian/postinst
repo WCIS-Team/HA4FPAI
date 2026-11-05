@@ -1,0 +1,12 @@
+#!/bin/sh
+# ha4fpai-control postinst: create state dirs and bootstrap the API token.
+# Idempotent; never prints or logs the token value.
+set -e
+STATE=/var/lib/ha4fpai-control
+mkdir -p "$STATE/exports" "$STATE/media"
+if [ ! -s "$STATE/token" ]; then
+  python3 -c 'import secrets; print(secrets.token_urlsafe(32))' > "$STATE/token"
+fi
+chmod 600 "$STATE/token" 2>/dev/null || true
+# Repo convention: units stay manual-start; this package enables nothing.
+#HA4FPAI-AGENTS: workflows manual-only; no timers or auto triggers shipped.

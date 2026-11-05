@@ -15,6 +15,12 @@
 
 ## 二、安装步骤（上板日执行，每步留回执）
 
+> **deb 安装（推荐，2026-11-05 起可用）**：`control/packaging/build_control_deb.py` 产出
+> `ha4fpai-control_<版本>_arm64.deb`（纯 Python 组装，无 wheelhouse 依赖，Windows/容器均可跑）；
+> postinst 自动建 `/var/lib/ha4fpai-control/` 并生成 0600 令牌（已存在则不覆盖）；
+> 单元**不自动启用**，装完审阅后手动 `systemctl enable --now`（仓约定 Actions/自启全手动）。
+> 走 deb 时下面第 2/4 步由包接管，第 3 步仍需人工核对数据挂载 UUID。
+
 1. **核对版本**：板上现有服务清点（8091/8092/8093 视频、lang-server 0.1.1、klar 10520）；确认 `unified-control` 分支 commit 号并记录。
 2. **传文件**：`scp -r control/ root@113:/root/ha4fpai-control/`（或经 107 中转），传输后 `sha256sum` 抽查 3 件。
 3. **建数据目录**：`mkdir -p /var/lib/ha4fpai-control/{exports,media}`；确认挂载点 UUID 与 `board.json` 记录一致；`df` 留存可用空间读数。
@@ -30,9 +36,25 @@
 - 停控制服务：`systemctl disable --now ha4fpai-control ha4fpai-task-worker`；数据目录保留（库是权威，不删）。
 - 回滚代码：板上目录整目录改名保留证据，恢复旧文件；数据库 schema 由 migration 版本管理，**降级需按迁移方案的反向转换流程，不得直接用旧程序开新库**。
 
+## 本地测试与打包（不走 Actions；按仓约定全部手动）
+
+```powershell
+# 1) 四套测试（本机 py3.13 全绿为准；py3.8 上板日实测）
+python -B -X utf8 control\tests\smoke.py
+python -B -X utf8 control\tests\test_video_adapter.py
+python -B -X utf8 control\tests\test_migrate.py
+python -B -X utf8 control\tests\test_packaging.py
+
+# 2) 本地打 deb（产物默认进 workenv\ha4fpai-control-package\dist\，不入库）
+python -B -X utf8 control\packaging\build_control_deb.py --architecture arm64 --version 0.1.0+20261105
+```
+
+lang 的 deb 打包沿用 `lang/packaging/linux/build_deb.py`（master/CI 同款，本分支未改动）。
+本仓约定 **Actions 只手动运行**：以上全部为本地手动步骤，push/打 tag 不触发任何构建。
+
 ## 四、上板前检查清单（每项要有证据才算勾）
 
-- [ ] 分支全部测试绿：`smoke.py` ＋ `test_video_adapter.py` ＋ `test_migrate.py`（本机 py3.13）
+- [ ] 分支全部测试绿：`smoke.py` ＋ `test_video_adapter.py` ＋ `test_migrate.py` ＋ `test_packaging.py`（本机 py3.13）
 - [ ] py3.8 实测：**未做**——上板日第 5 步启动成功即 first 证据；`py_compile` 全部 control 文件在板上跑一遍
 - [ ] 内存预算：两单元 RSS 采样（预期 control<60MB／worker<50MB）， MemAvailable 快照留档（验收15 基线的一部分）
 - [ ] 端口核对：18100/18101 未与现役冲突（8091-8093、10300-10302、10520/10521、18091、10900、7861、2046、18080）
