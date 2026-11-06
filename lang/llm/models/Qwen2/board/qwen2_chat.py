@@ -3,8 +3,10 @@
 
 双击桌面 `Qwen2 对话.lnk` 即可。窗口一开就连板子上的常驻进程 qwen2_chatd.py：
 连不上就自己用 ssh 把它拉起来（不占终端、日志落在板上 /root/qwen2/chatd.log），
-然后等它装载完。实测装载 289.6 s（11-06 01:12 那次走到就绪）；生成侧只有 10-14 台账 #197
-的板测 247.71 ms/token 可引，本轮那一次就绪后没取到生成的数。
+然后等它装载完。11-06 四次就绪实测 139.5／143.0／144.1／147.8 s；生成侧同一批四轮
+20 个 token 用 6.7~7.5 s（2.75~2.97 token/s；10-14 台账 #197 那颗是 247.71 ms／2.83 token/s）。
+起跑门禁＝板上 MemAvailable ≥ 470,000 kB（起点 402,160~413,576 kB 的 16 次零就绪、
+492,036 kB 以上的 4 次全就绪，门禁取中间空档）；不够时窗口不关就自己再试。
 
 关窗口 = 发一条 bye = 板端立刻退出并归还 NPU/CMA；就算崩了没发出去，
 板端自己 240 s 空闲也会退。单轮作答、不记上下文：多轮历史要按 token 付预填时间。
@@ -37,6 +39,8 @@ RX_TIMEOUT_S = 10.0    # how long one read waits before we ping and keep waiting
 BACKOFF_S = 5.0        # re-dial pace when a daemon we already reached is busy
 SPAWN_BUDGET_S = 750.  # one daemon's own lifetime ceiling: 600 s load deadline + 150 s grace
 NO_READY_S = 900.      # after the first spawn, stop waiting -- and stop spawning
+REFUSE_RETRY_S = 60.0        # the board refused on memory: first re-try after this long
+REFUSE_RETRY_MAX_S = 300.0   # ... then 120,180,240,300,300 (a refused spawn never loaded)
 CREATE_NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 
@@ -68,6 +72,8 @@ class ChatApp:
         self.last_rx = time.time()
         self.first_spawn_t = None
         self.given_up = False
+        self.refuse_at = 0.0       # when the next spawn is allowed after a memory refusal
+        self.refuse_tries = 0
 
         root.title("Qwen2-0.5B 板端对话（ZG330 @113）")
         root.geometry("780x540")
@@ -155,11 +161,24 @@ class ChatApp:
         last_ping = 0.0
         while not self.closing:
             if self.sock is None:
-                if self.refused or self.given_up:
+                if self.given_up:
                     # the board said why, or we ran out of budget; re-dialling only
                     # re-prints the same thing (and costs the board a 145 s load)
                     time.sleep(10)
                     continue
+                if self.refused:
+                    if time.time() < self.refuse_at:
+                        time.sleep(2)
+                        continue
+                    # A refused spawn never loaded, so it spent none of the load
+                    # budget, and the earlier connection was only the refusal message:
+                    # clear the "we already talked to a live daemon" state so the
+                    # spawn path below is reachable again.
+                    self.refused = False
+                    self.ever_connected = False
+                    self.dead = False
+                    self.last_rx = 0.0
+                    self.first_spawn_t = time.time()
                 if self.connect():
                     last_ping = time.time()
                     continue
@@ -300,6 +319,9 @@ class ChatApp:
         if self.pending and self.turn_started:
             el = time.time() - self.turn_started
             self.set_status("生成中…… %.0f s（约 %.2f s/token）" % (el, PER_TOKEN_S))
+        elif self.refused:
+            left = max(0.0, self.refuse_at - time.time())
+            self.set_status("板端内存不够（第 %d 次被拒），%.0f s 后自动再试" % (self.refuse_tries, left))
         elif not self.ready:
             el = time.time() - self.load_elapsed_t0
             self.set_status("装载模型中…… 已 %.0f s / 约 %d s" % (el, LOAD_ETA_S))
@@ -360,13 +382,27 @@ class ChatApp:
             return
         if ev == "load-refused":
             self.refused = True
-            self.write("【板端内存不够】%s\n" % msg.get("msg"), "err")
-            self.write("占内存前几名：%s\n" % "、".join(
-                "%s(%d MB)" % (t.get("comm"), (t.get("rss_kb") or 0) // 1024)
-                for t in (msg.get("top") or [])), "hint")
-            self.write("要试的话，门禁线＝板端 `free -k` 的 MemAvailable（表头最后一列）≥ 340,000 kB；"
-                       "停哪几条服务由你定，我不替你关，也不替你重启板子。\n",
-                       "hint")
+            if self.spawn_count > 0:
+                self.spawn_count -= 1     # a refused daemon never loaded: nothing was spent
+            self.refuse_tries += 1
+            delay = min(REFUSE_RETRY_S * self.refuse_tries, REFUSE_RETRY_MAX_S)
+            self.refuse_at = time.time() + delay
+            need_kb = msg.get("need_kb") or 470000
+            avail_kb = msg.get("avail_kb") or 0
+            short = "%d kB / 门禁 %d kB，差 %d kB" % (avail_kb, need_kb, max(0, need_kb - avail_kb))
+            if self.refuse_tries == 1:
+                self.write("【板端内存不够，这次没有装载】%s\n" % msg.get("msg"), "err")
+                self.write("占内存前几名：%s\n" % "、".join(
+                    "%s(%d MB)" % (t.get("comm"), (t.get("rss_kb") or 0) // 1024)
+                    for t in (msg.get("top") or [])), "hint")
+                self.write("门禁线＝起跑时 MemAvailable ≥ %d kB（11-06 实测：起点 402,160~413,576 kB 的"
+                           " 16 次零就绪，492,036 kB 以上的 4 次全就绪）。这次读到 %s。\n"
+                           "停哪几条板上的活儿由你定，我不替你关，也不替你重启板子。\n"
+                           "此窗口不关就一直在等：%.0f s 后自动再拉起一次，之后每次加长到 %d s。\n"
+                           % (need_kb, short, delay, int(REFUSE_RETRY_MAX_S)), "hint")
+            else:
+                self.write("（第 %d 次被拒：可用 %s；%.0f s 后再试）\n"
+                           % (self.refuse_tries, short, delay), "hint")
             return
         if ev == "pong":
             self.phase = msg.get("phase", self.phase)
@@ -396,6 +432,8 @@ class ChatApp:
         self.refused = False
         self.given_up = False
         self.spawn_count = 0
+        self.refuse_tries = 0
+        self.refuse_at = 0.0
         self.spawn_t = None
         self.first_spawn_t = None
         tail = ""
