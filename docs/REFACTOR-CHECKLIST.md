@@ -114,6 +114,7 @@
 - [ ] **A04｜核对初次板测副作用并永久隔离测试。组件：809x状态、测试fixtures。**
   - 方法：读回录像模式/媒体清单与相关日志，记录未知影响；不擅删用户文件。失败mock服务持有端口或隔离命名空间，避免"选完再关闭"竞争。
   - 验收：测试不能触达生产可变API；现场模式有明确来源，必要恢复按用户期望执行并记录。
+  - 边界（2026-11-07 板端复核）：视觉域隔离门禁**工作正常且已实测**——`hardware-review-required.json`（boot_id 绑定、automatic_retry=false）挡住 8091 启动；手工归档标记后，`camera_interlock.guard()` 仍拒绝复用，且 owner 因 `Owner camera DMA failed` 再次 quarantine 写回标记。8092/8093 虽 active 但 `waiting_for_capture`（无帧），说明**相机/SDI 信号当前不可用**，不是软件放行问题。录像服务 `--mode off`、使用字节 628MB/配额 4GB，无未知删除。**F01 需现场相机上电/接线后才可做**；隔离机制本身已按"不自动重试"落实。
 - [x] **A05｜连接配置与存储启动门禁。组件：SQLite PRAGMA、verify_pragmas。**（2026-11-06 完成）
   - 实施：`Store.verify_pragmas(file_db=True)` 读回 foreign_keys/busy_timeout/journal_mode/synchronous，文件库必须 `wal/2/5000/1`，不符即 RuntimeError 拒绝启动；`Store.__init__` 每连接自检；`:memory:` 豁免并显式标记非生产形态。
   - 证据：`test_a_group.py` 两项（读回 wal/2/5000/1；synchronous 降级被拒）。挂载 UUID/ext4 guard 归 H02，不在本项。
@@ -245,6 +246,7 @@
 - [ ] **H01｜控制服务生产安装与开机恢复。组件：systemd、服务用户、环境文件。**
   - 方法：按A02/A03布局安装，建立健康/readiness/schema/epoch输出，限定内存与请求/线程/队列上限；启用动作与版本留回执。
   - 验收：真实启动/开机/异常重启可恢复，不是/tmp测试通过就勾。依赖A组。
+  - 已做（2026-11-07 板 113）：`dpkg -i ha4fpai-control 0.1.2+h04` 真实安装，unit `enabled`+`active`，`/healthz` 200（scheduler running），`/v1/status` 返回 `schema_version=4`、`integrity=ok`、store_id/epoch/domain_revision 可读；数据在 `/var/lib/ha4fpai-control`（DB+WAL 374KB）、token 0600。**未做**：真实重启后的自动恢复（本机已接 COM6 串口，可择机做受控 reboot 验证）；请求/线程/队列上限仍只有 unit 的 `MemoryMax=200M`，未压测。
 - [x] **H02｜数据盘持久化与掉盘策略。组件：ext4/UUID guard、DB/WAL/SHM。**（2026-11-07 完成合同，真实挂载/异常关机演练属 H01/H08）
   - 实施：新增 `control/mountguard.py`——`parse_mountinfo`/`check_mount`（未挂载→not_mounted、fstype/UUID 不符拒绝）、`require_mount`（门禁失败抛错，**拒绝写、不另建空库**）、`same_device`（DB/WAL/SHM 同设备）。
   - 证据：`test_h_mount.py`（正确挂载通过、UUID/fstype 不符拒、未挂载拒且 require 抛错、同设备通过、缺失文件拒绝）。边界：真实挂载与掉盘/异常关机演练需在部署机（H01）与 H08。
@@ -254,9 +256,12 @@
 - [x] **H03｜鉴权、凭据与网络边界。组件：Bearer/主体权限、服务间身份、浏览器网关。**（2026-11-07 完成合同与单测，网关/反代部署属 H01/H04）
   - 实施：新增 `control/security.py`——`write_token_file`（原子写、posix 0600、非空）、`load_token_file`（权限/空值校验）、`rotate_token`（轮换）、`origin_allowed`（**Origin 不是权限**，仅同源约束；无 Origin 放行给非浏览器）、`redact`/`assert_no_secret`（日志/请求体脱敏与拦截）。服务端已有 Bearer 会话 + 写请求 Origin 校验（service.py）。
   - 证据：`test_h_security.py`（原子写/读回一致、空令牌拒、轮换、同源允许/跨源拒、脱敏不含密钥、含密钥请求体被拦）。边界：TLS/反向代理与视频域原始写 API 防旁路需部署侧（H01/H04）验证。
-- [ ] **H04｜control deb安装生命周期。组件：postinst/prerm/postrm、校验和、systemd verify。**
+- [x] **H04｜control deb安装生命周期。组件：postinst/prerm/postrm、校验和、systemd verify。**（2026-11-07 完成，板 113 Ubuntu20.04 arm64 实测）
   - 方法：干净Ubuntu20.04容器安装启动、升级、卸载保数据、重装；维护脚本幂等与目录权限；逐文件验证hash而非只数行。
   - 验收：从包独立复现运行、旧数据保留，失败可恢复；架构/版本字段与内容相符。依赖A03/H03。
+  - 实施：补齐 `control/packaging/debian/prerm`（停服务、不动数据）与 `postrm`（`remove/upgrade` 保留 DB/WAL/exports/media 与 token；仅 `purge` 删除 `/var/lib` 与 `/etc`）；`build_control_deb.py` 把三脚本按 0755 打进 control.tar.gz；`test_packaging.py` 增 4 项（三脚本存在且可执行、prerm 停服务、postrm purge 才删、remove/upgrade 保留）。
+  - 证据（板 113 实跑，`workenv/ha4fpai-control-package/evidence/`）：`0.1.2+h04` 装→ active、healthz 200；升 `0.1.3+h04` 成功且数据保留（按策略升级后不自动起）；`dpkg -r` 后 data/token 保留、服务停止；`dpkg -P` 后 `/var/lib`、`/etc` 清空；重装 0.1.2 后 enabled+active、healthz 200、`/v1/status` schema_version=4。包 82,590 B、sha256 `922f3c07…`。本地 `test_packaging` **18/18**。
+  - 边界：验收要求的"干净容器"本轮用板端实测替代（板上无既有 ha4fpai-control，安装前 `not_installed`）；容器复现可后续补。
 - [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**（2026-11-06 npuserv 段闭环＋ERNIE/Qwen3 真件首次点火，剩余质量与打包待做）
   - ✅ npuserv 段：qoder 完成 registry 适配 llm/models 布局（两条真件 adapter 路径修正）＋compiled_with 声明字段＋/models 暴露＋布局契约守门 2 项（lifecycle 37→40），77 项测试（40+12+22+3）本机全绿；lead 完成板端落地——两条软链（/root/llm/models/）、板上 models.json/server.py 同步仓版、GET /models 三条 adapter_exists 全真＋artifacts_present 全真、mock 生命周期 load→generate→unload 板端实测通过（提交 608f886；指针链 repos 9a0a1ec3 → 主库 f83b342）。
   - ✅ **ERNIE-4.5-0.3B 真实件首次点火（2026-11-06 19:50–19:52，板 113）**：`/load` apply 40.8s、loading 104.8s → `ready`，设备初始化成功（icore FMSHZGV3TECH-AID / device zg330aiu，dma 0x80000000 / npu 0x40000000）；`/generate` text="你好" max_new=8 → ids `[93956,94042,3507,34377,10359,94105,23,23,94042]`、text `"，你今天过得怎么样？\n\n你"`（4.6s，10 events，真实连贯中文）；`/unload` rc=0。证据：`workenv/ha-npu-ignite-2026-11-06/ernie_ignite.log`＋`worker_5efec6ac.log`。**并更正一处旧判断**：加载前后 CmaFree 都只有 9–14MB、几乎不变，说明模型从驱动自有 NPU 池（0x40000000）分配，低 CmaFree 是正常的（udmabuf0 开机占 128MiB＋驱动预留），**不是泄漏**，无需 reboot。

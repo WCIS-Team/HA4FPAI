@@ -90,7 +90,8 @@ def main():
         'Architecture: arm64', 'Architecture: ' + args.architecture)
     ctl += 'Installed-Size: ' + str((installed + 1023) // 1024) + '\n'
     put(control, 'control', ctl)
-    for name in ['postinst']:
+    scripts = ['postinst', 'prerm', 'postrm']
+    for name in scripts:
         put(control, name, (HERE / 'debian' / name).read_bytes())
     sums = []
     for p in sorted(data.rglob('*')):
@@ -98,7 +99,7 @@ def main():
             sums.append(hashlib.md5(p.read_bytes()).hexdigest() + '  ' + p.relative_to(data).as_posix())
     put(control, 'md5sums', '\n'.join(sums) + '\n')
     epoch = 1793836800
-    ctar = tree_tar(control, {'postinst': 0o755}, epoch)
+    ctar = tree_tar(control, {name: 0o755 for name in scripts}, epoch)
     dtar = tree_tar(data, {}, epoch)
     args.output.mkdir(parents=True, exist_ok=True)
     name = 'ha4fpai-control_' + args.version + '_' + args.architecture

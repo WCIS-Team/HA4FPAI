@@ -1,0 +1,15 @@
+#!/bin/sh
+# ha4fpai-control postrm：remove/upgrade 保留数据与凭据；只有 purge 才删除。
+# 这是 H04 的验收点之一：卸载保数据、重装可续；purge 必须显式。
+set -e
+case "$1" in
+    purge)
+        rm -rf /var/lib/ha4fpai-control
+        rm -rf /etc/ha4fpai-control
+        ;;
+    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+        # 保留 /var/lib/ha4fpai-control（DB/WAL/exports/media）与 /etc/ha4fpai-control/token
+        ;;
+esac
+systemctl daemon-reload >/dev/null 2>&1 || true
+exit 0

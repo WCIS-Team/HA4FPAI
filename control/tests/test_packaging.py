@@ -77,11 +77,26 @@ def main():
             # tree_tar 写入的成员名带 './' 前缀
             ctl = tar.extractfile('./control').read().decode('utf-8')
             md5 = tar.extractfile('./md5sums').read().decode('utf-8')
+            ctl_members = {m.name: m for m in tar.getmembers()}
+            script_bodies = {}
+            for name in ('postinst', 'prerm', 'postrm'):
+                key = './' + name
+                check(key in ctl_members and (ctl_members[key].mode & 0o111) != 0,
+                      'control 内含可执行 %s' % name)
+                if key in ctl_members:
+                    script_bodies[name] = tar.extractfile(key).read().decode('utf-8')
         check('Package: ha4fpai-control' in ctl and 'Version: 0.1.0+test1' in ctl,
               'control 文件字段正确')
         check('Installed-Size:' in ctl, 'Installed-Size 已写入')
         check(len(md5.strip().splitlines()) == staged_count,
               'md5sums 行数与 data 文件数一致')
+        postrm = script_bodies.get('postrm', '')
+        prerm = script_bodies.get('prerm', '')
+        check('systemctl stop ha4fpai-control' in prerm, 'prerm 停服务但不动数据')
+        check('purge)' in postrm and '/var/lib/ha4fpai-control' in postrm,
+              'postrm purge 才删除数据')
+        check('remove|upgrade' in postrm and '保留' in postrm,
+              'postrm remove/upgrade 保留数据与凭据')
         # 拒绝覆盖
         proc2 = subprocess.run(
             [sys.executable, '-B', '-X', 'utf8',

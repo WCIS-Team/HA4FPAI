@@ -1,0 +1,8 @@
+#!/bin/sh
+# ha4fpai-control prerm：停服务（单元不自动启用；只在确实 active 时停）。
+# 数据与凭据一律不动——卸载保数据由 postrm 的 remove 分支保证。
+set -e
+if systemctl is-active --quiet ha4fpai-control; then
+    systemctl stop ha4fpai-control || true
+fi
+exit 0
