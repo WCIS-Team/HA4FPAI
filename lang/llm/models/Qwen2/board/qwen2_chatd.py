@@ -35,7 +35,7 @@ import time
 PORT = int(os.environ.get("Q2_PORT", "18099"))
 BIND = os.environ.get("Q2_BIND", "0.0.0.0")
 IDLE_S = float(os.environ.get("Q2_IDLE_S", "240"))
-LOAD_ETA_S = float(os.environ.get("Q2_LOAD_ETA_S", "150"))  # measured 144.1 s and 139.5 s on 11-06
+LOAD_ETA_S = float(os.environ.get("Q2_LOAD_ETA_S", "150"))  # measured 139.5/144.1/147.8/143.0 s on 11-06
 TURN_DEADLINE_S = float(os.environ.get("Q2_TURN_DEADLINE_S", "900"))
 # VmHWM of the same bisect STEP4 (initSession+apply) measured twice: 673,848 kB on
 # 10-14 (ledger #197) and 447,104 kB on 11-06 (/root/qwen2/bisect.log 01:12). VmSize
@@ -48,7 +48,6 @@ TURN_DEADLINE_S = float(os.environ.get("Q2_TURN_DEADLINE_S", "900"))
 # worked, so NEED_KB is taken inside the empty band between the proven failures and
 # the proven successes.
 PEAK_KB = int(os.environ.get("Q2_PEAK_KB", "673848"))
-NEED_KB = int(os.environ.get("Q2_NEED_KB", "470000"))   # 413,576 (top of the failure band) < 470,000 < 492,036 (lowest success)
 NEED_KB = int(os.environ.get("Q2_NEED_KB", "470000"))   # 413,576 (top of the failure band) < 470,000 < 492,036 (lowest success)
 PROGNOSIS_KB = int(os.environ.get("Q2_PROG_KB", "492036"))  # the lowest start MemAvailable that actually reached ready
 PEAK2_KB = int(os.environ.get("Q2_PEAK2_KB", "447104"))
@@ -270,10 +269,12 @@ def load():
         free = meminfo_kb("MemFree")
         msg = ("板端可用内存 %d MB，门禁 %d MB。这条线是 11-06 实测出来的，不是推的："
                "那天 20 次起跑（/root/qwen2/chatd.log，板钟 CST），起点可用内存落在 "
-               "402,160~413,576 kB 的 16 次一次都没走到就绪——3 次被内核 OOM 杀掉"
-               "（01:47:11／02:07:46／02:19:12，死时 MemFree−CmaFree 21,452／22,224／22,196 kB，"
-               "都已跌破水位线 min 22,528 kB；MemFree 里那 98~104 MB 是 CMA，不算数），"
-               "其余被断路器自杀。起点 492,036／498,324／507,232／511,240 kB 的四次全就绪了"
+               "402,160~413,576 kB 的 16 次一次都没走到就绪——这 16 次里只有 4 次留下了死因："
+               "内核 OOM 杀 3 次（dmesg 01:47:11／02:07:46／02:19:12，死时 MemFree−CmaFree "
+               "21,452／22,224／22,196 kB，都已跌破水位线 min 22,528 kB；MemFree 里那 "
+               "98~104 MB 是 CMA，不算数），断路器自杀 1 次（04:31:15）；其余 12 次既没就绪"
+               "也没有退出记录——那一窗我在反复换 daemon 版本，前一个进程是谁停的没留痕。"
+               "起点 492,036／498,324／507,232／511,240 kB 的四次全就绪了"
                "（139.5／147.8／143.0／144.1 s）。门禁取这两档中间的空档 470,000 kB；"
                "按装载峰值×1.15 那套老算法（%d MB ← 10-14 台账 #197 的 VmHWM %d kB／"
                "%d MB ← 11-06 bisect.log 的 %d kB）会把四次里至少三次判死，而它们实跑通了，所以弃用。"
