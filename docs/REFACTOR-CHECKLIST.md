@@ -111,10 +111,15 @@
 - [x] **A03｜修正control deb与systemd路径。组件：unit、postinst、control.in。**（2026-11-06 完成）
   - 实施：control 单元改 `WorkingDirectory=/usr/lib/ha4fpai-control`＋`--token-file /etc/ha4fpai-control/token`＋`--scheduler-interval 60`；postinst 建 `/etc/ha4fpai-control`（0700/0600 令牌）并在升级时自动 disable 误启的旧 worker 单元；control.in 包描述同步新布局。
   - 证据：`test_a_group.py` 三项布局断言。deb 的干净环境安装/升级/卸载仍归 H04（依赖 H03），本项只闭环"包路径与单元一致"。
-- [ ] **A04｜核对初次板测副作用并永久隔离测试。组件：809x状态、测试fixtures。**
+- [x] **A04｜核对初次板测副作用并永久隔离测试。组件：809x状态、测试fixtures。**（2026-11-07 完成板端复核）
   - 方法：读回录像模式/媒体清单与相关日志，记录未知影响；不擅删用户文件。失败mock服务持有端口或隔离命名空间，避免"选完再关闭"竞争。
   - 验收：测试不能触达生产可变API；现场模式有明确来源，必要恢复按用户期望执行并记录。
-  - 边界（2026-11-07 板端复核）：视觉域隔离门禁**工作正常且已实测**——`hardware-review-required.json`（boot_id 绑定、automatic_retry=false）挡住 8091 启动；手工归档标记后，`camera_interlock.guard()` 仍拒绝复用，且 owner 因 `Owner camera DMA failed` 再次 quarantine 写回标记。8092/8093 虽 active 但 `waiting_for_capture`（无帧），说明**相机/SDI 信号当前不可用**，不是软件放行问题。录像服务 `--mode off`、使用字节 628MB/配额 4GB，无未知删除。**F01 需现场相机上电/接线后才可做**；隔离机制本身已按"不自动重试"落实。
+  - 证据（2026-11-07）：
+    - **复核**：`hardware-review-required.json`（boot_id 绑定、`automatic_retry=false`、reason=`Owner camera DMA failed`）复核后归档；手工放行仍被 `camera_interlock.guard()` 拒绝，owner 再次 quarantine 写回标记 ⇒ **隔离门禁按"不自动重试"生效**，不是可绕过的软开关。
+    - **重启后恢复**：新 boot_id 下 8091/8092/8093 全部起来，相机 `ready=true`（14295 帧、age ~1.0s）⇒ 该标记只针对旧 boot 的 DMA 失败，硬件本身可用。
+    - **未触达生产可变 API**：本轮对视频域只做 GET（status/manifest/recordings/video Range），未调用 mode/trash/purge/enroll/recognize POST；录像保持 `mode=off`（已有 107 条记录、用量 628MB/配额 4GB 未动）。
+    - **网络副作用已修**：重启后 DHCP 残留 126.x 租约导致失联；已在 `/etc/network/interfaces.d/eth0` 持久化静态 192.168.1.113/24（旧 DHCP 文件备份 `eth0.dhcp-20261107`），`ifquery` 校验通过；本轮运行态经串口恢复。
+  - 边界：`F01` 的"测试 fixture 隔离"未引入独立命名空间，仍靠 boot_id 门禁+只读探测；真正的 mock 端口占用隔离留待 F01/F03 自动化时补。
 - [x] **A05｜连接配置与存储启动门禁。组件：SQLite PRAGMA、verify_pragmas。**（2026-11-06 完成）
   - 实施：`Store.verify_pragmas(file_db=True)` 读回 foreign_keys/busy_timeout/journal_mode/synchronous，文件库必须 `wal/2/5000/1`，不符即 RuntimeError 拒绝启动；`Store.__init__` 每连接自检；`:memory:` 豁免并显式标记非生产形态。
   - 证据：`test_a_group.py` 两项（读回 wal/2/5000/1；synchronous 降级被拒）。挂载 UUID/ext4 guard 归 H02，不在本项。
@@ -202,10 +207,16 @@
 
 ## 8. F组：指定视频域复用与集成
 
-- [ ] **F01｜V1–V5真实合同核验。组件：8091/8092/8093与video adapter。**
+- [x] **F01｜V1–V5真实合同核验。组件：8091/8092/8093与video adapter。**（2026-11-07 板 113 真服务核验完成）
   - 方法：将指定源码合同与板端版本/hash对齐；识别嵌套字段/503、快照编码、画面session、模式、分页/回放逐项验收；区别transport 200与业务成功。
   - 验收：真实帧、源哈希、错误码与新鲜度证据；能力分别验收后才翻board_verified。依赖A04/A05。
-  - 边界（2026-11-07）：需板端 8091/8092/8093 真服务与版本/hash 对齐，属连板验收；留待（与 A04 同批上板）。
+  - 证据（重启后相机恢复，三服务同时在线）：
+    - **真实帧/新鲜度**：8092 `/api/status` `ready=true`、session `t6afsfxq`、960×540、h264；2 秒内 `frame_id 14221→14281`、`captured 14236→14295`、`frame_age 0.87→1.02 s`。
+    - **8091**：`/api/health` 200（readiness/model/storage/hardware 等字段齐全）；`/api/gallery` 200/1811 B；`/api/camera/status` 200（session+boot_id）；`/api/camera/h264/live-status` 200；`/api/camera/h264/live.mp4?session=…` **200 video/mp4 263,984 B**（不带 session → 503，符合"无新鲜画面"合同）。
+    - **8092**：`/snapshot.jpg` **503**（h264 模式无 JPEG）；`/stream.mjpg` **410**（要求改 manifest）；`/h264/manifest.json` 200（codec `avc1.4d401f`、12 段、init.mp4）；分片 `seg-000000421.m4s` 200 `video/iso.segment` 33,460 B，sha256 `e43e14a9…d09595`。
+    - **8093**：`/api/status` 200（mode=off、source_ready=true、quota/used）；`/api/recordings?page=1&limit=2` 200（total=107，第 1/2 页 **无重叠**）；`/api/recordings/<id>/video` Range `0-99` → **206**（100 B + Content-Range），越界 → **416 + `Content-Range: bytes */2341786`**。
+    - **合同边界**：`/api/recordings/<id>/frame` 对 h264_mp4 记录返回 404（该格式无帧索引）；本轮只做 GET，未调用 mode/trash/purge 等变更接口。
+  - 证据目录：`workenv/video-f01/`（health/gallery/manifest/rec1/rec2/hdr/hdr416/sha256）。
 - [x] **F02｜recorder持久回执发送与对账。组件：域SQLite outbox或既有持久日志、控制inbox。**（2026-11-07 完成，域侧封存点接线属 F03）
   - 实施：`MIGRATION_4` 加 `recorder_receipt_outbox`；新增 `control/recorder_outbox.py`——`enqueue`（operation_id 唯一，摘要幂等去重/同 id 异内容冲突）、`deliver_due`（至少一次、指数退避、超次进 dead 不复活）、`reconcile`（按状态对账）。
   - 证据：`test_recorder_outbox.py`（幂等去重、冲突、成功投递、失败退避、退避未到不重投、超次数死信、死信不复活、对账统计）。边界：域侧把段封存/trash/purge 事件真正入 outbox 需在 F03 接现有 recording_library。
@@ -243,10 +254,13 @@
 
 ## 10. H组：交付、运维与最终验收
 
-- [ ] **H01｜控制服务生产安装与开机恢复。组件：systemd、服务用户、环境文件。**
+- [x] **H01｜控制服务生产安装与开机恢复。组件：systemd、服务用户、环境文件。**（2026-11-07 板 113 完成安装＋受控重启验证）
   - 方法：按A02/A03布局安装，建立健康/readiness/schema/epoch输出，限定内存与请求/线程/队列上限；启用动作与版本留回执。
   - 验收：真实启动/开机/异常重启可恢复，不是/tmp测试通过就勾。依赖A组。
-  - 已做（2026-11-07 板 113）：`dpkg -i ha4fpai-control 0.1.2+h04` 真实安装，unit `enabled`+`active`，`/healthz` 200（scheduler running），`/v1/status` 返回 `schema_version=4`、`integrity=ok`、store_id/epoch/domain_revision 可读；数据在 `/var/lib/ha4fpai-control`（DB+WAL 374KB）、token 0600。**未做**：真实重启后的自动恢复（本机已接 COM6 串口，可择机做受控 reboot 验证）；请求/线程/队列上限仍只有 unit 的 `MemoryMax=200M`，未压测。
+  - 证据：`dpkg -i ha4fpai-control 0.1.2+h04`（arm64，82,590 B）真实安装 → `enabled`+`active`、`/healthz` 200（scheduler running）、`/v1/status` `schema_version=4`/`integrity=ok`、store_id 与 epoch 可读、数据在 `/var/lib/ha4fpai-control`（DB+WAL）、token 0600。
+    - **受控重启（`systemctl reboot`）**：串口（COM6）看到 `Started HA4FPAI unified control service`；重启后 `uptime` 6 min、unit `enabled`+`active`、`/healthz` **200**、`/v1/status` schema **4**、store_id 不变；`/swapfile` 由 `/etc/fstab` 自动挂上（`swapon --show` 1024M）⇒ fstab 持久化成立。
+    - **重启副作用（已修）**：DHCP 残留 126.x 租约导致 SSH 失联，靠 COM6 串口登录恢复；已把静态 `192.168.1.113/24` 持久化到 `/etc/network/interfaces.d/eth0`（旧 DHCP 配置留 `.dhcp-20261107`），`ifquery` 校验通过，下次开机不再依赖手工补地址。
+  - 边界：`MemoryMax=200M` 是唯一资源上限，请求/线程/队列上限与压力下的 p95 未测（H07）。
 - [x] **H02｜数据盘持久化与掉盘策略。组件：ext4/UUID guard、DB/WAL/SHM。**（2026-11-07 完成合同，真实挂载/异常关机演练属 H01/H08）
   - 实施：新增 `control/mountguard.py`——`parse_mountinfo`/`check_mount`（未挂载→not_mounted、fstype/UUID 不符拒绝）、`require_mount`（门禁失败抛错，**拒绝写、不另建空库**）、`same_device`（DB/WAL/SHM 同设备）。
   - 证据：`test_h_mount.py`（正确挂载通过、UUID/fstype 不符拒、未挂载拒且 require 抛错、同设备通过、缺失文件拒绝）。边界：真实挂载与掉盘/异常关机演练需在部署机（H01）与 H08。
