@@ -31,8 +31,8 @@ SSH = os.environ.get("Q2_SSH", "root@192.168.1.113")
 DAEMON = "/root/qwen2/qwen2_chatd.py"
 START_CMD = ("cd /root/qwen2 && MALLOC_ARENA_MAX=1 setsid nohup python3 -u %s >> /root/qwen2/chatd.log 2>&1 "
              "< /dev/null &" % DAEMON)
-LOAD_ETA_S = 300
-PER_TOKEN_S = 0.353   # board-measured 10-14 (台账 #197): "Average decode time: 247.71 ms", 2.83 tok/s
+LOAD_ETA_S = 150      # 11-06 measured 139.5 / 143.0 / 144.1 / 147.8 s (/root/qwen2/chatd.log)
+PER_TOKEN_S = 0.365   # those four turns end to end: 20 generated tokens in 6.7-7.5 s
 RX_TIMEOUT_S = 10.0    # how long one read waits before we ping and keep waiting
 BACKOFF_S = 5.0        # re-dial pace when a daemon we already reached is busy
 SPAWN_BUDGET_S = 750.  # one daemon's own lifetime ceiling: 600 s load deadline + 150 s grace
@@ -96,8 +96,9 @@ class ChatApp:
         self.send_btn.pack(side="left")
         self.entry.focus_set()
 
-        self.write("板子：%s:%d｜装载模型约 %d 秒，之后每 token 约 %.2f 秒（驱动自报平均解码 247.71 ms／平均输出 2.83 token/s，"
-                   "台账 #197；11-06 07:54 板上复测 259.88 ms／2.75 token/s）。单轮作答，不记上文。\n\n"
+        self.write("板子：%s:%d｜装载模型约 %d 秒（11-06 四次实测 139.5~147.8 s），就绪后每 token 约 %.2f 秒"
+                   "（四轮 20 个 token 用 6.7~7.5 s；驱动自报平均解码 248.87~259.88 ms／平均输出 2.75~2.97 token/s，"
+                   "10-14 台账 #197 那颗是 247.71 ms／2.83 token/s）。单轮作答，不记上文。\n\n"
                    % (BOARD_IP, PORT, LOAD_ETA_S, PER_TOKEN_S), "hint")
         threading.Thread(target=self.io_loop, daemon=True).start()
         self.tick()
@@ -377,8 +378,9 @@ class ChatApp:
         self.stop_btn.config(state="disabled")
         if msg.get("ok"):
             secs = msg.get("secs", 0.0)
-            self.write("Qwen2：%s\n（%.1f s，%d token 上限，%.2f tok/s）\n\n"
-                       % (msg.get("answer", ""), secs, msg.get("max_new", 0),
+            self.write("Qwen2：%s\n（%.1f s，生成 %d token，%.2f tok/s）\n\n"
+                       % (msg.get("answer", ""), secs,
+                          msg.get("gen_tokens") or msg.get("max_new", 0),
                           msg.get("tok_s") or 0.0), "bot")
             if self.queued:
                 self.begin_turn(self.queued.pop(0))
