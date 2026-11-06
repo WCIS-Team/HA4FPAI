@@ -105,9 +105,30 @@ def junit(rows, path):
     ET.ElementTree(suite).write(str(path), encoding="utf-8", xml_declaration=True)
 
 
+def evidence_manifest(rows, output, profile, config_path):
+    """H06 证据清单：每个套件的状态/退出码/耗时/日志 sha256/字节 + 配置输入摘要。"""
+    items = []
+    for row in rows:
+        rec = {k: row.get(k) for k in
+               ("id", "status", "exit_code", "seconds", "test_methods", "message")
+               if k in row}
+        log = row.get("log")
+        if log:
+            log_path = output / log
+            if log_path.exists():
+                rec["log"] = log
+                rec["log_sha256"] = file_digest(log_path)
+                rec["log_bytes"] = log_path.stat().st_size
+        items.append(rec)
+    return {"schema_version": 1, "profile": profile,
+            "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "inputs": {"config_sha256": file_digest(config_path)},
+            "checks": items}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--profile", choices=("validate", "quick", "full", "adapters", "soak"), default="quick")
+    parser.add_argument("--profile", choices=("validate", "quick", "full", "adapters", "soak", "no-npu"), default="quick")
     parser.add_argument("--config", type=Path, default=CI / "config.json")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--matrix", action="store_true", help="Emit the Actions matrix from configuration")
@@ -131,11 +152,17 @@ def main():
         print(str(exc), flush=True)
         rows.append({"id": "source-validation", "status": "failed", "message": str(exc), "seconds": time.perf_counter() - started})
     timeout = settings["test_timeout_s"]
-    if args.profile in ("quick", "full", "adapters"):
+    if args.profile in ("quick", "full", "adapters", "no-npu"):
         for name in ("contracts", "infrastructure"):
             rows.append(execute(name, [str(CI / "tests" / ("test_" + name + ".py"))], output, timeout, True))
         for suite in settings["legacy_suites"]:
-            if args.profile not in suite["profiles"]:
+            if args.profile == "no-npu":
+                # 明确不扫描/执行 npuserv 的运行档：只跑 quick 档里不含 npuserv 的套件
+                if "quick" not in suite["profiles"]:
+                    continue
+                if "npuserv" in suite.get("path", "") or suite["id"].startswith("npu"):
+                    continue
+            elif args.profile not in suite["profiles"]:
                 continue
             if "all" not in suite["platforms"] and sys.platform not in suite["platforms"]:
                 rows.append({"id": suite["id"], "status": "not-applicable", "message": "Requires " + ", ".join(suite["platforms"])})
@@ -158,6 +185,10 @@ def main():
     result = {"schema_version": 1, "status": "failed" if any(r["status"] == "failed" for r in rows) else "passed",
               "profile": args.profile, "environment": environment(), "source": git_metadata(ROOT),
               "external_sources": external, "checks": rows}
+    manifest = evidence_manifest(rows, output, args.profile, args.config)
+    write_json(output / "evidence.json", manifest)
+    result["evidence"] = {"file": "evidence.json", "checks": len(rows),
+                          "config_sha256": manifest["inputs"]["config_sha256"]}
     write_json(output / "results.json", result)
     junit(rows, output / "junit.xml")
     markdown = "# HA4FPAI %s: %s\n\n" % (args.profile, result["status"])

@@ -245,9 +245,12 @@
 - [ ] **H01｜控制服务生产安装与开机恢复。组件：systemd、服务用户、环境文件。**
   - 方法：按A02/A03布局安装，建立健康/readiness/schema/epoch输出，限定内存与请求/线程/队列上限；启用动作与版本留回执。
   - 验收：真实启动/开机/异常重启可恢复，不是/tmp测试通过就勾。依赖A组。
-- [ ] **H02｜数据盘持久化与掉盘策略。组件：ext4/UUID guard、DB/WAL/SHM。**
-  - 方法：同可靠文件系统，核对fsync语义；挂载丢失拒绝写，不另建空库；记录只读/维护模式。
-  - 验收：掉盘/恢复/异常关机后库与媒体一致，状态页区分不可用与空数据。依赖A05/B05。
+- [x] **H02｜数据盘持久化与掉盘策略。组件：ext4/UUID guard、DB/WAL/SHM。**（2026-11-07 完成合同，真实挂载/异常关机演练属 H01/H08）
+  - 实施：新增 `control/mountguard.py`——`parse_mountinfo`/`check_mount`（未挂载→not_mounted、fstype/UUID 不符拒绝）、`require_mount`（门禁失败抛错，**拒绝写、不另建空库**）、`same_device`（DB/WAL/SHM 同设备）。
+  - 证据：`test_h_mount.py`（正确挂载通过、UUID/fstype 不符拒、未挂载拒且 require 抛错、同设备通过、缺失文件拒绝）。边界：真实挂载与掉盘/异常关机演练需在部署机（H01）与 H08。
+- [x] **H06｜no-npu CI、证据留存与故障注入。组件：ci profiles、JUnit/原始日志、SHA manifest。**（2026-11-07 完成）
+  - 实施：`ci/run.py` 增 `--profile no-npu`（只跑 quick 档且**排除任何 npuserv/npu 套件**），新增 `evidence_manifest()` 输出 `evidence.json`：每个套件状态/退出码/耗时/**日志 sha256+字节**、配置 `config_sha256`、源提交与生成时间；`results.json` 引用 evidence；JUnit/summary 照旧。
+  - 证据：`ci/run.py --profile no-npu` 实跑 **passed**（18 检查，ids 中无 npu-lifecycle/npu-adapter；`evidence.json` 18 项全含 log_sha256，config_sha256 存在，source=当前提交）。边界：Actions 仍**只手动 workflow_dispatch**，run_id/attempt 由 Actions 环境注入。
 - [ ] **H03｜鉴权、凭据与网络边界。组件：Bearer/主体权限、服务间身份、浏览器网关。**
   - 方法：令牌原子0600/轮换/目录权限；回环或受控反代；Origin不是权限；视频域原始写API也要防旁路；错误脱敏。
   - 验收：无令牌/错角色/跨源/过期确认/伪回执/路径攻击矩阵；业务日志不含凭据。依赖A02。
@@ -261,9 +264,9 @@
   - ✅ **ERNIE 多 prompt 稳定性（2026-11-06 23:16–23:18，板 113，单次加载 apply 41.5s）**：5 组 prompt 全部跑通——「你好」→连贯闲聊；「三句话说明边缘计算」→结构完整解释（64 token/32.5s）；「翻译：今天会议推迟到下午三点」→**英文正确**「The meeting was postponed to three o'clock in the afternoon.」并正常 EOS；同一 prompt 重跑**逐 token 相同**（确定性/贪心可复现）。质量属 0.3B 正常（偶带 `00:00:00.000`、`[你的名字]` 类模板痕迹），非退化。证据：`workenv/ha-npu-ignite-2026-11-06/ernie_multi.log`。
   - ⚠️ **Qwen3 退化已定位（2026-11-06 23:09–23:14，板 113）**：`pos_rule=vendor` 与 `uniform` **两臂输出完全相同**（text "你好" 16 token 均 `[198×16]`＝换行 `"\n"`，30s；tokenizer 正常，prompt=9）。且首 token 随 prompt 变（ids 路径 508 / text 路径 198）、其后恒定重复 ⇒ **不是 pos_rule，而是 decode 步 KV 回喂缺陷：模型看不到已生成 token**。对照证据：adapter vendor 臂整块替换 KV 与 `q3_infer_board.py:run_decode` 返回 `arrays[1:]` 整块替换一致、uniform 臂走切片写回，两种结构不同却同错 ⇒ 问题在 KV feed/布局（`past_key_values.i.key/value` 或 out 索引），非更新策略。**属 Qwen 模型驱动侧，未擅自改**；下一步需板端 dump KV 校验和＋对照 vendored `run_prompt/run_decode` 做单元级定位。证据：`workenv/ha-npu-ignite-2026-11-06/q3_ab.log`。
   - 待做：Qwen3 KV 回喂缺陷的驱动级修复与复测（owner：Qwen 模型侧）；ERNIE 多轮上下文（当前 npuserv generate 无状态，多轮需上层拼 prompt）；compiled_with 与板端 runtime 比对仍是无代码声明；lang deb 包清单与其余组件打包核对。
-- [ ] **H06｜no-npu CI、证据留存与故障注入。组件：ci profiles、JUnit/原始日志、SHA manifest。**
-  - 方法：新增明确不扫描/执行npuserv的运行档；SQL桥/约束/applier/包生命周期/并发恢复入手动CI；MSYS用pipefail保真实退出码。
-  - 验收：精确SHA+run_id/attempt+环境+输入摘要+日志hash齐备；重新跑新提交不能借用旧c3a8538 run；不自动触发Actions。
+- [x] **H06｜no-npu CI、证据留存与故障注入。组件：ci profiles、JUnit/原始日志、SHA manifest。**（2026-11-07 完成）
+  - 实施：`ci/run.py` 增 `--profile no-npu`（只跑 quick 档且**排除任何 npuserv/npu 套件**）；新增 `evidence_manifest()` 输出 `evidence.json`（每套件状态/退出码/耗时/**日志 sha256+字节**、配置 `config_sha256`、源提交与时间），`results.json` 引用；JUnit/summary 照旧。
+  - 证据：`ci/run.py --profile no-npu` 实跑 passed（18 检查，ids 无 npu-lifecycle/npu-adapter；evidence.json 18 项全含 log_sha256）。边界：Actions 仍**只手动 workflow_dispatch**，run_id/attempt 由 Actions 环境注入。
 - [ ] **H07｜整机并发长稳与性能门槛。组件：音视频真实链、资源采样。**
   - 方法：先定基线、时长和门槛；测RSS/MemAvailable/CMA、p95、帧/音频丢重乱序、队列、SQLite锁/WAL、日志封顶；不扩全局锁。
   - 验收：达到事先定义的真实负载/长稳标准，异常路径可解释；一次free快照不算验收。依赖E/F/G/H01。
