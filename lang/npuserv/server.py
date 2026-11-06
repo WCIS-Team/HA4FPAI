@@ -114,10 +114,14 @@ class Model(object):
         self.env = entry.get("env", {})
         self.capabilities = entry.get("capabilities", {})
         self.note = entry.get("note", "")
+        # Which iCraft build produced this 件.  The board runtime has to match it; nothing
+        # here verifies the match, but a caller choosing between models can read it.
+        self.compiled_with = entry.get("compiled_with")
 
     def describe(self):
         d = {"id": self.id, "adapter": self.adapter,
              "adapter_exists": os.path.exists(self.adapter),
+             "compiled_with": self.compiled_with,
              "capabilities": self.capabilities, "defaults": self.defaults,
              "note": self.note}
         if self.raw.get("artifacts"):

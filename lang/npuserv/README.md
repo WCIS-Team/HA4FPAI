@@ -27,11 +27,14 @@ object, emit nothing while it runs, and the `tok` event name simply never appear
 `mock` and the two LLM adapters under stub engines. No non-LLM 件 has ever been registered,
 so "any model" is a statement about the contract, not a measurement.
 
-**Verification status (2026-11-04).** The server, the protocol and both model adapters are
-verified on a PC only: `tests/` runs 71 checks green against a mock and against two
-stub engines. **Nothing here has been run on 113** — the board is not back, and its absence
-is also why task #24 (does the 512-slot ERNIE 件 swallow a full 512-slot prompt) is still
-open. Board numbers quoted below come from 台账 rows, cited by number.
+**Verification status (2026-11-06).** The server, the protocol and both model adapters are
+verified on a PC: `tests/` runs 74 checks green against a mock and against two stub engines.
+**On 113 the server has been started (`/root/npuserv`, 11-04 11:45 — its `server`/`adapter_lib`/`wire`
+cpython-38 bytecode is on the board), but no real 件 has ever generated a token through it.**
+Board-side pieces measured so far are narrower than the chain: `e41_tok.py` loads and encodes on
+the board's Python 3.8.10, and `import e41_chatd` succeeds there — neither has been driven through
+`npuserv`. Board numbers quoted below come from 台账 rows, cited by number. Task #24 (does the
+512-slot ERNIE 件 swallow a full 512-slot prompt) is still open for the same reason.
 
 ## Why a worker process per model
 
@@ -74,7 +77,7 @@ curl -s -XPOST localhost:18080/unload -d '{"model":"mock"}'
 | Route | Body | Answers |
 |---|---|---|
 | `GET /health` (or `/`) | — | `{ok:true, proto, state}` — `state` is the whole `/status` object, so it answers with no model loaded |
-| `GET /models` | — | every registry entry with `adapter_exists` and `artifacts_present` (real on-disk checks) |
+| `GET /models` | — | every registry entry with `adapter_exists`, `artifacts_present` (real on-disk checks) and `compiled_with` (declaration, not a check) |
 | `GET /status` | — | `state` (idle/loading/ready), `pid`, `apply_s`, `info`, `requests`, `last_result` + `last_ids_len` (the token ids are not repeated here), `last_error`, `history`, and `/proc/meminfo` readings (`CmaFree` / `MemAvailable` / `MemFree`, `{}` on Windows) |
 | `GET /ping` | — | `alive` — one round trip into the worker |
 | `POST /load` | `{model, params, wait:true, timeout:420, evict:false}` | `loaded`, `pid`, `apply_s`, `loading_s`, `log`, `info`; `404` unknown id or missing adapter, `409` a model is already resident, `500` the worker's own error |
@@ -106,14 +109,16 @@ worker exit on its own after that many seconds with no client attached; the serv
 
 Model-specific things stay on the model side:
 
-- **ERNIE-4.5-0.3B** (`llm/ERNIE-4.5-0.3B-PT4icraft430tai/board/npuserv_adapter.py`) is glue
+- **ERNIE-4.5-0.3B** (`llm/models/ERNIE-4.5-0.3B-PT4icraft430tai/board/npuserv_adapter.py`) is glue
   over `e41_chatd.py`, the module validated on the board (padfix, `POS_OFFSET`, the 511-slot
   policy gate, narrow KV readback, `MAX_NEW_CAP=192`, stop `{2,100272}`). Params map onto the
-  env that file reads at import, so a bare `/load` gives the 现役 configuration. It refuses
-  `text`: this 件 is ids-in/ids-out, see `capabilities.text_in` in `models.json` and 台账
-  #220. `max_slots` raises the *policy* gate only — `E41.step` still stops at the compiled
-  window — which is task #24's entry point.
-- **Qwen3-0.6B** (`llm/Qwen3-0.6B/board/npuserv_adapter.py`) wraps `patch/q3_infer_board.py`
+  env that file reads at import, so a bare `/load` gives the 现役 configuration. It takes
+  `text` as well as `ids`: tokenization runs on the board through `board/e41_tok.py` (pure
+  stdlib + a 3.3 MB `e41_tok.pack`, no `tokenizers`), verified against `tokenizers` 0.23.3
+  over 219,085 comparisons on the PC and loaded/encoded on the board — but never through a
+  real generate. `max_slots` raises the *policy* gate only — `E41.step` still stops at the
+  compiled window — which is task #24's entry point.
+- **Qwen3-0.6B** (`llm/models/Qwen3-0.6B/board/npuserv_adapter.py`) wraps `patch/q3_infer_board.py`
   and reads the KV window off the graph rather than the config. Two things it must feed are
   non-negotiable: `token_dynamic_fm` is **3 fp32 = 12 B** (the ZG graph declares `[1,3]`; the
   vendor script feeds 8 B and the board rejects it — 台账 #196), and position 0 is not
@@ -130,7 +135,7 @@ Four places, and they are deliberately not the same kind of record:
 
 | 记的是什么 | 在哪 |
 |---|---|
-| 机器读的差分：能力门（`ids_in`／`text_in`／`text_out`）、`defaults`、`env`、件在板上的绝对路径 | `models.json` 那一条 entry，运行时由 `GET /models` 原样回答（含 `adapter_exists`／`artifacts_present`） |
+| 机器读的差分：能力门（`ids_in`／`text_in`／`text_out`）、`defaults`、`env`、`compiled_with`（编这颗件的 iCraft 版本）、件在板上的绝对路径 | `models.json` 那一条 entry，运行时由 `GET /models` 原样回答（含 `adapter_exists`／`artifacts_present`） |
 | 写代码时的差分：那颗件的非 negotiable 喂法、位置口径、为什么拒 text | 各自 `board/npuserv_adapter.py` 的文件头 |
 | 人读的差分：上面两条 bullets | 本节 |
 | **实测**差分：每步耗时、KV 上行字节、内存与 CMA 谷底、窗口裁剪对照 | **不在这里**——正本＝[[LLM上板要求与候选模型对照]] §6.6 与 [[板端我方代码与产物台账]] §21.1（三颗横表）、窄读与 KV 常驻两篇实测页；规矩是一个事实只写一处，所以这张表只指路、不抄数 |
@@ -139,6 +144,16 @@ Four places, and they are deliberately not the same kind of record:
 `padfix`／`max_slots`／`max_new_cap`，Qwen3 认 `pos_rule`／`driver_dir`／`config_path`），
 端点、事件、槽位规则两边完全一样。
 
+**API 面看不见的两条差分**（"换个新件"真正会咬人的地方，registry 只能声明、不能判定）：
+
+1. **`text_in` 背后是两套依赖。** ernie 自带板侧纯 stdlib 分词（`e41_tok.py`＋`pack`，板上
+   load/encode 实测过）；qwen3 的 text 路径赌的是板端 `tokenizers` 能不能读那颗
+   `tokenizer.json`（从未执行，#210 vs #220）。同一个 `true`，成本完全不同。
+2. **`compiled_with` 是声明，不是检查。** 板的 runtime 必须对得上（厂商预编译那颗在
+   3.36.1／3.39.0 runtime 上都 `symbol lookup error`），而 npuserv 里没有任何一行代码比过它——
+   版本不匹配的表现是 worker 起不来、`/load` 回 500，归因读不出来。板上现场：`pip3 list`
+   有 `icraft 3.39.0`，`import icraft.xrt`／`icraft.zg330backend` 都过（11-05 现场复核）。
+
 ## Board layout
 
 The registry carries `"root": ".."`, so `adapter` paths resolve against `lang/` — the tree
@@ -146,12 +161,34 @@ on 113 has to mirror the repo:
 
 ```
 <base>/npuserv/{server.py,adapter_lib.py,wire.py,models.json,tests/}
-<base>/llm/ERNIE-4.5-0.3B-PT4icraft430tai/board/{e41_chatd.py,npuserv_adapter.py}
-<base>/llm/Qwen3-0.6B/board/npuserv_adapter.py
-<base>/llm/Qwen3-0.6B/patch/q3_infer_board.py
+<base>/llm/models/ERNIE-4.5-0.3B-PT4icraft430tai/board/{e41_chatd.py,e41_tok.py,e41_tok.pack,npuserv_adapter.py}
+<base>/llm/models/Qwen3-0.6B/board/npuserv_adapter.py
+<base>/llm/models/Qwen3-0.6B/patch/q3_infer_board.py
 ```
 
-`models.json` points the 件 at their board paths (`/mnt/data/ernie/jr_path/...` for ERNIE,
+`adapter` 是**相对** `root` 的，所以这一条在 PC 和板上都得成立（PC 那边落在 submodule checkout
+上）；`artifacts` 和 `env` 里的路径是**板上绝对路径**，只有 server 跑在 113 时才有意义。
+两种约定混在同一份文件里，这就是为什么 `tests/lifecycle_check.py` 现在逐条 assert
+`adapter_exists`——`llm → llm/models` 那次子模块搬家把两条真件的路径都指空了，而行为测试
+71 项照旧全绿（只有 `mock` 那条真解析过），`/load` 会 404。
+
+板上现状**不满足**这个形状（11-05 现场只读复核）：`/root/npuserv/` 是 `<base>`=/root，
+但 ERNIE 落在 `/root/ernie/board/`（json＋raw 在 `/root/ernie/jr_path/decode/`），Qwen3 落在
+`/root/llm/Qwen3-0.6B/board/`——没有 `models/` 这一层。满足契约的最小动作是两条软链，不动任何
+人的文件：
+
+```sh
+mkdir -p /root/llm/models
+ln -s /root/ernie           /root/llm/models/ERNIE-4.5-0.3B-PT4icraft430tai
+ln -s /root/llm/Qwen3-0.6B  /root/llm/models/Qwen3-0.6B
+```
+
+**这两条我没跑**（`113.txt` 是 `test==on`，那条会话 06:50 还在写相机 DMA 的现场）。另外板上那份
+`/root/npuserv/models.json`（11-04 11:45）与仓里这份是**两个副本**、已经漂了（板的 artifacts 指
+`/root/ernie/…`，仓里这份现在也指那里了，但 adapter 两条还是旧的）——上板前要么把仓里这份推过去
+覆盖，要么就地改板上那份，别留两份各说各话。
+
+`models.json` points the 件 at their board paths (`/root/ernie/jr_path/...` for ERNIE,
 `/root/qwen3/...` for Qwen3 — those roots are where each session left them, not a choice
 made here). Run `python3 server.py` from `<base>/npuserv`.
 
@@ -164,10 +201,14 @@ readings at all times, and `POST /unload` returns `mem_before` / `mem_after` aro
 ## Tests
 
 ```sh
-python -X utf8 lang/npuserv/tests/lifecycle_check.py       # 37 checks, mock engine, no NPU
+python -X utf8 lang/npuserv/tests/lifecycle_check.py       # 40 checks, mock engine, no NPU
 python -X utf8 lang/npuserv/tests/adapter_stub_check.py    # 12 checks, real ERNIE adapter + stub e41_chatd
 python -X utf8 lang/npuserv/tests/q3_adapter_stub_check.py # 22 checks, real Qwen3 adapter + stub driver
 ```
+
+`lifecycle_check.py` 里有两条现在是**布局契约**的守门人（2026-11-06 加）：每一条 entry 的
+`adapter` 都必须在当前这台机上解析得到、每条都得带 `compiled_with`。它们是在
+`llm → llm/models` 搬家把两条真件指空之后补的——当时 71 项行为检查全绿，因为它们只驱动 `mock`。
 
 The two stub runs exist because the adapters' whole job is translation, and translation is
 testable without a board: the fakes expose the real module's attribute names, record what

@@ -3,28 +3,38 @@
   "root": "..",
   "_comment": [
     "npuserv registry.  One entry per model that can go on the ZG330.",
-    "'root' is where the 'adapter' paths hang off, relative to this file: .. = lang/,",
-    "because the server lives in lang/npuserv and the models live in lang/<kind>/.",
+    "'root' is where the 'adapter' paths hang off, relative to this file: '..' resolves to",
+    "lang/ (the server lives in lang/npuserv, the 件 live under lang/llm/models/).",
     "Any 件 can be registered that way -- the mechanics in npuserv know nothing about",
     "tokens; model-specific steps stay in the model's own directory as npuserv_adapter.py.",
     "'defaults' is merged under the params of a POST /load; 'env' is set before the",
-    "worker is spawned.  Paths here are the BOARD's paths (the server runs on 113), so",
-    "artifacts_present in GET /models is a real on-disk check, not a repo check.",
-    "No credentials in this file (D-27: a secret value is written once, in its own file)."
+    "worker is spawned.  No credentials in this file (D-27: a secret value is written",
+    "once, in its own file).",
+    "Two path conventions live here and they are not the same kind of fact:",
+    "  'adapter' is RELATIVE to 'root' and must resolve in BOTH trees -- on the PC it",
+    "  lands on the submodule checkout, on 113 it lands on the mirrored tree, so the",
+    "  board layout has to be <base>/npuserv + <base>/llm/models/<MODEL>/board (README",
+    "  'Board layout').  tests/lifecycle_check.py asserts every entry resolves.",
+    "  'artifacts' and the paths inside 'env' are BOARD-absolute (the server runs on",
+    "  113); on a PC GET /models will honestly report artifacts_present:false.",
+    "'compiled_with' is the iCraft version that produced the 件, recorded because the",
+    "board runtime has to match it -- it is a declaration, NOT a check: nothing here",
+    "verifies it, and a mismatch shows up as a worker that dies on import."
   ],
   "models": [
     {
       "id": "ernie-4.5-0.3b",
-      "adapter": "llm/ERNIE-4.5-0.3B-PT4icraft430tai/board/npuserv_adapter.py",
+      "adapter": "llm/models/ERNIE-4.5-0.3B-PT4icraft430tai/board/npuserv_adapter.py",
+      "compiled_with": "icraft 3.39.0 (ZG codegen; the compile tree under agentwork/ernie/compile logs that version)",
       "artifacts": {
-        "decode_json": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.json",
-        "decode_raw": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.raw"
+        "decode_json": "/root/ernie/jr_path/decode/E41-decoder_ZG.json",
+        "decode_raw": "/root/ernie/jr_path/decode/E41-decoder_ZG.raw"
       },
       "capabilities": {
         "ids_in": true,
         "text_in": true,
         "text_out": true,
-        "reason_text": "board-side via board/e41_tok.py (pure stdlib, reads the prebuilt e41_tok.pack; no tokenizers). Verified on PC id-for-id and string-for-string equal to tokenizers 0.23.3 over 219,085 comparisons (scripts/tok_parity.py, 0 mismatches). Board execution not yet run -- board is not back. The npuserv adapter applies NO chat template: text_in encodes raw text, text_out decodes the generated ids."
+        "reason_text": "board-side via board/e41_tok.py (pure stdlib, reads the prebuilt e41_tok.pack; no tokenizers). PC: verified id-for-id and string-for-string equal to tokenizers 0.23.3 over 219,085 comparisons (scripts/tok_parity.py, 0 mismatches). Board: the module loads and encodes on 3.8.10 (11-04, re-run 11-06 -- pack md5 4f197a7481e445cff008593053ec82b4, id_space 101304 / vocab 100295 / merges 182926, encode('你好')==[5300]); NO generate has run on the board yet. The npuserv adapter applies NO chat template: text_in encodes raw text, text_out decodes the generated ids."
       },
       "defaults": {
         "max_new": 96,
@@ -34,15 +44,16 @@
         "stop_ids": [2, 100272]
       },
       "env": {
-        "E41_JSON": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.json",
-        "E41_RAW": "/mnt/data/ernie/jr_path/decode/E41-decoder_ZG.raw",
+        "E41_JSON": "/root/ernie/jr_path/decode/E41-decoder_ZG.json",
+        "E41_RAW": "/root/ernie/jr_path/decode/E41-decoder_ZG.raw",
         "E41_PADFIX": "1"
       },
-      "note": "现役产品链那一颗（台账 #241 同一条路的常驻件）；KV 窗口编死 NS=512 ⇒ 上限 511 槽（e41_chatd.py:61）。窄读是 daemon 里的现役写法，不是旋钮（info.read 报告它）。apply ≈50-95 s。"
+      "note": "现役产品链那一颗（台账 #241 同一条路的常驻件）；KV 窗口编死 NS=512 ⇒ 上限 511 槽（e41_chatd.py:61）。窄读是 daemon 里的现役写法，不是旋钮（info.read 报告它）。apply ≈50-95 s。e41_chatd.py 里 JSON_/RAW_ 的**出厂默认值仍是 /mnt/data/ernie/...**，而那个目录板上现场复核已经不存在（`ls: cannot access '/mnt/data/ernie'`），所以上面 env 那两行是承重的、不是可选——实测：不带 env 直接 import 时 os.path.exists 两个都 False。"
     },
     {
       "id": "qwen3-0.6b",
-      "adapter": "llm/Qwen3-0.6B/board/npuserv_adapter.py",
+      "adapter": "llm/models/Qwen3-0.6B/board/npuserv_adapter.py",
+      "compiled_with": "icraft 3.39.0 (只在该仓 compile 目录里命中一次，证据比 ERNIE 那颗薄，标 B)",
       "artifacts": {
         "decode_json": "/root/qwen3/jr_path/decode/Q3V1-decoder_ZG.json",
         "decode_raw": "/root/qwen3/jr_path/decode/Q3V1-decoder_ZG.raw",
@@ -53,7 +64,7 @@
         "ids_in": true,
         "text_in": true,
         "text_out": true,
-        "reason_text": "text paths call tokenizers.Tokenizer.from_file on the board and have NEVER been executed -- neither generation nor this tokenizer file's loadability is proven (#210 vs #220). Send ids and pass decode:false until the board says otherwise."
+        "reason_text": "text paths call tokenizers.Tokenizer.from_file on the board and have NEVER been executed -- neither generation nor this tokenizer file's loadability is proven (#210 vs #220). Send ids and pass decode:false until the board says otherwise. 注意这颗与 ernie 的 text_in 不是同一种依赖：ernie 自带板侧纯 stdlib 分词（e41_tok.py＋pack，板上 load/encode 已实测），这颗赌的是板端 tokenizers 库能不能读那颗 json——第三颗进来时这条差别必须在 registry 里看得出来。"
       },
       "defaults": {
         "max_new": 32,
@@ -71,6 +82,7 @@
     {
       "id": "mock",
       "adapter": "npuserv/tests/mock_adapter.py",
+      "compiled_with": "n/a -- fixture, no 件 and no icraft",
       "capabilities": {
         "ids_in": true,
         "text_in": true,

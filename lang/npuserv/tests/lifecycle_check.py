@@ -111,6 +111,16 @@ def main():
               "mock" in ids and "ernie-4.5-0.3b" in ids and "qwen3-0.6b" in ids, str(ids))
         check("adapter_exists is a real on-disk check",
               mock.get("adapter_exists") is True, str(mock)[:200])
+        # The registry duplicates the tree layout, so the layout can move under it (the
+        # llm -> llm/models submodule move did exactly that) and every entry then 404s at
+        # /load while all 71 behavioural checks still pass.  Assert the contract holds for
+        # every entry, not just for the fixture the rest of this file drives.
+        broken = [m["id"] for m in models["models"] if m.get("adapter_exists") is not True]
+        check("every registry entry's adapter path resolves on this machine",
+              not broken, "unresolved: %s" % broken)
+        no_ver = [m["id"] for m in models["models"] if not m.get("compiled_with")]
+        check("every entry declares the iCraft version its 件 was compiled with",
+              not no_ver, "missing compiled_with: %s" % no_ver)
 
         code, st = call(conn, "GET", "/status")
         check("GET /status while idle reports no pid", code == 200 and st["pid"] is None, str(st)[:160])
