@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | **是** | 厂商 demo 的可读、可重编、可重推副本：ONNX 导出件、编译配方、我方驱动、差异、取证日志 |
-| **不是** | 板上现役。**2026-10-28 已按她"把板子上的 Qwen2 删了，节约空间"从 `/root/qwen2` 出库**：删掉 `jr_path/`（1.3 G）、`config/`（6.8 M）与 472 MB 的失控日志后，`/root/qwen2` 从 1.7 G 降到 496 K（台账 §廿一 末）。板上只留驱动、`modelzoo_utils/`、bisect/mem_watch 与日志 |
+| **不是** | 稳定的"板上现役"。2026-10-28 曾按她"把板子上的 Qwen2 删了，节约空间"从 `/root/qwen2` 出库（删 `jr_path/` 1.3 G、`config/` 6.8 M 与 472 MB 日志，目录从 1.7 G 降到 496 K，台账 §廿一 末）；**2026-11-06 又整颗回去了**：`jr_path/`、`config/`、`board/` 重新上板，跑通四次就绪＋四轮作答，并接上 npuserv（台账 §卅八／§卅九）。§4 表里那些"10-28 已删"只是那一次的状态 |
 | **不是** | 能直接 `pip install` 的完整模型包。**厂商只给了 LFS 指针**：`vendor/config/Qwen2-0___5B-Instruct/model.safetensors` 是 134 B 的指针（`size 988,097,824`），真权重从未拉到本机（`agentwork/qwen/lfs_pull.log` 0 字节）。推理走的是 `fmodel/` 的 ONNX＋`.onnx.data`，不需要 safetensors |
 
 ## 1. 来源与时间线
@@ -31,7 +31,7 @@
 | 目录 | 件数 | 字节 | 是什么 |
 |---|---|---|---|
 | `vendor/` | 76 | 1,295,649,575 | 厂商工作树原样（除 `.git`／`jr_path`／`__pycache__`）。含 `fmodel/qwen2_exported_model_cuda/`（`model.onnx` 145,342 ＋ `model.onnx.data` 1,266,188,288）、`config/Qwen2-0___5B-Instruct/`、`modelzoo_utils/`、原版驱动 `qwen2_infer_decode_only_axi.py`（23,547／`501fe406…`）、`Qwen2-0.5B_decoder.toml`、`README.md`、`image.png` |
-| `board/` | 9 | 9,266,494 | 真上板那一套：`_ZG.json`、两支驱动、toml、分词器＋config、`qwen_bisect.*`、`mem_watch.sh`（逐件 md5 见 §4） |
+| `board/` | 10 | 9,275,782 | 真上板那一套：`_ZG.json`、两支驱动、`toml`、分词器＋config、`qwen_bisect.*`、`mem_watch.sh`、11-06 新增的 `npuserv_adapter.py`（逐件 md5 见 §4、§8） |
 | `patch/` | 6 | 2,277 | 我方覆盖厂商的两件 `modelzoo_utils` ＋ 4 份 unified diff（见 §3） |
 | `ref/` | 4 | 8,157,997 | `deploy.log`（14,470）、`compile.out`（690,341）、`compile.err`（1,567）、`whl/tokenizers-0.13.3-…aarch64.whl`（7,451,619） |
 | `README.md` | 1 | 11,933 | 本文件 |
@@ -66,6 +66,7 @@
 | `board/qwen_bisect.py`＋`.sh` | `qwen_bisect.py`＋`.sh` | 3,695／1,399 | `4f9c70af…`／`fce7edf9…` | #182 |
 | `board/mem_watch.sh` | `mem_watch.sh` | 792 | `f84ffd9539d9828ba3cd87de50c62948` | #183 |
 | `board/qwen2_infer_decode_only_axi_pad3.py` | **板上叫 `qwen2_infer_pad3.py`** | 23,549 | `597eeb3b164311f0882ff32e814f2b26` | #196 |
+| `board/npuserv_adapter.py` | `/root/qwen2/board/npuserv_adapter.py`（npuserv 按 registry 的相对路径找这里） | 9,288 | `668fc5d749bdc1d53846164acee89f78` | §卅九 |
 
 - 前四列的上板侧 md5 全部能在 `ref/deploy.log` 里逐条对上（`:46`／`:47`／`:118`／`:119-120`／`:48`／`:49`／`:45`）。
 - `#162` 与 `#196` 是**两支驱动并存**：`#162`＝厂商原版减一行 import（能加载但会在板上撞 12 B 报错），`#196`＝真正跑通的那支。
@@ -127,6 +128,41 @@ md5sum -c MANIFEST.md5     # 或 git bash 里 md5sum，96 件全 OK
 入库口径：可跟踪 92 件 / **39,303,098 B（37.48 MiB）**，最大单件 11,418,266 B（`vendor/fmodel/…/tokenizer.json`），远低于 GitHub 100 MiB 硬限。被 `repos/.gitignore` 挡回的 4 件合计 1,273,785,383 B（1.19 GiB）：`*.onnx`（145,342）、`*.onnx.data`（1,266,188,288）、`*.whl`（7,451,619）、`*.safetensors`（134，厂商 LFS 指针）。它们在本机盘上，换机器要靠 §5(a) 重编或从 LFS 重拉。
 
 **状态：本目录 2026-11-04 只落盘，未 `git add`、未 commit、未 push。**
+
+## 8. npuserv 接法（2026-11-06）
+
+`lang/npuserv` 用一个模型目录里的 `board/npuserv_adapter.py` 来装载/生成/卸载，件路径由
+`lang/npuserv/models.json` 的 `qwen2-0.5b` 条目给。本目录补的就是这个适配器：
+
+| 事 | 在哪 |
+|---|---|
+| 适配器 | `board/npuserv_adapter.py`（9,288／`668fc5d7…`） |
+| 注册条目 | `lang/npuserv/models.json` 的 `qwen2-0.5b`（`adapter` 相对 `root=..`，`artifacts` 是板上绝对路径） |
+| 板上布局 | `ln -s /root/qwen2 /root/llm/models/Qwen2`；适配器放 `/root/qwen2/board/`；件与驱动留在 `/root/qwen2/` 平铺 |
+| 线上镜像 | `WCIS-Team/Qwen2_0.5B_zg3.36.1_axi_demo`（`68110fd`）：同一颗适配器 ＋ 已合并的驱动，README 里写了上板顺序 |
+
+适配器**不重写驱动的循环**，只调厂商自己的两个入口：
+
+```text
+prefill  process_prompt_character_by_character(ids)   tdf=[1, i+1, 0]   写回 out[i+1] -> slot i
+decode   run_decode(tok, kv, pos, generated)          tdf=[1, pos, 0]   pos = prompt_len + step - 1，不回抄
+```
+
+文本进出用板上 `tokenizers` 0.20.3 读 `config/Qwen2-0___5B-Instruct/tokenizer.json`，模板是厂商的
+`<|im_start|>\n{text}<|im_end|>assistant\n`；停止词 `{151643, 151645}`；窗口 512 槽，
+`prompt + max_new` 超了适配器直接拒（报 `compiled window`）。
+
+**板上实测（14:25–14:28 CST）**：`/load` 137.4 s（`apply_s` 137.0）、
+`/generate {"text":"你是谁？","max_new":24}` → prompt 8 token、17 token／6.3 s、
+`我是阿里云开发的超大规模语言模型，我叫通义千问。`、`/unload` 后 `MemAvailable` 663 MB 全还。
+info 读出 24 层／2 KV head／head_dim 64／48 个 cache 张量。
+
+**两个名字同一个文件**：仓里叫 `qwen2_infer_decode_only_axi_pad3.py`，板上部署叫
+`qwen2_infer_pad3.py`（daemon 的 import 名）。适配器先试前者、再试后者——第一次 `/load`
+就是因为只试了仓名而 500（`ModuleNotFoundError`），这条写进适配器的 import 段注释里。
+
+PC 侧替身测试：`lang/npuserv/tests/q2_adapter_stub_check.py`（19 项，跑真实适配器＋桩驱动，
+不碰 NPU）。全库 npuserv 测试合计 93 项。
 
 ## 相关
 

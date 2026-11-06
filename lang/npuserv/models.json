@@ -80,6 +80,34 @@
       "note": "件在板上叫 Q3V1-、库里叫 Q3I-（同一张图，台账 #208）；库里 board/tokenizer.json 与板上那颗不同一份，分词一律以板上 #210 为准。四档预检到 apply 全过，生成从未跑过 ⇒ 这条 adapter 是写好未验证的状态，而且它依赖的 patch/q3_infer_board.py 也从没上过板（#208-#211 那次 push 只有 json/raw/tokenizer 三份）。点火要推三件：npuserv/、这颗 adapter、q3_infer_board.py。pos_rule=vendor 逐字复现厂商 run_prompt＋run_decode 两条循环（Qwen2 出通顺中文用的就是这套位置口径）；uniform 是消融档。"
     },
     {
+      "id": "qwen2-0.5b",
+      "adapter": "llm/models/Qwen2/board/npuserv_adapter.py",
+      "compiled_with": "icraft 3.36.1 -- vendor's own 件, compiled on their side; the board's runtime is 3.39.0 and the 件 has run on it (台账 #197 / §卅八)",
+      "artifacts": {
+        "decode_json": "/root/qwen2/jr_path/decode/Qwen2-0.5B-decoder_ZG.json",
+        "decode_raw": "/root/qwen2/jr_path/decode/Qwen2-0.5B-decoder_ZG.raw",
+        "tokenizer": "/root/qwen2/config/Qwen2-0___5B-Instruct/tokenizer.json",
+        "modelzoo_utils": "/root/qwen2/modelzoo_utils"
+      },
+      "capabilities": {
+        "ids_in": true,
+        "text_in": true,
+        "text_out": true,
+        "reason_text": "text in/out runs on the board's `tokenizers` 0.20.3 against /root/qwen2/config/Qwen2-0___5B-Instruct/tokenizer.json, wrapped in the vendor's own template (`<|im_start|>\\n{text}<|im_end|>assistant\\n`). This is the ONE of the three 件 whose text path is measured on 113: the 11-06 chain loaded the tokenizer and answered four turns with it (台账 §卅八 第四节)."
+      },
+      "defaults": {
+        "json": "/root/qwen2/jr_path/decode/Qwen2-0.5B-decoder_ZG.json",
+        "raw": "/root/qwen2/jr_path/decode/Qwen2-0.5B-decoder_ZG.raw",
+        "config_path": "/root/qwen2/config/Qwen2-0___5B-Instruct",
+        "modelzoo_utils": "/root/qwen2/modelzoo_utils",
+        "driver_dir": "/root/qwen2",
+        "max_new": 24,
+        "stop_ids": [151643, 151645],
+        "max_decode_length": 512
+      },
+      "note": "厂商 demo 那颗件（repos 的 lang/llm/models/Qwen2，镜像自 ModelScope AIBS/Qwen2_0.5B_zg3.36.1_axi_demo，见该目录 README 的出处一节）。驱动＝board/qwen2_infer_decode_only_axi_pad3.py：厂商脚本 + 三处只删依赖的改动 + token_dynamic_fm 2→3 个 fp32（12 B，台账 #196）。positions 全按厂商两条循环走：prompt 第 i 个 token 喂 tdf=[1,i+1,0]、写回 out[i+1]→slot i；decode 第 step 步喂 [1,prompt_len+step-1,0] 且不回抄。**实测**：daemon 那条路 11:16 就绪 132.8 s、20 token／6.9 s／2.92 tok/s（台账 §卅八 第四节末行）；**npuserv 这条路 11-06 14:25–14:28 CST 跑过两轮**：/load 137.4 s（apply_s 137.0）、/generate text=你是谁？、max_new=24 → prompt 8 token、17 token／6.3 s、`我是阿里云开发的超大规模语言模型，我叫通义千问。`、/unload 后 MemAvailable 回到 662,800 kB（台账 §卅九）。第一轮 stop_ids 只有 151643，`<|im_end|>`(151645) 被当正文吐出来再多一个换行 token ⇒ 现在两颗都停。板布局要一条链接：`ln -s /root/qwen2 /root/llm/models/Qwen2`（npuserv 的 adapter 路径按 registry root=.. 解析）。窗口由编译期 max_decode_length=512 决定，prompt+max_new 超了会被 adapter 拒绝（报 'compiled window'），不会喂到窗口外。"
+    },
+    {
       "id": "mock",
       "adapter": "npuserv/tests/mock_adapter.py",
       "compiled_with": "n/a -- fixture, no 件 and no icraft",

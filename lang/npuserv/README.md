@@ -27,14 +27,19 @@ object, emit nothing while it runs, and the `tok` event name simply never appear
 `mock` and the two LLM adapters under stub engines. No non-LLM 件 has ever been registered,
 so "any model" is a statement about the contract, not a measurement.
 
-**Verification status (2026-11-06).** The server, the protocol and both model adapters are
-verified on a PC: `tests/` runs 74 checks green against a mock and against two stub engines.
-**On 113 the server has been started (`/root/npuserv`, 11-04 11:45 — its `server`/`adapter_lib`/`wire`
-cpython-38 bytecode is on the board), but no real 件 has ever generated a token through it.**
-Board-side pieces measured so far are narrower than the chain: `e41_tok.py` loads and encodes on
-the board's Python 3.8.10, and `import e41_chatd` succeeds there — neither has been driven through
-`npuserv`. Board numbers quoted below come from 台账 rows, cited by number. Task #24 (does the
-512-slot ERNIE 件 swallow a full 512-slot prompt) is still open for the same reason.
+**Verification status (2026-11-06).** The server, the protocol and the three model adapters
+are verified on a PC: `tests/` runs 93 checks green against a mock and against three stub
+engines. **On 113 the server has been started (`/root/npuserv`, 11-04 11:45 — its
+`server`/`adapter_lib`/`wire` cpython-38 bytecode is on the board), and since 2026-11-06
+14:25 CST one real 件 has gone all the way through it: Qwen2-0.5B** — `/load` 137.4 s
+(`apply_s` 137.0), `/generate {"text":"你是谁？","max_new":24}` 17 tokens in 6.3 s
+(`我是阿里云开发的超大规模语言模型，我叫通义千问。`), `/unload` returning `MemAvailable`
+to 662,800 kB (台账 §卅九). Before that, no real 件 had ever generated a token through
+`npuserv`. Board-side pieces measured elsewhere stay narrower: `e41_tok.py` loads and
+encodes on the board's Python 3.8.10, `import e41_chatd` succeeds there — neither has been
+driven through `npuserv`. Board numbers quoted below come from 台账 rows, cited by number.
+Task #24 (does the 512-slot ERNIE 件 swallow a full 512-slot prompt) is still open for the
+same reason.
 
 ## Why a worker process per model
 
@@ -128,6 +133,17 @@ Model-specific things stay on the model side:
   `"uniform"` (one rule everywhere). Neither arm has run on a board: this 件 is at `apply
   75.1 s`, zero tokens (台账 #212), and the driver itself has never been on the board
   (#208–#211: that push carried json + raw + tokenizer only).
+- **Qwen2-0.5B** (`llm/models/Qwen2/board/npuserv_adapter.py`) drives the **vendor script
+  itself** (`board/qwen2_infer_decode_only_axi_pad3.py` = vendor script + three dependency
+  drops + `token_dynamic_fm` widened to 12 B, 台账 #196) instead of re-implementing its
+  loops: prefill goes through `process_prompt_character_by_character` (tdf `[1, i+1, 0]`,
+  entry written at out`[i+1]` into slot `i`), decode through `run_decode` (tdf
+  `[1, prompt_len+step-1, 0]`, cache handed back un-shifted). No `pos_rule` arm here —
+  the vendored sequence is the one that answered on 113. This is the only 件 of the three
+  with a **measured** text path: 132.8 s apply, 20 tokens in 6.9 s, `bye` releasing the
+  NPU (台账 §卅八 第四节). The adapter itself had not been through npuserv before
+  2026-11-06; its first `/load` is the wiring proof, and `tests/q2_adapter_stub_check.py`
+  covers the shape of the calls on a PC.
 
 ### Where the per-model difference is written down
 
@@ -164,6 +180,8 @@ on 113 has to mirror the repo:
 <base>/llm/models/ERNIE-4.5-0.3B-PT4icraft430tai/board/{e41_chatd.py,e41_tok.py,e41_tok.pack,npuserv_adapter.py}
 <base>/llm/models/Qwen3-0.6B/board/npuserv_adapter.py
 <base>/llm/models/Qwen3-0.6B/patch/q3_infer_board.py
+<base>/llm/models/Qwen2/board/npuserv_adapter.py
+<base>/llm/models/Qwen2/qwen2_infer_decode_only_axi_pad3.py   (driver; board copy sits at <base>/qwen2)
 ```
 
 `adapter` 是**相对** `root` 的，所以这一条在 PC 和板上都得成立（PC 那边落在 submodule checkout
@@ -181,7 +199,12 @@ on 113 has to mirror the repo:
 mkdir -p /root/llm/models
 ln -s /root/ernie           /root/llm/models/ERNIE-4.5-0.3B-PT4icraft430tai
 ln -s /root/llm/Qwen3-0.6B  /root/llm/models/Qwen3-0.6B
+ln -s /root/qwen2           /root/llm/models/Qwen2
 ```
+
+Qwen2 多一步：板上它的件摆在 `/root/qwen2/` 顶上（daemon、驱动、`jr_path/`、`config/`、
+`modelzoo_utils/` 全在同一层），契约要的是 `…/Qwen2/board/npuserv_adapter.py`，所以
+adapter 落在 `/root/qwen2/board/`，其余不动。
 
 **这两条我没跑**（`113.txt` 是 `test==on`，那条会话 06:50 还在写相机 DMA 的现场）。另外板上那份
 `/root/npuserv/models.json`（11-04 11:45）与仓里这份是**两个副本**、已经漂了（板的 artifacts 指
@@ -204,6 +227,7 @@ readings at all times, and `POST /unload` returns `mem_before` / `mem_after` aro
 python -X utf8 lang/npuserv/tests/lifecycle_check.py       # 40 checks, mock engine, no NPU
 python -X utf8 lang/npuserv/tests/adapter_stub_check.py    # 12 checks, real ERNIE adapter + stub e41_chatd
 python -X utf8 lang/npuserv/tests/q3_adapter_stub_check.py # 22 checks, real Qwen3 adapter + stub driver
+python -X utf8 lang/npuserv/tests/q2_adapter_stub_check.py # 19 checks, real Qwen2 adapter + stub driver
 ```
 
 `lifecycle_check.py` 里有两条现在是**布局契约**的守门人（2026-11-06 加）：每一条 entry 的
