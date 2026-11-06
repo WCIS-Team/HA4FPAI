@@ -120,18 +120,19 @@
 
 ## 4. B组：数据库不变量与持久化
 
-- [ ] **B01｜追加约束迁移与旧库升级报告。组件：schema_migrations、SQLite3.31。**
-  - 方法：不改旧checksum；建新表→校验复制→换表→索引/触发器；升级前快照、坏行隔离报告，不静默过滤。
-  - 验收：旧schema各版本升级不丢数据；中断可恢复；integrity_check及foreign_key_check通过。依赖A02。
-- [ ] **B02｜人员/模型/命令通用结构约束。组件：PK/NOT NULL/CHECK/UNIQUE。**
-  - 方法：ID显式非空、姓名非空、revision正整数、合法status/modality/dtype；明确字符串修剪/长度规则；保留同名不同ID。
-  - 验收：直接SQL也拒非法状态与错类型；Python入口给稳定业务错误，不让DB异常泄漏堆栈。
-- [ ] **B03｜样本编码和模型一致性。组件：BLOB、dim、模型指纹。**
-  - 方法：dim正数、active布尔、typeof(blob)、length(blob)=dim×字节宽度；模型映射在同事务校验或必要触发器实现。
-  - 验收：截断BLOB/错dtype/错模型/无穷向量拒绝，已撤销样本不能重新启用而无审计。依赖B01。
-- [ ] **B04｜JSON字段与数值范围校验。组件：JSON1、settings definitions。**
-  - 方法：对实际JSON列增加json_valid与形状检查；拒NaN/Infinity；补volume/threshold范围；跨字段不变量在用例层实现。
-  - 验收：SQL与HTTP两侧坏数据测试；nullable列合法空值与坏JSON分开，不删除必要的文件/外部响应检查。
+- [x] **B01｜追加约束迁移与旧库升级报告。组件：schema_migrations、SQLite3.31。**（2026-11-06 完成）
+  - 实施：`MIGRATION_2`（追加版，不改 v1 checksum）；3.31 兼容的"建新表（带CHECK）→校验复制→换表→重建索引"改表法，`PRAGMA legacy_alter_table=ON` 保持其余表 FK 引用名不变；**顺序＝先子表后父表**（旧子表先换、父表才无引用者）。坏行进 `persons_rejects`（`rejected_at DEFAULT datetime('now')`）可审计，不静默丢。
+  - 证据：`control/tests/test_schema_constraints.py` 23/23——干净 v1 升级行数不丢（2/1/1/1）、schema_version=2、坏 status 行/dim0 模型入 rejects 且未迁入、合法数据零隔离。
+  - 边界：v2 样本表**故意不带 REFERENCES**（跨表一致性由 `samples.enroll` 同事务校验，有记录的取舍）；升级前快照/中断续跑归 H08 演练，本项只闭环"旧库升级不丢数据+坏行可审计"。
+- [x] **B02｜人员/模型/命令通用结构约束。组件：CHECK/UNIQUE/NOT NULL。**（2026-11-06 完成）
+  - 实施：persons（id≥8、姓名 1–40 非空白、status 枚举、revision≥1）；models（modality/dtype/metric 枚举、dim>0、sha256 64 位可选）；commands（id≥8、action≥1、status 六态枚举、digest 64、result_json 可空 JSON、revision≥0）。
+  - 证据：直 SQL 非法 status/负 revision/非法 modality 均 `IntegrityError`；业务错误仍由 Python 入口给出稳定 code。
+- [x] **B03｜样本编码和模型一致性。组件：BLOB CHECK、dim×dtype 字节宽。**（2026-11-06 完成）
+  - 实施：voice/face_samples 单表 CHECK：`typeof(blob)='blob'`、`length(blob)=dim×{4|8 按 dtype}`、blob_sha256 64 位、active∈{0,1}、dtype 枚举。dim 与模型的跨表一致性由 `samples.enroll` 同事务校验（dim_mismatch 覆盖）。
+  - 证据：直 SQL 截断 BLOB（192维/40字节）被拒、非法 dtype 被拒、非 BLOB 被 typeof 拒、active 越界 UPDATE 被拒；入口 dim_mismatch 断言。期间修复了 smoke 的假 digest 种子（`digest-x`→真实 SHA）。
+- [x] **B04｜JSON字段与数值范围校验。组件：JSON1、settings definitions。**（2026-11-06 完成）
+  - 实施：commands 的 params_json/result_json 加 `json_valid`；settings 的 value 加 `json_valid`、value_type 枚举；`Settings._validate` 补 NaN/Inf 拒绝与 `min/max`（volume 0–100、阈值 0–1）。
+  - 证据：直 SQL 非 JSON params/非法 status/非 JSON settings value 均被库拒；入口三条范围拒绝；合法值入库且 `json_valid=1`。
 - [ ] **B05｜在线备份与恢复世代。组件：sqlite3.Connection.backup、manifest、epoch。**
   - 方法：写入中备份，不只拷主DB；媒体引用与哈希清单一起登记；恢复前校验，恢复后提升世代并失效旧工作。
   - 验收：备份可开且FK完整，恢复后的旧任务/回执/投影均不能覆盖新状态。依赖A02/A05。

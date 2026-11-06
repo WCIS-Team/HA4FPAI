@@ -13,9 +13,12 @@ from . import ids
 from .errors import ConflictError, DomainError
 
 DEFINITIONS = {
-    'audio.output.volume': {'type': 'float', 'scope': 'audio', 'default': 50.0, 'mode': 'hot'},
-    'face.match.threshold': {'type': 'float', 'scope': 'face', 'default': 0.40, 'mode': 'hot'},
-    'voice.match.threshold': {'type': 'float', 'scope': 'voiceprint', 'default': 0.5, 'mode': 'hot'},
+    'audio.output.volume': {'type': 'float', 'scope': 'audio', 'default': 50.0, 'mode': 'hot',
+                            'min': 0.0, 'max': 100.0},
+    'face.match.threshold': {'type': 'float', 'scope': 'face', 'default': 0.40, 'mode': 'hot',
+                             'min': 0.0, 'max': 1.0},
+    'voice.match.threshold': {'type': 'float', 'scope': 'voiceprint', 'default': 0.5, 'mode': 'hot',
+                              'min': 0.0, 'max': 1.0},
     'recording.mode': {'type': 'enum', 'choices': ['off', 'auto', 'manual'],
                        'scope': 'recorder', 'default': 'off', 'mode': 'apply'},
     'ui.theme': {'type': 'enum', 'choices': ['dark', 'light'], 'scope': 'ui', 'default': 'dark', 'mode': 'hot'},
@@ -35,7 +38,16 @@ class Settings(object):
         if spec['type'] == 'float':
             if isinstance(value, bool) or not isinstance(value, (int, float)):
                 raise ConflictError('invalid_value', '%s 需要数值' % key)
-            return float(value)
+            f = float(value)
+            if f != f or f in (float('inf'), float('-inf')):
+                raise ConflictError('invalid_value', '%s 不能是 NaN/Inf' % key)
+            if 'min' in spec and f < spec['min']:
+                raise ConflictError('invalid_value',
+                                    '%s 低于下限 %s' % (key, spec['min']))
+            if 'max' in spec and f > spec['max']:
+                raise ConflictError('invalid_value',
+                                    '%s 超过上限 %s' % (key, spec['max']))
+            return f
         if spec['type'] == 'enum':
             if value not in spec['choices']:
                 raise ConflictError('invalid_value',

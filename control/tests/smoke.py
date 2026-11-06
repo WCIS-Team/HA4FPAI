@@ -224,8 +224,9 @@ def run_all(tmp):
         conn.execute(
             "INSERT INTO commands(command_id, request_id, idempotency_key, action,"
             " params_json, params_digest, status, created_at, updated_at)"
-            " VALUES(?,?, 'k-unk-manual', 'system.time', '{}', 'digest-x', 'accepted', ?, ?)",
-            (ids.new_id(), ids.new_id(), now, now))
+            " VALUES(?,?, 'k-unk-manual', 'system.time', '{}', ?, 'accepted', ?, ?)",
+            (ids.new_id(), ids.new_id(),
+             ids.digest_of({'action': 'system.time', 'params': {}}), now, now))
     row = store.query_one("SELECT * FROM commands WHERE idempotency_key='k-unk-manual'")
     uk = commands.fail_unknown(store, events, row['command_id'], '模拟回执丢失')
     check(uk['status'] == 'unknown', 'accepted → unknown 迁移')
