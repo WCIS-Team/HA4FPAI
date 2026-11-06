@@ -247,9 +247,9 @@
 - [ ] **H04｜control deb安装生命周期。组件：postinst/prerm/postrm、校验和、systemd verify。**
   - 方法：干净Ubuntu20.04容器安装启动、升级、卸载保数据、重装；维护脚本幂等与目录权限；逐文件验证hash而非只数行。
   - 验收：从包独立复现运行、旧数据保留，失败可恢复；架构/版本字段与内容相符。依赖A03/H03。
-- [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**
-  - 方法：核对十级链必要文件和运行依赖进入包；npuserv只等待Qoder给版本及外部接口，不改/跑该目录；模型与凭据不夹包。
-  - 验收：发布manifest可追溯、不意外启动NPU路径；真实运行档与文档一致。依赖G01。
+- [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**（2026-11-06 npuserv 段闭环，其余待做）
+  - ✅ npuserv 段：qoder 完成 registry 适配 llm/models 布局（两条真件 adapter 路径修正）＋compiled_with 声明字段＋/models 暴露＋布局契约守门 2 项（lifecycle 37→40），77 项测试（40+12+22+3）本机全绿；lead 完成板端落地——两条软链（/root/llm/models/）、板上 models.json/server.py 同步仓版、GET /models 三条 adapter_exists 全真＋artifacts_present 全真、mock 生命周期 load→generate→unload 板端实测通过（提交 608f886；指针链 repos 9a0a1ec3 → 主库 f83b342）。
+  - 待做：ERNIE/Qwen3 真实件经 npuserv 的首次 /load→generate（Qwen3 需先推 q3_infer_board.py 上板，task #24/#208-#212）；compiled_with 与板端 runtime 比对仍是无代码声明；lang deb 包清单与其余组件打包核对。
 - [ ] **H06｜no-npu CI、证据留存与故障注入。组件：ci profiles、JUnit/原始日志、SHA manifest。**
   - 方法：新增明确不扫描/执行npuserv的运行档；SQL桥/约束/applier/包生命周期/并发恢复入手动CI；MSYS用pipefail保真实退出码。
   - 验收：精确SHA+run_id/attempt+环境+输入摘要+日志hash齐备；重新跑新提交不能借用旧c3a8538 run；不自动触发Actions。
