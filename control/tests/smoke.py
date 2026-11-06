@@ -361,7 +361,9 @@ def http_checks(tmp):
             os.environ.pop('HA4FPAI_CONTROL_URL', None)
             os.environ.pop('HA4FPAI_CONTROL_TOKEN', None)
         # ---- V9 上传/读取 ----
-        png = b'\x89PNG\r\n\x1a\n' + b'0' * 64
+        # 合法最小 PNG（真实魔数 + IHDR 4x4）；F05 起上传要过真实性校验，假字节会被拒
+        png = (b'\x89PNG\r\n\x1a\n' + b'\x00\x00\x00\x0dIHDR'
+               + b'\x00\x00\x00\x04\x00\x00\x00\x04\x08\x02\x00\x00\x00')
         status, obj = request(base, 'POST', '/v1/uploads', raw=png, ctype='image/png',
                               token='test-token')
         check(status == 200 and obj['media']['media_id']

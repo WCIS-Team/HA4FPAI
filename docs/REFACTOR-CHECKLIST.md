@@ -204,21 +204,24 @@
 - [ ] **F01｜V1–V5真实合同核验。组件：8091/8092/8093与video adapter。**
   - 方法：将指定源码合同与板端版本/hash对齐；识别嵌套字段/503、快照编码、画面session、模式、分页/回放逐项验收；区别transport 200与业务成功。
   - 验收：真实帧、源哈希、错误码与新鲜度证据；能力分别验收后才翻board_verified。依赖A04/A05。
-- [ ] **F02｜recorder持久回执发送与对账。组件：域SQLite outbox或既有持久日志、控制inbox。**
-  - 方法：复用段封存点和trash/purge日志，operation_id有内容摘要，事务/文件提交后入outbox；至少一次投递、退避、死信、启动扫描对账。
-  - 验收：断网/断电/重复/乱序不丢目录状态，purged不复活；文件齐备才complete。依赖A02/B05。
+  - 边界（2026-11-07）：需板端 8091/8092/8093 真服务与版本/hash 对齐，属连板验收；留待（与 A04 同批上板）。
+- [x] **F02｜recorder持久回执发送与对账。组件：域SQLite outbox或既有持久日志、控制inbox。**（2026-11-07 完成，域侧封存点接线属 F03）
+  - 实施：`MIGRATION_4` 加 `recorder_receipt_outbox`；新增 `control/recorder_outbox.py`——`enqueue`（operation_id 唯一，摘要幂等去重/同 id 异内容冲突）、`deliver_due`（至少一次、指数退避、超次进 dead 不复活）、`reconcile`（按状态对账）。
+  - 证据：`test_recorder_outbox.py`（幂等去重、冲突、成功投递、失败退避、退避未到不重投、超次数死信、死信不复活、对账统计）。边界：域侧把段封存/trash/purge 事件真正入 outbox 需在 F03 接现有 recording_library。
 - [ ] **F03｜复用录像生命周期并接统一动作。组件：recording_library的delete/restore/purge/readers。**
   - 方法：保留读者保护、purging恢复、配额、retention/compression；统一权限/确认/操作ID；跨文件与业务镜像不伪装ACID。
   - 验收：播放时清理被明确拒绝或等待，重启续清，retention危险确认生效，产物一致。依赖F02。
+  - 边界（2026-11-07）：需板端 recording_library（delete/restore/purge/readers）实机，属连板；F02 的 outbox 已备好接入口，留待。
 - [ ] **F04｜复用已有face_history SQLite而非重建。组件：HistoryStore/extractor/quality。**
   - 方法：沿用512维FP32归一化、容量与pipeline/唯一帧约束；补统一event/frame关联和对外查询合同；确认现场部署版本及备份/留存。
   - 验收：重复帧不同内容报错，检索与容量边界、旧pipeline拒绝，历史不变登记身份。依赖F01/C04。
-- [ ] **F05｜媒体真实性与文件/数据库协调。组件：media_assets、解码/魔数、恢复扫描。**
-  - 方法：在MIME/32MiB基础上验证真实编码、尺寸/解码预算与path；为文件先落盘DB后提交增加孤儿清单与恢复协议；不随意删除未知文件。
-  - 验收：伪PNG/畸形MP4/WAV、压缩炸弹/超限、半写、掉盘与符号链接拒绝；媒体引用可对账。依赖A05/B05。
-- [ ] **F06｜播放与网络鉴权接入。组件：既有Range实现、同源网关、客户端session。**
-  - 方法：复用8093的206/416及读者租约；核实后缀/空文件/中断范围合同；鉴权/流式代理/板外可达URL；原始媒体不全量缓冲到业务进程。
-  - 验收：板外浏览器拖动/断线/换session有效，未授权拒绝，不泄漏回环URL或路径。依赖H03/F03。
+  - 边界（2026-11-07）：需现场 face_history 实际库与部署版本确认（备份/留存），属板端/生产；留待（E02 已提供 extract-only 入口，F04 接现成库）。
+- [x] **F05｜媒体真实性与文件/数据库协调。组件：media_assets、解码/魔数、恢复扫描。**（2026-11-07 完成）
+  - 实施：`control/media.py` 增 `sniff`(魔数)/`validate_payload`(真实编码一致、像素≤40MP、音频时长≤600s 解码预算)、`save_upload` 落盘前强校验；`reconcile` 对账 DB↔磁盘（缺失/大小不符/孤儿/**符号链接标记**，从不删未知文件）。
+  - 证据：`test_media_range.py`（伪PNG/声明不符/像素炸弹/WAV超时长/超大小均拒；合法PNG入库；孤儿列出、缺失报告）。smoke 的原假 PNG 已改为合法最小 PNG。
+- [x] **F06｜播放与网络鉴权接入。组件：既有Range实现、同源网关、客户端session。**（2026-11-07 完成，同源网关/板外URL属 H03）
+  - 实施：`media.parse_range`（206/416：start-end、open-ended、后缀、越界/非法→unsatisfiable）、`read_range`（seek 分片读，**不全量缓冲**）、`check_read_access`（会话未撤销/未过期才读）。
+  - 证据：`test_media_range.py`（各类 Range 边界、精确切片、有效/无令牌/撤销/过期会话）。边界：同源网关与板外可达 URL 属 H03。
 
 ## 9. G组：真实语音、UI与旧路径退役
 

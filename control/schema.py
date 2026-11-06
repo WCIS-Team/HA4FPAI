@@ -586,4 +586,22 @@ CREATE INDEX IF NOT EXISTS idx_stg_sample_src ON stg_sample(source_id, status);
 CREATE INDEX IF NOT EXISTS idx_stg_sample_owner ON stg_sample(source_id, owner_key, status);
 """
 
-MIGRATIONS = [(1, MIGRATION_1), (2, MIGRATION_2), (3, MIGRATION_3)]
+# F02：recorder 持久回执 outbox（至少一次投递、退避、死信、幂等按 operation_id）。
+MIGRATION_4 = """
+CREATE TABLE IF NOT EXISTS recorder_receipt_outbox(
+  outbox_id TEXT PRIMARY KEY,
+  operation_id TEXT NOT NULL UNIQUE,
+  kind TEXT NOT NULL,
+  payload_json TEXT NOT NULL,
+  digest TEXT NOT NULL,
+  state TEXT NOT NULL DEFAULT 'pending',
+  attempts INTEGER NOT NULL DEFAULT 0,
+  next_attempt_at TEXT,
+  last_error TEXT,
+  created_at TEXT NOT NULL,
+  delivered_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_rro_state ON recorder_receipt_outbox(state, next_attempt_at);
+"""
+
+MIGRATIONS = [(1, MIGRATION_1), (2, MIGRATION_2), (3, MIGRATION_3), (4, MIGRATION_4)]
