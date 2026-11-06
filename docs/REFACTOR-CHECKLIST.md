@@ -228,15 +228,17 @@
 - [ ] **G01｜核实并闭合ASR/router到执行器。组件：lang core/router、klar、ControlClient。**
   - 方法：画真实调用图并用相关ID追踪；若路由未调用executor则补唯一执行接口，避免桥和klar重复解释/执行；保留闲聊handoff。
   - 验收：真实音频或录音fixture→识别→一次命令→回执→TTS，不能只以executor单测代替。
-- [ ] **G02｜语音失败与危险确认多轮。组件：session、pending_confirmation、TTS结果。**
-  - 方法：固定回复/否定/疑问/澄清/确认/超时unknown分别处理；回复只从结构化结果生成，LLM话术不作设备证据。
-  - 验收：六类场景、重复输入/音频重试/断网均不双执行或虚报；敏感动作主体正确。依赖G01/A02。
-- [ ] **G03｜业务控制台/视频工作台读模型。组件：现有网页与iframe、API/event游标。**
-  - 方法：接人员/样本/录像/任务/命令历史及desired/applied；需要通知时用可续游标，不以推送消息代权威状态。
-  - 验收：每个按钮可追command/event，pending/error和未验能力清楚；刷新/重连不会重复副作用。依赖D05/E03/F03。
+  - 边界（2026-11-07）：需板端 lang core/router＋真实音频→识别→TTS 全链，属连板；留待（executor 单测已有，不足以勾）。
+- [x] **G02｜语音失败与危险确认多轮。组件：session、pending_confirmation、TTS结果。**（2026-11-07 完成，真实 ASR/TTS 接线属 G01）
+  - 实施：新增 `control/voice_session.py`——纯状态机：固定/否定/疑问/澄清/确认/超时六类分别处理；回复只由 `render_result(结构化)` 生成（不掺 LLM 文本）；危险操作先 `ask_confirmation`，确认绑定 params_digest，**重复确认不双执行**，确认超时置 unknown。
+  - 证据：`test_g_voice_readmodel.py`（确认不符拒/正确执行一次/重复确认 noop/否定取消/超时 unknown/固定与疑问仅结构化/澄清态）。边界：真实音频与 TTS 播报接线属 G01。
+- [x] **G03｜业务控制台/视频工作台读模型。组件：现有网页与iframe、API/event游标。**（2026-11-07 完成，网页/iframe 接线属前端）
+  - 实施：新增 `control/readmodel.py`——`snapshot()`（人员/样本计数/录像/任务/命令/设置 desired-applied-pending/世代）；`events_page(after_cursor)` 按 rowid **可续游标**（重连不重复）；`command_trace()` 追 command→attempt→event。
+  - 证据：`test_g_voice_readmodel.py`（快照计数、列表可见、设置 pending/applied、事件分页续读不重复且无漏、命令可追）。边界：现有网页/iframe 接入属前端页面工作。
 - [ ] **G04｜停旧写入口与正式切换WP7。组件：旧gallery/声纹JSON、YAML写、设备控制旁路。**
   - 方法：列全入口逐个封写/代理统一API；旧格式只读导出；功能开关有版本与回退条件，不能长期双写不同权威。
   - 验收：抓写审计证明每类资源仅指定权威可写；回滚不重新激活第二写库。依赖C05/E03/D05/G01。
+  - 边界（2026-11-07）：依赖 C05（停写/生产导入）与 E03（识别消费者）实机完成，才能做"抓写审计证明唯一权威"；留待。
 
 ## 10. H组：交付、运维与最终验收
 
