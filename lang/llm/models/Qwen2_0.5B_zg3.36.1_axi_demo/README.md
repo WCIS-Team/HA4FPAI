@@ -28,24 +28,31 @@
 
 ## 2. 目录布局
 
-| 目录 | 件数 | 字节 | 是什么 |
-|---|---|---|---|
-| `vendor/` | 76 | 1,295,649,575 | 厂商工作树原样（除 `.git`／`jr_path`／`__pycache__`）。含 `fmodel/qwen2_exported_model_cuda/`（`model.onnx` 145,342 ＋ `model.onnx.data` 1,266,188,288）、`config/Qwen2-0___5B-Instruct/`、`modelzoo_utils/`、原版驱动 `qwen2_infer_decode_only_axi.py`（23,547／`501fe406…`）、`Qwen2-0.5B_decoder.toml`、`README.md`、`image.png` |
-| `board/` | 10 | 9,275,782 | 真上板那一套：`_ZG.json`、两支驱动、`toml`、分词器＋config、`qwen_bisect.*`、`mem_watch.sh`、11-06 新增的 `npuserv_adapter.py`（逐件 md5 见 §4、§8） |
-| `patch/` | 6 | 2,277 | 我方覆盖厂商的两件 `modelzoo_utils` ＋ 4 份 unified diff（见 §3） |
-| `ref/` | 4 | 8,157,997 | `deploy.log`（14,470）、`compile.out`（690,341）、`compile.err`（1,567）、`whl/tokenizers-0.13.3-…aarch64.whl`（7,451,619） |
-| `README.md` | 1 | 11,933 | 本文件 |
-| 合计 | 96 | 1,313,088,276 | 见 `MANIFEST.md5` |
+**2026-11-06 起本目录改名为 `Qwen2_0.5B_zg3.36.1_axi_demo`、结构与线上仓逐层对齐**（
+`WCIS-Team/Qwen2_0.5B_zg3.36.1_axi_demo`）：原来那棵 `vendor/` 不再是"第二棵树"，厂商件已合并到根，
+`board/` 只留真上板的东西，取证件归 `ref/`。改名与搬家全部用 `git mv` 做，历史跟得上。
 
-`vendor/.icraft/`（1.6 MB）与 `vendor/hardopLog/Qwen2-0.5B-decoder/access_byte.log`（303 B）是**我方 10-11 那次编译在厂商工作树里落下的 CLI 日志**，为保持工作树原样一起带过来，不是厂商交付物。证据：厂商 clone 里 `git status --short` 恰好只列 `.icraft/`、`hardopLog/`、`jr_path/` 这三个未跟踪目录（都是 10-11 那次编译新建的），跟踪面里没有它们。
+| 目录／文件 | 是什么 |
+|---|---|
+| `qwen2_infer_decode_only_axi_pad3.py` | **合并后的驱动**（厂商脚本 ＋ 3 处依赖删除 ＋ `token_dynamic_fm` 12 B，`597eeb3b…`）；板上部署名 `qwen2_infer_pad3.py` |
+| `config/Qwen2-0___5B-Instruct/` | 厂商配置＋分词器（`tokenizer.json` 7,028,015／`1c74fd33…`、`config.json` 659／`ac22e242…`），板端 `tokenizers` 0.20.3 读这一颗 |
+| `fmodel/qwen2_exported_model_cuda/` | 厂商 ONNX 导出件（`model.onnx` 145,342 ＋ `model.onnx.data` 1,266,188,288，后者按 `.gitignore` 不入库） |
+| `modelzoo_utils/` | 厂商 28 件；其中 `pyrtutils/__init__.py`、`pyrtutils/utils/tools.py` 是我方删过 import 的版本（`c6d5ad12…`／`77540af7…`） |
+| `Qwen2-0.5B_decoder.toml`／`configuration.json`／`image.png`／`LICENSE` | 厂商交付件（toml `7e7bdf8d…`） |
+| `board/` | 真上板那一套：`_ZG.json`（2,183,817／`24bf0b6b…`）、#162 驱动、daemon／客户端／window／faked、`qwen_bisect.*`、`mem_watch.sh`、`npuserv_adapter.py` |
+| `patch/` | 4 份 unified diff＝差异正本（§3）；被覆盖的两件已合并进 `modelzoo_utils/` |
+| `ref/` | 取证件：`compile.out`／`compile.err`／`deploy.log`／`whl`，厂商原版驱动 `vendor-original-driver.py`（`501fe406…`）、厂商 README、厂商 LFS `.gitattributes`、厂商 hooks、`.icraft` 编译日志、`hardopLog/` |
+| `MANIFEST.md5` | 逐件 md5（本表与 §4／§8 的读数都从它核） |
+
+`ref/icraft-logs/`（1.6 MB）与 `ref/hardopLog/Qwen2-0.5B-decoder/access_byte.log`（303 B）是**我方 10-11 那次编译在厂商工作树里落下的 CLI 日志**，为保持工作树原样一起带过来，不是厂商交付物。证据：厂商 clone 里 `git status --short` 恰好只列 `.icraft/`、`hardopLog/`、`jr_path/` 这三个未跟踪目录（都是 10-11 那次编译新建的），跟踪面里没有它们。
 
 ## 3. 与厂商 demo 的全部代码差异（3 处、6 行）
 
 | # | 文件 | 改动 | 为什么 |
 |---|---|---|---|
 | 1 | `board/qwen2_infer_decode_only_axi.py`（#162） | 删 `from pyrtutils.calctime_utils import *` 一行 | `calctime_detail` 在脚本里只出现在注释（`:373`／`:423`）＝死 import。不删就得在板上装 pandas；板只有 993 MB，`matplotlib` 首次 import 还要建字体缓存 |
-| 2 | `board/qwen2_infer_decode_only_axi_pad3.py`（#196） | 改 2 行：`token_dynamic_fm` 从 2 个值补成 3 个值（`:364` prompt 循环、`:416` decode 步骤） | **ZG 件把 `token_dynamic_fm` 声明成 fp32[1,3]＝12 B，厂商驱动只喂 8 B**，板上真跑撞 `hardop.cpp:46 host_chunk byte_size:8 is diff from plddr_chunk byte_size:12`；本机 Host 后端不校验输入宽度，所以 PC 上永远看不见。第 3 个元素图里不读（`[1,1,1]` 与 `[1,1,0]` 的 logits 逐位相同） |
-| 3 | `patch/modelzoo_utils/pyrtutils/__init__.py`＋`utils/tools.py` | 删 1＋2 行 import（`.calctime_utils`／`pandas`／`matplotlib.pyplot`） | 同 #1 的因：这三样在该文件里没被使用（`tools.py` 只有 `is_arm()`／`tname()`） |
+| 2 | `qwen2_infer_decode_only_axi_pad3.py`（#196，根目录） | 改 2 行：`token_dynamic_fm` 从 2 个值补成 3 个值（`:364` prompt 循环、`:416` decode 步骤） | **ZG 件把 `token_dynamic_fm` 声明成 fp32[1,3]＝12 B，厂商驱动只喂 8 B**，板上真跑撞 `hardop.cpp:46 host_chunk byte_size:8 is diff from plddr_chunk byte_size:12`；本机 Host 后端不校验输入宽度，所以 PC 上永远看不见。第 3 个元素图里不读（`[1,1,1]` 与 `[1,1,0]` 的 logits 逐位相同） |
+| 3 | `modelzoo_utils/pyrtutils/__init__.py`＋`utils/tools.py` | 删 1＋2 行 import（`.calctime_utils`／`pandas`／`matplotlib.pyplot`） | 同 #1 的因：这三样在该文件里没被使用（`tools.py` 只有 `is_arm()`／`tname()`） |
 
 行数算式：1（删）＋2（改）＋1＋2（删）＝**6 行**，跨 3 个文件。逐行 diff 在 `patch/`：
 
@@ -60,12 +67,12 @@
 | `board/Qwen2-0.5B-decoder_ZG.json` | `/root/qwen2/jr_path/decode/`（10-28 已删） | 2,183,817 | `24bf0b6b3d5990056fc66229a88f1020` | #160 |
 | （未落库，见 §6）`Qwen2-0.5B-decoder_ZG.raw` | 同上（10-28 已删） | 1,314,012,420 | `2b107ec676de2b4dc35b772402b25b92` | #161 |
 | `board/qwen2_infer_decode_only_axi.py` | `qwen2_infer_decode_only_axi.py` | 23,508 | `4a11305537edfcaefd801dfbe41626c3` | #162 |
-| `patch/modelzoo_utils/pyrtutils/`（2 件）＋ `vendor/modelzoo_utils/`（其余 12 件逐字节同厂商） | `modelzoo_utils/` | `__init__.py` 97／`utils/tools.py` 365 | `c6d5ad12…`／`77540af7…` | #163 |
-| `board/tokenizer.json`＋`board/config.json` | `config/Qwen2-0___5B-Instruct/`（10-28 已删） | 7,028,015／659 | `1c74fd33…`／`ac22e242…` | #164 |
-| `board/Qwen2-0.5B_decoder.toml` | `Qwen2-0.5B_decoder.toml` | 1,060 | `7e7bdf8d4a4acfc519373e1233b08ad8` | #165 |
+| `modelzoo_utils/`（2 件为我方版本，其余 26 件逐字节同厂商） | `modelzoo_utils/` | `__init__.py` 97／`utils/tools.py` 365 | `c6d5ad12…`／`77540af7…` | #163 |
+| `config/Qwen2-0___5B-Instruct/tokenizer.json`＋`config.json` | `config/Qwen2-0___5B-Instruct/`（10-28 删过，11-06 已回去） | 7,028,015／659 | `1c74fd33…`／`ac22e242…` | #164 |
+| `Qwen2-0.5B_decoder.toml`（根目录） | `Qwen2-0.5B_decoder.toml` | 1,060 | `7e7bdf8d4a4acfc519373e1233b08ad8` | #165 |
 | `board/qwen_bisect.py`＋`.sh` | `qwen_bisect.py`＋`.sh` | 3,695／1,399 | `4f9c70af…`／`fce7edf9…` | #182 |
 | `board/mem_watch.sh` | `mem_watch.sh` | 792 | `f84ffd9539d9828ba3cd87de50c62948` | #183 |
-| `board/qwen2_infer_decode_only_axi_pad3.py` | **板上叫 `qwen2_infer_pad3.py`** | 23,549 | `597eeb3b164311f0882ff32e814f2b26` | #196 |
+| `qwen2_infer_decode_only_axi_pad3.py`（根目录） | **板上叫 `qwen2_infer_pad3.py`** | 23,549 | `597eeb3b164311f0882ff32e814f2b26` | #196 |
 | `board/npuserv_adapter.py` | `/root/qwen2/board/npuserv_adapter.py`（npuserv 按 registry 的相对路径找这里） | 9,288 | `668fc5d749bdc1d53846164acee89f78` | §卅九 |
 
 - 前四列的上板侧 md5 全部能在 `ref/deploy.log` 里逐条对上（`:46`／`:47`／`:118`／`:119-120`／`:48`／`:49`／`:45`）。

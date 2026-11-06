@@ -30,9 +30,9 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 NPUSERV = os.path.dirname(HERE)
 LANG = os.path.dirname(NPUSERV)
-Q2 = os.path.join(LANG, "llm", "models", "Qwen2")
+Q2 = os.path.join(LANG, "llm", "models", "Qwen2_0.5B_zg3.36.1_axi_demo")
 ADAPTER = os.path.join(Q2, "board", "npuserv_adapter.py")
-DRIVER = os.path.join(Q2, "board", "qwen2_infer_decode_only_axi_pad3.py")
+DRIVER = os.path.join(Q2, "qwen2_infer_decode_only_axi_pad3.py")
 
 STUB = r'''# -*- coding: utf-8 -*-
 # Stub of qwen2_infer_decode_only_axi_pad3.py.  Names match the real driver; no maths.

@@ -81,7 +81,7 @@
     },
     {
       "id": "qwen2-0.5b",
-      "adapter": "llm/models/Qwen2/board/npuserv_adapter.py",
+      "adapter": "llm/models/Qwen2_0.5B_zg3.36.1_axi_demo/board/npuserv_adapter.py",
       "compiled_with": "icraft 3.36.1 -- vendor's own 件, compiled on their side; the board's runtime is 3.39.0 and the 件 has run on it (台账 #197 / §卅八)",
       "artifacts": {
         "decode_json": "/root/qwen2/jr_path/decode/Qwen2-0.5B-decoder_ZG.json",
@@ -105,7 +105,7 @@
         "stop_ids": [151643, 151645],
         "max_decode_length": 512
       },
-      "note": "厂商 demo 那颗件（repos 的 lang/llm/models/Qwen2，镜像自 ModelScope AIBS/Qwen2_0.5B_zg3.36.1_axi_demo，见该目录 README 的出处一节）。驱动＝board/qwen2_infer_decode_only_axi_pad3.py：厂商脚本 + 三处只删依赖的改动 + token_dynamic_fm 2→3 个 fp32（12 B，台账 #196）。positions 全按厂商两条循环走：prompt 第 i 个 token 喂 tdf=[1,i+1,0]、写回 out[i+1]→slot i；decode 第 step 步喂 [1,prompt_len+step-1,0] 且不回抄。**实测**：daemon 那条路 11:16 就绪 132.8 s、20 token／6.9 s／2.92 tok/s（台账 §卅八 第四节末行）；**npuserv 这条路 11-06 14:25–14:28 CST 跑过两轮**：/load 137.4 s（apply_s 137.0）、/generate text=你是谁？、max_new=24 → prompt 8 token、17 token／6.3 s、`我是阿里云开发的超大规模语言模型，我叫通义千问。`、/unload 后 MemAvailable 回到 662,800 kB（台账 §卅九）。第一轮 stop_ids 只有 151643，`<|im_end|>`(151645) 被当正文吐出来再多一个换行 token ⇒ 现在两颗都停。板布局要一条链接：`ln -s /root/qwen2 /root/llm/models/Qwen2`（npuserv 的 adapter 路径按 registry root=.. 解析）。窗口由编译期 max_decode_length=512 决定，prompt+max_new 超了会被 adapter 拒绝（报 'compiled window'），不会喂到窗口外。"
+      "note": "厂商 demo 那颗件（repos 的 lang/llm/models/Qwen2_0.5B_zg3.36.1_axi_demo，目录名与线上仓同名；镜像自 ModelScope AIBS/Qwen2_0.5B_zg3.36.1_axi_demo，见该目录 README 的出处一节）。驱动＝根目录 qwen2_infer_decode_only_axi_pad3.py：厂商脚本 + 三处只删依赖的改动 + token_dynamic_fm 2→3 个 fp32（12 B，台账 #196）。positions 全按厂商两条循环走：prompt 第 i 个 token 喂 tdf=[1,i+1,0]、写回 out[i+1]→slot i；decode 第 step 步喂 [1,prompt_len+step-1,0] 且不回抄。**实测**：daemon 那条路 11:16 就绪 132.8 s、20 token／6.9 s／2.92 tok/s（台账 §卅八 第四节末行）；**npuserv 这条路 11-06 14:25–14:28 CST 跑过两轮**：/load 137.4 s（apply_s 137.0）、/generate text=你是谁？、max_new=24 → prompt 8 token、17 token／6.3 s、`我是阿里云开发的超大规模语言模型，我叫通义千问。`、/unload 后 MemAvailable 回到 662,800 kB（台账 §卅九）。第一轮 stop_ids 只有 151643，`<|im_end|>`(151645) 被当正文吐出来再多一个换行 token ⇒ 现在两颗都停。板布局要一条链接：`ln -s /root/qwen2 /root/llm/models/Qwen2_0.5B_zg3.36.1_axi_demo`（npuserv 的 adapter 路径按 registry root=.. 解析）。窗口由编译期 max_decode_length=512 决定，prompt+max_new 超了会被 adapter 拒绝（报 'compiled window'），不会喂到窗口外。"
     },
     {
       "id": "mock",

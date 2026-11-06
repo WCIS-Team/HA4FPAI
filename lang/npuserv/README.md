@@ -133,8 +133,8 @@ Model-specific things stay on the model side:
   `"uniform"` (one rule everywhere). Neither arm has run on a board: this 件 is at `apply
   75.1 s`, zero tokens (台账 #212), and the driver itself has never been on the board
   (#208–#211: that push carried json + raw + tokenizer only).
-- **Qwen2-0.5B** (`llm/models/Qwen2/board/npuserv_adapter.py`) drives the **vendor script
-  itself** (`board/qwen2_infer_decode_only_axi_pad3.py` = vendor script + three dependency
+- **Qwen2-0.5B** (`llm/models/Qwen2_0.5B_zg3.36.1_axi_demo/board/npuserv_adapter.py`) drives the **vendor script
+  itself** (`qwen2_infer_decode_only_axi_pad3.py` at the model root = vendor script + three dependency
   drops + `token_dynamic_fm` widened to 12 B, 台账 #196) instead of re-implementing its
   loops: prefill goes through `process_prompt_character_by_character` (tdf `[1, i+1, 0]`,
   entry written at out`[i+1]` into slot `i`), decode through `run_decode` (tdf
@@ -180,8 +180,8 @@ on 113 has to mirror the repo:
 <base>/llm/models/ERNIE-4.5-0.3B-PT4icraft430tai/board/{e41_chatd.py,e41_tok.py,e41_tok.pack,npuserv_adapter.py}
 <base>/llm/models/Qwen3-0.6B/board/npuserv_adapter.py
 <base>/llm/models/Qwen3-0.6B/patch/q3_infer_board.py
-<base>/llm/models/Qwen2/board/npuserv_adapter.py
-<base>/llm/models/Qwen2/qwen2_infer_decode_only_axi_pad3.py   (driver; board copy sits at <base>/qwen2)
+<base>/llm/models/Qwen2_0.5B_zg3.36.1_axi_demo/board/npuserv_adapter.py
+<base>/llm/models/Qwen2_0.5B_zg3.36.1_axi_demo/qwen2_infer_decode_only_axi_pad3.py   (driver; board copy sits at <base>/qwen2)
 ```
 
 `adapter` 是**相对** `root` 的，所以这一条在 PC 和板上都得成立（PC 那边落在 submodule checkout
@@ -199,12 +199,12 @@ on 113 has to mirror the repo:
 mkdir -p /root/llm/models
 ln -s /root/ernie           /root/llm/models/ERNIE-4.5-0.3B-PT4icraft430tai
 ln -s /root/llm/Qwen3-0.6B  /root/llm/models/Qwen3-0.6B
-ln -s /root/qwen2           /root/llm/models/Qwen2
+ln -s /root/qwen2           /root/llm/models/Qwen2_0.5B_zg3.36.1_axi_demo
 ```
 
 Qwen2 多一步：板上它的件摆在 `/root/qwen2/` 顶上（daemon、驱动、`jr_path/`、`config/`、
-`modelzoo_utils/` 全在同一层），契约要的是 `…/Qwen2/board/npuserv_adapter.py`，所以
-adapter 落在 `/root/qwen2/board/`，其余不动。
+`modelzoo_utils/` 全在同一层），契约要的是 `…/Qwen2_0.5B_zg3.36.1_axi_demo/board/npuserv_adapter.py`，所以
+adapter 落在 `/root/qwen2/board/`，其余不动（目录名对齐线上仓，2026-11-06 改名）。
 
 **这两条我没跑**（`113.txt` 是 `test==on`，那条会话 06:50 还在写相机 DMA 的现场）。另外板上那份
 `/root/npuserv/models.json`（11-04 11:45）与仓里这份是**两个副本**、已经漂了（板的 artifacts 指
