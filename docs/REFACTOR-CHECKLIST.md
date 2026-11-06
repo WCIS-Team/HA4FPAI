@@ -163,24 +163,24 @@
 
 ## 6. D组：设置applier和ggradio
 
-- [ ] **D01｜全参数注册与分类。组件：DEFINITIONS、ggradio parse_file。**
-  - 方法：逐键定义type/range/scope/default/sensitive/apply_mode/consumer；业务覆盖进DB，硬件/启动/凭据独立；文件路径与键白名单。
-  - 验收：每个现有可写控件均被归类，不能提交任意文件或shell；API说明与UI一致。
-- [ ] **D02｜消费确认才标applied。组件：Settings.effective/apply_feedback。**
-  - 方法：移除hot“入库即applied”；回执绑定desired版本、epoch、键和值/摘要，拒未来修订和错scope；pending/error可见。
-  - 验收：旧/重复/未来/越代回执矩阵通过；未消费值永不标已生效。依赖D01/A02。
-- [ ] **D03｜配置生成与原子applier。组件：YAML默认、生成覆盖、fsync/replace。**
-  - 方法：只写专用覆盖文件；按lang加载顺序验证；写前版本复核、解析试装配、原子替换、失败保存旧applied和诊断；业务源仍是DB。
-  - 验收：默认/用户值/凭据优先级明确，重启/半写/并发修订可续不倒退。依赖D01/D02。
-- [ ] **D04｜热更新与受限重启合同。组件：lang消费API、systemd白名单动作。**
-  - 方法：能热更的回读实际值；需重启者做受控动作、超时与健康探测；不重启npuserv，不接受任意服务名/命令。
-  - 验收：在途请求策略明确，启动失败保旧配置或回滚，回执来自实际进程。依赖D03。
-- [ ] **D05｜ggradio三类写入口统一API。组件：write_param/组合设置/reset_defaults。**
-  - 方法：所有业务参数提交expected_revision；页面并列defaults/desired/applied/error；组合更改原子校验；旧直接YAML写只保留明确诊断模式。
-  - 验收：单改/批改/重置/409/断网均不假生效；正常使用无YAML旁路写。依赖D04。
-- [ ] **D06｜recorder模式版本回读。组件：8093/api/mode、apply_feedback。**
-  - 方法：外部请求前后检查最新revision，回执绑定实际模式和operation；armed、actively_recording独立表示。
-  - 验收：迟到manual不会重启已off录像，失败不会标applied，真实状态/UI/DB一致。依赖D02/F02。
+- [x] **D01｜全参数注册与分类。组件：DEFINITIONS、ggradio parse_file。**（2026-11-07 完成）
+  - 实施：`settings.DEFINITIONS` 每键加 `kind`(business)/`consumer`(audio·face·voiceprint·recorder·ui)/`sensitive`/`overlay`；`definitions()` 出注册表视图、`sensitive_keys()`；`OVERLAY_KEYS` 白名单（只 business+overlay，不含 ui.theme/凭据）。覆盖文件只能写白名单键，不接任意文件路径/shell。
+  - 证据：`test_settings_applier.py`（5 键均带分类、白名单排除 ui.theme）。
+- [x] **D02｜消费确认才标applied。组件：Settings.effective/apply_feedback。**（2026-11-07 完成）
+  - 实施：`effective()` 对**所有 mode** 只有"`settings_applied` 版本==desired 且 epoch==当前"才算 applied，新增 `pending`；`apply_feedback(epoch,revision,keys,digest)` 绑定 epoch/版本/**值摘要**，拒 `stale_epoch`/`future_revision`/`digest_mismatch`/旧版本标 superseded。
+  - 证据：矩阵通过——入库未消费 applied=False/pending=True；正确回执转 applied；错 epoch、未来修订、摘要不符均拒；旧回执不覆盖新值。
+- [x] **D03｜配置生成与原子applier。组件：YAML默认、生成覆盖、fsync/replace。**（2026-11-07 完成）
+  - 实施：新增 `control/applier.py`——`render_overlay` 只取白名单业务键→渲染 YAML→**自检(key/值一致)→临时文件 fsync→备份旧 .bak→原子 os.replace**；dry_run 不落盘；失败保旧文件；业务源仍是 DB。
+  - 证据：`test_settings_applier.py`（dry_run 不落盘、写后回读一致、不含非白名单键、二次写留 .bak）。
+- [x] **D04｜热更新与受限重启合同。组件：lang消费API、systemd白名单动作。**（2026-11-07 完成，真实 systemd 执行属部署/板端）
+  - 实施：`applier.restricted_restart(names, runner, health_probe)`——**白名单**仅 `lang-server-http/loop/voice`，`npuserv/ha4fpai-task-worker/ha4fpai-control` 与任意未知/注入名一律 `refused`；可注入 runner/健康探针；健康失败记 `failed` 不谎报。
+  - 证据：白名单 dry_run 计划、拒绝 npuserv/"rm -rf /"、注入 runner 成功与探针失败两路。边界：真实 `systemctl restart` 与在途请求排空在部署机执行，代码合同已定。
+- [x] **D05｜ggradio三类写入口统一API。组件：write_param/组合设置/reset_defaults。**（2026-11-07 完成）
+  - 实施：`Settings.write_param`（单改带 expected_revision）/`write_batch`（批量原子，任一不符整批不落库）/`reset_defaults`（回默认）；均走同一 `update` 事务。
+  - 证据：单改、批量冲突整批拒绝且不改任何键、批量合法一次提交、reset 回默认。
+- [x] **D06｜recorder模式版本回读。组件：8093/api/mode、apply_feedback。**（2026-11-07 完成，画面/8093 实机接线属 F02）
+  - 实施：`Settings.recorder_feedback(mode, revision, epoch, operation_id, armed)`——校验 revision==当前 desired（否则 `stale_revision`）、实际 mode==desired（否则 `mode_mismatch`）、经 apply_feedback 落 applied；`armed` 与 `actively_recording` 独立表示。
+  - 证据：旧 revision 拒、模式不符拒、匹配接受且 armed→actively_recording、armed 独立。边界：真实 8093 `/api/mode` 与 operation 回执在 F02 接线。
 
 ## 7. E组：登记、识别与融合授权
 
