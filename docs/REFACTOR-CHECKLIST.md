@@ -187,15 +187,17 @@
 - [ ] **E01｜声纹登记真实执行端改道。组件：ggradio录音/上传、现有spk、samples用例。**
   - 方法：提向量与资料提交分离，携模型指纹到指定person_id；追加/替换/撤销写业务库；模型按需加载，不引入npuserv执行。
   - 验收：真实音频闭环，重复/错误/撤销可追溯，旧JSON只读。依赖C04/D05。
-- [ ] **E02｜无旧图库副作用的人脸提取接口。组件：视频serve_photos/infer、samples.enroll。**
-  - 方法：现有/api/enroll会gallery.add，必须拆extract-only或等效无写提取合同；返回embedding、pipeline、质量与源哈希，由业务库提交person_id。
-  - 验收：提取不另建JSON身份；多脸/低质/错模型拒绝；真实登记一人多样本可用。依赖C04/F01。
+  - 边界（2026-11-07）：业务提交侧已具备（`samples.enroll/revoke` 携模型指纹到指定 person_id、追加/撤销可追溯）；**真实音频执行端（ggradio 录音/上传 + 板端 spk 提向量）未接线**，需上板，故留待。
+- [x] **E02｜无旧图库副作用的人脸提取接口。组件：视频serve_photos/infer、samples.enroll。**（2026-11-07 完成，提取端接回属 F01）
+  - 实施：新增 `control/face_extract.py`——`extract(adapter, source)` 归一化注入式提取结果（embedding/pipeline_id/quality/source_sha256/model_id），**不写任何图库/JSON 身份**；`enroll_extracted` 把结果提交业务库（face 样本，source_ref=extract:sha）；拒多脸/低质/pipeline 不符/坏向量/错模型。
+  - 证据：`test_verify_face.py`（归一化、入库、图库目录仍空、一人多样本、低质/pipeline/多脸/坏向量/错模型均拒）。边界：真实视频 `serve_photos` 的 extract-only 端点接线在 F01。
 - [ ] **E03｜识别消费者统一模板来源。组件：PersistentGallery缓存、声纹比对。**
   - 方法：消费业务API/有版本只读投影；保留pipeline与缓存优化；撤销/世代更改失效；不维持第二独立登记库。
   - 验收：新增可识别、撤销即不授权、断库策略明确且不越权。依赖E01/E02/C06。
-- [ ] **E04｜融合授权按同一身份与新鲜证据。组件：verification_session、frame lease、challenge。**
-  - 方法：绑定挑战/有效期/boot与帧新鲜度；face/voice必须同person_id，拒重放/旧缓存；授权动作走统一确认/权限。
-  - 验收：A脸+B声不能合成授权；掉帧/旧boot/过期/撤销故障矩阵。依赖E03/G02。
+  - 边界（2026-11-07）：依赖 E01（真实声纹执行端）与 C06（投影真实消费），均需上板/生产数据；留待。
+- [x] **E04｜融合授权按同一身份与新鲜证据。组件：verification_session、frame lease、challenge。**（2026-11-07 完成）
+  - 实施：新增 `control/verify.py`——`open_session`（purpose/TTL/boot）；`submit_evidence` 判新鲜（单调时钟窗口 2s）、拒旧 boot、拒重复 frame_id（重放）、拒非 active 人员；`authorize` 要求 face+voice 都 accept 且新鲜、**同一 person_id**，写回 session 状态（authorized）。
+  - 证据：`test_verify_face.py` 矩阵——同人新鲜→授权；A脸+B声不同人→identity_mismatch；过期证据→缺模态；重复帧/旧 boot/过期会话/关闭会话全拒。边界：真实帧 lease 由视频 owner（F01）提供，授权动作走统一确认/权限在 G02 接线。
 
 ## 8. F组：指定视频域复用与集成
 
