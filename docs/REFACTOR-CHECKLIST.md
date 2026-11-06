@@ -133,12 +133,12 @@
 - [x] **B04｜JSON字段与数值范围校验。组件：JSON1、settings definitions。**（2026-11-06 完成）
   - 实施：commands 的 params_json/result_json 加 `json_valid`；settings 的 value 加 `json_valid`、value_type 枚举；`Settings._validate` 补 NaN/Inf 拒绝与 `min/max`（volume 0–100、阈值 0–1）。
   - 证据：直 SQL 非 JSON params/非法 status/非 JSON settings value 均被库拒；入口三条范围拒绝；合法值入库且 `json_valid=1`。
-- [ ] **B05｜在线备份与恢复世代。组件：sqlite3.Connection.backup、manifest、epoch。**
-  - 方法：写入中备份，不只拷主DB；媒体引用与哈希清单一起登记；恢复前校验，恢复后提升世代并失效旧工作。
-  - 验收：备份可开且FK完整，恢复后的旧任务/回执/投影均不能覆盖新状态。依赖A02/A05。
-- [ ] **B06｜WAL和磁盘故障运维。组件：wal_checkpoint、空间/队列指标。**
-  - 方法：常规PASSIVE观测，维护窗口受控TRUNCATE；设保留/余量阈值；映射SQLITE_BUSY/FULL/IOERR。
-  - 验收：长读者不导致无界增长而无告警；磁盘满、只读、进程退出无假成功。依赖B05。
+- [x] **B05｜在线备份与恢复世代。组件：sqlite3.Connection.backup、manifest、epoch。**（2026-11-06 完成）
+  - 实施：新增 `control/backup.py`——`backup()` 用 `Connection.backup()` 生成**在线一致性快照**（不拷主库），落 `manifest.json`（db sha256/字节、schema_version、restore_epoch、domain_revision、store_id、sqlite_version、媒体清单含路径/字节/sha256）；`verify()` 校验 sha256＋`integrity_check`＋`foreign_key_check`，不符抛 `BackupInvalid` 拒绝；`restore()` 校验后原子替换、清旧 `-wal/-shm`、打开新库**提升 restore_epoch**（A02 世代栅栏，使旧任务/回执/投影失效）。内存库明确拒绝备份。
+  - 证据：`control/tests/test_backup_ops.py`（备份可开 integrity ok/fk 空、媒体清单含 sha、恢复回滚数据并把 epoch 1→2、篡改 sha 与坏库 integrity 均拒绝、内存库拒绝）。
+- [x] **B06｜WAL和磁盘故障运维。组件：wal_checkpoint、空间/队列指标。**（2026-11-06 完成）
+  - 实施：新增 `control/ops.py`——`checkpoint(mode)`（PASSIVE/FULL/RESTART/TRUNCATE，返回 busy/log/checkpointed/wal_bytes；常规 PASSIVE、维护窗口 TRUNCATE）；`disk_stat()`；`healthy()` 按 `min_free_bytes`(默认 128MiB)/`wal_warn_bytes`(64MiB) 阈值给 warnings；`map_sqlite_error()` 把 BUSY/LOCKED/READONLY/IOERR/FULL 映射成 `db_busy/db_locked/db_readonly/db_io/db_full`（3.11+ 用 sqlite_errorcode，老版本按消息兜底）。
+  - 证据：`test_backup_ops.py`（PASSIVE/TRUNCATE 执行、非法 mode 拒绝、磁盘读数、四种错误映射、**长读者时 PASSIVE 不能全量 checkpoint（checkpointed<log_pages 可观测）、释放后恢复全量**、阈值越界→warnings、正常→ok）。CI quick 12 套 PASSED。
 
 ## 5. C组：JSON1迁移桥与正式切换
 
