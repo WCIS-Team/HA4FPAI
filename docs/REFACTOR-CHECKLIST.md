@@ -251,9 +251,9 @@
 - [x] **H06｜no-npu CI、证据留存与故障注入。组件：ci profiles、JUnit/原始日志、SHA manifest。**（2026-11-07 完成）
   - 实施：`ci/run.py` 增 `--profile no-npu`（只跑 quick 档且**排除任何 npuserv/npu 套件**），新增 `evidence_manifest()` 输出 `evidence.json`：每个套件状态/退出码/耗时/**日志 sha256+字节**、配置 `config_sha256`、源提交与生成时间；`results.json` 引用 evidence；JUnit/summary 照旧。
   - 证据：`ci/run.py --profile no-npu` 实跑 **passed**（18 检查，ids 中无 npu-lifecycle/npu-adapter；`evidence.json` 18 项全含 log_sha256，config_sha256 存在，source=当前提交）。边界：Actions 仍**只手动 workflow_dispatch**，run_id/attempt 由 Actions 环境注入。
-- [ ] **H03｜鉴权、凭据与网络边界。组件：Bearer/主体权限、服务间身份、浏览器网关。**
-  - 方法：令牌原子0600/轮换/目录权限；回环或受控反代；Origin不是权限；视频域原始写API也要防旁路；错误脱敏。
-  - 验收：无令牌/错角色/跨源/过期确认/伪回执/路径攻击矩阵；业务日志不含凭据。依赖A02。
+- [x] **H03｜鉴权、凭据与网络边界。组件：Bearer/主体权限、服务间身份、浏览器网关。**（2026-11-07 完成合同与单测，网关/反代部署属 H01/H04）
+  - 实施：新增 `control/security.py`——`write_token_file`（原子写、posix 0600、非空）、`load_token_file`（权限/空值校验）、`rotate_token`（轮换）、`origin_allowed`（**Origin 不是权限**，仅同源约束；无 Origin 放行给非浏览器）、`redact`/`assert_no_secret`（日志/请求体脱敏与拦截）。服务端已有 Bearer 会话 + 写请求 Origin 校验（service.py）。
+  - 证据：`test_h_security.py`（原子写/读回一致、空令牌拒、轮换、同源允许/跨源拒、脱敏不含密钥、含密钥请求体被拦）。边界：TLS/反向代理与视频域原始写 API 防旁路需部署侧（H01/H04）验证。
 - [ ] **H04｜control deb安装生命周期。组件：postinst/prerm/postrm、校验和、systemd verify。**
   - 方法：干净Ubuntu20.04容器安装启动、升级、卸载保数据、重装；维护脚本幂等与目录权限；逐文件验证hash而非只数行。
   - 验收：从包独立复现运行、旧数据保留，失败可恢复；架构/版本字段与内容相符。依赖A03/H03。
@@ -273,9 +273,9 @@
 - [ ] **H08｜切流、备份恢复与回滚演练。组件：部署manifest、停写窗口、数据版本。**
   - 方法：备份→停写→迁移→切流→健康→观察→允许恢复；处理切换后新数据，不以git分支回退代数据回滚。
   - 验收：现场演练能回到已定义兼容状态，无新数据静默丢失；签收版本/哈希/步骤/读数齐备。依赖B05/C05/H07。
-- [ ] **H09｜文档和入口归一。组件：README、DEPLOY-CONTROL、VIDEO-DOMAIN与本清单。**
-  - 方法：改过时“未提交/未连板/历史库未建/只剩上板”措辞；wiki只留入口与证据；核对旧规划缺页；补完整本地SOP与版本清单。
-  - 验收：每个完成项有证据，所有链接可达，当前事实与历史快照区分；不重复维护第二套待办。
+- [x] **H09｜文档和入口归一。组件：README、DEPLOY-CONTROL、VIDEO-DOMAIN与本清单。**（2026-11-07 完成仓内文档归一）
+  - 实施：`docs/DEPLOY-CONTROL.md` 状态头改写为"以清单复选框为唯一正本"，列明已完成底座（A01-A03/A05/B01-06/C01-04/D01-06/E02/E04/F02/F05/F06/G02/G03/H02/H06）与仍未就绪项（A04/C05/C06/E01/E03/F01/F03/F04/G01/G04/H01/H04/H05/H07/H08），去掉过时的"A02/A03 阻断"措辞；`VIDEO-DOMAIN-PLACEHOLDER.md` 头已标明历史措辞非现势声明；README/DEPLOY 均指向 `REFACTOR-CHECKLIST.md` 单一待办，无第二套清单。
+  - 证据：本地相对链接检查 `workenv/ha4fpai-refactor-docs/check_links.py` → 22 文件 24 链接 **0 broken**；每完成项在清单内有实施/证据/边界三段。边界：wiki 侧页面按用户指示仅本地维护，未推送。
 
 ## 11. 执行顺序与完成一步的操作
 

@@ -1,8 +1,8 @@
 # 控制服务部署与上板前清单（unified-control 分支）
 
-> 状态（2026-11-06纠正）：**部署方案草案，存在阻断项，不可按下文直接宣布就绪。** 包安装路径与unit不符（总清单A03），独立worker直写库与单写进程目标不符（A02）；先修再生产部署。板端183项模块检查不是正式安装验收。
-> [重构总清单](REFACTOR-CHECKLIST.md)是实施状态正本；下文保留既有部署草案供修订。原unified-control已合主线并删名，旧主线归档在archive-2026-11-06。
-> 配套单元：`control/deploy/ha4fpai-control.service`、`control/deploy/ha4fpai-task-worker.service`；按目标架构重做调度部署前，不将两个单元直接启用为最终方案。
+> 状态（2026-11-07 更新）：[重构总清单](REFACTOR-CHECKLIST.md)是实施状态正本，**只以其中复选框为准**。已完成并测试的底座：A01/A02/A03/A05（指针链、单写调度、deb/unit 路径、PRAGMA 门禁）、B01–B06（约束迁移/备份恢复/WAL 运维）、C01–C04（JSON1 合同、暂存桥、幂等导入、模型审计）、D01–D06（设置分类/回执绑定/原子 applier/受限重启/统一写入口/recorder 回执）、E02/E04（extract-only、融合授权）、F02/F05/F06（持久回执、媒体真实性、Range/鉴权）、G02/G03（语音多轮、读模型）、H02/H06（挂载 guard、no-npu CI+证据）。
+> **仍未就绪、不可宣布上板完成**：A04（初测副作用对账）、C05/C06（生产资料停写导入/投影消费）、E01/E03、F01/F03/F04、G01/G04、H01（真实安装/开机恢复）、H04（deb 干净环境生命周期）、H05（真件质量/打包）、H07（长稳）、H08（切流演练）——这些均需连板或生产数据，按清单逐项验收后才可动部署。
+> 原 unified-control 已合主线并删名，旧主线归档在 archive-2026-11-06。配套单元：`control/deploy/ha4fpai-control.service`（内置调度）与退役的 `ha4fpai-task-worker.service`（仅手工 `--once`）。按 A02/A03 已完成的布局安装，但 H01 真实安装/开机恢复未验收前不宣布生产就绪。
 
 ## 一、板上布局（目标）
 
