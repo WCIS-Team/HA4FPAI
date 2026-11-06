@@ -34,8 +34,10 @@ engines. **On 113 the server has been started (`/root/npuserv`, 11-04 11:45 — 
 14:25 CST one real 件 has gone all the way through it: Qwen2-0.5B** — `/load` 137.4 s
 (`apply_s` 137.0), `/generate {"text":"你是谁？","max_new":24}` 17 tokens in 6.3 s
 (`我是阿里云开发的超大规模语言模型，我叫通义千问。`), `/unload` returning `MemAvailable`
-to 662,800 kB (台账 §卅九). Before that, no real 件 had ever generated a token through
-`npuserv`. Board-side pieces measured elsewhere stay narrower: `e41_tok.py` loads and
+to 662,800 kB (台账 §卅九). Also on 2026-11-06 (~19:50) **ERNIE-4.5-0.3B** generated through
+npuserv (5 prompts, correct zh→en translation, deterministic repeat); **Qwen3-0.6B** loads
+and emits tokens but generation is degenerate — see its model README. Board-side pieces
+measured elsewhere stay narrower: `e41_tok.py` loads and
 encodes on the board's Python 3.8.10, `import e41_chatd` succeeds there — neither has been
 driven through `npuserv`. Board numbers quoted below come from 台账 rows, cited by number.
 Task #24 (does the 512-slot ERNIE 件 swallow a full 512-slot prompt) is still open for the
@@ -130,9 +132,11 @@ Model-specific things stay on the model side:
   expressible (`op_id 4525`). The vendored `run_prompt` and `run_decode` disagree about the
   position fed per slot, so `pos_rule` picks an arm: `"vendor"` (default, reproduces both
   loops exactly — the sequence the Qwen2 chain that spoke coherent Chinese used) or
-  `"uniform"` (one rule everywhere). Neither arm has run on a board: this 件 is at `apply
-  75.1 s`, zero tokens (台账 #212), and the driver itself has never been on the board
-  (#208–#211: that push carried json + raw + tokenizer only).
+  `"uniform"` (one rule everywhere). **Both arms now have run on a board (2026-11-06): the 件
+  loads (apply ≈171 s) and emits tokens, but generation is degenerate — a constant token,
+  identical under both `pos_rule` arms.** Root cause localised to the decode-step KV feedback
+  (not `pos_rule`, not the tokenizer); shelved for the Qwen model line. Details and evidence:
+  [`llm/models/Qwen3-0.6B/README.md`](../llm/models/Qwen3-0.6B/README.md)「板上首次运行与退化问题」.
 - **Qwen2-0.5B** (`llm/models/Qwen2_0.5B_zg3.36.1_axi_demo/board/npuserv_adapter.py`) drives the **vendor script
   itself** (`qwen2_infer_decode_only_axi_pad3.py` at the model root = vendor script + three dependency
   drops + `token_dynamic_fm` widened to 12 B, 台账 #196) instead of re-implementing its
