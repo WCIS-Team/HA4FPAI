@@ -94,7 +94,7 @@ def main():
         cmd_n = store.query_one('SELECT COUNT(*) AS n FROM commands')['n']
         check(persons_n == 2 and models_n == 1 and voice_n == 1 and cmd_n == 1,
               'B01：干净 v1 库升级后行数不丢（2/1/1/1）')
-        check(store.meta('schema_version') == '2', 'B01：schema_version 升到 2')
+        check(store.meta('schema_version') == str(max(v for v, _ in MIGRATIONS)), 'B01：schema_version 到最新')
         rejects = store.query_one('SELECT COUNT(*) AS n FROM persons_rejects')['n']
         check(rejects == 0, 'B01：合法数据零隔离行')
 

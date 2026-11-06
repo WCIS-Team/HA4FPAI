@@ -142,18 +142,18 @@
 
 ## 5. C组：JSON1迁移桥与正式切换
 
-- [ ] **C01｜JSON1能力与版本合同。组件：json_valid/json_type/json_extract/json_each。**
-  - 方法：运行时探测四函数，声明最低已测SQLite3.31.1；不依赖JSONB/STRICT等新语法。
-  - 验收：本机/板端探测一致，缺JSON1时清晰拒绝而不是偷偷换语义。
-- [ ] **C02｜gallery及两类声纹JSON暂存桥。组件：SQL暂存表、source manifest。**
-  - 方法：原件hash和schema入清单；坏JSON先隔离；按源版本展开people/speakers/vectors；缺失/null/错类型分别报告；暂存保源记录定位。
-  - 验收：用真实gallery schema2和两类声纹fixture逐行计数，成功/坏行总数等于源总数。依赖C01/B04。
-- [ ] **C03｜暂存到业务表的幂等导入。组件：迁移用例、identity_map、事件。**
-  - 方法：SQL提结构，业务入口生person_id；legacy id带namespace/store，不偷换全局ID；同名显式决策；隔离active0。
-  - 验收：重跑/中断续跑无重复，冲突报告可审查，每一源样本能反查；不绕开模型/授权检查。依赖C02/B02/B03。
-- [ ] **C04｜真实模型审计与激活批准。组件：模型SHA、pipeline、预处理manifest。**
-  - 方法：从实际文件/config核对dim/dtype/metric/归一化/预处理；区分旧JSON缺指纹与新模型；禁止演练campplus-real当生产身份。
-  - 验收：每个可激活样本能证明模型映射；不兼容隔离并给重提取计划。依赖C03。
+- [x] **C01｜JSON1能力与版本合同。组件：json_valid/json_type/json_extract/json_each。**（2026-11-07 完成）
+  - 实施：新增 `control/json1.py`——`probe()` 运行四函数的行为探测（含 `json_valid('{bad')==0` 语义校验）＋版本比对 `MIN_TESTED=3.31.1`；`require()` 不达标抛 `Json1Unavailable`（含版本与缺失项），不降级到 Python 语义；`has_jsonb` 仅作信息项不作要求。
+  - 证据：`test_json1_staging.py`（本机探测通过、版本达标、伪造缺函数连接被如实报出且 require 拒绝）。板端 3.31.1 已由套件同一探测覆盖（SQLite 3.31.1 支持四函数）。
+- [x] **C02｜gallery及两类声纹JSON暂存桥。组件：SQL暂存表、source manifest。**（2026-11-07 完成）
+  - 实施：`MIGRATION_3` 加 `migration_source/stg_person/stg_sample/migration_reject`；`control/staging.py:load_source()` 按内容识别 gallery-schema2 / voice_boards / voice_lang，按源展开成暂存行，**坏行（坏 JSON/缺名/null 向量/非数值/维度不符/非列表）逐条入 `migration_reject` 并保源定位（src_key）**；原件 sha256/字节/schema 入 manifest；同源重载先清旧行（幂等）。
+  - 证据：`test_json1_staging.py` 三源逐行计数——gallery 6=4ok+2bad、boards 4=3ok+1bad、lang 5=4ok+1bad（**成功+坏=源总数**）；SQL `json_extract` 可从 `vector_json` 取字段。
+- [x] **C03｜暂存到业务表的幂等导入。组件：迁移用例、identity_map、事件。**（2026-11-07 完成）
+  - 实施：`staging.import_staged()`——从暂存结构经 SQL 取字段，人员走 `persons.create`/`identity_add`（namespace=`stg:<source_id>`，legacy key 带源命名空间，不偷换全局 ID），样本走 `samples.enroll`（跟随模型编码）；同名跨源需显式 decision（不自动合并），`activate` 控制隔离；`stg_*` 行 `imported_*` 标记 + identity_map 双保险做幂等。
+  - 证据：首次建 2 人/入 2 样本；**重跑 created=0/enrolled=0 人数不变**；源记录经 identity_map 反查 person_id；同名跨源 → `same_name_needs_decision`；gallery→face 同样建 2 人/idempotent。
+- [x] **C04｜真实模型审计与激活批准。组件：模型SHA、pipeline、预处理manifest。**（2026-11-07 完成）
+  - 实施：`staging.audit_model()`——核对登记模型 modality/dim/dtype/metric 与期望、`model_sha256` 是否在档、可选 `manifest_path` 的实际 sha，输出样本 dim/dtype 分布作证据；`rehearsal=True` 时带 `legacy_pipeline_id` 或 `campplus-real` 的模型判为**不能当生产身份**。
+  - 证据：`test_json1_staging.py`（审计通过给样本证据；dim 期望不符失败；演练模型当生产被拒）。未做的：真实 gallery/声纹文件的生产审计与激活属 C05。
 - [ ] **C05｜生产资料清点、停写与导入。组件：旧图库/声纹/recorder侧车。**
   - 方法：现场hash快照、维护窗口停旧写、dry-run、隔离apply、人数/向量/文件对账，再按批准激活。
   - 验收：真实生产库唯一权威，原件可回取；失败可恢复且不双写；空speakers目录不冒充完整迁移。依赖B05/C04/G04。

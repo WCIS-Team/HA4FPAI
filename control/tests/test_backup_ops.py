@@ -55,7 +55,7 @@ def main():
         man = backup.backup(store, bdir, media_root=media)
         check(os.path.exists(os.path.join(bdir, 'manifest.json')),
               'B05：写 manifest.json')
-        check(man['db_sha256'] and man['schema_version'] == '2'
+        check(man['db_sha256'] and man['schema_version'] == store.meta('schema_version')
               and man['restore_epoch'] == epoch0,
               'B05：manifest 记 sha/schema_version/restore_epoch')
         check(any(m['path'] == 'clip.bin' and m['sha256'] for m in man['media']),

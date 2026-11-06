@@ -529,4 +529,61 @@ DROP TABLE settings;
 ALTER TABLE settings_v2 RENAME TO settings;
 """
 
-MIGRATIONS = [(1, MIGRATION_1), (2, MIGRATION_2)]
+# C02/C03：JSON1 迁移暂存桥（纯追加；不改 v1/v2）。暂存行存 JSON 文本，结构提取用
+# JSON1 函数（json_extract/json_each），不依赖 JSONB/STRICT 等 3.31 之外语法。
+MIGRATION_3 = """
+CREATE TABLE IF NOT EXISTS migration_source(
+  source_id TEXT PRIMARY KEY,
+  kind TEXT NOT NULL,
+  path TEXT,
+  sha256 TEXT,
+  bytes INTEGER,
+  detected_schema TEXT,
+  loaded_at TEXT NOT NULL,
+  n_rows INTEGER NOT NULL DEFAULT 0,
+  n_ok INTEGER NOT NULL DEFAULT 0,
+  n_bad INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS stg_person(
+  stg_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source_id TEXT NOT NULL,
+  src_key TEXT NOT NULL,
+  name TEXT,
+  status TEXT NOT NULL DEFAULT 'ok',
+  reason TEXT,
+  ord INTEGER NOT NULL DEFAULT 0,
+  imported_person_id TEXT,
+  imported_at TEXT,
+  UNIQUE(source_id, src_key)
+);
+CREATE TABLE IF NOT EXISTS stg_sample(
+  stg_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source_id TEXT NOT NULL,
+  src_key TEXT NOT NULL,
+  owner_key TEXT NOT NULL,
+  dim INTEGER,
+  dtype TEXT,
+  vector_json TEXT,
+  sha256 TEXT,
+  status TEXT NOT NULL DEFAULT 'ok',
+  reason TEXT,
+  ord INTEGER NOT NULL DEFAULT 0,
+  imported_sample_id TEXT,
+  imported_at TEXT,
+  UNIQUE(source_id, src_key)
+);
+CREATE TABLE IF NOT EXISTS migration_reject(
+  reject_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source_id TEXT NOT NULL,
+  stage TEXT NOT NULL,
+  src_key TEXT,
+  reason TEXT NOT NULL,
+  detail TEXT,
+  rejected_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_stg_person_src ON stg_person(source_id, status);
+CREATE INDEX IF NOT EXISTS idx_stg_sample_src ON stg_sample(source_id, status);
+CREATE INDEX IF NOT EXISTS idx_stg_sample_owner ON stg_sample(source_id, owner_key, status);
+"""
+
+MIGRATIONS = [(1, MIGRATION_1), (2, MIGRATION_2), (3, MIGRATION_3)]
