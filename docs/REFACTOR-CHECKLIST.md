@@ -247,9 +247,11 @@
 - [ ] **H04｜control deb安装生命周期。组件：postinst/prerm/postrm、校验和、systemd verify。**
   - 方法：干净Ubuntu20.04容器安装启动、升级、卸载保数据、重装；维护脚本幂等与目录权限；逐文件验证hash而非只数行。
   - 验收：从包独立复现运行、旧数据保留，失败可恢复；架构/版本字段与内容相符。依赖A03/H03。
-- [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**（2026-11-06 npuserv 段闭环，其余待做）
+- [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**（2026-11-06 npuserv 段闭环＋ERNIE/Qwen3 真件首次点火，剩余质量与打包待做）
   - ✅ npuserv 段：qoder 完成 registry 适配 llm/models 布局（两条真件 adapter 路径修正）＋compiled_with 声明字段＋/models 暴露＋布局契约守门 2 项（lifecycle 37→40），77 项测试（40+12+22+3）本机全绿；lead 完成板端落地——两条软链（/root/llm/models/）、板上 models.json/server.py 同步仓版、GET /models 三条 adapter_exists 全真＋artifacts_present 全真、mock 生命周期 load→generate→unload 板端实测通过（提交 608f886；指针链 repos 9a0a1ec3 → 主库 f83b342）。
-  - 待做：ERNIE/Qwen3 真实件经 npuserv 的首次 /load→generate（Qwen3 需先推 q3_infer_board.py 上板，task #24/#208-#212）；compiled_with 与板端 runtime 比对仍是无代码声明；lang deb 包清单与其余组件打包核对。
+  - ✅ **ERNIE-4.5-0.3B 真实件首次点火（2026-11-06 19:50–19:52，板 113）**：`/load` apply 40.8s、loading 104.8s → `ready`，设备初始化成功（icore FMSHZGV3TECH-AID / device zg330aiu，dma 0x80000000 / npu 0x40000000）；`/generate` text="你好" max_new=8 → ids `[93956,94042,3507,34377,10359,94105,23,23,94042]`、text `"，你今天过得怎么样？\n\n你"`（4.6s，10 events，真实连贯中文）；`/unload` rc=0。证据：`workenv/ha-npu-ignite-2026-11-06/ernie_ignite.log`＋`worker_5efec6ac.log`。**并更正一处旧判断**：加载前后 CmaFree 都只有 9–14MB、几乎不变，说明模型从驱动自有 NPU 池（0x40000000）分配，低 CmaFree 是正常的（udmabuf0 开机占 128MiB＋驱动预留），**不是泄漏**，无需 reboot。
+  - ✅ **Qwen3-0.6B 真实件首次点火（2026-11-06 19:53–19:56，板 113）**：`/load` apply 171.5s、loading 172.0s → `ready`（kv dtype `@fp(16)` shape `[1,8,512,128]`，设备初始化成功）；`/generate` ids=[9707,1879] max_new=8 decode:false → ids `[508,508,508,508,508,508,508,508]`、gen 8、13.7s、10 events、last_slot 9、pos_rule=vendor。**结论边界：这是该件在板上第一次真的跑出 token（此前只到 apply、零 token，#212），但输出退化（8 个全是同一 token 508），且走的是 ids 路径、未验 tokenizer/文本——只证明"能加载、能出 token"，未达可用质量**，pos_rule/输入/位置口径仍需调。证据：`workenv/ha-npu-ignite-2026-11-06/qwen3_ignite.log`＋`worker_3682c7c9.log`。
+  - 待做：Qwen3 输出质量（退化 token）排查——pos_rule vendor/uniform 对照、真实 prompt 与 tokenizer 路径；ERNIE 更长的对话/多轮；compiled_with 与板端 runtime 比对仍是无代码声明；lang deb 包清单与其余组件打包核对。
 - [ ] **H06｜no-npu CI、证据留存与故障注入。组件：ci profiles、JUnit/原始日志、SHA manifest。**
   - 方法：新增明确不扫描/执行npuserv的运行档；SQL桥/约束/applier/包生命周期/并发恢复入手动CI；MSYS用pipefail保真实退出码。
   - 验收：精确SHA+run_id/attempt+环境+输入摘要+日志hash齐备；重新跑新提交不能借用旧c3a8538 run；不自动触发Actions。
