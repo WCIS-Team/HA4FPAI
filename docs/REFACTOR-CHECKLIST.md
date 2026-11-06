@@ -223,7 +223,8 @@
 - [ ] **F03｜复用录像生命周期并接统一动作。组件：recording_library的delete/restore/purge/readers。**
   - 方法：保留读者保护、purging恢复、配额、retention/compression；统一权限/确认/操作ID；跨文件与业务镜像不伪装ACID。
   - 验收：播放时清理被明确拒绝或等待，重启续清，retention危险确认生效，产物一致。依赖F02。
-  - 边界（2026-11-07）：需板端 recording_library（delete/restore/purge/readers）实机，属连板；F02 的 outbox 已备好接入口，留待。
+  - 进行中（2026-11-07 板 113 实测）：`POST /api/mode manual` → 录 120 帧/118,465 B → `off` 收尾为 `complete`（rec-20261106T224312Z-844d2018524c，`written_frames=120`、`used_bytes +121,191`）；Range `0-99`→**206**；`/api/trash`→`deleted:true,recoverable:true`；`/api/restore`→`deleted:false`；`/api/purge` 无 confirm→**400**、先 restore 后 purge→**400 "Move recording to trash before permanent deletion"**、trash 后 purge→`permanently_deleted:true`，文件与列表均清除（回到 107 条原有记录，未动原数据）。
+  - 未验：**播放中清理的拒绝/等待**（未持长读者）、**重启续清**（purging 状态跨重启）、**retention 危险确认实跑**（只读了代码的 confirm 要求）。这些补齐后才可勾 F03。
 - [ ] **F04｜复用已有face_history SQLite而非重建。组件：HistoryStore/extractor/quality。**
   - 方法：沿用512维FP32归一化、容量与pipeline/唯一帧约束；补统一event/frame关联和对外查询合同；确认现场部署版本及备份/留存。
   - 验收：重复帧不同内容报错，检索与容量边界、旧pipeline拒绝，历史不变登记身份。依赖F01/C04。
