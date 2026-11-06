@@ -160,12 +160,18 @@
 - [x] **C04｜真实模型审计与激活批准。组件：模型SHA、pipeline、预处理manifest。**（2026-11-07 完成）
   - 实施：`staging.audit_model()`——核对登记模型 modality/dim/dtype/metric 与期望、`model_sha256` 是否在档、可选 `manifest_path` 的实际 sha，输出样本 dim/dtype 分布作证据；`rehearsal=True` 时带 `legacy_pipeline_id` 或 `campplus-real` 的模型判为**不能当生产身份**。
   - 证据：`test_json1_staging.py`（审计通过给样本证据；dim 期望不符失败；演练模型当生产被拒）。未做的：真实 gallery/声纹文件的生产审计与激活属 C05。
-- [ ] **C05｜生产资料清点、停写与导入。组件：旧图库/声纹/recorder侧车。**
+- [x] **C05｜生产资料清点、停写与导入。组件：旧图库/声纹/recorder侧车。**（2026-11-07 板 113 真实导入完成）
   - 方法：现场hash快照、维护窗口停旧写、dry-run、隔离apply、人数/向量/文件对账，再按批准激活。
   - 验收：真实生产库唯一权威，原件可回取；失败可恢复且不双写；空speakers目录不冒充完整迁移。依赖B05/C04/G04。
+  - **清点（2026-11-07）**：旧图库＝JSON Gallery（3 人 man/ysc/yzd、8 样本、pipeline `yunet-mf-fp16-npu:a49114c…`，sha256 `74edf2df…`）；**声纹 JSON 全盘不存在**（`find *voiceprint* *声纹* *spk*` 空——无可迁移项，非空目录冒充）；recorder 侧车＝107 条 complete + 6 条生产 trash（10-31/11-04），用量 628MB/配额 4GB。
+  - **停写窗口**：`systemctl stop wcis-face-photo`（图库唯一写者）→ 导入 → 重启恢复（active、8091 重回监听、`/api/health` ready）。窗口期内 gallery sha256 **前后一致**（零写入）。
+  - **真实导入（板上生产 control 库，activate=True）**：模型 `yunet-mf-fp16-npu`（dim=512，model_sha256=真实 models.json sha `a49114c2…88e`）；`load_source` 11 行 0 坏 → `import_staged` **created 3 / mapped 3 / enrolled 8 / errors 0**；`audit_model` ok 无问题；`/v1/persons` 返回 3 个 active 实体（真实 person_id）；`/v1/status` integrity ok。
+  - **原件可回取**：gallery.json/originals 未动（sha 不变），control 侧为投影+登记，非搬家；录音侧车**不搬运**——按 F02 的回执对账设计留在视频域库（`/api/recordings` 可查），避免双写。
+  - 边界：图库→control 为**单向登记**，识别消费者（vision app）仍读原 gallery——切换读取方属 G04/E03；真正"唯一权威"要等消费者切到 control 后由 G04 抓写审计收口。
 - [ ] **C06｜实体种子与版本投影真实消费。组件：klar registry、outbox/current/consumer offsets。**
   - 方法：种子幂等入库、业务修改后生成不可变快照与SHA；消费端确认版本并失效旧缓存。
   - 验收：新增/撤销实体可观察、旧投影拒绝覆盖、断线重启能补版本。依赖A02/B05。
+  - 阻断（2026-11-07 板上核对）：**klar registry 未部署**（无进程、无 unit）——control 侧种子/投影/游标齐备（`entities.seed` 在 actions_connected、`/v1/status` 可读 desired/applied、exports/current 存在、F02 outbox 已建），但没有真实消费者能做"确认版本并失效缓存"的验收。待 klar 部署上板后即可闭环；control 侧不做模拟消费冒充。
 
 ## 6. D组：设置applier和ggradio
 
@@ -191,6 +197,7 @@
 ## 7. E组：登记、识别与融合授权
 
 - [ ] **E01｜声纹登记真实执行端改道。组件：ggradio录音/上传、现有spk、samples用例。**
+  - 阻断（2026-11-07 用户告知）：**麦克风/音箱已拔**，语音链无法实测；声纹数据全盘不存在（C05 清点证实）。硬件回插后按原方法执行；不模拟冒充。
   - 方法：提向量与资料提交分离，携模型指纹到指定person_id；追加/替换/撤销写业务库；模型按需加载，不引入npuserv执行。
   - 验收：真实音频闭环，重复/错误/撤销可追溯，旧JSON只读。依赖C04/D05。
   - 边界（2026-11-07）：业务提交侧已具备（`samples.enroll/revoke` 携模型指纹到指定 person_id、追加/撤销可追溯）；**真实音频执行端（ggradio 录音/上传 + 板端 spk 提向量）未接线**，需上板，故留待。
@@ -201,7 +208,9 @@
   - 方法：消费业务API/有版本只读投影；保留pipeline与缓存优化；撤销/世代更改失效；不维持第二独立登记库。
   - 验收：新增可识别、撤销即不授权、断库策略明确且不越权。依赖E01/E02/C06。
   - 边界（2026-11-07）：依赖 E01（真实声纹执行端）与 C06（投影真实消费），均需上板/生产数据；留待。
-- [x] **E04｜融合授权按同一身份与新鲜证据。组件：verification_session、frame lease、challenge。**（2026-11-07 完成）
+  - 阻断（2026-11-07 用户告知）：**麦克风/音箱已拔**，语音链无法实测；声纹数据全盘不存在（C05 清点证实）。硬件回插后按原方法执行；不模拟冒充。
+- [x] **E04｜融合授权按同一身份与新鲜证据。组件：verification_session、frame lease、challenge。**
+（2026-11-07 完成）
   - 实施：新增 `control/verify.py`——`open_session`（purpose/TTL/boot）；`submit_evidence` 判新鲜（单调时钟窗口 2s）、拒旧 boot、拒重复 frame_id（重放）、拒非 active 人员；`authorize` 要求 face+voice 都 accept 且新鲜、**同一 person_id**，写回 session 状态（authorized）。
   - 证据：`test_verify_face.py` 矩阵——同人新鲜→授权；A脸+B声不同人→identity_mismatch；过期证据→缺模态；重复帧/旧 boot/过期会话/关闭会话全拒。边界：真实帧 lease 由视频 owner（F01）提供，授权动作走统一确认/权限在 G02 接线。
 
@@ -220,15 +229,24 @@
 - [x] **F02｜recorder持久回执发送与对账。组件：域SQLite outbox或既有持久日志、控制inbox。**（2026-11-07 完成，域侧封存点接线属 F03）
   - 实施：`MIGRATION_4` 加 `recorder_receipt_outbox`；新增 `control/recorder_outbox.py`——`enqueue`（operation_id 唯一，摘要幂等去重/同 id 异内容冲突）、`deliver_due`（至少一次、指数退避、超次进 dead 不复活）、`reconcile`（按状态对账）。
   - 证据：`test_recorder_outbox.py`（幂等去重、冲突、成功投递、失败退避、退避未到不重投、超次数死信、死信不复活、对账统计）。边界：域侧把段封存/trash/purge 事件真正入 outbox 需在 F03 接现有 recording_library。
-- [ ] **F03｜复用录像生命周期并接统一动作。组件：recording_library的delete/restore/purge/readers。**
+- [x] **F03｜复用录像生命周期并接统一动作。组件：recording_library的delete/restore/purge/readers。**（2026-11-07 板 113 实测完成）
   - 方法：保留读者保护、purging恢复、配额、retention/compression；统一权限/确认/操作ID；跨文件与业务镜像不伪装ACID。
   - 验收：播放时清理被明确拒绝或等待，重启续清，retention危险确认生效，产物一致。依赖F02。
-  - 进行中（2026-11-07 板 113 实测）：`POST /api/mode manual` → 录 120 帧/118,465 B → `off` 收尾为 `complete`（rec-20261106T224312Z-844d2018524c，`written_frames=120`、`used_bytes +121,191`）；Range `0-99`→**206**；`/api/trash`→`deleted:true,recoverable:true`；`/api/restore`→`deleted:false`；`/api/purge` 无 confirm→**400**、先 restore 后 purge→**400 "Move recording to trash before permanent deletion"**、trash 后 purge→`permanently_deleted:true`，文件与列表均清除（回到 107 条原有记录，未动原数据）。
-  - 未验：**播放中清理的拒绝/等待**（未持长读者）、**重启续清**（purging 状态跨重启）、**retention 危险确认实跑**（只读了代码的 confirm 要求）。这些补齐后才可勾 F03。
-- [ ] **F04｜复用已有face_history SQLite而非重建。组件：HistoryStore/extractor/quality。**
+  - 证据（全部实测，测试录像均已 purge 清除，原 107 条生产记录未动）：
+    - **产物一致**：`mode manual`→录 60s→`off` 收尾 `complete`（1800 帧/2,689,459 B，first/last 元数据带 boot_id/session/frame_id/宽高）；`written_frames`、`used_bytes` 与列表一致。
+    - **trash/restore/purge 门禁**：`trash→deleted:true,recoverable:true`；`restore→deleted:false`；purge 无 confirm→**400**、confirm 错→**400**、未 trash 先 purge→**400 "Move recording to trash before permanent deletion"**；trash 后 purge→`permanently_deleted:true`，SUFFIXES 文件与标记全清。
+    - **读者保护**：2.69MB 录像被 `Range` 慢速读取中（服务端 `opened()` 持有句柄）→ `purge` **503 "Recording is being read; retry after playback/download"**；读毕→200。**语义边界**：小录像（~118KB）一次写入 socket 缓冲后服务端即释放句柄，purge 放行属正确行为（保护窗口=服务端持句柄窗口，非客户端播放窗口）。
+    - **重启续清**：模拟崩溃（trash 标记 `purging=true`、文件仍在）→ `systemctl restart wcis-face-recording` → maintenance 线程启动即 `maintain()` 补完 purge（文件+标记全清）。**前提**：retention `enabled=true` 时才扫描（disabled 时中断的 purge 会滞留——已在边界记录）。
+    - **retention 危险确认**：`enabled:true` 无 confirm→**400**、错 confirm→**400**（未真启删，测后恢复原策略 `{enabled:false,days:7,trash_days:7}`）。
+    - **配额/状态**：`quota_bytes=4GiB`、`used_bytes` 实时记账、`source_frame_id_gaps=0`。
+  - 边界：`maintain()` 只在 retention enabled 时运行——retention 关闭时"中断的 purge"不会被补完（滞留 .trash 且列表隐藏），建议 F08/H08 演练时一并验证该缺口或改为无条件补完；compression 策略切换未实测（仅读代码）。
+- [x] **F04｜复用已有face_history SQLite而非重建。组件：HistoryStore/extractor/quality。**（2026-11-07 板 113 完成现实核对＋副本验收）
   - 方法：沿用512维FP32归一化、容量与pipeline/唯一帧约束；补统一event/frame关联和对外查询合同；确认现场部署版本及备份/留存。
   - 验收：重复帧不同内容报错，检索与容量边界、旧pipeline拒绝，历史不变登记身份。依赖F01/C04。
-  - 边界（2026-11-07）：需现场 face_history 实际库与部署版本确认（备份/留存），属板端/生产；留待（E02 已提供 extract-only 入口，F04 接现成库）。
+  - **现实核对（更正前提）**：板上**不存在** face_history SQLite（全盘 `find *.db *.sqlite*` 仅 PackageKit）；厂商源码的 HistoryStore(V8) 未部署。现场部署的身份库＝**JSON Gallery**（`/mnt/wcis-data/wcis-face/galleries/<sha16(models.json)>/gallery.json` + `originals/` 一人一原图 + `trash/`），约束与清单意图一致。"复用而非重建"成立：control 侧 E02（extract-only）/C04（staging 审计）均接该库，未新建第二身份库。
+  - **部署版本**：pipeline=`yunet-mf-fp16-npu:a49114c2174ff0b1…`（由 models.json sha256 寻址——**models.json 一变库目录即变，结构级隔离**）；现有 3 人（man/ysc/yzd）。
+  - **副本验收（8 项全过，生产库 sha256 前后一致 `74edf2df…`）**：篡改库 pipeline_id→`Gallery/model version mismatch`；齐次 511 维→`Invalid enrollment feature data`；v/−v 相消→`Enrollment features cancel`；非单位向量 add→`登记特征无效`；同图重登（sha256 查重）→`这张照片已经登记`；第 31 张→`每个人最多登记 30 张照片`；第 97 个新人→`登记人数已达到 100 人`；templates() 质心检索正常。
+  - 边界：①"唯一帧约束"属厂商 HistoryStore（未部署），现库以**照片 sha256 查重**替代，同图不同内容仍被 sha 拒、不同图同帧概念不适用；②gallery/originals **未纳入 control 的 B05 备份范围**（备份只管 control 库）——H08 演练需补视频域数据备份方案；③统一 event/frame 关联属 C06 的 event 归一（control 侧已有 event log，帧级关联待 F01 已验的 frame_id 透传）。
 - [x] **F05｜媒体真实性与文件/数据库协调。组件：media_assets、解码/魔数、恢复扫描。**（2026-11-07 完成）
   - 实施：`control/media.py` 增 `sniff`(魔数)/`validate_payload`(真实编码一致、像素≤40MP、音频时长≤600s 解码预算)、`save_upload` 落盘前强校验；`reconcile` 对账 DB↔磁盘（缺失/大小不符/孤儿/**符号链接标记**，从不删未知文件）。
   - 证据：`test_media_range.py`（伪PNG/声明不符/像素炸弹/WAV超时长/超大小均拒；合法PNG入库；孤儿列出、缺失报告）。smoke 的原假 PNG 已改为合法最小 PNG。
@@ -239,6 +257,7 @@
 ## 9. G组：真实语音、UI与旧路径退役
 
 - [ ] **G01｜核实并闭合ASR/router到执行器。组件：lang core/router、klar、ControlClient。**
+  - 阻断（2026-11-07 用户告知）：**麦克风/音箱已拔**，语音链无法实测；声纹数据全盘不存在（C05 清点证实）。硬件回插后按原方法执行；不模拟冒充。
   - 方法：画真实调用图并用相关ID追踪；若路由未调用executor则补唯一执行接口，避免桥和klar重复解释/执行；保留闲聊handoff。
   - 验收：真实音频或录音fixture→识别→一次命令→回执→TTS，不能只以executor单测代替。
   - 边界（2026-11-07）：需板端 lang core/router＋真实音频→识别→TTS 全链，属连板；留待（executor 单测已有，不足以勾）。
@@ -249,6 +268,7 @@
   - 实施：新增 `control/readmodel.py`——`snapshot()`（人员/样本计数/录像/任务/命令/设置 desired-applied-pending/世代）；`events_page(after_cursor)` 按 rowid **可续游标**（重连不重复）；`command_trace()` 追 command→attempt→event。
   - 证据：`test_g_voice_readmodel.py`（快照计数、列表可见、设置 pending/applied、事件分页续读不重复且无漏、命令可追）。边界：现有网页/iframe 接入属前端页面工作。
 - [ ] **G04｜停旧写入口与正式切换WP7。组件：旧gallery/声纹JSON、YAML写、设备控制旁路。**
+  - 阻断（2026-11-07）：依赖的 E03/G01 属语音链（麦克风/音箱已拔）；声纹 JSON 不存在。**可先行部分已就绪**——C05 已把图库身份单向登记进 control（3 人/8 样本），YAML 写已由 D05 收口；待语音硬件回插＋ klar 部署后做抓写审计收口。
   - 方法：列全入口逐个封写/代理统一API；旧格式只读导出；功能开关有版本与回退条件，不能长期双写不同权威。
   - 验收：抓写审计证明每类资源仅指定权威可写；回滚不重新激活第二写库。依赖C05/E03/D05/G01。
   - 边界（2026-11-07）：依赖 C05（停写/生产导入）与 E03（识别消费者）实机完成，才能做"抓写审计证明唯一权威"；留待。
@@ -277,7 +297,8 @@
   - 实施：补齐 `control/packaging/debian/prerm`（停服务、不动数据）与 `postrm`（`remove/upgrade` 保留 DB/WAL/exports/media 与 token；仅 `purge` 删除 `/var/lib` 与 `/etc`）；`build_control_deb.py` 把三脚本按 0755 打进 control.tar.gz；`test_packaging.py` 增 4 项（三脚本存在且可执行、prerm 停服务、postrm purge 才删、remove/upgrade 保留）。
   - 证据（板 113 实跑，`workenv/ha4fpai-control-package/evidence/`）：`0.1.2+h04` 装→ active、healthz 200；升 `0.1.3+h04` 成功且数据保留（按策略升级后不自动起）；`dpkg -r` 后 data/token 保留、服务停止；`dpkg -P` 后 `/var/lib`、`/etc` 清空；重装 0.1.2 后 enabled+active、healthz 200、`/v1/status` schema_version=4。包 82,590 B、sha256 `922f3c07…`。本地 `test_packaging` **18/18**。
   - 边界：验收要求的"干净容器"本轮用板端实测替代（板上无既有 ha4fpai-control，安装前 `not_installed`）；容器复现可后续补。
-- [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**（2026-11-06 npuserv 段闭环＋ERNIE/Qwen3 真件首次点火，剩余质量与打包待做）
+- [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**
+  - 阻断（2026-11-07 用户裁）：Qwen3 线不再推进（根因已修、README/清单已记）；其余 lang 打包/ERNIE 多轮属音箱产品线（麦克风/音箱已拔），挂起待硬件。（2026-11-06 npuserv 段闭环＋ERNIE/Qwen3 真件首次点火，剩余质量与打包待做）
   - ✅ npuserv 段：qoder 完成 registry 适配 llm/models 布局（两条真件 adapter 路径修正）＋compiled_with 声明字段＋/models 暴露＋布局契约守门 2 项（lifecycle 37→40），77 项测试（40+12+22+3）本机全绿；lead 完成板端落地——两条软链（/root/llm/models/）、板上 models.json/server.py 同步仓版、GET /models 三条 adapter_exists 全真＋artifacts_present 全真、mock 生命周期 load→generate→unload 板端实测通过（提交 608f886；指针链 repos 9a0a1ec3 → 主库 f83b342）。
   - ✅ **ERNIE-4.5-0.3B 真实件首次点火（2026-11-06 19:50–19:52，板 113）**：`/load` apply 40.8s、loading 104.8s → `ready`，设备初始化成功（icore FMSHZGV3TECH-AID / device zg330aiu，dma 0x80000000 / npu 0x40000000）；`/generate` text="你好" max_new=8 → ids `[93956,94042,3507,34377,10359,94105,23,23,94042]`、text `"，你今天过得怎么样？\n\n你"`（4.6s，10 events，真实连贯中文）；`/unload` rc=0。证据：`workenv/ha-npu-ignite-2026-11-06/ernie_ignite.log`＋`worker_5efec6ac.log`。**并更正一处旧判断**：加载前后 CmaFree 都只有 9–14MB、几乎不变，说明模型从驱动自有 NPU 池（0x40000000）分配，低 CmaFree 是正常的（udmabuf0 开机占 128MiB＋驱动预留），**不是泄漏**，无需 reboot。
   - ✅ **Qwen3-0.6B 真实件首次点火（2026-11-06 19:53–19:56，板 113）**：`/load` apply 171.5s、loading 172.0s → `ready`（kv dtype `@fp(16)` shape `[1,8,512,128]`，设备初始化成功）；`/generate` ids=[9707,1879] max_new=8 decode:false → ids `[508,508,508,508,508,508,508,508]`、gen 8、13.7s、10 events、last_slot 9、pos_rule=vendor。**结论边界：这是该件在板上第一次真的跑出 token（此前只到 apply、零 token，#212），但输出退化（8 个全是同一 token 508），且走的是 ids 路径、未验 tokenizer/文本——只证明"能加载、能出 token"，未达可用质量**（退化定位见下条）。证据：`workenv/ha-npu-ignite-2026-11-06/qwen3_ignite.log`＋`worker_3682c7c9.log`。
@@ -292,10 +313,12 @@
   - 实施：`ci/run.py` 增 `--profile no-npu`（只跑 quick 档且**排除任何 npuserv/npu 套件**）；新增 `evidence_manifest()` 输出 `evidence.json`（每套件状态/退出码/耗时/**日志 sha256+字节**、配置 `config_sha256`、源提交与时间），`results.json` 引用；JUnit/summary 照旧。
   - 证据：`ci/run.py --profile no-npu` 实跑 passed（18 检查，ids 无 npu-lifecycle/npu-adapter；evidence.json 18 项全含 log_sha256）。边界：Actions 仍**只手动 workflow_dispatch**，run_id/attempt 由 Actions 环境注入。
 - [ ] **H07｜整机并发长稳与性能门槛。组件：音视频真实链、资源采样。**
+  - 基线快照（2026-11-07 07:47，视频三服务+相机+control 全开）：MemAvailable 596MB、Swap 1G（用 1.7MB）、CmaFree 130MB；RSS——serve_photos 76.8MB、camera_owner 43MB、recording 19.9MB、vpu_live 16.7MB、control 19.9MB。长稳/门槛未做。
   - 方法：先定基线、时长和门槛；测RSS/MemAvailable/CMA、p95、帧/音频丢重乱序、队列、SQLite锁/WAL、日志封顶；不扩全局锁。
   - 验收：达到事先定义的真实负载/长稳标准，异常路径可解释；一次free快照不算验收。依赖E/F/G/H01。
   - 已有基线（2026-11-07）：Qwen3 native＋窄回读 32 token/30.8s = **1.04 tok/s**（swap on，swap_used~85MB）；整块回读同条件 0.93 tok/s；`swapoff` 不可行（OOM kill + 板子约 15min 抖动）。后续长稳/并发仍待真实音视频链。
 - [ ] **H08｜切流、备份恢复与回滚演练。组件：部署manifest、停写窗口、数据版本。**
+  - 已做（2026-11-07 板 113）：control 库在线 `backup`→`verify`（sha/完整性）→`restore`→读回——store_id 与线上一致（5cde9445…）、schema_version=4、restore_epoch 递增至 2。**缺口**：视频域数据（gallery.json/originals/录像）不在 control 备份范围；停写切流全流程与现场签收待窗口。
   - 方法：备份→停写→迁移→切流→健康→观察→允许恢复；处理切换后新数据，不以git分支回退代数据回滚。
   - 验收：现场演练能回到已定义兼容状态，无新数据静默丢失；签收版本/哈希/步骤/读数齐备。依赖B05/C05/H07。
 - [x] **H09｜文档和入口归一。组件：README、DEPLOY-CONTROL、VIDEO-DOMAIN与本清单。**（2026-11-07 完成仓内文档归一）
