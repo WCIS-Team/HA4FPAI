@@ -37,3 +37,18 @@ dump 格式（--dump_format SFB/HQB）解释。
 - npu 输出：`hf_probe_T80x600_r0.npy`（153600，前段单调，std 0.7375）
 - cpu 参考：`ab_cpu.npy` 是 30720 截断版；全长用 `hifigan_ab3.py` 现算（std 0.6055）
 - 历史唯一正确读回：2026-11-07 15:2x，corr=0.9994（调用序列未复现，勿当口径）
+
+
+## reset_device 实验（2026-11-07 晚）
+
+Qwen 驱动在 read 前调 `dev.reset(1)`——HiFi-GAN probe 加同样的 reset 后**输出逐位不变**
+（仍为单调序列，std 0.7375）⇒ 排除"缺 reset"。综合全部实验：
+
+- 输出 Tensor 声明 [153600] @fp(32) @layout(C) 单 chunk、offset 0、byte_size 614400——
+  **读回机制本身无毛病，读到的是"合法但错误"的内容**（形似输入 mel 的映射）。
+- 同 binding 上 Qwen3 的 host 输出（logits [1,1,151936] fp16 '***C'）读回**正确**。
+- 差异点收敛为：① 本图是 **SFB dump 格式**（Qwen 是 HQB/llm_mode）；② 输出带
+  merged_distrs（整个张量 merge 成 [153600]）——**SFB+merged 的 Tensor.read 语义**
+  是下一个要对照的点（vocos README 的取数要点里 `--dump_format HQB` 一句即由此来）。
+- 结论维持：python binding 下该图输出不可信，质量验收走 CLI 口径（CLI segfault 先解）
+  或改 dump_format 重编译（gen_local.bat 流程，本机 Windows CLI）。
