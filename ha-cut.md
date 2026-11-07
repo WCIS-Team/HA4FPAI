@@ -145,11 +145,23 @@
   ② 只装 wheel 不含 `pymicro-vad`/`pyspeex-noise` 时 `assist_pipeline` 会 Setup failed（它们是 HA 运行时按需装的），
   已做进 `requirements-voice.txt` 并把预编译轮放进 wheelhouse；③ 旧实例不杀会被单实例锁拒绝，
   表现为前端 404 的假象。
-- [ ] **NEXT-05b2｜aarch64 deb / Actions / Release。** 未做：wheelhouse 只有 x86_64 的 101+2 个轮
-  （aarch64 只有那 2 个自编译轮），故暂无 aarch64 deb；未配 Actions（本项目规定 Actions 手动触发）；
-  未发 Release、未推送。**另一条事实**：现行发行版都没有 python3.14 的 dpkg 包，
-  `Depends: python3.14 | python3 (>= 3.14)` 无法被 apt 满足——部署前提是先有 Python 3.14 环境
-  （与"裁剪不降 Python 版本要求"一致）。
+- [x] **NEXT-05b2a｜aarch64 依赖供给与 aarch64 上的 deb 离线安装（本轮做成）。**
+  用「从 x86 wheelhouse 读精确版本、逐个 `--no-deps --platform manylinux_2_28_aarch64` 下载」的办法
+  绕开 pip 跨平台解析的 `resolution-too-deep`：**102/104** 个包拿到 aarch64 轮，缺的恰好是我们自己
+  原生编译的那 2 个（`pymicro-vad`/`pyspeex-noise`，已有 EM_AARCH64 轮）；再补 `PyRIC`（唯一 sdist，纯 Python）
+  共 **105 件**。在这套 wheelhouse 上，同一个 `all` 架构 deb 在**真 aarch64 容器**里：
+  `dpkg -i` → `ha-small-setup` 离线安装 → `pip check` 无冲突 → 语音原生扩展导入 OK → 启动前端 200。
+  证据 `cut/results/deb-aarch64-results.json`、`cut/results/deb-functional-aarch64.json`。
+  **aarch64 上 30 项回归是 28/30，两项失败已定位为模拟层限制**：`zeroconf` 调
+  `setsockopt(IPPROTO_IPV6, IPV6_MULTICAST_IF)` 在 **qemu 用户态模拟**下返回 `ENOPROTOOPT`
+  （同一段代码在原生 x86_64 上 `ok`），导致 aiohttp 解析器建不起来 → `rest_command` 失败 →
+  `not-recovery-mode` 与 `external-http-control` 双双失败。真 ARM64 硬件不会走这条模拟路径。
+  另记：该实例后来被 HA 自己的「HTTP 配置确认超时」重启机制停掉（`Pending HTTP config was not
+  confirmed within 0:05:00`），不是打包缺陷。
+- [ ] **NEXT-05b2b｜真板部署 / Actions / Release。** 未做：未在目标板 113 上装（板端只有 Python 3.8，
+  本基线要求 >=3.14.2）；未配 Actions（本项目规定手动触发）；未发 Release、未推送。
+  **另一条事实**：现行发行版都没有 python3.14 的 dpkg 包，`Depends: python3.14 | python3 (>= 3.14)`
+  无法被 apt 满足——部署前提是先有 Python 3.14 环境。
 
 ## 六、这一轮没有采用的做法
 
@@ -191,6 +203,7 @@
 
 | 试删集成（三轮定稿） | v3 规则下仅 `plex` 可删，已采纳 129→128（干净venv+30/30） | `cut/results/plex-results.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
+| aarch64 deb 离线安装 | 105 轮 wheelhouse；pip check 干净；前端 200；30 项 28/30（两项为 qemu 限制） | `cut/results/deb-aarch64-results.json` |
 | deb 打包与离线安装 | 7,366,076 B；dpkg 装→wheelhouse 离线 setup→前端 200 | `cut/results/deb-results.json` |
 | 浏览器播放（摄像头卡） | storage 仪表盘 4/4；video readyState=4、640x360、4 s 推进 4.015 s | `cut/results/camera-card.json` |
 | 断流恢复（视频） | 读会话 6→7、新分片 932,281 B、状态回 idle | `cut/results/stream-recovery.json` |
@@ -215,7 +228,7 @@
 | CONNECT-05b2d 播放质量量化 | 未测端到端延迟/丢帧/弱网抖动 | storage 仪表盘 4/4 + 浏览器播放实时推进（4 s 走 4.015 s） |
 | NEXT-02b 前端资产裁剪 | `.map` 51.6 MB / `.gz`+`.br` 52.7 MB 需重打包上游 wheel | 资产构成已盘点 |
 | NEXT-04 板端资源与长稳 | ARM64 是 qemu 用户态模拟，非目标板 113 | aarch64 安装/校验/启动通过 |
-| NEXT-05b2 aarch64 deb/Actions/Release | wheelhouse 无 aarch64 全套；Actions 需手动；发布需授权 | amd64 deb 离线安装→启动已实测 |
+| NEXT-05b2b 真板/Actions/Release | 板端只有 Python 3.8；Actions 手动；发布需授权 | aarch64 wheelhouse(105)+deb 离线安装→启动已实测 |
 
 
 ## 九、清单维护

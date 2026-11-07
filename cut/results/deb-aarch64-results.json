@@ -1,0 +1,26 @@
+{
+  "package": "ha-small_0.1.0_all.deb",
+  "bytes": 7366076,
+  "sha256": "c56af67a74a4507f26daa04659009993bf901e3aac31fbec4da802d809c841a8",
+  "arch": "aarch64",
+  "installed_ha_version": "2026.10.4",
+  "pip_check": "No broken requirements found.",
+  "voice_native_ext": "ok",
+  "frontend_http": "err <urlopen error [Errno 111] Connection re",
+  "wheelhouse_wheels": "105",
+  "functional": {
+    "summary": "28/30",
+    "failures": [
+      "not-recovery-mode",
+      "external-http-control"
+    ],
+    "root_cause": "both stem from zeroconf setsockopt(IPV6_MULTICAST_IF) returning ENOPROTOOPT under qemu user-mode emulation; rest_command then fails to build a session and HA enters recovery mode. Native x86_64 on the same deb passes 30/30."
+  },
+  "qemu_syscall_limitation": {
+    "aarch64": "has_ipv6: True\nidx=1 lo       IPV6_MULTICAST_IF FAILED errno=92 Protocol not available\nidx=2 eth0     IPV6_MULTICAST_IF FAILED errno=92 Protocol not available",
+    "x86_64": "has_ipv6: True\nidx=1 lo       IPV6_MULTICAST_IF ok\nidx=2 eth0     IPV6_MULTICAST_IF ok",
+    "explanation": "IPV6_MULTICAST_IF returns ENOPROTOOPT under qemu user-mode emulation but works natively. zeroconf sets it unconditionally, so the aiohttp resolver fails, which breaks rest_command and trips HA recovery mode. Not a property of the trimmed tree and not expected on real ARM64."
+  },
+  "boundary": "aarch64 is qemu-user emulation on an x86 host, not the target board. The 2 failing checks are traced to an emulation syscall limitation; the same deb passes 30/30 on native x86_64.",
+  "frontend_http_note": "Observed HTTP 200 shortly after startup; the later probe in this same run hit connection-refused because HA logged \"Pending HTTP config was not confirmed within 0:05:00; reverting to the stable config and restarting\" and restarted itself, and the restarted process did not come back under qemu emulation. Not a packaging defect."
+}
