@@ -83,6 +83,50 @@ def read_worker_rss(pid):
     return None
 
 
+def _parse_icraft_ver(text):
+    """从 `icraft --version` 输出抠 (发行版本, CLI 构建号)。实测（板 113, 2026-11-08）：
+    "Icraft 版本:  * v3.39.0 | CLI 版本: 3.39.0.0-431be90(2608220046)"。"""
+    import re
+    rel = None
+    m = re.search(r"v(\d+\.\d+\.\d+)", text or "")
+    if m:
+        rel = m.group(1)
+    cli = None
+    m2 = re.search(r"(\d+\.\d+\.\d+\.\d+-[0-9a-f]+\(\d+\))", text or "")
+    if m2:
+        cli = m2.group(1)
+    return rel, cli
+
+
+_runtime_cache = {}
+
+
+def runtime_version():
+    """板端 icraft 运行时版本（进程内缓存；CLI 不可用就是 {None,None}，不猜）。"""
+    if _runtime_cache:
+        return _runtime_cache
+    rel = cli = None
+    try:
+        out = subprocess.run(["icraft", "--version"], capture_output=True, text=True,
+                             timeout=20)
+        rel, cli = _parse_icraft_ver((out.stdout or "") + (out.stderr or ""))
+    except Exception as e:
+        log("icraft --version failed: %r" % (e,))
+    _runtime_cache.update({"icraft": rel, "cli": cli})
+    return _runtime_cache
+
+
+def _compat(compiled_with, runtime):
+    """件声明（自由文本）vs 板端 runtime：返回 (件版本, 兼容判定)。
+    major.minor 相同 = True；不同 = False；抠不到/无 runtime = None。"""
+    import re
+    m = re.search(r"(\d+\.\d+\.\d+)", compiled_with or "")
+    got = m.group(1) if m else None
+    if not got or not runtime:
+        return got, None
+    return got, (got.split(".")[:2] == runtime.split(".")[:2])
+
+
 def _read_json(path):
     try:
         with open(path, encoding="utf-8") as fh:
@@ -119,9 +163,14 @@ class Model(object):
         self.compiled_with = entry.get("compiled_with")
 
     def describe(self):
+        rt = runtime_version()
+        cw, ok = _compat(self.compiled_with, rt.get("icraft"))
         d = {"id": self.id, "adapter": self.adapter,
              "adapter_exists": os.path.exists(self.adapter),
              "compiled_with": self.compiled_with,
+             "compiled_with_version": cw,
+             "runtime_icraft": rt.get("icraft"), "runtime_cli": rt.get("cli"),
+             "runtime_compatible": ok,
              "capabilities": self.capabilities, "defaults": self.defaults,
              "note": self.note}
         if self.raw.get("artifacts"):
