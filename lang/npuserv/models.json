@@ -41,7 +41,10 @@
         "padfix": true,
         "pos_offset": 1,
         "max_new_cap": 192,
-        "stop_ids": [2, 100272]
+        "stop_ids": [
+          2,
+          100272
+        ]
       },
       "env": {
         "E41_JSON": "/root/ernie/jr_path/decode/E41-decoder_ZG.json",
@@ -68,7 +71,10 @@
       },
       "defaults": {
         "max_new": 32,
-        "stop_ids": [151645, 151643],
+        "stop_ids": [
+          151645,
+          151643
+        ],
         "pos_rule": "vendor",
         "vocab_size": 151936,
         "n_layers": 28,
@@ -102,7 +108,10 @@
         "modelzoo_utils": "/root/qwen2/modelzoo_utils",
         "driver_dir": "/root/qwen2",
         "max_new": 24,
-        "stop_ids": [151643, 151645],
+        "stop_ids": [
+          151643,
+          151645
+        ],
         "max_decode_length": 512
       },
       "note": "厂商 demo 那颗件（repos 的 lang/llm/models/Qwen2_0.5B_zg3.36.1_axi_demo，目录名与线上仓同名；镜像自 ModelScope AIBS/Qwen2_0.5B_zg3.36.1_axi_demo，见该目录 README 的出处一节）。驱动＝根目录 qwen2_infer_decode_only_axi_pad3.py：厂商脚本 + 三处只删依赖的改动 + token_dynamic_fm 2→3 个 fp32（12 B，台账 #196）。positions 全按厂商两条循环走：prompt 第 i 个 token 喂 tdf=[1,i+1,0]、写回 out[i+1]→slot i；decode 第 step 步喂 [1,prompt_len+step-1,0] 且不回抄。**实测**：daemon 那条路 11:16 就绪 132.8 s、20 token／6.9 s／2.92 tok/s（台账 §卅八 第四节末行）；**npuserv 这条路 11-06 14:25–14:28 CST 跑过两轮**：/load 137.4 s（apply_s 137.0）、/generate text=你是谁？、max_new=24 → prompt 8 token、17 token／6.3 s、`我是阿里云开发的超大规模语言模型，我叫通义千问。`、/unload 后 MemAvailable 回到 662,800 kB（台账 §卅九）。第一轮 stop_ids 只有 151643，`<|im_end|>`(151645) 被当正文吐出来再多一个换行 token ⇒ 现在两颗都停。板布局要一条链接：`ln -s /root/qwen2 /root/llm/models/Qwen2_0.5B_zg3.36.1_axi_demo`（npuserv 的 adapter 路径按 registry root=.. 解析）。窗口由编译期 max_decode_length=512 决定，prompt+max_new 超了会被 adapter 拒绝（报 'compiled window'），不会喂到窗口外。"
@@ -121,9 +130,32 @@
         "load_ms": 1500,
         "step_ms": 40,
         "max_new": 8,
-        "stop_ids": [2]
+        "stop_ids": [
+          2
+        ]
       },
       "note": "test fixture only.  Load this to exercise /load /generate /unload and the one-slot rules."
+    },
+    {
+      "id": "tts-hifigan-v2",
+      "adapter": "tts/sherpa/HiFi-GAN/board/npuserv_adapter.py",
+      "compiled_with": "icraft 3.39.0 (ZG codegen, gen_fp16 2026-10-31)",
+      "artifacts": {
+        "graph_json": "/mnt/data/lang/tts/models/vocoder/hifigan_v2_ZG/hifigan_v2_ZG.json",
+        "graph_raw": "/mnt/data/lang/tts/models/vocoder/hifigan_v2_ZG/hifigan_v2_ZG.raw",
+        "board_config": "/root/llm/tts/HiFi-GAN/board/config.json"
+      },
+      "capabilities": {
+        "text_in": false,
+        "ids_in": false,
+        "mel_in": true,
+        "text_out": false,
+        "wave_out": true
+      },
+      "defaults": {
+        "max_new": 600
+      },
+      "note": "HiFi-GAN v2 PRelu fp16 vocoder；差异化配置全在模型目录 board/config.json（C05 式每模型自治）。需先在 config.json 与板上部署件路径一致。"
     }
   ]
 }

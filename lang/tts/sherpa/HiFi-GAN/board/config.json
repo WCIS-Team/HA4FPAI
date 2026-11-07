@@ -1,0 +1,31 @@
+{
+  "model": "hifigan-v2-prelu-fp16",
+  "compiled_with": "icraft 3.39.0 (ZG codegen)",
+  "graph": {
+    "json": "/mnt/data/lang/tts/models/vocoder/hifigan_v2_ZG/hifigan_v2_ZG.json",
+    "raw": "/mnt/data/lang/tts/models/vocoder/hifigan_v2_ZG/hifigan_v2_ZG.raw",
+    "params_bytes": 5253626,
+    "params_md5": "47abfb47b59ae90d641a554dfa922a63"
+  },
+  "input": {
+    "name": "mel",
+    "dtype": "float32",
+    "layout": "NHWC",
+    "shape": [1, 1, 600, 80],
+    "note": "mel 频谱，T×80；T<=600 截断，不足沿帧维重复 pad 到 600"
+  },
+  "output": {
+    "name": "wave",
+    "dtype": "float32",
+    "shape": [153600],
+    "note": "600×256 样本/帧；按 T 截断后返回"
+  },
+  "sample_rate": 22050,
+  "samples_per_frame": 256,
+  "runtime": {
+    "single_process_per_utterance_note": "vocos README 取数要点：python forward 连续调用第 2 句起可能全零（曾用 CLI 一句一进程规避）；本 adapter 先以每 generate 一次 forward 为契约，若复现全零则在 generate 内每次重建 session（代价 apply 一次性）",
+    "zero_output_guard": true
+  },
+  "return_modes": ["wave_b64", "to_file"],
+  "notes": "差异化配置全部在本文件；npuserv registry 只留 max_new 类策略。icraft39 绑定在 /root/icraft39（worker 侧 sys.path 由 adapter 自加）。"
+}
