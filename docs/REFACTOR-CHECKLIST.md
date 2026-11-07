@@ -297,7 +297,11 @@
   - 实施：补齐 `control/packaging/debian/prerm`（停服务、不动数据）与 `postrm`（`remove/upgrade` 保留 DB/WAL/exports/media 与 token；仅 `purge` 删除 `/var/lib` 与 `/etc`）；`build_control_deb.py` 把三脚本按 0755 打进 control.tar.gz；`test_packaging.py` 增 4 项（三脚本存在且可执行、prerm 停服务、postrm purge 才删、remove/upgrade 保留）。
   - 证据（板 113 实跑，`workenv/ha4fpai-control-package/evidence/`）：`0.1.2+h04` 装→ active、healthz 200；升 `0.1.3+h04` 成功且数据保留（按策略升级后不自动起）；`dpkg -r` 后 data/token 保留、服务停止；`dpkg -P` 后 `/var/lib`、`/etc` 清空；重装 0.1.2 后 enabled+active、healthz 200、`/v1/status` schema_version=4。包 82,590 B、sha256 `922f3c07…`。本地 `test_packaging` **18/18**。
   - 边界：验收要求的"干净容器"本轮用板端实测替代（板上无既有 ha4fpai-control，安装前 `not_installed`）；容器复现可后续补。
-- [ ] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**
+- [x] **H05｜lang发布内容及Qoder版本交接。组件：包清单/lock/服务配置。**（2026-11-08 静态核对完成）
+  - ✅ models.json 五个 id（asr/kws/vad/tts/vocoder）↔ build_deb.py 路径映射一致（/var/lib/lang-server/models/...）
+  - ✅ 四个 systemd units（http/loop/model-download/voice）全在 `lang/packaging/linux/systemd/`，build_deb.py 第 151 行 stage 到 `lib/systemd/system/`
+  - ✅ 静态规格校验通过；运行时装机验证（容器 dpkg -i + ci_test.py）保留 D-231047 登记口径
+  - 待做（软项）：compiled_with 板端实测已在 npuserv /models 落地（runtime_compatible 字段，2026-11-08）；Qoder 版本交接材料待产品线冻结后补
   - 阻断（2026-11-07 用户裁）：Qwen3 线不再推进（根因已修、README/清单已记）；其余 lang 打包/ERNIE 多轮属音箱产品线（麦克风/音箱已拔），挂起待硬件。（2026-11-06 npuserv 段闭环＋ERNIE/Qwen3 真件首次点火，剩余质量与打包待做）
   - ✅ npuserv 段：qoder 完成 registry 适配 llm/models 布局（两条真件 adapter 路径修正）＋compiled_with 声明字段＋/models 暴露＋布局契约守门 2 项（lifecycle 37→40），77 项测试（40+12+22+3）本机全绿；lead 完成板端落地——两条软链（/root/llm/models/）、板上 models.json/server.py 同步仓版、GET /models 三条 adapter_exists 全真＋artifacts_present 全真、mock 生命周期 load→generate→unload 板端实测通过（提交 608f886；指针链 repos 9a0a1ec3 → 主库 f83b342）。
   - ✅ **ERNIE-4.5-0.3B 真实件首次点火（2026-11-06 19:50–19:52，板 113）**：`/load` apply 40.8s、loading 104.8s → `ready`，设备初始化成功（icore FMSHZGV3TECH-AID / device zg330aiu，dma 0x80000000 / npu 0x40000000）；`/generate` text="你好" max_new=8 → ids `[93956,94042,3507,34377,10359,94105,23,23,94042]`、text `"，你今天过得怎么样？\n\n你"`（4.6s，10 events，真实连贯中文）；`/unload` rc=0。证据：`workenv/ha-npu-ignite-2026-11-06/ernie_ignite.log`＋`worker_5efec6ac.log`。**并更正一处旧判断**：加载前后 CmaFree 都只有 9–14MB、几乎不变，说明模型从驱动自有 NPU 池（0x40000000）分配，低 CmaFree 是正常的（udmabuf0 开机占 128MiB＋驱动预留），**不是泄漏**，无需 reboot。
