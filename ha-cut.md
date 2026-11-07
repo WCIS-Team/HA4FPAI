@@ -52,7 +52,9 @@
 
 - [ ] **CONNECT-01｜真实语音输入输出。** 仍未做：需要实际麦克风、音箱与 STT/TTS/Wyoming 提供者；容器无声卡。
 - [x] **CONNECT-02a｜摄像头链路（合成源）。** generic 配置流→预览确认→条目创建→`camera.127_0_0_1` 实体→`/api/camera_proxy` 取回 5429 B JPEG 快照。证据 `cut/results/camera-results.json`（5/5）。
-- [ ] **CONNECT-02b｜真实摄像头/RTSP/HLS/浏览器播放。** 未做：无真实视频源，未验证拖动播放与鉴权。
+- [x] **CONNECT-02b1｜RTSP→stream→HLS 管线（真实视频编码）。** 用 ffmpeg 生成 H264 测试图案（640x360@15fps）推给本地 mediamtx RTSP 服务器，HA 用 generic camera 的 `stream_source` 接入；HA 实际读取 RTSP 会话 63 秒（mediamtx 日志 `is reading from path cut`），前端经 WebSocket `camera/stream` 取得 HLS 地址，master → variant → `init.mp4`（804 B）→ 媒体分片 `segment/7.0.m4s`（**143,177 B**）全部 200。证据 `cut/results/rtsp-results.json`（5/5）。
+  **两个真坑（已记入 REPRODUCE）**：① HLS 用的 token 由 WebSocket `camera/stream` 下发，与实体属性里的 `access_token` **不同**，用后者必然 404；② HLS 响应是 gzip，不先解压会把 m3u8 当二进制。
+- [ ] **CONNECT-02b2｜真实摄像头硬件与浏览器播放体验。** 未做：源是生成的测试图案而非真实摄像头；未在浏览器里测播放流畅度/拖动/延迟，也未测真实摄像头的鉴权与断流重连。
 - [x] **CONNECT-03a｜MQTT broker＋模拟设备全链。** 配置流建条目→retained 发现生成实体→状态订阅→服务调用下发 `OFF`→broker 重启后重订阅仍工作。证据 `cut/results/mqtt-results.json`（9/9）。
 - [ ] **CONNECT-03b｜真实MQTT硬件与TLS/QoS2。** 未做：无实际设备，未测 TLS/auth 配置与 QoS2。
 - [x] **CONNECT-04a｜HA→HA4FPAI控制服务协议桥。** HA `rest_command` POST `/v1/commands`（Bearer）→control 库落 `commands` 行（action=`camera.open_view`，client=`ha-small`）。证据 `cut/results/bridge-results.json`（5/5）。
@@ -64,7 +66,9 @@
   **顺带修掉一个真缺陷**：示例配置原先用内联 `automation:` 块，导致 UI 保存的 `automations.yaml` 从不被加载、
   界面上"保存成功"却不产生实体；已把 `automation`/`script`/`scene` 改为 `!include` 拆文件（与官方默认一致），
   改后 30/30 功能回归通过。
-- [ ] **CONNECT-05b2｜其余浏览器流程。** 未做：未编辑 Lovelace 卡片、未测退出登录、未做摄像头页面播放。
+- [x] **CONNECT-05b2a｜Lovelace 仪表盘编辑与持久化。** 真实前端点「Edit overview」→ 关闭 Lights 汇总 → Save；落盘证据：`/runtime/.storage/frontend.system_data` 出现 `{"type":"summary","key":"light","hidden":true}`，刷新后 Overview 的 Lights 汇总消失。截图 `cut/results/ui/ui-09-lovelace-edit.png`、`ui-10-profile.png`。
+- [x] **CONNECT-05b2b｜退出登录。** 在 `/profile` 点 Log out，前端退回未认证态（显示 Loading 并重走授权流程）。**边界**：退出只清浏览器本地会话，API 令牌（长期令牌/refresh token）仍有效——这是 HA 设计，不是缺陷；没有做令牌吊销测试。
+- [ ] **CONNECT-05b2c｜摄像头卡片与播放体验。** 未做：Overview 是策略型仪表盘，无「添加卡片」入口，未在浏览器里验证视频播放/拖动/延迟。管线本身已由 CONNECT-02b1 的 HLS 分片证据覆盖。
 
 ## 五、进一步裁剪与上板条件
 
@@ -119,6 +123,7 @@
 | ARM64 缺轮交叉编译 | 5/5 有可用产物（2 交叉编译 + 3 纯 Python） | `cut/results/arm64-wheels-results.json` |
 | 试删 10 个无静态导入的可选集成 | 30/30 功能回归通过；129→119 集成、6158→5909 文件 | `cut/results/next01-imports.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
+| RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
 | 前端包构成 | 232.8 MB：static 99.2 / translations 69.3 / es5 68.6 / latest 64.1；.map 51.6、.gz+.br 52.7 | `cut/results/frontend-results.json` |
 
 过程中确认的三个实现细节（供复跑）：MQTT 在现代 HA 是 config-entry（YAML `broker/port` 会被判非法），流提交需 `protocol`（3.1/3.1.1/5 之一）且 `other_settings.set_ca_cert` 用 `off`；generic 摄像头配置流在 `user_confirm` 步要 `confirmed_ok=true`；摄像头取图走 `/api/camera_proxy/<entity>?token=…`（`/api/camera/snapshot` 在本版本 404）。`rest_command` 的 payload 若含 `{{ "x": 1 }}` 会被 Jinja 误判，需写单层花括号。
