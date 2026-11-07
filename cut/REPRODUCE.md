@@ -75,3 +75,21 @@ python cut/verify_source.py
 遇到并解决的问题：相对导入漏default_config；基础实体域翻译预载缺目录；语音依赖缺C++编译器；媒体库缺turbojpeg；测试把HTTP可用误当完整readiness；Assist测试实体未显式暴露。处理分别是恢复闭包、补系统依赖、等待实际功能就绪、按HA官方暴露接口授权，**均未修改HA源码**。
 
 未执行：ARM64/板端部署、真实麦克风/扬声器/Wyoming设备、MQTT broker、真实摄像头、长期并发、完整浏览器UI及HA4FPAI实际业务联调。外部bridge示例只是模板，不能从本机echo测试推断生产业务已接通。
+
+## 7. 2026-11-07 追加探针（G1/G2 本机可做部分）
+
+在本机隔离容器（`HA_SMALL_TEST_ONLY` 标记的测试目录）内按顺序执行，均可重复：
+
+```bash
+python cut/mqtt_device_probe.py     # 配置流建 mqtt 条目 + 保留发现/状态/控制/broker 重启重订阅
+python cut/camera_probe.py          # generic 合成 JPEG 源 -> 实体 -> /api/camera_proxy 快照
+python cut/bridge_probe.py          # HA rest_command -> control /v1/commands，核对库中命令行
+python cut/size_report.py           # 源码/安装/前端体积统计
+python cut/arm64_inventory.py       # 117 个 pin 的 aarch64/cp314 轮子盘点
+```
+
+前置：容器内 mosquitto 以 `listener 1883 127.0.0.1` + `allow_anonymous true` 运行；合成图服务为
+`python -m http.server 18095`（工作目录含 `cam.jpg`）；control 服务以
+`python -m control.service --db /tmp/bridge/business.sqlite3 --host 127.0.0.1 --port 18100 --token <t>` 启动。
+每个探针写 `/tmp/*-results.json`，副本已存 `cut/results/`。全部只证明协议/软件闭环，
+真实硬件、板端部署与 ARM64 运行仍未验收。
