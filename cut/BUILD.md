@@ -5,7 +5,7 @@
 | 项 | 值 |
 |---|---|
 | 源码包 | `ha-small-0.1.0-source.tar.gz`（由 `git archive` 从 `ha-small` 分支生成，含 `ha-small-0.1.0/` 前缀） |
-| 包大小 / SHA256 | 6,133,896 B / `e83f6f1ffc03c2a98e8f160e1662967cdf7602ecdbcccc4c05c3dfe3ee136ae3` |
+| 包大小 / SHA256 | 6,135,211 B / `a3d48538ed5628230b64c09df32cf54e1da39b4e095f71438a15c9d85497be5f` |
 | 包内审计 | `cut/verify_source.py` → 5909 上游文件、119 集成、修改 0、许可在 |
 | 构建产物 | `homeassistant-2026.10.4-py3-none-any.whl`，8,131,064 B / `6176c2742673de8428508379781a36edeef7f62fb2e2dbc00176fe24eab9f836` |
 | 未做 | ARM64 包、deb、Release、任何远端推送 |
