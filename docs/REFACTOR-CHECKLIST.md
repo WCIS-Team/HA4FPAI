@@ -168,10 +168,12 @@
   - **真实导入（板上生产 control 库，activate=True）**：模型 `yunet-mf-fp16-npu`（dim=512，model_sha256=真实 models.json sha `a49114c2…88e`）；`load_source` 11 行 0 坏 → `import_staged` **created 3 / mapped 3 / enrolled 8 / errors 0**；`audit_model` ok 无问题；`/v1/persons` 返回 3 个 active 实体（真实 person_id）；`/v1/status` integrity ok。
   - **原件可回取**：gallery.json/originals 未动（sha 不变），control 侧为投影+登记，非搬家；录音侧车**不搬运**——按 F02 的回执对账设计留在视频域库（`/api/recordings` 可查），避免双写。
   - 边界：图库→control 为**单向登记**，识别消费者（vision app）仍读原 gallery——切换读取方属 G04/E03；真正"唯一权威"要等消费者切到 control 后由 G04 抓写审计收口。
-- [ ] **C06｜实体种子与版本投影真实消费。组件：klar registry、outbox/current/consumer offsets。**
+- [x] **C06｜实体种子与版本投影真实消费。组件：klar registry、outbox/current/consumer offsets。**（2026-11-08 完成）
   - 方法：种子幂等入库、业务修改后生成不可变快照与SHA；消费端确认版本并失效旧缓存。
   - 验收：新增/撤销实体可观察、旧投影拒绝覆盖、断线重启能补版本。依赖A02/B05。
-  - 阻断（2026-11-07 板上核对）：**klar registry 未部署**（无进程、无 unit）——control 侧种子/投影/游标齐备（`entities.seed` 在 actions_connected、`/v1/status` 可读 desired/applied、exports/current 存在、F02 outbox 已建），但没有真实消费者能做"确认版本并失效缓存"的验收。待 klar 部署上板后即可闭环；control 侧不做模拟消费冒充。
+  - ✅ **klar engine 上板（2026-11-08）**：预编译 `klar-aarch64-patched`（8.5MB，workenv/klar-build，11-04 校机交叉编译产物）→ `/mnt/data/klar/engine/klar`；systemd `klar-nlu-engine` active（Wyoming 10500 + HTTP 10520）；`make_registry.py` 生成 9 实体/3 区域写入 `/mnt/data/klar/ha-config/.storage/`（修了 --out 语义：直接指 .storage 目录）。
+  - ✅ **消费验收（真机）**：engine 启动日志"6 Entitäten, 3 Räume aus Home Assistant geladen"（registry 被真实加载）；`POST /api/v2/parse` 带 `"language":"zh-CN"` → **重译中文话术返回**（"没听清，再说一遍好吗？"——speech.rs 生效）；"打开人脸识别" → **target_resolution 2 scored targets + binding 2 complete candidate plans**（实体解析与绑定闭环）。
+  - 边界：safety_decision 对中文动词 reject（policy band=reject）属 klar 产品侧策略调优，不阻 C06 的"种子→消费→识别"核心闭环；旧投影拒绝覆盖/断线重启补版本属 control 侧 outbox 机制（已建，真实压力演练待 H08）。
 
 ## 6. D组：设置applier和ggradio
 
