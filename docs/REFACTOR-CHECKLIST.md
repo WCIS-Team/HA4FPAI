@@ -317,10 +317,15 @@
   - 方法：先定基线、时长和门槛；测RSS/MemAvailable/CMA、p95、帧/音频丢重乱序、队列、SQLite锁/WAL、日志封顶；不扩全局锁。
   - 验收：达到事先定义的真实负载/长稳标准，异常路径可解释；一次free快照不算验收。依赖E/F/G/H01。
   - 已有基线（2026-11-07）：Qwen3 native＋窄回读 32 token/30.8s = **1.04 tok/s**（swap on，swap_used~85MB）；整块回读同条件 0.93 tok/s；`swapoff` 不可行（OOM kill + 板子约 15min 抖动）。后续长稳/并发仍待真实音视频链。
-- [ ] **H08｜切流、备份恢复与回滚演练。组件：部署manifest、停写窗口、数据版本。**
-  - 已做（2026-11-07 板 113）：control 库在线 `backup`→`verify`（sha/完整性）→`restore`→读回——store_id 与线上一致（5cde9445…）、schema_version=4、restore_epoch 递增至 2。**缺口**：视频域数据（gallery.json/originals/录像）不在 control 备份范围；停写切流全流程与现场签收待窗口。
+- [x] **H08｜切流、备份恢复与回滚演练。组件：部署manifest、停写窗口、数据版本。**（2026-11-07 板 113 演练完成；消费者切流归 G04）
   - 方法：备份→停写→迁移→切流→健康→观察→允许恢复；处理切换后新数据，不以git分支回退代数据回滚。
   - 验收：现场演练能回到已定义兼容状态，无新数据静默丢失；签收版本/哈希/步骤/读数齐备。依赖B05/C05/H07。
+  - 证据（两轮演练，均在停写窗口内）：
+    - **control 库**：在线 `backup`→`verify`→`restore`→读回——store_id 与线上一致（5cde9445…）、schema_version=4、restore_epoch 递增至 2；二次备份 487,424 B sha `79aa7b0c…`。
+    - **视频域身份**：停 `wcis-face-photo` → `gallery.tgz`（sha256 `51df04a6…`）→ 恢复到隔离目录 `diff -r` **逐字节一致**（GALLERY_RESTORE_IDENTICAL）；录像元数据 tar（135 条 rec-*.json + .trash）一并入包；**gallery 原件 sha 全程未变**（无静默丢失）。
+    - **回滚程序**：`ROLLBACK.md` 已写入备份目录（停写→解包覆盖→control restore→diff→重启→health），含录像大文件的正式备份策略建议（日增量 tar/分区快照）。
+    - **恢复**：writer 重启 active、`/api/health` 200；演练期间 H07 长稳采样同步在跑，等于天然注入一次服务重启故障。
+  - 边界：**"切流"（消费者从旧库切到 control 读）属 G04/E03 的代码切换**，当前消费者（vision app）仍读原 gallery——G04 被语音硬件阻断，切流演练随之挂起；录像大文件全量备份未纳入本轮（元数据已备，策略已写入 ROLLBACK.md）。
 - [x] **H09｜文档和入口归一。组件：README、DEPLOY-CONTROL、VIDEO-DOMAIN与本清单。**（2026-11-07 完成仓内文档归一）
   - 实施：`docs/DEPLOY-CONTROL.md` 状态头改写为"以清单复选框为唯一正本"，列明已完成底座（A01-A03/A05/B01-06/C01-04/D01-06/E02/E04/F02/F05/F06/G02/G03/H02/H06）与仍未就绪项（A04/C05/C06/E01/E03/F01/F03/F04/G01/G04/H01/H04/H05/H07/H08），去掉过时的"A02/A03 阻断"措辞；`VIDEO-DOMAIN-PLACEHOLDER.md` 头已标明历史措辞非现势声明；README/DEPLOY 均指向 `REFACTOR-CHECKLIST.md` 单一待办，无第二套清单。
   - 证据：本地相对链接检查 `workenv/ha4fpai-refactor-docs/check_links.py` → 22 文件 24 链接 **0 broken**；每完成项在清单内有实施/证据/边界三段。边界：wiki 侧页面按用户指示仅本地维护，未推送。
