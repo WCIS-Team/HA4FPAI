@@ -60,3 +60,26 @@
 - **K128 深度重编译后**：2.01–2.13 tok/s（KV DMA 112MB→28MB/步），语义 26/26 全等——
   详见 Qwen3 README/pipeline §9。
 - Qwen3 apply 后 `CmaFree` 1.6MB 时 LLM 本体运行正常（推理不吃 CMA），死的只是相机。
+
+
+## 五、第四条预算线：CPU 抢核（2026-11-07 实测，板 113）
+
+硬件：**4× Cortex-A53**（0xd03×4，无大小核），Linux CFS 自动调度。
+
+实测（视频三服务+相机全开 + ASR 30s 音频×4 pass 连续 CPU 密集推理 ~160s）：
+- **每核 busy 仅 12–17%**（四核对视频全链的占用合计约 0.6 核当量）
+- 相机帧率**满帧 30fps**（180 帧/6s）、age 0.35–0.8s——**无掉帧**
+- ASR 实时率从独占 0.68× 变 **1.36×**（并发分摊核时间，慢约 2 倍但都活着）
+- loadavg 0.27（4 核远未饱和）
+
+**结论**：
+1. **核不是瓶颈**：视频+ASR+control+npuserv 全开只用 ~0.6-1 核当量，剩余 ~3 核空闲。
+   不需要手动分配核（taskset/affinity）——CFS 自动平衡，实测无相互卡顿。
+2. Vendoring/fork 解决不了抢核（那是代码归属；抢核是运行时调度），且实测证明
+   **当下没有抢核问题可解决**。
+3. 真正的独占资源依旧是：**NPU 会话（1 个）+ CMA 池（LLM apply 吃光）**——见 §一/§三。
+4. 未来若叠加更多 CPU 密集件（如 vocos 的 iSTFT、多路 ASR）逼近 4 核，再考虑
+   taskset 隔离（预留 cpu2/3 给实时链）；当下预留是过度设计。
+
+复现：`workenv/migrate-real-preview/cpu_stress.sh`（ASR 后台循环 + 相机采样 +
+每核快照）；per-core 读数用 `percore.py`（/proc/stat 差分）。
