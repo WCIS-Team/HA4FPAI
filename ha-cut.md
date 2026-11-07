@@ -171,7 +171,19 @@
 
 过程中确认的三个实现细节（供复跑）：MQTT 在现代 HA 是 config-entry（YAML `broker/port` 会被判非法），流提交需 `protocol`（3.1/3.1.1/5 之一）且 `other_settings.set_ca_cert` 用 `off`；generic 摄像头配置流在 `user_confirm` 步要 `confirmed_ok=true`；摄像头取图走 `/api/camera_proxy/<entity>?token=…`（`/api/camera/snapshot` 在本版本 404）。`rest_command` 的 payload 若含 `{{ "x": 1 }}` 会被 Jinja 误判，需写单层花括号。
 
-**本机不可验证、已搁置的项**：CONNECT-01（无声卡/STT-TTS 设备）、CONNECT-02b（无真实摄像头/RTSP）、CONNECT-03b（无真实 MQTT 硬件、未测 TLS/QoS2）、CONNECT-04b（非板端部署、视频服务未起、未做人员/声纹/录像业务）、CONNECT-05b（未保存自动化/Lovelace 编辑/退出登录）、NEXT-01b/NEXT-02b（补丁级或资产级裁剪）、NEXT-03b（无 ARM64 解释器）、NEXT-04（板端资源）、NEXT-05（打包发布）。
+**仍搁置的项与原因（2026-11-07 复核）**：
+
+| 项 | 为什么搁置 | 已做到的部分 |
+|---|---|---|
+| CONNECT-01b 真实语音闭环 | 容器无声卡、无麦克风/音箱、无 STT 模型 | Wyoming TTS 协议 5/5 + HA tts 链路 5/5 |
+| CONNECT-02b2 真实摄像头 | 无摄像头硬件 | RTSP→HLS 管线 5/5（生成的 H264 测试流，分片 143 KB） |
+| CONNECT-03b2 真实 MQTT 硬件 | 无设备、无 mTLS 客户端证书、无跨网段弱网 | TLS 6/6 + QoS2 granted=2 + 断线重连 |
+| CONNECT-04b 板端业务 | 需板端授权，避免改生产数据 | 本地 control 服务桥接 5/5 |
+| CONNECT-05b2c 摄像头卡片 | 策略型仪表盘无「添加卡片」入口 | Lovelace 编辑持久化 + 退出登录已验 |
+| NEXT-02b 前端资产裁剪 | `.map` 51.6 MB / `.gz`+`.br` 52.7 MB 需重打包上游 wheel | 资产构成已盘点 |
+| NEXT-04 板端资源与长稳 | ARM64 是 qemu 用户态模拟，非目标板 113 | aarch64 安装/校验/启动通过 |
+| NEXT-05b 打包发布 | 需发布授权 | 源码包与 wheel 已可复现构建 |
+
 
 ## 九、清单维护
 
