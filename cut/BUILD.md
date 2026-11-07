@@ -5,9 +5,9 @@
 | 项 | 值 |
 |---|---|
 | 源码包 | `ha-small-0.1.0-source.tar.gz`（由 `git archive` 从 `ha-small` 分支生成，含 `ha-small-0.1.0/` 前缀） |
-| 包大小 / SHA256 | 6,135,211 B / `a3d48538ed5628230b64c09df32cf54e1da39b4e095f71438a15c9d85497be5f` |
+| 包大小 / SHA256 | 6,850,596 B / `04f014cccc00635bb3d29e5cb24afb0ecf6b482716c99401784381ae1f12826e` |
 | 包内审计 | `cut/verify_source.py` → 5909 上游文件、119 集成、修改 0、许可在 |
-| 构建产物 | `homeassistant-2026.10.4-py3-none-any.whl`，8,131,064 B / `6176c2742673de8428508379781a36edeef7f62fb2e2dbc00176fe24eab9f836` |
+| 构建产物 | `homeassistant-2026.10.4-py3-none-any.whl`，**8,280,826 B** / `6bd60dc72c88312185fd5563c1d6f30ddd968b9aa0d4c1c57d4c638f1b0f5c2b`（2026-11-07 由 128 集成树重建；全新 venv 安装 + `pip check` + `check_config` 均通过，证据 `cut/results/wheel-validation.json`）
 | 未做 | ARM64 包、deb、Release、任何远端推送 |
 
 ## 重新生成
@@ -132,3 +132,18 @@ python -m venv /tmp/v-fresh && /tmp/v-fresh/bin/pip install /path/to/src
 
 `hass --script check_config` 在仅有集成缺失时**仍可能 exit=0**，错误在正文里（`Integration error: ...`）。
 只看退出码或只 grep 大写 ERROR 会得到假通过。
+
+## 产物重建命令（2026-11-07，128 集成树）
+
+```bash
+# 源码包（含 examples / cut / 文档，不含 .git）
+git archive --format=tar.gz --prefix=ha-small-0.1.0/ -o ha-small-0.1.0-source.tar.gz HEAD
+
+# wheel：需要一个带 setuptools 的环境；Python 3.14 的 venv 默认不带 setuptools
+python -m venv /tmp/v && /tmp/v/bin/pip install setuptools wheel
+/tmp/v/bin/pip wheel --no-deps --no-build-isolation -w /tmp/out .
+```
+
+注意：`--no-build-isolation` 配合缺 `setuptools` 会报
+`BackendUnavailable: Cannot import 'setuptools.build_meta'`；而开隔离在离线/慢网下又会卡在
+`Installing build dependencies`。所以先把纯 Python 的 `setuptools`+`wheel` 放进 venv 再关隔离。
