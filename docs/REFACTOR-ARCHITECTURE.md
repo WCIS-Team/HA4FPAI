@@ -89,7 +89,7 @@ SQL负责结构映射；业务用例负责person_id、legacy映射、同名冲�
 
 ## 4. 指定视频参考与可复用资产
 
-参考根为`S:/work/WCIS/repos/fmql30tai-sdi-npu-face-recognition`，本轮只读核对HEAD `f9e34bcd9f09ea451ce635a21dabb1198d5addbe`。下列路径均相对其`源码/ps_source/`，与HA4FPAI共享工作树无关。源版本不等于板上部署版本，联调前还需核对板端hash。
+参考根为`S:/work/WCIS/repos/fmql30tai-sdi-npu-face-recognition`，本轮只读核对HEAD `c083ec7b5f85af387ddfe446257ef4e31ef54794`（2026-11-08 由`f9e34bc`更新；新增两笔只动`models/`原始权重与许可、README提示，`源码/ps_source/`整棵树哈希`5d05d9cb1f498b03c4de16a9553edfdaa13f5f7b`与`f9e34bc`逐字节相同，`ps_app`/`lan_stream`/`model_backend`/`npu_photo`四个子目录哈希全同，下表结论不受影响）。下列路径均相对其`源码/ps_source/`，与HA4FPAI共享工作树无关。源版本不等于板上部署版本，联调前还需核对板端hash。
 
 | 源码 | 已存在能力 | 重构接入方式 |
 |---|---|---|

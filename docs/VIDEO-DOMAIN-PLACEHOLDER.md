@@ -1,7 +1,7 @@
 # 视频域留空清单与接回方案
 
 > 当前状态入口（2026-11-06）：[重构总清单](REFACTOR-CHECKLIST.md)维护实施复选框，[目标架构](REFACTOR-ARCHITECTURE.md)第4节维护指定视频源码复用边界。下文是原接回合同与历史说明，含过时的“未提交/未连板”措辞，不作为当前完成声明。
-> 已核对的视频参考为`repos/fmql30tai-sdi-npu-face-recognition`（f9e34bc），**不再以旧FPAI30TAI图像FPGA路径作为现势规划正本**；V8的face_history SQLite与录像生命周期已在该源码中实现，剩余是集成/部署/对账而非从零建设。旧/api/enroll会直接写gallery，不能无修改当成纯向量提取API。
+> 已核对的视频参考为`repos/fmql30tai-sdi-npu-face-recognition`（`c083ec7b5f85af387ddfe446257ef4e31ef54794`，2026-11-08 由`f9e34bc`更新；新增两笔只动`models/`原始权重与许可、README提示，`源码/ps_source/`整棵树哈希`5d05d9cb1f498b03c4de16a9553edfdaa13f5f7b`两版逐字节相同，原结论不受影响），**不再以旧FPAI30TAI图像FPGA路径作为现势规划正本**；V8的face_history SQLite与录像生命周期已在该源码中实现，剩余是集成/部署/对账而非从零建设。旧/api/enroll会直接写gallery，不能无修改当成纯向量提取API。
 > 模块状态：V1–V5已有HTTP客户端；V6已有HA接收端；V9/V10已有模块。真实域集成、单写者与生产验收分别按总清单勾选，board_verified不得因模拟测试通过翻真。
 > 2026-11-05 她决定先留空（「视频链路先别把 yuanma/ 那边搬过来，先留空，并记录留空了哪些部分怎么接」）；
 > 同日按本页清单把 V1–V5 接回为真实 HTTP 客户端（未提交、未推送、未连板、未连真实端口）。

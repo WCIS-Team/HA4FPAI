@@ -12,7 +12,7 @@
 | 主线切换提交 | `909ba590c21cf9d624f6f46fd0f3b2c5b291cee0` | 包含4efc50f的合并结果；master快进至此 |
 | 后续测试接入提交 | `130880477e06e31450050442296be7d605f58408` | control-adoption经同意快进主线，之后删临时分支/工作树 |
 | 本轮只读代码状态 | 本地HEAD=`909ba59`，本地origin/master=`1308804` | 共享树有Qoder等工作，不强行移动HEAD；不能把本地HEAD、远端缓存、网络现场混成一个版本 |
-| 视频参考 | 指定目录HEAD=`f9e34bcd9f09ea451ce635a21dabb1198d5addbe` | `repos/fmql30tai-sdi-npu-face-recognition`；只读参考，不复制整树 |
+| 视频参考 | 指定目录HEAD=`c083ec7b5f85af387ddfe446257ef4e31ef54794`（2026-11-08 由`f9e34bcd9f09ea451ce635a21dabb1198d5addbe`更新） | `repos/fmql30tai-sdi-npu-face-recognition`；只读参考，不复制整树。新增两笔（`f96e953`/`c083ec7`）只动`models/`原始权重与许可、README提示，`源码/ps_source/`整棵树哈希`5d05d9cb1f498b03c4de16a9553edfdaa13f5f7b`两版逐字节相同，第4节复用结论不受影响 |
 
 因此准确说法是“从c670285启动重构，后来用archive-2026-11-06冻结切换前旧主线”，**不是先有archive分支再从它开工**。归档点和分叉点不同是正常的。
 

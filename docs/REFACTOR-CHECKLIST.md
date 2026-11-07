@@ -6,7 +6,7 @@
 
 - 原始分叉：`c6702855eb229a6e5543db4812887c8628ccb739`；先在unified-control开发，后来才封存旧主线。
 - 旧主线归档：`archive-2026-11-06`=`4efc50f9cdde2720c61d807502647eb514e9c312`。当前重构主线的已核提交=`130880477e06e31450050442296be7d605f58408`；共享HEAD仍909ba59，不随意挪动Qoder工作区。
-- 视频参考唯一指定：`S:/work/WCIS/repos/fmql30tai-sdi-npu-face-recognition`，核对版本`f9e34bcd9f09ea451ce635a21dabb1198d5addbe`，重点`源码/ps_source/`；不搬整树，不把其他旧副本当现势正本。
+- 视频参考唯一指定：`S:/work/WCIS/repos/fmql30tai-sdi-npu-face-recognition`，核对版本`c083ec7b5f85af387ddfe446257ef4e31ef54794`，重点`源码/ps_source/`；不搬整树，不把其他旧副本当现势正本。（钉版 2026-11-08 由`f9e34bc`更新：新增两笔只动`models/`原始权重与许可、README提示，`源码/ps_source/`整棵树哈希`5d05d9cb1f498b03c4de16a9553edfdaa13f5f7b`两版逐字节相同，`ps_app`/`lan_stream`/`model_backend`/`npu_photo`四个子目录哈希全同，原架构结论不受影响。）
 - 本轮禁止修改、导入执行或间接测试`lang/npuserv`；该目录由Qoder维护。下面提到模型域接口时只定义合同，不实施该目录。
 - 不以工期或难度删减正确性要求；可以调整计划，但必须记录变更理由、被替代ID及验收变化，不把旧未做项悄悄删除。
 - `[x]`只表示**标题描述的那一步**已做到，不表示整个领域上线；`[ ]`仍待实施/验收。模块已有实现和生产真实消费方接通必须拆成不同项。
