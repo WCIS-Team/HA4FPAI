@@ -96,3 +96,31 @@ CPU 推理挤压（NPU 侧互斥见 §一①，另案）。
 
 复现：`workenv/migrate-real-preview/cpu_stress.sh`（ASR 后台循环 + 相机采样 +
 每核快照）；per-core 读数用 `percore.py`（/proc/stat 差分）。
+
+
+## 六、视频压核实验（2026-11-07 晚）：1 核跑满 30fps
+
+三档实测（video/serve_photos+camera_owner taskset 绑定，连续 10s 帧计数）：
+
+| 档位 | fps | age |
+|---|---|---|
+| 自由调度（4 核随便跑） | 29.5 | 0.23 |
+| **钉 1 核（cpu0）** | **29.5** | 0.67 |
+| **钉 1 核 + ASR 4 线程钉另 2 核** | **29.4** | **0.23** |
+
+结论：
+1. **视频链 1 核就满帧 30fps**（camera_owner 32% + serve_photos/record/vpu 的调度
+   尾巴，合计 <1 核）。之前预留 2 核是过度的。
+2. **重 ASR 并发下相机照样满帧**（age 0.23 与自由调度持平）——分核把"抢"变成了
+   "各用各的"。ASR 4 线程被压到 rtf 4.45（抢不到核，这是隔离的代价），按需调
+   线程数/核数。
+
+**分核方案 v2（实测定案）**：
+```
+# 视频：钉 1 核（cpu0）——满帧
+taskset -pc 0 $(pgrep -f serve_photos | head -1)
+# CPU 密集件：钉 cpu1-3（3 核可用，线程数≤核数防自抢）
+taskset -c 1-3 python3 asr_worker.py
+```
+可分配额度修正：**视频 1 核 + ASR/vocoder 等 CPU 件 3 核**（比之前"视频 2 核+ASR
+1.5 核"多让出 1 核）。核不再是任何组合的瓶颈。
