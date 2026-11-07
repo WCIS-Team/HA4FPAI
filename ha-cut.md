@@ -69,7 +69,8 @@
 - [x] **NEXT-03a｜ARM64 轮子盘点。** 117 个 pin 中 **106 个有 aarch64/cp314 wheel**，**11 个缺**（numpy/pillow/greenlet/pycares/PyTurboJPEG/ulid-transform/pyspeex_noise/pymicro_vad/gazetteer-matcher/PyQRCode/PyRIC）。证据 `cut/results/arm64-results.json`。
 - [ ] **NEXT-03b｜ARM64 运行时实跑。** 未做：没有 ARM64 解释器，未在 ARM64 上安装或启动；11 个缺轮需在允许的构建机交叉编译或换源。
 - [ ] **NEXT-04｜板端并发内存与稳定性。** 未做：本机 x86 读数不能推算板端；需在板端隔离部署测启动峰值/长稳/回退。
-- [ ] **NEXT-05｜打包交付。** 未做：未建 ARM64/deb 包、未配 Actions、未发布、未推送。
+- [x] **NEXT-05a｜可复现源码包与wheel构建。** `git archive` 源码包 6,133,896 B（sha256 `e83f6f1f…`），包内 `verify_source.py` 通过（5909/119/0），`pip wheel --no-deps` 出 `homeassistant-2026.10.4-py3-none-any.whl` 8,131,064 B（sha256 `6176c274…`）。详见 `cut/BUILD.md`。
+- [ ] **NEXT-05b｜ARM64/deb/Release交付。** 未做：无 ARM64 包与 deb，未配 Actions，未建 Release，未推送。
 
 ## 六、这一轮没有采用的做法
 
