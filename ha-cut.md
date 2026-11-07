@@ -50,7 +50,10 @@
 
 这些代码已保留在依赖闭包里；不因源码存在、模拟闭环或服务端框架启动就勾成真实硬件已可用。2026-11-07 在本机隔离容器完成了协议级/软件级验证，按子项分开勾选：
 
-- [ ] **CONNECT-01｜真实语音输入输出。** 仍未做：需要实际麦克风、音箱与 STT/TTS/Wyoming 提供者；容器无声卡。
+- [x] **CONNECT-01a｜Wyoming TTS 协议与音频链路。** 自建协议正确的 Wyoming TTS 服务（`cut/wyoming_tts.py`）：`describe` 返回 `ha-small-tone-tts`/`cut-tone`，`synthesize` 返回 audio-start→26 个 audio-chunk→audio-stop 共 **26,460 B PCM**（5/5）。HA 侧加 wyoming 配置条目 → 实体 `tts.ha_small_tone_tts` → `/api/tts_get_url` 用 **`engine_id`**（不是 `platform`）→ 下载到 **4,963 B MP3（ID3 魔数）**（5/5）。
+  证据 `cut/results/wyoming-results.json`、`cut/results/voice-results.json`。
+  **踩坑记录**：`platform` 参数是旧名，会报 `Provider tts not found`；`engine_id` 才是当前正确入参。
+- [ ] **CONNECT-01b｜真实语音闭环（麦克风/音箱/STT）。** 仍未做：TTS 是生成音不是语音模型；无麦克风、无音箱、无 STT，因此"说话→识别→意图→设备→播报"整环未验证。
 - [x] **CONNECT-02a｜摄像头链路（合成源）。** generic 配置流→预览确认→条目创建→`camera.127_0_0_1` 实体→`/api/camera_proxy` 取回 5429 B JPEG 快照。证据 `cut/results/camera-results.json`（5/5）。
 - [x] **CONNECT-02b1｜RTSP→stream→HLS 管线（真实视频编码）。** 用 ffmpeg 生成 H264 测试图案（640x360@15fps）推给本地 mediamtx RTSP 服务器，HA 用 generic camera 的 `stream_source` 接入；HA 实际读取 RTSP 会话 63 秒（mediamtx 日志 `is reading from path cut`），前端经 WebSocket `camera/stream` 取得 HLS 地址，master → variant → `init.mp4`（804 B）→ 媒体分片 `segment/7.0.m4s`（**143,177 B**）全部 200。证据 `cut/results/rtsp-results.json`（5/5）。
   **两个真坑（已记入 REPRODUCE）**：① HLS 用的 token 由 WebSocket `camera/stream` 下发，与实体属性里的 `access_token` **不同**，用后者必然 404；② HLS 响应是 gzip，不先解压会把 m3u8 当二进制。
@@ -86,8 +89,15 @@
 - [x] **NEXT-02a｜体积统计完成。** 见上；同时确认前端资产为哈希 chunk（未删除任何被引用 chunk），资产级裁剪未做。
 - [x] **NEXT-02b｜前端资产构成分析（结论：不裁源码树内资产）。** hass_frontend 232.8 MB / 14682 文件：static 99.2、translations 69.3、frontend_es5 68.6、frontend_latest 64.1、locale-data 21.3；其中 `.map` 51.6 MB、`.gz/.br` 52.7 MB 理论上可在自建打包时剔除，属重打包上游前端包，未做。证据 `cut/results/frontend-results.json`。
 - [x] **NEXT-03a｜ARM64 轮子盘点（两轮，修正口径）。** 首轮只试 `manylinux2014_aarch64/cp314`，报 11 个缺；改用真实 pip 解析的标签组合（`manylinux_2_28/2_17/2014_aarch64` × `cp314/abi3`）复检后**只有 5 个缺轮**：`pymicro_vad`、`pyspeex_noise`、`PyTurboJPEG`、`PyQRCode`、`PyRIC`。首轮把 numpy/pillow/greenlet/pycares/ulid-transform 误报为缺轮，原因是标签过窄——这条更正已留档。证据 `cut/results/arm64-results-v2.json`。
-- [x] **NEXT-03b｜5 个源码包的 aarch64 供给（交叉编译实测）。** 容器内装 `gcc-aarch64-linux-gnu` (14.2.0) 后按源码重建：`pymicro_vad`、`pyspeex_noise` 出 `cp314-cp314-linux_aarch64.whl`（179,801 B / 148,522 B）；`PyQRCode`、`PyRIC`、`PyTurboJPEG` 本身就是纯 Python 轮（`py3-none-any` / `py2.py3-none-any`），不需要交叉编译。**结论：117 个 pin 在 aarch64 上全部有可用产物。**证据 `cut/results/arm64-wheels-results.json`。
-- [ ] **NEXT-03c｜ARM64 上真正安装并启动。** 仍未做：本机 podman 无 qemu binfmt（`Exec format error`），板端只有 Python 3.8；**没有在 ARM64 上安装或运行过**，依赖供给已解除不等于跑通。
+- [ ] **NEXT-03b｜5 个源码包的 aarch64 供给（上一轮结论被推翻）。**
+  **推翻：所谓"交叉编译成功"的轮子是假的。** 用 `_PYTHON_HOST_PLATFORM=linux_aarch64` 只改了**文件名**，里面的扩展模块仍是宿主 x86_64 编译产物；在真实 aarch64 上解包检查得到
+  `micro_vad_cpp.cpython-314-x86_64-linux-gnu.so`、ELF `machine=62`（x86_64），导入即
+  `ModuleNotFoundError: micro_vad_cpp`。`pyspeex_noise` 同理。
+  **仍然成立的**：`PyQRCode`、`PyRIC`、`PyTurboJPEG` 确实是纯 Python（`py3-none-any`/`py2.py3-none-any`），这 3 个在 aarch64 上无需构建。
+  **未完成**：`pymicro_vad`、`pyspeex_noise` 两个含 C++ 扩展的包，仍缺**真正的** aarch64 轮子。在 aarch64 容器（qemu）里 `pip wheel` 因取不到构建依赖（setuptools/pypi 超时）未成功；本轮到此为止，不做假结论。
+- [ ] **NEXT-03c｜ARM64 上真正安装并启动（部分达成）。**
+  **已达成**：用 `qemu-aarch64-static` 注册 binfmt 后跑起真实 aarch64 容器（`uname -m`=aarch64、Python 3.14.10、SQLite 3.46.1）；裁剪树（120 集成）装进 aarch64 venv，`pip check` 无冲突，`hass --script check_config` **exit=0、零 ImportError**。**这证明裁剪树在 aarch64 解释器上可安装、可校验配置。**
+  **未达成**：完整启动仍缺 `pymicro_vad`/`pyspeex_noise` 的真 aarch64 扩展（`assist_pipeline` 因此 Setup failed），前端未起到可访问态；未在**目标板**上跑（本次是 x86 宿主上的 qemu 用户态模拟）。
 - [ ] **NEXT-04｜板端并发内存与稳定性。** 未做：本机 x86 读数不能推算板端；需在板端隔离部署测启动峰值/长稳/回退。
 - [x] **NEXT-05a｜可复现源码包与wheel构建。** `git archive` 源码包 6,135,211 B（sha256 `a3d48538…`），包内 `verify_source.py` 通过（5909/119/0），`pip wheel --no-deps` 出 `homeassistant-2026.10.4-py3-none-any.whl` 8,131,064 B（sha256 `6176c274…`）。详见 `cut/BUILD.md`。
 - [ ] **NEXT-05b｜ARM64/deb/Release交付。** 未做：无 ARM64 包与 deb，未配 Actions，未建 Release，未推送。
@@ -129,10 +139,12 @@
 | 浏览器 UI（Overview/History/Automations 编辑器/Integrations 列表） | 通过（页面级） | 会话截图 ui-01…ui-05 |
 | 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
 | ARM64 轮子盘点（复检） | 112/117 有轮，5 缺 | `cut/results/arm64-results-v2.json` |
-| ARM64 缺轮交叉编译 | 5/5 有可用产物（2 交叉编译 + 3 纯 Python） | `cut/results/arm64-wheels-results.json` |
+| ARM64 依赖供给 | **更正**：2 个原生包缺真 aarch64 轮（伪造轮已作废）；3 个纯 Python 可用 | `cut/results/arm64-wheels-results.json` |
 | 试删 9 个可选集成（第二轮） | 干净 venv：check_config 0 错误、启动无导入错、30/30 回归 → 采纳 129→120 | `cut/results/next01-imports-v2.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
+| Wyoming TTS 语音链路 | 5/5 + 5/5：协议 26,460 B PCM → HA tts 实体 → 4,963 B MP3 | `cut/results/voice-results.json` |
+| ARM64 安装与配置校验 | aarch64 容器：install + pip check + `check_config` exit=0 零导入错 | `cut/results/arm64-runtime.json` |
 | 前端包构成 | 232.8 MB：static 99.2 / translations 69.3 / es5 68.6 / latest 64.1；.map 51.6、.gz+.br 52.7 | `cut/results/frontend-results.json` |
 
 过程中确认的三个实现细节（供复跑）：MQTT 在现代 HA 是 config-entry（YAML `broker/port` 会被判非法），流提交需 `protocol`（3.1/3.1.1/5 之一）且 `other_settings.set_ca_cert` 用 `off`；generic 摄像头配置流在 `user_confirm` 步要 `confirmed_ok=true`；摄像头取图走 `/api/camera_proxy/<entity>?token=…`（`/api/camera/snapshot` 在本版本 404）。`rest_command` 的 payload 若含 `{{ "x": 1 }}` 会被 Jinja 误判，需写单层花括号。

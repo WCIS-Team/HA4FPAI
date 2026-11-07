@@ -81,3 +81,32 @@ python -m venv /tmp/venv-fresh      # 全新 venv，不复用
   b as b1,
 )`），
 按行匹配会漏。参考 `cut/next01_import_scan_v2.py`。
+
+## 更正：伪造的 "aarch64" 轮子（2026-11-07）
+
+用 `_PYTHON_HOST_PLATFORM=linux_aarch64` 配合宿主编译器产出的是**文件名伪装成 aarch64 的 x86_64 轮**：
+
+```bash
+# 之前（错误）：
+export _PYTHON_HOST_PLATFORM=linux_aarch64
+export LDSHARED="aarch64-linux-gnu-gcc -shared"   # 未真正生效
+pip wheel --no-binary :all: pymicro_vad==1.0.1    # → *-linux_aarch64.whl（内含 x86_64 .so）
+```
+
+判据（必须在交付前跑）：
+
+```bash
+python - <<'PY'
+import zipfile, glob
+for w in glob.glob("*.whl"):
+    with zipfile.ZipFile(w) as z:
+        for n in z.namelist():
+            if n.endswith(".so"):
+                data = z.read(n)[:20]
+                machine = int.from_bytes(data[18:20], "little")
+                print(w, n, "EM_AARCH64(183)" if machine == 183 else "WRONG(%d)" % machine)
+PY
+```
+
+**结论**：`pymicro_vad`、`pyspeex_noise` 仍缺真 aarch64 轮；`PyQRCode`/`PyRIC`/`PyTurboJPEG` 是纯 Python，没有问题。
+`setuptools` 之类的构建依赖在 qemu 下取不到，故本轮未能在 ARM64 内重建。
