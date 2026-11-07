@@ -260,8 +260,8 @@
 | 断流恢复（视频） | 读会话 6→7、新分片 932,281 B、状态回 idle | `cut/results/stream-recovery.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
 | MQTT mTLS + 转接设备 + netem | mTLS 拒无证书/收证书 5/5；设备 9/9（LWT 生效）；8/8（0.8→171.1→0.8 ms） | `cut/results/mqtt-weaknet-results.json` |
-| MQTT TLS + QoS2 + 重连 | 6/6：CA 校验 TLS 通道实测收发、granted_qos=2、重启恢复 | `cut/results/mqtt-tls-final.json` |
-| plex 单点裁剪 | 干净 venv：check_config 零命中 + 30/30 回归 → 采纳 129→128 | `cut/results/plex-results.json` |
+| MQTT mTLS + 转接设备 + netem | mTLS 强制 5/5；设备发现/注册表/LWT 9/9；弱网 8/8(0.8→171.1→0.8ms) | `cut/results/mqtt-weaknet-results.json` |
+| 板端真实摄像头接入 HA | 7/7 接入+8/8端到端；960x540浏览器播放实时 | `cut/results/board-stream-e2e.json` |
 | Wyoming TTS 语音链路 | 5/5 + 5/5：协议 26,460 B PCM → HA tts 实体 → 4,963 B MP3 | `cut/results/voice-results.json` |
 | ARM64 安装+校验+启动 | aarch64：install OK、check_config 零错、前端 200、API 401 | `cut/results/arm64-runtime.json` |
 | ARM64 原生轮（2 个 C++ 包） | EM_AARCH64 已核验，导入通过 | `cut/results/arm64-native-wheels.json` |
