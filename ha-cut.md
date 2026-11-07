@@ -17,9 +17,9 @@
 - [x] **CUT-02｜取得官方源码并验签名摘要。** 下载38675928B sdist，SHA256与官方PyPI元数据一致，保留原archive及元数据。
 - [x] **CUT-03｜保留上游署名和许可。** LICENSE.md、上游README.rst及各保留文件原样；新增本项目README/来源说明，未冒称官方发行版。
 - [x] **CUT-04｜建立功能保留集。** 覆盖设备控制、状态事件、自动化、网页/API、人员/区域、历史、语音、视频与通用连接接口。
-- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；最终129个集成（2026-11-07 两次试删均被推翻，回滚），不依靠手工猜61个名字。
-- [x] **CUT-06｜执行删除。** 删除1394个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。
-- [x] **CUT-07｜证明保留源码未改。** 6158个上游文件有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
+- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；最终128个集成（2026-11-07 三轮方法修正后按三条规则删去 plex），不依靠手工猜61个名字。
+- [x] **CUT-06｜执行删除。** 删除1395个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。
+- [x] **CUT-07｜证明保留源码未改。** 6096个上游文件有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
 - [x] **CUT-08｜不加载完整默认配置。** 保留default_config源码以满足bootstrap预导入，但实验配置不启用default_config；运行测试确认未加载。
 - [x] **CUT-09｜隔离构建与安装。** 本机Linux容器内由未改pyproject构建wheel并安装，pip check通过；不改系统Python、不影响现役HA4FPAI或板端。
 - [x] **CUT-10｜解决原生运行依赖。** 按实际报错补容器g++/make/cmake/pkg-config/libspeexdsp-dev构建两个语音依赖，并补libturbojpeg0/ffmpeg；不是修改HA源码绕过功能。
@@ -59,7 +59,18 @@
   **两个真坑（已记入 REPRODUCE）**：① HLS 用的 token 由 WebSocket `camera/stream` 下发，与实体属性里的 `access_token` **不同**，用后者必然 404；② HLS 响应是 gzip，不先解压会把 m3u8 当二进制。
 - [ ] **CONNECT-02b2｜真实摄像头硬件与浏览器播放体验。** 未做：源是生成的测试图案而非真实摄像头；未在浏览器里测播放流畅度/拖动/延迟，也未测真实摄像头的鉴权与断流重连。
 - [x] **CONNECT-03a｜MQTT broker＋模拟设备全链。** 配置流建条目→retained 发现生成实体→状态订阅→服务调用下发 `OFF`→broker 重启后重订阅仍工作。证据 `cut/results/mqtt-results.json`（9/9）。
-- [ ] **CONNECT-03b｜真实MQTT硬件与TLS/QoS2。** 未做：无实际设备，未测 TLS/auth 配置与 QoS2。
+- [x] **CONNECT-03b1｜MQTT over TLS + QoS2 + 断线重连（本轮做成，不需要硬件）。**
+  **TLS（6/6）**：自签 CA + 带 `keyUsage`/`SAN` 的服务端证书，mosquitto 2.0.21 起 8883 TLS 监听；
+  HA 配置流用 `other_settings.set_ca_cert=custom` **上传 CA 文件**建条目 → `state=loaded` →
+  在 TLS 通道上实测收到 `over-tls`。证据 `cut/results/mqtt-tls-final.json`。
+  **QoS2**：HA 以 qos=2 发布、外部订阅端以 qos=2 订阅，实测 `granted_qos=2`。
+  **断线重连**：SIGTERM 杀 broker → 重启 → HA 的 mqtt 条目回到 `loaded`，重启后收发正常。
+  **两个真坑**：① `mqtt` 是 `single_config_entry`，加第二个条目会 `Invalid flow specified`，只能替换；
+  ② `set_ca_cert=auto` 要求 CA 在 Python 信任库里，本容器 `update-ca-certificates` 返回 rc=0 却
+  `0 added`（bundle 里根本没有），且 `tls_insecure=true` 也救不回 `cannot_connect`——
+  必须走"上传 CA 的 custom 模式"（`/api/file_upload` 字段名 `file`、返回 `file_id`）。
+- [ ] **CONNECT-03b2｜真实 MQTT 硬件与网络分区。** 仍未做：无真实设备、无 mTLS 客户端证书、
+  无跨网段弱网与断连风暴压测。
 - [x] **CONNECT-04a｜HA→HA4FPAI控制服务协议桥。** HA `rest_command` POST `/v1/commands`（Bearer）→control 库落 `commands` 行（action=`camera.open_view`，client=`ha-small`）。证据 `cut/results/bridge-results.json`（5/5）。
 - [ ] **CONNECT-04b｜板端生产业务与真实动作。** 未做：本机 control 实例非板端部署；命令因视频服务未起而 status=failed，未做人员登记/声纹/录像业务联调。
 - [x] **CONNECT-05a｜真实浏览器UI（关键页）。** 注入真实会话令牌后：Overview 仪表盘、History 页、Automations 列表与“新建自动化”编辑器（When/And if/Then do/Save）、Integrations 页显示 MQTT/Generic Camera/RESTful Command。证据：会话内截图 ui-01…ui-05（存 workenv/MCP 输出目录）。
@@ -76,14 +87,15 @@
 ## 五、进一步裁剪与上板条件
 
 - [x] **NEXT-01a｜体积构成分析。** 分支树跟踪源码 **38.4 MB**（6173 文件）；实测安装 `/venv` **784 MB**，其中 site-packages 748 MB：`hass_frontend` 268 MB、`av.libs` 100 MB、`homeassistant` 72 MB。结论：**继续删源码对安装体积影响很小**，瓶颈是前端包与 av 库。证据 `cut/results/size-results.json`。
-- [ ] **NEXT-01b｜继续收缩可选集成（两次试删均被推翻，规则修正后仅 1 个可删）。**
-  **v1（129→119）错**：导入扫描按行，漏 `bootstrap.py` 的跨行括号导入（`search`）。
-  **v2（129→120）也错**：只查导入、**没查 manifest 硬依赖** —— `frontend` 的 `dependencies` 里就有
-  `map_tiles` 与 `search`。x86 验证脚本又只匹配 `ERROR`/`Invalid config`，漏掉 `Integration error:` 这种小写写法，
-  于是"通过"。ARM64 干净安装配置校验直接报 `Integration error: frontend - Integration 'map_tiles' not found`。
-  **v3（正确规则）**：manifest `dependencies` + 跨行感知的静态导入 + bootstrap 预导入，三条必须同时满足；
-  在 129 基线上重算，**只有 `plex` 一个满足**。证据 `cut/results/next01-imports-v3.json`。
-  **当前状态**：树已回滚到 **129 集成 / 6158 文件**；`plex` 的单独试删留待下一轮用干净安装复验。
+- [x] **NEXT-01b｜继续收缩可选集成（三轮修正后：129 → 128，只有 1 个可删）。**
+  v1（129→119）漏了跨行括号导入；v2（129→120）漏了 **manifest 硬依赖**（`frontend` 的 `dependencies` 里有
+  `map_tiles`/`search`），且验证脚本只匹配 `ERROR`/`Invalid config`，漏掉小写 `Integration error:`——两次都被推翻。
+  **v3 规则**：manifest `dependencies`（硬）＋跨行感知的静态导入＋bootstrap 预导入，三条同时满足才可删；
+  129 基线上算出**只有 `plex` 一个**满足。
+  **验证（全新 venv）**：删 `plex` → 128 集成 → `pip install` rc=0、`check_config` exit=0、
+  严格判据（`Integration error`/`not found`/`ImportError`/`Invalid config`/`Setup failed`/`Traceback`）**零命中**、
+  `pip check` 无冲突、**30/30 功能回归通过**。已采纳。
+  证据 `cut/results/next01-imports-v3.json`、`cut/results/plex-results.json`、`cut/results/trial-functional-8125.json`。
 - [x] **NEXT-02a｜体积统计完成。** 见上；同时确认前端资产为哈希 chunk（未删除任何被引用 chunk），资产级裁剪未做。
 - [x] **NEXT-02b｜前端资产构成分析（结论：不裁源码树内资产）。** hass_frontend 232.8 MB / 14682 文件：static 99.2、translations 69.3、frontend_es5 68.6、frontend_latest 64.1、locale-data 21.3；其中 `.map` 51.6 MB、`.gz/.br` 52.7 MB 理论上可在自建打包时剔除，属重打包上游前端包，未做。证据 `cut/results/frontend-results.json`。
 - [x] **NEXT-03a｜ARM64 轮子盘点（两轮，修正口径）。** 首轮只试 `manylinux2014_aarch64/cp314`，报 11 个缺；改用真实 pip 解析的标签组合（`manylinux_2_28/2_17/2014_aarch64` × `cp314/abi3`）复检后**只有 5 个缺轮**：`pymicro_vad`、`pyspeex_noise`、`PyTurboJPEG`、`PyQRCode`、`PyRIC`。首轮把 numpy/pillow/greenlet/pycares/ulid-transform 误报为缺轮，原因是标签过窄——这条更正已留档。证据 `cut/results/arm64-results-v2.json`。
@@ -147,9 +159,11 @@
 | 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
 | ARM64 轮子盘点（复检） | 112/117 有轮，5 缺 | `cut/results/arm64-results-v2.json` |
 
-| 试删集成（三轮） | v1/v2 均被推翻；v3 规则下仅 `plex` 可删；树已回滚 129 | `cut/results/next01-imports-v3.json` |
+| 试删集成（三轮定稿） | v3 规则下仅 `plex` 可删，已采纳 129→128（干净venv+30/30） | `cut/results/plex-results.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
+| MQTT TLS + QoS2 + 重连 | 6/6：CA 校验 TLS 通道实测收发、granted_qos=2、重启恢复 | `cut/results/mqtt-tls-final.json` |
+| plex 单点裁剪 | 干净 venv：check_config 零命中 + 30/30 回归 → 采纳 129→128 | `cut/results/plex-results.json` |
 | Wyoming TTS 语音链路 | 5/5 + 5/5：协议 26,460 B PCM → HA tts 实体 → 4,963 B MP3 | `cut/results/voice-results.json` |
 | ARM64 安装+校验+启动 | aarch64：install OK、check_config 零错、前端 200、API 401 | `cut/results/arm64-runtime.json` |
 | ARM64 原生轮（2 个 C++ 包） | EM_AARCH64 已核验，导入通过 | `cut/results/arm64-native-wheels.json` |

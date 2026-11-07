@@ -162,7 +162,6 @@
     "onboarding",
     "persistent_notification",
     "person",
-    "plex",
     "radio_frequency",
     "recorder",
     "remote",
@@ -1126,6 +1125,7 @@
     "plaato",
     "plant",
     "playstation_network",
+    "plex",
     "plugwise",
     "plum_lightpad",
     "pocketcasts",
@@ -2010,9 +2010,7 @@
     "image_processing": [
       "dependency/import-of:alexa"
     ],
-    "plex": [
-      "dependency/import-of:cast"
-    ],
+    "plex": "removed 2026-11-07 (v3 rule): no manifest hard dependency from any retained integration, no static import, not preloaded by bootstrap; validated on a fresh venv (check_config clean, 30/30 functional).",
     "matter": [
       "dependency/import-of:google_assistant"
     ],
@@ -2025,14 +2023,14 @@
   },
   "source_bytes": 235925308,
   "component_bytes": 228718118,
-  "retained_component_bytes": 34878611,
+  "retained_component_bytes": 34617034,
   "closure_policy": "manifest dependencies + after_dependencies + conservative static imports, recursively",
   "source_archive_sha256": "8410fecb434ab94b3f7724cd80584050f0ceeb856c16ee70202c24037d62238a",
-  "retained_upstream_files": 6158,
-  "retained_upstream_bytes": 39093420,
+  "retained_upstream_files": 6096,
+  "retained_upstream_bytes": 38831843,
   "removed_upstream_files": 49026,
   "modified_upstream_files": 0,
   "patches": [],
   "runtime_python": ">=3.14.2",
-  "note": "Retained optional static dependencies are not enabled by example configuration."
+  "note": "2026-11-07 v3: removability requires ALL of (a) no retained integration lists it in manifest dependencies, (b) no multi-line-aware static import, (c) not bootstrap-preloaded. Only plex satisfied all three; validated with a clean venv, strict log parsing and the 30-check functional suite."
 }
