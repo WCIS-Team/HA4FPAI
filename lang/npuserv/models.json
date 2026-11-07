@@ -75,7 +75,7 @@
           151645,
           151643
         ],
-        "pos_rule": "vendor",
+        "pos_rule": "native",
         "vocab_size": 151936,
         "n_layers": 28,
         "n_kv_heads": 8,
@@ -83,7 +83,7 @@
         "max_decode_length": 512,
         "config_path": "/root/qwen3/config/qwen3"
       },
-      "note": "件在板上叫 Q3V1-、库里叫 Q3I-（同一张图，台账 #208）；库里 board/tokenizer.json 与板上那颗不同一份，分词一律以板上 #210 为准。四档预检到 apply 全过，生成从未跑过 ⇒ 这条 adapter 是写好未验证的状态，而且它依赖的 patch/q3_infer_board.py 也从没上过板（#208-#211 那次 push 只有 json/raw/tokenizer 三份）。点火要推三件：npuserv/、这颗 adapter、q3_infer_board.py。pos_rule=vendor 逐字复现厂商 run_prompt＋run_decode 两条循环（Qwen2 出通顺中文用的就是这套位置口径）；uniform 是消融档。"
+      "note": "件在板上叫 Q3V1-、库里叫 Q3I-（同一张图，台账 #208）；库里 board/tokenizer.json 与板上那颗不同一份，分词一律以板上 #210 为准。四档预检到 apply 全过，生成从未跑过 ⇒ 这条 adapter 是写好未验证的状态，而且它依赖的 patch/q3_infer_board.py 也从没上过板（#208-#211 那次 push 只有 json/raw/tokenizer 三份）。点火要推三件：npuserv/、这颗 adapter、q3_infer_board.py。pos_rule=vendor 逐字复现厂商 run_prompt＋run_decode 两条循环（Qwen2 出通顺中文用的就是这套位置口径）；uniform 是消融档。 2026-11-07：KV 原生 1-based 布局修复已板端 A/B 验证（shift→508 恒定，native→连贯中文），pos_rule=native 为默认；vendor/uniform 仅消融用。"
     },
     {
       "id": "qwen2-0.5b",

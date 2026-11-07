@@ -27,6 +27,17 @@ object, emit nothing while it runs, and the `tok` event name simply never appear
 `mock` and the two LLM adapters under stub engines. No non-LLM 件 has ever been registered,
 so "any model" is a statement about the contract, not a measurement.
 
+**Update 2026-11-07: the first non-LLM 件 has gone through.** `tts-hifigan-v2`
+(HiFi-GAN v2 PRelu fp16 vocoder, `lang/tts/sherpa/HiFi-GAN/board/`) registered and ran
+end-to-end: `/load` 2.5 s (`apply_s` 0.4 — a small 件 apply is fast enough for hot
+rotation), `/generate {"frames":120}` → 153,600-sample wave as `wave_b64` in 0.2 s.
+Its shape/path/sample-rate configuration lives entirely in the model directory's
+`board/config.json`; the registry entry carries only run-policy defaults. One known
+open item: numeric verification against CPU is unstable through the python binding
+(one run matched CPU at r=0.9994, later runs diverge — the input-path/call-history
+issue already documented in `lang/tts/sherpa/vocos/fp16/README.md`); CLI
+one-process-per-utterance remains the trusted numeric-acceptance path.
+
 **Verification status (2026-11-06).** The server, the protocol and the three model adapters
 are verified on a PC: `tests/` runs 93 checks green against a mock and against three stub
 engines. **On 113 the server has been started (`/root/npuserv`, 11-04 11:45 — its
@@ -57,6 +68,24 @@ explicit:
 | A worker that dies frees the slot | `/status` goes back to `idle`, the exit reason and rc land in `history` |
 | A model bug must not eat the session | `generate()` raising answers `500`, the worker stays up, and `/ping` still works |
 | Logs must survive an SSH drop | handshake / params / stdout are **files** under `state/`, never pipes |
+
+**Why "one resident" is not just about CMA (2026-11-07 experiments, 板 113).** Two more
+independents were measured before settling the design:
+1. **A second `apply()` in the same window corrupts the first session, even across
+   processes.** With Qwen3 resident, loading HiFi-GAN in a second worker succeeded
+   (apply 0.4 s) — and then the Qwen3 forward died with a DMA *Write failed* and the
+   HiFi-GAN session started producing garbage. The same happened with two sessions in
+   **one** process. So the ZG330 session is device-exclusive, not just CMA-heavy; a
+   multi-resident server would silently break every earlier resident.
+2. **LLM `apply()` eats the CMA pool.** After Qwen3 `apply`, `CmaFree` drops from
+   130 MB to **1.6 MB**. The camera owner needs CMA for its DMA buffers — so a
+   resident LLM and the vision capture chain are mutually exclusive in practice,
+   regardless of host RAM. Coexistence is *time-sharing* (apply is 0.4 s for small
+   件 like the vocoder, ~170 s for the 0.6B LLM), not side-by-side residency.
+
+A multi-job server variant was actually built and tested this day (per-model jobs,
+idempotent load, per-model unload) and reverted for exactly reason 1: it made two
+residents *look* ready while breaking each other. The single-slot design stays.
 
 The server itself never opens a device. Model-specific steps are not in `npuserv/` either —
 each 件's quirks live in that model's own directory as `npuserv_adapter.py`.
