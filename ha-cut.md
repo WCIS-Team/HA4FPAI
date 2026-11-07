@@ -48,21 +48,28 @@
 
 ## 四、保留但尚未连接/验收的主要能力
 
-这些代码已保留在依赖闭包里；不因源码存在或服务端框架启动就勾成设备已可用。
+这些代码已保留在依赖闭包里；不因源码存在、模拟闭环或服务端框架启动就勾成真实硬件已可用。2026-11-07 在本机隔离容器完成了协议级/软件级验证，按子项分开勾选：
 
-- [ ] **CONNECT-01｜真实语音输入输出。** 配置实际STT/TTS/Wyoming提供者，验证录音→识别→意图→设备→播报；本轮没有麦克风、音箱或Wyoming设备实测。
-- [ ] **CONNECT-02｜真实摄像头/实时画面/媒体播放器。** 通用camera、generic、stream、ffmpeg、media_source等已保留；还需实际视频源、浏览器拖动/播放和网络鉴权测试。
-- [ ] **CONNECT-03｜MQTT设备。** mqtt集成已保留；还需测试broker与实际设备的发现、状态、控制和重连。
-- [ ] **CONNECT-04｜对接现有视频/声纹/录像业务。** 优先用HA原生REST/MQTT/配置等接口连接外部业务；保留HA原架构。具体人员登记、融合校验和录像生命周期不是HA原生person自动提供，需逐功能验证，不能仅以HTTP stub通过替代。
-- [ ] **CONNECT-05｜真实浏览器UI。** 完成Lovelace展示、登录退出、自动化编辑、历史浏览和摄像头页面验收；本轮只测HTML与真实API，不宣称全UI通过。
+- [ ] **CONNECT-01｜真实语音输入输出。** 仍未做：需要实际麦克风、音箱与 STT/TTS/Wyoming 提供者；容器无声卡。
+- [x] **CONNECT-02a｜摄像头链路（合成源）。** generic 配置流→预览确认→条目创建→`camera.127_0_0_1` 实体→`/api/camera_proxy` 取回 5429 B JPEG 快照。证据 `cut/results/camera-results.json`（5/5）。
+- [ ] **CONNECT-02b｜真实摄像头/RTSP/HLS/浏览器播放。** 未做：无真实视频源，未验证拖动播放与鉴权。
+- [x] **CONNECT-03a｜MQTT broker＋模拟设备全链。** 配置流建条目→retained 发现生成实体→状态订阅→服务调用下发 `OFF`→broker 重启后重订阅仍工作。证据 `cut/results/mqtt-results.json`（9/9）。
+- [ ] **CONNECT-03b｜真实MQTT硬件与TLS/QoS2。** 未做：无实际设备，未测 TLS/auth 配置与 QoS2。
+- [x] **CONNECT-04a｜HA→HA4FPAI控制服务协议桥。** HA `rest_command` POST `/v1/commands`（Bearer）→control 库落 `commands` 行（action=`camera.open_view`，client=`ha-small`）。证据 `cut/results/bridge-results.json`（5/5）。
+- [ ] **CONNECT-04b｜板端生产业务与真实动作。** 未做：本机 control 实例非板端部署；命令因视频服务未起而 status=failed，未做人员登记/声纹/录像业务联调。
+- [x] **CONNECT-05a｜真实浏览器UI（关键页）。** 注入真实会话令牌后：Overview 仪表盘、History 页、Automations 列表与“新建自动化”编辑器（When/And if/Then do/Save）、Integrations 页显示 MQTT/Generic Camera/RESTful Command。证据：会话内截图 ui-01…ui-05（存 workenv/MCP 输出目录）。
+- [ ] **CONNECT-05b｜浏览器全流程。** 未做：未保存自动化、未编辑 Lovelace 卡片、未测退出登录与摄像头页面播放。
 
 ## 五、进一步裁剪与上板条件
 
-- [ ] **NEXT-01｜按实际用途继续收缩可选依赖。** 当前为不改上游而保守保留129个集成；如再删cloud/发现/默认预载模块，必须证明无导入/配置/回退依赖，或为不可避免的补丁单独立项。
-- [ ] **NEXT-02｜前端与依赖体积优化。** 当前源码39.1MB不代表完整安装39.1MB；外部frontend与Python依赖仍在。先统计再裁，不直接删除被哈希chunk引用的资产。
-- [ ] **NEXT-03｜ARM64运行时和轮子验证。** 基线要求Python>=3.14.2；板端3.8不满足。需要独立ARM64解释器与匹配依赖，原生编译只在允许的构建机执行；本轮未操作板子。
-- [ ] **NEXT-04｜板端并发内存与稳定性。** 本机HA RSS快照226.1MiB，测试venv约657MiB；不能推断板端RSS或与现役音视频并发预算。需独立测启动峰值、长稳和回退。
-- [ ] **NEXT-05｜打包交付。** 当前可由本地源码构建wheel，未建立ARM64/deb交付，也未配置Actions、发布Release或推送远端。
+- [x] **NEXT-01a｜体积构成分析。** 分支树跟踪源码 **38.4 MB**（6173 文件）；实测安装 `/venv` **784 MB**，其中 site-packages 748 MB：`hass_frontend` 268 MB、`av.libs` 100 MB、`homeassistant` 72 MB。结论：**继续删源码对安装体积影响很小**，瓶颈是前端包与 av 库。证据 `cut/results/size-results.json`。
+- [ ] **NEXT-01b｜继续收缩可选集成。** 未做：再删 cloud/发现/默认预载模块要改上游 import 或验证无回退依赖，属补丁级变更，需单独立项。
+- [x] **NEXT-02a｜体积统计完成。** 见上；同时确认前端资产为哈希 chunk（未删除任何被引用 chunk），资产级裁剪未做。
+- [ ] **NEXT-02b｜资产级裁剪。** 未做：需先分析 268 MB 前端包内哪些 chunk 可去、哪些被 index 引用，属独立工程。
+- [x] **NEXT-03a｜ARM64 轮子盘点。** 117 个 pin 中 **106 个有 aarch64/cp314 wheel**，**11 个缺**（numpy/pillow/greenlet/pycares/PyTurboJPEG/ulid-transform/pyspeex_noise/pymicro_vad/gazetteer-matcher/PyQRCode/PyRIC）。证据 `cut/results/arm64-results.json`。
+- [ ] **NEXT-03b｜ARM64 运行时实跑。** 未做：没有 ARM64 解释器，未在 ARM64 上安装或启动；11 个缺轮需在允许的构建机交叉编译或换源。
+- [ ] **NEXT-04｜板端并发内存与稳定性。** 未做：本机 x86 读数不能推算板端；需在板端隔离部署测启动峰值/长稳/回退。
+- [ ] **NEXT-05｜打包交付。** 未做：未建 ARM64/deb 包、未配 Actions、未发布、未推送。
 
 ## 六、这一轮没有采用的做法
 
@@ -89,6 +96,23 @@
 
 四组均为**待执行**；没有成功运行的group3执行代理。需要先提供本环境已配置的准确provider/model，或在Harness启用指定路由；不可将默认模型的输出标作group3成果。路由恢复后从G1开始，每组只启动一个执行代理。
 
-## 八、清单维护
+## 八、2026-11-07 本机执行记录（G1/G2 可做部分）
+
+环境：本机 Podman 容器 `ha-small-dev`（Linux x86_64，Python 3.14.10，SQLite 3.46.1），**用分支树本身**安装（`pip install --no-deps --force-reinstall /src-branch`），测试目录 `/runtime`（带 `HA_SMALL_TEST_ONLY` 标记，测试账户与随机口令，不记录明文）。
+
+| 项 | 结果 | 证据 |
+|---|---|---|
+| MQTT 全链（配置流→发现→状态→控制→broker重启重订阅） | 9/9 通过 | `cut/results/mqtt-results.json` |
+| 摄像头（generic 合成 JPEG→实体→代理快照 5429 B） | 5/5 通过 | `cut/results/camera-results.json` |
+| 业务桥（HA rest_command→control `/v1/commands`→库中命令行） | 5/5 通过 | `cut/results/bridge-results.json` |
+| 浏览器 UI（Overview/History/Automations 编辑器/Integrations 列表） | 通过（页面级） | 会话截图 ui-01…ui-05 |
+| 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
+| ARM64 轮子盘点 | 106/117 有 cp314/aarch64 wheel，11 缺 | `cut/results/arm64-results.json` |
+
+过程中确认的三个实现细节（供复跑）：MQTT 在现代 HA 是 config-entry（YAML `broker/port` 会被判非法），流提交需 `protocol`（3.1/3.1.1/5 之一）且 `other_settings.set_ca_cert` 用 `off`；generic 摄像头配置流在 `user_confirm` 步要 `confirmed_ok=true`；摄像头取图走 `/api/camera_proxy/<entity>?token=…`（`/api/camera/snapshot` 在本版本 404）。`rest_command` 的 payload 若含 `{{ "x": 1 }}` 会被 Jinja 误判，需写单层花括号。
+
+**本机不可验证、已搁置的项**：CONNECT-01（无声卡/STT-TTS 设备）、CONNECT-02b（无真实摄像头/RTSP）、CONNECT-03b（无真实 MQTT 硬件、未测 TLS/QoS2）、CONNECT-04b（非板端部署、视频服务未起、未做人员/声纹/录像业务）、CONNECT-05b（未保存自动化/Lovelace 编辑/退出登录）、NEXT-01b/NEXT-02b（补丁级或资产级裁剪）、NEXT-03b（无 ARM64 解释器）、NEXT-04（板端资源）、NEXT-05（打包发布）。
+
+## 九、清单维护
 
 做完一项再勾，写明输入、环境、命令、结果和局限。功能探针必须在带测试标记的独立配置目录运行。发现被裁掉的上游依赖时，优先恢复最小必需集合再重新审核哈希；确实只能修改时才登记PATCHES，并重新跑受影响功能。
