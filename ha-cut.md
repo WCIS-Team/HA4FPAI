@@ -57,7 +57,13 @@
 - [x] **CONNECT-02a｜摄像头链路（合成源）。** generic 配置流→预览确认→条目创建→`camera.127_0_0_1` 实体→`/api/camera_proxy` 取回 5429 B JPEG 快照。证据 `cut/results/camera-results.json`（5/5）。
 - [x] **CONNECT-02b1｜RTSP→stream→HLS 管线（真实视频编码）。** 用 ffmpeg 生成 H264 测试图案（640x360@15fps）推给本地 mediamtx RTSP 服务器，HA 用 generic camera 的 `stream_source` 接入；HA 实际读取 RTSP 会话 63 秒（mediamtx 日志 `is reading from path cut`），前端经 WebSocket `camera/stream` 取得 HLS 地址，master → variant → `init.mp4`（804 B）→ 媒体分片 `segment/7.0.m4s`（**143,177 B**）全部 200。证据 `cut/results/rtsp-results.json`（5/5）。
   **两个真坑（已记入 REPRODUCE）**：① HLS 用的 token 由 WebSocket `camera/stream` 下发，与实体属性里的 `access_token` **不同**，用后者必然 404；② HLS 响应是 gzip，不先解压会把 m3u8 当二进制。
-- [ ] **CONNECT-02b2｜真实摄像头硬件与浏览器播放体验。** 未做：源是生成的测试图案而非真实摄像头；未在浏览器里测播放流畅度/拖动/延迟，也未测真实摄像头的鉴权与断流重连。
+- [x] **CONNECT-02b2a｜断流与恢复（本轮做成，仍非真实摄像头）。** 掐掉 RTSP 推流进程 20 秒再重启，
+  判据用 mediamtx 侧 `is reading from path` 会话计数 + 分片新鲜度 + 实体状态：读会话 **6 → 7（新增 1）**、
+  重新拉出**新分片 `segment/0.m4s` 932,281 B**、摄像头回到 `idle` => `recovered`。证据 `cut/results/stream-recovery.json`。
+  **防自欺教训**：第一版探针把"重启后分片字节数与中断前相同（142,022）"当作恢复，而实体状态其实是
+  `unavailable`——那是缓存分片。恢复类判据必须同时看 ①broker 是否新增读会话 ②分片是否新生成
+  ③实体是否回到 `idle/streaming`，不能只比字节数。
+- [ ] **CONNECT-02b2b｜真实摄像头与播放体验。** 仍未做：无摄像头硬件，画质/延迟/弱网/浏览器播放流畅度未测。
 - [x] **CONNECT-03a｜MQTT broker＋模拟设备全链。** 配置流建条目→retained 发现生成实体→状态订阅→服务调用下发 `OFF`→broker 重启后重订阅仍工作。证据 `cut/results/mqtt-results.json`（9/9）。
 - [x] **CONNECT-03b1｜MQTT over TLS + QoS2 + 断线重连（本轮做成，不需要硬件）。**
   **TLS（6/6）**：自签 CA + 带 `keyUsage`/`SAN` 的服务端证书，mosquitto 2.0.21 起 8883 TLS 监听；
@@ -161,6 +167,7 @@
 
 | 试删集成（三轮定稿） | v3 规则下仅 `plex` 可删，已采纳 129→128（干净venv+30/30） | `cut/results/plex-results.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
+| 断流恢复（视频） | 读会话 6→7、新分片 932,281 B、状态回 idle | `cut/results/stream-recovery.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
 | MQTT TLS + QoS2 + 重连 | 6/6：CA 校验 TLS 通道实测收发、granted_qos=2、重启恢复 | `cut/results/mqtt-tls-final.json` |
 | plex 单点裁剪 | 干净 venv：check_config 零命中 + 30/30 回归 → 采纳 129→128 | `cut/results/plex-results.json` |
@@ -176,7 +183,7 @@
 | 项 | 为什么搁置 | 已做到的部分 |
 |---|---|---|
 | CONNECT-01b 真实语音闭环 | 容器无声卡、无麦克风/音箱、无 STT 模型 | Wyoming TTS 协议 5/5 + HA tts 链路 5/5 |
-| CONNECT-02b2 真实摄像头 | 无摄像头硬件 | RTSP→HLS 管线 5/5（生成的 H264 测试流，分片 143 KB） |
+| CONNECT-02b2b 真实摄像头 | 无摄像头硬件 | RTSP→HLS 5/5、断流恢复（新分片 932 KB、读会话 +1） |
 | CONNECT-03b2 真实 MQTT 硬件 | 无设备、无 mTLS 客户端证书、无跨网段弱网 | TLS 6/6 + QoS2 granted=2 + 断线重连 |
 | CONNECT-04b 板端业务 | 需板端授权，避免改生产数据 | 本地 control 服务桥接 5/5 |
 | CONNECT-05b2c 摄像头卡片 | 策略型仪表盘无「添加卡片」入口 | Lovelace 编辑持久化 + 退出登录已验 |

@@ -129,3 +129,46 @@ python cut/hls_probe.py
 - 退出登录：`/profile` → Log out → 前端回未认证态。**API 令牌不受影响**（HA 设计）。
 - 截图走 playwright MCP 时必须写到它自己的根目录（`S:\apps\llm\agentwork\tools\playwright-mcp\.playwright-mcp`），
   再拷进 `cut/results/ui/`；直接写 workenv 会被 `outside allowed roots` 拒绝。
+
+## 9. MQTT over TLS 与断流恢复复现（2026-11-07 追加）
+
+### MQTT over TLS（CONNECT-03b1）
+
+```bash
+# 1) CA 必须带 keyUsage，服务端证书必须带 SAN，否则 OpenSSL 3 拒绝
+openssl req -x509 -newkey rsa:2048 -sha256 -days 30 -nodes \
+        -keyout ca.key -out ca.crt -config ca.cnf
+openssl req -newkey rsa:2048 -sha256 -nodes -keyout srv.key -out srv.csr -config srv.cnf
+openssl x509 -req -in srv.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
+        -out srv.crt -days 30 -sha256 -extfile srv.cnf -extensions v3_req
+chmod 644 srv.key            # mosquitto 会降权到 mosquitto 用户，读不到 0600 就报 Permission denied
+
+# 2) 双监听（明文 1883 + TLS 8883），见 mosq-both.conf
+/usr/sbin/mosquitto -c /tmp/mtls/mosq-both.conf &
+
+# 3) HA 侧：mqtt 是 single_config_entry，只能替换现有条目
+#    other_settings.set_ca_cert=custom + 上传 CA；certificate 字段要的是 file_id，不是路径
+```
+
+**要点**：
+- `certificate`/`client_cert` 是 `FileSelector`，值必须是 `/api/file_upload` 返回的 **`file_id`**
+  （multipart 字段名是 `file`，不是 `userfile`）。传路径会得到 `Value should be a string`/400。
+- `set_ca_cert=auto` 需要 CA 已经在 Python 的信任库里。本容器 `update-ca-certificates` 返回 rc=0
+  却打印 `0 added`（bundle 里根本没有），所以 `auto` 一律 `cannot_connect`，`tls_insecure=true` 也救不回来。
+- `localhost` 会先解析到 `::1`，而 broker 只听 127.0.0.1；排查连接问题时先分别试两个地址。
+
+### 视频断流恢复（CONNECT-02b2a）
+
+```bash
+python cut/kill_publisher.py            # 杀掉 ffmpeg 推流（容器里没有 pkill）
+sleep 20
+ffmpeg -re -f lavfi -i testsrc2=size=640x360:rate=15 -c:v libx264 \
+       -preset ultrafast -tune zerolatency -g 30 -pix_fmt yuv420p \
+       -f rtsp -rtsp_transport tcp rtsp://127.0.0.1:8554/cut &
+python cut/stream_recovery_strict.py
+```
+
+**恢复判据必须三条同时看**（第一版只比分片字节数，把缓存当成了恢复）：
+① mediamtx 日志里 `is reading from path` 的会话数是否**新增**；
+② 取到的分片是否是**新生成**的（`segment/0.m4s` 且字节数明显变化）；
+③ `camera.<entity>` 状态是否回到 `idle`/`streaming`（不是 `unavailable`）。
