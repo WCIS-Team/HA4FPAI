@@ -87,6 +87,10 @@ A multi-job server variant was actually built and tested this day (per-model job
 idempotent load, per-model unload) and reverted for exactly reason 1: it made two
 residents *look* ready while breaking each other. The single-slot design stays.
 
+**Coexistence read numbers** (ASR/HiFi-GAN/Qwen3 vs the vision chain, with the
+estimation method): `docs/COEXISTENCE.md`. Also in there: Qwen3 `apply()` drops
+`CmaFree` to 1.6 MB — a resident LLM kills the camera owner regardless of host RAM.
+
 The server itself never opens a device. Model-specific steps are not in `npuserv/` either —
 each 件's quirks live in that model's own directory as `npuserv_adapter.py`.
 
