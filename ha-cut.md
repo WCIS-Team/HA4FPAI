@@ -132,7 +132,24 @@
   也不代表性能可比。
 - [ ] **NEXT-04｜板端并发内存与稳定性。** 未做：本机 x86 读数不能推算板端；需在板端隔离部署测启动峰值/长稳/回退。
 - [x] **NEXT-05a｜可复现源码包与wheel构建。** `git archive` 源码包 6,135,211 B（sha256 `a3d48538…`），包内 `verify_source.py` 通过（5909/119/0），`pip wheel --no-deps` 出 `homeassistant-2026.10.4-py3-none-any.whl` 8,131,064 B（sha256 `6176c274…`）。详见 `cut/BUILD.md`。
-- [ ] **NEXT-05b｜ARM64/deb/Release交付。** 未做：无 ARM64 包与 deb，未配 Actions，未建 Release，未推送。
+- [x] **NEXT-05b1｜deb 打包与离线安装实测（本轮做成）。** `dpkg-deb` 打出 **`ha-small_0.1.0_all.deb`
+  （7,366,076 B / `c56af67a74a4507f26daa04659009993bf901e3aac31fbec4da802d809c841a8`）**，
+  内含 wheel + `requirements-voice.txt` + `/etc/ha-small`（conffiles）+ `/usr/bin/ha-small`
+  （未 setup 时给出明确提示）+ `ha-small-setup`（自动挑 Python>=3.14，支持 `HA_SMALL_WHEELHOUSE` 离线装）
+  + systemd unit（ExecStartPre 检查 venv 存在）。
+  **实测（干净 Debian 13 x86_64 容器）**：`dpkg -i --force-depends` → `ha-small-setup` 从 wheelhouse
+  **离线**安装（`--no-index`，103 个 wheel）→ `pip check` 无冲突 → 启动 **前端 200 / `/api/` 401 /
+  零 ImportError**，两个语音原生扩展（x86 预编译轮）导入 OK。证据 `cut/results/deb-results.json`；
+  构建脚本在 `workenv/ha-small/build_deb.sh`，deb 本体留 workenv 不入库。
+  **三个坑**：① 离线装若 wheelhouse 缺 `setuptools`+`wheel`，`PyRIC`（唯一 sdist）会在构建隔离里失败；
+  ② 只装 wheel 不含 `pymicro-vad`/`pyspeex-noise` 时 `assist_pipeline` 会 Setup failed（它们是 HA 运行时按需装的），
+  已做进 `requirements-voice.txt` 并把预编译轮放进 wheelhouse；③ 旧实例不杀会被单实例锁拒绝，
+  表现为前端 404 的假象。
+- [ ] **NEXT-05b2｜aarch64 deb / Actions / Release。** 未做：wheelhouse 只有 x86_64 的 101+2 个轮
+  （aarch64 只有那 2 个自编译轮），故暂无 aarch64 deb；未配 Actions（本项目规定 Actions 手动触发）；
+  未发 Release、未推送。**另一条事实**：现行发行版都没有 python3.14 的 dpkg 包，
+  `Depends: python3.14 | python3 (>= 3.14)` 无法被 apt 满足——部署前提是先有 Python 3.14 环境
+  （与"裁剪不降 Python 版本要求"一致）。
 
 ## 六、这一轮没有采用的做法
 
@@ -174,6 +191,7 @@
 
 | 试删集成（三轮定稿） | v3 规则下仅 `plex` 可删，已采纳 129→128（干净venv+30/30） | `cut/results/plex-results.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
+| deb 打包与离线安装 | 7,366,076 B；dpkg 装→wheelhouse 离线 setup→前端 200 | `cut/results/deb-results.json` |
 | 浏览器播放（摄像头卡） | storage 仪表盘 4/4；video readyState=4、640x360、4 s 推进 4.015 s | `cut/results/camera-card.json` |
 | 断流恢复（视频） | 读会话 6→7、新分片 932,281 B、状态回 idle | `cut/results/stream-recovery.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
@@ -197,7 +215,7 @@
 | CONNECT-05b2d 播放质量量化 | 未测端到端延迟/丢帧/弱网抖动 | storage 仪表盘 4/4 + 浏览器播放实时推进（4 s 走 4.015 s） |
 | NEXT-02b 前端资产裁剪 | `.map` 51.6 MB / `.gz`+`.br` 52.7 MB 需重打包上游 wheel | 资产构成已盘点 |
 | NEXT-04 板端资源与长稳 | ARM64 是 qemu 用户态模拟，非目标板 113 | aarch64 安装/校验/启动通过 |
-| NEXT-05b 打包发布 | 需发布授权 | 源码包与 wheel 已可复现构建 |
+| NEXT-05b2 aarch64 deb/Actions/Release | wheelhouse 无 aarch64 全套；Actions 需手动；发布需授权 | amd64 deb 离线安装→启动已实测 |
 
 
 ## 九、清单维护

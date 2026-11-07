@@ -172,3 +172,37 @@ python cut/stream_recovery_strict.py
 ① mediamtx 日志里 `is reading from path` 的会话数是否**新增**；
 ② 取到的分片是否是**新生成**的（`segment/0.m4s` 且字节数明显变化）；
 ③ `camera.<entity>` 状态是否回到 `idle`/`streaming`（不是 `unavailable`）。
+
+## 10. deb 打包与离线安装复现（2026-11-07 追加）
+
+```bash
+# 1) 先在带 dpkg-deb 的容器里准备两个目录
+#    /relsrc     解开的源码树（含 examples/）
+#    /artifacts  已构建好的 wheel
+sh workenv/ha-small/build_deb.sh          # 输出 /out/ha-small_0.1.0_all.deb
+
+# 2) 离线安装（目标机）
+dpkg -i ha-small_0.1.0_all.deb
+HA_SMALL_WHEELHOUSE=/path/to/wheels ha-small-setup
+systemctl enable --now ha-small           # 或直接 ha-small
+```
+
+**wheelhouse 必须包含**：全部运行时依赖轮 + `setuptools` + `wheel`（`PyRIC` 是唯一 sdist，
+构建隔离要用它们）+ 预编译的 `pymicro_vad`/`pyspeex_noise`（`assist_pipeline` 运行时会去装，
+现场编译需要 g++/cmake/libspeexdsp）。
+
+**三个必踩的坑**
+
+1. **旧实例不杀 → 新实例被单实例锁拒绝，表现为前端 404**。HA 的提示是
+   `Please stop the existing instance before starting a new one`。
+2. **只装 wheel 不够**：`assist_pipeline` 还要求 `pyspeex-noise`/`pymicro-vad`，
+   否则 `Setup failed for 'assist_pipeline'`，进而 `assist_satellite` 也失败。
+3. **`Depends: python3.14` 现在没有发行版能满足**（Debian 13 = 3.13，Ubuntu 24.04 = 3.12，板端 = 3.8）。
+   deb 能装（`--force-depends`）但只有装了 Python 3.14 的机器才跑得起来。
+
+### 操作注意：注册 binfmt 后 podman 会默认拉 arm64 镜像
+
+为了跑 aarch64 而 `echo ':qemu-aarch64:...' > /proc/sys/fs/binfmt_misc/register` 之后，
+`podman run <multi-arch 镜像>` 可能解析成 **arm64** 变体（实测 `uname -m` = aarch64，
+并打印 `image platform (linux/arm64/v8) does not match the expected platform (linux/amd64)`）。
+需要 x86 行为时必须显式 `--arch amd64`，否则会把架构搞错。
