@@ -128,7 +128,7 @@ def evidence_manifest(rows, output, profile, config_path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--profile", choices=("validate", "quick", "full", "adapters", "soak", "no-npu"), default="quick")
+    parser.add_argument("--profile", choices=("validate", "quick", "full", "adapters", "soak", "no-npu", "board"), default="quick")
     parser.add_argument("--config", type=Path, default=CI / "config.json")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--matrix", action="store_true", help="Emit the Actions matrix from configuration")
@@ -152,10 +152,13 @@ def main():
         print(str(exc), flush=True)
         rows.append({"id": "source-validation", "status": "failed", "message": str(exc), "seconds": time.perf_counter() - started})
     timeout = settings["test_timeout_s"]
-    if args.profile in ("quick", "full", "adapters", "no-npu"):
+    if args.profile in ("quick", "full", "adapters", "no-npu", "board"):
         for name in ("contracts", "infrastructure"):
-            rows.append(execute(name, [str(CI / "tests" / ("test_" + name + ".py"))], output, timeout, True))
+            if args.profile != "board":
+                rows.append(execute(name, [str(CI / "tests" / ("test_" + name + ".py"))], output, timeout, True))
         for suite in settings["legacy_suites"]:
+            if args.profile == "board" and "board" not in suite.get("profiles", []):
+                continue
             if args.profile == "no-npu":
                 # 明确不扫描/执行 npuserv 的运行档：只跑 quick 档里不含 npuserv 的套件
                 if "quick" not in suite["profiles"]:
