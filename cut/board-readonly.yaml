@@ -1,0 +1,64 @@
+# Read-only view of the board's video/recording state.
+#
+# Every resource below is a GET on an endpoint the board already serves:
+#   8092/api/status                              stream/capture counters (read-only)
+#   8093/api/status                              recorder mode/state (read-only)
+#   8093/api/recordings                          recording library (read-only)
+#
+# Nothing here changes board state: no POST, no mode change, no purge, no delete.
+# Recording mode is deliberately NOT exposed as a switch — switching it changes
+# the board's recorder process and writes to /mnt/wcis-data.
+#
+# Included from configuration.yaml as:
+#   rest: !include board-readonly.yaml
+# so this file is a LIST (no top-level "rest:" key).
+- resource: http://192.168.1.113:8092/api/status
+  scan_interval: 10
+  sensor:
+    - name: Board capture state
+      value_template: "{{ value_json.state }}"
+      json_attributes:
+        - session
+        - ready
+        - source
+        - width
+        - height
+        - fps_limit
+    - name: Board captured frames
+      value_template: "{{ value_json.captured }}"
+      unit_of_measurement: frames
+    - name: Board encoded frames
+      value_template: "{{ value_json.encoded }}"
+      unit_of_measurement: frames
+    - name: Board frame age
+      value_template: "{{ value_json.frame_age_s }}"
+      unit_of_measurement: s
+    - name: Board camera requests
+      value_template: "{{ value_json.camera_requests }}"
+
+- resource: http://192.168.1.113:8093/api/status
+  scan_interval: 15
+  sensor:
+    - name: Board recorder mode
+      value_template: "{{ value_json.mode }}"
+      json_attributes:
+        - state
+        - source_ready
+        - error
+        - queue_bytes
+        - queue_high_water
+        - trigger_healthy
+    - name: Board recorder queue
+      value_template: "{{ value_json.queue_bytes }}"
+      unit_of_measurement: B
+    - name: Board recorder source ready
+      value_template: "{{ value_json.source_ready }}"
+
+- resource: http://192.168.1.113:8093/api/recordings
+  scan_interval: 60
+  sensor:
+    - name: Board recordings
+      value_template: "{{ value_json.recordings | count }}"
+      unit_of_measurement: files
+      json_attributes:
+        - recordings

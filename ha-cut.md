@@ -78,6 +78,17 @@
   无跨网段弱网与断连风暴压测。
 - [x] **CONNECT-04a｜HA→HA4FPAI控制服务协议桥。** HA `rest_command` POST `/v1/commands`（Bearer）→control 库落 `commands` 行（action=`camera.open_view`，client=`ha-small`）。证据 `cut/results/bridge-results.json`（5/5）。
 - [ ] **CONNECT-04b｜板端生产业务与真实动作。** 未做：本机 control 实例非板端部署；命令因视频服务未起而 status=failed，未做人员登记/声纹/录像业务联调。
+- [x] **CONNECT-04b1｜板端状态只读接入 HA（本轮做成，零写入）。**
+  用 `rest` 平台（纯 GET）把板端三个只读端点接成 9 个传感器：8092 capture（state/session/960x540/
+  captured/encoded/frame_age）、8093 recorder（mode/state/source_ready/queue）、8093 recordings（数量）。
+  配置 `examples/board-readonly.yaml`（`rest: !include`，文件本体是列表）；探针
+  `cut/board_readonly_probe.py` 逐项与板端原始应答交叉核对：**9/9**（连
+  `no_valid_frame`/`source_ready=False` 这些真实瞬时状态都逐字一致；录像数 20=20）。
+  **只读保证**：实例域清单无 `switch`/`button`；配置里没有任何 POST 到板端；录像模式
+  （off/auto/manual）**刻意不做成 switch**——那是写板端 recorder 进程并写 `/mnt/wcis-data` 的动作。
+  证据 `cut/results/board-readonly-results.json`；功能回归仍 30/30。
+  **一个配置坑**：`!include` 进 `rest:` 的文件必须本身是列表；文件里再写一层 `rest:` 会报
+  `'rest' is an invalid option for 'rest'`。
 - [x] **CONNECT-05a｜真实浏览器UI（关键页）。** 注入真实会话令牌后：Overview 仪表盘、History 页、Automations 列表与“新建自动化”编辑器（When/And if/Then do/Save）、Integrations 页显示 MQTT/Generic Camera/RESTful Command。证据：会话内截图 ui-01…ui-05（存 workenv/MCP 输出目录）。
 - [x] **CONNECT-05b1｜前端创建并保存自动化。** 在真实前端用编辑器（含 YAML 模式）创建自动化并保存：落盘到
   `automations.yaml`（id `1794021359526`），实体 `automation.ui_created_cut_automation` 加载为 on，
@@ -242,7 +253,7 @@
 | CONNECT-01b 真实语音闭环 | 容器无声卡、无麦克风/音箱、无 STT 模型 | Wyoming TTS 协议 5/5 + HA tts 链路 5/5 |
 | CONNECT-02b2c 播放质量与并发 | 延迟/丢帧/并发未量化 | 板端真实摄像头已接入并在浏览器播放 |
 | CONNECT-03b2 真实 MQTT 硬件 | 无设备、无 mTLS 客户端证书、无跨网段弱网 | TLS 6/6 + QoS2 granted=2 + 断线重连 |
-| CONNECT-04b 板端业务 | 需板端授权，避免改生产数据 | 本地 control 服务桥接 5/5 |
+| CONNECT-04b2 录像模式/登记写入 | 写板端 recorder 与 gallery，需授权与时机 （quota 4 GiB 不自动删；现役压缩任务在跑） | 只读 9/9：capture/recorder/recordings 传感器逐项对上 |
 | CONNECT-05b2d 播放质量量化 | 未测端到端延迟/丢帧/弱网抖动 | storage 仪表盘 4/4 + 浏览器播放实时推进（4 s 走 4.015 s） |
 | NEXT-02b 前端资产裁剪 | `.map` 51.6 MB / `.gz`+`.br` 52.7 MB 需重打包上游 wheel | 资产构成已盘点 |
 | NEXT-04 板端资源与长稳 | ARM64 是 qemu 用户态模拟，非目标板 113 | aarch64 安装/校验/启动通过 |
