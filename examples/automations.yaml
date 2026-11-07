@@ -8,3 +8,22 @@
     - action: counter.increment
       target:
         entity_id: counter.cut_counter
+
+# UI-created style automation. Its action drives a DEDICATED entity (ui_loop) so it
+# never fights the functional suite over input_boolean.cut_test — that overlap once
+# made the 30-check suite regress from 30/30 to 29/30.
+- id: ui_created_cut_automation
+  alias: UI Created Cut Automation
+  description: Created through the real frontend editor
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.cut_test
+      to: 'on'
+  conditions: []
+  actions:
+    - action: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.ui_loop
+      metadata: {}
+      data: {}
+  mode: single
