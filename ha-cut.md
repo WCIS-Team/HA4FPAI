@@ -4,7 +4,7 @@
 
 ## 一、目标与边界
 
-- 归属：HA4FPAI 的 `ha-small` 分支材料；本轮只在本机 `repos/ha-small` 暂存（被 `repos/.gitignore` 忽略），不建远端、不推；分支已按用户授权建立（本地 `1421a9d`，未推）。
+- 归属：HA4FPAI 的 `ha-small` 分支材料（orphan 分支，与 master 无共同历史）。**2026-11-07 已获用户授权推送到远端**：`origin/ha-small` @ `c3f5235`，与本地一致。本机 `repos/ha-small` 只是暂存副本（被 `repos/.gitignore` 忽略），不是远端。
 - 独立位置：`S:/work/WCIS/repos/ha-small`；HA4FPAI 现有 `master` 与 `archive-2026-11-06` 及其 `lang/npuserv` 不改动。
 - 官方源码基线：Home Assistant Core 2026.10.4的PyPI sdist，SHA256与URL见[来源](UPSTREAM.md)。不是从HA4FPAI archive复制一套自研控制层。
 - 原则：先删除；保留文件按上游哈希核对；只有实际运行证明确实无法靠恢复必要依赖解决时才考虑补丁。每个补丁必须记录原文件、理由、替代方案和功能验证。
@@ -159,7 +159,8 @@
   另记：该实例后来被 HA 自己的「HTTP 配置确认超时」重启机制停掉（`Pending HTTP config was not
   confirmed within 0:05:00`），不是打包缺陷。
 - [ ] **NEXT-05b2b｜真板部署 / Actions / Release。** 未做：未在目标板 113 上装（板端只有 Python 3.8，
-  本基线要求 >=3.14.2）；未配 Actions（本项目规定手动触发）；未发 Release、未推送。
+  本基线要求 >=3.14.2）；未配 Actions（本项目规定手动触发）；未发 Release（分支 `ha-small` 本身已于
+  2026-11-07 获授权推送）。
   **另一条事实**：现行发行版都没有 python3.14 的 dpkg 包，`Depends: python3.14 | python3 (>= 3.14)`
   无法被 apt 满足——部署前提是先有 Python 3.14 环境。
 
