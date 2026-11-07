@@ -73,7 +73,16 @@
 ## 五、进一步裁剪与上板条件
 
 - [x] **NEXT-01a｜体积构成分析。** 分支树跟踪源码 **38.4 MB**（6173 文件）；实测安装 `/venv` **784 MB**，其中 site-packages 748 MB：`hass_frontend` 268 MB、`av.libs` 100 MB、`homeassistant` 72 MB。结论：**继续删源码对安装体积影响很小**，瓶颈是前端包与 av 库。证据 `cut/results/size-results.json`。
-- [x] **NEXT-01b｜继续收缩可选集成（试删验证）。** 静态导入扫描：10 个无导入点（mobile_app/plex/dhcp/ssdp/my/usage_prediction/go2rtc/map_tiles/search/homeassistant_alerts），22 个需改上游（hassio 12 处、blueprint 10、system_health 7、cloud 6…）。已按前者**试删并跑 30/30 功能回归通过**，分支由 129 降至 **119** 集成/5909 文件。证据 `cut/results/next01-imports.json`。
+- [ ] **NEXT-01b｜继续收缩可选集成（试删被回滚——方法错误）。**
+  **结论：2026-11-07 的 129→119 试删是错的，已回滚到 129 / 6158 文件。** 根因两条：
+  1. 静态导入扫描按行匹配，**漏掉跨行括号导入**：`bootstrap.py` 第 58 行是
+     `from .components import ( ... search as search_pre_import, ... )`，`search` 因此被我误判为“无导入点”。
+  2. 验证方法不严：x86 容器用 `pip install --force-reinstall` 覆盖安装，**旧版本遗留文件不会被删除**，
+     于是 `search` 目录仍留在安装树里，30/30 回归才“通过”。ARM64 干净安装立刻暴露
+     `ImportError: cannot import name 'search'`。
+  修正：扫描器改为先把括号导入折叠成一行再匹配（`cut/next01_import_scan_v2.py`），复扫结果为 9 个候选无导入点（mobile_app/plex/dhcp/ssdp/my/usage_prediction/go2rtc/map_tiles/homeassistant_alerts），`search` 归入“不可删”。证据 `cut/results/next01-imports-v2.json`。
+  **再裁剪的前置条件**：必须用**全新 venv** 安装验证（不能复用旧环境），且要跑启动＋功能回归；
+  本项因此保持未勾。
 - [x] **NEXT-02a｜体积统计完成。** 见上；同时确认前端资产为哈希 chunk（未删除任何被引用 chunk），资产级裁剪未做。
 - [x] **NEXT-02b｜前端资产构成分析（结论：不裁源码树内资产）。** hass_frontend 232.8 MB / 14682 文件：static 99.2、translations 69.3、frontend_es5 68.6、frontend_latest 64.1、locale-data 21.3；其中 `.map` 51.6 MB、`.gz/.br` 52.7 MB 理论上可在自建打包时剔除，属重打包上游前端包，未做。证据 `cut/results/frontend-results.json`。
 - [x] **NEXT-03a｜ARM64 轮子盘点（两轮，修正口径）。** 首轮只试 `manylinux2014_aarch64/cp314`，报 11 个缺；改用真实 pip 解析的标签组合（`manylinux_2_28/2_17/2014_aarch64` × `cp314/abi3`）复检后**只有 5 个缺轮**：`pymicro_vad`、`pyspeex_noise`、`PyTurboJPEG`、`PyQRCode`、`PyRIC`。首轮把 numpy/pillow/greenlet/pycares/ulid-transform 误报为缺轮，原因是标签过窄——这条更正已留档。证据 `cut/results/arm64-results-v2.json`。
@@ -121,7 +130,7 @@
 | 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
 | ARM64 轮子盘点（复检） | 112/117 有轮，5 缺 | `cut/results/arm64-results-v2.json` |
 | ARM64 缺轮交叉编译 | 5/5 有可用产物（2 交叉编译 + 3 纯 Python） | `cut/results/arm64-wheels-results.json` |
-| 试删 10 个无静态导入的可选集成 | 30/30 功能回归通过；129→119 集成、6158→5909 文件 | `cut/results/next01-imports.json` |
+| 试删 10 个可选集成 | **已回滚**：方法错误（跨行导入漏扫＋覆盖安装掩盖缺失） | `cut/results/next01-imports-v2.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
 | 前端包构成 | 232.8 MB：static 99.2 / translations 69.3 / es5 68.6 / latest 64.1；.map 51.6、.gz+.br 52.7 | `cut/results/frontend-results.json` |

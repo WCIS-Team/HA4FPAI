@@ -61,3 +61,23 @@ pip wheel --no-deps --no-binary :all: --no-cache-dir -w /tmp/a64-w3 pymicro_vad=
 - 包内 `cut/results/*` 是验证证据，不是运行时依赖。
 
 > 本包由提交 `83da433` 生成；其后的提交仅改文档，不影响包内容。要与最新 HEAD 完全一致请按上节重新生成并自行记录哈希。
+
+## 裁剪验证方法（2026-11-07 教训）
+
+**不要用 `pip install --force-reinstall` 验证裁剪结果。** pip 不会删除新版本中已不存在的文件，
+旧集成的目录会留在安装树里，掩盖真实的 `ImportError`。本仓库第一版试删（129→119）就是这样
+"通过"了 30/30 功能回归，却在 ARM64 干净安装时立刻崩在 `bootstrap.py` 的 `search` 预导入上。
+
+正确姿势：
+
+```bash
+python -m venv /tmp/venv-fresh      # 全新 venv，不复用
+/tmp/venv-fresh/bin/pip install /path/to/source
+/tmp/venv-fresh/bin/hass --script check_config -c /tmp/cfg
+```
+
+另：静态导入扫描必须处理跨行括号导入（`from .components import (
+  a as a1,
+  b as b1,
+)`），
+按行匹配会漏。参考 `cut/next01_import_scan_v2.py`。
