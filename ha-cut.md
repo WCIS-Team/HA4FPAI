@@ -88,7 +88,14 @@
   改后 30/30 功能回归通过。
 - [x] **CONNECT-05b2a｜Lovelace 仪表盘编辑与持久化。** 真实前端点「Edit overview」→ 关闭 Lights 汇总 → Save；落盘证据：`/runtime/.storage/frontend.system_data` 出现 `{"type":"summary","key":"light","hidden":true}`，刷新后 Overview 的 Lights 汇总消失。截图 `cut/results/ui/ui-09-lovelace-edit.png`、`ui-10-profile.png`。
 - [x] **CONNECT-05b2b｜退出登录。** 在 `/profile` 点 Log out，前端退回未认证态（显示 Loading 并重走授权流程）。**边界**：退出只清浏览器本地会话，API 令牌（长期令牌/refresh token）仍有效——这是 HA 设计，不是缺陷；没有做令牌吊销测试。
-- [ ] **CONNECT-05b2c｜摄像头卡片与播放体验。** 未做：Overview 是策略型仪表盘，无「添加卡片」入口，未在浏览器里验证视频播放/拖动/延迟。管线本身已由 CONNECT-02b1 的 HLS 分片证据覆盖。
+- [x] **CONNECT-05b2c｜摄像头卡片与浏览器播放（本轮做成）。** 策略型 Overview 没有「添加卡片」入口，
+  改用 Lovelace WebSocket API 建 **storage 模式**仪表盘 `ha-small-cut`（4/4：列表/创建/存配置/回读），
+  放 `picture-entity` + `glance` 两张卡；浏览器实测：
+  卡片渲染出 `hui-picture-entity-card`，图片来自 `/api/camera_proxy/...?authSig=`（**560×420**）；
+  点开卡片进入 `ha-camera-stream`，`<video>` **readyState=4、640×360（与推流源分辨率一致）**，
+  4 秒内 `currentTime` 从 29.359 → 33.374（推进 4.015 s，`paused=false`）⇒ 画面在按实时推进，不是停在首帧。
+  证据 `cut/results/camera-card.json`、截图 `cut/results/ui/ui-11-camera-card.png`、`ui-12-camera-playing.png`。
+- [ ] **CONNECT-05b2d｜播放质量量化。** 未做：未测端到端延迟、丢帧率与弱网抖动；只证明了实时推进（播放进度≈墙钟）。
 
 ## 五、进一步裁剪与上板条件
 
