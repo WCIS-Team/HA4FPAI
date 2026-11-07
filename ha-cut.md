@@ -17,9 +17,9 @@
 - [x] **CUT-02｜取得官方源码并验签名摘要。** 下载38675928B sdist，SHA256与官方PyPI元数据一致，保留原archive及元数据。
 - [x] **CUT-03｜保留上游署名和许可。** LICENSE.md、上游README.rst及各保留文件原样；新增本项目README/来源说明，未冒称官方发行版。
 - [x] **CUT-04｜建立功能保留集。** 覆盖设备控制、状态事件、自动化、网页/API、人员/区域、历史、语音、视频与通用连接接口。
-- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；最终120个集成（2026-11-07 用干净安装验证从129删去9个无导入点的可选集成），不依靠手工猜61个名字。
-- [x] **CUT-06｜执行删除。** 删除1403个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。
-- [x] **CUT-07｜证明保留源码未改。** 5911个上游文件有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
+- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；最终129个集成（2026-11-07 两次试删均被推翻，回滚），不依靠手工猜61个名字。
+- [x] **CUT-06｜执行删除。** 删除1394个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。
+- [x] **CUT-07｜证明保留源码未改。** 6158个上游文件有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
 - [x] **CUT-08｜不加载完整默认配置。** 保留default_config源码以满足bootstrap预导入，但实验配置不启用default_config；运行测试确认未加载。
 - [x] **CUT-09｜隔离构建与安装。** 本机Linux容器内由未改pyproject构建wheel并安装，pip check通过；不改系统Python、不影响现役HA4FPAI或板端。
 - [x] **CUT-10｜解决原生运行依赖。** 按实际报错补容器g++/make/cmake/pkg-config/libspeexdsp-dev构建两个语音依赖，并补libturbojpeg0/ffmpeg；不是修改HA源码绕过功能。
@@ -76,16 +76,14 @@
 ## 五、进一步裁剪与上板条件
 
 - [x] **NEXT-01a｜体积构成分析。** 分支树跟踪源码 **38.4 MB**（6173 文件）；实测安装 `/venv` **784 MB**，其中 site-packages 748 MB：`hass_frontend` 268 MB、`av.libs` 100 MB、`homeassistant` 72 MB。结论：**继续删源码对安装体积影响很小**，瓶颈是前端包与 av 库。证据 `cut/results/size-results.json`。
-- [x] **NEXT-01b｜继续收缩可选集成（第二轮，干净安装验证后采纳 129→120）。**
-  **第一轮（129→119）判断错误，已回滚**：静态扫描按行匹配，漏掉 `bootstrap.py` 的跨行括号导入
-  （`from .components import ( ... search as search_pre_import, ... )`）；且用 `pip --force-reinstall`
-  覆盖安装时**旧文件不会被删除**，`search` 残留在安装树里，30/30 才"通过"。ARM64 干净安装立刻暴露
-  `ImportError: cannot import name 'search'`。
-  **第二轮（正确方法）**：扫描器先折叠括号导入再匹配（`cut/next01_import_scan_v2.py`），9 个候选无导入点；
-  用**全新 venv** 从源码安装试删版（120 集成）：`check_config` **exit=0 零错误**、启动无 ImportError/Setup failed、
-  **30/30 功能回归通过**。据此采纳 129 → **120 集成 / 5911 文件 / 38.5 MB**。
-  `search` 保留（bootstrap 预导入）；`matter/energy/image_upload` 等仍有导入点，未删。
-  证据 `cut/results/next01-imports-v2.json`、`cut/results/trial2-*`。
+- [ ] **NEXT-01b｜继续收缩可选集成（两次试删均被推翻，规则修正后仅 1 个可删）。**
+  **v1（129→119）错**：导入扫描按行，漏 `bootstrap.py` 的跨行括号导入（`search`）。
+  **v2（129→120）也错**：只查导入、**没查 manifest 硬依赖** —— `frontend` 的 `dependencies` 里就有
+  `map_tiles` 与 `search`。x86 验证脚本又只匹配 `ERROR`/`Invalid config`，漏掉 `Integration error:` 这种小写写法，
+  于是"通过"。ARM64 干净安装配置校验直接报 `Integration error: frontend - Integration 'map_tiles' not found`。
+  **v3（正确规则）**：manifest `dependencies` + 跨行感知的静态导入 + bootstrap 预导入，三条必须同时满足；
+  在 129 基线上重算，**只有 `plex` 一个满足**。证据 `cut/results/next01-imports-v3.json`。
+  **当前状态**：树已回滚到 **129 集成 / 6158 文件**；`plex` 的单独试删留待下一轮用干净安装复验。
 - [x] **NEXT-02a｜体积统计完成。** 见上；同时确认前端资产为哈希 chunk（未删除任何被引用 chunk），资产级裁剪未做。
 - [x] **NEXT-02b｜前端资产构成分析（结论：不裁源码树内资产）。** hass_frontend 232.8 MB / 14682 文件：static 99.2、translations 69.3、frontend_es5 68.6、frontend_latest 64.1、locale-data 21.3；其中 `.map` 51.6 MB、`.gz/.br` 52.7 MB 理论上可在自建打包时剔除，属重打包上游前端包，未做。证据 `cut/results/frontend-results.json`。
 - [x] **NEXT-03a｜ARM64 轮子盘点（两轮，修正口径）。** 首轮只试 `manylinux2014_aarch64/cp314`，报 11 个缺；改用真实 pip 解析的标签组合（`manylinux_2_28/2_17/2014_aarch64` × `cp314/abi3`）复检后**只有 5 个缺轮**：`pymicro_vad`、`pyspeex_noise`、`PyTurboJPEG`、`PyQRCode`、`PyRIC`。首轮把 numpy/pillow/greenlet/pycares/ulid-transform 误报为缺轮，原因是标签过窄——这条更正已留档。证据 `cut/results/arm64-results-v2.json`。
@@ -140,7 +138,7 @@
 | 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
 | ARM64 轮子盘点（复检） | 112/117 有轮，5 缺 | `cut/results/arm64-results-v2.json` |
 | ARM64 依赖供给 | **更正**：2 个原生包缺真 aarch64 轮（伪造轮已作废）；3 个纯 Python 可用 | `cut/results/arm64-wheels-results.json` |
-| 试删 9 个可选集成（第二轮） | 干净 venv：check_config 0 错误、启动无导入错、30/30 回归 → 采纳 129→120 | `cut/results/next01-imports-v2.json` |
+| 试删集成（三轮） | v1/v2 均被推翻；v3 规则下仅 `plex` 可删；树已回滚 129 | `cut/results/next01-imports-v3.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
 | Wyoming TTS 语音链路 | 5/5 + 5/5：协议 26,460 B PCM → HA tts 实体 → 4,963 B MP3 | `cut/results/voice-results.json` |

@@ -110,3 +110,25 @@ PY
 
 **结论**：`pymicro_vad`、`pyspeex_noise` 仍缺真 aarch64 轮；`PyQRCode`/`PyRIC`/`PyTurboJPEG` 是纯 Python，没有问题。
 `setuptools` 之类的构建依赖在 qemu 下取不到，故本轮未能在 ARM64 内重建。
+
+## 裁剪验证规则（三轮教训，2026-11-07 定稿）
+
+要断言"某集成可删"，必须同时满足三条，且必须用**干净 venv**验证：
+
+1. **manifest 硬依赖**：没有任何**保留**集成的 `manifest.json` 的 `dependencies` 里出现它。
+   （`after_dependencies` 是软依赖，允许缺失。）——第二轮就是漏了这条，`map_tiles` 被 `frontend` 硬依赖。
+2. **静态导入**：没有任何模块 `from ...components.X` / `from .components import ( ... X ... )`。
+   必须**先折叠跨行括号导入再匹配**，按行扫会漏（`bootstrap.py` 的 `search`）。
+3. **bootstrap 预导入**：不在 `homeassistant/bootstrap.py` 的预导入列表中。
+
+验证命令与判据：
+
+```bash
+python -m venv /tmp/v-fresh && /tmp/v-fresh/bin/pip install /path/to/src
+/tmp/v-fresh/bin/hass --script check_config -c /tmp/cfg
+# 判据：不只看 exit code，还要 grep 两套写法：
+#   "ERROR"、"Invalid config"、"Integration error"、"not found"
+```
+
+`hass --script check_config` 在仅有集成缺失时**仍可能 exit=0**，错误在正文里（`Integration error: ...`）。
+只看退出码或只 grep 大写 ERROR 会得到假通过。
