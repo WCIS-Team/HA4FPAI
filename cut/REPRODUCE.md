@@ -93,3 +93,39 @@ python cut/arm64_inventory.py       # 117 个 pin 的 aarch64/cp314 轮子盘点
 `python -m control.service --db /tmp/bridge/business.sqlite3 --host 127.0.0.1 --port 18100 --token <t>` 启动。
 每个探针写 `/tmp/*-results.json`，副本已存 `cut/results/`。全部只证明协议/软件闭环，
 真实硬件、板端部署与 ARM64 运行仍未验收。
+
+## 8. 视频管线与浏览器验收（2026-11-07 追加）
+
+### RTSP → stream → HLS（CONNECT-02b1）
+
+容器内起一个本地 RTSP 服务器再推测试流；**不要**用 ffmpeg 直接输出 rtsp，它只能做客户端：
+
+```bash
+# 1) RTSP 服务器（mediamtx，从本机代理下载后拷入容器）
+tar -xzf mediamtx.tgz -C /tmp/mtx && /tmp/mtx/mediamtx &
+# 2) 推一路 H264 测试图案
+ffmpeg -re -f lavfi -i testsrc2=size=640x360:rate=15 -c:v libx264 \
+       -preset ultrafast -tune zerolatency -g 30 -pix_fmt yuv420p \
+       -f rtsp -rtsp_transport tcp rtsp://127.0.0.1:8554/cut &
+# 3) HA 侧用 generic camera 的 stream_source 接入（配置流里传 stream_source）
+python cut/rtsp_stream_probe.py
+# 4) 取 HLS 地址并校验分片
+python cut/hls_probe.py
+```
+
+**两个必踩的坑**：
+
+1. HLS 的 token **不是**实体属性里的 `access_token`。必须用 WebSocket `camera/stream`（`format: hls`）
+   返回的 URL；用属性 token 一律 404。`cut/hls_probe.py` 就是这么做的。
+2. HLS 响应是 **gzip**。不解压会把 m3u8 当二进制，判断 `#EXTM3U` 永远失败。
+
+判据：master（79 B）→ variant（~1.6 KB）→ `init.mp4`（804 B）→ 媒体分片（`segment/N.M.m4s`，实测 143,177 B）
+全部 HTTP 200。**只证明管线通，不代表真实摄像头画质或浏览器播放体验。**
+
+### 浏览器验收（CONNECT-05）
+
+- Lovelace：`Edit overview` → 改汇总 → Save → 校验 `.storage/frontend.system_data` 里
+  `{"type":"summary","key":"light","hidden":true}`，刷新后生效。
+- 退出登录：`/profile` → Log out → 前端回未认证态。**API 令牌不受影响**（HA 设计）。
+- 截图走 playwright MCP 时必须写到它自己的根目录（`S:\apps\llm\agentwork\tools\playwright-mcp\.playwright-mcp`），
+  再拷进 `cut/results/ui/`；直接写 workenv 会被 `outside allowed roots` 拒绝。
