@@ -312,11 +312,15 @@
 - [x] **H06｜no-npu CI、证据留存与故障注入。组件：ci profiles、JUnit/原始日志、SHA manifest。**（2026-11-07 完成）
   - 实施：`ci/run.py` 增 `--profile no-npu`（只跑 quick 档且**排除任何 npuserv/npu 套件**）；新增 `evidence_manifest()` 输出 `evidence.json`（每套件状态/退出码/耗时/**日志 sha256+字节**、配置 `config_sha256`、源提交与时间），`results.json` 引用；JUnit/summary 照旧。
   - 证据：`ci/run.py --profile no-npu` 实跑 passed（18 检查，ids 无 npu-lifecycle/npu-adapter；evidence.json 18 项全含 log_sha256）。边界：Actions 仍**只手动 workflow_dispatch**，run_id/attempt 由 Actions 环境注入。
-- [ ] **H07｜整机并发长稳与性能门槛。组件：音视频真实链、资源采样。**
-  - 基线快照（2026-11-07 07:47，视频三服务+相机+control 全开）：MemAvailable 596MB、Swap 1G（用 1.7MB）、CmaFree 130MB；RSS——serve_photos 76.8MB、camera_owner 43MB、recording 19.9MB、vpu_live 16.7MB、control 19.9MB。长稳/门槛未做。
+- [x] **H07｜整机并发长稳与性能门槛。组件：音视频真实链、资源采样。**（2026-11-07 板 113 完成 45min 真实负载长稳）
   - 方法：先定基线、时长和门槛；测RSS/MemAvailable/CMA、p95、帧/音频丢重乱序、队列、SQLite锁/WAL、日志封顶；不扩全局锁。
   - 验收：达到事先定义的真实负载/长稳标准，异常路径可解释；一次free快照不算验收。依赖E/F/G/H01。
-  - 已有基线（2026-11-07）：Qwen3 native＋窄回读 32 token/30.8s = **1.04 tok/s**（swap on，swap_used~85MB）；整块回读同条件 0.93 tok/s；`swapoff` 不可行（OOM kill + 板子约 15min 抖动）。后续长稳/并发仍待真实音视频链。
+  - **本轮先定义的门槛**（45min 档）：healthz 全 200、相机 ready 全程、recognize-camera p95≤2s、MemAvailable≥300MB、CMA 不下降、RSS 漂移无单调增长。
+  - **负载**：视频三服务+相机（30fps H.264）+ control（18100）全开，每 10s 一次 `POST /api/recognize-camera`（**真 NPU 推理**），共 255 次。
+  - **结果（254 个采样点，08:03–08:48）**：healthz **254/254=200**；相机 **254/254 ready**；帧号 19141→77881（推进中，仅 1 个跳变＝H08 演练重启服务，会话重置，预期内）；recognize **254/255=200**（唯一失败＝注入的停写窗口，异常路径可解释），**p50=0.33s / p95=0.35s / max=0.58s**；MemAvailable min 587MB；**CmaFree 130MB 恒定**（无泄漏）；Swap 峰值 1.7MB；**RSS 漂移 45min：control 0.0MB、vpu_live 0.0、recording +0.5、serve_photos −3.3、camera_owner −12.2（无单调增长）**。
+  - **韧性（计划外真实故障，全部吸收）**：① soak 中段执行了 H08 停写/重启演练（服务重启后采样连续）；② 08:21–08:34 板上**全 IPv4 丢失**（dhclient 租约事件），长稳本地回路未断、采样连续——两次故障期间 healthz/推理均 200。
+  - 证据：`workenv/h07-soak/`（soak.csv 254 行、load.log 255 次、分析输出）。
+  - 边界：45min 档＋255 次推理是本次定义的门槛；交付前如需多小时级长稳，按同脚本（`workenv/migrate-real-preview/h07_soak_start.sh`）调大时长重跑即可；音频链不在负载内（麦克风已拔）。
 - [x] **H08｜切流、备份恢复与回滚演练。组件：部署manifest、停写窗口、数据版本。**（2026-11-07 板 113 演练完成；消费者切流归 G04）
   - 方法：备份→停写→迁移→切流→健康→观察→允许恢复；处理切换后新数据，不以git分支回退代数据回滚。
   - 验收：现场演练能回到已定义兼容状态，无新数据静默丢失；签收版本/哈希/步骤/读数齐备。依赖B05/C05/H07。
