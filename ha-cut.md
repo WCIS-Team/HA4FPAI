@@ -63,7 +63,6 @@
   **防自欺教训**：第一版探针把"重启后分片字节数与中断前相同（142,022）"当作恢复，而实体状态其实是
   `unavailable`——那是缓存分片。恢复类判据必须同时看 ①broker 是否新增读会话 ②分片是否新生成
   ③实体是否回到 `idle/streaming`，不能只比字节数。
-- [ ] **CONNECT-02b2b｜真实摄像头与播放体验。** 仍未做：无摄像头硬件，画质/延迟/弱网/浏览器播放流畅度未测。
 - [x] **CONNECT-03a｜MQTT broker＋模拟设备全链。** 配置流建条目→retained 发现生成实体→状态订阅→服务调用下发 `OFF`→broker 重启后重订阅仍工作。证据 `cut/results/mqtt-results.json`（9/9）。
 - [x] **CONNECT-03b1｜MQTT over TLS + QoS2 + 断线重连（本轮做成，不需要硬件）。**
   **TLS（6/6）**：自签 CA + 带 `keyUsage`/`SAN` 的服务端证书，mosquitto 2.0.21 起 8883 TLS 监听；
@@ -95,7 +94,24 @@
   点开卡片进入 `ha-camera-stream`，`<video>` **readyState=4、640×360（与推流源分辨率一致）**，
   4 秒内 `currentTime` 从 29.359 → 33.374（推进 4.015 s，`paused=false`）⇒ 画面在按实时推进，不是停在首帧。
   证据 `cut/results/camera-card.json`、截图 `cut/results/ui/ui-11-camera-card.png`、`ui-12-camera-playing.png`。
-- [ ] **CONNECT-05b2d｜播放质量量化。** 未做：未测端到端延迟、丢帧率与弱网抖动；只证明了实时推进（播放进度≈墙钟）。
+- [x] **CONNECT-02b2b｜真实摄像头（板端 SDI→PL→PS→VPU，本轮做成）。**
+  **不再是合成源**：板 192.168.1.113 上真实摄像头经 SDI→PL→PS→VPU(H.264) 出流，服务端
+  `vpu_live_server.py`(8092) + `serve_photos.py`(8091) 提供。查清的真实接口：
+  `8092/api/status` 给 session/ready；**`8091/api/camera/h264/live.mp4?session=<s>` 是活流**
+  （不带 session 一律 503 "Camera session changed"）；`8092/h264/{init.mp4,seg-NNNNNNNNN.m4s}` 给分片。
+  **板端故意不暴露 m3u8**（`h264_media.py` 只白名单 init.mp4 与 seg-*.m4s，playlist 路由回 503）。
+  做法：本地只读桥接器 `cut/board_hls_bridge.py` 用 ffmpeg 把 live.mp4 重新封装成滚动 HLS
+  （6×1s fMP4 窗口）+ JPEG 快照，喂给 HA generic camera（`stream_source` + `still_image_url`）。
+  **验证**：接入 7/7；端到端 8/8（HA 分片 52–93 KB、板端采集计数 73801→73860 持续推进、
+  session 未变）；浏览器 `<video>` **960×540、readyState=4、5 秒推进 5.01 秒、未暂停**；
+  截图 `cut/results/ui/ui-14-board-camera-playing.png` 是**真实办公场景画面**（非测试图案）。
+  证据 `cut/results/board-camera-results.json`、`cut/results/board-stream-e2e.json`。
+  **两个坑**：① 桥接器的 m3u8 必须原样透传 ffmpeg 的滚动窗口（含 `EXT-X-MEDIA-SEQUENCE`），
+  自己拼静态窗口会被 HA 判成 "Stream ended; no additional packets"；② 旧的桥接/ffmpeg 残留进程
+  会占住板端预览槽位，导致分片停更，重启前必须先清干净。
+  **边界**：HA 跑在本机（板端只有 Python 3.8，装不了 HA 3.14 基线）；桥接器只读，不开采集实例、
+  不碰 SDK/DMA/VPU；端到端延迟与弱网未量化。
+- [ ] **CONNECT-02b2c｜播放质量与多路并发。** 未做：端到端延迟、丢帧率、多客户端并发上限未测。
 
 ## 五、进一步裁剪与上板条件
 
@@ -206,6 +222,7 @@
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
 | aarch64 deb 离线安装 | 105 轮 wheelhouse；pip check 干净；前端 200；30 项 28/30（两项为 qemu 限制） | `cut/results/deb-aarch64-results.json` |
 | deb 打包与离线安装 | 7,366,076 B；dpkg 装→wheelhouse 离线 setup→前端 200 | `cut/results/deb-results.json` |
+| 板端真实摄像头接入 HA | 7/7 接入 + 8/8 端到端；960x540 浏览器实时播放 | `cut/results/board-stream-e2e.json` |
 | 浏览器播放（摄像头卡） | storage 仪表盘 4/4；video readyState=4、640x360、4 s 推进 4.015 s | `cut/results/camera-card.json` |
 | 断流恢复（视频） | 读会话 6→7、新分片 932,281 B、状态回 idle | `cut/results/stream-recovery.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
@@ -223,7 +240,7 @@
 | 项 | 为什么搁置 | 已做到的部分 |
 |---|---|---|
 | CONNECT-01b 真实语音闭环 | 容器无声卡、无麦克风/音箱、无 STT 模型 | Wyoming TTS 协议 5/5 + HA tts 链路 5/5 |
-| CONNECT-02b2b 真实摄像头 | 无摄像头硬件 | RTSP→HLS 5/5、断流恢复（新分片 932 KB、读会话 +1） |
+| CONNECT-02b2c 播放质量与并发 | 延迟/丢帧/并发未量化 | 板端真实摄像头已接入并在浏览器播放 |
 | CONNECT-03b2 真实 MQTT 硬件 | 无设备、无 mTLS 客户端证书、无跨网段弱网 | TLS 6/6 + QoS2 granted=2 + 断线重连 |
 | CONNECT-04b 板端业务 | 需板端授权，避免改生产数据 | 本地 control 服务桥接 5/5 |
 | CONNECT-05b2d 播放质量量化 | 未测端到端延迟/丢帧/弱网抖动 | storage 仪表盘 4/4 + 浏览器播放实时推进（4 s 走 4.015 s） |
