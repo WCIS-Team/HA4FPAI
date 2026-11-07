@@ -1,0 +1,30 @@
+{
+  "wheels": [
+    {
+      "wheel": "pymicro_vad-1.0.1-cp314-cp314-linux_aarch64.whl",
+      "bytes": 173973,
+      "natives": [
+        {
+          "file": "micro_vad_cpp.cpython-314-aarch64-linux-gnu.so",
+          "elf_machine": 183,
+          "is_aarch64": true
+        }
+      ]
+    },
+    {
+      "wheel": "pyspeex_noise-1.0.2-cp314-cp314-linux_aarch64.whl",
+      "bytes": 138220,
+      "natives": [
+        {
+          "file": "speex_noise_cpp.cpython-314-aarch64-linux-gnu.so",
+          "elf_machine": 183,
+          "is_aarch64": true
+        }
+      ]
+    }
+  ],
+  "import_check": "pymicro_vad, pyspeex_noise, micro_vad_cpp, speex_noise_cpp all import",
+  "pip_check": "No broken requirements found (run inside the aarch64 container)",
+  "how": "built natively inside an aarch64 container (qemu-user emulation); setuptools/wheel copied from the x86 venv, g++/cmake/make/libspeexdsp-dev installed via apt (Acquire::ForceIPv4), pip wheel --no-build-isolation --no-binary :all:",
+  "boundary": "Wheel architecture verified by ELF header. Not run on the target board."
+}
