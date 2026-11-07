@@ -105,9 +105,11 @@ class Engine(object):
         if T < 600:                                # 帧维重复 pad 到定长 600
             reps = int(self.np.ceil(600 / T))
             mel = self.np.tile(mel, (reps, 1))[:600]
-        # ZG 图输入声明 [1,1,600,80] NHWC，但内存序对应逻辑 [80,600]（编译把
-        # ONNX 的 [N,80,L] 转置融合了）——按实测：喂 [80,600] C 序波形才对齐
-        return self.np.ascontiguousarray(mel.T)[None, None]
+        # 图输入声明 @layout(NHWC) [1,1,600,80]：600 时间 × 80 频带，C 序连续内存
+        # 即 mel[600,80] 本身。2026-11-08 实测定案：这个排布的输出 std=0.6100、
+        # peak=0.998，与 CPU 参考（std 0.6055）量级形态一致；此前喂 mel.T([80,600])
+        # 得到的是错排布产物（std 0.7756），别再改回去。
+        return self.np.ascontiguousarray(mel).reshape(1, 1, 600, 80)
 
     def generate(self, req, emit):
         t0 = time.time()
