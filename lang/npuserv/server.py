@@ -461,7 +461,7 @@ def make_handler(sv):
                 if path == "/models":
                     return self._send(200, {"proto": PROTOCOL,
                                             "models": [(m.describe() if hasattr(m, "describe") else
-                                                dict(sorted(m.items())) ) for _, m in sorted(
+                                                sv.describe_model(k, m)) for k, m in sorted(
                                                 sv.models.items())]})
                 if path == "/status":
                     return self._send(200, sv.status())
@@ -552,8 +552,9 @@ class ResidentSupervisor(object):
         self.history = []
         self.resident_adapter = os.path.join(HERE, 'resident_worker.py')
 
-    def describe_model(self, m):
-        return {'id': m['adapter'] and m.get('id', ''), 'adapter': m['adapter'],
+    def describe_model(self, model_id, m):
+        # id 来自 registry 的 key（self.models[entry['id']]），value 里没有 'id' 字段
+        return {'id': model_id, 'adapter': m['adapter'],
                 'adapter_exists': os.path.exists(m['adapter']),
                 'capabilities': m['capabilities'], 'defaults': m['defaults']}
 

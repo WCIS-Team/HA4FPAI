@@ -5,9 +5,10 @@
 openai   云 API（OpenAI 兼容 chat/completions）。调用形状按 mimo_bridge 板上验证过的来：
          关思考链（reasoning_effort=none，不关白吃 1~8 s）、max_completion_tokens、
          多轮上下文按 session 分桶。配置沿用 MIMO_* 环境变量与 lang/config/klar.yaml 的 mimo 节。
-npuserv  板上 NPU 槽位（`lang/npuserv/`，2026-11-04 从 lang/llm/ 移入，本次移到 lang/npuserv，仍 server 管辖）。**只能 HTTP 编排**：CMA 池随 worker 进程
-         退出才归还、一次一模型、apply 50-132 s——这个档不装载任何模型，只调 /generate。
-         ids-in/ids-out 的件（ERNIE）需要分词器桥，见 README「缺什么」——没有就是明确报错。
+npuserv  板上 NPU 槽位（`lang/npuserv/`，2026-11-04 从 lang/llm/ 移入，仍 server 管辖）。**只能 HTTP 编排**：
+         这个档不装载任何模型，只调 /generate。多轮上下文在本档内按 session 分桶
+         （`history_turns` 默认 2 轮，与 openai 档同款）——板端的件都是「每轮整 prompt
+         重放、KV 清零」，所以多轮＝纯文本拼接，不需要 KV 状态。件必须 text_in=true。
 echo     自检档：固定回复，不外发。
 """
 
@@ -136,6 +137,10 @@ class NpuServ(Stage):
         self.max_new = int(_pick(p, "max_new", "NPUSERV_MAX_NEW", 128) or 128)
         self.timeout = float(_pick(p, "timeout", "NPUSERV_TIMEOUT", 900) or 900)
         self.wait_s = int(_pick(p, "wait_s", "NPUSERV_WAIT_S", 10) or 10)
+        self.history_turns = int(_pick(p, "history_turns", "HISTORY_TURNS", 2) or 0)
+        self.system = os.environ.get("SYSTEM_PROMPT") or p.get("system_prompt", "") or DEFAULT_SYSTEM
+        self._hist = {}                                  # session -> [(user, reply)]
+        self._hlock = threading.Lock()
 
     def _get(self, path):
         with urllib.request.urlopen(self.base + path, timeout=10) as resp:
@@ -148,7 +153,20 @@ class NpuServ(Stage):
         with urllib.request.urlopen(req, timeout=self.timeout) as resp:
             return json.loads(resp.read().decode("utf-8", "replace") or "{}")
 
+    def _prompt(self, text, hist):
+        """历史轮拼成纯文本 prompt（件侧不套 chat template，形状归本层）。"""
+        parts = []
+        if self.system:
+            parts.append(self.system)
+        for turn in hist:
+            parts.append("用户：%s" % turn[0])
+            parts.append("助手：%s" % turn[1])
+        parts.append("用户：%s" % text)
+        parts.append("助手：")
+        return "\n".join(parts)
+
     def run(self, text, session=None):
+        sid = session or "default"
         models = self._get("/models")
         entry = next((m for m in models.get("models", []) if m.get("id") == self.model), None)
         if entry is None:
@@ -163,26 +181,46 @@ class NpuServ(Stage):
         if st.get("state") != "ready" or (st.get("info") or {}).get("model") not in (None, self.model):
             raise RuntimeError("npuserv 未就绪（state=%s）：先 POST /load %r"
                                % (st.get("state"), self.model))
+        with self._hlock:
+            hist = list(self._hist.get(sid, []))
+        prompt = self._prompt(text, hist) if self.history_turns > 0 else text
         t0 = time.time()
-        obj = self._post("/generate", {"model": self.model, "text": text,
+        obj = self._post("/generate", {"model": self.model, "text": prompt,
                                        "max_new": self.max_new, "stream": False,
                                        "wait_s": self.wait_s})
-        end = obj.get("end") or obj                       # 兼容直接回 end object 的形状
+        # 真 /generate 的回包就是 end 事件本身：{"end": true, "text": ..., ...}。
+        # 不能写 obj.get("end") or obj ——那会把 True 当回包（2026-11-08 单测抓到的真 bug）。
+        cand = obj if isinstance(obj, dict) else {}
+        nested = cand.get("end")
+        if isinstance(nested, dict):
+            cand = nested
         reply = None
         for k in ("text", "reply", "content", "gen_text"):
-            v = end.get(k) if isinstance(end, dict) else None
+            v = cand.get(k)
             if isinstance(v, str) and v.strip():
                 reply = v.strip()
                 break
         if reply is None:
-            keys = sorted(end.keys()) if isinstance(end, dict) else type(end).__name__
-            raise RuntimeError("npuserv 回包里抠不到文本（end=%s）：ids-out 件要接分词器桥，见 README"
-                               % keys)
-        return reply, {"llm_ms": int((time.time() - t0) * 1000),
-                       "llm_model": self.model, "npuserv": True}
+            raise RuntimeError("npuserv 回包里抠不到文本（keys=%s）：ids-out 件要接分词器桥，见 README"
+                               % sorted(cand.keys()))
+        with self._hlock:
+            if self.history_turns > 0:
+                h = self._hist.setdefault(sid, [])
+                h.append((text, reply))
+                if len(h) > self.history_turns:
+                    del h[:len(h) - self.history_turns]
+        meta = {"llm_ms": int((time.time() - t0) * 1000),
+                "llm_model": self.model, "npuserv": True, "session": sid}
+        if self.history_turns > 0:
+            meta["turns"] = len(hist) + 1
+        return reply, meta
 
     def reset(self, session=None):
-        pass                                              # 多轮是 adapter 层的事，这里无状态
+        with self._hlock:
+            if session:
+                self._hist.pop(session, None)
+            else:
+                self._hist.clear()
 
 
 class Echo(Stage):
