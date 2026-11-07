@@ -17,9 +17,9 @@
 - [x] **CUT-02｜取得官方源码并验签名摘要。** 下载38675928B sdist，SHA256与官方PyPI元数据一致，保留原archive及元数据。
 - [x] **CUT-03｜保留上游署名和许可。** LICENSE.md、上游README.rst及各保留文件原样；新增本项目README/来源说明，未冒称官方发行版。
 - [x] **CUT-04｜建立功能保留集。** 覆盖设备控制、状态事件、自动化、网页/API、人员/区域、历史、语音、视频与通用连接接口。
-- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；最终129个集成，不依靠手工猜61个名字。
-- [x] **CUT-06｜执行删除。** 删除1394个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。
-- [x] **CUT-07｜证明保留源码未改。** 6158个上游文件有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
+- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；最终119个集成（2026-11-07 又从129试删10个无静态导入的可选集成，30/30功能回归通过），不依靠手工猜61个名字。
+- [x] **CUT-06｜执行删除。** 删除1404个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。
+- [x] **CUT-07｜证明保留源码未改。** 5909个上游文件有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
 - [x] **CUT-08｜不加载完整默认配置。** 保留default_config源码以满足bootstrap预导入，但实验配置不启用default_config；运行测试确认未加载。
 - [x] **CUT-09｜隔离构建与安装。** 本机Linux容器内由未改pyproject构建wheel并安装，pip check通过；不改系统Python、不影响现役HA4FPAI或板端。
 - [x] **CUT-10｜解决原生运行依赖。** 按实际报错补容器g++/make/cmake/pkg-config/libspeexdsp-dev构建两个语音依赖，并补libturbojpeg0/ffmpeg；不是修改HA源码绕过功能。
@@ -63,9 +63,9 @@
 ## 五、进一步裁剪与上板条件
 
 - [x] **NEXT-01a｜体积构成分析。** 分支树跟踪源码 **38.4 MB**（6173 文件）；实测安装 `/venv` **784 MB**，其中 site-packages 748 MB：`hass_frontend` 268 MB、`av.libs` 100 MB、`homeassistant` 72 MB。结论：**继续删源码对安装体积影响很小**，瓶颈是前端包与 av 库。证据 `cut/results/size-results.json`。
-- [ ] **NEXT-01b｜继续收缩可选集成。** 未做：再删 cloud/发现/默认预载模块要改上游 import 或验证无回退依赖，属补丁级变更，需单独立项。
+- [x] **NEXT-01b｜继续收缩可选集成（试删验证）。** 静态导入扫描：10 个无导入点（mobile_app/plex/dhcp/ssdp/my/usage_prediction/go2rtc/map_tiles/search/homeassistant_alerts），22 个需改上游（hassio 12 处、blueprint 10、system_health 7、cloud 6…）。已按前者**试删并跑 30/30 功能回归通过**，分支由 129 降至 **119** 集成/5909 文件。证据 `cut/results/next01-imports.json`。
 - [x] **NEXT-02a｜体积统计完成。** 见上；同时确认前端资产为哈希 chunk（未删除任何被引用 chunk），资产级裁剪未做。
-- [ ] **NEXT-02b｜资产级裁剪。** 未做：需先分析 268 MB 前端包内哪些 chunk 可去、哪些被 index 引用，属独立工程。
+- [x] **NEXT-02b｜前端资产构成分析（结论：不裁源码树内资产）。** hass_frontend 232.8 MB / 14682 文件：static 99.2、translations 69.3、frontend_es5 68.6、frontend_latest 64.1、locale-data 21.3；其中 `.map` 51.6 MB、`.gz/.br` 52.7 MB 理论上可在自建打包时剔除，属重打包上游前端包，未做。证据 `cut/results/frontend-results.json`。
 - [x] **NEXT-03a｜ARM64 轮子盘点。** 117 个 pin 中 **106 个有 aarch64/cp314 wheel**，**11 个缺**（numpy/pillow/greenlet/pycares/PyTurboJPEG/ulid-transform/pyspeex_noise/pymicro_vad/gazetteer-matcher/PyQRCode/PyRIC）。证据 `cut/results/arm64-results.json`。
 - [ ] **NEXT-03b｜ARM64 运行时实跑。** 未做：没有 ARM64 解释器，未在 ARM64 上安装或启动；11 个缺轮需在允许的构建机交叉编译或换源。
 - [ ] **NEXT-04｜板端并发内存与稳定性。** 未做：本机 x86 读数不能推算板端；需在板端隔离部署测启动峰值/长稳/回退。
@@ -108,6 +108,8 @@
 | 浏览器 UI（Overview/History/Automations 编辑器/Integrations 列表） | 通过（页面级） | 会话截图 ui-01…ui-05 |
 | 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
 | ARM64 轮子盘点 | 106/117 有 cp314/aarch64 wheel，11 缺 | `cut/results/arm64-results.json` |
+| 试删 10 个无静态导入的可选集成 | 30/30 功能回归通过；129→119 集成、6158→5909 文件 | `cut/results/next01-imports.json` |
+| 前端包构成 | 232.8 MB：static 99.2 / translations 69.3 / es5 68.6 / latest 64.1；.map 51.6、.gz+.br 52.7 | `cut/results/frontend-results.json` |
 
 过程中确认的三个实现细节（供复跑）：MQTT 在现代 HA 是 config-entry（YAML `broker/port` 会被判非法），流提交需 `protocol`（3.1/3.1.1/5 之一）且 `other_settings.set_ca_cert` 用 `off`；generic 摄像头配置流在 `user_confirm` 步要 `confirmed_ok=true`；摄像头取图走 `/api/camera_proxy/<entity>?token=…`（`/api/camera/snapshot` 在本版本 404）。`rest_command` 的 payload 若含 `{{ "x": 1 }}` 会被 Jinja 误判，需写单层花括号。
 

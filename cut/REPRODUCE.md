@@ -66,7 +66,7 @@ podman exec ha-small-verify /venv/bin/python /src/cut/persistence_probe.py
 python cut/verify_source.py
 ```
 
-预期输出：6158个上游文件、129个集成、modified_upstream_files=0、license_present=true。新增工具/说明不计入上游修改。任何必要产品补丁必须先登记PATCHES，并更新审计基线的“上游原件”和“修改件”关系，不可只改哈希掩盖变化。
+预期输出：5909个上游文件、119个集成、modified_upstream_files=0、license_present=true。新增工具/说明不计入上游修改。任何必要产品补丁必须先登记PATCHES，并更新审计基线的“上游原件”和“修改件”关系，不可只改哈希掩盖变化。
 
 ## 6. 本轮证据与局限
 
