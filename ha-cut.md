@@ -237,6 +237,7 @@
 | 浏览器播放（摄像头卡） | storage 仪表盘 4/4；video readyState=4、640x360、4 s 推进 4.015 s | `cut/results/camera-card.json` |
 | 断流恢复（视频） | 读会话 6→7、新分片 932,281 B、状态回 idle | `cut/results/stream-recovery.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
+| MQTT mTLS + 转接设备 + netem | mTLS 拒无证书/收证书 5/5；设备 9/9（LWT 生效）；8/8（0.8→171.1→0.8 ms） | `cut/results/mqtt-weaknet-results.json` |
 | MQTT TLS + QoS2 + 重连 | 6/6：CA 校验 TLS 通道实测收发、granted_qos=2、重启恢复 | `cut/results/mqtt-tls-final.json` |
 | plex 单点裁剪 | 干净 venv：check_config 零命中 + 30/30 回归 → 采纳 129→128 | `cut/results/plex-results.json` |
 | Wyoming TTS 语音链路 | 5/5 + 5/5：协议 26,460 B PCM → HA tts 实体 → 4,963 B MP3 | `cut/results/voice-results.json` |
@@ -252,7 +253,7 @@
 |---|---|---|
 | CONNECT-01b 真实语音闭环 | 容器无声卡、无麦克风/音箱、无 STT 模型 | Wyoming TTS 协议 5/5 + HA tts 链路 5/5 |
 | CONNECT-02b2c 播放质量与并发 | 延迟/丢帧/并发未量化 | 板端真实摄像头已接入并在浏览器播放 |
-| CONNECT-03b2 真实 MQTT 硬件 | 无设备、无 mTLS 客户端证书、无跨网段弱网 | TLS 6/6 + QoS2 granted=2 + 断线重连 |
+| CONNECT-03b2b 真传感器与长稳 | 无第三方硬件、无真实 WAN、无 soak | mTLS 强制已验、转接设备 9/9（含 LWT）、netem 弱网 8/8 |
 | CONNECT-04b2 录像模式/登记写入 | 写板端 recorder 与 gallery，需授权与时机 （quota 4 GiB 不自动删；现役压缩任务在跑） | 只读 9/9：capture/recorder/recordings 传感器逐项对上 |
 | CONNECT-05b2d 播放质量量化 | 未测端到端延迟/丢帧/弱网抖动 | storage 仪表盘 4/4 + 浏览器播放实时推进（4 s 走 4.015 s） |
 | NEXT-02b 前端资产裁剪 | `.map` 51.6 MB / `.gz`+`.br` 52.7 MB 需重打包上游 wheel | 资产构成已盘点 |

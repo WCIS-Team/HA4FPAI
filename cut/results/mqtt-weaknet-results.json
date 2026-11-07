@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "check": "baseline-round-trip",
+      "passed": true,
+      "detail": "count=8 avg=0.8ms"
+    },
+    {
+      "check": "netem-applied",
+      "passed": true,
+      "detail": "qdisc netem 8001: root refcnt 17 limit 1000 delay 120ms  30ms loss 5% seed 12347789916858011188"
+    },
+    {
+      "check": "round-trip-survives-impairment",
+      "passed": true,
+      "detail": "count=8 avg=171.1ms max=504.3ms"
+    },
+    {
+      "check": "latency-increased",
+      "passed": true,
+      "detail": "base=0.8ms impaired=171.1ms (+170.3ms)"
+    },
+    {
+      "check": "ha-entry-loaded-under-loss",
+      "passed": true,
+      "detail": "state=loaded"
+    },
+    {
+      "check": "ha-reconnected-after-broker-restart",
+      "passed": true,
+      "detail": "state=loaded"
+    },
+    {
+      "check": "netem-cleared",
+      "passed": true,
+      "detail": "qdisc noqueue 0: root refcnt 2"
+    },
+    {
+      "check": "recovered-to-baseline",
+      "passed": true,
+      "detail": "count=8 avg=0.8ms"
+    }
+  ],
+  "measurements": {
+    "baseline": {
+      "phase": "baseline",
+      "count": 8,
+      "avg_ms": 0.8,
+      "min_ms": 0.6,
+      "max_ms": 1.1
+    },
+    "impaired": {
+      "phase": "impaired",
+      "count": 8,
+      "avg_ms": 171.1,
+      "min_ms": 95.5,
+      "max_ms": 504.3
+    },
+    "recovered": {
+      "phase": "recovered",
+      "count": 8,
+      "avg_ms": 0.8,
+      "min_ms": 0.6,
+      "max_ms": 1.1
+    }
+  },
+  "netem": "delay 120ms 30ms loss 5% on the broker container egress (eth0)",
+  "boundary": "Only the broker->client direction is shaped, because the running HA container cannot gain NET_ADMIN without being recreated. Loss is random, so sample counts vary. No WAN congestion, no MTU/duplication/duplication-reorder modelling, no long-run (hours) soak."
+}
