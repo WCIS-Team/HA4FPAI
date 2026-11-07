@@ -207,3 +207,175 @@ def _select(reads):
 
 if __name__ == "__main__":
     raise SystemExit("import me from a model adapter, don't run me")
+
+
+# ---------------------------------------------------------------------------
+# Resident mode (2026-11-08): one long-lived worker process holds ONE device and
+# stacks N model sessions on it. Key insight measured on 113: openDevice() may be
+# called exactly once per process -- a second call corrupts other sessions' DMA
+# channels -- but any number of sessions can be layered on that one device, and
+# sessions can be torn down and rebuilt cleanly (RELOAD_CYCLES_OK).
+#
+# The server sends: {"cmd":"load","model":id,"module":path,"params":{...}}
+#                   {"cmd":"unload","model":id}
+#                   {"cmd":"generate","model":id,...}   (routed by model)
+#                   {"cmd":"ping"} / {"cmd":"stats"} / {"cmd":"bye"}
+# The loader callable receives (params, device) and must reuse the device when
+# given (npuserv injects the resident one). Engines are kept per model id.
+# ---------------------------------------------------------------------------
+
+def run_resident(load_one, bootstrap):
+    """bootstrap() -> device (called once); load_one(params, device) -> engine."""
+    hs_path = os.environ.get("NPUSERV_HANDSHAKE", "")
+    if not hs_path:
+        raise SystemExit("NPUSERV_HANDSHAKE must be set by the server")
+    # NPUSERV_PARAMS is optional here: per-model params arrive with each load cmd.
+    ls = _bind()
+    port = ls.getsockname()[1]
+    _write_handshake(hs_path, {"proto": PROTOCOL, "port": port, "pid": os.getpid(),
+                               "loaded": False})
+
+    def on_term(signum, frame):
+        _stop["flag"] = True
+    try:
+        signal.signal(signal.SIGTERM, on_term)
+        signal.signal(signal.SIGINT, on_term)
+    except ValueError:
+        pass
+
+    engines = {}
+    try:
+        device = bootstrap()
+        log("resident device ready")
+    except BaseException as e:
+        log("device bootstrap failed: %r" % (e,))
+        _write_handshake(hs_path, {"proto": PROTOCOL, "port": port, "pid": os.getpid(),
+                                   "loaded": False, "error": repr(e)})
+        return 1
+    _write_handshake(hs_path, {"proto": PROTOCOL, "port": port, "pid": os.getpid(),
+                               "loaded": True, "apply_s": 0.0,
+                               "info": {"resident": True, "engines": []}})
+    log("resident worker up on 127.0.0.1:%d" % port)
+
+    def load_model(mid, module_path, mparams):
+        if mid in engines:
+            return {"loaded": True, "model": mid, "note": "already resident",
+                    "info": getattr(engines[mid], "info", {})}
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("npuserv_adapter_%s" % mid,
+                                                      module_path)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules["npuserv_adapter_%s" % mid] = mod
+        spec.loader.exec_module(mod)
+        if not hasattr(mod, "load"):
+            raise RuntimeError("adapter %s has no load()" % module_path)
+        t0 = time.time()
+        try:
+            eng = mod.load(dict(mparams or {}), device=device)
+        except TypeError:
+            eng = mod.load(dict(mparams or {}))     # legacy adapters that open their own
+        eng.apply_s = getattr(eng, "apply_s", round(time.time() - t0, 1))
+        if not hasattr(eng, "n_steps"):
+            eng.n_steps = 0
+        engines[mid] = eng
+        return {"loaded": True, "model": mid, "apply_s": eng.apply_s,
+                "info": getattr(eng, "info", {}),
+                "residents": sorted(engines)}
+
+    def unload_model(mid):
+        eng = engines.pop(mid, None)
+        if eng is None:
+            return {"unloaded": False, "model": mid}
+        close = getattr(eng, "close", None)
+        if callable(close):
+            try:
+                close()
+            except Exception as e:
+                log("close(%s) raised %r" % (mid, e))
+        return {"unloaded": True, "model": mid, "residents": sorted(engines)}
+
+    why = "forever"
+    try:
+        while not _stop["flag"]:
+            try:
+                r = _select([ls])
+            except (OSError, ValueError) as e:
+                log("select raised %r -- exiting" % (e,))
+                why = "socket-closed"
+                break
+            if not r:
+                continue
+            conn, _ = ls.accept()
+            log("supervisor attached")
+            try:
+                conn.settimeout(None)
+                rd = wire.LineReader(conn)
+                wire.send_obj(conn, {"ready": True, "resident": True,
+                                     "engines": sorted(engines)})
+                last = time.time()
+                while not _stop["flag"]:
+                    try:
+                        req = rd.read(timeout=1.0)
+                    except socket.timeout:
+                        continue
+                    except (ConnectionError, OSError):
+                        break
+                    if req is None:
+                        break
+                    cmd = req.get("cmd", "generate")
+                    mid = req.get("model")
+                    try:
+                        if cmd == "bye":
+                            wire.send_obj(conn, {"acked": True, "bye": True})
+                            why = "bye"
+                            break
+                        if cmd == "ping":
+                            wire.send_obj(conn, {"pong": True, "resident": True,
+                                                 "engines": sorted(engines)})
+                            continue
+                        if cmd == "load":
+                            wire.send_obj(conn, dict(
+                                load_model(mid, req["module"], req.get("params")),
+                                end=True))
+                            continue
+                        if cmd == "unload":
+                            wire.send_obj(conn, dict(unload_model(mid), end=True))
+                            continue
+                        eng = engines.get(mid)
+                        if eng is None:
+                            wire.send_obj(conn, {"err": "model %r not resident; /load first" % mid,
+                                                 "end": True})
+                            continue
+                        req.pop("cmd", None)
+                        out = eng.generate(req, lambda ev: wire.send_obj(conn, ev))
+                        ev = dict(out or {})
+                        ev["end"] = True
+                        wire.send_obj(conn, ev)
+                    except Exception as e:
+                        log("cmd %r failed: %r" % (cmd, e))
+                        try:
+                            wire.send_obj(conn, {"err": repr(e), "end": True})
+                        except Exception:
+                            break
+                try:
+                    conn.close()
+                except Exception:
+                    pass
+            except Exception as e:
+                log("conn handling failed: %r" % (e,))
+            if why in ("bye",):
+                break
+    finally:
+        try:
+            ls.close()
+        except Exception:
+            pass
+        for mid, eng in list(engines.items()):
+            close = getattr(eng, "close", None)
+            if callable(close):
+                try:
+                    close()
+                except Exception as e:
+                    log("close(%s) raised %r" % (mid, e))
+        log("resident worker exit (%s)" % why)
+    return 0

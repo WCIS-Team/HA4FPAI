@@ -53,14 +53,16 @@ class Engine(object):
         self.session = None
 
     # ---- session 生命周期 -------------------------------------------------
-    def _apply(self):
+    def _apply(self, device=None):
         import datetime
         net = self.icraft.xir.Network.CreateFromJsonFile(_G['json'])
         net.lazyLoadParamsFromFile(_G['raw'])
-        # 与 qwen 驱动同一套 initSession 路径（backend=zg330, mmu=True）
+        # multi-resident：device 由 npuserv 注入（openDevice 每进程一次；
+        # 第二次 openDevice 会破坏其它 session 的 DMA——2026-11-08 实测）
         sys.path.insert(0, '/root/qwen2/modelzoo_utils')
-        from pyrtutils.icraft_utils import openDevice, initSession
-        device = openDevice('zg330', '192.168.125.143', True, False)
+        from pyrtutils.icraft_utils import initSession
+        if device is None:
+            device = openDevice('zg330', '192.168.125.143', True, False)
         s = initSession('zg330', net, device, 1)
         t0 = time.time()
         s.apply()
@@ -109,6 +111,8 @@ class Engine(object):
 
     def generate(self, req, emit):
         t0 = time.time()
+        if self.session is None:
+            self.apply_s = self._apply(device=getattr(self, 'shared_device', None))
         mel = self._mel_from_req(req)
         T = int(req.get('max_frames') or 600)
         T = min(max(1, T), 600)
@@ -117,7 +121,7 @@ class Engine(object):
         peak = float(self.np.max(self.np.abs(wave_out))) if wave_out.size else 0.0
         if peak <= 1e-9 and self.cfg.get('runtime', {}).get('zero_output_guard'):
             emit({'zero_retry': True})
-            self._drop(); self._apply()
+            self._drop(); self._apply(device=getattr(self, 'shared_device', None))
             arr = self._forward(mel)
             wave_out = arr[:T * self.cfg['samples_per_frame']]
             peak = float(self.np.max(self.np.abs(wave_out)))
@@ -147,11 +151,12 @@ class Engine(object):
         self._drop()
 
 
-def load(params):
+def load(params, device=None):
     import icraft
     import numpy as np
     eng = Engine(_cfg, np, icraft)
-    eng.apply_s = eng._apply()
+    eng.shared_device = device
+    eng.apply_s = eng._apply(device=device)
     return eng
 
 
