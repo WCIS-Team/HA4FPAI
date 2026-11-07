@@ -24,10 +24,15 @@ rest_command:
     method: POST
     content_type: application/json
     payload: '{"source":"ha-small","value":"{{ value }}"}'
+# Control the board's recorder mode via POST (use with extreme caution!)
+  board_recorder_mode_change:
+    url: http://192.168.1.113:8093/api/mode
+    method: POST
+    content_type: application/json
+    payload: '{"mode": "{{ mode }}" }'
+    timeout_seconds: 5
 # Recorder defaults to the selected configuration directory.
-recorder:
-  purge_keep_days: 3
-  commit_interval: 1
+recorder: !include /etc/ha-small/board-readonly.yaml
 history:
 logbook:
 conversation:
