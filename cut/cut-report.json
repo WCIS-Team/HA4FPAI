@@ -109,7 +109,6 @@
     "default_config",
     "device_automation",
     "device_tracker",
-    "dhcp",
     "diagnostics",
     "energy",
     "event",
@@ -120,13 +119,11 @@
     "frontend",
     "generic",
     "geo_location",
-    "go2rtc",
     "google_assistant",
     "group",
     "hassio",
     "history",
     "homeassistant",
-    "homeassistant_alerts",
     "http",
     "humidifier",
     "image",
@@ -149,20 +146,16 @@
     "logbook",
     "logger",
     "lovelace",
-    "map_tiles",
     "matter",
     "media_player",
     "media_source",
-    "mobile_app",
     "mqtt",
-    "my",
     "network",
     "notify",
     "number",
     "onboarding",
     "persistent_notification",
     "person",
-    "plex",
     "radio_frequency",
     "recorder",
     "remote",
@@ -177,7 +170,6 @@
     "sensor",
     "shell_command",
     "siren",
-    "ssdp",
     "stream",
     "stt",
     "sun",
@@ -194,7 +186,6 @@
     "trace",
     "tts",
     "update",
-    "usage_prediction",
     "usb",
     "vacuum",
     "valve",
@@ -440,6 +431,7 @@
     "devolo_home_control",
     "devolo_home_network",
     "dexcom",
+    "dhcp",
     "dialogflow",
     "diaz",
     "digital_loggers",
@@ -629,6 +621,7 @@
     "gitlab_ci",
     "gitter",
     "glances",
+    "go2rtc",
     "goalzero",
     "gogogate2",
     "goodwe",
@@ -699,6 +692,7 @@
     "holiday",
     "home_connect",
     "home_plus_control",
+    "homeassistant_alerts",
     "homeassistant_connect_zbt2",
     "homeassistant_green",
     "homeassistant_hardware",
@@ -900,6 +894,7 @@
     "mailgun",
     "manual",
     "manual_mqtt",
+    "map_tiles",
     "marantz",
     "marantz_infrared",
     "martec",
@@ -943,6 +938,7 @@
     "mitsubishi_comfort",
     "mjpeg",
     "moat",
+    "mobile_app",
     "mochad",
     "modbus",
     "modem_callerid",
@@ -972,6 +968,7 @@
     "music_assistant",
     "mutesync",
     "mvglive",
+    "my",
     "my_pv",
     "myneomitis",
     "myq",
@@ -1126,6 +1123,7 @@
     "plaato",
     "plant",
     "playstation_network",
+    "plex",
     "plugwise",
     "plum_lightpad",
     "pocketcasts",
@@ -1342,6 +1340,7 @@
     "sql",
     "squeezebox",
     "srp_energy",
+    "ssdp",
     "starline",
     "starlingbank",
     "starlink",
@@ -1485,6 +1484,7 @@
     "uptime",
     "uptime_kuma",
     "uptimerobot",
+    "usage_prediction",
     "usgs_earthquakes_feed",
     "utility_meter",
     "uvc",
@@ -1956,32 +1956,8 @@
     "energy": [
       "dependency/import-of:default_config"
     ],
-    "usage_prediction": [
-      "dependency/import-of:default_config"
-    ],
-    "dhcp": [
-      "dependency/import-of:default_config"
-    ],
-    "my": [
-      "dependency/import-of:default_config"
-    ],
-    "mobile_app": [
-      "dependency/import-of:default_config"
-    ],
-    "ssdp": [
-      "dependency/import-of:default_config"
-    ],
-    "homeassistant_alerts": [
-      "dependency/import-of:default_config"
-    ],
     "file": [
       "dependency/import-of:default_config"
-    ],
-    "go2rtc": [
-      "dependency/import-of:default_config"
-    ],
-    "map_tiles": [
-      "dependency/import-of:frontend"
     ],
     "valve": [
       "dependency/import-of:group"
@@ -2010,9 +1986,6 @@
     "image_processing": [
       "dependency/import-of:alexa"
     ],
-    "plex": [
-      "dependency/import-of:cast"
-    ],
     "matter": [
       "dependency/import-of:google_assistant"
     ],
@@ -2025,14 +1998,14 @@
   },
   "source_bytes": 235925308,
   "component_bytes": 228718118,
-  "retained_component_bytes": 34878611,
+  "retained_component_bytes": 34300622,
   "closure_policy": "manifest dependencies + after_dependencies + conservative static imports, recursively",
   "source_archive_sha256": "8410fecb434ab94b3f7724cd80584050f0ceeb856c16ee70202c24037d62238a",
-  "retained_upstream_files": 6158,
-  "retained_upstream_bytes": 39093420,
+  "retained_upstream_files": 5911,
+  "retained_upstream_bytes": 38515431,
   "removed_upstream_files": 49026,
   "modified_upstream_files": 0,
   "patches": [],
   "runtime_python": ">=3.14.2",
-  "note": "Retained optional static dependencies are not enabled by example configuration."
+  "note": "Retained optional static dependencies are not enabled by example configuration. 2026-11-07 (v2): 9 integrations removed after a CLEAN-venv install validation (check_config 0 errors, startup clean, 30/30 functional). search/matter/energy/image_upload were NOT removed: bootstrap.py preloads search, and the others have import sites that the v1 line-based scan missed."
 }
