@@ -74,8 +74,30 @@
   ② `set_ca_cert=auto` 要求 CA 在 Python 信任库里，本容器 `update-ca-certificates` 返回 rc=0 却
   `0 added`（bundle 里根本没有），且 `tls_insecure=true` 也救不回 `cannot_connect`——
   必须走"上传 CA 的 custom 模式"（`/api/file_upload` 字段名 `file`、返回 `file_id`）。
-- [ ] **CONNECT-03b2｜真实 MQTT 硬件与网络分区。** 仍未做：无真实设备、无 mTLS 客户端证书、
-  无跨网段弱网与断连风暴压测。
+- [x] **CONNECT-03b2a｜mTLS + 弱网 + 转接式「真设备」（本轮做成）。**
+  **① mTLS 强制已核验**：独立 broker（podman 桥 `10.88.0.67:8883`，原生 amd64）设
+  `require_certificate true` + `use_identity_as_username true`。双向判据：
+  **不带客户端证书 → `TLSV13_ALERT_CERTIFICATE_REQUIRED` 被拒**；**带证书 → TLSv1.3 握手成功并收到
+  MQTT CONNACK `0x20`**。HA 侧用配置流 `set_client_cert=true` 上传证书/私钥、`set_ca_cert=custom`
+  上传 CA（`/api/file_upload` 字段名 `file`、返回 `file_id`），条目 `loaded`，mTLS 通道上 QoS2 实测
+  收到 `over-mtls`（**5/5**）。证据 `cut/results/mqtt-mtls-ha.json`。
+  **② 转接式设备（板端零改动）**：`cut/board_mqtt_adapter.py` 是外部只读桥，只对板端现有端点发 **GET**，
+  把状态重新发布成 MQTT 设备——设备身份（identifiers/manufacturer/model/sw_version）、**MQTT 自动发现**
+  （8 个 retained config 主题）、**LWT 遗嘱可用性**、retained 状态、以及「新录像出现」事件实体。
+  适配器持有**自己的客户端证书**（`CN=board-113-adapter`），与 HA 的证书互不相同。**9/9 通过**：
+  7 个传感器 + 1 个事件实体被自动发现；设备注册表出现 `WCIS Board 113`（manufacturer=WCIS、
+  sw_version=vision-20261103）；HA 侧值等于板端真值（recorder_mode=off、captured_frames=116717、
+  recordings=20）；**SIGKILL 适配器后实体变 `unavailable`（LWT 生效）**。证据
+  `cut/results/board-mqtt-device.json`。
+  **③ 弱网（netem）**：broker 容器 egress 加 `delay 120ms 30ms loss 5%`。三段实测
+  **基线 0.8 ms → 劣化 171.1 ms（max 504.3 ms）→ 清除后 0.8 ms**；劣化期间 HA 条目始终 `loaded`，
+  **broker 在丢包链路下重启后 HA 自动重连并发布成功**（**8/8**）。证据
+  `cut/results/mqtt-weaknet-results.json`。
+  **边界（与结论同读）**：netem **只整形 broker→客户端 一个方向**（在跑的 HA 容器不重建就拿不到
+  `NET_ADMIN`）；丢包随机故样本数浮动；未做 WAN 拥塞、乱序/重复、MTU 与数小时长稳；
+  「真设备」指**真板地址 + 真数据 + 真 mTLS 身份**，不是第三方传感器硬件。
+- [ ] **CONNECT-03b2b｜真传感器硬件与长稳。** 仍未做：无第三方 MQTT 传感器（温湿度/继电器等）、
+  无休眠唤醒周期、无固件怪癖兼容、无跨网段真实 WAN、无数小时 soak。
 - [x] **CONNECT-04a｜HA→HA4FPAI控制服务协议桥。** HA `rest_command` POST `/v1/commands`（Bearer）→control 库落 `commands` 行（action=`camera.open_view`，client=`ha-small`）。证据 `cut/results/bridge-results.json`（5/5）。
 - [ ] **CONNECT-04b｜板端生产业务与真实动作。** 未做：本机 control 实例非板端部署；命令因视频服务未起而 status=failed，未做人员登记/声纹/录像业务联调。
 - [x] **CONNECT-04b1｜板端状态只读接入 HA（本轮做成，零写入）。**
