@@ -1,0 +1,30 @@
+{
+    "exceptions": {
+        "failed_to_reload": {
+            "message": "Falha ao recarregar os recursos do painel. Verifique a sua configura\u00e7\u00e3o e tente novamente."
+        },
+        "url_already_exists": {
+            "message": "O URL \"{url}\" j\u00e1 est\u00e1 a ser utilizado. Por favor, selecione outro."
+        }
+    },
+    "issues": {
+        "yaml_mode_deprecated": {
+            "description": "A configura\u00e7\u00e3o do seu painel YAML usa a op\u00e7\u00e3o `mode: yaml` antiga, que ser\u00e1 removida no Home Assistant 2026.8. Os seus pain\u00e9is YAML continuar\u00e3o a funcionar, s\u00f3 precisa atualizar como s\u00e3o definidos.\n\nPara atualizar sua configura\u00e7\u00e3o:\n\n1. Remova `mode: yaml` de `lovelace:` no seu `configuration.yaml`\n2. Adicione uma entrada de dashboard:\n\n   ```yaml\n   lovelace:\n     resource_mode: yaml\n     dashboards:\n       lovelace:\n         mode: yaml\n         filename: {config_file}\n         title: Overview\n         icon: mdi:view-dashboard\n         show_in_sidebar: true\n   ```         \n3. Reinicie o Home Assistant\n\nNota: `resource_mode: yaml` continua carregando recursos do YAML. Se quiser gerir recursos atrav\u00e9s da IU, pode remover esta linha e mover os seus recursos para Configura\u00e7\u00f5es > Pain\u00e9is > Recursos.",
+            "title": "A configura\u00e7\u00e3o YAML do Lovelace precisa de ser atualizada"
+        }
+    },
+    "services": {
+        "reload_resources": {
+            "description": "Recarrega recursos de painel a partir da configura\u00e7\u00e3o YAML.",
+            "name": "Recarregar recursos do painel de controlo"
+        }
+    },
+    "system_health": {
+        "info": {
+            "dashboards": "Dashboards",
+            "mode": "Modo",
+            "resources": "Recursos",
+            "views": "Visualiza\u00e7\u00f5es"
+        }
+    }
+}

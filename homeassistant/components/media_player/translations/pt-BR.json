@@ -1,0 +1,267 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "{entity_name} est\u00e1 armazenando em buffer",
+            "is_idle": "{entity_name} est\u00e1 ocioso",
+            "is_off": "{entity_name} est\u00e1 desligado",
+            "is_on": "{entity_name} est\u00e1 ligado",
+            "is_paused": "{entity_name} est\u00e1 pausado",
+            "is_playing": "{entity_name} est\u00e1 reproduzindo"
+        },
+        "extra_fields": {
+            "for": "Dura\u00e7\u00e3o"
+        },
+        "trigger_type": {
+            "buffering": "{entity_name} inicia o armazenamento em buffer",
+            "changed_states": "{entity_name} ligado ou desligado",
+            "idle": "{entity_name} fica ocioso",
+            "paused": "{entity_name} est\u00e1 pausado",
+            "playing": "{entity_name} come\u00e7a a reproduzir",
+            "turned_off": "{entity_name} desligado",
+            "turned_on": "{entity_name} ligado"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Reprodutor de m\u00eddia",
+            "state": {
+                "buffering": "Carregando",
+                "idle": "Ocioso",
+                "off": "Desligado",
+                "on": "Ligado",
+                "paused": "Pausado",
+                "playing": "Reproduzindo",
+                "standby": "Em espera"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "ID do aplicativo"
+                },
+                "app_name": {
+                    "name": "Aplicativo"
+                },
+                "entity_picture_local": {
+                    "name": "Imagem da entidade acess\u00edvel localmente"
+                },
+                "groups_members": {
+                    "name": "Membros do grupo"
+                },
+                "is_volume_muted": {
+                    "name": "Silenciado",
+                    "state": {
+                        "false": "N\u00e3o",
+                        "true": "Sim"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Artista do \u00e1lbum"
+                },
+                "media_album_name": {
+                    "name": "\u00c1lbum"
+                },
+                "media_artist": {
+                    "name": "Artista"
+                },
+                "media_channel": {
+                    "name": "Canal"
+                },
+                "media_content_id": {
+                    "name": "ID do conte\u00fado"
+                },
+                "media_content_type": {
+                    "name": "Tipo de conte\u00fado",
+                    "state": {
+                        "album": "\u00c1lbum",
+                        "app": "Aplicativo",
+                        "artist": "Artista",
+                        "channel": "Canal",
+                        "channels": "Canais",
+                        "composer": "Compositor",
+                        "contributing_artist": "Artista participante",
+                        "episode": "Epis\u00f3dio",
+                        "game": "Jogo",
+                        "genre": "G\u00eanero",
+                        "image": "Imagem",
+                        "movie": "Filme",
+                        "music": "M\u00fasica",
+                        "playlist": "Lista de reprodu\u00e7\u00e3o",
+                        "podcast": "Podcast",
+                        "season": "Temporada",
+                        "track": "Faixa",
+                        "tvshow": "Programa de TV",
+                        "url": "URL",
+                        "video": "V\u00eddeo"
+                    }
+                },
+                "media_duration": {
+                    "name": "Dura\u00e7\u00e3o"
+                },
+                "media_episode": {
+                    "name": "Epis\u00f3dio"
+                },
+                "media_playlist": {
+                    "name": "Lista de reprodu\u00e7\u00e3o"
+                },
+                "media_position": {
+                    "name": "Posi\u00e7\u00e3o"
+                },
+                "media_position_updated_at": {
+                    "name": "Posi\u00e7\u00e3o atualizada"
+                },
+                "media_season": {
+                    "name": "Temporada"
+                },
+                "media_series_title": {
+                    "name": "S\u00e9rie"
+                },
+                "media_title": {
+                    "name": "T\u00edtulo"
+                },
+                "media_track": {
+                    "name": "Faixa"
+                },
+                "repeat": {
+                    "name": "Repetir",
+                    "state": {
+                        "all": "Todos",
+                        "off": "Desligado",
+                        "one": "Um"
+                    }
+                },
+                "shuffle": {
+                    "name": "Aleat\u00f3rio",
+                    "state": {
+                        "false": "Desligado",
+                        "true": "Ligado"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Modo de som"
+                },
+                "sound_mode_list": {
+                    "name": "Modos de som dispon\u00edveis"
+                },
+                "source": {
+                    "name": "Fonte"
+                },
+                "source_list": {
+                    "name": "Fontes dispon\u00edveis"
+                },
+                "volume_level": {
+                    "name": "Volume"
+                }
+            }
+        },
+        "receiver": {
+            "name": "Receptor"
+        },
+        "speaker": {
+            "name": "Alto-falante"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Adicionar \u00e0 fila",
+                "next": "Reproduzir pr\u00f3ximo",
+                "play": "Reproduzir",
+                "replace": "Toque agora e limpe a fila"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "Repetir tudo",
+                "one": "Repetir uma"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Navega pela m\u00eddia dispon\u00edvel.",
+            "fields": {
+                "media_content_id": {
+                    "description": "O ID do conte\u00fado a ser navegado. Depende da integra\u00e7\u00e3o.",
+                    "name": "ID do conte\u00fado"
+                },
+                "media_content_type": {
+                    "name": "Tipo de conte\u00fado"
+                }
+            },
+            "name": "Navegar pela m\u00eddia"
+        },
+        "join": {
+            "description": "Agrupa reprodutores de m\u00eddia para reprodu\u00e7\u00e3o em sincronia. S\u00f3 funciona em sistemas de \u00e1udio multiroom compat\u00edveis.",
+            "fields": {
+                "group_members": {
+                    "name": "Membros do grupo"
+                }
+            }
+        },
+        "media_seek": {
+            "fields": {
+                "seek_position": {
+                    "description": "Posi\u00e7\u00e3o de destino na m\u00eddia atualmente sendo reproduzida. O formato depende da plataforma.",
+                    "name": "Posi\u00e7\u00e3o"
+                }
+            }
+        },
+        "play_media": {
+            "fields": {
+                "announce": {
+                    "description": "Se a m\u00eddia deve ser reproduzida como um an\u00fancio.",
+                    "name": "Anunciar"
+                },
+                "enqueue": {
+                    "description": "Se o conte\u00fado deve ser reproduzido agora ou adicionado \u00e0 fila.",
+                    "name": "Enfileirar"
+                }
+            }
+        },
+        "repeat_set": {
+            "fields": {
+                "repeat": {
+                    "name": "Modo de repeti\u00e7\u00e3o"
+                }
+            }
+        },
+        "select_sound_mode": {
+            "fields": {
+                "sound_mode": {
+                    "description": "Nome do modo de som para o qual alternar.",
+                    "name": "Modo de som"
+                }
+            }
+        },
+        "select_source": {
+            "fields": {
+                "source": {
+                    "description": "Nome da fonte para a qual alternar. Dependente da plataforma.",
+                    "name": "Fonte"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Liga/desliga um reprodutor de m\u00eddia."
+        },
+        "volume_mute": {
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Define se est\u00e1 ou n\u00e3o silenciado.",
+                    "name": "Silenciado"
+                }
+            }
+        },
+        "volume_set": {
+            "fields": {
+                "volume_level": {
+                    "description": "O volume. 0 \u00e9 inaud\u00edvel, 1 \u00e9 o volume m\u00e1ximo.",
+                    "name": "N\u00edvel"
+                }
+            }
+        }
+    },
+    "title": "Reprodutor de m\u00eddia"
+}

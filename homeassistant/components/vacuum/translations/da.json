@@ -1,0 +1,129 @@
+{
+    "common": {
+        "condition_behavior_name": "Betingelsen opfyldes, hvis",
+        "condition_for_name": "I mindst",
+        "trigger_for_name": "I mindst"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "name": "St\u00f8vsugeren g\u00f8r rent"
+        },
+        "is_docked": {
+            "name": "St\u00f8vsugeren er i dockingstationen"
+        },
+        "is_paused": {
+            "name": "St\u00f8vsugeren er sat p\u00e5 pause"
+        },
+        "is_returning": {
+            "name": "St\u00f8vsugeren er p\u00e5 vej tilbage"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Lad {entity_name} g\u00f8re rent",
+            "dock": "Lad {entity_name} vende tilbage til dock"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} g\u00f8r rent",
+            "is_docked": "{entity_name} er i dock"
+        },
+        "extra_fields": {
+            "for": "Varighed"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} begyndte at reng\u00f8re",
+            "docked": "{entity_name} er i dock"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "St\u00f8vsuger",
+            "state": {
+                "cleaning": "G\u00f8r rent",
+                "docked": "I dock",
+                "error": "Fejl",
+                "idle": "Inaktiv",
+                "off": "Fra",
+                "on": "Til",
+                "paused": "P\u00e5 pause",
+                "returning": "Vender tilbage til dock"
+            }
+        }
+    },
+    "services": {
+        "clean_area": {
+            "fields": {
+                "cleaning_area_id": {
+                    "name": "Omr\u00e5der"
+                }
+            },
+            "name": "Reng\u00f8r omr\u00e5de med st\u00f8vsuger"
+        },
+        "clean_spot": {
+            "name": "Reng\u00f8r sted med st\u00f8vsuger"
+        },
+        "locate": {
+            "name": "Lokalis\u00e9r st\u00f8vsuger"
+        },
+        "pause": {
+            "name": "S\u00e6t st\u00f8vsuger p\u00e5 pause"
+        },
+        "return_to_base": {
+            "name": "Return\u00e9r st\u00f8vsugeren til docken"
+        },
+        "send_command": {
+            "fields": {
+                "command": {
+                    "name": "Kommando"
+                },
+                "params": {
+                    "name": "Parametre"
+                }
+            }
+        },
+        "set_fan_speed": {
+            "fields": {
+                "fan_speed": {
+                    "name": "Bl\u00e6serhastighed"
+                }
+            }
+        },
+        "start": {
+            "name": "Start st\u00f8vsuger"
+        },
+        "start_pause": {
+            "name": "Start/pause st\u00f8vsuger"
+        },
+        "stop": {
+            "name": "Stop st\u00f8vsuger"
+        },
+        "toggle": {
+            "description": "T\u00e6nder/slukker for st\u00f8vsuger.",
+            "name": "Omskift st\u00f8vsuger til/fra"
+        },
+        "turn_off": {
+            "name": "Sluk st\u00f8vsuger"
+        },
+        "turn_on": {
+            "name": "T\u00e6nd st\u00f8vsuger"
+        }
+    },
+    "title": "St\u00f8vsuger",
+    "triggers": {
+        "errored": {
+            "name": "St\u00f8vsuger st\u00f8der p\u00e5 et problem"
+        },
+        "paused_cleaning": {
+            "name": "St\u00f8vsuger s\u00e6tter reng\u00f8ring p\u00e5 pause"
+        },
+        "returned_to_dock": {
+            "name": "St\u00f8vsuger returnerede til dock"
+        },
+        "started_cleaning": {
+            "name": "St\u00f8vsuger begynder at reng\u00f8re"
+        },
+        "started_returning": {
+            "name": "St\u00f8vsuger begynder at vende tilbage til dock"
+        }
+    }
+}

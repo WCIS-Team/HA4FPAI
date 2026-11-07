@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "For at least"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "Bir veya daha fazla vanan\u0131n kapal\u0131 olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Vana kapal\u0131"
+        },
+        "is_open": {
+            "description": "Bir veya daha fazla vanan\u0131n a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Vana a\u00e7\u0131k"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vana",
+            "state": {
+                "closed": "Kapal\u0131",
+                "closing": "Kapan\u0131yor",
+                "open": "A\u00e7\u0131k",
+                "opening": "A\u00e7\u0131l\u0131yor",
+                "stopped": "Durduruldu"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Pozisyon"
+                }
+            }
+        },
+        "gas": {
+            "name": "Gaz"
+        },
+        "water": {
+            "name": "Su"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Bir vanay\u0131 kapat\u0131r.",
+            "name": "Vanay\u0131 kapat"
+        },
+        "open_valve": {
+            "description": "Bir vana a\u00e7ar.",
+            "name": "Vanay\u0131 a\u00e7"
+        },
+        "set_valve_position": {
+            "description": "Bir vanay belirli bir konuma hareket ettirir.",
+            "fields": {
+                "position": {
+                    "description": "Hedef pozisyon.",
+                    "name": "Pozisyon"
+                }
+            },
+            "name": "Valf konumunu ayarlay\u0131n."
+        },
+        "stop_valve": {
+            "description": "Vanay\u0131 durdurur.",
+            "name": "Durdurma vanas\u0131"
+        },
+        "toggle": {
+            "description": "Bir vanay\u0131 a\u00e7\u0131k/kapal\u0131 duruma getirir.",
+            "name": "A\u00e7ma/kapama vanas\u0131"
+        }
+    },
+    "title": "Vana",
+    "triggers": {
+        "closed": {
+            "description": "Bir veya daha fazla vanan\u0131n kapanmas\u0131 durumunda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Vana kapal\u0131"
+        },
+        "opened": {
+            "description": "Bir veya daha fazla vana a\u00e7\u0131ld\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Vana a\u00e7\u0131ld\u0131"
+        }
+    }
+}

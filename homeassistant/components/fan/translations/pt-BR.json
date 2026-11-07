@@ -1,0 +1,125 @@
+{
+    "device_automation": {
+        "action_type": {
+            "toggle": "Alternar {entity_name}",
+            "turn_off": "Desligar {entity_name}",
+            "turn_on": "Ligar {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} est\u00e1 desligado",
+            "is_on": "{entity_name} est\u00e1 ligado"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} ligado ou desligado",
+            "turned_off": "{entity_name} desligado",
+            "turned_on": "{entity_name} ligado"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventilador",
+            "state": {
+                "off": "Desligado",
+                "on": "Ligado"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Dire\u00e7\u00e3o",
+                    "state": {
+                        "forward": "Para frente",
+                        "reverse": "Reverso"
+                    }
+                },
+                "oscillating": {
+                    "name": "Oscilante",
+                    "state": {
+                        "false": "N\u00e3o",
+                        "true": "Sim"
+                    }
+                },
+                "percentage": {
+                    "name": "Velocidade"
+                },
+                "percentage_step": {
+                    "name": "Passo de velocidade"
+                },
+                "preset_mode": {
+                    "name": "Modo predefinido"
+                },
+                "preset_modes": {
+                    "name": "Modos predefinidos dispon\u00edveis"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "Modo predefinido {preset_mode} n\u00e3o \u00e9 v\u00e1lido, modos predefinidos v\u00e1lidos s\u00e3o: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Para frente",
+                "reverse": "Reverso"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "fields": {
+                "percentage_step": {
+                    "name": "Decr\u00e9scimo"
+                }
+            }
+        },
+        "increase_speed": {
+            "fields": {
+                "percentage_step": {
+                    "name": "Acr\u00e9scimo"
+                }
+            }
+        },
+        "oscillate": {
+            "fields": {
+                "oscillating": {
+                    "name": "Oscilante"
+                }
+            }
+        },
+        "set_direction": {
+            "fields": {
+                "direction": {
+                    "name": "Dire\u00e7\u00e3o"
+                }
+            }
+        },
+        "set_percentage": {
+            "fields": {
+                "percentage": {
+                    "description": "Velocidade do ventilador.",
+                    "name": "Porcentagem"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "name": "Modo predefinido"
+                }
+            }
+        },
+        "turn_on": {
+            "fields": {
+                "percentage": {
+                    "description": "Velocidade do ventilador.",
+                    "name": "Porcentagem"
+                },
+                "preset_mode": {
+                    "name": "Modo predefinido"
+                }
+            }
+        }
+    },
+    "title": "Ventilador"
+}

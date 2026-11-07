@@ -1,0 +1,139 @@
+{
+    "device_automation": {
+        "action_type": {
+            "toggle": "Preklopi {entity_name}",
+            "turn_off": "Izklopi {entity_name}",
+            "turn_on": "Vklopi {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} je izklopljen",
+            "is_on": "{entity_name} je vklopljen"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} je bil vklopljen ali izklopljen",
+            "turned_off": "{entity_name} je bil izklopljen",
+            "turned_on": "{entity_name} je bil vklopljen"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventilator",
+            "state": {
+                "off": "Izklopljeno",
+                "on": "Vklopljeno"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Smer",
+                    "state": {
+                        "forward": "Naprej",
+                        "reverse": "Nazaj"
+                    }
+                },
+                "oscillating": {
+                    "name": "Nihajo\u010de",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "percentage": {
+                    "name": "Hitrost"
+                },
+                "percentage_step": {
+                    "name": "Hitrostni korak"
+                },
+                "preset_mode": {
+                    "name": "Prednastavljen na\u010din"
+                },
+                "preset_modes": {
+                    "name": "Razpolo\u017eljivi prednastavljeni na\u010dini"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "Prednastavljeni na\u010din {preset_mode} ni veljaven, veljavni prednastavljeni na\u010dini so: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Naprej",
+                "reverse": "Nazaj"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "Zmanj\u0161a hitrost ventilatorja.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Korak v odstotkih, za katerega naj se zmanj\u0161a hitrost.",
+                    "name": "Zmanj\u0161aj"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "Pove\u010da hitrost ventilatorja",
+            "fields": {
+                "percentage_step": {
+                    "description": "Korak v odstotkih, za katerega naj se pove\u010da hitrost.",
+                    "name": "Pove\u010daj"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "Nadzoruje nihanje ventilatorja",
+            "fields": {
+                "oscillating": {
+                    "description": "Vklopi/izklopi nihanje,",
+                    "name": "Nihajo\u010de"
+                }
+            }
+        },
+        "set_direction": {
+            "description": "Nastavi smer vrtenja ventilatorja.",
+            "fields": {
+                "direction": {
+                    "description": "Smer vrtenja ventilatorja.",
+                    "name": "Smer"
+                }
+            }
+        },
+        "set_percentage": {
+            "description": "Nastavi hitrost ventilatorja.",
+            "fields": {
+                "percentage": {
+                    "description": "Hitrost ventilatorja.",
+                    "name": "Odstotek"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "Prednastavljeni na\u010din ventilatorja.",
+                    "name": "Prednastavljeni na\u010din"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Vklopi/izklopi ventilator."
+        },
+        "turn_on": {
+            "fields": {
+                "percentage": {
+                    "description": "Hitrost ventilatorja.",
+                    "name": "Odstotek"
+                },
+                "preset_mode": {
+                    "description": "Prednastavljeni na\u010din ventilatorja.",
+                    "name": "Prednastavljeni na\u010din"
+                }
+            }
+        }
+    },
+    "title": "Ventilator"
+}

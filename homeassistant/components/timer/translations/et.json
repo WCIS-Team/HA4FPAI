@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu taimerit on aktiivsed.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer on aktiivne"
+        },
+        "is_idle": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu taimerit on j\u00f5ude.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer on j\u00f5udeolekus"
+        },
+        "is_paused": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu taimerit on peatatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer on peatatud"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Taimer",
+            "state": {
+                "active": "Aktiivne",
+                "idle": "Ootel",
+                "paused": "Peatatud"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Kestus"
+                },
+                "editable": {
+                    "name": "Hallatakse kasutajaliideses",
+                    "state": {
+                        "false": "Ei",
+                        "true": "Jah"
+                    }
+                },
+                "finishes_at": {
+                    "name": "L\u00f5ppeb"
+                },
+                "last_transition": {
+                    "name": "Viimane \u00fcleminek",
+                    "state": {
+                        "cancelled": "T\u00fchistatud",
+                        "finished": "L\u00f5petatud",
+                        "paused": "Peatatud",
+                        "restarted": "Taask\u00e4ivitatud",
+                        "started": "K\u00e4ivitatud"
+                    }
+                },
+                "remaining": {
+                    "name": "J\u00e4\u00e4nud"
+                },
+                "restore": {
+                    "name": "Taasta"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "L\u00e4htestab taimeri kestuse viimasele teadaolevale algv\u00e4\u00e4rtusele ilma taimeri l\u00f5petatud s\u00fcndmust k\u00e4ivitamata.",
+            "name": "T\u00fchista taimer"
+        },
+        "change": {
+            "description": "Muudab taimerit, lisades v\u00f5i lahutades etteantud kestuse.",
+            "fields": {
+                "duration": {
+                    "description": "Taimerile lisamise v\u00f5i sellest lahutamise kestus.",
+                    "name": "Kestus"
+                }
+            },
+            "name": "Muuda taimerit"
+        },
+        "finish": {
+            "description": "L\u00f5petab taimeri plaanitust varem.",
+            "name": "L\u00f5peta taimer"
+        },
+        "pause": {
+            "description": "Peatab t\u00f6\u00f6tava taimeri, s\u00e4ilitades \u00fclej\u00e4\u00e4nud aja hilisemaks j\u00e4tkamiseks.",
+            "name": "Peata taimer"
+        },
+        "reload": {
+            "description": "Taaslaeb taimerid YAML-konfiguratsioonist.",
+            "name": "Taaslae taimerid"
+        },
+        "start": {
+            "description": "K\u00e4ivitab taimeri v\u00f5i taask\u00e4ivitab selle etten\u00e4htud kestusega.",
+            "fields": {
+                "duration": {
+                    "description": "Kohandatud kestus taimeri taask\u00e4ivitamiseks.",
+                    "name": "Kestus"
+                }
+            },
+            "name": "K\u00e4ivita taimer"
+        }
+    },
+    "title": "Taimer",
+    "triggers": {
+        "cancelled": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme taimeri t\u00fchistamisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer on t\u00fchistatud"
+        },
+        "finished": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme taimeri l\u00f5ppedes.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer l\u00f5petas"
+        },
+        "paused": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu taimerit on peatatud.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer peatatud"
+        },
+        "remaining_time_reached": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu taimerit j\u00f5uavad teatud j\u00e4relej\u00e4\u00e4nud ajani.",
+            "fields": {
+                "remaining": {
+                    "name": "J\u00e4relej\u00e4\u00e4nud aeg"
+                }
+            },
+            "name": "Taimeri j\u00e4relej\u00e4\u00e4nud aeg on t\u00e4is"
+        },
+        "restarted": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme taimeri taask\u00e4ivitamisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer taask\u00e4ivitatud"
+        },
+        "started": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme taimeri k\u00e4ivitamisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Taimer k\u00e4ivitatud"
+        }
+    }
+}

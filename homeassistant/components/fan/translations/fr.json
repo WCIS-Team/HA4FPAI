@@ -1,0 +1,225 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "section_additional_fields_name": "Options suppl\u00e9mentaires",
+        "trigger_behavior_name": "D\u00e9clencher lorsque",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "V\u00e9rifie si un ou plusieurs ventilateurs sont \u00e9teints.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le ventilateur est \u00e9teint"
+        },
+        "is_on": {
+            "description": "V\u00e9rifie si un ou plusieurs ventilateurs sont allum\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le ventilateur est allum\u00e9"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Basculer {entity_name}",
+            "turn_off": "D\u00e9sactiver {entity_name}",
+            "turn_on": "Activer {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} est d\u00e9sactiv\u00e9",
+            "is_on": "{entity_name} est activ\u00e9"
+        },
+        "extra_fields": {
+            "for": "Dur\u00e9e"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} a \u00e9t\u00e9 activ\u00e9 ou d\u00e9sactiv\u00e9",
+            "turned_off": "{entity_name} a \u00e9t\u00e9 d\u00e9sactiv\u00e9",
+            "turned_on": "{entity_name} a \u00e9t\u00e9 activ\u00e9"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventilateur",
+            "state": {
+                "off": "\u00c9teint",
+                "on": "Allum\u00e9"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Direction",
+                    "state": {
+                        "forward": "Vers l'avant",
+                        "reverse": "Sens inverse"
+                    }
+                },
+                "oscillating": {
+                    "name": "Oscillant",
+                    "state": {
+                        "false": "Non",
+                        "true": "Oui"
+                    }
+                },
+                "percentage": {
+                    "name": "Vitesse"
+                },
+                "percentage_step": {
+                    "name": "Pas de vitesse"
+                },
+                "preset_mode": {
+                    "name": "Mode pr\u00e9r\u00e9gl\u00e9"
+                },
+                "preset_modes": {
+                    "name": "Modes pr\u00e9d\u00e9finis disponibles"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "Le mode pr\u00e9d\u00e9fini {preset_mode} n'est pas valide, les modes pr\u00e9d\u00e9finis valides sont\u00a0: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "En avant",
+                "reverse": "Sens inverse"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "Diminue la vitesse d'un ventilateur.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Pourcentage par lequel la vitesse doit \u00eatre diminu\u00e9e.",
+                    "name": "D\u00e9cr\u00e9ment"
+                }
+            },
+            "name": "Diminuer la vitesse",
+            "sections": {
+                "additional_fields": {
+                    "name": "Options suppl\u00e9mentaires"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "Augmente la vitesse d'un ventilateur.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Pourcentage par lequel la vitesse doit \u00eatre augment\u00e9e.",
+                    "name": "Incr\u00e9ment"
+                }
+            },
+            "name": "Augmenter la vitesse",
+            "sections": {
+                "additional_fields": {
+                    "name": "Options suppl\u00e9mentaires"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "Contr\u00f4le l'oscillation d'un ventilateur.",
+            "fields": {
+                "oscillating": {
+                    "description": "Active/d\u00e9sactive l'oscillation.",
+                    "name": "Oscillation"
+                }
+            },
+            "name": "Faire osciller le ventilateur"
+        },
+        "set_direction": {
+            "description": "D\u00e9finit le sens de rotation d'un ventilateur.",
+            "fields": {
+                "direction": {
+                    "description": "Sens de rotation du ventilateur.",
+                    "name": "Direction"
+                }
+            },
+            "name": "D\u00e9finir la direction"
+        },
+        "set_percentage": {
+            "description": "D\u00e9finit la vitesse d'un ventilateur.",
+            "fields": {
+                "percentage": {
+                    "description": "Vitesse du ventilateur.",
+                    "name": "Pourcentage"
+                }
+            },
+            "name": "R\u00e9gler la vitesse"
+        },
+        "set_preset_mode": {
+            "description": "D\u00e9finit le mode pr\u00e9r\u00e9gl\u00e9 d'un ventilateur.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Mode de ventilation pr\u00e9r\u00e9gl\u00e9.",
+                    "name": "Mode pr\u00e9r\u00e9gl\u00e9"
+                }
+            },
+            "name": "D\u00e9finir le mode pr\u00e9r\u00e9gl\u00e9"
+        },
+        "toggle": {
+            "description": "Active/d\u00e9sactive un ventilateur.",
+            "name": "Basculer le ventilateur"
+        },
+        "turn_off": {
+            "description": "\u00c9teint un ventilateur.",
+            "name": "\u00c9teindre le ventilateur"
+        },
+        "turn_on": {
+            "description": "Allume un ventilateur.",
+            "fields": {
+                "percentage": {
+                    "description": "Vitesse du ventilateur.",
+                    "name": "Pourcentage"
+                },
+                "preset_mode": {
+                    "description": "Mode de ventilation pr\u00e9r\u00e9gl\u00e9.",
+                    "name": "Mode pr\u00e9r\u00e9gl\u00e9"
+                }
+            },
+            "name": "Allumer le ventilateur"
+        }
+    },
+    "title": "Ventilateur",
+    "triggers": {
+        "turned_off": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs ventilateurs s'\u00e9teignent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher lorsque"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le ventilateur s'est \u00e9teint"
+        },
+        "turned_on": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs ventilateurs s'allument.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher lorsque"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le ventilateur s'est allum\u00e9"
+        }
+    }
+}

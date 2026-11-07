@@ -1,0 +1,374 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "state": {
+                "name": "Berjalan"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "Versi Agen OS"
+            },
+            "cpu_percent": {
+                "name": "Persen CPU"
+            },
+            "disk_free": {
+                "name": "Disk bebas"
+            },
+            "disk_total": {
+                "name": "Disk total"
+            },
+            "disk_used": {
+                "name": "Disk digunakan"
+            },
+            "memory_percent": {
+                "name": "Persen memori"
+            },
+            "version": {
+                "name": "Versi"
+            },
+            "version_latest": {
+                "name": "Versi terbaru"
+            }
+        },
+        "update": {
+            "update": {
+                "name": "Versi Baru"
+            }
+        }
+    },
+    "issues": {
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Tidak dapat menerapkan perbaikan. Periksa log Supervisor untuk detail selengkapnya."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "addon_disable_boot": "Nonaktifkan",
+                            "addon_execute_start": "Mulai"
+                        }
+                    }
+                }
+            }
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Tidak dapat menerapkan perbaikan. Periksa log Supervisor untuk detail selengkapnya."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "mount_execute_reload": "Muat Ulang",
+                            "mount_execute_remove": "Hapus"
+                        }
+                    }
+                }
+            },
+            "title": "Perangkat penyimpanan jaringan gagal"
+        },
+        "issue_system_disk_lifetime": {
+            "description": "Disk data telah melampaui 90% dari masa pakai yang diharapkan. Disk mungkin akan segera mengalami kerusakan yang dapat menyebabkan hilangnya data. Anda harus segera menggantinya dan memigrasikan datanya.",
+            "title": "Masa pakai disk melebihi 90%"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Satu atau beberapa kali proses memulai ulang gagal. Periksa log Supervisor untuk detail selengkapnya."
+                }
+            },
+            "title": "Diperlukan mulai ulang"
+        },
+        "issue_system_free_space": {
+            "title": "Disk data hampir kehabisan ruang kosong"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Tidak dapat mengganti nama sistem file. Periksa log Supervisor untuk detail selengkapnya."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Di `{reference}`, kami mendeteksi disk data aktif lainnya (yang berisi sistem file `hassos-data` dari instalasi Home Assistant lain).\n\nAnda perlu memutuskan apa yang harus dilakukan dengan disk tersebut. Jika tidak, Home Assistant mungkin akan memilih disk data yang salah saat sistem di-reboot.\n\nJika Anda tidak ingin menggunakan disk data ini, cabut disk data dari sistem. Jika Anda membiarkannya tetap tersambung, pilih salah satu opsi berikut:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Gunakan disk data yang terdeteksi, bukan sistem saat ini",
+                            "system_rename_data_disk": "Tandai sebagai disk data tidak aktif (mengganti nama sistem file)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "Pilih **Kirim** untuk menjadikan `{reference}` sebagai satu-satunya disk data yang aktif.\n\nAnda tidak akan memiliki akses lagi ke lokasi data Home Assistant saat ini (akan ditandai sebagai disk data tidak aktif). Setelah reboot, lokasi data Home Assistant sistem Anda akan berada di `{reference}`."
+                    }
+                }
+            },
+            "title": "Beberapa disk data terdeteksi"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Tidak dapat me-reboot sistem. Periksa log Supervisor untuk detail selengkapnya."
+                }
+            },
+            "title": "Diperlukan reboot"
+        },
+        "unhealthy": {
+            "title": "Sistem tidak sehat - {reason}"
+        },
+        "unhealthy_docker": {
+            "title": "Sistem tidak sehat - Docker salah dikonfigurasi"
+        },
+        "unhealthy_duplicate_os_installation": {
+            "description": "Sistem saat ini tidak sehat karena mendeteksi beberapa penginstalan OS Home Assistant. Untuk informasi pemecahan masalah, pilih Pelajari lebih lanjut.",
+            "title": "Sistem yang tidak sehat - Instalasi ganda OS Home Assistant"
+        },
+        "unhealthy_oserror_bad_message": {
+            "description": "Sistem saat ini tidak sehat karena sistem operasi telah melaporkan adanya kesalahan OS: Pesan buruk. Untuk informasi pemecahan masalah, pilih Pelajari lebih lanjut.",
+            "title": "Sistem tidak sehat - Kesalahan Sistem Operasi: Pesan buruk"
+        },
+        "unhealthy_privileged": {
+            "title": "Sistem tidak sehat - Tidak memiliki akses istimewa"
+        },
+        "unhealthy_setup": {
+            "title": "Sistem tidak sehat - Penyiapan gagal"
+        },
+        "unhealthy_supervisor": {
+            "title": "Sistem tidak sehat - Pembaruan supervisor gagal"
+        },
+        "unhealthy_untrusted": {
+            "title": "Sistem tidak sehat - Kode tidak tepercaya"
+        },
+        "unsupported": {
+            "title": "Sistem tidak didukung - {reason}"
+        },
+        "unsupported_apparmor": {
+            "title": "Sistem tidak didukung - Masalah AppArmor"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Sistem tidak didukung karena versi Docker CGroup yang digunakan salah. Gunakan tautan untuk mempelajari versi yang benar dan cara memperbaikinya.",
+            "title": "Sistem tidak didukung - Versi CGroup"
+        },
+        "unsupported_connectivity_check": {
+            "title": "Sistem tidak didukung - Pemeriksaan konektivitas dinonaktifkan"
+        },
+        "unsupported_dbus": {
+            "title": "Sistem tidak didukung - Masalah D-Bus"
+        },
+        "unsupported_dns_server": {
+            "title": "Sistem tidak didukung - Masalah server DNS"
+        },
+        "unsupported_docker_configuration": {
+            "title": "Sistem tidak didukung - Docker salah konfigurasi"
+        },
+        "unsupported_docker_version": {
+            "title": "Sistem tidak didukung - Versi Docker"
+        },
+        "unsupported_home_assistant_core_version": {
+            "description": "Sistem tidak didukung karena versi Home Assistant Core yang digunakan tidak didukung. Untuk informasi pemecahan masalah, pilih Pelajari lebih lanjut.",
+            "title": "Sistem yang tidak didukung - Versi Home Assistant Core"
+        },
+        "unsupported_job_conditions": {
+            "title": "Sistem tidak didukung - Perlindungan dinonaktifkan"
+        },
+        "unsupported_lxc": {
+            "title": "Sistem tidak didukung - LXC terdeteksi"
+        },
+        "unsupported_network_manager": {
+            "title": "Sistem tidak didukung - Masalah Manajer Jaringan"
+        },
+        "unsupported_os": {
+            "title": "Sistem tidak didukung - Sistem Operasi"
+        },
+        "unsupported_os_agent": {
+            "title": "Sistem tidak didukung - Masalah OS-Agent"
+        },
+        "unsupported_os_version": {
+            "description": "Sistem tidak didukung karena versi OS Home Assistant yang digunakan tidak didukung. Untuk informasi pemecahan masalah, pilih Pelajari lebih lanjut.",
+            "title": "Sistem yang tidak didukung - Versi OS Home Assistant"
+        },
+        "unsupported_restart_policy": {
+            "title": "Sistem tidak didukung - Kebijakan mulai ulang kontainer"
+        },
+        "unsupported_software": {
+            "title": "Sistem tidak didukung - Perangkat lunak tidak didukung"
+        },
+        "unsupported_supervisor_version": {
+            "title": "Sistem tidak didukung - Versi Supervisor"
+        },
+        "unsupported_systemd": {
+            "title": "Sistem tidak didukung - Masalah Systemd"
+        },
+        "unsupported_systemd_journal": {
+            "title": "Sistem tidak didukung - Masalah Journal Systemd"
+        },
+        "unsupported_systemd_resolved": {
+            "title": "Sistem tidak didukung - Masalah Systemd-Resolved"
+        },
+        "unsupported_virtualization_image": {
+            "title": "Sistem tidak didukung - Citra OS yang salah untuk virtualisasi"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Memulai ulang add-on.",
+            "fields": {
+                "addon": {
+                    "description": "Add-on yang akan dimulai ulang.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Mulai ulang add-on"
+        },
+        "addon_start": {
+            "description": "Memulai add-on.",
+            "fields": {
+                "addon": {
+                    "description": "Add-on yang akan dimulai.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Mulai add-on"
+        },
+        "addon_stdin": {
+            "description": "Menulis data ke input standar add-on.",
+            "fields": {
+                "addon": {
+                    "description": "Add-on yang menjadi tujuan penulisan.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Tulis data ke stdin add-on"
+        },
+        "addon_stop": {
+            "description": "Menghentikan add-on.",
+            "fields": {
+                "addon": {
+                    "description": "Add-on yang akan dihentikan.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Hentikan add-on"
+        },
+        "backup_full": {
+            "description": "Membuat cadangan lengkap.",
+            "fields": {
+                "compressed": {
+                    "description": "Kompres file cadangan.",
+                    "name": "Terkompresi"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Kecualikan file basis data Home Assistant dari cadangan",
+                    "name": "Home Assistant kecuali basis data"
+                },
+                "location": {
+                    "description": "Nama penyimpanan jaringan untuk menyimpan cadangan.",
+                    "name": "Lokasi"
+                },
+                "name": {
+                    "description": "Opsional (default = tanggal dan waktu saat ini).",
+                    "name": "Nama"
+                },
+                "password": {
+                    "description": "Kata sandi untuk melindungi cadangan.",
+                    "name": "Kata Sandi"
+                }
+            },
+            "name": "Membuat cadangan lengkap"
+        },
+        "backup_partial": {
+            "description": "Membuat cadangan parsial.",
+            "fields": {
+                "compressed": {
+                    "description": "Kompres file cadangan.",
+                    "name": "Terkompresi"
+                },
+                "folders": {
+                    "description": "Daftar direktori yang akan disertakan dalam cadangan.",
+                    "name": "Folder"
+                },
+                "homeassistant": {
+                    "description": "Sertakan pengaturan Home Assistant dalam cadangan.",
+                    "name": "Pengaturan Home Assistant"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Kecualikan file basis data Home Assistant dari cadangan",
+                    "name": "Home Assistant kecuali basis data"
+                },
+                "location": {
+                    "description": "Nama penyimpanan jaringan untuk menyimpan cadangan.",
+                    "name": "Lokasi"
+                },
+                "name": {
+                    "description": "Opsional (default = tanggal dan waktu saat ini).",
+                    "name": "Nama"
+                },
+                "password": {
+                    "description": "Kata sandi untuk melindungi cadangan.",
+                    "name": "Kata Sandi"
+                }
+            },
+            "name": "Buat cadangan parsial"
+        },
+        "host_reboot": {
+            "description": "Me-reboot ulang sistem hos.",
+            "name": "Reboot sistem host"
+        },
+        "host_shutdown": {
+            "description": "Mematikan daya sistem hos.",
+            "name": "Matikan sistem host"
+        },
+        "restore_full": {
+            "description": "Memulihkan dari cadangan lengkap.",
+            "fields": {
+                "password": {
+                    "description": "Kata sandi opsional.",
+                    "name": "Kata Sandi"
+                },
+                "slug": {
+                    "description": "Slug cadangan yang akan dipulihkan.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Pulihkan dari cadangan lengkap"
+        },
+        "restore_partial": {
+            "description": "Memulihkan dari cadangan parsial.",
+            "fields": {
+                "folders": {
+                    "description": "Daftar direktori yang akan dipulihkan dari cadangan.",
+                    "name": "Folder"
+                },
+                "homeassistant": {
+                    "description": "Memulihkan Home Assistant.",
+                    "name": "Pengaturan Home Assistant"
+                },
+                "password": {
+                    "description": "Kata sandi opsional.",
+                    "name": "Kata Sandi"
+                },
+                "slug": {
+                    "description": "Slug cadangan yang akan dipulihkan.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Pulihkan dari cadangan parsial"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Versi agen",
+            "board": "Board",
+            "disk_total": "Total disk",
+            "disk_used": "Disk digunakan",
+            "docker_version": "Versi docker",
+            "healthy": "Kesehatan",
+            "host_os": "Sistem operasi host",
+            "nameservers": "Server nama",
+            "supervisor_api": "API Supervisor",
+            "supervisor_version": "Versi supervisor",
+            "supported": "Didukung",
+            "update_channel": "Kanal pembaruan",
+            "version_api": "API Versi"
+        }
+    }
+}

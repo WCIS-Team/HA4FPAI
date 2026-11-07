@@ -1,0 +1,186 @@
+{
+    "common": {
+        "condition_behavior_name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c",
+        "condition_for_name": "\u81f3\u5c11",
+        "trigger_behavior_name": "\u89e6\u53d1\u6761\u4ef6",
+        "trigger_for_name": "\u81f3\u5c11"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u9501\u662f\u5426\u5361\u4f4f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u88ab\u5361\u4f4f"
+        },
+        "is_locked": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u9501\u662f\u5426\u5df2\u9501\u5b9a\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u5df2\u9501\u5b9a"
+        },
+        "is_open": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u9501\u662f\u5426\u6253\u5f00\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u5df2\u6253\u5f00"
+        },
+        "is_unlocked": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u9501\u662f\u5426\u5df2\u89e3\u9501\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u5df2\u89e3\u9501"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "\u9501\u5b9a {entity_name}",
+            "open": "\u6253\u5f00 {entity_name}",
+            "unlock": "\u89e3\u9501 {entity_name}"
+        },
+        "condition_type": {
+            "is_jammed": "{entity_name} \u88ab\u5835\u585e",
+            "is_locked": "{entity_name} \u5df2\u9501\u4e0a",
+            "is_locking": "{entity_name} \u6b63\u5728\u9501\u5b9a",
+            "is_open": "{entity_name} \u5df2\u6253\u5f00",
+            "is_opening": "{entity_name} \u6b63\u5728\u6253\u5f00",
+            "is_unlocked": "{entity_name} \u5df2\u89e3\u9501",
+            "is_unlocking": "{entity_name} \u6b63\u5728\u89e3\u9501"
+        },
+        "extra_fields": {
+            "for": "\u65f6\u957f"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} \u88ab\u9501\u5b9a",
+            "open": "{entity_name} \u88ab\u6253\u5f00",
+            "unlocked": "{entity_name} \u88ab\u89e3\u9501"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u9501",
+            "state": {
+                "jammed": "\u5361\u4f4f",
+                "locked": "\u5df2\u9501\u5b9a",
+                "locking": "\u6b63\u5728\u9501\u5b9a",
+                "open": "\u5df2\u6253\u5f00",
+                "opening": "\u6b63\u5728\u6253\u5f00",
+                "unlocked": "\u5df2\u89e3\u9501",
+                "unlocking": "\u6b63\u5728\u89e3\u9501"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "\u66f4\u6539\u8005"
+                },
+                "code_format": {
+                    "name": "\u4ee3\u7801\u683c\u5f0f"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "\u201c{entity_id}\u201d\u7684\u5bc6\u7801\u4e0e\u6a21\u5f0f\u201c{code_format}\u201d\u4e0d\u5339\u914d\u3002"
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "\u9501\u4e0a\u4e00\u628a\u9501\u3002",
+            "fields": {
+                "code": {
+                    "description": "\u7528\u4e8e\u9501\u4e0a\u9501\u7684\u5bc6\u7801\u3002",
+                    "name": "\u5bc6\u7801"
+                }
+            }
+        },
+        "open": {
+            "description": "\u6253\u5f00\u4e00\u628a\u9501\u3002",
+            "fields": {
+                "code": {
+                    "description": "\u7528\u4e8e\u6253\u5f00\u9501\u7684\u5bc6\u7801\u3002",
+                    "name": "\u5bc6\u7801"
+                }
+            },
+            "name": "\u6253\u5f00\u9501"
+        },
+        "unlock": {
+            "description": "\u89e3\u5f00\u4e00\u628a\u9501\u3002",
+            "fields": {
+                "code": {
+                    "description": "\u7528\u4e8e\u89e3\u5f00\u9501\u7684\u5bc6\u7801\u3002",
+                    "name": "\u5bc6\u7801"
+                }
+            }
+        }
+    },
+    "title": "\u9501",
+    "triggers": {
+        "jammed": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u5361\u4f4f"
+        },
+        "locked": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u5df2\u9501\u5b9a"
+        },
+        "opened": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u5df2\u6253\u5f00"
+        },
+        "unlocked": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u9501\u5df2\u89e3\u9501"
+        }
+    }
+}

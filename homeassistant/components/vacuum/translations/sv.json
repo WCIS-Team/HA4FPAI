@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Testar om en eller flera dammsugare reng\u00f6r.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugaren st\u00e4dar"
+        },
+        "is_docked": {
+            "description": "Testar om en eller flera dammsugare \u00e4r dockade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugaren \u00e4r dockad"
+        },
+        "is_encountering_an_error": {
+            "description": "Testar om en eller flera dammsugare har drabbats av ett fel.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugaren har st\u00f6tt p\u00e5 ett fel"
+        },
+        "is_paused": {
+            "description": "Testar om en eller flera dammsugare \u00e4r pausade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugaren \u00e4r pausad"
+        },
+        "is_returning": {
+            "description": "Testar om en eller flera dammsugare \u00e5terv\u00e4nder till dockan.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugaren \u00e5terv\u00e4nder"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "L\u00e5t {entity_name} st\u00e4da",
+            "dock": "L\u00e5t {entity_name} \u00e5terg\u00e5 till dockan"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} st\u00e4dar",
+            "is_docked": "{entity_name} \u00e4r dockad"
+        },
+        "extra_fields": {
+            "for": "Varaktighet"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} b\u00f6rjade st\u00e4da",
+            "docked": "{entity_name} dockad"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Dammsugare",
+            "state": {
+                "cleaning": "St\u00e4dar",
+                "docked": "Dockad",
+                "error": "Fel",
+                "idle": "Inaktiv",
+                "off": "Av",
+                "on": "P\u00e5",
+                "paused": "Pausad",
+                "returning": "\u00c5terv\u00e4nder till docka"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "Omr\u00e5desmappning \u00e4r inte konfigurerad f\u00f6r `{entity_id}`. Konfigurera mappningen segment-till-omr\u00e5de innan du anv\u00e4nder den h\u00e4r \u00e5tg\u00e4rden."
+        },
+        "areas_not_mapped": {
+            "message": "F\u00f6ljande omr\u00e5den \u00e4r inte mappade till n\u00e5gra segment f\u00f6r vald dammsugare: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Dammsugarens segment har \u00e4ndrats f\u00f6r {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Beordrar en dammsugare att reng\u00f6ra ett eller flera omr\u00e5den.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Omr\u00e5den att reng\u00f6ra.",
+                    "name": "Omr\u00e5den"
+                }
+            },
+            "name": "Reng\u00f6r omr\u00e5de med dammsugare"
+        },
+        "clean_spot": {
+            "description": "S\u00e4g till dammsugaren att g\u00f6ra en punktreng\u00f6ring.",
+            "name": "Reng\u00f6r fl\u00e4ck med dammsugare"
+        },
+        "locate": {
+            "description": "Hittar robotdammsugaren.",
+            "name": "Hitta dammsugare"
+        },
+        "pause": {
+            "description": "Pausar p\u00e5g\u00e5ende uppgift",
+            "name": "Pausa dammsugare"
+        },
+        "return_to_base": {
+            "description": "S\u00e4ger till robotdammsugaren att \u00e5terv\u00e4nda till sin docka.",
+            "name": "\u00c5terv\u00e4nd till docka"
+        },
+        "send_command": {
+            "description": "Skickar ett kommando till en robotdammsugare.",
+            "fields": {
+                "command": {
+                    "description": "Kommando att k\u00f6ra. Kommandon \u00e4r specifika f\u00f6r integrationen.",
+                    "name": "Kommando"
+                },
+                "params": {
+                    "description": "Parametrar f\u00f6r kommandot. Parametrar \u00e4r specifika f\u00f6r integrationen.",
+                    "name": "Parametrar"
+                }
+            },
+            "name": "Skicka kommando till dammsugare"
+        },
+        "set_fan_speed": {
+            "description": "St\u00e4ller in fl\u00e4kthastigheten f\u00f6r en robotdammsugare.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Fl\u00e4kthastighet. V\u00e4rdet \u00e4r beroende av integrationen. N\u00e5gra integrationer har steg, som 'medium'. Andra anv\u00e4nder procent, fr\u00e5n 0 till 100.",
+                    "name": "Fl\u00e4kthastighet"
+                }
+            },
+            "name": "St\u00e4ll in dammsugarens fl\u00e4kthastighet"
+        },
+        "start": {
+            "description": "Startar eller forts\u00e4tter en dammsugares st\u00e4daktivitet.",
+            "name": "Starta dammsugare"
+        },
+        "start_pause": {
+            "description": "Startar, pausar eller forts\u00e4tter en dammsugares st\u00e4daktivitet.",
+            "name": "Starta/pausa dammsugare"
+        },
+        "stop": {
+            "description": "Avslutar en dammsugares p\u00e5g\u00e5ende st\u00e4daktivitet.",
+            "name": "Stoppa dammsugare"
+        },
+        "toggle": {
+            "description": "Sl\u00e5r p\u00e5/av dammsugaren.",
+            "name": "V\u00e4xla dammsugare"
+        },
+        "turn_off": {
+            "description": "St\u00e4nger av en dammsugare.",
+            "name": "St\u00e4ng av dammsugare"
+        },
+        "turn_on": {
+            "description": "S\u00e4tter ig\u00e5ng en dammsugare.",
+            "name": "Sl\u00e5 p\u00e5 dammsugare"
+        }
+    },
+    "title": "Dammsugare",
+    "triggers": {
+        "errored": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera dammsugare st\u00f6ter p\u00e5 ett fel.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugaren st\u00f6tte p\u00e5 ett fel"
+        },
+        "paused_cleaning": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera dammsugare pausar st\u00e4dning.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugare pausade st\u00e4dning"
+        },
+        "returned_to_dock": {
+            "description": "Utl\u00f6ses n\u00e4r en eller fler dammsugare har \u00e5terv\u00e4nt till dockan.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6ses n\u00e4r"
+                },
+                "for": {
+                    "name": "Under \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugaren \u00e5terv\u00e4nde till dockan"
+        },
+        "started_cleaning": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera dammsugare b\u00f6rjar st\u00e4da.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugare b\u00f6rjade st\u00e4da"
+        },
+        "started_returning": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera dammsugare b\u00f6rjar att \u00e5terv\u00e4nda till dockan.",
+            "fields": {
+                "behavior": {
+                    "name": "Beteende"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Dammsugare b\u00f6rjade \u00e5terv\u00e4nda till dockan"
+        }
+    }
+}

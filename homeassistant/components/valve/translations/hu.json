@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb",
+        "trigger_behavior_name": "Esem\u00e9nyind\u00edt\u00e1s, ha",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb szelep z\u00e1rva van-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "Szelep z\u00e1rva van"
+        },
+        "is_open": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb szelep nyitva van-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "Szelep nyitva van"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Szelep",
+            "state": {
+                "closed": "Z\u00e1rva",
+                "closing": "Z\u00e1r\u00f3dik",
+                "open": "Nyitva",
+                "opening": "Ny\u00edlik",
+                "stopped": "Le\u00e1ll\u00edtva"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Poz\u00edci\u00f3"
+                }
+            }
+        },
+        "gas": {
+            "name": "G\u00e1z"
+        },
+        "water": {
+            "name": "V\u00edz"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Bez\u00e1rja a szelepet.",
+            "name": "Szelep z\u00e1r\u00e1sa"
+        },
+        "open_valve": {
+            "description": "Kinyit egy szelepet.",
+            "name": "Szelep nyit\u00e1sa"
+        },
+        "set_valve_position": {
+            "description": "A szelepet egy adott helyzetbe mozgatja.",
+            "fields": {
+                "position": {
+                    "description": "C\u00e9lpoz\u00edci\u00f3.",
+                    "name": "Poz\u00edci\u00f3"
+                }
+            },
+            "name": "Szelep poz\u00edci\u00f3j\u00e1nak be\u00e1ll\u00edt\u00e1sa"
+        },
+        "stop_valve": {
+            "description": "Meg\u00e1ll\u00edtja a szelep m\u0171k\u00f6d\u00e9s\u00e9t.",
+            "name": "Szelep meg\u00e1ll\u00edt\u00e1sa"
+        },
+        "toggle": {
+            "description": "Szelepet nyit vagy z\u00e1r.",
+            "name": "Szelep \u00e1tkapcsol\u00e1sa"
+        }
+    },
+    "title": "Szelep",
+    "triggers": {
+        "closed": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb szelep bez\u00e1r\u00f3dik.",
+            "fields": {
+                "behavior": {
+                    "name": "Esem\u00e9nyind\u00edt\u00e1s, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Szelep bez\u00e1r\u00f3dott"
+        },
+        "opened": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb szelep kiny\u00edlik.",
+            "fields": {
+                "behavior": {
+                    "name": "Esem\u00e9nyind\u00edt\u00e1s, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Szelep kiny\u00edlt"
+        }
+    }
+}

@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "\u6761\u4ef6\u304c\u6e80\u305f\u3055\u308c\u308b\u5834\u5408",
+        "condition_for_name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593",
+        "trigger_behavior_name": "\u30c8\u30ea\u30ac\u30fc\u6761\u4ef6",
+        "trigger_for_name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u30a2\u30a4\u30c9\u30eb\u72b6\u614b\u3067\u3042\u308b\u304b\u3069\u3046\u304b\u3092\u5224\u5b9a\u3057\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u304c\u6e80\u305f\u3055\u308c\u308b\u5834\u5408"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u306f\u30a2\u30a4\u30c9\u30eb\u72b6\u614b\u3067\u3059"
+        },
+        "is_listening": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u53d7\u4fe1\u5f85\u6a5f\u4e2d\u304b\u3069\u3046\u304b\u3092\u5224\u5b9a\u3057\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u304c\u6e80\u305f\u3055\u308c\u308b\u5834\u5408"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u300c\u30b5\u30c6\u30e9\u30a4\u30c8\u300d\u304c\u8033\u3092\u50be\u3051\u3066\u3044\u308b"
+        },
+        "is_processing": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u51e6\u7406\u4e2d\u3067\u3042\u308b\u304b\u3069\u3046\u304b\u3092\u78ba\u8a8d\u3057\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u304c\u6e80\u305f\u3055\u308c\u308b\u5834\u5408"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u51e6\u7406\u4e2d\u3067\u3059"
+        },
+        "is_responding": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u5fdc\u7b54\u3057\u3066\u3044\u308b\u304b\u3069\u3046\u304b\u3092\u5224\u5b9a\u3057\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u304c\u6e80\u305f\u3055\u308c\u308b\u5834\u5408"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u5fdc\u7b54\u3057\u3066\u3044\u307e\u3059"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8",
+            "state": {
+                "idle": "\u5f85\u6a5f\u4e2d",
+                "listening": "\u30ea\u30b9\u30cb\u30f3\u30b0",
+                "processing": "\u51e6\u7406",
+                "responding": "\u5fdc\u7b54"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "\u56de\u7b54ID",
+                "sentences": "\u6587"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "\u30a2\u30b7\u30b9\u30c8\u885b\u661f\u304c\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u30a2\u30ca\u30a6\u30f3\u30b9\u3067\u304d\u308b\u3088\u3046\u306b\u3057\u307e\u3059\u3002",
+            "fields": {
+                "media_id": {
+                    "description": "\u30c6\u30ad\u30b9\u30c8\u8aad\u307f\u4e0a\u3052\u3092\u4f7f\u7528\u3059\u308b\u4ee3\u308f\u308a\u306b\u8aad\u307f\u4e0a\u3052\u308b\u30e1\u30c7\u30a3\u30a2 ID\u3002",
+                    "name": "\u30e1\u30c7\u30a3\u30a2ID"
+                },
+                "message": {
+                    "description": "\u30a2\u30ca\u30a6\u30f3\u30b9\u3059\u308b\u30e1\u30c3\u30bb\u30fc\u30b8\u3002",
+                    "name": "\u30e1\u30c3\u30bb\u30fc\u30b8"
+                },
+                "preannounce": {
+                    "description": "\u30a2\u30ca\u30a6\u30f3\u30b9\u306e\u524d\u306b\u30b5\u30a6\u30f3\u30c9\u3092\u518d\u751f\u3057\u307e\u3059\u3002",
+                    "name": "\u4e8b\u524d\u30a2\u30ca\u30a6\u30f3\u30b9"
+                },
+                "preannounce_media_id": {
+                    "description": "\u30a2\u30ca\u30a6\u30f3\u30b9\u306e\u524d\u306b\u6d41\u3059\u30ab\u30b9\u30bf\u30e0\u30e1\u30c7\u30a3\u30a2ID\u3002",
+                    "name": "\u30e1\u30c7\u30a3\u30a2ID\u3092\u4e8b\u524d\u306b\u30a2\u30ca\u30a6\u30f3\u30b9\u3059\u308b"
+                }
+            },
+            "name": "\u885b\u661f\u3067\u30a2\u30ca\u30a6\u30f3\u30b9\u3059\u308b"
+        },
+        "ask_question": {
+            "description": "\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u8cea\u554f\u3092\u6295\u3052\u304b\u3051\u3001\u30e6\u30fc\u30b6\u30fc\u306e\u5fdc\u7b54\u3092\u5f97\u308b\u3088\u3046\u306b\u3057\u307e\u3059\u3002",
+            "fields": {
+                "answers": {
+                    "description": "\u8cea\u554f\u306b\u5bfe\u3059\u308b\u8003\u3048\u3089\u308c\u308b\u56de\u7b54\u3002",
+                    "name": "\u56de\u7b54"
+                },
+                "entity_id": {
+                    "description": "\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u8cea\u554f\u3092\u3059\u308b\u306e\u3092\u652f\u63f4\u3059\u308b\u3002",
+                    "name": "\u30a8\u30f3\u30c6\u30a3\u30c6\u30a3"
+                },
+                "preannounce": {
+                    "description": "\u958b\u59cb\u30e1\u30c3\u30bb\u30fc\u30b8\u307e\u305f\u306f\u30e1\u30c7\u30a3\u30a2\u306e\u524d\u306b\u30b5\u30a6\u30f3\u30c9\u3092\u518d\u751f\u3057\u307e\u3059\u3002",
+                    "name": "\u4e8b\u524d\u30a2\u30ca\u30a6\u30f3\u30b9"
+                },
+                "preannounce_media_id": {
+                    "description": "\u958b\u59cb\u30e1\u30c3\u30bb\u30fc\u30b8\u307e\u305f\u306f\u30e1\u30c7\u30a3\u30a2\u306e\u524d\u306b\u518d\u751f\u3059\u308b\u30ab\u30b9\u30bf\u30e0\u30e1\u30c7\u30a3\u30a2ID\u3002",
+                    "name": "\u30e1\u30c7\u30a3\u30a2ID\u3092\u4e8b\u524d\u306b\u30a2\u30ca\u30a6\u30f3\u30b9\u3059\u308b"
+                },
+                "question": {
+                    "description": "\u5c0b\u306d\u308b\u3079\u304d\u8cea\u554f\u3002",
+                    "name": "\u8cea\u554f"
+                },
+                "question_media_id": {
+                    "description": "\u30c6\u30ad\u30b9\u30c8\u8aad\u307f\u4e0a\u3052\u306e\u4ee3\u308f\u308a\u306b\u4f7f\u7528\u3059\u308b\u8cea\u554f\u306e\u30e1\u30c7\u30a3\u30a2 ID\u3002",
+                    "name": "\u8cea\u554f\u30e1\u30c7\u30a3\u30a2ID"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u306b\u3064\u3044\u3066\u8cea\u554f\u3059\u308b"
+        },
+        "start_conversation": {
+            "description": "\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304b\u3089\u4f1a\u8a71\u3092\u958b\u59cb\u3057\u307e\u3059\u3002",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u306b\u95a2\u3059\u308b\u80cc\u666f\u60c5\u5831\u3092 AI \u306b\u63d0\u4f9b\u3057\u307e\u3059\u3002",
+                    "name": "\u8ffd\u52a0\u306e\u30b7\u30b9\u30c6\u30e0\u30d7\u30ed\u30f3\u30d7\u30c8"
+                },
+                "preannounce": {
+                    "description": "\u958b\u59cb\u30e1\u30c3\u30bb\u30fc\u30b8\u307e\u305f\u306f\u30e1\u30c7\u30a3\u30a2\u306e\u524d\u306b\u30b5\u30a6\u30f3\u30c9\u3092\u518d\u751f\u3057\u307e\u3059\u3002",
+                    "name": "\u4e8b\u524d\u30a2\u30ca\u30a6\u30f3\u30b9"
+                },
+                "preannounce_media_id": {
+                    "description": "\u958b\u59cb\u30e1\u30c3\u30bb\u30fc\u30b8\u307e\u305f\u306f\u30e1\u30c7\u30a3\u30a2\u306e\u524d\u306b\u518d\u751f\u3059\u308b\u30ab\u30b9\u30bf\u30e0\u30e1\u30c7\u30a3\u30a2ID\u3002",
+                    "name": "\u30e1\u30c7\u30a3\u30a2ID\u3092\u4e8b\u524d\u306b\u30a2\u30ca\u30a6\u30f3\u30b9\u3059\u308b"
+                },
+                "start_media_id": {
+                    "description": "\u30c6\u30ad\u30b9\u30c8\u8aad\u307f\u4e0a\u3052\u3092\u4f7f\u7528\u3059\u308b\u4ee3\u308f\u308a\u306b\u958b\u59cb\u3059\u308b\u30e1\u30c7\u30a3\u30a2 ID\u3002",
+                    "name": "\u30e1\u30c7\u30a3\u30a2ID"
+                },
+                "start_message": {
+                    "description": "\u306f\u3058\u3081\u306b\u30e1\u30c3\u30bb\u30fc\u30b8\u3002",
+                    "name": "\u30e1\u30c3\u30bb\u30fc\u30b8"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u3067\u4f1a\u8a71\u3092\u59cb\u3081\u308b"
+        }
+    },
+    "title": "\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8",
+    "triggers": {
+        "idle": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u30b3\u30de\u30f3\u30c9\u3092\u51e6\u7406\u3057\u305f\u5f8c\u3001\u30a2\u30a4\u30c9\u30eb\u72b6\u614b\u306b\u306a\u3063\u305f\u3068\u304d\u306b\u30c8\u30ea\u30ac\u30fc\u3055\u308c\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u30c8\u30ea\u30ac\u30fc\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u30a2\u30a4\u30c9\u30eb\u72b6\u614b\u306b\u306a\u308a\u307e\u3057\u305f"
+        },
+        "listening": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u3001\u8ab0\u304b\u304b\u3089\u306e\u30b3\u30de\u30f3\u30c9\u3092\u53d7\u4fe1\u3059\u308b\u6e96\u5099\u3092\u59cb\u3081\u305f\u3068\u304d\u306b\u30c8\u30ea\u30ac\u30fc\u3055\u308c\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u30c8\u30ea\u30ac\u30fc\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u30ea\u30b9\u30cb\u30f3\u30b0\u3092\u958b\u59cb\u3057\u307e\u3057\u305f"
+        },
+        "processing": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u30b3\u30de\u30f3\u30c9\u3092\u53d7\u4fe1\u3057\u305f\u5f8c\u3001\u305d\u306e\u51e6\u7406\u3092\u958b\u59cb\u3057\u305f\u3068\u304d\u306b\u30c8\u30ea\u30ac\u30fc\u3055\u308c\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u30c8\u30ea\u30ac\u30fc\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u306e\u51e6\u7406\u304c\u958b\u59cb\u3055\u308c\u307e\u3057\u305f"
+        },
+        "responding": {
+            "description": "1\u3064\u4ee5\u4e0a\u306e\u30a2\u30b7\u30b9\u30c8\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u3001\u30b3\u30de\u30f3\u30c9\u3092\u51e6\u7406\u3057\u305f\u5f8c\u306b\u305d\u306e\u30b3\u30de\u30f3\u30c9\u306b\u5fdc\u7b54\u3057\u59cb\u3081\u305f\u3068\u304d\u3001\u307e\u305f\u306f\u4f55\u304b\u3092\u30a2\u30ca\u30a6\u30f3\u30b9\u3057\u59cb\u3081\u305f\u3068\u304d\u306b\u30c8\u30ea\u30ac\u30fc\u3055\u308c\u307e\u3059\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u30c8\u30ea\u30ac\u30fc\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u6700\u5c0f\u7d99\u7d9a\u6642\u9593"
+                }
+            },
+            "name": "\u30b5\u30c6\u30e9\u30a4\u30c8\u304c\u5fdc\u7b54\u3092\u958b\u59cb\u3057\u305f"
+        }
+    }
+}

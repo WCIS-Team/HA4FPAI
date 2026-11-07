@@ -1,0 +1,104 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "V\u00e9rifie si une ou plusieurs listes d\u00e9roulantes ont une option sp\u00e9cifique s\u00e9lectionn\u00e9e.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "option": {
+                    "description": "Les options \u00e0 v\u00e9rifier.",
+                    "name": "Option"
+                }
+            },
+            "name": "Une option de la liste d\u00e9roulante est s\u00e9lectionn\u00e9e"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "Remplacer {entity_name} par la premi\u00e8re option",
+            "select_last": "Remplacer {entity_name} par la derni\u00e8re option",
+            "select_next": "Remplacer {entity_name} par l'option suivante",
+            "select_option": "Modifier l'option {entity_name}",
+            "select_previous": "Remplacer {entity_name} par l'option pr\u00e9c\u00e9dente"
+        },
+        "condition_type": {
+            "selected_option": "Option actuellement s\u00e9lectionn\u00e9e {entity_name}"
+        },
+        "extra_fields": {
+            "cycle": "Cycle",
+            "for": "Dur\u00e9e",
+            "from": "De",
+            "option": "Option",
+            "to": "\u00c0"
+        },
+        "trigger_type": {
+            "current_option_changed": "Modification de l'option {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "S\u00e9lecteur",
+            "state_attributes": {
+                "options": {
+                    "name": "Options"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_option": {
+            "message": "L'option {option} n'est pas valide pour l'entit\u00e9 {entity_id}, les options valides sont\u00a0: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "S\u00e9lectionne la premi\u00e8re option.",
+            "name": "S\u00e9lectionner la premi\u00e8re option"
+        },
+        "select_last": {
+            "description": "S\u00e9lectionne la derni\u00e8re option.",
+            "name": "S\u00e9lectionner la derni\u00e8re option"
+        },
+        "select_next": {
+            "description": "S\u00e9lectionne l'option suivante.",
+            "fields": {
+                "cycle": {
+                    "description": "Si l'option doit passer de la derni\u00e8re \u00e0 la premi\u00e8re.",
+                    "name": "Cycle"
+                }
+            },
+            "name": "S\u00e9lectionner l'option suivante"
+        },
+        "select_option": {
+            "description": "S\u00e9lectionne une option.",
+            "fields": {
+                "option": {
+                    "description": "Option \u00e0 s\u00e9lectionner.",
+                    "name": "Option"
+                }
+            },
+            "name": "S\u00e9lectionner une option"
+        },
+        "select_previous": {
+            "description": "S\u00e9lectionne l'option pr\u00e9c\u00e9dente.",
+            "fields": {
+                "cycle": {
+                    "description": "Si l'option doit passer de la premi\u00e8re \u00e0 la derni\u00e8re.",
+                    "name": "Cycle"
+                }
+            },
+            "name": "S\u00e9lectionner l'option pr\u00e9c\u00e9dente"
+        }
+    },
+    "title": "S\u00e9lecteur",
+    "triggers": {
+        "selection_changed": {
+            "description": "Se d\u00e9clenche lorsque l'option s\u00e9lectionn\u00e9e d'une ou plusieurs listes d\u00e9roulantes change.",
+            "name": "La s\u00e9lection de la liste d\u00e9roulante a chang\u00e9"
+        }
+    }
+}

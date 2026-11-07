@@ -1,0 +1,1428 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Nepoda\u0159ilo se p\u0159ipojit k aplikaci {addon}. Zkontrolujte stav aplikace a zkuste to znovu pozd\u011bji.",
+            "addon_info_failed": "Nepoda\u0159ilo se z\u00edskat informace o aplikaci {addon}.",
+            "addon_install_failed": "Nepoda\u0159ilo se nainstalovat aplikaci {addon}.",
+            "addon_start_failed": "Nepoda\u0159ilo se spustit aplikaci {addon}.",
+            "already_configured": "Slu\u017eba je ji\u017e nastavena"
+        },
+        "error": {
+            "bad_birth": "Neplatn\u00e9 t\u00e9ma zpr\u00e1vy p\u0159i p\u0159ipojen\u00ed",
+            "bad_certificate": "Certifik\u00e1t CA je neplatn\u00fd",
+            "bad_client_cert": "Neplatn\u00fd klientsk\u00fd certifik\u00e1t, zajist\u011bte dod\u00e1n\u00ed platn\u00e9ho souboru",
+            "bad_client_cert_key": "Klientsk\u00fd certifik\u00e1t a soukrom\u00fd nejsou platn\u00fd p\u00e1r",
+            "bad_discovery_prefix": "Neplatn\u00e1 p\u0159edpona zji\u0161\u0165ov\u00e1n\u00ed",
+            "bad_will": "Neplatn\u00e9 t\u00e9ma zpr\u00e1vy p\u0159i odpojen\u00ed",
+            "bad_ws_headers": "Zadejte platn\u00e9 HTTP hlavi\u010dky jako JSON objekt",
+            "cannot_connect": "Nepoda\u0159ilo se p\u0159ipojit",
+            "client_key_error": "Byl zad\u00e1n neplatn\u00fd soubor soukrom\u00e9ho kl\u00ed\u010de nebo neplatn\u00e9 heslo",
+            "invalid_auth": "Neplatn\u00e9 ov\u011b\u0159en\u00ed",
+            "invalid_inclusion": "Klientsk\u00fd certifik\u00e1t a soukrom\u00fd kl\u00ed\u010d mus\u00ed b\u00fdt nastaveny spole\u010dn\u011b"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Broker",
+                    "password": "Heslo",
+                    "port": "Port",
+                    "protocol": "Protokol MQTT",
+                    "username": "U\u017eivatelsk\u00e9 jm\u00e9no"
+                },
+                "data_description": {
+                    "broker": "N\u00e1zev hostitele nebo IP adresa va\u0161eho brokera MQTT.",
+                    "password": "Heslo pro p\u0159ihl\u00e1\u0161en\u00ed k va\u0161emu brokerovi MQTT.",
+                    "port": "Port, na kter\u00e9m v\u00e1\u0161 MQTT broker naslouch\u00e1. Nap\u0159\u00edklad 1883.",
+                    "protocol": "Pou\u017eit\u00e1 verze protokolu MQTT. Upozor\u0148ujeme, \u017ee Home Assistant se ti\u0161e zm\u011bn\u00ed na verzi 5, pokud ji v\u00e1\u0161 zprost\u0159edkovatel podporuje.",
+                    "username": "U\u017eivatelsk\u00e9 jm\u00e9no pro p\u0159ihl\u00e1\u0161en\u00ed k va\u0161emu brokerovi MQTT."
+                },
+                "description": "Zadejte informace pro p\u0159ipojen\u00ed brokera MQTT.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "Nahr\u00e1t soubor vlastn\u00edho certifik\u00e1tu CA",
+                            "client_cert": "Nahr\u00e1t soubor klientsk\u00e9ho certifik\u00e1tu",
+                            "client_id": "ID klienta (ponechte pr\u00e1zdn\u00e9 pro n\u00e1hodn\u011b generovan\u00e9 ID)",
+                            "client_key": "Nahr\u00e1t soubor soukrom\u00e9ho kl\u00ed\u010de",
+                            "client_key_password": "Heslo",
+                            "keepalive": "Doba mezi odesl\u00e1n\u00edm zpr\u00e1v pro zachov\u00e1n\u00ed \u017eivota",
+                            "set_ca_cert": "Ov\u011b\u0159en\u00ed platnosti certifik\u00e1tu brokera",
+                            "set_client_cert": "Pou\u017e\u00edt klientsk\u00fd certifik\u00e1t",
+                            "tls_insecure": "Ignorovat ov\u011b\u0159en\u00ed certifik\u00e1tu brokera",
+                            "transport": "Transport MQTT",
+                            "ws_headers": "Hlavi\u010dky WebSocket ve form\u00e1tu JSON",
+                            "ws_path": "Cesta WebSocket"
+                        },
+                        "data_description": {
+                            "certificate": "Soubor s vlastn\u00edm certifik\u00e1tem CA pro ov\u011b\u0159en\u00ed certifik\u00e1tu brokera MQTT.",
+                            "client_cert": "Klientsk\u00fd certifik\u00e1t k ov\u011b\u0159en\u00ed proti va\u0161emu brokerovi MQTT.",
+                            "client_id": "Jedine\u010dn\u00e9 ID k identifikaci rozhran\u00ed API MQTT Home Assistanta jako klienta MQTT. Doporu\u010duje se ponechat tuto volbu pr\u00e1zdnou.",
+                            "client_key": "Soubor soukrom\u00e9ho kl\u00ed\u010de, kter\u00fd pat\u0159\u00ed k va\u0161emu klientsk\u00e9mu certifik\u00e1tu.",
+                            "client_key_password": "Heslo pro soubor soukrom\u00e9ho kl\u00ed\u010de (pokud je nastaveno).",
+                            "keepalive": "Doporu\u010duje se hodnota men\u0161\u00ed ne\u017e 90 sekund. V\u00fdchoz\u00ed hodnota je 60 sekund.",
+                            "set_ca_cert": "Pokud je ji\u017e nastaveno na **Vlastn\u00ed**, je nastaven vlastn\u00ed certifik\u00e1t CA pro ov\u011b\u0159en\u00ed. Vyberte **Automaticky** pro automatick\u00e9 ov\u011b\u0159en\u00ed CA nebo nahrajte vlastn\u00ed certifik\u00e1t CA, abyste umo\u017enili ov\u011b\u0159en\u00ed certifik\u00e1tu va\u0161eho MQTT brokera.",
+                            "set_client_cert": "Pokud je ji\u017e vybr\u00e1no, je ov\u011b\u0159ov\u00e1n\u00ed klientsk\u00e9ho certifik\u00e1tu povoleno. Nahrajte klientsk\u00fd certifik\u00e1t a kl\u00ed\u010d pro povolen\u00ed.",
+                            "tls_insecure": "Volba ignorovat ov\u011b\u0159en\u00ed certifik\u00e1tu va\u0161eho brokera MQTT.",
+                            "transport": "Transport, kter\u00fd se m\u00e1 pou\u017e\u00edt pro p\u0159ipojen\u00ed k va\u0161emu MQTT brokerovi.",
+                            "ws_headers": "Z\u00e1hlav\u00ed WebSocket, kter\u00e1 projdou p\u0159ipojen\u00edm zalo\u017een\u00fdm na WebSocket k va\u0161emu zprost\u0159edkovateli MQTT.",
+                            "ws_path": "Cesta WebSocket, kter\u00e1 se m\u00e1 pou\u017e\u00edt pro p\u0159ipojen\u00ed k va\u0161emu MQTT brokeru."
+                        },
+                        "name": "Dal\u0161\u00ed nastaven\u00ed"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "Chcete nastavit Home Assistanta pro p\u0159ipojen\u00ed k brokerovi MQTT poskytovan\u00e9mu aplikac\u00ed {addon}?",
+                "title": "MQTT Broker prost\u0159ednictv\u00edm doprovodn\u00e9 aplikace Home Assistant"
+            },
+            "install_addon": {
+                "title": "Instalov\u00e1n\u00ed aplikace"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Heslo",
+                    "username": "U\u017eivatelsk\u00e9 jm\u00e9no"
+                },
+                "data_description": {
+                    "password": "Heslo pro p\u0159ihl\u00e1\u0161en\u00ed k va\u0161emu brokerovi MQTT.",
+                    "username": "U\u017eivatelsk\u00e9 jm\u00e9no pro p\u0159ihl\u00e1\u0161en\u00ed k va\u0161emu brokerovi MQTT."
+                },
+                "description": "Broker MQTT ohl\u00e1sil chybu ov\u011b\u0159ov\u00e1n\u00ed. Potvr\u010fte spr\u00e1vn\u00e9 u\u017eivatelsk\u00e9 jm\u00e9no a heslo broker\u016f.",
+                "title": "Vy\u017eaduje se op\u011btovn\u00e9 ov\u011b\u0159en\u00ed brokera MQTT"
+            },
+            "start_addon": {
+                "title": "Spou\u0161t\u011bn\u00ed aplikace"
+            },
+            "user": {
+                "description": "Vyberte, jak se chcete p\u0159ipojit k brokerovi MQTT:",
+                "menu_options": {
+                    "addon": "Pou\u017eijte ofici\u00e1ln\u00ed aplikaci {addon}.",
+                    "broker": "Ru\u010dn\u011b zadejte podrobnosti o p\u0159ipojen\u00ed zprost\u0159edkovatele MQTT"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "Za\u0159\u00edzen\u00ed MQTT {platform} s entitou \"{entity}\" bylo \u00fasp\u011b\u0161n\u011b nastaveno.\n\nPamatujte, \u017ee za\u0159\u00edzen\u00ed MQTT m\u016f\u017eete kdykoli p\u0159enastavit, nap\u0159. p\u0159idat dal\u0161\u00ed entity."
+            },
+            "entry_type": "Za\u0159\u00edzen\u00ed MQTT",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "Volby t\u00e9matu \"get position\" a \"set position\" mus\u00ed b\u00fdt nastaveny spole\u010dn\u011b.",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "\u0160ablona hodnoty pozice mus\u00ed b\u00fdt pou\u017eita spole\u010dn\u011b s nastaven\u00edm t\u00e9matu stav pozice",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "\u0160ablona pro nastaven\u00ed pozice mus\u00ed b\u00fdt pou\u017eita s t\u00e9matem nastaven\u00ed pozice.",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "\u0160ablona p\u0159\u00edkazu \"tilt\" mus\u00ed b\u00fdt pou\u017eita s t\u00e9matem p\u0159\u00edkazu \"tilt\".",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "\u0160ablona hodnoty \"tilt\" mus\u00ed b\u00fdt pou\u017eita s t\u00e9matem stavu \"tilt\".",
+                "cover_value_template_must_be_used_with_state_topic": "\u0160ablona hodnoty mus\u00ed b\u00fdt pou\u017eita s mo\u017enost\u00ed t\u00e9matu stavu.",
+                "empty_list_not_allowed": "Pr\u00e1zdn\u00fd seznam nen\u00ed povolen. P\u0159idejte alespo\u0148 jednu polo\u017eku.",
+                "fan_preset_mode_reset_in_preset_modes_list": "Datov\u00e1 \u010d\u00e1st \"reset preset mode\" nen\u00ed platn\u00e1 jako p\u0159ednastaven\u00fd re\u017eim",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "Maxim\u00e1ln\u00ed rozsah ot\u00e1\u010dek mus\u00ed b\u00fdt v\u011bt\u0161\u00ed ne\u017e minim\u00e1ln\u00ed rozsah ot\u00e1\u010dek",
+                "invalid_input": "Neplatn\u00e1 hodnota",
+                "invalid_regular_expression": "Mus\u00ed se jednat o platn\u00fd regul\u00e1rn\u00ed v\u00fdraz",
+                "invalid_subscribe_topic": "Neplatn\u00e9 t\u00e9ma odb\u011bru",
+                "invalid_supported_color_modes": "Neplatn\u00fd v\u00fdb\u011br podporovan\u00fdch barevn\u00fdch re\u017eim\u016f",
+                "invalid_template": "Neplatn\u00e1 \u0161ablona",
+                "invalid_uom": "Jednotka m\u011b\u0159en\u00ed \"{unit_of_measurement}\" nen\u00ed podporov\u00e1na vybranou t\u0159\u00eddou za\u0159\u00edzen\u00ed. Odeberte t\u0159\u00eddu za\u0159\u00edzen\u00ed, vyberte t\u0159\u00eddu za\u0159\u00edzen\u00ed, kter\u00e1 podporuje \"{unit_of_measurement}\" nebo vyberte podporovanou jednotku m\u011b\u0159en\u00ed ze seznamu.",
+                "invalid_uom_for_state_class": "Jednotka m\u011b\u0159en\u00ed \"{unit_of_measurement}\" nen\u00ed podporov\u00e1na vybranou t\u0159\u00eddou za\u0159\u00edzen\u00ed. Odeberte t\u0159\u00eddu za\u0159\u00edzen\u00ed, vyberte t\u0159\u00eddu za\u0159\u00edzen\u00ed, kter\u00e1 podporuje \"{unit_of_measurement}\" nebo vyberte podporovanou jednotku m\u011b\u0159en\u00ed ze seznamu.",
+                "invalid_url": "Neplatn\u00e1 URL",
+                "last_reset_not_with_state_class_total": "Volba \u0161ablony posledn\u00ed hodnoty resetov\u00e1n\u00ed by se m\u011bla pou\u017e\u00edt pouze se  t\u0159\u00eddou stavu \"Celkem\".",
+                "max_below_min": "Maxim\u00e1ln\u00ed hodnota by m\u011bla b\u00fdt v\u011bt\u0161\u00ed nebo rovna minim\u00e1ln\u00ed hodnot\u011b",
+                "max_below_min_humidity": "Maxim\u00e1ln\u00ed hodnota vlhkosti by m\u011bla b\u00fdt vy\u0161\u0161\u00ed ne\u017e minim\u00e1ln\u00ed hodnota vlhkosti",
+                "max_below_min_kelvin": "Maxim\u00e1ln\u00ed hodnota Kelvina by m\u011bla b\u00fdt v\u011bt\u0161\u00ed ne\u017e minim\u00e1ln\u00ed hodnota Kelvina",
+                "max_below_min_temperature": "Maxim\u00e1ln\u00ed hodnota teploty by m\u011bla b\u00fdt vy\u0161\u0161\u00ed ne\u017e minim\u00e1ln\u00ed hodnota teploty",
+                "options_device_class_enum": "Nastaven\u00ed \"Volby\" mus\u00ed b\u00fdt pou\u017eito s t\u0159\u00eddou za\u0159\u00edzen\u00ed V\u00fd\u010det. Pokud budete pokra\u010dovat, st\u00e1vaj\u00edc\u00ed mo\u017enosti budou resetov\u00e1ny.",
+                "options_not_allowed_with_state_class_or_uom": "Nastaven\u00ed \"Volby\" nen\u00ed povoleno, kdy\u017e se pou\u017e\u00edv\u00e1 stavov\u00e1 t\u0159\u00edda nebo jednotka m\u011b\u0159en\u00ed",
+                "options_with_enum_device_class": "Nastavte volby pro senzor v\u00fd\u010dtu",
+                "preset_mode_none_not_allowed": "P\u0159edvolba \"\u017d\u00e1dn\u00e1\" nen\u00ed platn\u00fd re\u017eim p\u0159edvolby",
+                "uom_required_for_device_class": "Vybran\u00e1 t\u0159\u00edda za\u0159\u00edzen\u00ed vy\u017eaduje jednotku"
+            },
+            "initiate_flow": {
+                "reconfigure": "P\u0159enastavit za\u0159\u00edzen\u00ed MQTT",
+                "user": "P\u0159idat za\u0159\u00edzen\u00ed MQTT"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "\u0160ablona dostupnosti",
+                        "availability_topic": "T\u00e9ma dostupnosti",
+                        "payload_available": "Datov\u00e1 \u010d\u00e1st je dostupn\u00e1",
+                        "payload_not_available": "Datov\u00e1 \u010d\u00e1st nen\u00ed dostupn\u00e1"
+                    },
+                    "data_description": {
+                        "availability_template": "[\u0160ablona]({value_templating_url}) k vykreslen\u00ed p\u0159ijat\u00e9ho u\u017eite\u010dn\u00e9ho zat\u00ed\u017een\u00ed dostupnosti na t\u00e9ma dostupnosti",
+                        "availability_topic": "T\u00e9ma, na kter\u00e9 chcete z\u00edskat u\u017eite\u010dn\u00e9 zat\u00ed\u017een\u00ed dostupnosti",
+                        "payload_available": "U\u017eite\u010dn\u00e9 zat\u00ed\u017een\u00ed, kter\u00e9 ozna\u010duje, \u017ee je za\u0159\u00edzen\u00ed dostupn\u00e9 (v\u00fdchoz\u00ed hodnota je \"online\")",
+                        "payload_not_available": "U\u017eite\u010dn\u00e9 zat\u00ed\u017een\u00ed, kter\u00e9 ozna\u010duje, \u017ee je za\u0159\u00edzen\u00ed dostupn\u00e9 (v\u00fdchoz\u00ed hodnota je \"offline\")"
+                    },
+                    "description": "Funkce dostupnosti umo\u017e\u0148uje za\u0159\u00edzen\u00ed hl\u00e1sit svou dostupnost.",
+                    "title": "Volby dostupnosti"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Entita"
+                    },
+                    "data_description": {
+                        "component": "Vyberte entitu, kterou chcete smazat. Je vy\u017eadov\u00e1na minim\u00e1ln\u011b jedna entita."
+                    },
+                    "description": "Sma\u017ee entitu. Entita bude ze za\u0159\u00edzen\u00ed odebr\u00e1na. Odebrn\u00ed entity naru\u0161\u00ed ve\u0161ker\u00e9 automatizace nebo skripty, kter\u00e9 na n\u00ed z\u00e1vis\u00ed.",
+                    "title": "Smazat entitu"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "URL nastaven\u00ed",
+                        "manufacturer": "V\u00fdrobce",
+                        "model": "Model",
+                        "model_id": "ID modelu",
+                        "name": "N\u00e1zev"
+                    },
+                    "data_description": {
+                        "configuration_url": "Odkaz na webovou str\u00e1nku, kter\u00e1 m\u016f\u017ee spravovat nastaven\u00ed tohoto za\u0159\u00edzen\u00ed. M\u016f\u017ee to b\u00fdt bu\u010f \"http://\", \"https://\" nebo intern\u00ed adresa URL \"homeassistant://\".",
+                        "manufacturer": "Nap\u0159. Cleanmaster Ltd.",
+                        "model": "Nap\u0159. \"Cleanmaster Pro\".",
+                        "model_id": "Nap\u0159. \"123NK2PRO\".",
+                        "name": "N\u00e1zev ru\u010dn\u011b p\u0159idan\u00e9ho za\u0159\u00edzen\u00ed MQTT."
+                    },
+                    "description": "Zadejte podrobnosti o za\u0159\u00edzen\u00ed MQTT:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "Interval vypr\u0161en\u00ed platnosti zpr\u00e1vy",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "\u010casov\u00fd interval uchov\u00e1v\u00e1n\u00ed zve\u0159ejn\u011bn\u00e9 zpr\u00e1vy.",
+                                "qos": "Hodnota Quality of Service, kterou by entity za\u0159\u00edzen\u00ed m\u011bly pou\u017e\u00edvat."
+                            },
+                            "name": "Nastaven\u00ed MQTT"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "Verze hardwaru",
+                                "sw_version": "Verze softwaru"
+                            },
+                            "data_description": {
+                                "hw_version": "Verze hardwaru za\u0159\u00edzen\u00ed. Nap\u0159. \"v1.0 rev a\".",
+                                "sw_version": "Verze softwaru za\u0159\u00edzen\u00ed. Nap\u0159. \"2025.1.0\"."
+                            },
+                            "name": "Dal\u0161\u00ed nastaven\u00ed za\u0159\u00edzen\u00ed"
+                        }
+                    },
+                    "title": "Nastavit podrobnosti za\u0159\u00edzen\u00ed MQTT"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Obr\u00e1zek entity",
+                        "name": "N\u00e1zev entity",
+                        "platform": "Typ entity"
+                    },
+                    "data_description": {
+                        "entity_picture": "Adresa URL obr\u00e1zku, kter\u00fd m\u00e1 b\u00fdt p\u0159i\u0159azen.",
+                        "name": "N\u00e1zev entity. Nechte pr\u00e1zdn\u00e9, pokud chcete nastavit \"\u017d\u00e1dn\u00e9\", abyste [ozna\u010dili jako hlavn\u00ed funkci za\u0159\u00edzen\u00ed MQTT]({naming_entities_url}).",
+                        "platform": "Typ entity k nastaven\u00ed."
+                    },
+                    "description": "Nastav\u00ed z\u00e1kladn\u00ed {platform_label} nastaven\u00ed entity {entity_name_label}.",
+                    "title": "Nastavit za\u0159\u00edzen\u00ed MQTT \"{mqtt_device}\""
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Re\u017eim ov\u011b\u0159en\u00ed k\u00f3du alarmu",
+                        "climate_feature_action": "Podpora aktu\u00e1ln\u00ed akce",
+                        "climate_feature_current_humidity": "Podpora aktu\u00e1ln\u00ed vlhkosti",
+                        "climate_feature_current_temperature": "Podpora aktu\u00e1ln\u00ed teploty",
+                        "climate_feature_fan_modes": "Podpora re\u017eimu ventil\u00e1toru",
+                        "climate_feature_power": "Podpora zapnut\u00ed/vypnut\u00ed",
+                        "climate_feature_preset_modes": "Podpora p\u0159edvoleb",
+                        "climate_feature_swing_horizontal_modes": "Podpora horizont\u00e1ln\u00edho re\u017eimu k\u00fdv\u00e1n\u00ed",
+                        "climate_feature_swing_modes": "Podpora re\u017eimu kmit\u00e1n\u00ed",
+                        "climate_feature_target_humidity": "Podpora c\u00edlov\u00e9 vlhkosti",
+                        "climate_feature_target_temperature": "Podpora c\u00edlov\u00e9 teploty",
+                        "device_class": "T\u0159\u00edda za\u0159\u00edzen\u00ed",
+                        "entity_category": "Kategorie entity",
+                        "fan_feature_direction": "Podpora sm\u011bru",
+                        "fan_feature_oscillation": "Podpora oscilace",
+                        "fan_feature_preset_modes": "Podpora p\u0159edvoleb",
+                        "fan_feature_speed": "Podpora rychlosti",
+                        "image_processing_mode": "Re\u017eim zpracov\u00e1n\u00ed obrazu",
+                        "options": "P\u0159idat volbu",
+                        "reports_position": "Hl\u00e1s\u00ed pozici",
+                        "schema": "Sch\u00e9ma",
+                        "state_class": "T\u0159\u00edda stavu",
+                        "suggested_display_precision": "Doporu\u010den\u00e1 p\u0159esnost zobrazen\u00ed",
+                        "supported_features": "Podporovan\u00e9 funkce",
+                        "temperature_unit": "Jednotka teploty",
+                        "unit_of_measurement": "Jednotka m\u011b\u0159en\u00ed",
+                        "water_heater_feature_current_temperature": "Podpora aktu\u00e1ln\u00ed teploty",
+                        "water_heater_feature_power": "Podpora zapnut\u00ed/vypnut\u00ed"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Nastavuje, jak ovl\u00e1dac\u00ed panel alarmu ov\u011b\u0159uje k\u00f3d. M\u00edstn\u00ed k\u00f3d je nastaven s entitou a je ov\u011b\u0159en Home Assistantem. Vzd\u00e1len\u00fd k\u00f3d je odesl\u00e1n do za\u0159\u00edzen\u00ed a ov\u011b\u0159en na d\u00e1lku. [Dal\u0161\u00ed informace.]({url}#code)",
+                        "climate_feature_action": "Klimatizace podporuje informov\u00e1n\u00ed o aktu\u00e1ln\u00edm d\u011bn\u00ed.",
+                        "climate_feature_current_humidity": "Klimatizace podporuje hl\u00e1\u0161en\u00ed aktu\u00e1ln\u00ed vlhkosti.",
+                        "climate_feature_current_temperature": "Klimatizace podporuje hl\u00e1\u0161en\u00ed aktu\u00e1ln\u00ed teploty.",
+                        "climate_feature_fan_modes": "Klimatizace podporuje re\u017eimy ventil\u00e1toru.",
+                        "climate_feature_power": "Klimatizace podporuje p\u0159\u00edkazy \"on\" a \"off\".",
+                        "climate_feature_preset_modes": "Klimatizace podporuje re\u017eimy p\u0159edvoleb.",
+                        "climate_feature_swing_horizontal_modes": "Klimatizacelima podporuje re\u017eimy horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed.",
+                        "climate_feature_swing_modes": "Klimatizace podporuje re\u017eimy kmit\u00e1n\u00ed.",
+                        "climate_feature_target_humidity": "Klimatizace podporuje nastaven\u00ed c\u00edlov\u00e9 vlhkosti.",
+                        "climate_feature_target_temperature": "Klimatizace podporuje nastaven\u00ed c\u00edlov\u00e9 teploty.",
+                        "device_class": "T\u0159\u00edda za\u0159\u00edzen\u00ed entity {platform}. [Dal\u0161\u00ed informace.]({url}#device_class)",
+                        "entity_category": "Povol\u00ed ozna\u010den\u00ed entity jako nastaven\u00ed za\u0159\u00edzen\u00ed nebo diagnostika. Entita s kategori\u00ed nebude vystavena cloudov\u00fdm komponent\u00e1m, komponent\u00e1m Alexy ani Google Assistantovi, ani nebude zahrnuta do nep\u0159\u00edm\u00fdch vol\u00e1n\u00ed akc\u00ed pro za\u0159\u00edzen\u00ed nebo oblasti. Entit\u00e1m senzor\u016f nelze p\u0159i\u0159adit t\u0159\u00eddu nastaven\u00ed za\u0159\u00edzen\u00ed. [Dal\u0161\u00ed informace.]({registry_properties_url})",
+                        "fan_feature_direction": "Ventil\u00e1tor podporuje sm\u011br.",
+                        "fan_feature_oscillation": "Ventil\u00e1tor podporuje oscilaci.",
+                        "fan_feature_preset_modes": "Ventil\u00e1tor podporuje p\u0159edvolby.",
+                        "fan_feature_speed": "Ventil\u00e1tor podporuje v\u00edce rychlost\u00ed.",
+                        "image_processing_mode": "Vyberte, jak budou obrazov\u00e1 data p\u0159ij\u00edm\u00e1na.",
+                        "options": "Volby pro povolen\u00e9 hodnoty stavu senzoru. T\u0159\u00edda za\u0159\u00edzen\u00ed senzoru mus\u00ed b\u00fdt nastavena na V\u00fd\u010det. Nastaven\u00ed \"Volby\" nelze pou\u017e\u00edt spole\u010dn\u011b s t\u0159\u00eddou stavu nebo m\u011brnou jednotkou.",
+                        "reports_position": "Tuto volbu nastavte, pokud ventil hl\u00e1s\u00ed polohu nebo podporuje nastaven\u00ed polohy. Povolen\u00ed t\u00e9to volby zp\u016fsob\u00ed, \u017ee m\u00edsto datov\u00e9 \u010d\u00e1sti definovan\u00e9 v datov\u00e9 \u010d\u00e1sti \"open\", \"close\" nebo \"stop\" bude zve\u0159ejn\u011bna poloha. P\u0159i p\u0159\u00edjmu zpr\u00e1v bude stavov\u00e9 t\u00e9ma p\u0159ij\u00edmat \u010d\u00edseln\u00e9 datov\u00e9 \u010d\u00e1sti nebo jednu z nastaven\u00fdch stavov\u00fdch zpr\u00e1v.",
+                        "schema": "Sch\u00e9ma, kter\u00e9 se m\u00e1 pou\u017e\u00edt. [Dal\u0161\u00ed informace.]({url}#comparison-of-light-mqtt-schemas)",
+                        "state_class": "[T\u0159\u00edda stavu]({available_state_classes_url}) senzoru. [Dal\u0161\u00ed informace.]({url}#state_class)",
+                        "suggested_display_precision": "Po\u010det desetinn\u00fdch m\u00edst, kter\u00e1 by m\u011bla b\u00fdt pou\u017eita ve stavu entity {platform} po zaokrouhlen\u00ed. [Dal\u0161\u00ed informace.]({url}#suggested_display_precision)",
+                        "supported_features": "Funkce, kter\u00e9 entita podporuje.",
+                        "temperature_unit": "Toto ur\u010duje nativn\u00ed jednotku m\u011b\u0159en\u00ed, se kterou za\u0159\u00edzen\u00ed MQTT pracuje.",
+                        "unit_of_measurement": "Definuje jednotku m\u011b\u0159en\u00ed, pokud existuje.",
+                        "water_heater_feature_current_temperature": "Oh\u0159\u00edva\u010d vody podporuje hl\u00e1\u0161en\u00ed aktu\u00e1ln\u00ed teploty.",
+                        "water_heater_feature_power": "Oh\u0159\u00edva\u010d vody podporuje p\u0159\u00edkazy \"on\" a \"off\"."
+                    },
+                    "description": "Nastavte konkr\u00e9tn\u00ed podrobnosti platformu {platform}, entitu {entity}:",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "Doporu\u010den\u00e1 p\u0159esnost zobrazen\u00ed"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "Po\u010det desetinn\u00fdch m\u00edst, kter\u00e1 by m\u011bla b\u00fdt pou\u017eita ve stavu entity {platform} po zaokrouhlen\u00ed. [Dal\u0161\u00ed informace.]({url}#suggested_display_precision)"
+                            },
+                            "name": "Dal\u0161\u00ed nastaven\u00ed"
+                        }
+                    },
+                    "title": "Nastavit za\u0159\u00edzen\u00ed MQTT \"{mqtt_device}\""
+                },
+                "export": {
+                    "description": "Export umo\u017e\u0148uje migrovat nastaven\u00ed za\u0159\u00edzen\u00ed MQTT do nastaven\u00ed zalo\u017een\u00e9ho na YAML nebo do syst\u00e9mu MQTT Discovery. Export nastaven\u00ed m\u016f\u017ee b\u00fdt tak\u00e9 u\u017eite\u010dn\u00fd p\u0159i \u0159e\u0161en\u00ed probl\u00e9m\u016f.",
+                    "menu_options": {
+                        "export_discovery": "Exportovat informace o zji\u0161t\u011bn\u00ed MQTT",
+                        "export_yaml": "Exportovat nastaven\u00ed YAML"
+                    },
+                    "title": "Exportovat nastaven\u00ed za\u0159\u00edzen\u00ed MQTT"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Datov\u00e1 \u010d\u00e1st zji\u0161\u0165ov\u00e1n\u00ed:",
+                        "discovery_topic": "T\u00e9ma zji\u0161\u0165ov\u00e1n\u00ed"
+                    },
+                    "data_description": {
+                        "discovery_payload": "[Datov\u00e1 \u010d\u00e1st zji\u0161\u0165ov\u00e1n\u00ed JSON]({url}#discovery-discovery-payload), kter\u00e1 obsahuje informace o za\u0159\u00edzen\u00ed MQTT.",
+                        "discovery_topic": "[T\u00e9ma zji\u0161\u0165ov\u00e1n\u00ed]({url}#discovery-topic) publikujte datovou \u010d\u00e1st zji\u0161\u0165ov\u00e1n\u00ed, kter\u00e1 se pou\u017e\u00edv\u00e1 ke spu\u0161t\u011bn\u00ed zji\u0161\u0165ov\u00e1n\u00ed MQTT. Pr\u00e1zdn\u00e1 datov\u00e1 \u010d\u00e1st publikovan\u00e1 v tomto t\u00e9matu odebere za\u0159\u00edzen\u00ed a zji\u0161t\u011bn\u00e9 entity."
+                    },
+                    "description": "Pro povolen\u00ed nastaven\u00ed pomoc\u00ed [zji\u0161\u0165ov\u00e1n\u00ed MQTT]({url}#device-discovery-payload) je t\u0159eba datovou \u010d\u00e1st zji\u0161\u0165ov\u00e1n\u00ed publikovat k t\u00e9matu zji\u0161\u0165ov\u00e1n\u00ed. Zkop\u00edrujte informace z n\u00ed\u017ee uveden\u00fdch pol\u00ed. Home Assistant zjist\u00ed, zda bylo m\u00edsto toho vyzkou\u0161eno nastaven\u00ed za\u0159\u00edzen\u00ed MQTT prost\u0159ednictv\u00edm zji\u0161\u0165ov\u00e1n\u00ed MQTT, a nab\u00eddne postup opravy k vy\u010di\u0161t\u011bn\u00ed nadbyte\u010dn\u00e9ho d\u00edl\u010d\u00edho z\u00e1znamu. Identifik\u00e1tory m\u016f\u017eete tak\u00e9 zm\u011bnit v p\u0159\u00edpad\u011b, \u017ee nechcete vno\u0159enou polo\u017eku odebrat.",
+                    "title": "Exportovat nastaven\u00ed za\u0159\u00edzen\u00ed MQTT"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "Zkop\u00edrujte n\u00ed\u017ee uveden\u00e9 nastaven\u00ed YAML:"
+                    },
+                    "data_description": {
+                        "yaml": "Um\u00edst\u011bte nastaven\u00ed YAML do souboru [configuration.yaml]({url}#yaml-configuration-listed-per-item)."
+                    },
+                    "description": "N\u00ed\u017ee uveden\u00e9 nastaven\u00ed m\u016f\u017eete zkop\u00edrovat a um\u00edstit do souboru configuration.yaml. Home Assistant zjist\u00ed, zda bylo nastaven\u00ed za\u0159\u00edzen\u00ed MQTT m\u00edsto toho vyzkou\u0161eno prost\u0159ednictv\u00edm YAML, a nab\u00eddne postup opravy k vy\u010di\u0161t\u011bn\u00ed nadbyte\u010dn\u00e9ho d\u00edl\u010d\u00edho z\u00e1znamu. Identifik\u00e1tory m\u016f\u017eete tak\u00e9 zm\u011bnit v p\u0159\u00edpad\u011b, \u017ee nechcete vno\u0159enou polo\u017eku odebrat.",
+                    "title": "Exportovat nastaven\u00ed za\u0159\u00edzen\u00ed MQTT"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "Dostupn\u00e9 t\u00f3ny",
+                        "blue_template": "Modr\u00e1 \u0161ablona",
+                        "brightness_template": "\u0160ablona jasu",
+                        "code": "K\u00f3d alarmu",
+                        "code_arm_required": "Je vy\u017eadov\u00e1n k\u00f3d pro zabezpe\u010den\u00ed",
+                        "code_disarm_required": "Je vy\u017eadov\u00e1n k\u00f3d pro odbezpe\u010den\u00ed",
+                        "code_format": "Form\u00e1t k\u00f3du",
+                        "code_trigger_required": "Je vy\u017eadov\u00e1n spou\u0161t\u011b\u010d k\u00f3du",
+                        "color_temp_template": "\u0160ablona teploty barev",
+                        "command_off_template": "\u0160ablona p\u0159\u00edkazu \"vypnuto\"",
+                        "command_on_template": "\u0160ablona p\u0159\u00edkazu \"zapnuto\"",
+                        "command_template": "\u0160ablona p\u0159\u00edkazu",
+                        "command_topic": "T\u00e9ma p\u0159\u00edkazu",
+                        "content_type": "Typ obsahu",
+                        "force_update": "Vynutit aktualizaci",
+                        "green_template": "Zelen\u00e1 \u0161ablona",
+                        "image_encoding": "K\u00f3dov\u00e1n\u00ed obrazu",
+                        "image_topic": "T\u00e9ma obr\u00e1zku",
+                        "last_reset_value_template": "\u0160ablona posledn\u00ed resetovan\u00e9 hodnoty",
+                        "max": "Maximum",
+                        "min": "Minimum",
+                        "mode": "Re\u017eim",
+                        "mode_command_template": "\u0160ablona p\u0159\u00edkazu provozn\u00edho re\u017eimu",
+                        "mode_command_topic": "T\u00e9ma p\u0159\u00edkazu provozn\u00edho re\u017eimu",
+                        "mode_state_template": "\u0160ablona hodnoty provozn\u00edho re\u017eimu",
+                        "mode_state_topic": "T\u00e9ma stavu provozn\u00edho re\u017eimu",
+                        "modes": "Podporovan\u00e9 provozn\u00ed re\u017eimy",
+                        "on_command_type": "Typ p\u0159\u00edkazu ZAP",
+                        "optimistic": "Optimistick\u00fd",
+                        "options": "Nastavit volby",
+                        "payload_off": "Datov\u00e1 \u010d\u00e1st \"off\"",
+                        "payload_on": "Datov\u00e1 \u010d\u00e1st \"on\"",
+                        "payload_press": "Datov\u00e1 \u010d\u00e1st \"press\"",
+                        "payload_reset": "Datov\u00e1 \u010d\u00e1st \"reset\"",
+                        "position_closed": "Poloha \"closed\"",
+                        "position_open": "Pozice \"open\"",
+                        "qos": "QoS",
+                        "red_template": "\u010cerven\u00e1 \u0161ablona",
+                        "retain": "Zachovat",
+                        "state_off": "Stav \"off\"",
+                        "state_on": "Stav \"on\"",
+                        "state_template": "\u0160ablona stavu",
+                        "state_topic": "T\u00e9ma stavu",
+                        "state_value_template": "\u0160ablona hodnoty stavu",
+                        "step": "Krok",
+                        "support_duration": "Podpora trv\u00e1n\u00ed",
+                        "support_volume_set": "Nastavit podporu hlasitosti",
+                        "supported_color_modes": "Podporovan\u00e9 barevn\u00e9 re\u017eimy",
+                        "timezone": "\u010casov\u00e9 p\u00e1smo",
+                        "url_template": "URL adresa \u0161ablony",
+                        "url_topic": "URL adresa t\u00e9ma",
+                        "value_template": "\u0160ablona hodnoty"
+                    },
+                    "data_description": {
+                        "available_tones": "Sir\u00e9na podporuje t\u00f3ny. Prom\u011bnn\u00e1 \"tone\" bude dostup\u00e1 pro pou\u017eit\u00ed v nastaven\u00ed \"\u0160ablona p\u0159\u00edkazu\". [Dal\u0161\u00ed informace.]({url}#available_tones)",
+                        "blue_template": "[\u0160ablona]({value_templating_url}) pro extrakci modr\u00e9 barvy z hodnoty datov\u00e9 \u010d\u00e1sti stavu. O\u010dek\u00e1van\u00fdm v\u00fdsledkem \u0161ablony je cel\u00e9 \u010d\u00edslo v rozsahu 0-255.",
+                        "brightness_template": "[\u0160ablona]({value_templating_url}) pro extrakci jasu z hodnoty datov\u00e9 \u010d\u00e1sti stavu. O\u010dek\u00e1van\u00fdm v\u00fdsledkem \u0161ablony je cel\u00e9 \u010d\u00edslo v rozsahu 0-255.",
+                        "code": "Ur\u010duje k\u00f3d pro povolen\u00ed nebo zak\u00e1z\u00e1n\u00ed alarmu v u\u017eivatelsk\u00e9m rozhran\u00ed. V p\u0159\u00edpad\u011b selh\u00e1n\u00ed ov\u011b\u0159en\u00ed k\u00f3du se t\u00edm zablokuje odes\u00edl\u00e1n\u00ed p\u0159\u00edkaz\u016f zpr\u00e1v MQTT do vzd\u00e1len\u00e9ho za\u0159\u00edzen\u00ed. [Dal\u0161\u00ed informace.]({url}#code)",
+                        "code_arm_required": "Pokud je nastaven, je k\u00f3d vy\u017eadov\u00e1n pro aktivaci alarmu. Pokud nen\u00ed nastaven, k\u00f3d nen\u00ed ov\u011b\u0159en.",
+                        "code_disarm_required": "Pokud je nastaven, je k\u00f3d vy\u017eadov\u00e1n pro deaktivaci alarmu. Pokud nen\u00ed nastaven, k\u00f3d nen\u00ed ov\u011b\u0159en.",
+                        "code_format": "Regul\u00e1rn\u00ed v\u00fdraz pro ov\u011b\u0159en\u00ed zadan\u00e9ho k\u00f3du, pokud je nastaven b\u011bhem akce otev\u00edr\u00e1n\u00ed, uzam\u010den\u00ed nebo odemyk\u00e1n\u00ed z\u00e1mku MQTT. [Dal\u0161\u00ed informace.]({url} #code_format)",
+                        "code_trigger_required": "Pokud je nastaven, je k\u00f3d vy\u017eadov\u00e1n pro ru\u010dn\u00ed spu\u0161t\u011bn\u00ed alarmu. Pokud nen\u00ed nastaven, k\u00f3d nen\u00ed ov\u011b\u0159en.",
+                        "color_temp_template": "[\u0160ablona]{value_templating_url}) pro extrakci teploty barev v Kelvinech z hodnoty datov\u00e9 \u010d\u00e1sti stavu. O\u010dek\u00e1van\u00fdm v\u00fdsledkem \u0161ablony je cel\u00e9 \u010d\u00edslo.",
+                        "command_off_template": "[\u0160ablona]({command_templating_url}) pro zm\u011bny stavu \"vypnuto\". Dostupn\u00e9 prom\u011bnn\u00e9 jsou: \"state\" a \"transition\".",
+                        "command_on_template": "[\u0160ablona]({command_templating_url}) pro zm\u011bny stavu \"zapnuto\". Dostupn\u00e9 prom\u011bnn\u00e9: \"state\", \"brightness\", \"color_temp\", \"red\", \"green\", \"blue\", \"hue\", \"sat\", \"flash\", \"transition\" a \"effect\". Hodnoty \"red\", \"green\", \"blue\" a \"brightness\" jsou zad\u00e1ny jako cel\u00e1 \u010d\u00edsla v rozsahu 0-255. Hodnota \"hue\" je zad\u00e1na jako desetinn\u00e9 \u010d\u00edslo v rozsahu 0-360. Hodnota \"sat\" je zad\u00e1na jako desetinn\u00e9 \u010d\u00edslo v rozsahu 0-100. Hodnota \"color_temp\" je zad\u00e1na jako cel\u00e9 \u010d\u00edslo p\u0159edstavuj\u00edc\u00ed jednotky Kelvina.",
+                        "command_template": "[\u0160ablona]({command_templating_url}) pro vykreslen\u00ed u\u017eite\u010dn\u00e9ho obsahu, kter\u00fd m\u00e1 b\u00fdt publikov\u00e1n v t\u00e9matu p\u0159\u00edkazu. [Dal\u0161\u00ed informace.]({url}#command_template)",
+                        "command_topic": "Publika\u010dn\u00ed t\u00e9ma, kter\u00e9 bude pou\u017eito k ovl\u00e1d\u00e1n\u00ed entity {platform}. [Dal\u0161\u00ed informace.]({url}#command_topic)",
+                        "content_type": "Typ obsahu nebo obrazov\u00e1 data p\u0159ijat\u00e1 v t\u00e9matu obr\u00e1zku.",
+                        "force_update": "Odes\u00edl\u00e1 aktualiza\u010dn\u00ed ud\u00e1losti, i kdy\u017e se hodnota nezm\u011bnila. U\u017eite\u010dn\u00e9, pokud chcete m\u00edt v historii smyslupln\u00e9 grafy hodnot. [Dal\u0161\u00ed informace.]({url}#force_update)",
+                        "green_template": "[\u0160ablona]({value_templating_url}) pro extrakci zelen\u00e9 barvy z hodnoty datov\u00e9 \u010d\u00e1sti stavu. O\u010dek\u00e1van\u00fdm v\u00fdsledkem \u0161ablony je cel\u00e9 \u010d\u00edslo v rozsahu 0-255.",
+                        "image_encoding": "Vyberte k\u00f3dov\u00e1n\u00ed p\u0159ijat\u00fdch obrazov\u00fdch dat",
+                        "image_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru zpr\u00e1v obsahuj\u00edc\u00edch obrazov\u00e1 data. [Dal\u0161\u00ed informace.]({url}#image_topic)",
+                        "last_reset_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrahov\u00e1n\u00ed posledn\u00edho resetu. Kdy\u017e je nastavena \u0160ablona posledn\u00edho resetov\u00e1n\u00ed, mus\u00ed b\u00fdt mo\u017enost T\u0159\u00edda stavu nastavena na Celkem. [Dal\u0161\u00ed informace.]({url}#last_reset_value_template)",
+                        "max": "Maxim\u00e1ln\u00ed hodnota. [Dal\u0161\u00ed informace.]({url}#max)",
+                        "min": "Minim\u00e1ln\u00ed hodnota. [Dal\u0161\u00ed informace.]({url}#min)",
+                        "mode": "Ur\u010dete, jak se m\u00e1 \u010d\u00edslo zobrazovat v u\u017eivatelsk\u00e9m rozhran\u00ed. [Dal\u0161\u00ed informace.]({url}#mode)",
+                        "mode_command_template": "[\u0160ablona]({command_templating_url}) pro definov\u00e1n\u00ed opera\u010dn\u00edho re\u017eimu, kter\u00fd se m\u00e1 odeslat do t\u00e9matu p\u0159\u00edkazu opera\u010dn\u00edho re\u017eimu. [Dal\u0161\u00ed informace.]({url}#mode_command_template)",
+                        "mode_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu re\u017eimu provozu klimatizace. [Dal\u0161\u00ed informace.]({url}#mode_command_topic)",
+                        "mode_state_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci stavu provozn\u00edho re\u017eimu. [Dal\u0161\u00ed informace.]( {url}#mode_state_template)",
+                        "mode_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru zpr\u00e1v o stavu provozn\u00edho re\u017eimu. Dal\u0161\u00ed informace.]({url}#mode_state_topic)",
+                        "modes": "Seznam podporovan\u00fdch provozn\u00edch re\u017eim\u016f. [Dal\u0161\u00ed informace.]({url}#modes)",
+                        "on_command_type": "Definuje, kdy se ode\u0161le p\u0159\u00edkaz \"payload on\". Pou\u017eit\u00edm p\u0159\u00edkazu \"last\" (v\u00fdchoz\u00ed hodnota) se nejprve ode\u0161lou t\u00e9mata styl\u016f (jas, barva atd.) a pot\u00e9 p\u0159\u00edkaz \"payload on\" do p\u0159\u00edkazu \"command_topic\". Pou\u017eit\u00edm p\u0159\u00edkazu \"first\" se ode\u0161le p\u0159\u00edkaz \"payload on\" a pot\u00e9 t\u00e9mata styl\u016f. Pou\u017eit\u00edm p\u0159\u00edkazu \"brightness\" se ode\u0161lou jen p\u0159\u00edkazy pro jas nam\u00edsto p\u0159\u00edkazu \"payload on\" pro zapnut\u00ed sv\u011btla.",
+                        "optimistic": "P\u0159\u00edznak, kter\u00fd ur\u010duje, zda entita {platform} funguje v optimistick\u00e9m re\u017eimu. [Dal\u0161\u00ed informace.]({url}#optimistic)",
+                        "options": "Seznam voleb, kter\u00e9 lze vybrat.",
+                        "payload_off": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"off\".",
+                        "payload_on": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"on\".",
+                        "payload_press": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 se m\u00e1 odeslat p\u0159i stisknut\u00ed tla\u010d\u00edtka.",
+                        "payload_reset": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e1 resetuje entitu do nezn\u00e1m\u00e9ho stavu.",
+                        "position_closed": "\u010c\u00edslo, kter\u00e9 p\u0159edstavuje zav\u0159enou polohu. Poloha ventilu se p\u0159i proveden\u00ed akce \u0161k\u00e1luje v rozsahu (poloha \"zav\u0159eno\"\u2026poloha \"otev\u0159eno\") a p\u0159i p\u0159ijet\u00ed hodnoty se \u0161k\u00e1luje zp\u011bt.",
+                        "position_open": "\u010c\u00edslo, kter\u00e9 p\u0159edstavuje otev\u0159enou polohu. Poloha ventilu se p\u0159i proveden\u00ed akce \u0161k\u00e1luje v rozsahu (poloha \"zav\u0159eno\"\u2026poloha \"otev\u0159eno\") a p\u0159i p\u0159ijet\u00ed hodnoty se \u0161k\u00e1luje zp\u011bt.",
+                        "qos": "Hodnota QoS, kterou by m\u011bla entita {platform} pou\u017e\u00edvat.",
+                        "red_template": "[\u0160ablona]({value_templating_url}) pro extrakci \u010derven\u00e9 barvy z hodnoty datov\u00e9 \u010d\u00e1sti stavu. O\u010dek\u00e1van\u00fdm v\u00fdsledkem \u0161ablony je cel\u00e9 \u010d\u00edslo v rozsahu 0-255.",
+                        "retain": "Vyberte, zda maj\u00ed b\u00fdt hodnoty publikovan\u00e9 entitou {platform} uchov\u00e1ny u brokera MQTT.",
+                        "state_off": "P\u0159\u00edchoz\u00ed datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"off\". Pou\u017eijte jen tehdy, kdy\u017e se hodnota p\u0159edstavuj\u00edc\u00ed stav \"off\" v t\u00e9matu stavu li\u0161\u00ed od hodnoty, kter\u00e1 by m\u011bla b\u00fdt odesl\u00e1na do t\u00e9matu p\u0159\u00edkazu pro vypnut\u00ed za\u0159\u00edzen\u00ed.",
+                        "state_on": "P\u0159\u00edchoz\u00ed datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"on\". Pou\u017eijte jen tehdy, kdy\u017e se hodnota p\u0159edstavuj\u00edc\u00ed stav \"on\" v t\u00e9matu stavu li\u0161\u00ed od hodnoty, kter\u00e1 by m\u011bla b\u00fdt odesl\u00e1na do t\u00e9matu p\u0159\u00edkazu pro vypnut\u00ed za\u0159\u00edzen\u00ed.",
+                        "state_template": "[\u0160ablona]{value_templating_url}) pro extrakci stavu z hodnoty datov\u00e9 \u010d\u00e1sti stavu.",
+                        "state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru hodnot stavu {platform}. [Dal\u0161\u00ed informace.]({url}#state_topic)",
+                        "step": "Hodnota kroku. Nejmen\u0161\u00ed hodnota 0,001.",
+                        "support_duration": "Sir\u00e9na podporuje nastaven\u00ed doby trv\u00e1n\u00ed v sekund\u00e1ch. Prom\u011bnn\u00e1 \"duration\" bude dostupn\u00e1 pro pou\u017eit\u00ed v nastaven\u00ed \"\u0160ablona p\u0159\u00edkazu\". [Dal\u0161\u00ed informace.]({url}#support_duration)",
+                        "support_volume_set": "Sir\u00e9na podporuje nastaven\u00ed hlasitosti. Prom\u011bnn\u00e1 \"volume_level\" bude dostupn\u00e1 pro pou\u017eit\u00ed v nastaven\u00ed \"\u0160ablona p\u0159\u00edkazu\". [Dal\u0161\u00ed informace.]({url}#support_volume_set)",
+                        "supported_color_modes": "Seznam barevn\u00fdch re\u017eim\u016f podporovan\u00fdch seznamem. Mo\u017en\u00e9 barevn\u00e9 re\u017eimy jsou Zapnuto/Vypnuto, Jas, Teplota barev, HS, XY, RGB, RGBW, RGBWW, B\u00cdL\u00c1. Pokud se pou\u017eije zapnuto/vypnuto nebo jas, mus\u00ed to b\u00fdt jedin\u00e1 hodnota v seznamu. [Dal\u0161\u00ed informace.]({url}#supported_color_modes)",
+                        "timezone": "Nastaveno na platn\u00fd [identifik\u00e1tor \u010dasov\u00e9ho p\u00e1sma IANA]({tz_abbr_url}). Tuto volbu nenastavujte, pokud struktura data/\u010dasu poskytuje informace o \u010dasov\u00e9m p\u00e1smu prost\u0159ednictv\u00edm aktualizace stavu.",
+                        "url_template": "[\u0160ablona]({value_templating_url}) pro extrahov\u00e1n\u00ed URL z p\u0159ijat\u00e9 hodnoty datov\u00e9ho obsahu t\u00e9matu URL. [Dal\u0161\u00ed informace.]({url}#url_template)",
+                        "url_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru zpr\u00e1v obsahuj\u00edc\u00edch URL adresu obr\u00e1zku. [Dal\u0161\u00ed informace.]({url}#url_topic)",
+                        "value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty entity {platform}. [Dal\u0161\u00ed informace.]({url}#value_template)"
+                    },
+                    "description": "Nastavte konkr\u00e9tn\u00ed podrobnosti MQTT pro {platform} entitu \"{entity}\":",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Datov\u00e1 \u010d\u00e1st \"Zabezpe\u010dit a pry\u010d\"",
+                                "payload_arm_custom_bypass": "Datov\u00e1 \u010d\u00e1st \"Zabezpe\u010dit vlastn\u00edm obejit\u00edm\"",
+                                "payload_arm_disarm": "Datov\u00e1 \u010d\u00e1st \"Odbezpe\u010dit\"",
+                                "payload_arm_home": "Datov\u00e1 \u010d\u00e1st \"Zabezpe\u010dit a doma\"",
+                                "payload_arm_night": "Datov\u00e1 \u010d\u00e1st \"Zabezpe\u010dit na noc\"",
+                                "payload_arm_vacation": "Datov\u00e1 \u010d\u00e1st \"Zabezpe\u010dit a na dovolen\u00e9\"",
+                                "payload_trigger": "Datov\u00e1 \u010d\u00e1st \"Spustit alarm\""
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"Zabezpe\u010dit a pry\u010d\".",
+                                "payload_arm_custom_bypass": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"Zabezpe\u010dit vlastn\u00edm obejit\u00edm\".",
+                                "payload_arm_disarm": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"Odbezpe\u010dit\".",
+                                "payload_arm_home": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"Zabezpe\u010dit a doma\".",
+                                "payload_arm_night": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"Zabezpe\u010dit na noc\".",
+                                "payload_arm_vacation": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"Zabezpe\u010dit a na dovolen\u00e9\".",
+                                "payload_trigger": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"Spustit alarm\"."
+                            },
+                            "name": "Nastaven\u00ed datov\u00e9 \u010d\u00e1sti ovl\u00e1dac\u00edho panelu alarmu"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "\u0160ablona akce",
+                                "action_topic": "T\u00e9ma akce"
+                            },
+                            "data_description": {
+                                "action_template": "[\u0160ablona]({value_templating_url}) pro vykreslen\u00ed hodnoty p\u0159ijat\u00e9 v t\u00e9matu akce.",
+                                "action_topic": "T\u00e9ma MQTT pro odb\u011br zm\u011bn aktu\u00e1ln\u00ed akce. Pokud je toto nastaveno, graf klimatizace pou\u017eije p\u0159ijatou hodnotu jako zdroj dat. Hodnota \"None\" resetuje aktu\u00e1ln\u00ed stav akce. Pr\u00e1zdn\u00e1 hodnota je ignorov\u00e1na. Platn\u00e9 hodnoty akc\u00ed jsou: \"off\", \"heating\", \"cooling\", \"drying\", \"idle\" a \"fan\". [Dal\u0161\u00ed informace.]({url}#action_topic)"
+                            },
+                            "name": "Aktu\u00e1ln\u00ed nastaven\u00ed akc\u00ed"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "\u0160ablona p\u0159\u00edkazu re\u017eimu ventil\u00e1toru",
+                                "fan_mode_command_topic": "T\u00e9ma p\u0159\u00edkazu re\u017eimu ventil\u00e1toru",
+                                "fan_mode_state_template": "\u0160ablona stavu re\u017eimu ventil\u00e1toru",
+                                "fan_mode_state_topic": "T\u00e9ma stavu re\u017eimu ventil\u00e1toru",
+                                "fan_modes": "Re\u017eimy ventil\u00e1toru"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "[\u0160ablona]({command_templating_url} pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu re\u017eimu ventil\u00e1toru.",
+                                "fan_mode_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu re\u017eimu ventil\u00e1toru klimatizace. [Dal\u0161\u00ed informace.]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty re\u017eimu ventil\u00e1toru klimatizace.",
+                                "fan_mode_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru informac\u00ed o re\u017eimu ventil\u00e1toru klimatizace. [Dal\u0161\u00ed informace.]({url}#fan_mode_state_topic)",
+                                "fan_modes": "Seznam re\u017eim\u016f ventil\u00e1toru, ve kter\u00fdch je tato klimatizace schopna b\u011b\u017eet. B\u011b\u017en\u00e9 re\u017eimy ventil\u00e1toru, kter\u00e9 nab\u00edzej\u00ed p\u0159evody, jsou \"off\", \"on\", \"auto\", \"low\", \"medium\", \"high\", \"middle\", \"focus\" a \"diffuse\"."
+                            },
+                            "name": "Nastaven\u00ed re\u017eimu ventil\u00e1toru"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "Datov\u00e1 \u010d\u00e1st \"off\"",
+                                "payload_on": "Datov\u00e1 \u010d\u00e1st \"on\"",
+                                "power_command_template": "\u0160ablona p\u0159\u00edkazu nap\u00e1jen\u00ed",
+                                "power_command_topic": "T\u00e9ma p\u0159\u00edkazu nap\u00e1jen\u00ed"
+                            },
+                            "data_description": {
+                                "payload_off": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"off\".",
+                                "payload_on": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"on\".",
+                                "power_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed datov\u00e9 \u010d\u00e1sti, kter\u00e1 m\u00e1 b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu power. Parametr \"value\" je datov\u00e1 \u010d\u00e1st nastaven\u00e1 pro datovou \u010d\u00e1st \"on\" nebo datovou \u010d\u00e1st \"off\".",
+                                "power_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f ke zm\u011bn\u011b stavu nap\u00e1jen\u00ed klimatizace. Odes\u00edl\u00e1 datovou \u010d\u00e1st nastavenou s datovou \u010d\u00e1st\u00ed \"on\" nebo \"off\". [Dal\u0161\u00ed informace.]({url}#power_command_topic)"
+                            },
+                            "name": "Nastaven\u00ed nap\u00e1jen\u00ed"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "\u0160ablona p\u0159\u00edkazu p\u0159edvolby",
+                                "preset_mode_command_topic": "T\u00e9ma p\u0159\u00edkazu p\u0159edvolby",
+                                "preset_mode_state_topic": "T\u00e9ma stavu p\u0159edvolby",
+                                "preset_mode_value_template": "\u0160ablona hodnoty p\u0159edvolby",
+                                "preset_modes": "Re\u017eimy p\u0159edvoleb"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu p\u0159edvolby.",
+                                "preset_mode_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu p\u0159ednastaven\u00e9ho re\u017eimu klimatizace. [Dal\u0161\u00ed informace.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru p\u0159edvolby ventil\u00e1toru. [Dal\u0161\u00ed informace.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty p\u0159edvolby ventil\u00e1toru.",
+                                "preset_modes": "Seznam re\u017eim\u016f p\u0159edvoleb, ve kter\u00fdch je tato klimatizace schopna b\u011b\u017eet. B\u011b\u017en\u00e9 re\u017eimy p\u0159edvoleb, kter\u00e9 nab\u00edzej\u00ed p\u0159evody, jsou \"none\", \"away\", \"eco\", \"boost\", \"comfort\", \"home\", \"sleep\" a \"activity\"."
+                            },
+                            "name": "Nastaven\u00ed p\u0159edvoleb"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "\u0160ablona p\u0159\u00edkazu re\u017eimu horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed",
+                                "swing_horizontal_mode_command_topic": "T\u00e9ma p\u0159\u00edkazu re\u017eimu horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed",
+                                "swing_horizontal_mode_state_template": "\u0160ablona stavu re\u017eimu horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed",
+                                "swing_horizontal_mode_state_topic": "T\u00e9ma stavu re\u017eimu horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed",
+                                "swing_horizontal_modes": "Re\u017eimy horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu horizont\u00e1ln\u00edho re\u017eimu k\u00fdv\u00e1n\u00ed.",
+                                "swing_horizontal_mode_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu re\u017eimu horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed klimatizace. [Dal\u0161\u00ed informace.]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty horizont\u00e1ln\u00edho re\u017eimu k\u00fdv\u00e1n\u00ed klimatizace.",
+                                "swing_horizontal_mode_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru informac\u00ed o re\u017eimu horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed klimatizace. [Dal\u0161\u00ed informace.]({url}#swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "Seznam re\u017eim\u016f horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed, ve kter\u00fdch je tato klimatizace schopna fungovat. B\u011b\u017en\u00e9 re\u017eimy horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed, kter\u00e9 nab\u00edzej\u00ed p\u0159evody, jsou \"off\" a \"on\"."
+                            },
+                            "name": "Nastaven\u00ed re\u017eimu horizont\u00e1ln\u00edho k\u00fdv\u00e1n\u00ed"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "\u0160ablona p\u0159\u00edkazu re\u017eimu k\u00fdv\u00e1n\u00ed",
+                                "swing_mode_command_topic": "T\u00e9ma p\u0159\u00edkazu re\u017eimu k\u00fdv\u00e1n\u00ed",
+                                "swing_mode_state_template": "\u0160ablona stavu re\u017eimu k\u00fdv\u00e1n\u00ed",
+                                "swing_mode_state_topic": "T\u00e9ma stavu re\u017eimu k\u00fdv\u00e1n\u00ed",
+                                "swing_modes": "Re\u017eimy k\u00fdv\u00e1n\u00ed"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu re\u017eimu k\u00fdv\u00e1n\u00ed.",
+                                "swing_mode_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu re\u017eimu k\u00fdv\u00e1n\u00ed klimy. [Dal\u0161\u00ed informace.]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty re\u017eimu k\u00fdv\u00e1n\u00ed klimy.",
+                                "swing_mode_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru informac\u00ed o re\u017eimu k\u00fdv\u00e1n\u00ed klimy. [Dal\u0161\u00ed informace.]({url}#swing_mode_state_topic)",
+                                "swing_modes": "Seznam re\u017eim\u016f k\u00fdv\u00e1n\u00ed, ve kter\u00fdch je tato klimatizace schopna fungovat. B\u011b\u017en\u00e9 re\u017eimy k\u00fdv\u00e1n\u00ed, kter\u00e9 nab\u00edzej\u00ed p\u0159evody, jsou \"off\", \"on\", \"vertical\", \"horizontal\" a \"both\"."
+                            },
+                            "name": "Nastaven\u00ed re\u017eimu k\u00fdv\u00e1n\u00ed"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Datov\u00e1 \u010d\u00e1st \"close\"",
+                                "payload_open": "Datov\u00e1 \u010d\u00e1st \"open\"",
+                                "payload_stop": "Datov\u00e1 \u010d\u00e1st \"stop\"",
+                                "payload_stop_tilt": "Datov\u00e1 \u010d\u00e1st \"stop tilt\"",
+                                "state_closed": "Stav \"closed\"",
+                                "state_closing": "Stav \"closing\"",
+                                "state_open": "Stav \"open\"",
+                                "state_opening": "Stav \"opening\"",
+                                "state_stopped": "Stav \"stopped\""
+                            },
+                            "data_description": {
+                                "payload_close": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"close\".",
+                                "payload_open": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"open\".",
+                                "payload_stop": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"stop\". Pro deaktivaci funkce \"stop\" ponechte pr\u00e1zdn\u00e9.",
+                                "payload_stop_tilt": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"stop tilt\".",
+                                "state_closed": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"closed\".",
+                                "state_closing": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"closing\".",
+                                "state_open": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"open\".",
+                                "state_opening": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"opening\".",
+                                "state_stopped": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e9 p\u0159edstavuje stav \"stopped\" (pro kryty, kter\u00e9 nehl\u00e1s\u00ed stav \"open\"/\"closed\")."
+                            },
+                            "name": "Nastaven\u00ed datov\u00e9 \u010d\u00e1sti"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "Hodnota pozice \"closed\"",
+                                "position_open": "Hodnota pozice \"open\"",
+                                "position_template": "\u0160ablona hodnoty pozice",
+                                "position_topic": "T\u00e9ma stavu pozice",
+                                "set_position_template": "Nastavit \u0161ablonu pozice",
+                                "set_position_topic": "Nastavit t\u00e9ma pozice"
+                            },
+                            "data_description": {
+                                "position_closed": "\u010c\u00edslo, kter\u00e9 p\u0159edstavuje pozici \"closed\".",
+                                "position_open": "\u010c\u00edslo, kter\u00e9 p\u0159edstavuje pozici \"open\".",
+                                "position_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci dat pro t\u00e9ma pozice. V \u0161ablon\u011b jsou dostupn\u00e9 tak\u00e9 n\u00e1sleduj\u00edc\u00ed prom\u011bnn\u00e9: \"entity_id\", \"position_open\", \"position_closed\", \"tilt_min\" a \"tilt_max\". [Dal\u0161\u00ed informace.]({url}#position_template)",
+                                "position_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru zpr\u00e1v o stavu pozice krytu. [Dal\u0161\u00ed informace.]({url}#position_topic)",
+                                "set_position_template": "[\u0160ablona]({command_templating_url}) pro definov\u00e1n\u00ed pozice, kter\u00e1 se m\u00e1 odeslat do t\u00e9matu nastaven\u00ed pozice. V \u0161ablon\u011b jsou dostupn\u00e9 n\u00e1sleduj\u00edc\u00ed prom\u011bnn\u00e9: \"value\" (\u0161k\u00e1lovan\u00e1 c\u00edlov\u00e1 pozice), \"entity_id\", \"position\" (procento c\u00edlov\u00e9 pozice), \"position_open\", \"position_closed\", \"tilt_min\" a \"tilt_max\". [Dal\u0161\u00ed informace.]({url}#set_position_template)",
+                                "set_position_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro ur\u010dov\u00e1n\u00ed pozice. Pokud chcete pou\u017e\u00edt t\u00e9ma pro ur\u010dov\u00e1n\u00ed pozice, mus\u00edte pou\u017e\u00edt i t\u00e9ma nastaven\u00ed pozice. Pokud t\u00e9ma pro ur\u010dov\u00e1n\u00ed pozice vy\u017eaduje jin\u00e9 hodnoty ne\u017e v rozsahu \"position_closed\" - \"position_open\", pou\u017eijte \u0161ablonu. Pokud \u0161ablona nen\u00ed definov\u00e1na a pozice \"closed\" != 100 a pozice \"open\" != 0, pak se spr\u00e1vn\u00e1 hodnota pozice vypo\u010d\u00edt\u00e1 z procentu\u00e1ln\u00ed pozice. [Dal\u0161\u00ed informace.]({url}#set_position_topic)"
+                            },
+                            "name": "Nastaven\u00ed pozice"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "Hodnota n\u00e1klonu \"closed\"",
+                                "tilt_command_template": "\u0160ablona p\u0159\u00edkazu n\u00e1klonu",
+                                "tilt_command_topic": "T\u00e9ma p\u0159\u00edkazu n\u00e1klonu",
+                                "tilt_max": "N\u00e1klon max.",
+                                "tilt_min": "N\u00e1klon min.",
+                                "tilt_opened_value": "Hodnota n\u00e1klonu \"opened\"",
+                                "tilt_optimistic": "Optimistick\u00fd n\u00e1klon",
+                                "tilt_status_template": "\u0160ablona hodnoty n\u00e1klonu",
+                                "tilt_status_topic": "T\u00e9ma stavu n\u00e1klonu"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "Hodnota, kter\u00e1 bude odesl\u00e1na do \"set tilt topic\", kdy\u017e je n\u00e1klon krytu zav\u0159en\u00fd.",
+                                "tilt_command_template": "[\u0160ablona]({command_templating_url}) pro definov\u00e1n\u00ed pozice, kter\u00e1 se m\u00e1 odeslat do t\u00e9matu nastaven\u00ed n\u00e1klonu. V \u0161ablon\u011b jsou dostupn\u00e9 n\u00e1sleduj\u00edc\u00ed prom\u011bnn\u00e9: \"entity_id\", \"tilt_position\" (c\u00edlov\u00e1 procentu\u00e1ln\u00ed hodnota pozice n\u00e1klonu), \"position_open\", \"position_closed\", \"tilt_min\" a \"tilt_max\". [Dal\u0161\u00ed informace.]({url}#tilt_command_template)",
+                                "tilt_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro ovl\u00e1d\u00e1n\u00ed n\u00e1klonu krytu. [Dal\u0161\u00ed informace.]({url}#tilt_command_topic)",
+                                "tilt_max": "Maxim\u00e1ln\u00ed hodnota n\u00e1klonu.",
+                                "tilt_min": "Minim\u00e1ln\u00ed hodnota n\u00e1klonu.",
+                                "tilt_opened_value": "Hodnota, kter\u00e1 bude odesl\u00e1na do \"set tilt topic\" p\u0159i otev\u0159en\u00ed n\u00e1klonu krytu.",
+                                "tilt_optimistic": "P\u0159\u00edznak, kter\u00fd definuje, zda n\u00e1klon funguje v optimistick\u00e9m re\u017eimu. Pokud nen\u00ed definov\u00e1no t\u00e9ma stavu n\u00e1klonu, pak n\u00e1klon ve v\u00fdchoz\u00edm nastaven\u00ed funguje v optimistick\u00e9m re\u017eimu. [Dal\u0161\u00ed informace.]({url}#tilt_optimistic)",
+                                "tilt_status_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci dat pro t\u00e9ma stavu n\u00e1klonu. V \u0161ablon\u011b jsou dostupn\u00e9 n\u00e1sleduj\u00edc\u00ed prom\u011bnn\u00e9: \"entity_id\", \"position_open\", \"position_closed\", \"tilt_min\" a \"tilt_max\". [Dal\u0161\u00ed informace.]({url}#tilt_status_template)",
+                                "tilt_status_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu n\u00e1klonu. [Dal\u0161\u00ed informace.]({url}#tilt_status_topic)"
+                            },
+                            "name": "Nastaven\u00ed n\u00e1klonu"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "\u0160ablona aktu\u00e1ln\u00ed vlhkosti",
+                                "current_humidity_topic": "T\u00e9ma aktu\u00e1ln\u00ed vlhkosti"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci aktu\u00e1ln\u00ed hodnoty vlhkosti. [Dal\u0161\u00ed informace.]({url}#current_humidity_template)",
+                                "current_humidity_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktu\u00e1ln\u00edch hodnot vlhkosti. [Dal\u0161\u00ed informace.]({url}#current_humidity_topic)"
+                            },
+                            "name": "Nastaven\u00ed aktu\u00e1ln\u00ed vlhkosti"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "\u0160ablona aktu\u00e1ln\u00ed teploty",
+                                "current_temperature_topic": "T\u00e9ma aktu\u00e1ln\u00ed teploty"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci aktu\u00e1ln\u00ed hodnoty teploty. [Dal\u0161\u00ed informace.]({url}#current_temperature_template)",
+                                "current_temperature_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktu\u00e1ln\u00edch hodnot teploty. [Dal\u0161\u00ed informace.]({url}#current_temperature_topic)"
+                            },
+                            "name": "Nastaven\u00ed aktu\u00e1ln\u00ed teploty"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "\u0160ablona p\u0159\u00edkazu sm\u011bru",
+                                "direction_command_topic": "T\u00e9ma p\u0159\u00edkazu sm\u011bru",
+                                "direction_state_topic": "T\u00e9ma stavu sm\u011bru",
+                                "direction_value_template": "\u0160ablona hodnoty sm\u011bru"
+                            },
+                            "data_description": {
+                                "direction_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu \"direction\". Prom\u011bnn\u00e1 \u0161ablony \"value\" bude bu\u010f \"forward\" nebo \"reverse\".",
+                                "direction_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu sm\u011bru ot\u00e1\u010den\u00ed ventil\u00e1toru. Datov\u00e1 \u010d\u00e1st bude bu\u010f \"forward\" nebo \"reverse\". Pro p\u0159izp\u016fsoben\u00ed sm\u011bru ot\u00e1\u010den\u00ed pou\u017eijte \u0161ablonu p\u0159\u00edkazu \"direction\". [Dal\u0161\u00ed informace.]({url}#direction_command_topic)",
+                                "direction_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru informac\u00ed o sm\u011bru ot\u00e1\u010den\u00ed ventil\u00e1toru. Akceptovan\u00e9 stavy jsou \"forward\" nebo \"reverse\". [Dal\u0161\u00ed informace.]({url}#direction_state_topic)",
+                                "direction_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty sm\u011bru ot\u00e1\u010den\u00ed ventil\u00e1toru. \u0160ablona by m\u011bla vracet bu\u010f \"forward\", nebo \"reverse\". Pokud \u0161ablona vr\u00e1t\u00ed pr\u00e1zdn\u00fd \u0159et\u011bzec, sm\u011br bude ignorov\u00e1n."
+                            },
+                            "name": "Nastaven\u00ed sm\u011bru"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "\u0160ablona p\u0159\u00edkazu oscilace",
+                                "oscillation_command_topic": "T\u00e9ma p\u0159\u00edkazu oscilace",
+                                "oscillation_state_topic": "T\u00e9ma stavu oscilace",
+                                "oscillation_value_template": "\u0160ablona hodnoty oscilace",
+                                "payload_oscillation_off": "Datov\u00e1 \u010d\u00e1st \"oscillation off\"",
+                                "payload_oscillation_on": "Datov\u00e1 \u010d\u00e1st \"oscillation on\""
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu \"oscillation\".",
+                                "oscillation_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu stavu oscilace ventil\u00e1toru. [Dal\u0161\u00ed informace.]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru informac\u00ed o stavu oscilace ventil\u00e1toru. [Dal\u0161\u00ed informace.]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty stavu oscilace ventil\u00e1toru.",
+                                "payload_oscillation_off": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav oscilace \"off\".",
+                                "payload_oscillation_on": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav oscilace \"on\"."
+                            },
+                            "name": "Nastaven\u00ed oscilace"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Datov\u00e1 \u010d\u00e1st \"reset preset mode\"",
+                                "preset_mode_command_template": "\u0160ablona p\u0159\u00edkazu p\u0159edvolby",
+                                "preset_mode_command_topic": "T\u00e9ma p\u0159\u00edkazu p\u0159edvolby",
+                                "preset_mode_state_topic": "T\u00e9ma stavu p\u0159edvolby",
+                                "preset_mode_value_template": "\u0160ablona hodnoty p\u0159edvolby",
+                                "preset_modes": "Re\u017eimy p\u0159edvoleb"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Speci\u00e1ln\u00ed datov\u00e1 \u010d\u00e1st, kter\u00e1 po p\u0159ijet\u00ed v t\u00e9matu stavu p\u0159edvolby resetuje atribut stavu p\u0159edvolby ventil\u00e1toru na nezn\u00e1mou hodnotu.",
+                                "preset_mode_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu p\u0159edvolby.",
+                                "preset_mode_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu p\u0159edvolby ventil\u00e1toru. [Dal\u0161\u00ed informace.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru p\u0159edvolby ventil\u00e1toru. [Dal\u0161\u00ed informace.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty p\u0159edvolby ventil\u00e1toru.",
+                                "preset_modes": "Seznam p\u0159edvoleb, ve kter\u00fdch je tento ventil\u00e1tor schopen b\u011b\u017eet. Mezi b\u011b\u017en\u00e9 p\u0159\u00edklady pat\u0159\u00ed auto, smart, whoosh, eco a breeze."
+                            },
+                            "name": "Nastaven\u00ed p\u0159edvoleb"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Datov\u00e1 \u010d\u00e1st \"reset percentage\"",
+                                "percentage_command_template": "\u0160ablona p\u0159\u00edkazu pro procenta",
+                                "percentage_command_topic": "T\u00e9ma p\u0159\u00edkazu pro procenta",
+                                "percentage_state_topic": "Stav p\u0159\u00edkazu pro procenta",
+                                "percentage_value_template": "\u0160ablona hodnoty pro procenta",
+                                "speed_range_max": "Maxim\u00e1ln\u00ed rozsah rychlosti",
+                                "speed_range_min": "Minim\u00e1ln\u00ed rozsah rychlosti"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Speci\u00e1ln\u00ed datov\u00e1 \u010d\u00e1st, kter\u00e1 po p\u0159ijet\u00ed v t\u00e9matu procentu\u00e1ln\u00edho stavu resetuje atribut procentu\u00e1ln\u00edho stavu ot\u00e1\u010dek ventil\u00e1toru na nezn\u00e1mou hodnotu.",
+                                "percentage_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu \"percentage\".",
+                                "percentage_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu stavu ot\u00e1\u010dek ventil\u00e1toru na z\u00e1klad\u011b procentu\u00e1ln\u00edho nastaven\u00ed. Hodnota mus\u00ed b\u00fdt v rozsahu od \"speed range min\" do \"speed range max\". [Dal\u0161\u00ed informace.]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "T\u00e9ma MQTT p\u0159ihl\u00e1\u0161en\u00e9 k odb\u011bru stavu ot\u00e1\u010dek ventil\u00e1toru. Jedn\u00e1 se o hodnotu v rozsahu od \"speed range min\" do \"speed range max\". [Dal\u0161\u00ed informace.]({url}#percentage_state_topic)",
+                                "percentage_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci procentu\u00e1ln\u00ed hodnoty rychlosti.",
+                                "speed_range_max": "Maxim\u00e1ln\u00ed hodnota rozsahu \u010d\u00edseln\u00e9ho v\u00fdstupu (p\u0159edstavuj\u00edc\u00ed 100  %). Procentu\u00e1ln\u00ed krok je 100 / po\u010det rychlost\u00ed v r\u00e1mci \"speed range\".",
+                                "speed_range_min": "Minim\u00e1ln\u00ed hodnota rozsahu \u010d\u00edseln\u00e9ho v\u00fdstupu (\"off\" nen\u00ed zahrnuto, tak\u017ee \"speed_range_min\" - 1 p\u0159edstavuje 0  %). Procentu\u00e1ln\u00ed krok je 100 / po\u010det rychlost\u00ed v r\u00e1mci \"speed range\"."
+                            },
+                            "name": "Nastaven\u00ed rychlosti"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "Odd\u011blen\u00fd jas",
+                                "brightness_command_template": "\u0160ablona p\u0159\u00edkazu jasu",
+                                "brightness_command_topic": "T\u00e9ma p\u0159\u00edkazu jasu",
+                                "brightness_scale": "Stupnice jasu",
+                                "brightness_state_topic": "T\u00e9ma stavu jasu",
+                                "brightness_value_template": "\u0160ablona hodnoty jasu"
+                            },
+                            "data_description": {
+                                "brightness": "P\u0159\u00edznak, kter\u00fd definuje, zda sv\u011btlo podporuje jas, kdy\u017e je podporov\u00e1n barevn\u00fd re\u017eim RGB, RGBW nebo RGBWW.",
+                                "brightness_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu brightness.",
+                                "brightness_command_topic": "Publika\u010dn\u00ed t\u00e9ma, kter\u00e9 bude pou\u017eito k ovl\u00e1d\u00e1n\u00ed jasu. [Dal\u0161\u00ed informace.]({url}#brightness_command_topic)",
+                                "brightness_scale": "Definuje maxim\u00e1ln\u00ed hodnotu jasu (tj. 100 %) maxim\u00e1ln\u00edho jasu.",
+                                "brightness_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru hodnot stavu jasu. [Dal\u0161\u00ed informace.]({url}#brightness_state_topic)",
+                                "brightness_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty jasu."
+                            },
+                            "name": "Nastaven\u00ed jasu"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "T\u00e9ma stavu barevn\u00e9ho re\u017eimu",
+                                "color_mode_value_template": "\u0160ablona hodnoty barevn\u00e9ho re\u017eimu"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed barevn\u00e9ho re\u017eimu. Pokud tato mo\u017enost nen\u00ed nastavena, barevn\u00fd re\u017eim se automaticky nastav\u00ed podle posledn\u00ed p\u0159ijat\u00e9 platn\u00e9 barvy nebo teploty barev.",
+                                "color_mode_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty barevn\u00e9ho re\u017eimu."
+                            },
+                            "name": "Nastaven\u00ed barevn\u00e9ho re\u017eimu"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "\u0160ablona p\u0159\u00edkazu pro teplotu barev",
+                                "color_temp_command_topic": "T\u00e9ma p\u0159\u00edkazu pro teplotu barev",
+                                "color_temp_state_topic": "T\u00e9ma stavu teploty barev",
+                                "color_temp_value_template": "\u0160ablona hodnoty teploty barev"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "[\u0160ablona]({command_templating_url} pro datovou \u010d\u00e1st, kter\u00e1 m\u00e1 b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu pro teplotu barev.",
+                                "color_temp_command_topic": "Publika\u010dn\u00ed t\u00e9ma, kter\u00e9 bude pou\u017eito k ovl\u00e1d\u00e1n\u00ed teploty barev. [Dal\u0161\u00ed informace.]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu teploty barev. [Dal\u0161\u00ed informace.]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty teploty barev."
+                            },
+                            "name": "Nastaven\u00ed teploty barev"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Efekt",
+                                "effect_command_template": "\u0160ablona p\u0159\u00edkazu efektu",
+                                "effect_command_topic": "T\u00e9ma p\u0159\u00edkazu Efekt",
+                                "effect_list": "Seznam efekt\u016f",
+                                "effect_state_topic": "T\u00e9ma stavu efektu",
+                                "effect_template": "\u0160ablona efektu",
+                                "effect_value_template": "\u0160ablona hodnoty efektu"
+                            },
+                            "data_description": {
+                                "effect": "P\u0159\u00edznak, kter\u00fd definuje, zda sv\u011btlo podporuje efekty.",
+                                "effect_command_template": "[\u0160ablona]({command_templating_url}) pro datovou \u010d\u00e1st, kter\u00e1 m\u00e1 b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu efektu.",
+                                "effect_command_topic": "Publika\u010dn\u00ed t\u00e9ma, kter\u00e9 bude pou\u017eito k ovl\u00e1d\u00e1n\u00ed stavu efektu sv\u011btla. [Dal\u0161\u00ed informace.]({url}#effect_command_topic)",
+                                "effect_list": "Seznam efekt\u016f, kter\u00e9 sv\u011btlo podporuje.",
+                                "effect_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu efekt\u016f. [Dal\u0161\u00ed informace.]({url}#effect_state_topic)"
+                            },
+                            "name": "Nastaven\u00ed efektu"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "\u0160ablona p\u0159\u00edkazu HS",
+                                "hs_command_topic": "T\u00e9ma p\u0159\u00edkazu HS",
+                                "hs_state_topic": "T\u00e9ma stavu HS",
+                                "hs_value_template": "\u0160ablona hodnoty HS"
+                            },
+                            "data_description": {
+                                "hs_command_template": "Definuje [\u0161ablonu]({command_templating_url}) pro naps\u00e1n\u00ed zpr\u00e1vy, kter\u00e1 bude odesl\u00e1na na hs_command_topic. Dostupn\u00e9 prom\u011bnn\u00e9: \"hue\" a \"sat\".",
+                                "hs_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu barevn\u00e9ho stavu sv\u011btla ve form\u00e1tu HS (odst\u00edn a sytost). Rozsah odst\u00ednu: 0\u00b0 .. 360\u00b0, rozsah sytosti: 0..100. Pozn\u00e1mka: Jas se odes\u00edl\u00e1 samostatn\u011b v t\u00e9matu o p\u0159\u00edkazu jasu. [Dal\u0161\u00ed informace.]({url}#hs_command_topic)",
+                                "hs_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu barev ve form\u00e1tu HS. O\u010dek\u00e1van\u00fdm datov\u00fdm obsahem jsou hodnoty odst\u00ednu a sytosti odd\u011blen\u00e9 \u010d\u00e1rkami, nap\u0159\u00edklad \"359.5,100.0\". Pozn\u00e1mka: Jas se v t\u00e9matu o stavu jasu p\u0159ij\u00edm\u00e1 samostatn\u011b. [Dal\u0161\u00ed informace.]({url}#hs_state_topic)",
+                                "hs_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty HS."
+                            },
+                            "name": "Nastaven\u00ed barevn\u00e9ho re\u017eimu HS"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "\u0160ablona p\u0159\u00edkazu RGB",
+                                "rgb_command_topic": "T\u00e9ma p\u0159\u00edkazu RGB",
+                                "rgb_state_topic": "T\u00e9ma stavu RGB",
+                                "rgb_value_template": "\u0160ablona hodnoty RGB"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "Definuje [\u0161ablonu]({command_templating_url}) pro naps\u00e1n\u00ed zpr\u00e1vy, kter\u00e1 bude odesl\u00e1na na t\u00e9ma p\u0159\u00edkazu RGB. Dostupn\u00e9 prom\u011bnn\u00e9: \"red\", \"green\" a \"blue\".",
+                                "rgb_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu stavu RGB sv\u011btla. [Dal\u0161\u00ed informace.]({url}#rgb_command_topic)",
+                                "rgb_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu RGB. O\u010dek\u00e1vanou datovou \u010d\u00e1st\u00ed jsou hodnoty RGB odd\u011blen\u00e9 \u010d\u00e1rkami, nap\u0159\u00edklad \"255,0,127\". [Dal\u0161\u00ed informace.]({url}#rgb_state_topic)",
+                                "rgb_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty RGB."
+                            },
+                            "name": "Nastaven\u00ed barevn\u00e9ho re\u017eimu RGB"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "\u0160ablona p\u0159\u00edkazu RGBW",
+                                "rgbw_command_topic": "T\u00e9ma p\u0159\u00edkazu RGBW",
+                                "rgbw_state_topic": "T\u00e9ma stavu RGBW",
+                                "rgbw_value_template": "\u0160ablona hodnoty RGBW"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "Definuje [\u0161ablonu]({command_templating_url}) pro naps\u00e1n\u00ed zpr\u00e1vy, kter\u00e1 bude odesl\u00e1na na t\u00e9ma p\u0159\u00edkazu RGBW. Dostupn\u00e9 prom\u011bnn\u00e9: \"red\", \"green\", \"blue\" a \"white\".",
+                                "rgbw_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu stavu RGBW sv\u011btla. [Dal\u0161\u00ed informace.]({url}#rgbw_command_topic)",
+                                "rgbw_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu RGBW. O\u010dek\u00e1vanou datovou \u010d\u00e1st\u00ed jsou hodnoty RGBW odd\u011blen\u00e9 \u010d\u00e1rkami, nap\u0159\u00edklad \"255,0,127,64\". [Dal\u0161\u00ed informace.]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty RGBW."
+                            },
+                            "name": "Nastaven\u00ed barevn\u00e9ho re\u017eimu RGBW"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "\u0160ablona p\u0159\u00edkazu RGBWW",
+                                "rgbww_command_topic": "T\u00e9ma p\u0159\u00edkazu RGBWW",
+                                "rgbww_state_topic": "T\u00e9ma stavu RGBWW",
+                                "rgbww_value_template": "\u0160ablona hodnoty RGBWW"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "Definuje [\u0161ablonu]({command_templating_url}) pro naps\u00e1n\u00ed zpr\u00e1vy, kter\u00e1 bude odesl\u00e1na na t\u00e9ma p\u0159\u00edkazu RGBWW. Dostupn\u00e9 prom\u011bnn\u00e9: \"red\", \"green\", \"blue\", \"cold_white\" a \"warm_white\".",
+                                "rgbww_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu stavu RGBWW sv\u011btla. [Dal\u0161\u00ed informace.]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu RGBWW. O\u010dek\u00e1vanou datovou \u010d\u00e1st\u00ed jsou hodnoty RGBWW odd\u011blen\u00e9 \u010d\u00e1rkami, nap\u0159\u00edklad \"255,0,127,64,32\". [Dal\u0161\u00ed informace.]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty RGBWW."
+                            },
+                            "name": "Nastaven\u00ed barevn\u00e9ho re\u017eimu RGBWW"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "T\u00e9ma b\u00edl\u00e9ho p\u0159\u00edkazu",
+                                "white_scale": "Stupnice b\u00edl\u00e9"
+                            },
+                            "data_description": {
+                                "white_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu sv\u011btla na b\u00edl\u00fd re\u017eim s dan\u00fdm jasem. [Dal\u0161\u00ed informace.]({url}#white_command_topic)",
+                                "white_scale": "Definuje maxim\u00e1ln\u00ed \u00farove\u0148 b\u00edl\u00e9 (tj. 100 %) z maxima."
+                            },
+                            "name": "Nastaven\u00ed re\u017eimu b\u00edl\u00e9 barvy"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "\u0160ablona p\u0159\u00edkazu XY",
+                                "xy_command_topic": "T\u00e9ma p\u0159\u00edkazu XY",
+                                "xy_state_topic": "T\u00e9ma stavu XY",
+                                "xy_value_template": "\u0160ablona hodnoty XY"
+                            },
+                            "data_description": {
+                                "xy_command_template": "Definuje [\u0161ablonu]({command_templating_url}) pro naps\u00e1n\u00ed zpr\u00e1vy, kter\u00e1 bude odesl\u00e1na na t\u00e9ma p\u0159\u00edkazu XY. Dostupn\u00e9 prom\u011bnn\u00e9: \"x\" a \"y\".",
+                                "xy_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu stavu XY sv\u011btla. [Dal\u0161\u00ed informace.]({url}#xy_command_topic)",
+                                "xy_state_topic": "T\u00e9ma MQTT se p\u0159ihl\u00e1silo k odb\u011bru aktualizac\u00ed stavu XY. O\u010dek\u00e1vanou datovou \u010d\u00e1st\u00ed jsou hodnoty barev X a Y odd\u011blen\u00e9 \u010d\u00e1rkami, nap\u0159\u00edklad \"0,675,0,322\". [Dal\u0161\u00ed informace.]({url}#xy_state_topic)",
+                                "xy_value_template": "Definuje [\u0161ablonu]({value_templating_url}) pro extrakci hodnoty XY."
+                            },
+                            "name": "Nastaven\u00ed barevn\u00e9ho re\u017eimu XY"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Datov\u00e1 \u010d\u00e1st \"lock\"",
+                                "payload_open": "Datov\u00e1 \u010d\u00e1st \"open\"",
+                                "payload_reset": "Datov\u00e1 \u010d\u00e1st \"reset\"",
+                                "payload_unlock": "Datov\u00e1 \u010d\u00e1st \"unlock\"",
+                                "state_jammed": "Datov\u00e1 \u010d\u00e1st \"jammed\"",
+                                "state_locked": "Datov\u00e1 \u010d\u00e1st \"locked\"",
+                                "state_locking": "Datov\u00e1 \u010d\u00e1st \"locking\"",
+                                "state_unlocked": "Datov\u00e1 \u010d\u00e1st \"unlocked\"",
+                                "state_unlocking": "Datov\u00e1 \u010d\u00e1st \"unlocking\""
+                            },
+                            "data_description": {
+                                "payload_lock": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"lock\".",
+                                "payload_open": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"open\". Nastavte tuto datovou \u010d\u00e1st, pokud v\u00e1\u0161 z\u00e1mek akci \"open\" podporuje.",
+                                "payload_reset": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e1 resetuje z\u00e1mek do nezn\u00e1m\u00e9ho stavu.",
+                                "payload_unlock": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"unlock\".",
+                                "state_jammed": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e9 p\u0159edstavuje stav \"jammed\".",
+                                "state_locked": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e9 p\u0159edstavuje stav \"locked\".",
+                                "state_locking": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e9 p\u0159edstavuje stav \"locking\".",
+                                "state_unlocked": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e9 p\u0159edstavuje stav \"unlocked\".",
+                                "state_unlocking": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 v t\u00e9matu stavu, kter\u00e9 p\u0159edstavuje stav \"unlocking\"."
+                            },
+                            "name": "Nastaven\u00ed datov\u00e9 \u010d\u00e1sti z\u00e1mku"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Vypr\u0161\u00ed za",
+                                "flash": "Podpora blik\u00e1n\u00ed",
+                                "flash_time_long": "Dlouh\u00e1 doba blik\u00e1n\u00ed",
+                                "flash_time_short": "Kr\u00e1tk\u00e1 doba blik\u00e1n\u00ed",
+                                "max_kelvin": "Max. Kelvin",
+                                "min_kelvin": "Min. Kelvin",
+                                "off_delay": "Zpo\u017ed\u011bn\u00ed vypnut\u00ed",
+                                "transition": "Podpora p\u0159echodu"
+                            },
+                            "data_description": {
+                                "expire_after": "Pokud je nastaveno, definuje po\u010det sekund po vypr\u0161en\u00ed stavu senzoru, pokud nen\u00ed aktualizov\u00e1n. Po uplynut\u00ed platnosti se stav senzoru stane nedostupn\u00fdm. Pokud nen\u00ed nastaveno, stav senzoru nikdy nevypr\u0161\u00ed. [Dal\u0161\u00ed informace.]({url}#expire_after)",
+                                "flash": "Povol\u00ed funkci blik\u00e1n\u00ed pro toto sv\u011btlo.",
+                                "flash_time_long": "D\u00e9lka \"dlouh\u00e9\" doby blik\u00e1n\u00ed, v sekund\u00e1ch.",
+                                "flash_time_short": "D\u00e9lka \"kr\u00e1tk\u00e9\" doby blik\u00e1n\u00ed, v sekund\u00e1ch.",
+                                "max_kelvin": "Maxim\u00e1ln\u00ed teplota chromati\u010dnosti v Kelvinech.",
+                                "min_kelvin": "Minim\u00e1ln\u00ed teplota chromati\u010dnosti v Kelvinech.",
+                                "off_delay": "U senzor\u016f, kter\u00e9 odes\u00edlaj\u00ed jen aktualizace stavu \"zapnuto\" (jako jsou PIR senzory); tato prom\u011bnn\u00e1 nastavuje zpo\u017ed\u011bn\u00ed v sekund\u00e1ch, po kter\u00e9m se stav senzoru aktualizuje zp\u011bt na \"vypnuto\".",
+                                "transition": "Povol\u00ed funkci p\u0159echodu pro toto sv\u011btlo."
+                            },
+                            "name": "Dal\u0161\u00ed nastaven\u00ed"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "\u0160ablona p\u0159\u00edkazu \"vypnuto\""
+                            },
+                            "data_description": {
+                                "command_off_template": "[\u0160ablona]({command_templating_url}) pro zm\u011bny stavu \"off\". Ve v\u00fdchoz\u00edm nastaven\u00ed bude pou\u017eita \"[\u0160ablona p\u0159\u00edkazu]({url}#command_template)\". [Dal\u0161\u00ed informace.]({url}#command_off_template)"
+                            },
+                            "name": "Dal\u0161\u00ed nastaven\u00ed sir\u00e9ny"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "Maxim\u00e1ln\u00ed vlhkost",
+                                "min_humidity": "Minim\u00e1ln\u00ed vlhkost",
+                                "target_humidity_command_template": "\u0160ablona p\u0159\u00edkazu c\u00edlov\u00e9 vlhkosti",
+                                "target_humidity_command_topic": "T\u00e9ma p\u0159\u00edkazu c\u00edlov\u00e9 vlhkosti",
+                                "target_humidity_state_template": "\u0160ablona stavu c\u00edlov\u00e9 vlhkosti",
+                                "target_humidity_state_topic": "T\u00e9ma stavu c\u00edlov\u00e9 vlhkosti"
+                            },
+                            "data_description": {
+                                "max_humidity": "Maxim\u00e1ln\u00ed c\u00edlov\u00e1 vlhkost, kterou lze nastavit.",
+                                "min_humidity": "Minim\u00e1ln\u00ed c\u00edlov\u00e1 vlhkost, kterou lze nastavit.",
+                                "target_humidity_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v c\u00edlov\u00e9m t\u00e9matu p\u0159\u00edkazu pro vlhkost.",
+                                "target_humidity_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu c\u00edlov\u00e9 vlhkosti klimatizace. [Dal\u0161\u00ed informace.]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "[\u0160ablona]({value_templating_url}) pro vykreslen\u00ed hodnoty p\u0159ijat\u00e9 na z\u00e1klad\u011b c\u00edlov\u00e9ho stavu vlhkosti.",
+                                "target_humidity_state_topic": "T\u00e9ma MQTT pro odb\u011br zm\u011bn c\u00edlov\u00e9 vlhkosti. [Dal\u0161\u00ed informace.]({url}#humidity_state_topic)"
+                            },
+                            "name": "Nastaven\u00ed c\u00edlov\u00e9 vlhkosti"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Po\u010d\u00e1te\u010dn\u00ed teplota",
+                                "max_temp": "Maxim\u00e1ln\u00ed teplota",
+                                "min_temp": "Minim\u00e1ln\u00ed teplota",
+                                "precision": "P\u0159esnost",
+                                "temp_step": "Teplotn\u00ed krok",
+                                "temperature_command_template": "\u0160ablona p\u0159\u00edkazu teploty",
+                                "temperature_command_topic": "T\u00e9ma p\u0159\u00edkazu teploty",
+                                "temperature_high_command_template": "\u0160ablona p\u0159\u00edkazu horn\u00ed teploty",
+                                "temperature_high_command_topic": "T\u00e9ma p\u0159\u00edkazu horn\u00ed teploty",
+                                "temperature_high_state_template": "\u0160ablona stavu horn\u00ed teploty",
+                                "temperature_high_state_topic": "T\u00e9ma stavu horn\u00ed teploty",
+                                "temperature_low_command_template": "\u0160ablona p\u0159\u00edkazu spodn\u00ed teploty",
+                                "temperature_low_command_topic": "T\u00e9ma p\u0159\u00edkazu spodn\u00ed teploty",
+                                "temperature_low_state_template": "\u0160ablona stavu spodn\u00ed teploty",
+                                "temperature_low_state_topic": "T\u00e9ma stavu spodn\u00ed teploty",
+                                "temperature_state_template": "\u0160ablona stavu teploty",
+                                "temperature_state_topic": "T\u00e9ma stavu teploty"
+                            },
+                            "data_description": {
+                                "initial": "Za\u0159\u00edzen\u00ed se inicializuje s touto c\u00edlovou teplotou.",
+                                "max_temp": "Maxim\u00e1ln\u00ed c\u00edlov\u00e1 teplota, kterou lze nastavit.",
+                                "min_temp": "Minim\u00e1ln\u00ed c\u00edlov\u00e1 teplota, kterou lze nastavit.",
+                                "precision": "P\u0159esnost ve stupn\u00edch, se kterou termostat pracuje.",
+                                "temp_step": "C\u00edlov\u00fd teplotn\u00ed krok ve stupn\u00edch Celsia nebo Fahrenheita.",
+                                "temperature_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu teploty.",
+                                "temperature_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f ke zm\u011bn\u011b c\u00edlov\u00e9 teploty. [Dal\u0161\u00ed informace.]({url}#temperature_command_topic)",
+                                "temperature_high_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 budou publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu pro horn\u00ed teplotu.",
+                                "temperature_high_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu horn\u00ed c\u00edlov\u00e9 teploty klimatizace. [Dal\u0161\u00ed informace.]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "[\u0160ablona]({value_templating_url}) pro vykreslen\u00ed hodnoty p\u0159ijat\u00e9 v t\u00e9matu horn\u00edho teplotn\u00edho stavu.",
+                                "temperature_high_state_topic": "T\u00e9ma MQTT pro odb\u011br zm\u011bn horn\u00ed c\u00edlov\u00e9 teploty. [Dal\u0161\u00ed informace.]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed dat, kter\u00e1 maj\u00ed b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu pro spodn\u00ed teplotu.",
+                                "temperature_low_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f pro zm\u011bnu c\u00edlov\u00e9 spodn\u00ed teploty klimatizace. [Dal\u0161\u00ed informace.]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "[\u0160ablona]({value_templating_url}) pro vykreslen\u00ed hodnoty p\u0159ijat\u00e9 v t\u00e9matu stavu spodn\u00ed teploty.",
+                                "temperature_low_state_topic": "T\u00e9ma MQTT pro odb\u011br zm\u011bn spodn\u00ed c\u00edlov\u00e9 teploty. [Dal\u0161\u00ed informace.]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "[\u0160ablona]({value_templating_url}) pro vykreslen\u00ed hodnoty p\u0159ijat\u00e9 v t\u00e9matu spodn\u00ed teploty.",
+                                "temperature_state_topic": "T\u00e9ma MQTT pro odb\u011br zm\u011bn c\u00edlov\u00e9 teploty. [Dal\u0161\u00ed informace.]({url}#temperature_state_topic)"
+                            },
+                            "name": "Nastaven\u00ed c\u00edlov\u00e9 teploty"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maxim\u00e1ln\u00ed d\u00e9lka",
+                                "min": "Minim\u00e1ln\u00ed d\u00e9lka",
+                                "mode": "Re\u017eim",
+                                "pattern": "Vzor"
+                            },
+                            "data_description": {
+                                "max": "Maxim\u00e1ln\u00ed d\u00e9lka textov\u00e9ho vstupu",
+                                "min": "Minim\u00e1ln\u00ed d\u00e9lka textov\u00e9ho vstupu",
+                                "mode": "Re\u017eim zad\u00e1v\u00e1n\u00ed textu",
+                                "pattern": "Platn\u00fd vzor regul\u00e1rn\u00edho v\u00fdrazu"
+                            },
+                            "name": "Dal\u0161\u00ed nastaven\u00ed textov\u00fdch entit"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Datov\u00e1 \u010d\u00e1st \"close\"",
+                                "payload_open": "Datov\u00e1 \u010d\u00e1st \"open\"",
+                                "payload_stop": "Datov\u00e1 \u010d\u00e1st \"stop\"",
+                                "state_closed": "Stav \"closed\"",
+                                "state_closing": "Stav \"closing\"",
+                                "state_open": "Stav \"open\"",
+                                "state_opening": "Stav \"opening\""
+                            },
+                            "data_description": {
+                                "payload_close": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"close\".",
+                                "payload_open": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"open\".",
+                                "payload_stop": "Datov\u00e1 \u010d\u00e1st odeslan\u00e1 p\u0159i vyd\u00e1n\u00ed p\u0159\u00edkazu \"stop\". Nastavte tuto datovou \u010d\u00e1st jen v p\u0159\u00edpad\u011b, \u017ee v\u00e1\u0161 ventil podporuje akci \"stop\".",
+                                "state_closed": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"closed\".",
+                                "state_closing": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"closing\".",
+                                "state_open": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"open\".",
+                                "state_opening": "Datov\u00e1 \u010d\u00e1st p\u0159ijat\u00e1 ve stavu t\u00e9matu, kter\u00e1 p\u0159edstavuje stav \"opening\"."
+                            },
+                            "name": "Nastaven\u00ed datov\u00e9 zpr\u00e1vy ventilu"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "Datov\u00e1 \u010d\u00e1st \"off\"",
+                                "payload_on": "Datov\u00e1 \u010d\u00e1st \"on\"",
+                                "power_command_template": "\u0160ablona p\u0159\u00edkazu nap\u00e1jen\u00ed",
+                                "power_command_topic": "T\u00e9ma p\u0159\u00edkazu nap\u00e1jen\u00ed"
+                            },
+                            "data_description": {
+                                "payload_off": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"off\".",
+                                "payload_on": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 p\u0159edstavuje stav \"on\".",
+                                "power_command_template": "[\u0160ablona]({command_templating_url}) pro sestaven\u00ed datov\u00e9 \u010d\u00e1sti, kter\u00e1 m\u00e1 b\u00fdt publikov\u00e1na v t\u00e9matu p\u0159\u00edkazu power. Parametr \"value\" je datov\u00e1 \u010d\u00e1st nastaven\u00e1 pro datovou \u010d\u00e1st \"on\" nebo datovou \u010d\u00e1st \"off\".",
+                                "power_command_topic": "T\u00e9ma MQTT pro publikov\u00e1n\u00ed p\u0159\u00edkaz\u016f ke zm\u011bn\u011b stavu nap\u00e1jen\u00ed oh\u0159\u00edva\u010de vody. Odes\u00edl\u00e1 datovou \u010d\u00e1st nastavenou s datovou \u010d\u00e1st\u00ed \"on\" nebo \"off\". [Dal\u0161\u00ed informace]({url}#power_command_topic)"
+                            },
+                            "name": "Nastaven\u00ed nap\u00e1jen\u00ed"
+                        }
+                    },
+                    "title": "Nastavit za\u0159\u00edzen\u00ed MQTT \"{mqtt_device}\""
+                },
+                "summary_menu": {
+                    "description": "Nastaven\u00e9 entity:\n{mqtt_items}\n\nRozhodn\u011bte se, co d\u00e1l:",
+                    "menu_options": {
+                        "availability": "Nastavit dostupnost",
+                        "delete_entity": "Smazat entitu",
+                        "device": "Aktualizovat vlastnosti za\u0159\u00edzen\u00ed",
+                        "entity": "P\u0159idat dal\u0161\u00ed entitu do \"{mqtt_device}\"",
+                        "export": "Exportovat nastaven\u00ed za\u0159\u00edzen\u00ed MQTT",
+                        "save_changes": "Ulo\u017eit zm\u011bny",
+                        "update_entity": "Aktualizovat vlastnosti entity"
+                    },
+                    "title": "P\u0159enastavit \"{mqtt_device}\""
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Entita"
+                    },
+                    "data_description": {
+                        "component": "Vyberte entitu, kterou chcete aktualizovat."
+                    },
+                    "description": "Vyberte entitu, kterou chcete aktualizovat.",
+                    "title": "Vybrat entitu"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Prvn\u00ed tla\u010d\u00edtko",
+            "button_2": "Druh\u00e9 tla\u010d\u00edtko",
+            "button_3": "T\u0159et\u00ed tla\u010d\u00edtko",
+            "button_4": "\u010ctvrt\u00e9 tla\u010d\u00edtko",
+            "button_5": "P\u00e1t\u00e9 tla\u010d\u00edtko",
+            "button_6": "\u0160est\u00e9 tla\u010d\u00edtko",
+            "turn_off": "Vypnout",
+            "turn_on": "Zapnout"
+        },
+        "trigger_type": {
+            "button_double_press": "\"{subtype}\" stisknuto dvakr\u00e1t",
+            "button_long_press": "\"{subtype}\" trvale stisknuto",
+            "button_long_release": "\"{subtype}\" uvoln\u011bno po dlouh\u00e9m stisku",
+            "button_quadruple_press": "\"{subtype}\" stisknuto \u010dty\u0159ikr\u00e1t",
+            "button_quintuple_press": "\"{subtype}\" stisknuto p\u011btkr\u00e1t",
+            "button_short_press": "\"{subtype}\" stisknuto",
+            "button_short_release": "\"{subtype}\" uvoln\u011bno",
+            "button_triple_press": "\"{subtype}\" stisknuto t\u0159ikr\u00e1t"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "Nepoda\u0159ilo se spr\u00e1vn\u011b spustit aplikaci {addon}."
+        },
+        "command_template_error": {
+            "message": "Anal\u00fdza \u0161ablony \"{command_template}\" pro entitu \"{entity_id}\" se nezda\u0159ila s chybou: {error}."
+        },
+        "invalid_platform_config_message": {
+            "message": "Op\u011btovn\u00e9 na\u010dten\u00ed nastaven\u00ed YAML pro ru\u010dn\u011b nastavenou polo\u017eku MQTT \"{domain}\" se nezda\u0159ilo. Zpr\u00e1va: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "Nelze publikovat: \u0161ablona t\u00e9matu \"{topic_template}\" po vykreslen\u00ed vytvo\u0159ila neplatn\u00e9 t\u00e9ma \"{topic}\" ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "Chyba p\u0159i komunikaci s MQTT: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "Dosa\u017een limit ID p\u0159edplatn\u00e9ho MQTT. Nelze vygenerovat dal\u0161\u00ed ID pro p\u0159edplatn\u00e9."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "Publikov\u00e1n\u00ed do t\u00e9matu {topic} s intervalem vypr\u0161en\u00ed platnosti zpr\u00e1vy nen\u00ed podporov\u00e1no pro verzi protokolu {protocol}."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Nelze se p\u0159ihl\u00e1sit k odb\u011bru t\u00e9matu \"{topic}\", proto\u017ee nen\u00ed povoleno MQTT. Ujist\u011bte se, \u017ee je MQTT spr\u00e1vn\u011b nastaveno."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Nelze publikovat do t\u00e9matu \"{topic}\"; ujist\u011bte se, \u017ee je MQTT spr\u00e1vn\u011b nastaveno."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Nelze se p\u0159ihl\u00e1sit k odb\u011bru t\u00e9matu \"{topic}\"; ujist\u011bte se, \u017ee je MQTT spr\u00e1vn\u011b nastaveno."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Nelze dvakr\u00e1t odhl\u00e1sit odb\u011br t\u00e9matu \"{topic}\"."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "T\u00e9ma mus\u00ed b\u00fdt \u0159et\u011bzec! M\u00e1m: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Nelze odebrat spou\u0161t\u011b\u010d dvakr\u00e1t."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "Home Assistant zjistil neplatn\u00e9 nastaven\u00ed pro ru\u010dn\u011b nastavenou polo\u017eku.\n\nDom\u00e9na platformy: **{domain}**\nSoubor s nastaven\u00edm: **{config_file}**\nBl\u00edzko \u0159\u00e1dku: **{line}**\nNalezen\u00e9 nastaven\u00ed:\n```yaml\n{config}\n```\nChyba: **{error}**\n\nUjist\u011bte se, \u017ee je nastaven\u00ed platn\u00e9 a [znovu na\u010dt\u011bte](/config/tools/yaml) ru\u010dn\u011b nastaven\u00e9 polo\u017eky MQTT nebo restartujte Home Assistanta, abyste tento probl\u00e9m vy\u0159e\u0161ili.",
+            "title": "Pro polo\u017eku MQTT {domain} bylo nalezeno neplatn\u00e9 nastaven\u00ed"
+        },
+        "protocol_5_migration": {
+            "description": "Automatick\u00fd p\u0159echod na protokol MQTT verze 5 se nezda\u0159il. Aktu\u00e1ln\u011b nastaven\u00e1 verze protokolu pro zprost\u0159edkovatele MQTT {broker} je {protocol}, ale tato verze protokolu je zastaral\u00e1 a jej\u00ed podpora bude odebr\u00e1na. Ujist\u011bte se, \u017ee v\u00e1\u0161 zprost\u0159edkovatel podporuje verzi protokolu 5. Aktualizujte nastaven\u00ed p\u0159ipojen\u00ed makl\u00e9\u0159e MQTT a restartujte Home Assistanta, abyste tento probl\u00e9m odebrali.",
+            "title": "Migrace protokolu MQTT selhala"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Exportovan\u00e9 za\u0159\u00edzen\u00ed MQTT \"{name}\" identifikovan\u00e9 pomoc\u00ed zji\u0161\u0165ov\u00e1n\u00ed MQTT. V\u00fdb\u011brem **Odeslat ** potvr\u010fte, \u017ee za\u0159\u00edzen\u00ed MQTT m\u00e1 b\u00fdt migrov\u00e1no na hlavn\u00ed nastaven\u00ed MQTT, a \u017ee se m\u00e1 odebrat st\u00e1vaj\u00edc\u00ed podpolo\u017eka za\u0159\u00edzen\u00ed MQTT. Ujist\u011bte se, \u017ee je zji\u0161\u0165ov\u00e1n\u00ed zachov\u00e1no u zprost\u0159edkovatele MQTT nebo je znovu odesl\u00e1no po odebr\u00e1n\u00ed d\u00edl\u010d\u00ed polo\u017eky, aby bylo za\u0159\u00edzen\u00ed MQTT spr\u00e1vn\u011b nastaveno. Alternativn\u011b m\u016f\u017eete zm\u011bnit identifik\u00e1tory za\u0159\u00edzen\u00ed a jedine\u010dn\u00e1 ID entity v datov\u00e9 \u010d\u00e1sti nastaven\u00ed zji\u0161\u0165ov\u00e1n\u00ed MQTT a tuto opravu zru\u0161it, pokud chcete zachovat d\u00edl\u010d\u00ed polo\u017eku za\u0159\u00edzen\u00ed MQTT.",
+                        "title": "Migrace podpolo\u017eky za\u0159\u00edzen\u00ed MQTT \"{name}\" do zji\u0161\u0165ov\u00e1n\u00ed MQTT"
+                    }
+                }
+            },
+            "title": "Migrace podpolo\u017eky za\u0159\u00edzen\u00ed MQTT \"{name}\" do zji\u0161\u0165ov\u00e1n\u00ed MQTT"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Exportovan\u00e9 MQTT za\u0159\u00edzen\u00ed \"{name}\" identifikovan\u00e9 v nastaven\u00ed YAML. V\u00fdb\u011brem **Odeslat ** potvr\u010fte, \u017ee za\u0159\u00edzen\u00ed MQTT m\u00e1 b\u00fdt migrov\u00e1no na hlavn\u00ed polo\u017eku nastaven\u00ed MQTT, a \u017ee se m\u00e1 odebrat st\u00e1vaj\u00edc\u00ed d\u00edl\u010d\u00ed polo\u017eka za\u0159\u00edzen\u00ed MQTT. Alternativn\u011b m\u016f\u017eete zm\u011bnit identifik\u00e1tory za\u0159\u00edzen\u00ed a jedine\u010dn\u00e1 ID entity v souboru configuration.yaml a tuto opravu zru\u0161it, pokud chcete zachovat d\u00edl\u010d\u00ed polo\u017eku za\u0159\u00edzen\u00ed MQTT.",
+                        "title": "Migrace podpolo\u017eky za\u0159\u00edzen\u00ed MQTT \"{name}\" do YAML"
+                    }
+                }
+            },
+            "title": "Migrace podpolo\u017eky za\u0159\u00edzen\u00ed MQTT \"{name}\" do YAML"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant detekoval ru\u010dn\u011b nastaven\u00e9 polo\u017eky MQTT, ale tyto polo\u017eky nelze na\u010d\u00edst, proto\u017ee MQTT nen\u00ed spr\u00e1vn\u011b nastaveno. Ujist\u011bte se, \u017ee je broker MQTT nastaven spr\u00e1vn\u011b, nebo odeberte nastaven\u00ed MQTT ze souboru \"configuration.yaml\" a restartujte Home Assistanta, abyste tento probl\u00e9m vy\u0159e\u0161ili.",
+            "title": "MQTT nen\u00ed spr\u00e1vn\u011b nastaven\u00fd"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Neplatn\u00e9 t\u00e9ma zpr\u00e1vy p\u0159i p\u0159ipojen\u00ed",
+            "bad_certificate": "Certifik\u00e1t CA je neplatn\u00fd",
+            "bad_client_cert": "Neplatn\u00fd klientsk\u00fd certifik\u00e1t, zajist\u011bte dod\u00e1n\u00ed platn\u00e9ho souboru",
+            "bad_client_cert_key": "Klientsk\u00fd certifik\u00e1t a soukrom\u00fd nejsou platn\u00fd p\u00e1r",
+            "bad_discovery_prefix": "Neplatn\u00e1 p\u0159edpona zji\u0161\u0165ov\u00e1n\u00ed",
+            "bad_will": "Neplatn\u00e9 t\u00e9ma zpr\u00e1vy p\u0159i odpojen\u00ed",
+            "bad_ws_headers": "Zadejte platn\u00e9 HTTP hlavi\u010dky jako JSON objekt",
+            "cannot_connect": "Nepoda\u0159ilo se p\u0159ipojit",
+            "client_key_error": "Byl zad\u00e1n neplatn\u00fd soubor soukrom\u00e9ho kl\u00ed\u010de nebo neplatn\u00e9 heslo",
+            "invalid_inclusion": "Klientsk\u00fd certifik\u00e1t a soukrom\u00fd kl\u00ed\u010d mus\u00ed b\u00fdt nastaveny spole\u010dn\u011b"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Povolit zpr\u00e1vu p\u0159i p\u0159ipojen\u00ed",
+                    "birth_payload": "Datov\u00e1 \u010d\u00e1st zpr\u00e1vy p\u0159i p\u0159ipojen\u00ed",
+                    "birth_qos": "QoS zpr\u00e1vy p\u0159i p\u0159ipojen\u00ed",
+                    "birth_retain": "Zachovat zpr\u00e1vu p\u0159i p\u0159ipojen\u00ed",
+                    "birth_topic": "T\u00e9ma zpr\u00e1vy p\u0159i p\u0159ipojen\u00ed",
+                    "discovery": "Povolit zji\u0161\u0165ov\u00e1n\u00ed",
+                    "discovery_prefix": "P\u0159edpona zji\u0161\u0165ov\u00e1n\u00ed",
+                    "discovery_qos": "Zji\u0161\u0165ov\u00e1n\u00ed QoS",
+                    "will_enable": "Povolit zpr\u00e1vu p\u0159i odpojen\u00ed",
+                    "will_payload": "Datov\u00e1 \u010d\u00e1st zpr\u00e1vy p\u0159i odpojen\u00ed",
+                    "will_qos": "QoS zpr\u00e1vy p\u0159i odpojen\u00ed",
+                    "will_retain": "Zachovat zpr\u00e1vu p\u0159i odpojen\u00ed",
+                    "will_topic": "T\u00e9ma zpr\u00e1vy p\u0159i odpojen\u00ed"
+                },
+                "data_description": {
+                    "birth_enable": "Kdy\u017e je toto nastaven\u00ed nastaveno, Home Assistant publikuje online zpr\u00e1vu va\u0161emu brokerovi MQTT, jakmile bude MQTT p\u0159ipraven.",
+                    "birth_payload": "Zpr\u00e1va o \"narozen\u00ed\", kter\u00e1 je publikov\u00e1na, kdy\u017e je MQTT p\u0159ipraveno a p\u0159ipojeno.",
+                    "birth_qos": "Kvalita slu\u017eby zpr\u00e1vy o \"narozen\u00ed\", kter\u00e1 je publikov\u00e1na, kdy\u017e je MQTT p\u0159ipraveno a p\u0159ipojeno",
+                    "birth_retain": "Pokud je nastaveno, Home Assistant zachov\u00e1 zpr\u00e1vu o \"narozen\u00ed\" publikovanou do va\u0161eho zprost\u0159edkovatele MQTT.",
+                    "birth_topic": "T\u00e9ma MQTT, kde Home Assistant zve\u0159ejn\u00ed zpr\u00e1vu o \"narozen\u00ed\".",
+                    "discovery": "Volba povolit automatick\u00e9 zji\u0161\u0165ov\u00e1n\u00ed MQTT.",
+                    "discovery_prefix": "P\u0159edpona t\u00e9mat konfigurace, k jejich\u017e odb\u011bru se bude interakce MQTT p\u0159ihla\u0161ovat.",
+                    "discovery_qos": "Kvalita slu\u017eby pro zji\u0161\u0165ov\u00e1n\u00ed odb\u011br\u016f u va\u0161eho zprost\u0159edkovatele MQTT.",
+                    "will_enable": "Je-li nastaveno, Home Assistant po\u017e\u00e1d\u00e1 va\u0161eho brokera, aby zve\u0159ejnil zpr\u00e1vu \"will\", kdy\u017e je MQTT zastaveno nebo ztrat\u00ed spojen\u00ed s va\u0161\u00edm brokerem.",
+                    "will_payload": "Zpr\u00e1va, kterou v\u00e1\u0161 broker MQTT zve\u0159ejn\u00ed (\"will\"), kdy\u017e je integrace MQTT zastavena nebo kdy\u017e se ztrat\u00ed p\u0159ipojen\u00ed.",
+                    "will_qos": "Kvalita slu\u017eby zpr\u00e1vy \"will\", kterou zve\u0159ej\u0148uje v\u00e1\u0161 zprost\u0159edkovatel MQTT.",
+                    "will_retain": "Kdy\u017e je nastaveno, v\u00e1\u0161 broker MQTT uchov\u00e1 zpr\u00e1vu \"will\".",
+                    "will_topic": "T\u00e9ma MQTT, ke kter\u00e9mu v\u00e1\u0161 broker MQTT zve\u0159ejn\u00ed zpr\u00e1vu \"will\"."
+                },
+                "description": "Zji\u0161\u0165ov\u00e1n\u00ed - Pokud je zji\u0161\u0165ov\u00e1n\u00ed povoleno (doporu\u010deno), Home Assistant automaticky objev\u00ed za\u0159\u00edzen\u00ed a entity, kter\u00e9 publikuj\u00ed sv\u00e9 nastaven\u00ed na brokerovi MQTT. Pokud je zji\u0161\u0165ov\u00e1n\u00ed zak\u00e1z\u00e1no, mus\u00ed b\u00fdt ve\u0161ker\u00e9 nastaven\u00ed provedeno ru\u010dn\u011b.\nP\u0159edpona zji\u0161\u0165ov\u00e1n\u00ed - P\u0159edpona, kterou mus\u00ed za\u010d\u00ednat t\u00e9ma nastaven\u00ed pro automatick\u00e9 zji\u0161\u0165ov\u00e1n\u00ed.\nZpr\u00e1va p\u0159i p\u0159ipojen\u00ed - Zpr\u00e1va bude odesl\u00e1na poka\u017ed\u00e9, kdy\u017e se Home Assistant (znovu) p\u0159ipoj\u00ed k brokerovi MQTT.\nZpr\u00e1va p\u0159i odpojen\u00ed - Zpr\u00e1va bude odesl\u00e1na poka\u017ed\u00e9, kdy\u017e Home Assistant ztrat\u00ed spojen\u00ed s brokerem a to jak v p\u0159\u00edpad\u011b norm\u00e1ln\u00edho (nap\u0159. vypnut\u00ed Home Assistanta), tak v p\u0159\u00edpad\u011b neo\u010dek\u00e1van\u00e9ho (nap\u0159. selh\u00e1n\u00ed Home Assistanta nebo ztr\u00e1ta p\u0159ipojen\u00ed k s\u00edti) odpojen\u00ed.",
+                "title": "Volby MQTT"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Ov\u011b\u0159en\u00ed m\u00edstn\u00edho k\u00f3du",
+                "remote_code": "Ov\u011b\u0159en\u00ed \u010d\u00edseln\u00e9ho vzd\u00e1len\u00e9ho k\u00f3du",
+                "remote_code_text": "Ov\u011b\u0159en\u00ed textov\u00e9ho vzd\u00e1len\u00e9ho k\u00f3du"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "Zabezpe\u010dit a pry\u010d",
+                "arm_custom_bypass": "Zabezpe\u010dit s vlastn\u00edm obejit\u00edm",
+                "arm_home": "Zabezpe\u010dit a doma",
+                "arm_night": "Zabezpe\u010dit na noc",
+                "arm_vacation": "Zabezpe\u010dit a na dovolen\u00e9",
+                "trigger": "Spou\u0161t\u011b\u010d alarmu"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Automaticky",
+                "cool": "Chlazen\u00ed",
+                "dry": "Vysou\u0161en\u00ed",
+                "fan_only": "Jen ventil\u00e1tor",
+                "heat": "Vyt\u00e1p\u011bn\u00ed",
+                "heat_cool": "Vyt\u00e1p\u011bn\u00ed/Chlazen\u00ed",
+                "off": "Vypnuto"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Nastaven\u00ed",
+                "diagnostic": "Diagnostika"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "K\u00f3dov\u00e1n\u00ed Base64",
+                "raw": "Nezpracovan\u00e1 data"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "P\u0159ij\u00edmaj\u00ed se obrazov\u00e1 data",
+                "image_url": "P\u0159ij\u00edm\u00e1 se adresa URL obr\u00e1zku"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "V\u00fdchoz\u00ed sch\u00e9ma",
+                "json": "JSON",
+                "template": "\u0160ablona"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automaticky",
+                "box": "Vstupn\u00ed pole",
+                "slider": "Posuvn\u00edk"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Jas",
+                "first": "Prvn\u00ed",
+                "last": "Posledn\u00ed"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Ovl\u00e1dac\u00ed panel alarmu",
+                "binary_sensor": "Bin\u00e1rn\u00ed senzor",
+                "button": "Tla\u010d\u00edtko",
+                "climate": "Klimatiza\u010dn\u00ed za\u0159\u00edzen\u00ed",
+                "cover": "Kryt",
+                "date": "Datum",
+                "datetime": "Datum/\u010cas",
+                "fan": "Ventil\u00e1tor",
+                "image": "Obr\u00e1zek",
+                "light": "Sv\u011btlo",
+                "lock": "Z\u00e1mek",
+                "notify": "Ozn\u00e1men\u00ed",
+                "number": "\u010c\u00edslo",
+                "select": "V\u00fdb\u011br",
+                "sensor": "Senzor",
+                "siren": "Sir\u00e9na",
+                "switch": "Sp\u00edna\u010d",
+                "text": "Text",
+                "time": "\u010cas",
+                "valve": "Ventil",
+                "water_heater": "Oh\u0159\u00edva\u010d vody"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automaticky",
+                "custom": "Vlastn\u00ed",
+                "off": "Vypnuto"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Jen jas",
+                "color_temp": "Teplota barvy",
+                "hs": "HS",
+                "onoff": "Zapnuto/Vypnuto",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "B\u00edl\u00e1",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "Horn\u00ed/Spodn\u00ed c\u00edlov\u00e1 teplota",
+                "none": "\u017d\u00e1dn\u00e1 c\u00edlov\u00e1 teplota",
+                "single": "Jednotliv\u00e1 c\u00edlov\u00e1 teplota"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Heslo",
+                "text": "Text"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Automaticky",
+                "eco": "ECO",
+                "electric": "Elektrika",
+                "gas": "Plyn",
+                "heat_pump": "Tepeln\u00e9 \u010derpadlo",
+                "high_demand": "Vysok\u00e1 popt\u00e1vka",
+                "off": "Vypnuto",
+                "performance": "V\u00fdkon"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Zap\u00ed\u0161e v\u0161echny zpr\u00e1vy na ur\u010dit\u00e9 t\u00e9ma do souboru \"mqtt_dump.txt\" ve va\u0161\u00ed slo\u017ece s nastaven\u00edm.",
+            "fields": {
+                "duration": {
+                    "description": "Jak dlouho se m\u00e1 naslouchat zpr\u00e1v\u00e1m (v sekund\u00e1ch).",
+                    "name": "D\u00e9lka"
+                },
+                "topic": {
+                    "description": "T\u00e9ma, kter\u00e9 se m\u00e1 poslouchat.",
+                    "name": "T\u00e9ma"
+                }
+            },
+            "name": "Exportovat"
+        },
+        "publish": {
+            "description": "Publikuje zpr\u00e1vu k t\u00e9matu MQTT.",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Kdy\u017e je \"Payload\" bajtov\u00fd liter\u00e1l Pythonu, vyhodnot\u00ed bajtov\u00fd liter\u00e1l a publikujte nezpracovan\u00e1 data.",
+                    "name": "Vyhodnotit payload"
+                },
+                "message_expiry_interval": {
+                    "description": "Ukon\u010d\u00ed publikov\u00e1n\u00ed zpr\u00e1vy po uplynut\u00ed intervalu v p\u0159\u00edpad\u011b, \u017ee byl \u00fa\u010dastn\u00edk za\u0159\u00edzen\u00ed do\u010dasn\u011b offline nebo byla zpr\u00e1va nastavena jako zadr\u017een\u00e1. Podporov\u00e1no jen s protokolem MQTT verze 5.0.",
+                    "name": "Interval vypr\u0161en\u00ed platnosti zpr\u00e1vy"
+                },
+                "payload": {
+                    "description": "Datov\u00e1 \u010d\u00e1st k publikov\u00e1n\u00ed. Pokud nen\u00ed zad\u00e1no, publikuje pr\u00e1zdnou zpr\u00e1vu.",
+                    "name": "Datov\u00e1 \u010d\u00e1st"
+                },
+                "qos": {
+                    "description": "QoS, kter\u00e1 se m\u00e1 pou\u017e\u00edt. 0: maxim\u00e1ln\u011b jednou, 1: alespo\u0148 jednou, 2: p\u0159esn\u011b jednou.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Zda m\u00e1 m\u00edt zpr\u00e1va nastaven p\u0159\u00edznak zachov\u00e1n\u00ed. Pokud je nastaveno, broker ukl\u00e1d\u00e1 nejnov\u011bj\u0161\u00ed zpr\u00e1vu k t\u00e9matu.",
+                    "name": "Zachovat"
+                },
+                "topic": {
+                    "description": "T\u00e9ma k publikov\u00e1n\u00ed.",
+                    "name": "T\u00e9ma"
+                }
+            },
+            "name": "Publikovat",
+            "sections": {
+                "publish_options": {
+                    "name": "Volby publikov\u00e1n\u00ed"
+                }
+            }
+        },
+        "reload": {
+            "description": "Znovu na\u010dte entity MQTT z nastaven\u00ed YAML.",
+            "name": "Znovu na\u010d\u00edst"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "Spust\u00ed se po p\u0159ijet\u00ed konkr\u00e9tn\u00ed zpr\u00e1vy k dan\u00e9mu t\u00e9matu MQTT.",
+            "fields": {
+                "payload": {
+                    "description": "Datov\u00e1 \u010d\u00e1st, kter\u00e1 se m\u00e1 spustit.",
+                    "name": "Datov\u00e1 \u010d\u00e1st"
+                },
+                "topic": {
+                    "description": "T\u00e9ma MQTT k poslechu.",
+                    "name": "T\u00e9ma"
+                }
+            },
+            "name": "P\u0159ijata zpr\u00e1va MQTT"
+        }
+    }
+}

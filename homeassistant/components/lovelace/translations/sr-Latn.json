@@ -1,0 +1,30 @@
+{
+    "exceptions": {
+        "failed_to_reload": {
+            "message": "Osve\u017eavanje resursa kontrolne table nije uspelo. Proverite pode\u0161avanja i poku\u0161ajte ponovo."
+        },
+        "url_already_exists": {
+            "message": "URL \u201e{url}\u201c je ve\u0107 u upotrebi. Izaberite neki drugi."
+        }
+    },
+    "issues": {
+        "yaml_mode_deprecated": {
+            "description": "Va\u0161a YAML konfiguracija kontrolne table koristi zastarelu opciju mode: yaml, koja \u0107e biti uklonjena u verziji 2026.8. Va\u0161e YAML kontrolne table \u0107e nastaviti da rade, samo treba da a\u017eurirate na\u010din na koji su definisane.\n\nDa biste a\u017eurirali svoju konfiguraciju:\n\n1.  Uklonite mode: yaml iz lovelace: u va\u0161oj configuration.yaml datoteci \n2. Umesto toga dodajte unos za kontrolnu tablu:\n   ```yaml\n   lovelace:\n     resource_mode: yaml\n     dashboards:\n       lovelace:\n         mode: yaml\n         filename: {config_file}\n         title: Overview\n         icon: mdi:view-dashboard\n         show_in_sidebar: true\n   ```\n\n4. Ponovo pokrenite Home Assistant\n\nNapomena: resource_mode: yaml nastavlja sa u\u010ditavanjem resursa iz YAML datoteke. Ako umesto toga \u017eelite da upravljate resursima putem korisni\u010dkog interfejsa, mo\u017eete ukloniti ovu liniju i premestiti svoje resurse u Pode\u0161avanja > Kontrolne table > Resursi.",
+            "title": "Lovelace YAML konfiguracija zahteva a\u017euriranje"
+        }
+    },
+    "services": {
+        "reload_resources": {
+            "description": "Reloads dashboard resources from the YAML-configuration.",
+            "name": "Ponovo u\u010ditaj resurse kontrolne table"
+        }
+    },
+    "system_health": {
+        "info": {
+            "dashboards": "Kontrolne table",
+            "mode": "Re\u017eim",
+            "resources": "Resursi",
+            "views": "Prikazi"
+        }
+    }
+}

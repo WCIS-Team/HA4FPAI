@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u53f0\u6216\u591a\u53f0\u5272\u8349\u6a5f\u5df2\u56de\u5230\u57fa\u5730\u53f0\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u5df2\u56de\u5230\u57fa\u5730\u53f0"
+        },
+        "is_encountering_an_error": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u53f0\u6216\u591a\u53f0\u5272\u8349\u6a5f\u6545\u969c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u767c\u751f\u932f\u8aa4"
+        },
+        "is_idle": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u53f0\u6216\u591a\u53f0\u5272\u8349\u6a5f\u8655\u65bc\u9592\u7f6e\u72c0\u614b\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u9592\u7f6e\u4e2d"
+        },
+        "is_mowing": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u53f0\u6216\u591a\u53f0\u5272\u8349\u6a5f\u5272\u8349\u4e2d\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u5272\u8349\u4e2d"
+        },
+        "is_paused": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u53f0\u6216\u591a\u53f0\u5272\u8349\u6a5f\u5df2\u66ab\u505c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u66ab\u505c\u5272\u8349"
+        },
+        "is_returning": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u53f0\u6216\u591a\u53f0\u5272\u8349\u6a5f\u8fd4\u56de\u57fa\u5730\u53f0\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u6b63\u8fd4\u56de\u57fa\u5730\u53f0"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u5272\u8349\u6a5f",
+            "state": {
+                "docked": "\u5145\u96fb\u4e2d",
+                "error": "\u932f\u8aa4",
+                "idle": "\u5f85\u547d",
+                "mowing": "\u5272\u8349\u4e2d",
+                "paused": "\u5df2\u66ab\u505c",
+                "returning": "\u6b63\u5728\u8fd4\u56de\u5145\u96fb\u5ea7"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "\u5272\u8349\u6a5f\u8fd4\u56de\u5145\u96fb\u3002",
+            "name": "\u5272\u8349\u6a5f\u8fd4\u56de\u5145\u96fb"
+        },
+        "pause": {
+            "description": "\u66ab\u505c\u5272\u8349\u6a5f\u5272\u8349\u4efb\u52d9\u3002",
+            "name": "\u66ab\u505c\u5272\u8349\u6a5f"
+        },
+        "start_mowing": {
+            "description": "\u958b\u59cb\u5272\u8349\u6a5f\u5272\u8349\u4efb\u52d9\u3002",
+            "name": "\u555f\u52d5\u5272\u8349\u6a5f"
+        },
+        "stop": {
+            "description": "\u505c\u6b62\u5272\u8349\u6a5f\u76ee\u524d\u5272\u8349\u4efb\u52d9\u3002",
+            "name": "\u505c\u6b62\u5272\u8349\u6a5f"
+        }
+    },
+    "title": "\u5272\u8349\u6a5f",
+    "triggers": {
+        "became_idle": {
+            "description": "\u7576\u4e00\u53f0\u6216\u591a\u53f0\u5272\u8349\u6a5f\u9592\u7f6e\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u9032\u5165\u6020\u901f\u72c0\u614b"
+        },
+        "errored": {
+            "description": "\u7576\u4e00\u90e8\u6216\u591a\u90e8\u5272\u8349\u6a5f\u767c\u751f\u932f\u8aa4\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u767c\u751f\u932f\u8aa4\u6642"
+        },
+        "paused_mowing": {
+            "description": "\u7576\u4e00\u90e8\u6216\u591a\u90e8\u5272\u8349\u6a5f\u66ab\u505c\u5272\u8349\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u66ab\u505c\u5272\u8349\u6642"
+        },
+        "returned_to_dock": {
+            "description": "\u7576\u4e00\u90e8\u6216\u591a\u90e8\u5272\u8349\u6a5f\u56de\u5230\u57fa\u5730\u53f0\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u56de\u5230\u57fa\u5730\u53f0\u6642"
+        },
+        "started_mowing": {
+            "description": "\u7576\u4e00\u90e8\u6216\u591a\u90e8\u5272\u8349\u6a5f\u958b\u59cb\u5272\u8349\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u958b\u59cb\u5272\u8349\u6642"
+        },
+        "started_returning": {
+            "description": "\u7576\u4e00\u90e8\u6216\u591a\u90e8\u5272\u8349\u6a5f\u958b\u59cb\u8fd4\u56de\u57fa\u5730\u53f0\u6642\u89f8\u767c",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u5272\u8349\u6a5f\u5df2\u958b\u59cb\u8fd4\u56de\u57fa\u5730\u53f0"
+        }
+    }
+}

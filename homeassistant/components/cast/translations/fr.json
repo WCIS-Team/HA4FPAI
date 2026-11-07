@@ -1,0 +1,72 @@
+{
+    "config": {
+        "error": {
+            "invalid_known_hosts": "Les h\u00f4tes connus doivent \u00eatre une liste d'h\u00f4tes s\u00e9par\u00e9s par des virgules."
+        },
+        "step": {
+            "config": {
+                "data": {
+                    "known_hosts": "Ajouter un h\u00f4te connu"
+                },
+                "data_description": {
+                    "known_hosts": "Noms d'h\u00f4te ou adresses IP des p\u00e9riph\u00e9riques de diffusion, \u00e0 utiliser si la d\u00e9couverte mDNS ne fonctionne pas"
+                },
+                "title": "Configuration de Google Cast"
+            },
+            "confirm": {
+                "description": "Voulez-vous commencer la configuration\u00a0?"
+            }
+        }
+    },
+    "exceptions": {
+        "app_not_supported": {
+            "message": "L'application {app_name} n'est pas prise en charge"
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "known_hosts": "Ajouter un h\u00f4te connu"
+                },
+                "data_description": {
+                    "known_hosts": "Noms d'h\u00f4te ou adresses IP des p\u00e9riph\u00e9riques de diffusion, \u00e0 utiliser si la d\u00e9couverte mDNS ne fonctionne pas"
+                },
+                "sections": {
+                    "more_options": {
+                        "data": {
+                            "ignore_cec": "Ignorer le CEC",
+                            "uuid": "UUID autoris\u00e9s"
+                        },
+                        "data_description": {
+                            "ignore_cec": "Liste, s\u00e9par\u00e9e par des virgules, des Chromecast qui doivent ignorer les donn\u00e9es CEC pour d\u00e9terminer l'entr\u00e9e active. Cette liste sera transmise \u00e0 pychromecast.IGNORE_CEC.",
+                            "uuid": "Liste d'identifiants uniques (UUID) des appareils Cast \u00e0 ajouter \u00e0 Home Assistant, s\u00e9par\u00e9s par des virgules. \u00c0 utiliser uniquement si vous ne souhaitez pas ajouter tous les appareils Cast disponibles."
+                        },
+                        "name": "Plus d'options"
+                    }
+                },
+                "title": "Configuration de Google Cast"
+            }
+        }
+    },
+    "services": {
+        "show_lovelace_view": {
+            "description": "Affiche un tableau de bord sur un appareil Google Cast.",
+            "fields": {
+                "dashboard_path": {
+                    "description": "Le chemin URL du tableau de bord \u00e0 afficher, `lovelace` par d\u00e9faut s'il n'est pas sp\u00e9cifi\u00e9.",
+                    "name": "Chemin du tableau de bord"
+                },
+                "entity_id": {
+                    "description": "Entit\u00e9 de lecteur multim\u00e9dia sur laquelle afficher le tableau de bord.",
+                    "name": "Entit\u00e9"
+                },
+                "view_path": {
+                    "description": "Le chemin URL de la vue du tableau de bord \u00e0 afficher.",
+                    "name": "Chemin de la vue"
+                }
+            },
+            "name": "Afficher la vue du tableau de bord via Google Cast"
+        }
+    }
+}

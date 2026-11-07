@@ -1,0 +1,463 @@
+{
+    "common": {
+        "condition_behavior_name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c",
+        "condition_for_name": "\u81f3\u5c11",
+        "condition_threshold_name": "\u9608\u503c\u7c7b\u578b",
+        "trigger_behavior_name": "\u89e6\u53d1\u6761\u4ef6",
+        "trigger_for_name": "\u81f3\u5c11",
+        "trigger_threshold_name": "\u9608\u503c\u7c7b\u578b"
+    },
+    "conditions": {
+        "is_cooling": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "is_drying": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "is_heating": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "is_hvac_mode": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "hvac_mode": {
+                    "name": "\u6a21\u5f0f"
+                }
+            }
+        },
+        "is_off": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "is_target_humidity": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            }
+        },
+        "is_target_temperature": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "\u66f4\u6539\u201c{entity_name}\u201d\u4e0a\u7684\u6696\u901a\u7a7a\u8c03\u6a21\u5f0f",
+            "set_preset_mode": "\u66f4\u6539\u201c{entity_name}\u201d\u4e0a\u7684\u9884\u8bbe"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} \u5df2\u8bbe\u4e3a\u7279\u5b9a\u6696\u901a\u7a7a\u8c03\u6a21\u5f0f",
+            "is_preset_mode": "{entity_name} \u5df2\u8bbe\u4e3a\u7279\u5b9a\u9884\u8bbe\u6a21\u5f0f"
+        },
+        "extra_fields": {
+            "above": "\u9ad8\u4e8e",
+            "below": "\u4f4e\u4e8e",
+            "for": "\u65f6\u957f",
+            "hvac_mode": "\u6696\u901a\u7a7a\u8c03\u6a21\u5f0f",
+            "preset_mode": "\u9884\u8bbe\u6a21\u5f0f",
+            "to": "\u5230"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} \u6d4b\u91cf\u6e7f\u5ea6\u53d8\u5316",
+            "current_temperature_changed": "{entity_name} \u6d4b\u91cf\u6e29\u5ea6\u53d8\u5316",
+            "hvac_mode_changed": "{entity_name} \u6696\u901a\u7a7a\u8c03\u6a21\u5f0f\u53d8\u5316"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u6052\u6e29\u5668",
+            "state": {
+                "auto": "\u81ea\u52a8",
+                "cool": "\u5236\u51b7",
+                "dry": "\u9664\u6e7f",
+                "fan_only": "\u4ec5\u9001\u98ce",
+                "heat": "\u5236\u70ed",
+                "heat_cool": "\u5236\u70ed/\u5236\u51b7",
+                "off": "\u5173\u95ed"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "\u5f53\u524d\u6e7f\u5ea6"
+                },
+                "current_temperature": {
+                    "name": "\u5f53\u524d\u6e29\u5ea6"
+                },
+                "fan_mode": {
+                    "name": "\u98ce\u6247\u6a21\u5f0f",
+                    "state": {
+                        "auto": "\u81ea\u52a8",
+                        "diffuse": "\u6269\u6563",
+                        "focus": "\u91cd\u70b9",
+                        "high": "\u9ad8",
+                        "low": "\u4f4e",
+                        "medium": "\u4e2d",
+                        "middle": "\u4e2d",
+                        "off": "\u5173\u95ed",
+                        "on": "\u5f00\u542f",
+                        "top": "\u9876\u90e8"
+                    }
+                },
+                "fan_modes": {
+                    "name": "\u98ce\u6247\u6a21\u5f0f"
+                },
+                "humidity": {
+                    "name": "\u76ee\u6807\u6e7f\u5ea6"
+                },
+                "hvac_action": {
+                    "name": "\u5f53\u524d\u52a8\u4f5c",
+                    "state": {
+                        "cooling": "\u5236\u51b7",
+                        "defrosting": "\u9664\u971c",
+                        "drying": "\u9664\u6e7f",
+                        "fan": "\u9001\u98ce",
+                        "heating": "\u4f9b\u6696",
+                        "idle": "\u7a7a\u95f2",
+                        "off": "\u5173\u95ed",
+                        "preheating": "\u9884\u70ed"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "\u6696\u901a\u7a7a\u8c03\u6a21\u5f0f"
+                },
+                "max_humidity": {
+                    "name": "\u6700\u5927\u76ee\u6807\u6e7f\u5ea6"
+                },
+                "max_temp": {
+                    "name": "\u6700\u9ad8\u76ee\u6807\u6e29\u5ea6"
+                },
+                "min_humidity": {
+                    "name": "\u6700\u4f4e\u76ee\u6807\u6e7f\u5ea6"
+                },
+                "min_temp": {
+                    "name": "\u6700\u4f4e\u76ee\u6807\u6e29\u5ea6"
+                },
+                "preset_mode": {
+                    "name": "\u9884\u8bbe",
+                    "state": {
+                        "activity": "\u6d3b\u52a8",
+                        "away": "\u79bb\u5bb6",
+                        "boost": "\u5f3a\u52b2",
+                        "comfort": "\u8212\u9002",
+                        "eco": "\u8282\u80fd",
+                        "home": "\u5728\u5bb6",
+                        "none": "\u65e0",
+                        "sleep": "\u7761\u7720"
+                    }
+                },
+                "preset_modes": {
+                    "name": "\u9884\u8bbe"
+                },
+                "swing_horizontal_mode": {
+                    "name": "\u6c34\u5e73\u6446\u52a8\u6a21\u5f0f",
+                    "state": {
+                        "off": "\u5173\u95ed",
+                        "on": "\u5f00\u542f"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "\u6c34\u5e73\u6446\u52a8\u6a21\u5f0f"
+                },
+                "swing_mode": {
+                    "name": "\u6446\u52a8\u6a21\u5f0f",
+                    "state": {
+                        "both": "\u540c\u65f6",
+                        "horizontal": "\u6c34\u5e73",
+                        "off": "\u5173\u95ed",
+                        "on": "\u5f00\u542f",
+                        "vertical": "\u5782\u76f4"
+                    }
+                },
+                "swing_modes": {
+                    "name": "\u6446\u52a8\u6a21\u5f0f"
+                },
+                "target_temp_high": {
+                    "name": "\u76ee\u6807\u6e29\u5ea6\u4e0a\u9650"
+                },
+                "target_temp_low": {
+                    "name": "\u76ee\u6807\u6e29\u5ea6\u4e0b\u9650"
+                },
+                "target_temp_step": {
+                    "name": "\u76ee\u6807\u6e29\u5ea6\u6b65\u957f"
+                },
+                "temperature": {
+                    "name": "\u76ee\u6807\u6e29\u5ea6"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "\u63d0\u4f9b\u7684\u6e7f\u5ea6 {humidity} \u65e0\u6548\u3002\u53ef\u63a5\u53d7\u7684\u8303\u56f4\u662f {min_humidity} \u81f3 {max_humidity} \u3002"
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "\u8bbe\u7f6e\u6e29\u5ea6\u52a8\u4f5c\u4e0e\u201c\u76ee\u6807\u6e29\u5ea6\u201d\u53c2\u6570\u4e00\u8d77\u4f7f\u7528\uff0c\u4f46\u5b9e\u4f53\u4e0d\u652f\u6301\u5b83\u3002"
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "\u8bbe\u7f6e\u6e29\u5ea6\u52a8\u4f5c\u4e0e\u201c\u76ee\u6807\u6e29\u5ea6\u4e0b\u9650/\u4e0a\u9650\u201d\u53c2\u6570\u4e00\u8d77\u4f7f\u7528\uff0c\u4f46\u5b9e\u4f53\u4e0d\u652f\u6301\u5b83\u3002"
+        },
+        "not_valid_fan_mode": {
+            "message": "\u98ce\u6247\u6a21\u5f0f\u201c{mode}\u201d\u65e0\u6548\u3002\u6709\u6548\u98ce\u6247\u6a21\u5f0f\u6709\uff1a{modes} \u3002"
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "\u6c34\u5e73\u6446\u52a8\u6a21\u5f0f\u201c{mode}\u201d\u65e0\u6548\u3002\u6709\u6548\u7684\u6c34\u5e73\u6446\u52a8\u6a21\u5f0f\u6709\uff1a{modes} \u3002"
+        },
+        "not_valid_hvac_mode": {
+            "message": "HVAC \u6a21\u5f0f\u201c{mode}\u201d\u65e0\u6548\u3002\u6709\u6548\u7684 HVAC \u6a21\u5f0f\u6709\uff1a{modes} \u3002"
+        },
+        "not_valid_preset_mode": {
+            "message": "\u9884\u8bbe\u6a21\u5f0f\u201c{mode}\u201d\u65e0\u6548\u3002\u6709\u6548\u9884\u8bbe\u6a21\u5f0f\u6709\uff1a{modes} \u3002"
+        },
+        "not_valid_swing_mode": {
+            "message": "\u6446\u52a8\u6a21\u5f0f\u201c{mode}\u201d\u65e0\u6548\u3002\u6709\u6548\u6446\u52a8\u6a21\u5f0f\u6709\uff1a{modes} \u3002"
+        },
+        "temp_out_of_range": {
+            "message": "\u63d0\u4f9b\u7684\u6e29\u5ea6 {check_temp} \u65e0\u6548\u3002\u53ef\u63a5\u53d7\u7684\u8303\u56f4\u662f {min_temp} \u5230 {max_temp} \u3002"
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "fields": {
+                "fan_mode": {
+                    "description": "\u98ce\u6247\u8fd0\u884c\u6a21\u5f0f\u3002",
+                    "name": "\u98ce\u6247\u6a21\u5f0f"
+                }
+            }
+        },
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "\u76ee\u6807\u6e7f\u5ea6\u3002",
+                    "name": "\u6e7f\u5ea6"
+                }
+            }
+        },
+        "set_hvac_mode": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "\u6696\u901a\u7a7a\u8c03\u64cd\u4f5c\u6a21\u5f0f\u3002",
+                    "name": "\u6696\u901a\u7a7a\u8c03\u6a21\u5f0f"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "\u9884\u8bbe\u6a21\u5f0f\u3002",
+                    "name": "\u9884\u8bbe\u6a21\u5f0f"
+                }
+            }
+        },
+        "set_swing_horizontal_mode": {
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "\u6c34\u5e73\u6446\u52a8\u64cd\u4f5c\u6a21\u5f0f\u3002",
+                    "name": "\u6c34\u5e73\u6446\u52a8\u6a21\u5f0f"
+                }
+            }
+        },
+        "set_swing_mode": {
+            "fields": {
+                "swing_mode": {
+                    "description": "\u6446\u52a8\u64cd\u4f5c\u65b9\u5f0f\u3002",
+                    "name": "\u6446\u52a8\u6a21\u5f0f"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "\u6696\u901a\u7a7a\u8c03\u64cd\u4f5c\u6a21\u5f0f\u3002",
+                    "name": "\u6696\u901a\u7a7a\u8c03\u6a21\u5f0f"
+                },
+                "target_temp_high": {
+                    "description": "\u6700\u9ad8\u76ee\u6807\u6e29\u5ea6\u8bbe\u5b9a\u503c\u3002",
+                    "name": "\u76ee\u6807\u6e29\u5ea6\u4e0a\u9650"
+                },
+                "target_temp_low": {
+                    "description": "\u6700\u4f4e\u76ee\u6807\u6e29\u5ea6\u8bbe\u5b9a\u503c\u3002",
+                    "name": "\u4f4e\u76ee\u6807\u6e29\u5ea6"
+                },
+                "temperature": {
+                    "description": "\u76ee\u6807\u6e29\u5ea6\u8bbe\u5b9a\u503c\u3002",
+                    "name": "\u76ee\u6807\u6e29\u5ea6"
+                }
+            },
+            "sections": {
+                "temperature_range": {
+                    "name": "\u6e29\u5ea6\u8303\u56f4"
+                }
+            }
+        },
+        "turn_off": {
+            "name": "\u5173\u95ed\u6052\u6e29\u5668"
+        },
+        "turn_on": {
+            "name": "\u6253\u5f00\u6052\u6e29\u5668"
+        }
+    },
+    "title": "\u7a7a\u8c03",
+    "triggers": {
+        "hvac_mode_changed": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "hvac_mode": {
+                    "description": "\u8981\u89e6\u53d1\u7684\u7a7a\u8c03\u6a21\u5f0f\u3002",
+                    "name": "\u6a21\u5f0f"
+                }
+            }
+        },
+        "started_cooling": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "started_drying": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "started_heating": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "target_humidity_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            }
+        },
+        "target_humidity_crossed_threshold": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            }
+        },
+        "target_temperature_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            }
+        },
+        "target_temperature_crossed_threshold": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            }
+        },
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        }
+    }
+}

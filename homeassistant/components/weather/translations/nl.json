@@ -1,0 +1,121 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Weer",
+            "state": {
+                "clear-night": "Helder, nacht",
+                "cloudy": "Bewolkt",
+                "exceptional": "Uitzonderlijk",
+                "fog": "Mist",
+                "hail": "Hagel",
+                "lightning": "Bliksem",
+                "lightning-rainy": "Bliksem, regenachtig",
+                "partlycloudy": "Half bewolkt",
+                "pouring": "Regen",
+                "rainy": "Regenachtig",
+                "snowy": "Sneeuwachtig",
+                "snowy-rainy": "Sneeuw-, regenachtig",
+                "sunny": "Zonnig",
+                "windy": "Winderig",
+                "windy-variant": "Winderig, bewolkt"
+            },
+            "state_attributes": {
+                "apparent_temperature": {
+                    "name": "Schijnbare temperatuur"
+                },
+                "cloud_coverage": {
+                    "name": "Bewolking"
+                },
+                "dew_point": {
+                    "name": "Dauwpunt temperatuur"
+                },
+                "forecast": {
+                    "name": "Voorspelling"
+                },
+                "humidity": {
+                    "name": "Luchtvochtigheid"
+                },
+                "ozone": {
+                    "name": "Ozon"
+                },
+                "precipitation_unit": {
+                    "name": "Neerslag eenheid"
+                },
+                "pressure": {
+                    "name": "Luchtdruk"
+                },
+                "pressure_unit": {
+                    "name": "Druk eenheid"
+                },
+                "temperature": {
+                    "name": "Temperatuur"
+                },
+                "temperature_unit": {
+                    "name": "Temperatuureenheid"
+                },
+                "uv_index": {
+                    "name": "UV index"
+                },
+                "visibility": {
+                    "name": "Zichtbaarheid"
+                },
+                "visibility_unit": {
+                    "name": "Zicht eenheid"
+                },
+                "wind_bearing": {
+                    "name": "Windrichting"
+                },
+                "wind_gust_speed": {
+                    "name": "Windvlaag snelheid"
+                },
+                "wind_speed": {
+                    "name": "Windsnelheid"
+                },
+                "wind_speed_unit": {
+                    "name": "Eenheid windsnelheid"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_weather_get_forecast": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Gebruik in plaats daarvan `weather.get_forecasts`, dat meerdere entiteiten ondersteunt. \n \n Vervang deze actie en pas je automatiseringen en scripts aan en selecteer **Verzenden** om dit probleem te sluiten.",
+                        "title": "Gebruik van verouderde actie weather.get_forecast gedetecteerd"
+                    }
+                }
+            },
+            "title": "Gebruik van verouderde actie weather.get_forecast gedetecteerd"
+        }
+    },
+    "selector": {
+        "forecast_type": {
+            "options": {
+                "daily": "Dagelijks",
+                "hourly": "Per uur",
+                "twice_daily": "Twee keer per dag"
+            }
+        }
+    },
+    "services": {
+        "get_forecast": {
+            "fields": {
+                "type": {
+                    "description": "Het bereik van de weersvoorspelling.",
+                    "name": "Voorspellingstype"
+                }
+            }
+        },
+        "get_forecasts": {
+            "fields": {
+                "type": {
+                    "description": "Het bereik van de weersvoorspelling.",
+                    "name": "Voorspellingstype"
+                }
+            }
+        }
+    },
+    "title": "Weer"
+}

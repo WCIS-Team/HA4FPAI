@@ -1,0 +1,98 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Kamera",
+            "state": {
+                "idle": "Leerlauf",
+                "recording": "Zeichnet auf",
+                "streaming": "\u00dcbertr\u00e4gt"
+            },
+            "state_attributes": {
+                "access_token": {
+                    "name": "Zugriffstoken"
+                },
+                "brand": {
+                    "name": "Marke"
+                },
+                "frontend_stream_type": {
+                    "name": "Stream-Typ",
+                    "state": {
+                        "hls": "HLS",
+                        "webrtc": "WebRTC"
+                    }
+                },
+                "model_name": {
+                    "name": "Modell"
+                },
+                "motion_detection": {
+                    "name": "Bewegungserkennung",
+                    "state": {
+                        "false": "Deaktiviert",
+                        "true": "Aktiviert"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "disable_motion_detection": {
+            "description": "Deaktiviert die Bewegungserkennung einer Kamera.",
+            "name": "Bewegungserkennung einer Kamera deaktivieren"
+        },
+        "enable_motion_detection": {
+            "description": "Aktiviert die Bewegungserkennung einer Kamera.",
+            "name": "Bewegungserkennung einer Kamera aktivieren"
+        },
+        "play_stream": {
+            "description": "Gibt einen Kamerastream auf einem unterst\u00fctzten Mediaplayer wieder.",
+            "fields": {
+                "format": {
+                    "description": "Vom Mediaplayer unterst\u00fctztes Streamformat.",
+                    "name": "Format"
+                },
+                "media_player": {
+                    "description": "Mediaplayer, auf den gestreamt werden soll.",
+                    "name": "Mediaplayer"
+                }
+            },
+            "name": "Kamerastream wiedergeben"
+        },
+        "record": {
+            "description": "Erstellt eine Aufzeichnung einer Kamera-Live\u00fcbertragung.",
+            "fields": {
+                "duration": {
+                    "description": "Geplante Dauer der Aufzeichnung. Die tats\u00e4chliche Dauer kann variieren.",
+                    "name": "Dauer"
+                },
+                "filename": {
+                    "description": "Vollst\u00e4ndiger Pfad zum Dateinamen. Muss mp4 sein.",
+                    "name": "Dateiname"
+                },
+                "lookback": {
+                    "description": "Geplanter R\u00fcckblickzeitraum, der in die Aufzeichnung einbezogen werden soll (zus\u00e4tzlich zur Dauer). Nur verf\u00fcgbar, wenn momentan ein HLS-Stream aktiv ist. Die tats\u00e4chliche L\u00e4nge des R\u00fcckblickzeitraums kann variieren.",
+                    "name": "R\u00fcckblick"
+                }
+            },
+            "name": "Kamera\u00fcbertragung aufzeichnen"
+        },
+        "snapshot": {
+            "description": "Nimmt einen Schnappschuss von einer Kamera auf.",
+            "fields": {
+                "filename": {
+                    "description": "Vollst\u00e4ndiger Pfad zum Dateinamen.",
+                    "name": "Dateiname"
+                }
+            },
+            "name": "Kamera-Schnappschuss machen"
+        },
+        "turn_off": {
+            "description": "Schaltet eine Kamera aus.",
+            "name": "Kamera ausschalten"
+        },
+        "turn_on": {
+            "description": "Schaltet eine Kamera ein.",
+            "name": "Kamera einschalten"
+        }
+    },
+    "title": "Kamera"
+}

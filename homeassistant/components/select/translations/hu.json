@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb leg\u00f6rd\u00fcl\u0151 men\u00fcben egy adott opci\u00f3 van-e kiv\u00e1lasztva.",
+            "fields": {
+                "behavior": {
+                    "name": "Felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                },
+                "option": {
+                    "description": "Az ellen\u0151rizend\u0151 opci\u00f3k.",
+                    "name": "Opci\u00f3"
+                }
+            },
+            "name": "Leg\u00f6rd\u00fcl\u0151 men\u00fc opci\u00f3ja kiv\u00e1lasztva"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "{entity_name} m\u00f3dos\u00edt\u00e1sa az els\u0151 lehet\u0151s\u00e9gre",
+            "select_last": "{entity_name} m\u00f3dos\u00edt\u00e1sa az utols\u00f3 lehet\u0151s\u00e9gre",
+            "select_next": "{entity_name} m\u00f3dos\u00edt\u00e1sa a k\u00f6vetkez\u0151 lehet\u0151s\u00e9gre",
+            "select_option": "{entity_name} be\u00e1ll\u00edt\u00e1s\u00e1nak m\u00f3dos\u00edt\u00e1sa",
+            "select_previous": "{entity_name} m\u00f3dos\u00edt\u00e1sa az el\u0151z\u0151 lehet\u0151s\u00e9gre"
+        },
+        "condition_type": {
+            "selected_option": "{entity_name} aktu\u00e1lisan kiv\u00e1lasztott opci\u00f3"
+        },
+        "extra_fields": {
+            "cycle": "Ciklus",
+            "for": "Id\u0151tartam",
+            "from": "Ett\u0151l",
+            "option": "Opci\u00f3",
+            "to": "Eddig"
+        },
+        "trigger_type": {
+            "current_option_changed": "{entity_name} opci\u00f3i megv\u00e1ltoztak"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Kiv\u00e1laszt\u00e1s",
+            "state_attributes": {
+                "options": {
+                    "name": "Opci\u00f3k"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "A(z) {entity_id} entit\u00e1snak nincsenek kiv\u00e1laszthat\u00f3 opci\u00f3i."
+        },
+        "not_valid_option": {
+            "message": "A(z) {option} be\u00e1ll\u00edt\u00e1s nem \u00e9rv\u00e9nyes a(z) {entity_id} entit\u00e1shoz, az \u00e9rv\u00e9nyes be\u00e1ll\u00edt\u00e1sok a k\u00f6vetkez\u0151k: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "A kijel\u00f6l\u0151 lista els\u0151 opci\u00f3j\u00e1t v\u00e1lasztja ki.",
+            "name": "Els\u0151 opci\u00f3 kiv\u00e1laszt\u00e1sa"
+        },
+        "select_last": {
+            "description": "A kijel\u00f6l\u0151 lista utols\u00f3 opci\u00f3j\u00e1t v\u00e1lasztja ki.",
+            "name": "Utols\u00f3 opci\u00f3 kiv\u00e1laszt\u00e1sa"
+        },
+        "select_next": {
+            "description": "A kijel\u00f6l\u0151 lista k\u00f6vetkez\u0151 opci\u00f3j\u00e1t v\u00e1lasztja ki.",
+            "fields": {
+                "cycle": {
+                    "description": "Ha az opci\u00f3nak a lista utols\u00f3 lehet\u0151s\u00e9ge ut\u00e1n, az els\u0151re kell ciklikusan visszav\u00e1ltania.",
+                    "name": "Ciklus"
+                }
+            },
+            "name": "K\u00f6vetkez\u0151 opci\u00f3 kiv\u00e1laszt\u00e1sa"
+        },
+        "select_option": {
+            "description": "A kijel\u00f6l\u0151 lista egy opci\u00f3j\u00e1t v\u00e1lasztja ki.",
+            "fields": {
+                "option": {
+                    "description": "Kiv\u00e1lasztand\u00f3 opci\u00f3.",
+                    "name": "Opci\u00f3"
+                }
+            },
+            "name": "Opci\u00f3 kiv\u00e1laszt\u00e1sa"
+        },
+        "select_previous": {
+            "description": "A kijel\u00f6l\u0151 lista el\u0151z\u0151 opci\u00f3j\u00e1t v\u00e1lasztja ki.",
+            "fields": {
+                "cycle": {
+                    "description": "Ha az opci\u00f3nak a lista els\u0151 lehet\u0151s\u00e9ge ut\u00e1n, az utols\u00f3ra kell ciklikusan visszav\u00e1ltania.",
+                    "name": "Ciklus"
+                }
+            },
+            "name": "El\u0151z\u0151 opci\u00f3 kiv\u00e1laszt\u00e1sa"
+        }
+    },
+    "title": "Kiv\u00e1laszt\u00e1s",
+    "triggers": {
+        "selection_changed": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb leg\u00f6rd\u00fcl\u0151 men\u00fc kiv\u00e1lasztott eleme megv\u00e1ltozik.",
+            "name": "Leg\u00f6rd\u00fcl\u0151 men\u00fc v\u00e1laszt\u00e1sa megv\u00e1ltozott"
+        }
+    }
+}

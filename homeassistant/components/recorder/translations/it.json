@@ -1,0 +1,58 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Il backup del database avviato alle {start_time} non \u00e8 riuscito per mancanza di risorse. Il backup non \u00e8 affidabile e deve essere riavviato. Questo pu\u00f2 accadere se il database \u00e8 troppo grande o se il sistema \u00e8 fortemente carico. Prendere in considerazione l\u2019aggiornamento dell\u2019hardware di sistema o la riduzione delle dimensioni del database diminuendo il numero di giorni di cronologia da conservare o creando un filtro."
+        },
+        "maria_db_range_index_regression": {
+            "title": "Aggiorna MariaDB a {min_version} o versioni successive per risolvere un problema di prestazioni significativo"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Arresta la registrazione di eventi e cambiamenti di stato."
+        },
+        "enable": {
+            "description": "Avvia la registrazione degli eventi e dei cambiamenti di stato."
+        },
+        "purge": {
+            "description": "Avvia l'attivit\u00e0 di eliminazione - per ripulire i vecchi dati dal database.",
+            "fields": {
+                "apply_filter": {
+                    "name": "Applica il filtro"
+                },
+                "keep_days": {
+                    "description": "Numero di giorni per mantenere i dati nel database. A partire da oggi, contando a ritroso. Il valore \"7\" indica che tutto ci\u00f2 che \u00e8 pi\u00f9 vecchio di una settimana verr\u00e0 eliminato.",
+                    "name": "Giorni da conservare"
+                },
+                "repack": {
+                    "description": "Tentativo di risparmiare spazio su disco riscrivendo l'intero file di database.",
+                    "name": "Riorganizza"
+                }
+            }
+        },
+        "purge_entities": {
+            "description": "Avvia un'attivit\u00e0 di eliminazione per rimuovere i dati relativi a entit\u00e0 specifiche dal database.",
+            "fields": {
+                "domains": {
+                    "name": "Domini da rimuovere"
+                },
+                "entity_globs": {
+                    "name": "Entit\u00e0 globali da rimuovere"
+                },
+                "keep_days": {
+                    "description": "Numero di giorni per cui conservare i dati per le righe che corrispondono al filtro. A partire da oggi, conto alla rovescia. Un valore di \"7\" significa che tutto ci\u00f2 che \u00e8 pi\u00f9 vecchio di una settimana verr\u00e0 eliminato. L'impostazione predefinita di 0 giorni rimuover\u00e0 immediatamente tutte le righe corrispondenti.",
+                    "name": "Giorni da conservare"
+                }
+            }
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Ora di inizio esecuzione corrente",
+            "database_engine": "Motore del database",
+            "database_version": "Versione del database",
+            "estimated_db_size": "Dimensione stimata del database (MiB)",
+            "oldest_recorder_run": "Ora di inizio esecuzione meno recente"
+        }
+    }
+}

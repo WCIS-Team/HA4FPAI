@@ -1,0 +1,57 @@
+{
+    "device_automation": {
+        "action_type": {
+            "clean": "Naj {entity_name} \u010disti",
+            "dock": "Pustite, da se {entity_name} vrne na dok"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} \u010disti",
+            "is_docked": "{entity_name} je priklju\u010den"
+        },
+        "extra_fields": {
+            "for": "Trajanje"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} za\u010del \u010di\u0161\u010denje",
+            "docked": "{entity_name} priklju\u010den"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sesalnik",
+            "state": {
+                "cleaning": "\u010cisti",
+                "docked": "Na postaji",
+                "error": "Napaka",
+                "idle": "Mirovanje",
+                "off": "Izklopljeno",
+                "on": "Vklopljeno",
+                "paused": "Premor",
+                "returning": "Vra\u010da se na postajo"
+            }
+        }
+    },
+    "services": {
+        "send_command": {
+            "fields": {
+                "command": {
+                    "description": "Ukaz, ki naj se izvede. Ukazi so specifi\u010dni za integracijo.",
+                    "name": "Ukaz"
+                },
+                "params": {
+                    "description": "Parametri za ukaz. Parametri so specifi\u010dni za integracijo.",
+                    "name": "Parametri"
+                }
+            }
+        },
+        "set_fan_speed": {
+            "fields": {
+                "fan_speed": {
+                    "description": "Hitrost ventilatorja. Vrednost je odvisna od integracije. Nekatere integracije imajo stopnje hitrosti, na primer \u00bbsrednje\u00ab. Nekateri uporabljajo odstotek, med 0 in 100.",
+                    "name": "Hitrost ventilatorja"
+                }
+            }
+        }
+    },
+    "title": "Sesalnik"
+}

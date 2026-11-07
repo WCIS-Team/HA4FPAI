@@ -1,0 +1,593 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "condition_threshold_name": "Schwellenwert",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens",
+        "trigger_threshold_name": "Schwellenwert"
+    },
+    "conditions": {
+        "is_muted": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Mediaplayer stummgeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer stummgeschaltet"
+        },
+        "is_not_playing": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Mediaplayer nichts wiedergeben.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer-Wiedergabe nicht aktiv"
+        },
+        "is_off": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Mediaplayer ausgeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer ausgeschaltet"
+        },
+        "is_on": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Mediaplayer eingeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer eingeschaltet"
+        },
+        "is_paused": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Mediaplayer pausiert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer-Wiedergabe pausiert"
+        },
+        "is_playing": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Mediaplayer etwas wiedergeben.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer-Wiedergabe aktiv"
+        },
+        "is_unmuted": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Mediaplayer nicht stummgeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer nicht stummgeschaltet"
+        },
+        "is_volume": {
+            "description": "Pr\u00fcft die Lautst\u00e4rke eines oder mehrerer Mediaplayer.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwert"
+                }
+            },
+            "name": "Mediaplayer-Lautst\u00e4rke"
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "Wenn {entity_name} puffert",
+            "is_idle": "Wenn {entity_name} inaktiv ist",
+            "is_off": "Wenn {entity_name} ausgeschaltet ist",
+            "is_on": "Wenn {entity_name} eingeschaltet ist",
+            "is_paused": "Wenn {entity_name} pausiert",
+            "is_playing": "Wenn {entity_name} etwas wiedergibt"
+        },
+        "extra_fields": {
+            "for": "Dauer"
+        },
+        "trigger_type": {
+            "buffering": "Sobald {entity_name} zu puffern beginnt",
+            "changed_states": "Sobald {entity_name} ein- oder ausgeschaltet wird",
+            "idle": "Sobald {entity_name} inaktiv wird",
+            "paused": "Sobald {entity_name} angehalten wird",
+            "playing": "Sobald {entity_name} mit der Wiedergabe beginnt",
+            "turned_off": "Sobald {entity_name} ausgeschaltet wird",
+            "turned_on": "Sobald {entity_name} eingeschaltet wird"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Mediaplayer",
+            "state": {
+                "buffering": "Puffern",
+                "idle": "Leerlauf",
+                "off": "Aus",
+                "on": "Ein",
+                "paused": "Pausiert",
+                "playing": "Wiedergabe",
+                "standby": "Standby"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "App-ID"
+                },
+                "app_name": {
+                    "name": "App"
+                },
+                "entity_picture_local": {
+                    "name": "Lokal zug\u00e4ngliches Entit\u00e4tsbild"
+                },
+                "groups_members": {
+                    "name": "Gruppenmitglieder"
+                },
+                "is_volume_muted": {
+                    "name": "Stumm geschaltet",
+                    "state": {
+                        "false": "Nein",
+                        "true": "Ja"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Albumk\u00fcnstler"
+                },
+                "media_album_name": {
+                    "name": "Album"
+                },
+                "media_artist": {
+                    "name": "K\u00fcnstler"
+                },
+                "media_channel": {
+                    "name": "Kanal"
+                },
+                "media_content_id": {
+                    "name": "Inhalts-ID"
+                },
+                "media_content_type": {
+                    "name": "Inhaltstyp",
+                    "state": {
+                        "album": "Album",
+                        "app": "App",
+                        "artist": "K\u00fcnstler",
+                        "channel": "Kanal",
+                        "channels": "Kan\u00e4le",
+                        "composer": "Komponist",
+                        "contributing_artist": "Mitwirkender K\u00fcnstler",
+                        "episode": "Episode",
+                        "game": "Spiel",
+                        "genre": "Genre",
+                        "image": "Bild",
+                        "movie": "Film",
+                        "music": "Musik",
+                        "playlist": "Wiedergabeliste",
+                        "podcast": "Podcast",
+                        "season": "Staffel",
+                        "track": "Titelnummer",
+                        "tvshow": "Fernsehsendung",
+                        "url": "URL",
+                        "video": "Video"
+                    }
+                },
+                "media_duration": {
+                    "name": "Dauer"
+                },
+                "media_episode": {
+                    "name": "Episode"
+                },
+                "media_playlist": {
+                    "name": "Wiedergabeliste"
+                },
+                "media_position": {
+                    "name": "Position"
+                },
+                "media_position_updated_at": {
+                    "name": "Position aktualisiert"
+                },
+                "media_season": {
+                    "name": "Staffel"
+                },
+                "media_series_title": {
+                    "name": "Serie"
+                },
+                "media_title": {
+                    "name": "Titel"
+                },
+                "media_track": {
+                    "name": "Titelnummer"
+                },
+                "repeat": {
+                    "name": "Wiederholen",
+                    "state": {
+                        "all": "Alle",
+                        "off": "Aus",
+                        "one": "Einer"
+                    }
+                },
+                "shuffle": {
+                    "name": "Zuf\u00e4llige Wiedergabe",
+                    "state": {
+                        "false": "Aus",
+                        "true": "Ein"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Soundmodus"
+                },
+                "sound_mode_list": {
+                    "name": "Verf\u00fcgbare Soundmodi"
+                },
+                "source": {
+                    "name": "Quelle"
+                },
+                "source_list": {
+                    "name": "Verf\u00fcgbare Quellen"
+                },
+                "volume_level": {
+                    "name": "Lautst\u00e4rke"
+                }
+            }
+        },
+        "projector": {
+            "name": "Projektor"
+        },
+        "receiver": {
+            "name": "Receiver"
+        },
+        "speaker": {
+            "name": "Lautsprecher"
+        },
+        "tv": {
+            "name": "Fernseher"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Zur Warteschlange hinzuf\u00fcgen",
+                "next": "Als N\u00e4chstes wiedergeben",
+                "play": "Wiedergeben",
+                "replace": "Jetzt wiedergeben und Warteschlange leeren"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "Alle wiederholen",
+                "off": "Aus",
+                "one": "Eins wiederholen"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Durchst\u00f6bert die verf\u00fcgbaren Medien.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Die ID des zu durchsuchenden Inhalts. Abh\u00e4ngig von der Integration.",
+                    "name": "Inhalts-ID"
+                },
+                "media_content_type": {
+                    "description": "Der Typ des zu durchsuchenden Inhalts, z. B. Bild, Musik, Fernsehsendung, Video, Episode, Kanal oder Wiedergabeliste.",
+                    "name": "Inhaltstyp"
+                }
+            },
+            "name": "Medien durchst\u00f6bern"
+        },
+        "clear_playlist": {
+            "description": "Entfernt alle Elemente aus der Wiedergabeliste eines Mediaplayers.",
+            "name": "Mediaplayer-Wiedergabeliste leeren"
+        },
+        "join": {
+            "description": "Gruppiert Mediaplayer f\u00fcr die synchrone Wiedergabe. Funktioniert nur auf unterst\u00fctzten Multiroom-Audiosystemen.",
+            "fields": {
+                "group_members": {
+                    "description": "Die Player, die mit der in 'Ziele' angegebenen Wiedergabe synchronisiert werden.",
+                    "name": "Gruppenmitglieder"
+                }
+            },
+            "name": "Mediaplayer verbinden"
+        },
+        "media_next_track": {
+            "description": "W\u00e4hlt den n\u00e4chsten Titel auf einem Mediaplayer aus.",
+            "name": "N\u00e4chster Titel"
+        },
+        "media_pause": {
+            "description": "Pausiert die Wiedergabe auf einem Mediaplayer.",
+            "name": "Medien pausieren"
+        },
+        "media_play": {
+            "description": "Startet die Wiedergabe auf einem Mediaplayer.",
+            "name": "Medien wiedergeben"
+        },
+        "media_play_pause": {
+            "description": "Schaltet einen Mediaplayer zwischen Wiedergabe und Pause um.",
+            "name": "Medien wiedergeben/pausieren"
+        },
+        "media_previous_track": {
+            "description": "W\u00e4hlt den vorherigen Titel auf einem Mediaplayer aus.",
+            "name": "Vorheriger Titel"
+        },
+        "media_seek": {
+            "description": "Erm\u00f6glicht, zu einem anderen Teil des gerade auf einem Mediaplayer wiedergegebenen Mediums zu springen.",
+            "fields": {
+                "seek_position": {
+                    "description": "Zielposition im aktuell wiedergegebenen Medium. Das Format ist plattformabh\u00e4ngig.",
+                    "name": "Position"
+                }
+            },
+            "name": "In Medium springen"
+        },
+        "media_stop": {
+            "description": "Stoppt die Wiedergabe auf einem Mediaplayer.",
+            "name": "Medien stoppen"
+        },
+        "play_media": {
+            "description": "Startet die Wiedergabe der angegebenen Medien auf einem Mediaplayer.",
+            "fields": {
+                "announce": {
+                    "description": "Ob die Medien als Durchsage wiedergegeben werden sollen.",
+                    "name": "Durchsage"
+                },
+                "enqueue": {
+                    "description": "Ob der Inhalt jetzt wiedergegeben oder zur Warteschlange hinzugef\u00fcgt werden soll.",
+                    "name": "Einreihen"
+                },
+                "media": {
+                    "description": "Die zur Wiedergabe ausgew\u00e4hlten Medien.",
+                    "name": "Medien"
+                }
+            },
+            "name": "Angegebene Medien wiedergeben"
+        },
+        "repeat_set": {
+            "description": "Legt den Wiederholungsmodus eines Mediaplayers fest.",
+            "fields": {
+                "repeat": {
+                    "description": "Ob die Medien (eins oder alle) in einer Schleife wiedergegeben werden sollen oder nicht.",
+                    "name": "Wiederholungsmodus"
+                }
+            },
+            "name": "Mediaplayer-Wiederholmodus einstellen"
+        },
+        "search_media": {
+            "description": "Durchsucht die verf\u00fcgbaren Medien.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Die ID des zu durchsuchenden Inhalts. Abh\u00e4ngig von der Integration.",
+                    "name": "Inhalts-ID"
+                },
+                "media_content_type": {
+                    "description": "Der Typ des zu durchsuchenden Inhalts, z. B. Bild, Musik, Fernsehsendung, Video, Episode, Kanal oder Wiedergabeliste.",
+                    "name": "Inhaltstyp"
+                },
+                "media_filter_classes": {
+                    "description": "Liste der Medienklassen, nach denen die Suchergebnisse gefiltert werden sollen.",
+                    "name": "Medienklassen-Filter"
+                },
+                "search_query": {
+                    "description": "Der Begriff, nach dem gesucht werden soll.",
+                    "name": "Suchanfrage"
+                }
+            },
+            "name": "Medien durchsuchen"
+        },
+        "select_sound_mode": {
+            "description": "W\u00e4hlt einen bestimmten Soundmodus eines Mediaplayers aus.",
+            "fields": {
+                "sound_mode": {
+                    "description": "Name des Soundmodus, zu dem gewechselt werden soll.",
+                    "name": "Soundmodus"
+                }
+            },
+            "name": "Mediaplayer-Soundmodus ausw\u00e4hlen"
+        },
+        "select_source": {
+            "description": "Sendet einem Mediaplayer den Befehl, die Eingangsquelle zu \u00e4ndern.",
+            "fields": {
+                "source": {
+                    "description": "Name der Quelle, zu der gewechselt werden soll. Plattformabh\u00e4ngig.",
+                    "name": "Quelle"
+                }
+            },
+            "name": "Mediaplayer-Quelle ausw\u00e4hlen"
+        },
+        "shuffle_set": {
+            "description": "Aktiviert oder deaktiviert den Zufallswiedergabemodus eines Mediaplayers.",
+            "fields": {
+                "shuffle": {
+                    "description": "Ob die Medien in zuf\u00e4lliger Reihenfolge wiedergegeben werden sollen oder nicht.",
+                    "name": "Zufallsmodus"
+                }
+            },
+            "name": "Mediaplayer-Zufallsmodus einstellen"
+        },
+        "toggle": {
+            "description": "Schaltet einen Mediaplayer zwischen ein und aus um.",
+            "name": "Mediaplayer umschalten"
+        },
+        "turn_off": {
+            "description": "Schaltet einen Mediaplayer aus.",
+            "name": "Mediaplayer ausschalten"
+        },
+        "turn_on": {
+            "description": "Schaltet einen Mediaplayer ein.",
+            "name": "Mediaplayer einschalten"
+        },
+        "unjoin": {
+            "description": "Entfernt einen Mediaplayer aus einer Gruppe. Funktioniert nur auf Plattformen, die Player-Gruppen unterst\u00fctzen.",
+            "name": "Mediaplayer trennen"
+        },
+        "volume_down": {
+            "description": "Verringert die Lautst\u00e4rke eines Mediaplayers.",
+            "name": "Mediaplayer-Lautst\u00e4rke verringern"
+        },
+        "volume_mute": {
+            "description": "Schaltet einen Mediaplayer stumm oder hebt die Stummschaltung auf.",
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Definiert, ob er stummgeschaltet wird oder nicht.",
+                    "name": "Stummgeschaltet"
+                }
+            },
+            "name": "Mediaplayer stummschalten/Stummschaltung aufheben"
+        },
+        "volume_set": {
+            "description": "Stellt den Lautst\u00e4rkepegel eines Mediaplayers ein.",
+            "fields": {
+                "volume_level": {
+                    "description": "Die Lautst\u00e4rke. 0 ist unh\u00f6rbar, 1 ist die maximale Lautst\u00e4rke.",
+                    "name": "Pegel"
+                }
+            },
+            "name": "Mediaplayer-Lautst\u00e4rke einstellen"
+        },
+        "volume_up": {
+            "description": "Erh\u00f6ht die Lautst\u00e4rke eines Mediaplayers.",
+            "name": "Mediaplayer-Lautst\u00e4rke erh\u00f6hen"
+        }
+    },
+    "title": "Mediaplayer",
+    "triggers": {
+        "muted": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Mediaplayer stummgeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer stummgeschaltet"
+        },
+        "paused_playing": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Mediaplayer die Wiedergabe unterbrechen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer-Wiedergabe pausiert"
+        },
+        "started_playing": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Mediaplayer die Wiedergabe beginnen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer-Wiedergabe gestartet"
+        },
+        "stopped_playing": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Mediaplayer die Wiedergabe beenden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer-Wiedergabe gestoppt"
+        },
+        "turned_off": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Mediaplayer ausgeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer ausgeschaltet"
+        },
+        "turned_on": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Mediaplayer eingeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer eingeschaltet"
+        },
+        "unmuted": {
+            "description": "Wird ausgel\u00f6st, sobald die Stummschaltung eines oder mehrerer Mediaplayer aufgehoben wird.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Mediaplayer-Stummschaltung aufgehoben"
+        },
+        "volume_changed": {
+            "description": "Wird ausgel\u00f6st, sobald sich die Lautst\u00e4rke eines oder mehrerer Mediaplayer \u00e4ndert.",
+            "fields": {
+                "threshold": {
+                    "name": "Schwellenwert"
+                }
+            },
+            "name": "Mediaplayer-Lautst\u00e4rke ge\u00e4ndert"
+        },
+        "volume_crossed_threshold": {
+            "description": "Wird ausgel\u00f6st, sobald die Lautst\u00e4rke eines oder mehrerer Mediaplayer einen Schwellenwert \u00fcberschreitet.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwert"
+                }
+            },
+            "name": "Mediaplayer-Lautst\u00e4rkeschwellenwert \u00fcberschritten"
+        }
+    }
+}

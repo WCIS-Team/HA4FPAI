@@ -1,0 +1,241 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer",
+        "trigger_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_drying": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_humidifying": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_mode": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_off": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_target_humidity": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "Luchtvochtigheid instellen voor {entity_name}",
+            "set_mode": "Wijzig modus van {entity_name}",
+            "toggle": "Zet {entity_name} aan/uit",
+            "turn_off": "{entity_name} uitzetten",
+            "turn_on": "{entity_name} aanzetten"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} is ingesteld op een specifieke modus",
+            "is_off": "{entity_name} is uitgeschakeld",
+            "is_on": "{entity_name} is ingeschakeld"
+        },
+        "extra_fields": {
+            "above": "Hierboven",
+            "below": "Hieronder",
+            "for": "Duur",
+            "humidity": "Vochtigheid"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} aan- of uitgezet",
+            "target_humidity_changed": "{entity_name} doel luchtvochtigheid gewijzigd",
+            "turned_off": "{entity_name} uitgezet",
+            "turned_on": "{entity_name} aangezet"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Luchtbevochtiger",
+            "state": {
+                "off": "Uit",
+                "on": "Aan"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Actie",
+                    "state": {
+                        "drying": "Drogen",
+                        "humidifying": "Bevochtigen",
+                        "idle": "Inactief",
+                        "off": "Uit"
+                    }
+                },
+                "available_modes": {
+                    "name": "Beschikbare modes"
+                },
+                "current_humidity": {
+                    "name": "Huidige luchtvochtigheid"
+                },
+                "humidity": {
+                    "name": "Doelluchtvochtigheid"
+                },
+                "max_humidity": {
+                    "name": "Max doelluchtvochtigheid"
+                },
+                "min_humidity": {
+                    "name": "Min doelluchtvochtigheid"
+                },
+                "mode": {
+                    "name": "Modus",
+                    "state": {
+                        "auto": "Automatisch",
+                        "away": "Afwezig",
+                        "baby": "Baby",
+                        "boost": "Boost",
+                        "comfort": "Comfortabel",
+                        "eco": "Eco",
+                        "home": "Thuis",
+                        "normal": "Normaal",
+                        "sleep": "Slaapstand"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Luchtontvochtiger"
+        },
+        "humidifier": {
+            "name": "Luchtbevochtiger"
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "Stel de gewenste luchtvochtigheid in op een luchtbevochtiger",
+            "fields": {
+                "humidity": {
+                    "description": "Doel luchtvochtigheid.",
+                    "name": "Luchtvochtigheid"
+                }
+            }
+        },
+        "set_mode": {
+            "description": "Stelt de modus van een luchtbevochtiger in.",
+            "fields": {
+                "mode": {
+                    "description": "Bedrijfsmodus. Bijvoorbeeld, \"normal\", \"eco\", of \"away\". Raadpleeg de integratiedocumentatie voor een overzicht van de beschikbare waarden.",
+                    "name": "Modus"
+                }
+            },
+            "name": "Luchtbevochtigingsmodus instellen"
+        },
+        "toggle": {
+            "description": "Schakelt een luchtbevochtiger aan/uit.",
+            "name": "Luchtbevochtiger omschakelen"
+        },
+        "turn_off": {
+            "description": "Zet een luchtbevochtiger uit.",
+            "name": "Luchtbevochtiger uitzetten"
+        },
+        "turn_on": {
+            "description": "Zet een luchtbevochtiger aan.",
+            "name": "Luchtbevochtiger aanzetten"
+        }
+    },
+    "title": "Luchtbevochtiger",
+    "triggers": {
+        "mode_changed": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "started_drying": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Luchtbevochtiger begon te drogen"
+        },
+        "started_humidifying": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Luchtbevochtiger is begonnen met bevochtigen"
+        },
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Luchtbevochtiger uitgeschakeld"
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Luchtbevochtiger ingeschakeld"
+        }
+    }
+}

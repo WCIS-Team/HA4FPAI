@@ -1,0 +1,125 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Wetter",
+            "state": {
+                "clear-night": "Klare Nacht",
+                "cloudy": "Bew\u00f6lkt",
+                "exceptional": "Au\u00dfergew\u00f6hnlich",
+                "fog": "Nebel",
+                "hail": "Hagel",
+                "lightning": "Gewitter",
+                "lightning-rainy": "Gewitter, regnerisch",
+                "partlycloudy": "Teilweise bew\u00f6lkt",
+                "pouring": "Str\u00f6mender Regen",
+                "rainy": "Regnerisch",
+                "snowy": "Schneefall",
+                "snowy-rainy": "Schneeregen",
+                "sunny": "Sonnig",
+                "windy": "Windig",
+                "windy-variant": "Windig, bew\u00f6lkt"
+            },
+            "state_attributes": {
+                "apparent_temperature": {
+                    "name": "Gef\u00fchlte Temperatur"
+                },
+                "cloud_coverage": {
+                    "name": "Bew\u00f6lkung"
+                },
+                "dew_point": {
+                    "name": "Taupunkt-Temperatur"
+                },
+                "forecast": {
+                    "name": "Prognose"
+                },
+                "humidity": {
+                    "name": "Luftfeuchtigkeit"
+                },
+                "ozone": {
+                    "name": "Ozon"
+                },
+                "precipitation_unit": {
+                    "name": "Niederschlagseinheit"
+                },
+                "pressure": {
+                    "name": "Druck"
+                },
+                "pressure_unit": {
+                    "name": "Druckeinheit"
+                },
+                "temperature": {
+                    "name": "Temperatur"
+                },
+                "temperature_unit": {
+                    "name": "Temperatureinheit"
+                },
+                "uv_index": {
+                    "name": "UV-Index"
+                },
+                "visibility": {
+                    "name": "Sichtweite"
+                },
+                "visibility_unit": {
+                    "name": "Sichtweiteneinheit"
+                },
+                "wind_bearing": {
+                    "name": "Windlast"
+                },
+                "wind_gust_speed": {
+                    "name": "Windb\u00f6engeschwindigkeit"
+                },
+                "wind_speed": {
+                    "name": "Windgeschwindigkeit"
+                },
+                "wind_speed_unit": {
+                    "name": "Windgeschwindigkeitseinheit"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_weather_get_forecast": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Verwende stattdessen `weather.get_forecasts`, das mehrere Entit\u00e4ten unterst\u00fctzt. \n\nBitte ersetze diese Aktion, passe deine Automationen und Skripte an und w\u00e4hle **OK**, um dieses Problem zu schlie\u00dfen.",
+                        "title": "Verwendung der veralteten Aktion weather.get_forecast erkannt"
+                    }
+                }
+            },
+            "title": "Verwendung der veralteten Aktion weather.get_forecast erkannt"
+        }
+    },
+    "selector": {
+        "forecast_type": {
+            "options": {
+                "daily": "T\u00e4glich",
+                "hourly": "St\u00fcndlich",
+                "twice_daily": "Zweimal t\u00e4glich"
+            }
+        }
+    },
+    "services": {
+        "get_forecast": {
+            "description": "Ruft die Prognose von einem Wetterdienst ab.",
+            "fields": {
+                "type": {
+                    "description": "Der Umfang der Wettervorhersage.",
+                    "name": "Vorhersage-Typ"
+                }
+            },
+            "name": "Wettervorhersage abrufen"
+        },
+        "get_forecasts": {
+            "description": "Ruft die Vorhersagen von einem oder mehreren Wetterdiensten ab.",
+            "fields": {
+                "type": {
+                    "description": "Der Umfang der Wettervorhersage.",
+                    "name": "Vorhersage-Typ"
+                }
+            },
+            "name": "Wettervorhersagen abrufen"
+        }
+    },
+    "title": "Wetter"
+}

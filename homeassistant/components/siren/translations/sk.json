@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Testuje, \u010di je vypnut\u00e1 jedna alebo viac sir\u00e9n.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Sir\u00e9na je vypnut\u00e1"
+        },
+        "is_on": {
+            "description": "Testuje, \u010di je zapnut\u00e1 jedna alebo viac sir\u00e9n.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Sir\u00e9na je zapnut\u00e1"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sir\u00e9na",
+            "state": {
+                "off": "Neakt\u00edvny",
+                "on": "Akt\u00edvny"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "Dostupn\u00e9 t\u00f3ny"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Zap\u00edna/vyp\u00edna sir\u00e9nu.",
+            "name": "Prep\u00ednanie sir\u00e9ny"
+        },
+        "turn_off": {
+            "description": "Vypne sir\u00e9nu.",
+            "name": "Vypnutie sir\u00e9ny"
+        },
+        "turn_on": {
+            "description": "Zapne sir\u00e9nu.",
+            "fields": {
+                "duration": {
+                    "description": "Po\u010det sek\u00fand prehr\u00e1vania zvuku. Mus\u00ed by\u0165 podporovan\u00fd integr\u00e1ciou.",
+                    "name": "Trvanie"
+                },
+                "tone": {
+                    "description": "T\u00f3n, ktor\u00fd sa m\u00e1 vysiela\u0165. Ak je vlastnos\u0165 `available_tones` mapou, mo\u017eno pou\u017ei\u0165 bu\u010f k\u013e\u00fa\u010d, alebo hodnotu. Mus\u00ed by\u0165 podporovan\u00e1 integr\u00e1ciou.",
+                    "name": "T\u00f3n"
+                },
+                "volume_level": {
+                    "description": "Hlasitos\u0165. 0 je nepo\u010dute\u013en\u00e1, 1 je maxim\u00e1lna hlasitos\u0165. Mus\u00ed by\u0165 podporen\u00e1 integr\u00e1ciou.",
+                    "name": "Hlasitos\u0165"
+                }
+            },
+            "name": "Zapnutie sir\u00e9ny"
+        }
+    },
+    "title": "Sir\u00e9na",
+    "triggers": {
+        "turned_off": {
+            "description": "Spust\u00ed sa, ke\u010f sa vypne jedna alebo viac sir\u00e9n.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Sir\u00e9na vypnut\u00e1"
+        },
+        "turned_on": {
+            "description": "Spust\u00ed sa, ke\u010f sa zapne jedna alebo viac sir\u00e9n.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Sir\u00e9na zapnut\u00e1"
+        }
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "V\u00e9rifie si un ou plusieurs blocs de planification ne sont actuellement pas actifs.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La planification est d\u00e9sactiv\u00e9e"
+        },
+        "is_on": {
+            "description": "V\u00e9rifie si un ou plusieurs blocs de planification sont actuellement actifs.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La planification est activ\u00e9e"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Planification",
+            "state": {
+                "off": "D\u00e9sactiv\u00e9",
+                "on": "Activ\u00e9"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "G\u00e9r\u00e9 via l'interface utilisateur",
+                    "state": {
+                        "false": "Non",
+                        "true": "Oui"
+                    }
+                },
+                "next_event": {
+                    "name": "Prochain \u00e9v\u00e9nement"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "R\u00e9cup\u00e8re les plages horaires configur\u00e9es d'une ou plusieurs planifications.",
+            "name": "Obtenir la planification"
+        },
+        "reload": {
+            "description": "Recharge les planifications \u00e0 partir de la configuration YAML.",
+            "name": "Recharger les planifications"
+        }
+    },
+    "title": "Planification",
+    "triggers": {
+        "block_ended": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs blocs de planification se terminent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le bloc de planification s'est termin\u00e9"
+        },
+        "block_started": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs blocs de planification commencent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le bloc de planification a commenc\u00e9"
+        }
+    }
+}

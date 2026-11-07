@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatick\u00e9 z\u00e1lohovanie",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "F\u00e1za z\u00e1lohovania"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "\u00daspe\u0161ne dokon\u010den\u00e9",
+                            "failed": "Zlyhalo",
+                            "in_progress": "Prebieha"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "D\u00f4vod zlyhania",
+                        "state": {
+                            "backup_agent_error": "Chyba agenta z\u00e1lohovania",
+                            "backup_agent_unreachable": "Z\u00e1lo\u017en\u00fd agent nedostupn\u00fd",
+                            "backup_manager_error": "Chyba spr\u00e1vcu z\u00e1lohovania",
+                            "backup_not_found": "Z\u00e1loha sa nena\u0161la",
+                            "backup_reader_writer_error": "Chyba \u010d\u00edta\u010dky/zapisova\u010dky z\u00e1lohy",
+                            "decrypt_on_download_not_supported": "De\u0161ifrovanie pri s\u0165ahovan\u00ed nie je podporovan\u00e9",
+                            "invalid_backup_filename": "Neplatn\u00fd n\u00e1zov z\u00e1lo\u017en\u00e9ho s\u00faboru",
+                            "multiple_errors": "Viacer\u00e9 chyby",
+                            "password_incorrect": "Nespr\u00e1vne heslo",
+                            "unknown_error": "Nezn\u00e1ma chyba",
+                            "upload_failed": "Nahr\u00e1vanie zlyhalo"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Stav spr\u00e1vcu z\u00e1lohovania",
+                "state": {
+                    "blocked": "Zablokovan\u00e9",
+                    "create_backup": "Vytvorenie z\u00e1lohy",
+                    "idle": "Ne\u010dinn\u00fd",
+                    "receive_backup": "Prijatie z\u00e1lohy",
+                    "restore_backup": "Obnovenie z\u00e1lohy"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Posledn\u00fd pokus o automatick\u00e9 z\u00e1lohovanie"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Posledn\u00e1 \u00faspe\u0161n\u00e1 automatick\u00e1 z\u00e1loha"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "\u010eal\u0161ie pl\u00e1novan\u00e9 automatick\u00e9 z\u00e1lohovanie"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Umiestnenie z\u00e1lohovania `{agent_id}` nie je dostupn\u00e9, ale je st\u00e1le nakonfigurovan\u00e9 na automatick\u00e9 z\u00e1lohovanie.\n\nNav\u0161t\u00edvte str\u00e1nku [konfigur\u00e1cia automatick\u00e9ho z\u00e1lohovania]({backup_settings}) a skontrolujte a aktualizujte svoje z\u00e1lo\u017en\u00e9 miesta. Z\u00e1lohy sa nebud\u00fa odosiela\u0165 do vybran\u00fdch lokal\u00edt, ktor\u00e9 s\u00fa nedostupn\u00e9.",
+            "title": "Z\u00e1lo\u017en\u00e9 umiestnenie {agent_id} nie je k dispoz\u00edcii"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Aplik\u00e1cie {failed_addons} nebolo mo\u017en\u00e9 zahrn\u00fa\u0165 do automatick\u00e9ho z\u00e1lohovania. \u010eal\u0161ie inform\u00e1cie n\u00e1jdete v protokoloch spr\u00e1vcu. \u010eal\u0161\u00ed pokus sa vykon\u00e1 v nasleduj\u00facom pl\u00e1novanom \u010dase, ak je nakonfigurovan\u00fd pl\u00e1n z\u00e1lohovania.",
+            "title": "Nie v\u0161etky aplik\u00e1cie m\u00f4\u017eu by\u0165 zahrnut\u00e9 do automatick\u00e9ho z\u00e1lohovania"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Automatick\u00e1 z\u00e1loha bola vytvoren\u00e1 s chybami: * Lokality, na ktor\u00e9 sa z\u00e1loha nedala nahra\u0165: {failed_agents}\n* Aplik\u00e1cie, ktor\u00e9 nebolo mo\u017en\u00e9 z\u00e1lohova\u0165: {failed_addons}\n* Prie\u010dinky, ktor\u00e9 nebolo mo\u017en\u00e9 z\u00e1lohova\u0165: {failed_folders}\n\n\u010eal\u0161ie inform\u00e1cie n\u00e1jdete v protokoloch Core a Supervisor. \u010eal\u0161\u00ed pokus sa vykon\u00e1 v nasleduj\u00facom pl\u00e1novanom \u010dase, ak je nakonfigurovan\u00fd pl\u00e1n z\u00e1lohovania.",
+            "title": "Automatick\u00e1 z\u00e1loha bola vytvoren\u00e1 s chybami"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Automatick\u00fa z\u00e1lohu sa nepodarilo vytvori\u0165. \u010eal\u0161ie inform\u00e1cie n\u00e1jdete v protokoloch. \u010eal\u0161\u00ed pokus sa vykon\u00e1 v nasleduj\u00facom pl\u00e1novanom \u010dase, ak je nakonfigurovan\u00fd pl\u00e1n z\u00e1lohovania.",
+            "title": "Automatick\u00fa z\u00e1lohu nebolo mo\u017en\u00e9 vytvori\u0165"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Prie\u010dinky {failed_folders} nebolo mo\u017en\u00e9 zahrn\u00fa\u0165 do automatick\u00e9ho z\u00e1lohovania. \u010eal\u0161ie inform\u00e1cie n\u00e1jdete v protokoloch superv\u00edzora. \u010eal\u0161\u00ed pokus sa vykon\u00e1 v nasleduj\u00facom pl\u00e1novanom \u010dase, ak je nakonfigurovan\u00fd pl\u00e1n z\u00e1lohovania.",
+            "title": "Nie v\u0161etky prie\u010dinky m\u00f4\u017eu by\u0165 zahrnut\u00e9 do automatick\u00e9ho z\u00e1lohovania"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Automatick\u00e9 z\u00e1lohovanie nebolo mo\u017en\u00e9 nahra\u0165 na nakonfigurovan\u00e9 miesta {failed_agents}. \u010eal\u0161ie inform\u00e1cie n\u00e1jdete v protokoloch. \u010eal\u0161\u00ed pokus sa vykon\u00e1 v nasleduj\u00facom pl\u00e1novanom \u010dase, ak je nakonfigurovan\u00fd pl\u00e1n z\u00e1lohovania.",
+            "title": "Automatick\u00e9 z\u00e1lohovanie nebolo mo\u017en\u00e9 nahra\u0165 na nakonfigurovan\u00e9 miesta"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Vytvor\u00ed nov\u00fa z\u00e1lohu.",
+            "name": "Vytvori\u0165 z\u00e1lohu"
+        },
+        "create_automatic": {
+            "description": "Vytvor\u00ed nov\u00fa z\u00e1lohu s automatick\u00fdmi nastaveniami z\u00e1lohovania.",
+            "name": "Vytvorenie automatickej z\u00e1lohy"
+        }
+    }
+}

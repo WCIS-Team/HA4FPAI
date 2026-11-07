@@ -1,0 +1,23 @@
+# Optional HA package template; enable only after setting real local secrets.
+# Uses standard rest_command, with no changes to HA or HA4FPAI source.
+# This template has NOT been validated against the production device.
+rest_command:
+  ha_small_control_text:
+    url: !secret ha4fpai_bridge_url
+    method: POST
+    headers:
+      Authorization: !secret ha4fpai_authorization
+    content_type: application/json
+    payload: >-
+      {"text": {{ text | to_json }}}
+  ha_small_control_command:
+    url: !secret ha4fpai_command_url
+    method: POST
+    headers:
+      Authorization: !secret ha4fpai_authorization
+    content_type: application/json
+    payload: >-
+      {"action": {{ action | to_json }},
+       "params": {{ params | default({}) | to_json }},
+       "idempotency_key": {{ request_key | to_json }},
+       "client_id": "ha-small"}

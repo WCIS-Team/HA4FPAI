@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatska rezervna kopija",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Faza rezervna kopija"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Uspe\u0161no zavr\u0161eno",
+                            "failed": "Neuspe\u0161no",
+                            "in_progress": "U toku"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Razlog gre\u0161ke",
+                        "state": {
+                            "backup_agent_error": "Gre\u0161ka agenta za rezervne kopije",
+                            "backup_agent_unreachable": "Agent za rezervne kopije je nedostupan",
+                            "backup_manager_error": "Gre\u0161ka menad\u017eera rezervnih kopija",
+                            "backup_not_found": "Rezervna kopija nije prona\u0111ena",
+                            "backup_reader_writer_error": "Gre\u0161ka pri \u010ditanju ili upisivanju rezervne kopije",
+                            "decrypt_on_download_not_supported": "De\u0161ifrovanje pri preuzimanju nije podr\u017eano",
+                            "invalid_backup_filename": "Neva\u017ee\u0107i naziv datoteke rezervne kopije",
+                            "multiple_errors": "Vi\u0161estruke gre\u0161ke",
+                            "password_incorrect": "Lozinka nije ispravna",
+                            "unknown_error": "Nepoznata gre\u0161ka",
+                            "upload_failed": "Slanje nije uspelo"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Stanje menad\u017eera rezervne kopije",
+                "state": {
+                    "blocked": "Blokirano.",
+                    "create_backup": "Kreiranje rezervne kopije",
+                    "idle": "Mirovanje",
+                    "receive_backup": "Preuzimanje rezervne kopije",
+                    "restore_backup": "Vra\u0107anje rezervne kopije"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Poslednji poku\u0161aj automatske rezervne kopije"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Poslednja uspe\u0161ana automatska rezervna kopija"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Slede\u0107i zakazana automatska rezervna kopija"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Lokacija za rezervne kopije {agent_id} je nedostupna, ali je i dalje pode\u0161ena za automatske bekapa.\n\nPosetite stranicu [za pode\u0161avanje automatskih rezervnih kopija]({backup_settings})  kako biste pregledali i a\u017eurirali svoje lokacije. Rezervne kopije ne\u0107e biti poslate na izabrane lokacije koje su nedostupne.",
+            "title": "Lokacija rezervne kopije {agent_id} nije dostupna"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Aplikacije {failed_addons} nisu mogle biti uklju\u010dene u automatsku rezervnu kopiju. Molimo proverite Supervisor logove za vi\u0161e informacija. Slede\u0107i poku\u0161aj \u0107e biti izvr\u0161en u narednom zakazanom terminu, ukoliko je raspored pravljenja rezervnih kopija konfigurisan.",
+            "title": "Nisu sve aplikacije mogle biti uklju\u010dene u automatsku rezervnu kopiju"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Automatski bekap je kreiran sa gre\u0161kama:\n* Lokacije na koje nije bilo mogu\u0107e poslati rezervnu kopiju: {failed_agents}\n* Aplikacije za koje nije bilo mogu\u0107e napraviti rezervnu kopiju: {failed_addons}\n* Fascikle za koje nije bilo mogu\u0107e napraviti rezervnu kopiju: {failed_folders}\n\nProverite Core i Supervisor zapise za vi\u0161e informacija. Slede\u0107i poku\u0161aj \u0107e biti izvr\u0161en u prvom zakazanom terminu, ukoliko je pode\u0161en raspored pravljenja rezervnih kopija.",
+            "title": "Automatska rezervna kopija je kreirana sa gre\u0161kama"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Automatska rezervna kopija nije mogao biti kreiran. Proverite zapise za vi\u0161e informacija. Novi poku\u0161aj \u0107e biti izvr\u0161en u slede\u0107em zakazanom terminu, ako je raspored rezervne kopije pode\u0161en.",
+            "title": "Automatska rezervna kopija nije mogla biti kreirana"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Fascikle {failed_folders} nisu mogli biti uklju\u010deni u automatsku rezervnu kopiju. Proverite Supervisor zapise za vi\u0161e informacija. Novi poku\u0161aj \u0107e biti izvr\u0161en u slede\u0107em zakazanom terminu, ako je raspored rezervne kopije pode\u0161en.",
+            "title": "Nisu sve fascikle mogle biti uklju\u010dene u automatsku rezervnu kopiju"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Automatska rezervna kopija nije mogla biti poslata na pode\u0161ene lokacije {failed_agents}. Proverite zapise za vi\u0161e informacija. Slede\u0107i poku\u0161aj \u0107e biti izvr\u0161en u prvom zakazanom terminu, ukoliko je pode\u0161en raspored pravljenja rezervnih kopija.",
+            "title": "Automatska rezervna kopija nije mogla biti poslata na pode\u0161ene lokacije"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Kreira novu rezervnu kopju.",
+            "name": "Kreirajte rezervnu kopiju"
+        },
+        "create_automatic": {
+            "description": "Vr\u0161i kreiranje nove arhive prema definisanim parametrima za automatizovano skladi\u0161tenje podataka.",
+            "name": "Kreiraj automatsku rezervnu kopiju"
+        }
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Dienst ist bereits konfiguriert",
+            "no_adapters": "Keine unkonfigurierten Bluetooth-Adapter gefunden."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "M\u00f6chtest du {name} einrichten?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adapter"
+                },
+                "description": "W\u00e4hle einen Bluetooth-Adapter zum Einrichten aus"
+            },
+            "single_adapter": {
+                "description": "M\u00f6chtest du den Bluetooth-Adapter {name} {manufacturer} {model} einrichten?"
+            },
+            "user": {
+                "data": {
+                    "address": "Ger\u00e4t"
+                },
+                "description": "W\u00e4hle ein Ger\u00e4t zum Einrichten aus"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "Der Bluetooth-Adapter **{adapter}** ({model}) arbeitet im eingeschr\u00e4nkten Modus, da dein Container zus\u00e4tzliche Berechtigungen ben\u00f6tigt, um vollst\u00e4ndig auf die Bluetooth-Hardware zugreifen zu k\u00f6nnen.\n\nBitte folge den Anweisungen in unserer Dokumentation, um die erforderlichen Berechtigungen hinzuzuf\u00fcgen:\n[Bluetooth-Berechtigungen f\u00fcr Docker]({docs_url})\n\nNachdem du diese Berechtigungen hinzugef\u00fcgt hast, starte deinen Home-Assistant-Container neu, damit die \u00c4nderungen wirksam werden.",
+            "title": "Bluetooth-Adapter erfordert zus\u00e4tzliche Berechtigungen"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "Der Bluetooth-Adapter **{adapter}** ({model}) steckt im passiven Scanmodus fest, obwohl der aktive Scanmodus angefordert wurde. **Eine automatische Wiederherstellung wurde versucht, ist jedoch fehlgeschlagen.** Dies ist wahrscheinlich ein Problem des Kernels, der Firmware oder des Betriebssystems und das System muss zur Wiederherstellung des Adapters vollst\u00e4ndig aus- und wieder eingeschaltet werden.\n\nIm passiven Modus kann der Adapter nur Advertisements empfangen, aber keine zus\u00e4tzlichen Daten von Ger\u00e4ten anfordern, was die Ger\u00e4teerkennung und -funktionalit\u00e4t beeintr\u00e4chtigt.\n\n**Manueller Eingriff erforderlich:**\n1. **System vollst\u00e4ndig herunterfahren** (kein blo\u00dfer Neustart)\n2. **Stromversorgung trennen** (Stecker ziehen oder am Schalter ausschalten)\n3. 10 Sekunden warten\n4. Strom wiederherstellen und System neu starten\n\nFalls das Problem nach dem Aus- und Wiedereinschalten weiterhin besteht:\n- Nach Kernel-/Firmware-Updates suchen\n- Der integrierte Bluetooth-Adapter weist m\u00f6glicherweise Hardwareprobleme auf",
+            "title": "Bluetooth-Adapter erfordert Aus- und Wiedereinschalten des Systems"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "Der Bluetooth-Adapter **{adapter}** ({model}) steckt im passiven Scanmodus fest, obwohl der aktive Scanmodus angefordert wurde. **Eine automatische Wiederherstellung wurde versucht, ist jedoch fehlgeschlagen.** Dies ist wahrscheinlich ein Problem des Kernels, der Firmware oder des Betriebssystems, und der Adapter muss zur Wiederherstellung manuell aus- und wieder eingeschaltet werden.\n\nIm passiven Modus kann der Adapter nur Advertisements empfangen, aber keine zus\u00e4tzlichen Daten von Ger\u00e4ten anfordern, was die Ger\u00e4teerkennung und -funktionalit\u00e4t beeintr\u00e4chtigt.\n\n**Manueller Eingriff erforderlich:** \n1. **Den USB-Adapter ausstecken** \n2. 5 Sekunden warten\n3. **Wieder einstecken** \n4. Warten, bis Home Assistant den Adapter erkennt \n\nFalls das Problem nach dem Aus- und Wiedereinschalten weiterhin besteht:\n- Mit einem anderen USB-Anschluss versuchen\n- Nach Kernel-/Firmware-Updates suchen\n- Die Verwendung eines anderen Bluetooth-Adapters erw\u00e4gen",
+            "title": "Bluetooth-USB-Adapter erfordert manuelles Aus- und Wiedereinschalten"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Lokale Bluetooth-Adapter, die passives Scannen nicht unterst\u00fctzen, k\u00f6nnen nicht konfiguriert werden.",
+            "remote_adapters_not_supported": "Bluetooth-Konfiguration f\u00fcr Remote-Adapter nicht unterst\u00fctzt."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Scanmodus"
+                },
+                "data_description": {
+                    "mode": "F\u00fcr die meisten Konfigurationen wird \u201eAuto\u201c empfohlen. Dies schont die Batterie deiner Bluetooth-Ger\u00e4te und erkennt dennoch neue Ger\u00e4te und aktualisiert sie schnell."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Aktiv (h\u00f6herer Ger\u00e4te-Batterieverbrauch, schnellste Aktualisierungen)",
+                "auto": "Auto (empfohlen, schont die Ger\u00e4tebatterie)",
+                "passive": "Passiv (niedrigster Ger\u00e4te-Batterieverbrauch, einige Details k\u00f6nnen fehlen)"
+            }
+        }
+    }
+}

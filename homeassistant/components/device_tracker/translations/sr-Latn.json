@@ -1,0 +1,108 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} je kod ku\u0107e",
+            "is_not_home": "{entity_name} nije kod ku\u0107e"
+        },
+        "extra_fields": {
+            "zone": "Zona"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} ulazi u zonu",
+            "leaves": "{entity_name} napu\u0161ta zonu"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Pra\u0107enje ure\u0111aja",
+            "state": {
+                "home": "Kod ku\u0107e",
+                "not_home": "Van ku\u0107e"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Baterija"
+                },
+                "gps_accuracy": {
+                    "name": "GPS ta\u010dnost"
+                },
+                "latitude": {
+                    "name": "Geografska \u0161irina"
+                },
+                "longitude": {
+                    "name": "Geografska du\u017eina"
+                },
+                "source_type": {
+                    "name": "Izvor",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "Ruter"
+                    }
+                },
+                "tracking_type": {
+                    "name": "Tip pra\u0107enja",
+                    "state": {
+                        "connection": "Veza",
+                        "position": "Pozicija"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "associated_zone_missing": {
+            "description": "Entitet skenera {entity_id} je povezan sa zonom {zone}, ali je ta zona uklonjena.\n\nDa biste ovo re\u0161ili, ponovo konfiguri\u0161ite skener tako da koristi drugu zonu ili ponovo kreirajte zonu koja nedostaje.",
+            "title": "Skener je povezan sa uklonjenom zonom"
+        },
+        "deprecated_see_action": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Akcija device_tracker.see je zastarela i bi\u0107e uklonjena u verziji Home Assistant Core 2027.5.\n\nUmesto nje koristite [\u0161ablonski ure\u0111aj za pra\u0107enje]({docs_url}), zatim uklonite ovu akciju iz svojih automatizacija i skripti, pa izaberite Potvrdi da biste zatvorili ovaj problem.",
+                        "title": "Detektovano kori\u0161\u0107enje zastarele akcije device_tracker.see"
+                    }
+                }
+            },
+            "title": "Detektovano kori\u0161\u0107enje zastarele akcije device_tracker.see"
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Ru\u010dno a\u017eurira zapise vi\u0111enog starog pratioca ure\u0111aja u datoteci known_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "Nivo baterije ure\u0111aja.",
+                    "name": "Nivo baterije"
+                },
+                "dev_id": {
+                    "description": "Jedinstveni identifikator ure\u0111aja definisan unutar konfiguracione datoteke.",
+                    "name": "Identifikator ure\u0111aja (ID)"
+                },
+                "gps": {
+                    "description": "GPS koordinate lokacije ure\u0111aja, navedene kroz geografsku \u0161irinu i du\u017einu (na primer: [51.513845, -0.100539]).",
+                    "name": "Geografske koordinate (GPS)"
+                },
+                "gps_accuracy": {
+                    "description": "Stepen preciznosti GPS pozicioniranja.",
+                    "name": "GPS ta\u010dnost"
+                },
+                "host_name": {
+                    "description": "Naziv hosta ure\u0111aja.",
+                    "name": "Naziv mati\u010dnog ure\u0111aja"
+                },
+                "location_name": {
+                    "description": "Trenutna lokacija (npr. home, not_home ili naziv zone).",
+                    "name": "Lokacija"
+                },
+                "mac": {
+                    "description": "MAC adresa ure\u0111aja.",
+                    "name": "MAC adresa"
+                }
+            },
+            "name": "Zabele\u017ei polo\u017eaj ure\u0111aja"
+        }
+    },
+    "title": "Pra\u0107enje ure\u0111aja"
+}

@@ -1,0 +1,192 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "For at least"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "Bir veya daha fazla kilidin s\u0131k\u0131\u015f\u0131p s\u0131k\u0131\u015fmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Kilit s\u0131k\u0131\u015fm\u0131\u015f"
+        },
+        "is_locked": {
+            "description": "Bir veya daha fazla kilidin kilitli olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Kilit kilitli"
+        },
+        "is_open": {
+            "description": "Bir veya daha fazla kilidin a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Kilit a\u00e7\u0131k"
+        },
+        "is_unlocked": {
+            "description": "Bir veya daha fazla kilidin a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Kilit a\u00e7\u0131ld\u0131"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "{entity_name} kilitle",
+            "open": "{entity_name} a\u00e7\u0131n",
+            "unlock": "{entity_name} kilidini a\u00e7\u0131"
+        },
+        "condition_type": {
+            "is_jammed": "{entity_name} s\u0131k\u0131\u015fm\u0131\u015f",
+            "is_locked": "{entity_name} kilitli",
+            "is_locking": "{entity_name} kilitleniyor",
+            "is_open": "{entity_name} a\u00e7\u0131k",
+            "is_opening": "{entity_name} serbest b\u0131rak\u0131l\u0131yor",
+            "is_unlocked": "{entity_name} kilidi a\u00e7\u0131ld\u0131",
+            "is_unlocking": "{entity_name} kilidini a\u00e7\u0131yor"
+        },
+        "extra_fields": {
+            "for": "S\u00fcre"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} kilitlendi",
+            "open": "{entity_name} a\u00e7\u0131ld\u0131",
+            "unlocked": "{entity_name} kilidi a\u00e7\u0131ld\u0131"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Kilit",
+            "state": {
+                "jammed": "S\u0131k\u0131\u015fm\u0131\u015f",
+                "locked": "Kilitli",
+                "locking": "Kilitleniyor",
+                "open": "A\u00e7\u0131k",
+                "opening": "A\u00e7\u0131l\u0131yor",
+                "unlocked": "Kilitli de\u011fil",
+                "unlocking": "Kilit a\u00e7ma"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Taraf\u0131ndan de\u011fi\u015ftirildi"
+                },
+                "code_format": {
+                    "name": "Kod format\u0131"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "{entity_id} kodu, {code_format} modeliyle e\u015fle\u015fmiyor."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "Bir kilidi kilitler.",
+            "fields": {
+                "code": {
+                    "description": "Kilidi kilitlemek i\u00e7in kullan\u0131lan kod.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Kilit kilidi"
+        },
+        "open": {
+            "description": "Bir kilidi a\u00e7ar.",
+            "fields": {
+                "code": {
+                    "description": "Kilidi a\u00e7mak i\u00e7in kullan\u0131lan kod.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Kilidi a\u00e7"
+        },
+        "unlock": {
+            "description": "Bir kilidi a\u00e7ar.",
+            "fields": {
+                "code": {
+                    "description": "Kilidi a\u00e7mak i\u00e7in kullan\u0131lan kod.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Kilidi a\u00e7"
+        }
+    },
+    "title": "Kilit",
+    "triggers": {
+        "jammed": {
+            "description": "Bir veya daha fazla kilit s\u0131k\u0131\u015ft\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Kilit s\u0131k\u0131\u015ft\u0131"
+        },
+        "locked": {
+            "description": "Bir veya daha fazla kilit kilitlendi\u011finde tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Kilit kilitlendi"
+        },
+        "opened": {
+            "description": "Bir veya daha fazla kilit a\u00e7\u0131ld\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Kilit serbest konuma ge\u00e7ti"
+        },
+        "unlocked": {
+            "description": "Bir veya daha fazla kilidin a\u00e7\u0131lmas\u0131 durumunda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Kilit a\u00e7\u0131ld\u0131"
+        }
+    }
+}

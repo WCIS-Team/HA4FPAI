@@ -1,0 +1,290 @@
+{
+    "entity": {
+        "sensor": {
+            "disk_free": {
+                "name": "Diskfri"
+            },
+            "disk_total": {
+                "name": "Disktotal"
+            },
+            "disk_used": {
+                "name": "Disk brukt"
+            },
+            "version": {
+                "name": "Versjon"
+            },
+            "version_latest": {
+                "name": "Nyeste versjon"
+            }
+        }
+    },
+    "issues": {
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "mount_execute_reload": "Last p\u00e5 nytt",
+                            "mount_execute_remove": "Fjern"
+                        }
+                    }
+                }
+            }
+        },
+        "issue_system_disk_lifetime": {
+            "description": "Datadisken har overskredet 90 % av forventet levetid. Disken kan snart fungere feil, noe som kan f\u00f8re til datatap. Du b\u00f8r erstatte den snart og migrere dataene dine.",
+            "title": "Disklevetid overstiger 90 %"
+        },
+        "issue_system_free_space": {
+            "description": "Datadisken har bare {free_space} GB ledig plass igjen. Dette kan for\u00e5rsake problemer med systemstabilitet og forstyrre funksjonalitet som sikkerhetskopier og oppdateringer. G\u00e5 til [storage]({storage_url}) for \u00e5 se hva som tar opp plass, eller se [rydd opp lagringsplass]({more_info_free_space}) for tips om hvordan du frigj\u00f8r plass.",
+            "title": "Datadisken har lite ledig plass"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Kunne ikke gi nytt navn til filsystemet. Sjekk loggfilene i supervisor-loggene for mer informasjon."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Ved `{reference}` oppdaget vi en annen aktiv datadisk (som inneholder filsystemet `hassos-data` fra en annen Home Assistant-installasjon).\n\nDu m\u00e5 bestemme hva du skal gj\u00f8re med den. Ellers kan Home Assistant velge feil datadisk ved omstart av systemet.\n\nHvis du ikke vil bruke denne datadisken, kobler du den fra systemet. Hvis du lar den v\u00e6re tilkoblet, velger du ett av f\u00f8lgende alternativer:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Bruk den oppdagede datadisken i stedet for gjeldende system",
+                            "system_rename_data_disk": "Marker som inaktiv datadisk (gi nytt navn til filsystemet)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "Velg **Submit** for \u00e5 gj\u00f8re `{reference}` til den aktive datadisken. Den eneste ene.\n\nDu vil ikke lenger ha tilgang til gjeldende Home Assistant-data (vil bli merket som inaktiv datadisk). Etter omstart vil systemet ditt v\u00e6re i tilstanden Home Assistant-data p\u00e5 `{reference}`."
+                    }
+                }
+            },
+            "title": "Flere datadisker oppdaget"
+        },
+        "legacy_homeassistant_folder": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "En automatisering eller et skript kalt handlingen `hassio.backup_partial` eller `hassio.restore_partial` med `\"homeassistant\"\" oppf\u00f8rt i `mapper`. Dette er et eldre alias for alternativet `homeassistant: true` og vil ikke lenger bli akseptert i en fremtidig utgivelse.\n\nOppdater de ber\u00f8rte automatiseringene og skriptene for \u00e5 sette `homeassistant: true` og fjerne `\"homeassistant\"\" fra `mappelisten`. N\u00e5r dette er gjort, velg **Send** for \u00e5 markere problemet som l\u00f8st.",
+                        "title": "Eldre mappe \u00abhomeassistant\u00bb brukt i delvis sikkerhetskopiering/gjenoppretting"
+                    }
+                }
+            },
+            "title": "Eldre mappe \u00abhomeassistant\u00bb brukt i delvis sikkerhetskopiering/gjenoppretting"
+        },
+        "unhealthy": {
+            "title": "Usunt system \u2013 {reason}"
+        },
+        "unhealthy_docker": {
+            "title": "Usunt system - Docker feilkonfigurert"
+        },
+        "unhealthy_privileged": {
+            "title": "Usunt system - Ikke privilegert"
+        },
+        "unhealthy_setup": {
+            "title": "Usunt system - Konfigurasjonen mislyktes"
+        },
+        "unhealthy_supervisor": {
+            "title": "Usunt system - Supervisor-oppdatering mislyktes"
+        },
+        "unhealthy_untrusted": {
+            "title": "Usunt system - Ubetrodd kode"
+        },
+        "unsupported": {
+            "title": "Systemet st\u00f8ttes ikke \u2013 {reason}"
+        },
+        "unsupported_apparmor": {
+            "title": "System som ikke st\u00f8ttes \u2013 AppArmor-problemer"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Systemet st\u00f8ttes ikke fordi feil versjon av Docker CGroup er i bruk. Bruk linken for \u00e5 l\u00e6re riktig versjon og hvordan du fikser dette.",
+            "title": "System som ikke st\u00f8ttes - CGroup-versjon"
+        },
+        "unsupported_connectivity_check": {
+            "title": "System som ikke st\u00f8ttes \u2013 tilkoblingskontroll er deaktivert"
+        },
+        "unsupported_dbus": {
+            "title": "Ust\u00f8ttet system - D-Bus-problemer"
+        },
+        "unsupported_dns_server": {
+            "title": "System som ikke st\u00f8ttes \u2013 DNS-serverproblemer"
+        },
+        "unsupported_docker_configuration": {
+            "title": "System som ikke st\u00f8ttes \u2013 Docker er feilkonfigurert"
+        },
+        "unsupported_docker_version": {
+            "title": "System som ikke st\u00f8ttes \u2013 Docker-versjon"
+        },
+        "unsupported_job_conditions": {
+            "title": "Systemet som ikke st\u00f8ttes \u2013 Beskyttelse er deaktivert"
+        },
+        "unsupported_lxc": {
+            "title": "System som ikke st\u00f8ttes \u2013 LXC oppdaget"
+        },
+        "unsupported_network_manager": {
+            "title": "System som ikke st\u00f8ttes \u2013 problemer med Network Manager"
+        },
+        "unsupported_os": {
+            "title": "Ikke-st\u00f8ttet system - Operativsystem"
+        },
+        "unsupported_os_agent": {
+            "title": "System som ikke st\u00f8ttes \u2013 OS-Agent-problemer"
+        },
+        "unsupported_restart_policy": {
+            "title": "System som ikke st\u00f8ttes \u2013 policy for omstart av container"
+        },
+        "unsupported_software": {
+            "title": "Systemet som ikke st\u00f8ttes \u2013 programvare som ikke st\u00f8ttes"
+        },
+        "unsupported_supervisor_version": {
+            "title": "System som ikke st\u00f8ttes - Supervisor-versjon"
+        },
+        "unsupported_systemd": {
+            "title": "System som ikke st\u00f8ttes \u2013 Systemd-problemer"
+        },
+        "unsupported_systemd_journal": {
+            "title": "Systemet som ikke st\u00f8ttes \u2013 Systemd Journal-problemer"
+        },
+        "unsupported_systemd_resolved": {
+            "title": "System som ikke st\u00f8ttes \u2013 Systemd-l\u00f8ste problemer"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Omstarter et tillegg.",
+            "fields": {
+                "addon": {
+                    "name": "Tillegg"
+                }
+            }
+        },
+        "addon_start": {
+            "description": "Starter et tillegg.",
+            "fields": {
+                "addon": {
+                    "name": "Tillegg"
+                }
+            },
+            "name": "Start tillegg"
+        },
+        "addon_stdin": {
+            "fields": {
+                "addon": {
+                    "name": "Tillegg"
+                }
+            }
+        },
+        "addon_stop": {
+            "description": "Stopper et tillegg.",
+            "fields": {
+                "addon": {
+                    "name": "Tillegg"
+                }
+            }
+        },
+        "backup_full": {
+            "description": "Lager en fullstendig sikkerhetskopi.",
+            "fields": {
+                "compressed": {
+                    "description": "Komprimerer sikkerhetskopifilene.",
+                    "name": "Komprimert"
+                },
+                "location": {
+                    "description": "Navn p\u00e5 nettverkslagring for sikkerhetskopier.",
+                    "name": "Plassering"
+                },
+                "name": {
+                    "description": "Valgfri (standard = n\u00e5v\u00e6rende dato og klokkeslett).",
+                    "name": "Navn"
+                },
+                "password": {
+                    "description": "Passord til \u00e5 beskytte sikkerhetskopien.",
+                    "name": "Passord"
+                }
+            }
+        },
+        "backup_partial": {
+            "description": "Lager en delvis sikkerhetskopi.",
+            "fields": {
+                "apps": {
+                    "description": "Liste over apper som skal inkluderes i sikkerhetskopien. Bruk slug-filen til hver app.",
+                    "name": "Apper"
+                },
+                "compressed": {
+                    "description": "Komprimerer sikkerhetskopifilene.",
+                    "name": "Komprimert"
+                },
+                "folders": {
+                    "description": "Liste med kataloger som skal inkluderes i sikkerhetskopien.",
+                    "name": "Mapper"
+                },
+                "homeassistant": {
+                    "description": "Inkluderer Home Assistant-innstillinger i sikkerhetskopien.",
+                    "name": "Innstillinger for Home Assistant"
+                },
+                "location": {
+                    "description": "Navn p\u00e5 nettverkslagring for sikkerhetskopier.",
+                    "name": "Plassering"
+                },
+                "name": {
+                    "description": "Valgfri (standard = n\u00e5v\u00e6rende dato og klokkeslett).",
+                    "name": "Navn"
+                },
+                "password": {
+                    "description": "Passord til \u00e5 beskytte sikkerhetskopien.",
+                    "name": "Passord"
+                }
+            }
+        },
+        "host_reboot": {
+            "description": "Omstarter vertssystemet."
+        },
+        "host_shutdown": {
+            "description": "Skrus av vertssystemet."
+        },
+        "restore_full": {
+            "description": "Gjenoppretter fra fullstendig sikkerhetskopi.",
+            "fields": {
+                "password": {
+                    "description": "Valgfritt passord.",
+                    "name": "Passord"
+                },
+                "slug": {
+                    "description": "Slug til sikkerhetskopi for gjenoppretting.",
+                    "name": "Slug"
+                }
+            }
+        },
+        "restore_partial": {
+            "description": "Gjenoppretter fra en delvis sikkerhetskopi.",
+            "fields": {
+                "apps": {
+                    "description": "Liste over apper som skal gjenopprettes fra sikkerhetskopien. Bruk slug-filen til hver app.",
+                    "name": "Apper"
+                },
+                "folders": {
+                    "name": "Mapper"
+                },
+                "homeassistant": {
+                    "description": "Gjenoppretter Home Assistant.",
+                    "name": "Innstillinger for Home Assistant"
+                },
+                "password": {
+                    "description": "Valgfritt passord.",
+                    "name": "Passord"
+                },
+                "slug": {
+                    "description": "Slug til sikkerhetskopi for gjenoppretting.",
+                    "name": "Slug"
+                }
+            }
+        }
+    },
+    "system_health": {
+        "info": {
+            "board": "Styret",
+            "healthy": "Sunn",
+            "supervisor_api": "Supervisor API",
+            "supported": "St\u00f8ttet",
+            "version_api": "Versjon API"
+        }
+    }
+}

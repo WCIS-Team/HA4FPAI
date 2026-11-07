@@ -1,0 +1,1428 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Povezivanje sa aplikacijom {addon} nije uspelo. Proverite status aplikacije i poku\u0161ajte ponovo kasnije.",
+            "addon_info_failed": "Nije uspelo preuzimanje informacija za aplikaciju {addon}.",
+            "addon_install_failed": "Nije uspela instalacija aplikacije {addon}.",
+            "addon_start_failed": "Nije uspelo pokretanje aplikacije {addon}.",
+            "already_configured": "Usluga je ve\u0107 pode\u0161ena"
+        },
+        "error": {
+            "bad_birth": "Neispravna tema za prijavu ure\u0111aja (birth topic)",
+            "bad_certificate": "CA potvrda nije ispravna",
+            "bad_client_cert": "Neispravni podaci za prijavu, uverite se da ste dostavili ispravnu datoteku",
+            "bad_client_cert_key": "Prijavni podaci i privatni klju\u010d nisu ispravno upareni",
+            "bad_discovery_prefix": "Neva\u017ee\u0107i prefiks za otkrivanje",
+            "bad_will": "Neva\u017ee\u0107a tema o prekidu veze",
+            "bad_ws_headers": "Obezbedi va\u017ee\u0107a HTTP zaglavlja kao JSON objekat",
+            "cannot_connect": "Povezivanje nije uspelo",
+            "client_key_error": "Neispravna datoteka privatnog klju\u010da ili je uneta neispravna lozinka.",
+            "invalid_auth": "Neva\u017ee\u0107i podaci za prijavu",
+            "invalid_inclusion": "Klijentska potvrda i privatni klju\u010d moraju biti pode\u0161eni zajedno"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "MQTT broker",
+                    "password": "Lozinka",
+                    "port": "Port",
+                    "protocol": "MQTT protokol",
+                    "username": "Korisni\u010dko ime"
+                },
+                "data_description": {
+                    "broker": "Naziv hosta ili IP adresa va\u0161eg MQTT brokera.",
+                    "password": "Lozinka za prijavu na MQTT broker.",
+                    "port": "Mre\u017eni port koji koristi va\u0161 MQTT broker (npr. 1883).",
+                    "protocol": "Verzija MQTT protokola koja se koristi. Home Assistant \u0107e automatski i bez obave\u0161tenja pre\u0107i na verziju 5 ukoliko je broker podr\u017eava.",
+                    "username": "Korisni\u010dko ime za prijavu na MQTT broker."
+                },
+                "description": "Unesite podatke za povezivanje sa va\u0161im MQTT brokerom.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "U\u010ditaj prilago\u0111enu datoteku CA sertifikata",
+                            "client_cert": "U\u010ditaj datoteku klijentskog sertifikata",
+                            "client_id": "ID klijenta (ostavite prazno za nasumi\u010dno generisanje)",
+                            "client_key": "U\u010ditaj datoteku privatnog klju\u010da",
+                            "client_key_password": "Lozinka",
+                            "keepalive": "Interval odr\u017eavanja veze",
+                            "set_ca_cert": "Provera sertifikata brokera",
+                            "set_client_cert": "Upotreba klijentskog sertifikata",
+                            "tls_insecure": "Ignori\u0161i proveru sertifikata brokera",
+                            "transport": "MQTT transport",
+                            "ws_headers": "WebSocket zaglavlja u JSON formatu",
+                            "ws_path": "WebSocket putanja"
+                        },
+                        "data_description": {
+                            "certificate": "Prilago\u0111eni CA sertifikat za validaciju sertifikata va\u0161eg MQTT brokera.",
+                            "client_cert": "Klijentski sertifikat za autentifikaciju na va\u0161em MQTT brokeru.",
+                            "client_id": "Jedinstveni ID za identifikaciju Home Assistant MQTT API-ja kao MQTT klijenta. Preporu\u010duje se da ovo polje ostavite prazno.",
+                            "client_key": "Privatni klju\u010d koji pripada va\u0161em klijentskom sertifikatu.",
+                            "client_key_password": "Lozinka privatnog klju\u010da (ako je postavljena).",
+                            "keepalive": "Preporu\u010duje se vrednost manja od 90 sekundi. Podrazumevana vrednost je 60 sekundi.",
+                            "set_ca_cert": "Kada je izabrana opcija **Prilago\u0111eno**, koristi se prilago\u0111eni sertifikat za CA proveru. Izaberite opciju **Automatski** za automatsku CA proveru ili otpremite prilago\u0111eni CA sertifikat da biste omogu\u0107ili proveru sertifikata va\u0161eg MQTT brokera.",
+                            "set_client_cert": "Kada je izabrano, omogu\u0107ena je autentifikacija klijentskim sertifikatom. U\u010ditajte klijentski sertifikat i klju\u010d da biste je omogu\u0107ili.",
+                            "tls_insecure": "Opcija za ignorisanje provere SSL sertifikata va\u0161eg MQTT brokera.",
+                            "transport": "Tip transporta koji se koristi za povezivanje sa va\u0161im MQTT brokerom.",
+                            "ws_headers": "WebSocket zaglavlja koja se prosle\u0111uju putem WebSocket veze do va\u0161eg MQTT brokera",
+                            "ws_path": "WebSocket putanja za povezivanje sa va\u0161im MQTT brokerom."
+                        },
+                        "name": "Ostala pode\u0161avanja"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "\u017delite li da konfiguri\u0161ete Home Assistant da se pove\u017ee na MQTT broker koji obezbe\u0111uje aplikacija {addon}?",
+                "title": "MQTT broker putem Home Assistant aplikacije"
+            },
+            "install_addon": {
+                "title": "Instaliranje aplikacije"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Lozinka",
+                    "username": "Korisni\u010dko ime"
+                },
+                "data_description": {
+                    "password": "Lozinka za prijavu na MQTT broker.",
+                    "username": "Korisni\u010dko ime za prijavu na MQTT broker."
+                },
+                "description": "LiMQTT broker je prijavio gre\u0161ku pri autenti\ufb01kaciji. Molimo potvrdite ispravno korisni\u010dko ime i lozinku brokera.",
+                "title": "Potrebna je ponovna prijava na MQTT broker"
+            },
+            "start_addon": {
+                "title": "Pokretanje aplikacije"
+            },
+            "user": {
+                "description": "Izaberi kako \u017eeli\u0161 da se pove\u017ee\u0161 na MQTT broker:",
+                "menu_options": {
+                    "addon": "Koristite zvani\u010dnu {addon} aplikaciju.",
+                    "broker": "Ru\u010dno unesi detalje za povezivanje na MQTT broker."
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "MQTT ure\u0111aj sa {platform} entitetom \u201e{entity}\u201c je uspe\u0161no pode\u0161en.\n\nImajte na umu da MQTT ure\u0111aj mo\u017eete ponovo konfigurisati u bilo kom trenutku, npr. da biste dodali jo\u0161 entiteta."
+            },
+            "entry_type": "MQTT ure\u0111aj",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "Opcije tema \u201eget position\u201c i \u201eset position\u201c moraju biti pode\u0161ene zajedno.",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "\u0160ablon vrednosti pozicije mora biti kori\u0161\u0107en u kombinaciji sa MQTT temom stanja pozicije",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "\u0160ablon postavljanja pozicije mora biti kori\u0161\u0107en u kombinaciji sa MQTT temom postavljanja pozicije",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "\u0160ablon komande nagiba mora biti kori\u0161\u0107en u kombinaciji sa MQTT temom komande nagiba",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "\u0160ablon vrednosti nagiba mora biti kori\u0161\u0107en u kombinaciji sa MQTT temom stanja nagiba",
+                "cover_value_template_must_be_used_with_state_topic": "\u0160ablon vrednosti mora da se koristi zajedno sa opcijom teme stanja.",
+                "empty_list_not_allowed": "Prazna lista nije dozvoljena. Dodajte bar jednu stavku",
+                "fan_preset_mode_reset_in_preset_modes_list": "Payload \u201ereset re\u017eim pode\u0161avanja\u201c nije va\u017ee\u0107i kao re\u017eim pode\u0161avanja",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "Maksimalni opseg brzine mora biti ve\u0107i od minimalnog opsega brzine",
+                "invalid_input": "Neispravna vrednost",
+                "invalid_regular_expression": "Mora biti va\u017ee\u0107i regularni izraz",
+                "invalid_subscribe_topic": "Neispravna tema za pretplatu",
+                "invalid_supported_color_modes": "Neispravan izbor podr\u017eanih re\u017eima boja",
+                "invalid_template": "Neispravan \u0161ablon",
+                "invalid_uom": "Jedinica mere \u201e{unit_of_measurement}\u201c nije podr\u017eana za izabranu klasu ure\u0111aja. Uklonite klasu ure\u0111aja, izaberite klasu ure\u0111aja koja podr\u017eava \u201e{unit_of_measurement}\u201c ili odaberite podr\u017eanu jedinicu mere sa liste.",
+                "invalid_uom_for_state_class": "Jedinica mere \u201e{unit_of_measurement}\u201d nije podr\u017eana od strane izabrane klase stanja. Molimo vas da uklonite klasu stanja, izaberete klasu stanja koja podr\u017eava \u201e{unit_of_measurement}\u201d ili izaberete podr\u017eanu jedinicu mere sa liste.",
+                "invalid_url": "Neispravna URL adresa",
+                "last_reset_not_with_state_class_total": "Opcija \u0161ablona poslednje vrednosti resetovanja treba da se koristi samo sa klasom stanja \u201eUkupno\u201c",
+                "max_below_min": "Maksimalna vrednost treba da bude vec\u0301a ili jednaka minimalnoj vrednosti",
+                "max_below_min_humidity": "Maksimalna vrednost vla\u017enosti treba da bude ve\u0107a od minimalne vrednosti vla\u017enosti",
+                "max_below_min_kelvin": "Maksimalna vrednost treba da bude vec\u0301a od minimalne vrednosti Kelvina",
+                "max_below_min_temperature": "Maksimalna vrednost temperature treba da bude ve\u0107a od minimalne vrednosti temperature",
+                "options_device_class_enum": "Pode\u0161avanje 'Opcije' mora da se koristi sa enumeracionom klasom ure\u0111aja. Ako nastavite, postoje\u0107e opcije \u0107e biti resetovane.",
+                "options_not_allowed_with_state_class_or_uom": "Pode\u0161avanje 'Opcije' nije dozvoljeno kada se koriste state class ili jedinica mere",
+                "options_with_enum_device_class": "Konfiguri\u0161ite opcije za enumeracioni senzor",
+                "preset_mode_none_not_allowed": "Unapred pode\u0161eni re\u017eim \u201enone\u201c nije va\u017ee\u0107i re\u017eim",
+                "uom_required_for_device_class": "Izabrana klasa ure\u0111aja zahteva jedinicu mere"
+            },
+            "initiate_flow": {
+                "reconfigure": "Ponovo konfiguri\u0161i MQTT ure\u0111aj",
+                "user": "Dodajte MQTT ure\u0111aj"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "\u0160ablon dostupnosti",
+                        "availability_topic": "Tema dostupnosti",
+                        "payload_available": "Payload dostupan",
+                        "payload_not_available": "Payload nije dostupan"
+                    },
+                    "data_description": {
+                        "availability_template": "[\u0160ablon]({value_templating_url}) za renderovanje payload vrednosti dostupnosti primljene na temi dostupnosti.",
+                        "availability_topic": "Tema za prijem availability payload\u2011a",
+                        "payload_available": "Payload koji ozna\u010dava da je ure\u0111aj dostupan (podrazumevano: 'online')",
+                        "payload_not_available": "Payload koji ozna\u010dava da ure\u0111aj nije dostupan (podrazumevano: 'offline')"
+                    },
+                    "description": "Funkcija dostupnosti omogu\u0107ava ure\u0111aju da prijavi svoju dostupnost.",
+                    "title": "Opcije dostupnosti"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Entitet"
+                    },
+                    "data_description": {
+                        "component": "Izaberite entitete koje \u017eelite da obri\u0161ete. Potrebno je izabrati najmanje jedan entitet."
+                    },
+                    "description": "Obri\u0161i entitet. Entitet \u0107e biti uklonjen sa ure\u0111aja. Uklanjanje entiteta \u0107e prekinuti sve automatizacije ili skripte koje od njega zavise.",
+                    "title": "Obri\u0161i entitet"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "Konfiguracioni URL",
+                        "manufacturer": "Proizvo\u0111a\u010d",
+                        "model": "Model",
+                        "model_id": "ID modela",
+                        "name": "Naziv"
+                    },
+                    "data_description": {
+                        "configuration_url": "Veza ka web stranici koja mo\u017ee upravljati konfiguracijom ovog ure\u0111aja. Mo\u017ee biti 'http://', 'https://' ili interni 'homeassistant://' URL.",
+                        "manufacturer": "Npr. Cleanmaster d.o.o.",
+                        "model": "Npr. \u201eKlinmaster Pro\u201c.",
+                        "model_id": "Npr. '123NK2PRO'.",
+                        "name": "Naziv ru\u010dno dodatog MQTT ure\u0111aja."
+                    },
+                    "description": "Unesi detalje MQTT ure\u0111aja:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "Interval isteka poruke",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "Interval vremena zadr\u017eavanja za objavljenu poruku.",
+                                "qos": "Vrednost kvaliteta usluge (QoS) koju entiteti ure\u0111aja treba da koriste."
+                            },
+                            "name": "MQTT pode\u0161avanja"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "Verzija hardvera",
+                                "sw_version": "Verzija softvera"
+                            },
+                            "data_description": {
+                                "hw_version": "Verzija hardvera ure\u0111aja. Npr. \u201ev1.0 rev a\u201c.",
+                                "sw_version": "Verzija softvera ure\u0111aja. Npr. \u201e2025.1.0\u201c."
+                            },
+                            "name": "Ostala pode\u0161avanja ure\u0111aja"
+                        }
+                    },
+                    "title": "Konfiguri\u0161i detalje MQTT ure\u0111aja"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Slika entiteta",
+                        "name": "Naziv entiteta",
+                        "platform": "Tip entiteta"
+                    },
+                    "data_description": {
+                        "entity_picture": "URL do slike koja treba da bude dodeljena.",
+                        "name": "Naziv entiteta. Ostavite prazno da se postavi na `None` [kako bi se ozna\u010dio kao glavna funkcija MQTT ure\u0111aja] ({naming_entities_url}).",
+                        "platform": "Tip entiteta koji treba konfigurisati."
+                    },
+                    "description": "Podesite osnovna {platform_label} pode\u0161avanja entiteta {entity_name_label}",
+                    "title": "Konfiguri\u0161i MQTT ure\u0111aj \u201e{mqtt_device}"
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Re\u017eim validacije koda alarma",
+                        "climate_feature_action": "Podr\u0161ka za trenutnu akciju",
+                        "climate_feature_current_humidity": "Podr\u0161ka za trenutnu vla\u017enost",
+                        "climate_feature_current_temperature": "Podr\u0161ka za trenutnu temperaturu",
+                        "climate_feature_fan_modes": "Podr\u0161ka za re\u017eim ventilatora",
+                        "climate_feature_power": "Podr\u0161ka za uklju\u010divanje/isklju\u010divanje",
+                        "climate_feature_preset_modes": "Podr\u0161ka za re\u017eime unapred pode\u0161enih vrednosti",
+                        "climate_feature_swing_horizontal_modes": "Podr\u0161ka za re\u017eim horizontalnog zakretanja",
+                        "climate_feature_swing_modes": "Podr\u0161ka za re\u017eim zakretanja",
+                        "climate_feature_target_humidity": "Podr\u0161ka za cil\u0458anu vla\u017enost",
+                        "climate_feature_target_temperature": "Podr\u0161ka za ciljnu temperaturu",
+                        "device_class": "Klasa ure\u0111aja",
+                        "entity_category": "Kategorija entiteta",
+                        "fan_feature_direction": "Podr\u0161ka za smer",
+                        "fan_feature_oscillation": "Podr\u0161ka za oscilaciju",
+                        "fan_feature_preset_modes": "Podr\u0161ka za re\u017eime unapred pode\u0161enih vrednosti",
+                        "fan_feature_speed": "Podr\u0161ka za razli\u010dite nivoe brzine",
+                        "image_processing_mode": "Re\u017eim obrade slike",
+                        "options": "Dodajte opciju",
+                        "reports_position": "Prijavljuje poziciju",
+                        "schema": "\u0160ema",
+                        "state_class": "Klasa stanja",
+                        "suggested_display_precision": "Predlo\u017eena preciznost prikaza",
+                        "supported_features": "Podr\u017eane funkcije",
+                        "temperature_unit": "Jedinica temperature",
+                        "unit_of_measurement": "Jedinica mere",
+                        "water_heater_feature_current_temperature": "Podr\u0161ka za trenutnu temperaturu",
+                        "water_heater_feature_power": "Podr\u0161ka za uklju\u010divanje/isklju\u010divanje"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Odre\u0111uje na\u010din na koji alarmni kontrolni panel proverava kod. Lokalni kod se pode\u0161ava unutar samog entiteta i proverava ga Home Assistant. Daljinski kod se \u0161alje direktno ure\u0111aju i proverava se na samom ure\u0111aju. [Saznajte vi\u0161e]({url}#code)",
+                        "climate_feature_action": "Ure\u0111aj za klimatizaciju podr\u017eava izve\u0161tavanje o trenutnoj akciji.",
+                        "climate_feature_current_humidity": "Klima podr\u017eava izve\u0161tavanje o trenutnoj vla\u017enosti.",
+                        "climate_feature_current_temperature": "Klima podr\u017eava izve\u0161tavanje o trenutnoj temperaturi.",
+                        "climate_feature_fan_modes": "Klima podr\u017eava re\u017eime ventilatora.",
+                        "climate_feature_power": "Klima podr\u017eava komande za napajanje \u201eon\u201c  i \u201eoff\u201c.",
+                        "climate_feature_preset_modes": "Klima podr\u017eava unapred pode\u0161ene re\u017eime.",
+                        "climate_feature_swing_horizontal_modes": "Klima podr\u017eava re\u017eime horizontalnog zakretanja.",
+                        "climate_feature_swing_modes": "Klima podr\u017eava re\u017eime zakretanja.",
+                        "climate_feature_target_humidity": "Klima podr\u017eava postavljanje ciljne vla\u017enosti.",
+                        "climate_feature_target_temperature": "Klima podr\u017eava pode\u0161avanje ciljne temperature.",
+                        "device_class": "Klasa ure\u0111aja entiteta {platform}. [Saznajte vi\u0161e.]({url}#device_class)",
+                        "entity_category": "Omoguc\u0301ava ozna\u010davanje entiteta kao konfiguracije ure\u0111aja ili dijagnostike. Entitet sa kategorijom nec\u0301e biti izlo\u017een komponentama oblaka, Alekse ili Google asistenta, niti c\u0301e biti uklju\u010den u pozive indirektnih akcija ure\u0111ajima ili oblastima. Entitetima senzora ne mo\u017ee se dodeliti klasa konfiguracije ure\u0111aja. [Saznajte vi\u0161e.]({registry_properties_url})",
+                        "fan_feature_direction": "Ventilator podr\u017eava promenu smera.",
+                        "fan_feature_oscillation": "Ventilator podr\u017eava oscilaciju.",
+                        "fan_feature_preset_modes": "Ventilator podr\u017eava unapred pode\u0161ene re\u017eime.",
+                        "fan_feature_speed": "Ventilator podr\u017eava vi\u0161e nivoa brzine.",
+                        "image_processing_mode": "Izaberite kako se primaju podaci o slici.",
+                        "options": "Opcije za dozvoljene vrednosti stanja senzora. Klasa ure\u0111aja senzora mora biti postavljena na Enumeraciju. Pode\u0161avanje 'Opcije' ne mo\u017ee se koristiti zajedno sa klasom stanja ili jedinicom mere.",
+                        "reports_position": "Postavite ovu opciju ako ventil prijavljuje poziciju ili podr\u017eava pode\u0161avanje pozicije. Kada je omogu\u0107ena, pozicija \u0107e biti objavljena umesto sadr\u017eaja poruke definisanog kao \u201eopen\u201c, \u201eclose\u201c ili \u201estop\u201c. Pri prijemu poruka, tema stanja prihvata numeri\u010dke vrednosti ili jednu od pode\u0161enih poruka stanja.",
+                        "schema": "\u0160ema koju treba koristiti. [Saznajte vi\u0161e.]({url}#comparison-of-light-mqtt-schemas)",
+                        "state_class": "[state class]({available_state_classes_url}) senzora. [Saznajte vi\u0161e.]({url}#state_class)",
+                        "suggested_display_precision": "Broj decimala koji treba koristiti u stanju entiteta {platform} nakon zaokru\u017eivanja. [Saznajte vi\u0161e.]({url}#suggested_display_precision)",
+                        "supported_features": "Karakteristike koje entitet podr\u017eava.",
+                        "temperature_unit": "Ovo odre\u0111uje izvornu jedinicu mere sa kojom MQTT ure\u0111aj radi.",
+                        "unit_of_measurement": "Defini\u0161e mernu jedinicu, ako postoji.",
+                        "water_heater_feature_current_temperature": "Bojler podr\u017eava izve\u0161tavanje o trenutnoj temperaturi.",
+                        "water_heater_feature_power": "Bojler podr\u017eava komande za uklju\u010divanje (\u201eon\u201c) i isklju\u010divanje (\u201eoff\u201c)."
+                    },
+                    "description": "Konfiguri\u0161ite specifi\u010dne detalje za {platform} entitet \u201e{entity}\u201c:",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "Predlo\u017eena preciznost prikaza"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "Broj decimalnih mesta koja treba koristiti za stanje entiteta {platform} nakon zaokru\u017eivanja. [Saznajte vi\u0161e]({url}#suggested_display_precision)"
+                            },
+                            "name": "Ostala pode\u0161avanja"
+                        }
+                    },
+                    "title": "Konfiguri\u0161ite MQTT ure\u0111aj \u201e{mqtt_device}\u201c"
+                },
+                "export": {
+                    "description": "Izvoz vam omogu\u0107ava da migrirate konfiguraciju MQTT ure\u0111aja u konfiguraciju zasnovanu na YAML-u ili u MQTT otkrivanje. Izvoz konfiguracije tako\u0111e mo\u017ee pomo\u0107i u otklanjanju problema.",
+                    "menu_options": {
+                        "export_discovery": "Izvezi informacije o MQTT otkrivanju",
+                        "export_yaml": "Izvoz u YAML konfiguraciju"
+                    },
+                    "title": "Izvoz konfiguracije MQTT ure\u0111aja"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Konfiguracioni paket (payload):",
+                        "discovery_topic": "Tema za otkrivanje"
+                    },
+                    "data_description": {
+                        "discovery_payload": "JSON [sadr\u017eaj za otkrivanje]({url}#device-discovery-payload) koji sadr\u017ei informacije o MQTT ure\u0111aju.",
+                        "discovery_topic": "Tema za [otkrivanje]({url}#discovery-topic) na kojoj se objavljuje sadr\u017eaj za otkrivanje, koji slu\u017ei za pokretanje MQTT otkrivanja. Slanje praznog sadr\u017eaja na ovu temu ukloni\u0107e ure\u0111aj i otkrivene entitete."
+                    },
+                    "description": "Da biste omogu\u0107ili pode\u0161avanje putem MQTT [otkrivanja]({url}#device-discovery-payload), sadr\u017eaj za otkrivanje mora biti objavljen na temi za otkrivanje. Kopirajte informacije iz polja ispod. Home Assistant \u0107e detektovati ako je pode\u0161avanje MQTT ure\u0111aja umesto toga poku\u0161ano putem MQTT otkrivanja i ponudi\u0107e proces popravke kako bi se uklonila suvi\u0161na podstavka. Tako\u0111e mo\u017eete izabrati da promenite identifikatore ako ne \u017eelite da uklonite podstavku.",
+                    "title": "Izvoz konfiguracije MQTT ure\u0111aja"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "Kopirajte YAML konfiguraciju ispod:"
+                    },
+                    "data_description": {
+                        "yaml": "Postavite YAML konfiguraciju u [configuration.yaml]({url}#yaml-configuration-listed-per-item)."
+                    },
+                    "description": "Mo\u017eete kopirati konfiguraciju ispod i ubaciti je u va\u0161u configuration.yaml datoteku. Home Assistant \u0107e detektovati ako je pode\u0161avanje MQTT ure\u0111aja poku\u0161ano putem YAML-a i ponudi\u0107e tok popravke za uklanjanje redundantnog podunosa. Tako\u0111e mo\u017eete izabrati da promenite identifikatore ako ne \u017eelite da uklonite podunos.",
+                    "title": "Izvoz konfiguracije MQTT ure\u0111aja"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "Dostupni tonovi",
+                        "blue_template": "Plavi \u0161ablon",
+                        "brightness_template": "\u0160ablon osvetljenosti",
+                        "code": "Kod alarma",
+                        "code_arm_required": "Obavezno uno\u0161enje koda za aktiviranje alarma",
+                        "code_disarm_required": "Za deaktiviranje alarma je obavezan kod.",
+                        "code_format": "Format koda",
+                        "code_trigger_required": "Obavezno je pokretanje alarma pomo\u0107u koda.",
+                        "color_temp_template": "\u0160ablon za temperaturu boje",
+                        "command_off_template": "\u0160ablon komande \u201eoff\u201c.",
+                        "command_on_template": "\u0160ablon komande \u201eon\u201c.",
+                        "command_template": "\u0160ablon komande",
+                        "command_topic": "Komandni topic",
+                        "content_type": "Tip sadr\u017eaja",
+                        "force_update": "Forsiraj a\u017euriranje",
+                        "green_template": "Zeleni \u0161ablon",
+                        "image_encoding": "Kodiranje slike",
+                        "image_topic": "Tema slike",
+                        "last_reset_value_template": "\u0160ablon vrednosti poslednjeg resetovanja",
+                        "max": "Maksimum",
+                        "min": "Minimum",
+                        "mode": "Re\u017eim",
+                        "mode_command_template": "\u0160ablon komande re\u017eima rada",
+                        "mode_command_topic": "Tema komande re\u017eima rada",
+                        "mode_state_template": "\u0160ablon vrednosti re\u017eima rada",
+                        "mode_state_topic": "MQTT tema stanja re\u017eima rada",
+                        "modes": "Podr\u017eani re\u017eimi rada",
+                        "on_command_type": "Tip komande ON",
+                        "optimistic": "Optimisti\u010dki",
+                        "options": "Podesite opcije",
+                        "payload_off": "Payload \u201eoff\u201c",
+                        "payload_on": "Payload \u201eon\u201c",
+                        "payload_press": "Payload \u201epress\u201c",
+                        "payload_reset": "Payload \u201ereset\u201c",
+                        "position_closed": "Polo\u017eaj \u201ezatvoreno\u201c",
+                        "position_open": "Polo\u017eaj \u201eotvoreno\u201c",
+                        "qos": "QoS",
+                        "red_template": "Crveni \u0161ablon",
+                        "retain": "Zadr\u017ei",
+                        "state_off": "Stanje \u201eisklju\u010deno\u201c",
+                        "state_on": "Stanje \u201euklju\u010deno\u201c",
+                        "state_template": "\u0160ablon stanja",
+                        "state_topic": "Tema stanja",
+                        "state_value_template": "\u0160ablon vrednosti stanja",
+                        "step": "Korak",
+                        "support_duration": "Trajanje podr\u0161ke",
+                        "support_volume_set": "Postavite podr\u0161ku za glasno\u0107u",
+                        "supported_color_modes": "Podr\u017eani re\u017eimi boja",
+                        "timezone": "Vremenska zona",
+                        "url_template": "URL \u0161ablon",
+                        "url_topic": "URL tema",
+                        "value_template": "\u0160ablon vrednosti"
+                    },
+                    "data_description": {
+                        "available_tones": "Sirena podr\u017eava tonove. Promenljiva `tone` bi\u0107e dostupna za kori\u0161\u0107enje u pode\u0161avanju \u201e\u0160ablon komande\u201c. [Saznajte vi\u0161e]({url}#available_tones)",
+                        "blue_template": "[\u0160ablon]({value_templating_url}) za izdvajanje plave boje iz vrednosti u payload\u2011u stanja. O\u010dekivani rezultat \u0161ablona je ceo broj u opsegu od 0 do 255.",
+                        "brightness_template": "[\u0160ablon]({value_templating_url}) za izdvajanje osvetljenosti iz vrednosti payload\u2011a stanja. O\u010dekivani rezultat \u0161ablona je ceo broj u opsegu 0\u2013255.",
+                        "code": "Odre\u0111uje kod za uklju\u010divanje ili isklju\u010divanje alarma u interfejsu. Imajte na umu da ovo blokira slanje MQTT komandi udaljenom ure\u0111aju ako validacija koda ne uspe. [Saznajte vi\u0161e.]({url}#code)",
+                        "code_arm_required": "Ako je postavljen, kod je obavezan za aktiviranje alarma. Ako nije postavljen, kod se ne proverava.",
+                        "code_disarm_required": "Ako je postavljen, kod je obavezan za deaktiviranje alarma. Ako nije postavljen, kod se ne proverava.",
+                        "code_format": "Regularni izraz za validaciju unetog koda kada se postavlja tokom radnje otvaranja, zaklju\u010davanja ili otklju\u010davanja MQTT brave. [Saznaj vi\u0161e.]({url}#code_format)",
+                        "code_trigger_required": "Ako je postavljen, kod je obavezan za ru\u010dno pokretanje alarma. Ako nije postavljen, kod se ne proverava.",
+                        "color_temp_template": "[\u0160ablon]({value_templating_url}) za izdvajanje temperature boje u Kelvinima iz vrednosti payload\u2011a stanja. O\u010dekivani rezultat \u0161ablona je ceo broj.",
+                        "command_off_template": "[\u0160ablon]({command_templating_url}) za promene stanja \u201eoff\u201c. Dostupne promenljive su: `state` i `transition`.",
+                        "command_on_template": "[\u0160ablon]({command_templating_url}) za promene stanja \u2018on\u2019. Dostupne promenljive: `state`, `brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`, `flash`, `transition` i `effect`. Vrednosti `red`, `green`, `blue` i `brightness se daju kao celi brojevi u opsegu 0\u2013255. Vrednost `hue` se daje kao decimalni broj u opsegu 0\u2013360. Vrednost `sat` se daje kao decimalni broj u opsegu 0\u2013100. Vrednost `color_temp` se daje kao ceo broj koji predstavlja jedinice u Kelvinima.",
+                        "command_template": "[\u0160ablon]({command_templating_url}) za renderovanje payload\u2011a koji \u0107e biti objavljen na temi komande. [Saznaj vi\u0161e.]({url}#command_template)",
+                        "command_topic": "Tema za objavljivanje koja \u0107e se koristiti za kontrolu {platform} entiteta. [Saznajte vi\u0161e.]({url}#command_topic)",
+                        "content_type": "Tip sadr\u017eaja ili podaci o slici koji se primaju na temu slike.",
+                        "force_update": "\u0160alje doga\u0111aje a\u017euriranja \u010dak i ako se vrednost nije promenila. Korisno ako \u017eelite da imate smislenije grafikone vrednosti u istoriji. [Saznajte vi\u0161e.]({url}#force_update)",
+                        "green_template": "[\u0160ablon]({value_templating_url}) za izdvajanje zelene boje iz vrednosti payload\u2011a stanja. O\u010dekivani rezultat \u0161ablona je ceo broj u opsegu 0\u2013255.",
+                        "image_encoding": "Izaberite kodiranje primljenih podataka slike",
+                        "image_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja poruka koje sadr\u017ee podatke o slici. [Saznajte vi\u0161e.]({url}#image_topic)",
+                        "last_reset_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vremena poslednjeg resetovanja. Kada je postavljen \u0160ablon poslednjeg resetovanja, opcija Klasa stanja mora biti postavljena na \u201eTotal\u201c.. [Saznajte vi\u0161e.]({url}#last_reset_value_template)",
+                        "max": "Maksimalna vrednost. [Saznajte vi\u0161e.]({url}#max)",
+                        "min": "Minimalna vrednost. [Saznajte vi\u0161e.]({url}#min)",
+                        "mode": "Kontroli\u0161ite kako broj treba da se prikazuje u korisni\u010dkom interfejsu. [Saznajte vi\u0161e.]({url}#mode)",
+                        "mode_command_template": "[\u0160ablon]({command_templating_url}) za definisanje re\u017eima rada koji se \u0161alje na temu komande re\u017eima rada. [Saznaj vi\u0161e.]({url}#mode_command_template)",
+                        "mode_command_topic": "MQTT tema za objavljivanje komandi za promenu re\u017eima rada. [Saznajte vi\u0161e.]({url}#mode_command_topic)",
+                        "mode_state_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje stanja re\u017eima rada. [Saznajte vi\u0161e.]({url}#mode_state_template)",
+                        "mode_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja poruka o stanju re\u017eima rada. [Saznajte vi\u0161e.]({url}#mode_state_topic)",
+                        "modes": "Lista podr\u017eanih re\u017eima rada. [Saznajte vi\u0161e.]({url}#modes)",
+                        "on_command_type": "Defini\u0161e kada se \u0161alje payload  \u201eon\u201c. Kori\u0161\u0107enje opcije \u201eLast\u201c (podrazumevano) prvo \u0107e poslati sve teme stila (osvetljenost, boja itd.), a zatim payload \u201eon\u201c na temu komande. Kori\u0161\u0107enje opcije \u201eFirst\u201c prvo \u0107e poslati payload \u201eon\u201c, a zatim sve teme stila. Kori\u0161\u0107enje opcije \u201eBrightness\u201c posla\u0107e samo komande za osvetljenost umesto payloada \u201eon\u201c da bi se svetlo uklju\u010dilo.",
+                        "optimistic": "Zastavica koja odre\u0111uje da li {platform} entitet radi u optimisti\u010dkom re\u017eimu. [Saznajte vi\u0161e.]({url}#optimistic)",
+                        "options": "Lista opcija koje se mogu izabrani.",
+                        "payload_off": "Payload koji predstavlja stanje \u201eoff\u201c",
+                        "payload_on": "Payload koji predstavlja stanje \u201eon\u201c.",
+                        "payload_press": "Sadr\u017eaj payload koji \u0107e biti poslat kada se dugme aktivira.",
+                        "payload_reset": "Payload primljen na state topiku koji resetuje entitet u nepoznato stanje.",
+                        "position_closed": "Broj koji predstavlja zatvorenu poziciju. Polo\u017eaj ventila \u0107e biti skaliran u opseg (pozicija \u201ezatvoreno\u201c\u2026pozicija \u201eotvoreno\u201c) kada se izvr\u0161i radnja i skaliran nazad kada se primi vrednost.",
+                        "position_open": "Broj koji predstavlja otvorenu poziciju. Polo\u017eaj ventila \u0107e biti skaliran u opseg (pozicija \u201ezatvoreno\u201c\u2026pozicija \u201eotvoreno\u201c) kada se izvr\u0161i radnja i skaliran nazad kada se primi vrednost.",
+                        "qos": "QoS vrednost koju {platform} entitet treba da koristi.",
+                        "red_template": "[\u0160ablon]({value_templating_url}) za izdvajanje crvene boje iz vrednosti payload\u2011a stanja. O\u010dekivani rezultat \u0161ablona je ceo broj u opsegu 0\u2011255.",
+                        "retain": "Izaberi da li vrednosti koje objavljuje {platform} entitet treba da budu zadr\u017eane na MQTT brokeru.",
+                        "state_off": "Dolazni koristan teret (payload) koji predstavlja stanje \u201eisklju\u010deno\u201d. Koristite samo kada se vrednost koja predstavlja stanje \u201eisklju\u010deno\u201d u temi stanja (state topic) razlikuje od vrednosti koju treba poslati u temu komandi (command topic) da bi se ure\u0111aj isklju\u010dio.",
+                        "state_on": "Dolazni koristan teret (payload) koji predstavlja stanje \u201euklju\u010deno\u201d. Koristite samo kada se vrednost koja predstavlja stanje \u201euklju\u010deno\u201d u temi stanja (state topic) razlikuje od vrednosti koju treba poslati u temu komandi (command topic) da bi se ure\u0111aj uklju\u010dio.",
+                        "state_template": "[\u0160ablon]({value_templating_url}) za izdvajanje stanja iz vrednosti payload\u2011a stanja.",
+                        "state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja vrednosti stanja {platform} entiteta. [Saznajte vi\u0161e.]({url}#state_topic)",
+                        "step": "Vrednost koraka. Najmanja vrednost je 0,001.",
+                        "support_duration": "Sirena podr\u017eava pode\u0161avanje trajanja u sekundama. Promenljiva `duration` c\u0301e postati dostupna za upotrebu u pode\u0161avanju \u201e\u0160ablon komande\u201c. [Saznajte vi\u0161e.]({url}#support_duration)",
+                        "support_volume_set": "Sirena podr\u017eava pode\u0161avanje ja\u010dine zvuka. Promenljiva `volume_level` c\u0301e postati dostupna za upotrebu u pode\u0161avanju \u201e\u0160ablon komande\u201c. [Saznajte vi\u0161e.]({url}#support_volume_set)",
+                        "supported_color_modes": "Lista re\u017eima boja koje svetlo podr\u017eava. Mogu\u0107i re\u017eimi boja su: Uklju\u010di/Isklju\u010di, Svetlina, Temperatura boje, HS, XY, RGB, RGBW, RGBWW, Bela. Napomena: Ako se koriste Uklju\u010di/Isklju\u010di ili Svetlina, to mora biti jedina vrednost na listi. [Saznaj vi\u0161e.]({url}#supported_color_modes)",
+                        "timezone": "Postavite na va\u017ee\u0107i [IANA identifikator vremenske zone]({tz_abbr_url}). Nemojte pode\u0161avati ovu opciju ako struktura datuma/vremena ve\u0107 pru\u017ea informacije o vremenskoj zoni putem a\u017euriranja statusa.",
+                        "url_template": "[\u0160ablon] ({value_templating_url}) za izdvajanje URL\u2011a iz primljene vrednosti payload\u2011a URL teme. Saznajte vi\u0161e.]({url}#url_template)",
+                        "url_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja poruka koje sadr\u017ee URL slike. [Saznajte vi\u0161e.]({url}#url_topic)",
+                        "value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti entiteta {platform}. [Saznajte vi\u0161e.]({url}#value_template)"
+                    },
+                    "description": "Podesite MQTT specifi\u010dne detalje za {platform} entitet \u201e{entity}\u201c:",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Podatak (Payload)  \u201eaktiviranje - odsutan\u201c",
+                                "payload_arm_custom_bypass": "Podatak (Payload) \u201eaktiviraj uz prilago\u0111eno premo\u0161\u0107avanje\u201c",
+                                "payload_arm_disarm": "Payload \u201edeaktiviraj\u201c",
+                                "payload_arm_home": "Payload \u201eobezbedi dom\u201c",
+                                "payload_arm_night": "Payload \u201eno\u0107ni re\u017eim\u201c",
+                                "payload_arm_vacation": "Payload \u201eaktiviraj odmor\u201c",
+                                "payload_trigger": "Payload \u201epokreni alarm\u201c"
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Payload koji se \u0161alje kada se izda komanda \u201eaktiviraj odsutan\u201c.",
+                                "payload_arm_custom_bypass": "Podaci (payload) koji se \u0161alju kada se izda komanda \u201eaktiviraj uz prilago\u0111eno premo\u0161\u0107avanje\u201c.",
+                                "payload_arm_disarm": "Payload koji se \u0161alje kada se izda komanda \u201edeaktiviraj alarm\u201c.",
+                                "payload_arm_home": "Payload koji se \u0161alje kada se izda komanda \u201eaktiviraj kod ku\u0107e\u201c.",
+                                "payload_arm_night": "Payload koji se \u0161alje kada se izda komanda \u201eaktiviraj no\u0107ni re\u017eim\u201c.",
+                                "payload_arm_vacation": "Payload koji se \u0161alje kada se izda komanda \u201eaktiviraj odmor\u201c.",
+                                "payload_trigger": "Payload koji se \u0161alje kada se izda komanda \u201epokreni alarm\u201c."
+                            },
+                            "name": "Pode\u0161avanja payload\u2011a za panel za upravljanje alarmom"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "\u0160ablon radnje",
+                                "action_topic": "MQTT tema radnje"
+                            },
+                            "data_description": {
+                                "action_template": "[\u0160ablon]({value_templating_url}) za prikaz vrednosti primljene na temu radnje.",
+                                "action_topic": "MQTT tema (topic) na koju se vr\u0161i pretplata za promene trenutne akcije. Ako je ovo pode\u0161eno, grafikon klime koristi primljenu vrednost kao izvor podataka. Koristan teret (payload) \u201eNone\u201d resetuje stanje trenutne akcije. Prazan koristan teret se ignori\u0161e. Va\u017ee\u0107e vrednosti akcije su: \u201eoff\u201d, \u201eheating\u201d, \u201ecooling\u201d, \u201edrying\u201d, \u201eidle\u201d i \u201efan\u201d. [Saznaj vi\u0161e.]({url}#action_topic)"
+                            },
+                            "name": "Pode\u0161avanja trenutne radnje"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "\u0160ablon komande re\u017eima ventilatora",
+                                "fan_mode_command_topic": "MQTT tema komande re\u017eima ventilatora",
+                                "fan_mode_state_template": "\u0160ablon stanja re\u017eima ventilatora",
+                                "fan_mode_state_topic": "Tema stanja re\u017eima ventilatora",
+                                "fan_modes": "Re\u017eimi ventilatora"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande re\u017eima ventilatora.",
+                                "fan_mode_command_topic": "MQTT tema na koju se objavljuju komande za promenu re\u017eima ventilatora u okviru klima ure\u0111aja. [Saznajte vi\u0161e.]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti re\u017eima ventilatora u klimatizaciji.",
+                                "fan_mode_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja re\u017eima ventilatora u okviru klima ure\u0111aja. [Saznajte vi\u0161e.]({url}#fan_mode_state_topic)",
+                                "fan_modes": "Lista re\u017eima ventilatora koje ovaj klima ure\u0111aj mo\u017ee da koristi. Uobi\u010dajeni re\u017eimi ventilatora koji imaju prevode su `off`, `on`, `auto`, `low`, `medium`, `high`, `middle`, `focus` i `diffuse`."
+                            },
+                            "name": "Pode\u0161avanja re\u017eima ventilatora"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "Payload \u201eoff\u201c",
+                                "payload_on": "Payload \u201eon\u201c",
+                                "power_command_template": "\u0160ablon komande za napajanje",
+                                "power_command_topic": "Tema komande napajanja"
+                            },
+                            "data_description": {
+                                "payload_off": "Payload koji predstavlja stanje \u201eoff\u201c",
+                                "payload_on": "Payload koji predstavlja stanje \u201eon\u201c.",
+                                "power_command_template": "[Template]({command_templating_url})  za sastavljanje payload\u2011a koji \u0107e biti objavljen na power command topic\u2011u. Parametar `value` predstavlja payload koji se postavlja za payload \u201eon\u201c ili payload \u201eoff\u201c.",
+                                "power_command_topic": "MQTT tema (topic) za objavljivanje komandi za promenu stanja napajanja klime. \u0160alje koristan teret (payload) konfigurisan pomo\u0107u korisnog tereta \u201eon\u201d ili korisnog tereta \u201eoff\u201d. [Saznajte vi\u0161e.]({url}#power_command_topic)"
+                            },
+                            "name": "Pode\u0161avanja napajanja"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "\u0160ablon komande re\u017eima unapred pode\u0161enog moda",
+                                "preset_mode_command_topic": "MQTT tema komande re\u017eima unapred pode\u0161enog moda",
+                                "preset_mode_state_topic": "MQTT tema stanja unapred pode\u0161enog re\u017eima",
+                                "preset_mode_value_template": "\u0160ablon vrednosti unapred pode\u0161enog re\u017eima",
+                                "preset_modes": "Unapred pode\u0161eni re\u017eimi"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande re\u017eima unapred pode\u0161enog moda.",
+                                "preset_mode_command_topic": "MQTT tema na koju se objavljuju komande za promenu unapred pode\u0161enog re\u017eima klima ure\u0111aja. [Saznajte vi\u0161e.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja unapred pode\u0161enog re\u017eima ventilatora. [Saznajte vi\u0161e.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti re\u017eima ventilatora (fan preset mode).",
+                                "preset_modes": "Lista unapred pode\u0161enih re\u017eima koje ovaj klima ure\u0111aj mo\u017ee da koristi. Uobi\u010dajeni unapred pode\u0161eni re\u017eimi koji imaju prevode su `none`, `away`, `eco`, `boost`, `comfort`, `home`, `sleep` i `activity`."
+                            },
+                            "name": "Pode\u0161avanja unapred pode\u0161enog re\u017eima"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "\u0160ablon komande za re\u017eim horizontalnog zakretanja",
+                                "swing_horizontal_mode_command_topic": "MQTT tema komande za re\u017eim horizontalnog zakretanja",
+                                "swing_horizontal_mode_state_template": "\u0160ablon stanja re\u017eima horizontalnog zakretanja",
+                                "swing_horizontal_mode_state_topic": "MQTT tema stanja re\u017eima horizontalnog zakretanja",
+                                "swing_horizontal_modes": "Re\u017eimi horizontalnog zakretanja"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload-a koji \u0107e biti objavljen na temi komande re\u017eima horizontalnog zakretanja.",
+                                "swing_horizontal_mode_command_topic": "MQTT tema za objavljivanje komandi za promenu re\u017eima horizontalnog zakretanja klime. [Saznajte vi\u0161e.]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti re\u017eima horizontalnog zakretanja klime.",
+                                "swing_horizontal_mode_state_topic": "MQTT tema na koju se pretpla\u0107uje za primanje re\u017eima horizontalnog zakretanja klime. [Saznajte vi\u0161e.]({url}#swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "Lista re\u017eima horizontalnog zakretanja koje ova klima mo\u017ee da koristi. Uobi\u010dajeni re\u017eimi horizontalnog zakretanja koji imaju prevode su `off` i `on`."
+                            },
+                            "name": "Pode\u0161avanja re\u017eima horizontalnog zakretanja"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "\u0160ablon komande za re\u017eim zakretanja",
+                                "swing_mode_command_topic": "MQTT tema komande za re\u017eim zakretanja",
+                                "swing_mode_state_template": "\u0160ablon stanja re\u017eima zakretanja",
+                                "swing_mode_state_topic": "MQTT tema stanja re\u017eima zakretanjanja",
+                                "swing_modes": "Re\u017eimi zakretanja"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload-a koji \u0107e biti objavljen na temi komande re\u017eima zakretanja.",
+                                "swing_mode_command_topic": "MQTT tema za objavljivanje komandi za promenu re\u017eima zakretanja klime. [Saznajte vi\u0161e.]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti re\u017eima zakretanja klime.",
+                                "swing_mode_state_topic": "MQTT tema na koju se pretpla\u0107uje za primanje re\u017eima zakretanja klime. [Saznajte vi\u0161e.]({url}#swing_mode_state_topic)",
+                                "swing_modes": "Lista re\u017eima zakretanja koje ova klima mo\u017ee da koristi. Uobi\u010dajeni re\u017eimi zakretanja koji imaju prevode su `off`, `on`, `vertical`, `horizontal` i `both`."
+                            },
+                            "name": "Pode\u0161avanja re\u017eima zakretanja"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Payload \u201eclose\u201c",
+                                "payload_open": "Payload \u201eotvoreno\u201c",
+                                "payload_stop": "Payload \u201estop\u201c",
+                                "payload_stop_tilt": "Payload \u201ezaustavi nagib\u201c",
+                                "state_closed": "Payload \u201ezatvoreno\u201c",
+                                "state_closing": "Stanje \u201ezatvaranje\u201c",
+                                "state_open": "Stanje \u201eotvoreno\u201c",
+                                "state_opening": "Stanje \u201eotvaranje\u201c",
+                                "state_stopped": "Stanje \u201ezaustavljeno\u201c"
+                            },
+                            "data_description": {
+                                "payload_close": "Payload poslat kada se izda komanda \u201ezatvori\u201c.",
+                                "payload_open": "Payload poslat kada se izda komanda \u201eotvori\u201c.",
+                                "payload_stop": "Payload koji se \u0161alje kada se izda komanda \u201estop\u201c. Ostaviti prazno da bi se funkcija \u201estop\u201c onemogu\u0107ila.",
+                                "payload_stop_tilt": "Payload poslat kada se izda komanda \u201ezaustavi nagib\u201c.",
+                                "state_closed": "Payload primljen na temi stanja koji predstavlja stanje \u201ezatvoreno\u201c.",
+                                "state_closing": "Payload primljen na temi stanja koji predstavlja stanje \u201ezatvara se\u201c.",
+                                "state_open": "Payload primljen na temi stanja koji predstavlja stanje \u201eotvoreno\u201c.",
+                                "state_opening": "Payload primljen na temi stanja koji predstavlja stanje \u201eotvara se\u201c.",
+                                "state_stopped": "Payload primljen na temi stanja koji predstavlja stanje \u201ezaustavljeno\u201c (za pokriva\u010de koji ne prijavljuju stanje \u201eotvoreno\u201c/\u201ezatvoreno\u201c)."
+                            },
+                            "name": "Pode\u0161avanja payload-a"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "Vrednost polo\u017eaja \u201ezatvoreno\u201c",
+                                "position_open": "Vrednost polo\u017eaja \u201eotvoreno\u201c",
+                                "position_template": "\u0160ablon vrednosti za odre\u0111ivanje polo\u017eaja",
+                                "position_topic": "MQTT tema za primanje informacija o polo\u017eaju",
+                                "set_position_template": "\u0160ablon za postavljanje ciljnog polo\u017eaja",
+                                "set_position_topic": "MQTT tema za objavljivanje komandi za postavljanje pozicije"
+                            },
+                            "data_description": {
+                                "position_closed": "Broj koji predstavlja poziciju  \u201ezatvoreno\u201c.",
+                                "position_open": "Broj koji predstavlja poziciju  \u201eotvoreno\u201c.",
+                                "position_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje payload\u2011a za temu polo\u017eaja. U okviru \u0161ablona dostupne su i slede\u0107e promenljive: `entity_id`, `position_open`, `position_closed`, `tilt_min` i `tilt_max`. [Saznajte vi\u0161e.]({url}#position_template)",
+                                "position_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja poruka o stanju polo\u017eaja pokriva\u010da (cover). [Saznajte vi\u0161e.]({url}#position_topic)",
+                                "set_position_template": "[\u0160ablon]({command_templating_url}) za definisanje polo\u017eaja koji \u0107e biti poslat na temu komande postavljanja polo\u017eaja. U okviru \u0161ablona dostupne su slede\u0107e promenljive: `value` (skalirani ciljni polo\u017eaj), `entity_id`, `position` (ciljni procenat polo\u017eaja), `position_open`, `position_closed`, `tilt_min` i `tilt_max`. [Saznajte vi\u0161e.]({url}#set_position_template)",
+                                "set_position_topic": "MQTT tema (topic) za objavljivanje komandi polo\u017eaja. Morate koristiti i temu za pode\u0161avanje polo\u017eaja ako \u017eelite da koristite temu polo\u017eaja. Koristite \u0161ablon ako tema polo\u017eaja zahteva druga\u010dije vrednosti od onih u opsegu \u201ezatvoren polo\u017eaj\u201d \u2013 \u201eotvoren polo\u017eaj\u201d. Ako \u0161ablon nije definisan, a polo\u017eaj \u201ezatvoreno\u201d != 100 i polo\u017eaj \u201eotvoreno\u201d != 0, tada se ispravna vrednost polo\u017eaja izra\u010dunava iz procentualnog polo\u017eaja. [Saznajte vi\u0161e.]({url}#set_position_topic)"
+                            },
+                            "name": "Pode\u0161avanja polo\u017eaja"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "Vrednost nagiba \u201ezatvoreno\u201c",
+                                "tilt_command_template": "\u0160ablon komande nagiba",
+                                "tilt_command_topic": "MQTT tema komande nagiba",
+                                "tilt_max": "Maksimalni nagib",
+                                "tilt_min": "Minimalni nagib",
+                                "tilt_opened_value": "Vrednost nagiba \u201eotvoreno\u201c",
+                                "tilt_optimistic": "Optimisti\u010dan nagib",
+                                "tilt_status_template": "\u0160ablon za vrednost nagiba",
+                                "tilt_status_topic": "MQTT tema statusa za nagib"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "Vrednost koja \u0107e biti poslata u temu \u201etilt command topic\u201c kada je nagib poklopca zatvoren.",
+                                "tilt_command_template": "[\u0160ablon]({command_templating_url}) za definisanje polo\u017eaja koji \u0107e biti poslat na temu komande nagiba. U okviru \u0161ablona dostupne su slede\u0107e promenljive: `entity_id`, `tilt_position` (ciljni procenat polo\u017eaja nagiba), `position_open`, `position_closed`, `tilt_min` i `tilt_max`. [Saznajte vi\u0161e.]({url}#tilt_command_template)",
+                                "tilt_command_topic": "MQTT tema na koju se objavljuju komande za kontrolu nagiba poklopca. [Saznajte vi\u0161e.]({url}#tilt_command_topic)",
+                                "tilt_max": "Maksimalna vrednost nagiba.",
+                                "tilt_min": "Minimalna vrednost nagiba.",
+                                "tilt_opened_value": "Vrednost koja \u0107e biti poslata u temu \u201etilt command topic\u201c kada se nagib poklopca otvori.",
+                                "tilt_optimistic": "Zastavica koja odre\u0111uje da li nagib (tilt) radi u optimisti\u010dkom re\u017eimu. Ako tilt status topic nije definisan, nagib podrazumevano radi u optimisti\u010dkom re\u017eimu. [Saznaj vi\u0161e.]({url}#tilt_optimistic)",
+                                "tilt_status_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje payload\u2011a za temu statusa nagiba. U okviru \u0161ablona dostupne su slede\u0107e promenljive: `entity_id`, `position_open`, `position_closed`, `tilt_min` i `tilt_max`. [Saznajte vi\u0161e.]({url}#tilt_status_template)",
+                                "tilt_status_topic": "MQTT tema na koju se pretpla\u0107uje da bi se primile vrednosti a\u017euriranja statusa nagiba. [Saznaj vi\u0161e.]({url}#tilt_status_topic)"
+                            },
+                            "name": "Pode\u0161avanja nagiba"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "\u0160ablon trenutne vla\u017enosti",
+                                "current_humidity_topic": "MQTT rema trenutne vla\u017enosti"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti trenutne vla\u017enosti. [Saznajte vi\u0161e.]({url}#current_humidity_template)",
+                                "current_humidity_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranih vrednosti trenutne vla\u017enosti. [Saznaj vi\u0161e.]({url}#current_humidity_topic)"
+                            },
+                            "name": "Trenutna pode\u0161avanja vla\u017enosti"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "\u0160ablon za trenutnu temperaturu",
+                                "current_temperature_topic": "Tema za trenutnu temperaturu"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje trenutne vrednosti temperature. [Saznaj vi\u0161e.]({url}#current_temperature_template)",
+                                "current_temperature_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranih vrednosti trenutne temperature. [Saznajte vi\u0161e.]({url}#current_temperature_topic)"
+                            },
+                            "name": "Pode\u0161avanja trenutne temperature"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "\u0160ablon komande za promenu smera",
+                                "direction_command_topic": "MQTT tema za slanje komandi za promenu smera",
+                                "direction_state_topic": "MQTT tema za a\u017euriranja stanja smera",
+                                "direction_value_template": "\u0160ablon vrednosti za promenu smera"
+                            },
+                            "data_description": {
+                                "direction_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande smera. Promenljiva \u0161ablona `value` bi\u0107e ili `forward` ili `reverse`.",
+                                "direction_command_topic": "MQTT tema za objavljivanje komandi koje menjaju smer ventilatora. Payload \u0107e biti ili `forward` ili `reverse` i mo\u017ee se prilagoditi pomo\u0107u \u0161ablona komande smera. [Saznajte vi\u0161e.]({url}#direction_command_topic)",
+                                "direction_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja stanja smera ventilatora. Prihva\u0107eni payload\u2011i su `forward` ili `reverse`. [Saznaj vi\u0161e.]({url}#direction_state_topic)",
+                                "direction_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje smera rada ventilatora. \u0160ablon treba da vrati ili forward (napred) ili reverse (unazad). Kada \u0161ablon vrati prazan tekst, smer \u0107e biti zanemaren."
+                            },
+                            "name": "Pode\u0161avanja smera"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "\u0160ablon komande za oscilaciju",
+                                "oscillation_command_topic": "MQTT tema komande za oscilaciju",
+                                "oscillation_state_topic": "MQTT tema stanja oscilacije",
+                                "oscillation_value_template": "\u0160ablon vrednosti oscilacije",
+                                "payload_oscillation_off": "Payload \u201eoscilacija isklju\u010dena\u201c",
+                                "payload_oscillation_on": "Payload \u201eoscilacija uklju\u010dena\u201c"
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande oscilacije.",
+                                "oscillation_command_topic": "MQTT tema za objavljivanje komandi za promenu stanja oscilacije ventilatora. [Saznaj vi\u0161e.]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "MQTT tema na koju se pretpla\u0107uje da bi se primilo stanje oscilacije ventilatora. [Saznaj vi\u0161e.]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti stanja oscilacije ventilatora.",
+                                "payload_oscillation_off": "Payload koji predstavlja stanje oscilacije \u201eisklju\u010deno\u201c.",
+                                "payload_oscillation_on": "Payload koji predstavlja stanje oscilacije \u201euklju\u010deno\u201c."
+                            },
+                            "name": "Pode\u0161avanja oscilacije"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Payload \u201ereset re\u017eim pode\u0161avanja\u201c",
+                                "preset_mode_command_template": "\u0160ablon komande re\u017eima unapred pode\u0161enog moda",
+                                "preset_mode_command_topic": "MQTT tema komande re\u017eima unapred pode\u0161enog moda",
+                                "preset_mode_state_topic": "MQTT tema stanja unapred pode\u0161enog re\u017eima",
+                                "preset_mode_value_template": "\u0160ablon vrednosti unapred pode\u0161enog re\u017eima",
+                                "preset_modes": "Unapred pode\u0161eni re\u017eimi"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Poseban payload koji resetuje atribut stanja re\u017eima pode\u0161avanja ventilatora na \u201enepoznato\u201c kada se primi na temu stanja re\u017eima pode\u0161avanja.",
+                                "preset_mode_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande re\u017eima unapred pode\u0161enog moda.",
+                                "preset_mode_command_topic": "MQTT tema za objavljivanje komandi za promenu re\u017eima pode\u0161avanja ventilatora. [Saznaj vi\u0161e.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja unapred pode\u0161enog re\u017eima ventilatora. [Saznajte vi\u0161e.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti re\u017eima ventilatora (fan preset mode).",
+                                "preset_modes": "Lista unapred pode\u0161enih re\u017eima u kojima ovaj ventilator mo\u017ee da radi. Uobi\u010dajeni primeri uklju\u010duju auto, smart, whoosh, eco i breeze."
+                            },
+                            "name": "Pode\u0161avanja unapred pode\u0161enog re\u017eima"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Payload \u201ereset procenat\u201c",
+                                "percentage_command_template": "\u0160ablon komande za procenat",
+                                "percentage_command_topic": "MQTT tema komande za procenat",
+                                "percentage_state_topic": "MQTT tema za a\u017euriranja procenta",
+                                "percentage_value_template": "\u0160ablon vrednosti za procente",
+                                "speed_range_max": "Maksimalna vrednost opsega brzine",
+                                "speed_range_min": "Minimalna vrednost opsega brzine"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Poseban payload koji resetuje atribut stanja procenta brzine ventilatora na \u201enepoznato\u201c kada se primi na QTT temi stanja procenta.",
+                                "percentage_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande procenta.",
+                                "percentage_command_topic": "MQTT tema (topic) za objavljivanje komandi za promenu stanja brzine ventilatora na osnovu procentualnog pode\u0161avanja. Vrednost mora biti u opsegu od \u201emin. opseg brzine\u201d do \u201emaks. opseg brzine\u201d. [Saznajte vi\u0161e.]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "MQTT tema (topic) na koju je izvr\u0161ena pretplata za prijem stanja brzine ventilatora. Ovo je vrednost u opsegu od \u201emin. opseg brzine\u201d do \u201emaks. opseg brzine\u201d. [Saznajte vi\u0161e.]({url}#percentage_state_topic)",
+                                "percentage_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti procenta brzine.",
+                                "speed_range_max": "Maksimum opsega numeri\u010dkog izlaza (koji predstavlja 100 %). Procentualni korak je 100 / broj brzina unutar \u201eopsega brzine\u201d.",
+                                "speed_range_min": "Minimum opsega numeri\u010dkog izlaza (isklju\u010deno stanje nije uklju\u010deno, tako da speed_range_min - 1 predstavlja 0 %). Procentualni korak je 100 / broj brzina unutar \u201eopsega brzine\u201d."
+                            },
+                            "name": "Pode\u0161avanja brzine"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "Zasebna svetlina",
+                                "brightness_command_template": "\u0160ablon komande za svetlinu",
+                                "brightness_command_topic": "MQTT tema komande za svetlinu",
+                                "brightness_scale": "Skala svetline",
+                                "brightness_state_topic": "MQTT tema stanja svetline",
+                                "brightness_value_template": "\u0160ablon vrednosti svetline"
+                            },
+                            "data_description": {
+                                "brightness": "Zastavica koja defini\u0161e da li svetlo podr\u017eava svetlinu kada su podr\u017eani RGB, RGBW ili RGBWW re\u017eimi boja.",
+                                "brightness_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande osvetljenosti.",
+                                "brightness_command_topic": "MQTT tema objavljivanja koja \u0107e se koristiti za kontrolu svetline. [Saznaj vi\u0161e.]({url}#brightness_command_topic)",
+                                "brightness_scale": "Defini\u0161e maksimalnu vrednost osvetljenosti (tj. 100%) maksimalne osvetljenosti.",
+                                "brightness_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja vrednosti stanja osvetljenosti. [Saznaj vi\u0161e.]({url}#brightness_state_topic)",
+                                "brightness_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti osvetljenosti."
+                            },
+                            "name": "Pode\u0161avanja osvetljenosti"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "MQTT tema za primanje stanja o re\u017eimu boja",
+                                "color_mode_value_template": "\u0160ablon vrednosti za izdvajanje re\u017eima boja"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranja re\u017eima boje. Ako ovo nije konfigurisano, re\u017eim boje \u0107e se automatski postaviti prema poslednjoj primljenoj va\u017ee\u0107oj boji ili temperaturi boje.",
+                                "color_mode_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti re\u017eima boje."
+                            },
+                            "name": "Pode\u0161avanja re\u017eima boja"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "Komandni \u0161ablon za temperaturu boje",
+                                "color_temp_command_topic": "MQTT tema komande temperature boje",
+                                "color_temp_state_topic": "MQTT tema za a\u017euriranja stanja temperature boje",
+                                "color_temp_value_template": "\u0160ablon vrednosti temperature boje"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande temperature boje.",
+                                "color_temp_command_topic": "Tema objavljivanja koja \u0107e se koristiti za kontrolu temperature boje. [Saznaj vi\u0161e.]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranja stanja temperature boje. [Saznaj vi\u0161e]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje vrednosti temperature boje."
+                            },
+                            "name": "Pode\u0161avanja temperature boje"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Efekat",
+                                "effect_command_template": "\u0160ablon komande efekta",
+                                "effect_command_topic": "MQTT tema komande efekata",
+                                "effect_list": "Lista efekata",
+                                "effect_state_topic": "MQTT tema stanja efekata",
+                                "effect_template": "\u0160ablon efekta",
+                                "effect_value_template": "\u0160ablon vrednosti efekta"
+                            },
+                            "data_description": {
+                                "effect": "Zastavica koja defini\u0161e da li svetlo podr\u017eava efekte.",
+                                "effect_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande efekta.",
+                                "effect_command_topic": "Tema objavljivanja koja \u0107e se koristiti za kontrolu stanja efekta svetla.  [Saznaj vi\u0161e.]({url}#effect_command_topic)",
+                                "effect_list": "Lista efekata koje svetlo podr\u017eava.",
+                                "effect_state_topic": "MQTT tema na koju se pretpla\u0107uje da bi se primala a\u017euriranja stanja efekta. [Saznaj vi\u0161e.]({url}#effect_state_topic)"
+                            },
+                            "name": "Pode\u0161avanja efekata"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "\u0160ablon komande HS",
+                                "hs_command_topic": "MQTT tema HS komande",
+                                "hs_state_topic": "MQTT tema HS stanja",
+                                "hs_value_template": "HS \u0161ablon vrednosti"
+                            },
+                            "data_description": {
+                                "hs_command_template": "Defini\u0161e [\u0161ablon]({command_templating_url})  za sastavljanje poruke koja \u0107e biti poslata na temu komande HS. Dostupne promenljive su: `hue` i `sat`.",
+                                "hs_command_topic": "MQTT tema za objavljivanje komandi za promenu stanja boje svetla u HS formatu (nijansa i zasi\u0107enost). Opseg za nijansu: 0\u00b0 .. 360\u00b0, opseg za zasi\u0107enost: 0..100. Napomena: Osvetljenost se \u0161alje odvojeno u posebnoj temi za komandu osvetljenosti. [Saznaj vi\u0161e.]({url}#hs_command_topic)",
+                                "hs_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranja stanja boje u HS formatu. O\u010dekivani sadr\u017eaj poruke su vrednosti nijanse i zasi\u0107enosti razdvojene zarezom, na primer `359.5,100.0`. Napomena: Osvetljenost se prima odvojeno u posebnoj temi za stanje osvetljenosti. [Saznaj vi\u0161e.]({url}#hs_state_topic)",
+                                "hs_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje HS vrednosti."
+                            },
+                            "name": "HS pode\u0161avanja re\u017eima boje"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "\u0160ablon komande za RGB",
+                                "rgb_command_topic": "MQTT tema komande za RGB",
+                                "rgb_state_topic": "MQTT tema stanja za RGB",
+                                "rgb_value_template": "RGB \u0161ablon vrednosti"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "Defini\u0161e [\u0161ablon]({command_templating_url}) za sastavljanje poruke koja \u0107e biti poslata na temu komande RGB. Dostupne promenljive su: `red`, `green` i `blue`.",
+                                "rgb_command_topic": "MQTT tema za objavljivanje komandi za promenu RGB stanja svetla. [Saznaj vi\u0161e.]({url}#rgb_command_topic)",
+                                "rgb_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranja RGB stanja. O\u010dekivani payload su RGB vrednosti razdvojene zarezima, na primer: `255,0,127`. [Saznaj vi\u0161e.]({url}#rgb_state_topic)",
+                                "rgb_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje RGB vrednosti."
+                            },
+                            "name": "Pode\u0161avanja RGB re\u017eima boja"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "\u0160ablon komande za RGBW",
+                                "rgbw_command_topic": "MQTT tema za slanje komandi RGBW",
+                                "rgbw_state_topic": "MQTT tema za a\u017euriranja stanja RGBW",
+                                "rgbw_value_template": "\u0160ablon vrednosti za RGBW"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "Defini\u0161e [\u0161ablon]({command_templating_url}) za sastavljanje poruke koja \u0107e biti poslata na temu komande RGBW. Dostupne promenljive su: `red`, `green`, `blue` i `white`.",
+                                "rgbw_command_topic": "MQTT tema za objavljivanje komandi koje menjaju RGBW stanje svetla. [Saznaj vi\u0161e.]({url}#rgbw_command_topic)",
+                                "rgbw_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranja RGBW stanja. O\u010dekivani payload su RGBW vrednosti razdvojene zarezima, na primer: `255,0,127,64`. [Saznaj vi\u0161e.]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje RGBW vrednosti."
+                            },
+                            "name": "Pode\u0161avanja RGBW re\u017eima boja"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "\u0160ablon komande za RGBWW",
+                                "rgbww_command_topic": "MQTT tema za slanje komandi RGBWW",
+                                "rgbww_state_topic": "MQTT tema za a\u017euriranja stanja RGBWW",
+                                "rgbww_value_template": "RGBWW \u0161ablon vrednosti"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "Defini\u0161e [\u0161ablon]({command_templating_url})  za sastavljanje poruke koja \u0107e biti poslata na temu komande RGBWW. Dostupne promenljive su: `red`, `green`, `blue`, `cold_white` i `warm_white`.",
+                                "rgbww_command_topic": "MQTT tema za objavljivanje komandi koje menjaju RGBWW stanje svetla. [Saznaj vi\u0161e.]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja a\u017euriranja RGBWW stanja. O\u010dekivani payload su RGBWW vrednosti razdvojene zarezima, na primer: `255,0,127,64,32`. [Saznaj vi\u0161e.]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje RGBWW vrednosti."
+                            },
+                            "name": "Pode\u0161avanja RGBWW re\u017eima boja"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "MQTT tema na koju se \u0161alje komanda za belu",
+                                "white_scale": "Skala bele"
+                            },
+                            "data_description": {
+                                "white_command_topic": "MQTT tema za objavljivanje komandi za promenu svetla u beli re\u017eim sa zadatom svetlinom. [Saznaj vi\u0161e.]({url}#white_command_topic)",
+                                "white_scale": "Defini\u0161e maksimalni nivo bele (tj. 100%) od maksimuma."
+                            },
+                            "name": "Pode\u0161avanja re\u017eima bele boje"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "\u0160ablon komande XY",
+                                "xy_command_topic": "MQTT tema komande za XY re\u017eim boja",
+                                "xy_state_topic": "MQTT tema stanja za XY re\u017eim boja",
+                                "xy_value_template": "\u0160ablon vrednosti XY"
+                            },
+                            "data_description": {
+                                "xy_command_template": "Defini\u0161e [\u0161ablon]({command_templating_url}) za pisanje poruke koja c\u0301e biti poslata na temu XY komande. Dostupne promenljive: `x` i `y`.",
+                                "xy_command_topic": "MQTT tema za objavljivanje komandi za promenu XY stanja svetla.  [Saznaj vi\u0161e.]({url}#xy_command_topic)",
+                                "xy_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja XY a\u017euriranja stanja. O\u010dekivani payload su X i Y vrednosti boje razdvojene zarezima, na primer: `0.675,0.322`. [Saznaj vi\u0161e.]({url}#xy_state_topic)",
+                                "xy_value_template": "Defini\u0161e [\u0161ablon]({value_templating_url}) za izdvajanje XY vrednosti."
+                            },
+                            "name": "XY pode\u0161avanja re\u017eima boje"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Payload \u201ezaklju\u010daj\u201c",
+                                "payload_open": "Payload \u201eotvori\u201c",
+                                "payload_reset": "Payload \u201ereset\u201c",
+                                "payload_unlock": "Payload \u201eotklju\u010daj\u201c",
+                                "state_jammed": "Stanje \u201ezaglavljeno\u201c",
+                                "state_locked": "Stanje \u201ezaklju\u010dano\u201c",
+                                "state_locking": "Stanje \u201ezaklju\u010davanje\u201c",
+                                "state_unlocked": "Stanje \u201eotklju\u010dano\u201c",
+                                "state_unlocking": "Stanje \u201eotklju\u010davanje\u201c"
+                            },
+                            "data_description": {
+                                "payload_lock": "Payload poslat kada se izda komanda \u201ezaklju\u010daj\u201c.",
+                                "payload_open": "Payload poslat kada se izda komanda \u201eotvor\u201c. Postavite ovaj payload ako va\u0161a brava podr\u017eava radnu \u201eotvori\u201c.",
+                                "payload_reset": "Payload primljen na temi stanja koji resetuje bravu u nepoznato stanje.",
+                                "payload_unlock": "Payload poslat kada se izda komanda \u201eunlock\u201c.",
+                                "state_jammed": "Payload primljen na temu koji predstavlja stanje \u201ezaglavljeno\u201c",
+                                "state_locked": "Payload primljen na temu koji predstavlja stanje \u201ezaklju\u010dano\u201c.",
+                                "state_locking": "Payload primljen na temu koji predstavlja stanje \u201ezaklju\u010davanje\u201c.",
+                                "state_unlocked": "Payload primljen na temu koji predstavlja stanje \u201eotklju\u010dano\u201c.",
+                                "state_unlocking": "Payload primljen na temi stanja koji predstavlja stanje \u201eotklju\u010davanje\u201c."
+                            },
+                            "name": "Pode\u0161avanja payload\u2011a za zaklju\u010davanje"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Isti\u010de nakon",
+                                "flash": "Podr\u0161ka za blic",
+                                "flash_time_long": "Dugo vreme treptanja",
+                                "flash_time_short": "Kratko vreme treptanja",
+                                "max_kelvin": "Maksimalni Kelvin",
+                                "min_kelvin": "Minimalni Kelvin",
+                                "off_delay": "Isklju\u010di odlaganje",
+                                "transition": "Podr\u0161ka za tranziciju"
+                            },
+                            "data_description": {
+                                "expire_after": "Ako je postavljeno, defini\u0161e broj sekundi nakon kojih stanje senzora isti\u010de ukoliko nije a\u017eurirano. Nakon isteka, stanje senzora postaje nedostupno. Ako nije postavljeno, stanje senzora nikada ne isti\u010de. [Saznajte vi\u0161e.]({url}#expire_after)",
+                                "flash": "Omogu\u0107i funkciju treptanja za ovo svetlo",
+                                "flash_time_long": "Trajanje, u sekundama, \u201edugog\u201c treptaja.",
+                                "flash_time_short": "Trajanje, u sekundama, \u201ekratkog\u201c treptaja.",
+                                "max_kelvin": "Maksimalna temperatura boje u Kelvinima.",
+                                "min_kelvin": "Minimalna temperatura boje u Kelvinima.",
+                                "off_delay": "Za senzore koji \u0161alju samo a\u017euriranja stanja \u201euklju\u010deno\u201c (kao PIR senzori), ova promenljiva postavlja ka\u0161njenje u sekundama nakon kojeg \u0107e stanje senzora biti a\u017eurirano nazad na \u201eisklju\u010deno\u201c.",
+                                "transition": "Omogu\u0107i funkciju tranzicije za ovo svetlo"
+                            },
+                            "name": "Ostala pode\u0161avanja"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "\u0160ablon komande \u201eoff\u201c."
+                            },
+                            "data_description": {
+                                "command_off_template": "[\u0160ablon]({command_templating_url}) za promene stanja \u201eisklju\u010deno\u201c. Podrazumevano \u0107e se koristiti \u201e[\u0160ablon komande]({url}#command_template)\u201c. [Saznaj vi\u0161e.]({url}#command_off_template)"
+                            },
+                            "name": "Ostala pode\u0161avanja sirene"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "Maksimalna vla\u017enost",
+                                "min_humidity": "Minimalna vla\u017enost",
+                                "target_humidity_command_template": "\u0160ablon komande za ciljnu vla\u017enost",
+                                "target_humidity_command_topic": "Tema komande za ciljanu vla\u017enost",
+                                "target_humidity_state_template": "\u0160ablon ciljnog stanja vla\u017enosti",
+                                "target_humidity_state_topic": "Tema stanja ciljne vla\u017enosti"
+                            },
+                            "data_description": {
+                                "max_humidity": "Maksimalna ciljna vla\u017enost koja se mo\u017ee postaviti.",
+                                "min_humidity": "Minimalna ciljna vla\u017enost koja se mo\u017ee postaviti.",
+                                "target_humidity_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande ciljne vla\u017enosti.",
+                                "target_humidity_command_topic": "MQTT tema na koju se objavljuju komande za promenu ciljne vla\u017enosti klima ure\u0111aja. [Saznajte vi\u0161e.]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "[\u0160ablon]({value_templating_url}) za renderovanje vrednosti primljene na temi stanja ciljne vla\u017enosti.",
+                                "target_humidity_state_topic": "MQTT tema na koju se pretpla\u0107uje radi pra\u0107enja promena ciljne vla\u017enosti. [Saznajte vi\u0161e.]({url}#humidity_state_topic)"
+                            },
+                            "name": "Pode\u0161avanja ciljne vla\u017enosti"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Po\u010detna temperatura",
+                                "max_temp": "Maksimalna temperatura",
+                                "min_temp": "Minimalna temperatura",
+                                "precision": "Preciznost",
+                                "temp_step": "Temperaturni korak",
+                                "temperature_command_template": "\u0160ablon komande temperature",
+                                "temperature_command_topic": "Tema komande temperature",
+                                "temperature_high_command_template": "\u0160ablon komande gornje temperature",
+                                "temperature_high_command_topic": "Tema komande gornje temperature",
+                                "temperature_high_state_template": "\u0160ablon stanja gornje temperature",
+                                "temperature_high_state_topic": "Tema stanja gornje temperature",
+                                "temperature_low_command_template": "\u0160ablon komande za sni\u017eavanje temperature",
+                                "temperature_low_command_topic": "MQTT tema komande donje temperature",
+                                "temperature_low_state_template": "\u0160ablon stanja donje temperature",
+                                "temperature_low_state_topic": "MQTT tema stanja donje temperature",
+                                "temperature_state_template": "\u0160ablon stanja temperature",
+                                "temperature_state_topic": "MQTT tema stanja temperature"
+                            },
+                            "data_description": {
+                                "initial": "Ure\u0111aj se inicijalizuje sa ovom ciljanom temperaturom.",
+                                "max_temp": "Maksimalna cil\u0458na temperatura koja mo\u017ee da se postavi.",
+                                "min_temp": "Minimalna cil\u0458na temperatura koja mo\u017ee da se postavi.",
+                                "precision": "Preciznost u stepenima na kojoj termostat radi.",
+                                "temp_step": "Korak cil\u0458ne temperature u stepenima Celzijusa ili Farenhajta.",
+                                "temperature_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande temperature.",
+                                "temperature_command_topic": "MQTT tema za objavljivanje komandi za promenu ciljne temperature. [Saznajte vi\u0161e.]({url}#temperature_command_topic)",
+                                "temperature_high_command_template": "[\u0160ablon]({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande vi\u0161e temperature.",
+                                "temperature_high_command_topic": "MQTT tema na koju se objavljuju komande za promenu gornje cil\u0458ne temperature klime. [Saznaj vi\u0161e.]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "[\u0160ablon]({value_templating_url}) za renderovanje vrednosti primljene na temi stanja vi\u0161e temperature.",
+                                "temperature_high_state_topic": "MQTT tema na koju se pretpla\u0107uje radi primanja promena gornje cil\u0458ne temperature. [Saznaj vi\u0161e.]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "[\u0160ablon] ({command_templating_url}) za sastavljanje payload\u2011a koji \u0107e biti objavljen na temi komande ni\u017ee temperature.",
+                                "temperature_low_command_topic": "MQTT tema za objavljivanje komandi za promenu ni\u017ee ciljne temperature klime. [Saznajte vi\u0161e.]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "[\u0160ablon] ({value_templating_url}) za renderovanje vrednosti primljene na temi stanja ni\u017ee temperature.",
+                                "temperature_low_state_topic": "MQTT tema na koju se pretpla\u0107uje radi pra\u0107enja promena ni\u017ee ciljne temperature. [Saznajte vi\u0161e.]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "[\u0161ablon]({value_templating_url}) za prikazivanje vrednosti primljene na temu temperaturnog stanja.",
+                                "temperature_state_topic": "MQTT tema na koju se pretpla\u0107uje radi pra\u0107enja promena ciljne temperature. [Saznajte vi\u0161e.]({url}#temperature_state_topic)"
+                            },
+                            "name": "Pode\u0161avanja ciljne temperature"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maksimalna du\u017eina",
+                                "min": "Minimalna du\u017eina",
+                                "mode": "Re\u017eim",
+                                "pattern": "Obrazac"
+                            },
+                            "data_description": {
+                                "max": "Maksimalna du\u017eina tekstualnog unosa",
+                                "min": "Minimalna du\u017eina tekstualnog unosa",
+                                "mode": "Re\u017eim tekstualnog unosa",
+                                "pattern": "\u0160ablon regularnog izraza"
+                            },
+                            "name": "Ostala pode\u0161avanja tekstualnog entiteta"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Payload \u201eclose\u201c",
+                                "payload_open": "Payload \u201eopen\u201c",
+                                "payload_stop": "Payload \u201estop\u201c",
+                                "state_closed": "Stanje \u201ezatvoreno\u201c",
+                                "state_closing": "Stanje \u201ezatvaranja\u201c",
+                                "state_open": "Stanje \u201eotvoreno\u201c",
+                                "state_opening": "Stanje \u201eotvaranja\u201c"
+                            },
+                            "data_description": {
+                                "payload_close": "Payload koji se \u0161alje kada se izda komanda \u201eclose\u201c.",
+                                "payload_open": "Payload koji se \u0161alje kada se izda komanda \u201eopen\u201c.",
+                                "payload_stop": "Payload koji se \u0161alje kada se izda komanda \u201estop\u201c. Podesi ovaj payload samo ako tvoj ventil podr\u017eava radnju \u201estop\u201c.",
+                                "state_closed": "Payload primljen na state topic koji predstavlja stanje \u201ezatvoreno\u201c.",
+                                "state_closing": "Payload primljen na state topic koji predstavlja stanje \u201ezatvoreno\u201c.",
+                                "state_open": "Payload primljen na state topic koji predstavlja stanje \u201eotvoreno\u201c.",
+                                "state_opening": "Payload primljen na state topic koji predstavlja stanje \u201eotvoreno\u201c."
+                            },
+                            "name": "Pode\u0161avanja paketa podataka (payload) za ventil"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "Payload \u201eoff\u201c",
+                                "payload_on": "Payload \u201eon\u201c",
+                                "power_command_template": "\u0160ablon komande za napajanje",
+                                "power_command_topic": "Tema komande napajanja"
+                            },
+                            "data_description": {
+                                "payload_off": "Payload koji predstavlja stanje \u201eoff\u201c",
+                                "payload_on": "Payload koji predstavlja stanje \u201eon\u201c.",
+                                "power_command_template": "[Template]({command_templating_url})  za sastavljanje payload\u2011a koji \u0107e biti objavljen na power command topic\u2011u. Parametar `value` predstavlja payload koji se postavlja za payload \u201eon\u201c ili payload \u201eoff\u201c.",
+                                "power_command_topic": "MQTT tema (topic) za slanje komandi radi promene stanja napajanja greja\u010da vode. \u0160alje paket podataka (payload) konfigurisan kao \u201eon\u201c ili \u201eoff\u201c. [Saznajte vi\u0161e.]({url}#power_command_topic)"
+                            },
+                            "name": "Pode\u0161avanja napajanja"
+                        }
+                    },
+                    "title": "Konfiguri\u0161ite MQTT ure\u0111aj \u201e{mqtt_device}\u201c"
+                },
+                "summary_menu": {
+                    "description": "Entiteti su pode\u0161eni: \n{mqtt_items}\n\nOdlu\u010dite \u0161ta \u017eelite da uradite slede\u0107e:",
+                    "menu_options": {
+                        "availability": "Podesi dostupnost",
+                        "delete_entity": "Obri\u0161i entitet",
+                        "device": "A\u017euriraj svojstva ure\u0111aja",
+                        "entity": "Dodajte jo\u0161 jedan entitet u \u201e{mqtt_device}\u201c",
+                        "export": "Izvoz konfiguracije MQTT ure\u0111aja",
+                        "save_changes": "Sa\u010duvaj izmene",
+                        "update_entity": "A\u017euriraj svojstva entiteta"
+                    },
+                    "title": "Ponovo konfiguri\u0161i \u201e{mqtt_device}\u201c"
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Entitet"
+                    },
+                    "data_description": {
+                        "component": "Izaberite entitet koji \u017eelite da a\u017eurirate."
+                    },
+                    "description": "Izaberite entitet koji \u017eelite da a\u017eurirate",
+                    "title": "Izaberite entitet"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Prvo dugme",
+            "button_2": "Drugo dugme",
+            "button_3": "Tre\u0107e dugme",
+            "button_4": "\u010cetvrto dugme",
+            "button_5": "Peto dugme",
+            "button_6": "\u0160esto dugme",
+            "turn_off": "Isklju\u010di",
+            "turn_on": "Uklju\u010di"
+        },
+        "trigger_type": {
+            "button_double_press": "\u201e{subtype}\u201c dvaput kliknuto",
+            "button_long_press": "\u201e{subtype}\u201c neprekidno pritisnuto",
+            "button_long_release": "\u201e{subtype}\u201c otpu\u0161ten nakon dugog pritiska",
+            "button_quadruple_press": "\u201e{subtype}\u201c \u010detvorostruko kliknuto",
+            "button_quintuple_press": "\u201e{subtype}\u201c kliknuto pet puta",
+            "button_short_press": "\u201e{subtype}\u201c pritisnuto",
+            "button_short_release": "\u201e{subtype}\u201c pu\u0161ten",
+            "button_triple_press": "\u201e{subtype}\u201c tri puta kliknuto"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "Nije uspelo pravilno pokretanje {addon} aplikacije."
+        },
+        "command_template_error": {
+            "message": "Parsiranje \u0161ablona `{command_template}` za entitet `{entity_id}` nije uspelo zbog gre\u0161ke: {error}."
+        },
+        "invalid_platform_config_message": {
+            "message": "Osve\u017eavanje YAML konfiguracije za ru\u010dno pode\u0161enu MQTT stavku {domain} nije uspelo. Poruka: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "Slanje nije uspelo: \u0161ablon teme \u201e{topic_template}\u201c generisao je neispravnu temu \u201e{topic}\u201c nakon obrade ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "Gre\u0161ka u komunikaciji sa MQTT: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "Dostignut je limit za ID MQTT pretplate. Nije mogu\u0107e generisati vi\u0161e ID-jeva za pretplatu."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "Slanje na {topic} uz 'Message Expiry Interval' nije podr\u017eano u verziji protokola {protocol}."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Nije mogu\u0107e pretplatiti se na temu \u201e{topic}\u201c jer MQTT nije omogu\u0107en, proverite da li je MQTT ispravno pode\u0161en."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Nije mogu\u0107e objaviti na temu \u201e{topic}\u201c, proverite da li je MQTT ispravno pode\u0161en."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Nije mogu\u0107e pretplatiti se na temu \u201e{topic}\u201c, proverite da li je MQTT ispravno pode\u0161en."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Nije mogu\u0107e dva puta odjaviti temu \u201e{topic}\u201c."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "Tema mora biti tekstualni niz! Dobijeno: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Pokreta\u010d se ne mo\u017ee ukloniti dva puta."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "Home Assistant je detektovao neva\u017ee\u0107u konfiguraciju za ru\u010dno pode\u0161enu stavku.\n\nDomen platforme: **{domain}**  \nKonfiguraciona datoteka: **{config_file}**  \nBlizu linije: **{line}**  \nProna\u0111ena konfiguracija:  \n```yaml\n{config}\n```\n\nGre\u0161ka: **{error}**.\n\nProverite da li je konfiguracija ispravna i ponovo u\u010ditajte ru\u010dno konfigurisane MQTT stavke ili ponovo pokrenite Home Assistant da biste re\u0161ili ovaj problem.",
+            "title": "Prona\u0111ena je neispravna konfiguracija za MQTT stavku {domain}"
+        },
+        "protocol_5_migration": {
+            "description": "Automatska migracija na MQTT protokol verzije 5 nije uspela. Trenutno pode\u0161ena verzija protokola za MQTT broker {broker} je {protocol}, ali ova verzija protokola je zastarela i podr\u0161ka za nju \u0107e biti uklonjena. \n\nProverite da li va\u0161 broker podr\u017eava protokol verzije 5. A\u017eurirajte pode\u0161avanja veze va\u0161eg MQTT brokera i ponovo pokrenite Home Assistant da biste re\u0161ili ovaj problem.",
+            "title": "Migracija MQTT protokola nije uspela"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Izvezeni MQTT ure\u0111aj {name} je identifikovan putem MQTT otkrivanja. Izaberite **Potvrdi** da biste potvrdili migraciju ovog MQTT ure\u0111aja u glavnu MQTT konfiguraciju i uklonili postoje\u0107u podstavku MQTT ure\u0111aja. Proverite da li je otkrivanje zadr\u017eano na MQTT brokeru ili se ponovo \u0161alje nakon uklanjanja podstavke, kako bi MQTT ure\u0111aj bio ispravno pode\u0161en. Alternativno, mo\u017eete promeniti identifikatore ure\u0111aja i jedinstvene ID-ove entiteta u svom MQTT konfiguracionom sadr\u017eaju za otkrivanje i otkazati ovu popravku ako \u017eelite da zadr\u017eite podstavku MQTT ure\u0111aja.",
+                        "title": "Migracija podunosa MQTT ure\u0111aja \u201e{name}\u201d na MQTT otkrivanje"
+                    }
+                }
+            },
+            "title": "Migracija podunosa MQTT ure\u0111aja \u201e{name}\u201d na MQTT otkrivanje"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Izvezeni MQTT ure\u0111aj \u201e{name}\u201c je identifikovan u YAML konfiguraciji. Izaberite **Potvrdi** da biste potvrdili migraciju ovog MQTT ure\u0111aja u glavni MQTT konfiguracioni unos i uklonili postoje\u0107i podunos ure\u0111aja. Alternativno, mo\u017eete promeniti identifikatore ure\u0111aja i jedinstvene ID-ove entiteta u svojoj configuration.yaml datoteci i otkazati ovu popravku ako \u017eelite da zadr\u017eite podunos MQTT ure\u0111aja.",
+                        "title": "Migracija podzapisi MQTT ure\u0111aja \u201e{name}\u201c u YAML"
+                    }
+                }
+            },
+            "title": "Migracija podzapisi MQTT ure\u0111aja \u201e{name}\u201c u YAML"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant je otkrio ru\u010dno konfigurisane MQTT stavke, ali one ne mogu biti u\u010ditane jer MQTT nije ispravno pode\u0161en. Proverite da li je MQTT broker pravilno konfigurisan ili uklonite MQTT konfiguraciju iz va\u0161e configuration.yaml datoteke i ponovo pokrenite Home Assistant kako biste re\u0161ili ovaj problem.",
+            "title": "MQTT nije ispravno pode\u0161en"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Neispravna tema za prijavu ure\u0111aja (birth topic)",
+            "bad_certificate": "CA potvrda nije ispravna",
+            "bad_client_cert": "Neispravni podaci za prijavu, uverite se da ste dostavili ispravnu datoteku",
+            "bad_client_cert_key": "Prijavni podaci i privatni klju\u010d nisu ispravno upareni",
+            "bad_discovery_prefix": "Neva\u017ee\u0107i prefiks za otkrivanje",
+            "bad_will": "Neva\u017ee\u0107a tema o prekidu veze",
+            "bad_ws_headers": "Obezbedi va\u017ee\u0107a HTTP zaglavlja kao JSON objekat",
+            "cannot_connect": "Povezivanje nije uspelo",
+            "client_key_error": "Neispravna datoteka privatnog klju\u010da ili je uneta neispravna lozinka.",
+            "invalid_inclusion": "Klijentska potvrda i privatni klju\u010d moraju biti pode\u0161eni zajedno"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Omogu\u0107ena poruka o pokretanju",
+                    "birth_payload": "Sadr\u017eaj po\u010detne poruke",
+                    "birth_qos": "QoS po\u010detne poruke",
+                    "birth_retain": "Zadr\u017eavanje poruke o pokretanju",
+                    "birth_topic": "Tema poruke o pokretanju",
+                    "discovery": "Omogu\u0107eno automatsko otkrivanje",
+                    "discovery_prefix": "Prefiks za otkrivanje",
+                    "discovery_qos": "QoS za otkrivanje",
+                    "will_enable": "Omogu\u0107ena testamentna poruka",
+                    "will_payload": "Sadr\u017eaj testamentne poruke",
+                    "will_qos": "QoS testamentne poruke",
+                    "will_retain": "Zadr\u017eavanje testamentne poruke",
+                    "will_topic": "Tema testamentne poruke"
+                },
+                "data_description": {
+                    "birth_enable": "Kada je omogu\u0107eno, Home Assistant \u0107e poslati \u201eonline\u201c poruku na va\u0161 MQTT broker \u010dim sistem bude spreman.",
+                    "birth_payload": "Poruka o aktivaciji (\u201ebirth\u201c poruka) koja se objavljuje kada je MQTT spreman i povezan.",
+                    "birth_qos": "Kvalitet usluge (QoS) poruke o aktivaciji (\u201ebirth\u201c poruka) koja se objavljuje kada je MQTT spreman i povezan.",
+                    "birth_retain": "Kada je ova opcija omogu\u0107ena, Home Assistant \u0107e zadr\u017eati poruku o pokretanju (\u201ebirth\u201c poruku) na va\u0161em MQTT brokeru.",
+                    "birth_topic": "MQTT tema na kojoj \u0107e Home Assistant objaviti poruku o pokretanju (\u201ebirth\u201c poruka).",
+                    "discovery": "Omogu\u0107ava automatsko otkrivanje MQTT ure\u0111aja.",
+                    "discovery_prefix": "Prefiks konfiguracionih tema na koje se MQTT integracija pretpla\u0107uje.",
+                    "discovery_qos": "Kvalitet usluge (QoS) za pretplatu na MQTT otkrivanje.",
+                    "will_enable": "Kada je ova opcija omogu\u0107ena, Home Assistant \u0107e zahtevati od brokera da objavi testamentnu poruku (\u201ewill\u201c poruku) u slu\u010daju ga\u0161enja sistema ili gubitka veze.",
+                    "will_payload": "Sadr\u017eaj testamentne poruke koji \u0107e va\u0161 MQTT broker objaviti u slu\u010daju ga\u0161enja integracije ili gubitka veze.",
+                    "will_qos": "Kvalitet usluge (QoS) za testamentnu poruku koju objavljuje va\u0161 MQTT broker.",
+                    "will_retain": "Kada je ova opcija omogu\u0107ena, va\u0161 MQTT broker \u0107e zadr\u017eati testamentnu poruku (\u201ewill\u201c poruku).",
+                    "will_topic": "MQTT tema na kojoj \u0107e va\u0161 MQTT broker objaviti testamentnu poruku (\u201ewill\u201c poruku)."
+                },
+                "description": "Automatsko otkrivanje (Discovery) \u2013 Ako je automatsko otkrivanje omogu\u0107eno (preporu\u010deno), Home Assistant \u0107e automatski prepoznati ure\u0111aje i entitete koji objave svoju konfiguraciju na MQTT brokeru. Ako je otkrivanje onemogu\u0107eno, konfiguraciju je potrebno izvr\u0161iti ru\u010dno.\n\nPrefiks za otkrivanje (Discovery prefix) \u2013 Prefiks kojim mora po\u010deti konfiguraciona tema (topic) da bi automatsko otkrivanje radilo.\n\nPoruka o pokretanju (Birth message) \u2013 Poruka o pokretanju bi\u0107e poslata svaki put kada se Home Assistant ponovo pove\u017ee na MQTT broker.\n\nTestamentna poruka (Will message) \u2013 Poruka o prekidu veze (Last Will) bi\u0107e poslata svaki put kada Home Assistant izgubi vezu sa brokerom, bilo usled regularnog ga\u0161enja sistema ili neo\u010dekivanog prekida veze (npr. pad sistema ili gubitak mre\u017ene veze).",
+                "title": "MQTT opcije"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Lokalna provera koda",
+                "remote_code": "Numeri\u010dka validacija daljinskog koda",
+                "remote_code_text": "Tekstualni daljinski kod za potvrdu"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "Uklju\u010di alarm: Odsustvo",
+                "arm_custom_bypass": "Uklju\u010di alarm sa premo\u0161\u0107ivanjem",
+                "arm_home": "Uklju\u010di alarm: Kod ku\u0107e",
+                "arm_night": "Uklju\u010di alarm: No\u0107ni re\u017eim",
+                "arm_vacation": "Uklju\u010di alarm: Odmor",
+                "trigger": "Pokreni alarm"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Automatski",
+                "cool": "Hla\u0111anje",
+                "dry": "Odvla\u017eivanje",
+                "fan_only": "Samo ventilator",
+                "heat": "Grejanje",
+                "heat_cool": "Grejanje/Hla\u0111enje",
+                "off": "Isklju\u010deno"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Pode\u0161avanja",
+                "diagnostic": "Dijagnostika"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64 kodiranje",
+                "raw": "Neobra\u0111eni podaci"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "Primljeni su podaci slike",
+                "image_url": "Primljen je URL slike"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "Podrazumevana \u0161ema",
+                "json": "JSON",
+                "template": "\u0160abloni"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automatski",
+                "box": "Polje za unos",
+                "slider": "Kliza\u010d"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Osvetljenost",
+                "first": "Prvi",
+                "last": "Poslednje"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Alarmni panel",
+                "binary_sensor": "Binarni senzor",
+                "button": "Dugme",
+                "climate": "Klima",
+                "cover": "Zastor",
+                "date": "Datum",
+                "datetime": "Datum/Vreme",
+                "fan": "Ventilator",
+                "image": "Slika",
+                "light": "Svetlo",
+                "lock": "Brava",
+                "notify": "Obave\u0161tenja",
+                "number": "Broj",
+                "select": "Padaju\u0107i meni",
+                "sensor": "Senzor",
+                "siren": "Sirena",
+                "switch": "Prekida\u010d",
+                "text": "Tekst",
+                "time": "Vreme",
+                "valve": "Ventil",
+                "water_heater": "Bojler"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automatski",
+                "custom": "Prilago\u0111eno",
+                "off": "Isklju\u010deno"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Osvetljenost samo",
+                "color_temp": "Temperatura boje",
+                "hs": "HS",
+                "onoff": "Uklju\u010deno/Isklju\u010deno",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Bela",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "Gornja/donja ciljna temperatura",
+                "none": "Nema ciljne temperature",
+                "single": "Jedna ciljna temperatura"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Lozinka",
+                "text": "Tekst"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Automatski",
+                "eco": "Eko re\u017eim",
+                "electric": "Struja",
+                "gas": "Gas",
+                "heat_pump": "Toplotna pumpa",
+                "high_demand": "Brzo grejanje",
+                "off": "Isklju\u010deno",
+                "performance": "Performanse"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Zapisivanje poruka sa odabrane putanje u datoteku mqtt_dump.txt.",
+            "fields": {
+                "duration": {
+                    "description": "Vremenski period prikupljanja podataka izra\u017een u sekundama.",
+                    "name": "Trajanje nadzora (sekunde)"
+                },
+                "topic": {
+                    "description": "Definisanje putanje (topic) za prikupljanje poruka.",
+                    "name": "Putanja (Topic)"
+                }
+            },
+            "name": "Izvoz MQTT podataka (Dump)"
+        },
+        "publish": {
+            "description": "Slanje poruke na definisanu MQTT putanju (topic).",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Interpretacija sadr\u017eaja kao binarne vrednosti (bytes literal).",
+                    "name": "Interpretacija binarnih podataka"
+                },
+                "message_expiry_interval": {
+                    "description": "Pode\u0161ava istek poruke nakon odre\u0111enog intervala u slu\u010daju da je pretpla\u0107eni ure\u0111aj bio privremeno van mre\u017ee ili je poruka bila zadr\u017eana (retained). Podr\u017eano samo uz MQTT protokol verzije 5.0.",
+                    "name": "Interval isteka poruke"
+                },
+                "payload": {
+                    "description": "Sadr\u017eaj parametara za objavu. Odsustvo podataka uzrokuje slanje prazne poruke.",
+                    "name": "Parametri (Payload)"
+                },
+                "qos": {
+                    "description": "Definisanje nivoa garancije isporuke: 0 (Brzo), 1 (Sigurno), 2 (Potvr\u0111eno).",
+                    "name": "Nivo isporuke (QoS)"
+                },
+                "retain": {
+                    "description": "Trajno skladi\u0161tenje poslednje vrednosti na brokeru za nove pretplatnike.",
+                    "name": "Zadr\u017eavanje poruke (Retain)"
+                },
+                "topic": {
+                    "description": "Definisanje odredi\u0161ne putanje (endpoint) MQTT teme.",
+                    "name": "Putanja (Topic)"
+                }
+            },
+            "name": "Objavljivanje na MQTT (Publish)",
+            "sections": {
+                "publish_options": {
+                    "name": "Opcije objavljivanja"
+                }
+            }
+        },
+        "reload": {
+            "description": "Ponovno u\u010ditavanje MQTT entiteta iz YAML datoteke.",
+            "name": "Ponovo u\u010ditaj"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "Pokre\u0107e se nakon \u0161to specifi\u010dna poruka stigne na zadatu MQTT temu.",
+            "fields": {
+                "payload": {
+                    "description": "Sadr\u017eaj (payload) na koji pokre\u0107e okida\u010d.",
+                    "name": "Payload"
+                },
+                "topic": {
+                    "description": "MQTT tema za pra\u0107enje.",
+                    "name": "MQTT tema"
+                }
+            },
+            "name": "MQTT poruka primljena"
+        }
+    }
+}

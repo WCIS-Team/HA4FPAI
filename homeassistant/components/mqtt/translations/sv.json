@@ -1,0 +1,1425 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Det gick inte att ansluta till till\u00e4gget {addon}. Kontrollera till\u00e4ggets status och f\u00f6rs\u00f6k igen senare.",
+            "addon_info_failed": "Det gick inte att h\u00e4mta information om till\u00e4gget {addon}.",
+            "addon_install_failed": "Det gick inte att installera till\u00e4gget {addon}.",
+            "addon_start_failed": "Det gick inte att starta till\u00e4gget {addon}.",
+            "already_configured": "Tj\u00e4nsten \u00e4r redan konfigurerad"
+        },
+        "error": {
+            "bad_birth": "Ogiltigt f\u00f6delse\u00e4mne",
+            "bad_certificate": "CA-certifikatet \u00e4r ogiltigt",
+            "bad_client_cert": "Ogiltigt klientcertifikat, se till att en giltig fil tillhandah\u00e5lls",
+            "bad_client_cert_key": "Klientcertifikatet och den privata nyckeln \u00e4r inte ett giltigt par",
+            "bad_discovery_prefix": "Ogiltigt uppt\u00e4cktsprefix",
+            "bad_will": "Ogiltigt testamentes\u00e4mne",
+            "bad_ws_headers": "Ange giltiga HTTP-headers som ett JSON-objekt",
+            "cannot_connect": "Det gick inte att ansluta",
+            "client_key_error": "Ogiltig privat nyckelfil eller ogiltigt l\u00f6senord har angetts",
+            "invalid_auth": "Ogiltig autentisering",
+            "invalid_inclusion": "Klientcertifikatet och den privata nyckeln m\u00e5ste konfigureras tillsammans"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Broker",
+                    "password": "L\u00f6senord",
+                    "port": "Port",
+                    "protocol": "MQTT-protokoll",
+                    "username": "Anv\u00e4ndarnamn"
+                },
+                "data_description": {
+                    "broker": "V\u00e4rdnamnet eller IP-adressen f\u00f6r din MQTT-broker.",
+                    "password": "L\u00f6senordet f\u00f6r att logga in p\u00e5 din MQTT-broker.",
+                    "port": "Den port som din MQTT-broker lyssnar p\u00e5. Till exempel 1883.",
+                    "protocol": "Den MQTT-protokollversion som anv\u00e4nds. Observera att Home Assistant automatiskt v\u00e4xlar till version 5 om din broker har st\u00f6d f\u00f6r det.",
+                    "username": "Anv\u00e4ndarnamnet f\u00f6r att logga in p\u00e5 din MQTT-broker."
+                },
+                "description": "Ange anslutningsinformationen f\u00f6r din MQTT-broker.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "Ladda upp anpassad CA-certifikatfil",
+                            "client_cert": "Ladda upp klientcertifikatfil",
+                            "client_id": "Klient-ID (l\u00e4mna tomt f\u00f6r ett slumpm\u00e4ssigt genererat)",
+                            "client_key": "Ladda upp privat nyckelfil",
+                            "client_key_password": "L\u00f6senord",
+                            "keepalive": "Tiden mellan att skicka Keep Alive-meddelanden",
+                            "set_ca_cert": "Validering av broker-certifikat",
+                            "set_client_cert": "Anv\u00e4nd ett klientcertifikat",
+                            "tls_insecure": "Ignorera validering av broker-certifikat",
+                            "transport": "MQTT-transport",
+                            "ws_headers": "WebSocket-headers i JSON-format",
+                            "ws_path": "WebSocket-s\u00f6kv\u00e4g"
+                        },
+                        "data_description": {
+                            "certificate": "Den anpassade CA-certifikatfilen f\u00f6r att validera din MQTT-brokers certifikat.",
+                            "client_cert": "Klientcertifikatet f\u00f6r att autentisera mot din MQTT-broker.",
+                            "client_id": "Det unika ID:t f\u00f6r att identifiera Home Assistant MQTT-API:et som MQTT-klient. Vi rekommenderar att du l\u00e4mnar detta alternativ tomt.",
+                            "client_key": "Den privata nyckelfil som h\u00f6r till ditt klientcertifikat.",
+                            "client_key_password": "L\u00f6senordet f\u00f6r den privata nyckelfilen (om inst\u00e4llt).",
+                            "keepalive": "Ett v\u00e4rde p\u00e5 mindre \u00e4n 90 sekunder rekommenderas. Standardv\u00e4rdet \u00e4r 60 sekunder.",
+                            "set_ca_cert": "N\u00e4r inst\u00e4llningen redan \u00e4r **Anpassad** har ett anpassat CA-valideringscertifikat konfigurerats. V\u00e4lj **Auto** f\u00f6r automatisk CA-validering, eller ladda upp ett anpassat CA-certifikat f\u00f6r att m\u00f6jligg\u00f6ra validering av din MQTT-brokers certifikat.",
+                            "set_client_cert": "Om alternativet redan \u00e4r markerat \u00e4r autentisering med klientcertifikat aktiverat. Ladda upp ett klientcertifikat och en nyckel f\u00f6r att aktivera funktionen.",
+                            "tls_insecure": "Alternativ f\u00f6r att ignorera validering av din MQTT-brokers certifikat.",
+                            "transport": "Den transport som ska anv\u00e4ndas f\u00f6r anslutningen till din MQTT-broker.",
+                            "ws_headers": "De WebSocket-headers som ska skickas genom den WebSocket-baserade anslutningen till din MQTT-broker.",
+                            "ws_path": "Den WebSocket-s\u00f6kv\u00e4g som ska anv\u00e4ndas f\u00f6r anslutningen till din MQTT-broker."
+                        },
+                        "name": "\u00d6vriga inst\u00e4llningar"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "Vill du konfigurera Home Assistant att ansluta till den MQTT-broker som tillhandah\u00e5lls av till\u00e4gget {addon}?",
+                "title": "MQTT-broker via Home Assistant-till\u00e4gg"
+            },
+            "install_addon": {
+                "title": "Installerar till\u00e4gg"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "L\u00f6senord",
+                    "username": "Anv\u00e4ndarnamn"
+                },
+                "data_description": {
+                    "password": "L\u00f6senordet f\u00f6r att logga in p\u00e5 din MQTT-broker.",
+                    "username": "Anv\u00e4ndarnamnet f\u00f6r att logga in p\u00e5 din MQTT-broker."
+                },
+                "description": "MQTT-brokern rapporterade ett autentiseringsfel. Bekr\u00e4fta brokerns korrekta anv\u00e4ndarnamn och l\u00f6senord.",
+                "title": "\u00c5terautentisering med MQTT-brokern kr\u00e4vs"
+            },
+            "start_addon": {
+                "title": "Startar till\u00e4gg"
+            },
+            "user": {
+                "description": "V\u00e4lj hur du vill ansluta till MQTT-brokern:",
+                "menu_options": {
+                    "addon": "Anv\u00e4nd det officiella till\u00e4gget {addon}.",
+                    "broker": "Ange anslutningsuppgifterna f\u00f6r MQTT-brokern manuellt"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "MQTT-enhet med {platform}-entitet \"{entity}\" konfigurerades framg\u00e5ngsrikt.\n\nObservera att du kan konfigurera om MQTT-enheten n\u00e4r som helst, t.ex. f\u00f6r att l\u00e4gga till fler entiteter."
+            },
+            "entry_type": "MQTT-enhet",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "Topic-alternativen 'get position' och 'set position' m\u00e5ste st\u00e4llas in tillsammans",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "Mallen f\u00f6r positionsv\u00e4rde m\u00e5ste anv\u00e4ndas tillsammans med 'position state'-topic",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "Mallen f\u00f6r 'set position' m\u00e5ste anv\u00e4ndas tillsammans med 'set position'-topic",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "Lutningskommandomallen m\u00e5ste anv\u00e4ndas tillsammans med lutningskommando\u00e4mnet",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "Lutningsv\u00e4rdemallen m\u00e5ste anv\u00e4ndas tillsammans med lutningsstatus\u00e4mnet",
+                "cover_value_template_must_be_used_with_state_topic": "V\u00e4rdemallen m\u00e5ste anv\u00e4ndas tillsammans med alternativet f\u00f6r tillst\u00e5nds\u00e4mne",
+                "empty_list_not_allowed": "En tom lista \u00e4r inte till\u00e5ten. L\u00e4gg till minst ett objekt",
+                "fan_preset_mode_reset_in_preset_modes_list": "Nyttolasten \"\u00e5terst\u00e4ll f\u00f6rinst\u00e4llningsl\u00e4ge\" \u00e4r inte giltigt som ett f\u00f6rinst\u00e4llningsl\u00e4ge",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "Det h\u00f6gsta hastighetsv\u00e4rdet m\u00e5ste vara st\u00f6rre \u00e4n det l\u00e4gsta hastighetsv\u00e4rdet",
+                "invalid_input": "Ogiltigt v\u00e4rde",
+                "invalid_regular_expression": "M\u00e5ste vara ett giltigt regulj\u00e4rt uttryck",
+                "invalid_subscribe_topic": "Ogiltigt \u00e4mne f\u00f6r prenumeration",
+                "invalid_supported_color_modes": "Ogiltigt urval av f\u00e4rgl\u00e4gen som st\u00f6ds",
+                "invalid_template": "Ogiltig mall",
+                "invalid_uom": "M\u00e5ttenheten \"{unit_of_measurement}\" st\u00f6ds inte av den valda enhetsklassen. Ta antingen bort enhetsklassen, v\u00e4lj en enhetsklass som st\u00f6der \"{unit_of_measurement}\", eller v\u00e4lj en m\u00e5ttenhet som st\u00f6ds fr\u00e5n listan",
+                "invalid_uom_for_state_class": "M\u00e5ttenheten \"{unit_of_measurement}\" st\u00f6ds inte av den valda tillst\u00e5ndsklassen. Ta antingen bort tillst\u00e5ndsklassen, v\u00e4lj en tillst\u00e5ndsklass som st\u00f6der \"{unit_of_measurement}\" eller v\u00e4lj en m\u00e5ttenhet som st\u00f6ds ifr\u00e5n listan",
+                "invalid_url": "Ogiltig URL",
+                "last_reset_not_with_state_class_total": "Mallen f\u00f6r senaste \u00e5terst\u00e4llningsv\u00e4rde ska endast anv\u00e4ndas med tillst\u00e5ndsklassen 'Total'.",
+                "max_below_min": "Maxv\u00e4rdet ska vara st\u00f6rre \u00e4n eller lika med minv\u00e4rdet",
+                "max_below_min_humidity": "Maxv\u00e4rde f\u00f6r luftfuktighet b\u00f6r vara st\u00f6rre \u00e4n minimiv\u00e4rde f\u00f6r luftfuktighet",
+                "max_below_min_kelvin": "\"Max Kelvin\"-v\u00e4rdet m\u00e5ste vara st\u00f6rre \u00e4n \"min Kelvin\"-v\u00e4rdet",
+                "max_below_min_temperature": "Maxv\u00e4rde f\u00f6r temperatur b\u00f6r vara st\u00f6rre \u00e4n minimiv\u00e4rde f\u00f6r temperatur",
+                "options_device_class_enum": "Inst\u00e4llningen 'Alternativ' m\u00e5ste anv\u00e4ndas med enhetsklassen uppr\u00e4kning. Om du forts\u00e4tter kommer de befintliga alternativen att \u00e5terst\u00e4llas",
+                "options_not_allowed_with_state_class_or_uom": "Inst\u00e4llningen 'Alternativ' \u00e4r inte till\u00e5ten n\u00e4r tillst\u00e5ndsklass eller m\u00e5ttenhet anv\u00e4nds",
+                "options_with_enum_device_class": "Konfigurera alternativ f\u00f6r uppr\u00e4kningssensorn",
+                "preset_mode_none_not_allowed": "F\u00f6rinst\u00e4llningen \u201dnone\u201d \u00e4r inte ett giltigt f\u00f6rinst\u00e4llningsl\u00e4ge",
+                "uom_required_for_device_class": "Den valda enhetsklassen kr\u00e4ver en m\u00e5ttenhet"
+            },
+            "initiate_flow": {
+                "reconfigure": "Konfigurera om MQTT-enheten",
+                "user": "L\u00e4gg till MQTT-enhet"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "Tillg\u00e4nglighetsmall",
+                        "availability_topic": "Tillg\u00e4nglighets\u00e4mne",
+                        "payload_available": "Nyttolast tillg\u00e4nglig",
+                        "payload_not_available": "Nyttolast ej tillg\u00e4nglig"
+                    },
+                    "data_description": {
+                        "availability_template": "En [mall]({value_templating_url}) f\u00f6r att \u00e5terge den tillg\u00e4nglighetsinformation som mottagits p\u00e5 tillg\u00e4nglighets\u00e4mnet",
+                        "availability_topic": "\u00c4mne att ta emot nyttolasten f\u00f6r tillg\u00e4nglighet p\u00e5",
+                        "payload_available": "Den nyttolast som anger att enheten \u00e4r tillg\u00e4nglig (standardv\u00e4rde \u00e4r \"online\")",
+                        "payload_not_available": "Den nyttolast som anger att enheten inte \u00e4r tillg\u00e4nglig (standardv\u00e4rde \u00e4r \"offline\")"
+                    },
+                    "description": "Tillg\u00e4nglighetsfunktionen g\u00f6r det m\u00f6jligt f\u00f6r en enhet att rapportera att den \u00e4r tillg\u00e4nglig.",
+                    "title": "Tillg\u00e4nglighetsalternativ"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Entitet"
+                    },
+                    "data_description": {
+                        "component": "V\u00e4lj den entitet som du vill radera. Minst en entitet kr\u00e4vs."
+                    },
+                    "description": "Radera en entitet. Denna kommer att tas bort fr\u00e5n enheten. Om du tar bort en entitet s\u00e5 kommer alla automatiseringar eller skript som \u00e4r beroende av den att sluta fungera.",
+                    "title": "Radera entitet"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "Konfigurations-URL",
+                        "manufacturer": "Tillverkare",
+                        "model": "Modell",
+                        "model_id": "Modell-ID",
+                        "name": "Namn"
+                    },
+                    "data_description": {
+                        "configuration_url": "En l\u00e4nk till den webbsida som kan hantera konfigurationen av den h\u00e4r enheten. Kan vara antingen en \"http://\", \"https://\" eller en intern \"homeassistant://\" URL.",
+                        "manufacturer": "T.ex. Cleanmaster Ltd.",
+                        "model": "T.ex. 'Cleanmaster Pro'.",
+                        "model_id": "T.ex. \"123NK2PRO\".",
+                        "name": "Namnet p\u00e5 den manuellt tillagda MQTT-enheten."
+                    },
+                    "description": "Ange information om MQTT-enheten:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "Meddelandets utg\u00e5ngsintervall",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "Lagringstid f\u00f6r publicerade meddelanden.",
+                                "qos": "Det QoS-v\u00e4rde som enhetens entiteter ska anv\u00e4nda."
+                            },
+                            "name": "MQTT-inst\u00e4llningar"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "H\u00e5rdvaruversion",
+                                "sw_version": "Mjukvaruversion"
+                            },
+                            "data_description": {
+                                "hw_version": "Enhetens h\u00e5rdvaruversion. T.ex. 'v1.0 rev a'.",
+                                "sw_version": "Enhetens programvaruversion. T.ex. '2025.1.0'."
+                            },
+                            "name": "\u00d6vriga enhetsinst\u00e4llningar"
+                        }
+                    },
+                    "title": "Konfigurera detaljer om MQTT-enheten"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Entitetsbild",
+                        "name": "Entitetsnamn",
+                        "platform": "Typ av entitet"
+                    },
+                    "data_description": {
+                        "entity_picture": "En URL till en bild som ska tilldelas.",
+                        "name": "Namnet p\u00e5 entiteten. L\u00e4mna tomt f\u00f6r att s\u00e4tta det till `None` f\u00f6r att [markera den som huvudfunktion i MQTT-enheten]({naming_entities_url}).",
+                        "platform": "Typ av entitet som ska konfigureras."
+                    },
+                    "description": "Konfigurera grundl\u00e4ggande inst\u00e4llningar{entity_name_label} f\u00f6r {platform_label}entitet",
+                    "title": "Konfigurera MQTT-enhet \"{mqtt_device}\""
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Valideringsl\u00e4ge f\u00f6r larmkod",
+                        "climate_feature_action": "St\u00f6d f\u00f6r aktuell \u00e5tg\u00e4rd",
+                        "climate_feature_current_humidity": "St\u00f6d f\u00f6r aktuell luftfuktighet",
+                        "climate_feature_current_temperature": "St\u00f6d f\u00f6r aktuell temperatur",
+                        "climate_feature_fan_modes": "St\u00f6d f\u00f6r fl\u00e4ktl\u00e4ge",
+                        "climate_feature_power": "St\u00f6d f\u00f6r p\u00e5-/avst\u00e4ngning",
+                        "climate_feature_preset_modes": "St\u00f6d f\u00f6r f\u00f6rinst\u00e4llningsl\u00e4gen",
+                        "climate_feature_swing_horizontal_modes": "St\u00f6d f\u00f6r horisontellt sv\u00e4ngl\u00e4ge",
+                        "climate_feature_swing_modes": "St\u00f6d f\u00f6r sv\u00e4ngl\u00e4ge",
+                        "climate_feature_target_humidity": "St\u00f6d f\u00f6r m\u00e5lfuktighet",
+                        "climate_feature_target_temperature": "St\u00f6d f\u00f6r m\u00e5ltemperatur",
+                        "device_class": "Enhetsklass",
+                        "entity_category": "Entitetskategori",
+                        "fan_feature_direction": "St\u00f6d f\u00f6r riktning",
+                        "fan_feature_oscillation": "St\u00f6d f\u00f6r oscillation",
+                        "fan_feature_preset_modes": "St\u00f6d f\u00f6r f\u00f6rinst\u00e4llningsl\u00e4gen",
+                        "fan_feature_speed": "St\u00f6d f\u00f6r hastighet",
+                        "image_processing_mode": "bild behandlingsl\u00e4ge",
+                        "options": "L\u00e4gg till alternativ",
+                        "reports_position": "Rapporterar position",
+                        "schema": "Schema",
+                        "state_class": "Tillst\u00e5ndsklass",
+                        "suggested_display_precision": "F\u00f6reslagen visningsprecision",
+                        "supported_features": "Funktioner som st\u00f6ds",
+                        "temperature_unit": "Temperaturenhet",
+                        "unit_of_measurement": "M\u00e5ttenhet",
+                        "water_heater_feature_current_temperature": "St\u00f6d f\u00f6r aktuell temperatur",
+                        "water_heater_feature_power": "St\u00f6d f\u00f6r p\u00e5-/avst\u00e4ngning"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "St\u00e4ller in hur larmpanelen validerar koden. En lokal kod konfigureras i enheten och valideras av Home Assistant. En fj\u00e4rrkod skickas till enheten och valideras p\u00e5 distans. [L\u00e4s mer.]({url}#code)",
+                        "climate_feature_action": "Klimatet st\u00f6der rapportering av den aktuella \u00e5tg\u00e4rden.",
+                        "climate_feature_current_humidity": "Klimatet st\u00f6der rapportering av aktuell luftfuktighet.",
+                        "climate_feature_current_temperature": "Klimatet st\u00f6der rapportering av aktuell temperatur.",
+                        "climate_feature_fan_modes": "Klimatet st\u00f6der fl\u00e4ktl\u00e4gen.",
+                        "climate_feature_power": "Klimatet st\u00f6der kommandona \"p\u00e5\" och \"av\".",
+                        "climate_feature_preset_modes": "Klimatet st\u00f6der f\u00f6rinst\u00e4llda l\u00e4gen.",
+                        "climate_feature_swing_horizontal_modes": "Klimatet st\u00f6der horisontella sv\u00e4ngningsl\u00e4gen.",
+                        "climate_feature_swing_modes": "Klimatet st\u00f6der sv\u00e4ngningsl\u00e4gen.",
+                        "climate_feature_target_humidity": "Klimatet st\u00f6der inst\u00e4llningen av m\u00e5lluftfuktighet.",
+                        "climate_feature_target_temperature": "Klimatet st\u00f6der inst\u00e4llning av m\u00e5ltemperatur.",
+                        "device_class": "Enhetsklassen f\u00f6r {platform}-entiteten. [L\u00e4s mer.]({url}#device_class)",
+                        "entity_category": "Till\u00e5ter att en entitet markeras som enhetskonfiguration eller diagnostik. En entitet med en kategori exponeras inte f\u00f6r molnet, Alexa eller Google Assistant och ing\u00e5r inte heller i indirekta \u00e5tg\u00e4rdsanrop till enheter eller omr\u00e5den. Sensorentiteter kan inte tilldelas en klass f\u00f6r enhetskonfiguration. [L\u00e4s mer.]({registry_properties_url})",
+                        "fan_feature_direction": "Fl\u00e4kten st\u00f6der riktning.",
+                        "fan_feature_oscillation": "Fl\u00e4kten st\u00f6der oscillation.",
+                        "fan_feature_preset_modes": "Fl\u00e4kten st\u00f6der f\u00f6rinst\u00e4llningsl\u00e4gen.",
+                        "fan_feature_speed": "Fl\u00e4kten st\u00f6der flera hastigheter.",
+                        "image_processing_mode": "V\u00e4lj hur bilddata tas emot.",
+                        "options": "Alternativ f\u00f6r till\u00e5tna v\u00e4rden p\u00e5 sensortillst\u00e5nd. Sensorns enhetsklass m\u00e5ste vara satt till uppr\u00e4kning. Inst\u00e4llningen 'alternativ' kan inte anv\u00e4ndas tillsammans med tillst\u00e5ndsklass eller m\u00e5ttenhet.",
+                        "reports_position": "St\u00e4ll in detta alternativ om ventilen rapporterar positionen eller st\u00f6der inst\u00e4llning av positionen. Om du aktiverar det h\u00e4r alternativet publiceras positionen ist\u00e4llet f\u00f6r en nyttolast som definieras av nyttolasten \"open\", nyttolasten \"close\" eller nyttolasten \"stop\". N\u00e4r meddelanden tas emot accepterar state topic numeriska nyttoladdningar eller ett av de konfigurerade state-meddelandena.",
+                        "schema": "Schemat som ska anv\u00e4ndas. [L\u00e4s mer.]({url}#comparison-of-light-mqtt-schemas)",
+                        "state_class": "[Tillst\u00e5ndsklassen]({available_state_classes_url}) f\u00f6r sensorn. [L\u00e4s mer.]({url}#state_class)",
+                        "suggested_display_precision": "Det antal decimaler som ska anv\u00e4ndas i {platform}-entitetens tillst\u00e5nd efter avrundning. [L\u00e4s mer.]({url}#suggested_display_precision)",
+                        "supported_features": "De funktioner som st\u00f6ds av entiteten.",
+                        "temperature_unit": "Detta best\u00e4mmer vilken m\u00e5ttenhet MQTT-enheten ska anv\u00e4nda.",
+                        "unit_of_measurement": "Definierar sensorns m\u00e5ttenhet, om s\u00e5dan finns.",
+                        "water_heater_feature_current_temperature": "Varmvattenberedaren har st\u00f6d f\u00f6r rapportering av aktuell temperatur.",
+                        "water_heater_feature_power": "Varmvattenberedaren st\u00f6der kommandona \"p\u00e5\" och \"av\"."
+                    },
+                    "description": "Konfigurera specifika uppgifter f\u00f6r {platform}-entitet \"{entity}\":",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "F\u00f6reslagen visningsprecision"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "Det antal decimaler som ska anv\u00e4ndas i {platform}-entitetens tillst\u00e5nd efter avrundning. [L\u00e4s mer.]({url}#suggested_display_precision)"
+                            },
+                            "name": "\u00d6vriga inst\u00e4llningar"
+                        }
+                    },
+                    "title": "Konfigurera MQTT-enhet \"{mqtt_device}\""
+                },
+                "export": {
+                    "description": "Genom en export kan du \u00f6verf\u00f6ra MQTT-enhetens konfiguration till en YAML-baserad konfiguration eller MQTT-uppt\u00e4ckt. Konfigurationsexporten kan ocks\u00e5 vara till hj\u00e4lp vid fels\u00f6kning.",
+                    "menu_options": {
+                        "export_discovery": "Exportera information om MQTT-uppt\u00e4ckt",
+                        "export_yaml": "Exportera till YAML-konfiguration"
+                    },
+                    "title": "Exportera MQTT-enhetskonfiguration"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Discovery-nyttolast:",
+                        "discovery_topic": "Discovery-topic"
+                    },
+                    "data_description": {
+                        "discovery_payload": "JSON-data [discovery payload]({url}#device-discovery-payload) som inneh\u00e5ller information om MQTT-enheten.",
+                        "discovery_topic": "[Discovery-topic]({url}#discovery-topic) f\u00f6r publicering av discovery-payload, som anv\u00e4nds f\u00f6r att utl\u00f6sa MQTT-uppt\u00e4ckt. En tom payload som publiceras till detta \u00e4mne tar bort enheten och de uppt\u00e4ckta entiteterna."
+                    },
+                    "description": "F\u00f6r att m\u00f6jligg\u00f6ra konfiguration via MQTT [discovery]({url}#device-discovery-payload) m\u00e5ste discovery payload publiceras till discovery topic. Kopiera informationen fr\u00e5n f\u00e4lten nedan. Home Assistant kommer att uppt\u00e4cka om konfigurationen av MQTT-enheten ist\u00e4llet f\u00f6rs\u00f6kte ske via MQTT-uppt\u00e4ckt och kommer att erbjuda en reparationsprocess f\u00f6r att rensa bort den \u00f6verfl\u00f6diga underposten. Du kan ocks\u00e5 v\u00e4lja att \u00e4ndra identifierarna om du inte vill ta bort underposten.",
+                    "title": "Exportera MQTT-enhetskonfiguration"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "Kopiera YAML-konfigurationen nedan:"
+                    },
+                    "data_description": {
+                        "yaml": "Placera YAML-konfigurationen i din [configuration.yaml]({url}#yaml-configuration-listed-per-item)."
+                    },
+                    "description": "Du kan kopiera konfigurationen nedan och klistra in den i din configuration.yaml-fil. Home Assistant kommer att uppt\u00e4cka om man ist\u00e4llet har f\u00f6rs\u00f6kt konfigurera MQTT-enheten via YAML och kommer d\u00e5 att erbjuda en reparationsprocess f\u00f6r att rensa bort den \u00f6verfl\u00f6diga underposten. Du kan ocks\u00e5 v\u00e4lja att \u00e4ndra identifierarna om du inte vill ta bort underposten.",
+                    "title": "Exportera MQTT-enhetskonfiguration"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "Tillg\u00e4ngliga toner",
+                        "blue_template": "Mall f\u00f6r bl\u00e5",
+                        "brightness_template": "Mall f\u00f6r ljusstyrka",
+                        "code": "Larmkod",
+                        "code_arm_required": "Kod kr\u00e4vs f\u00f6r p\u00e5larmning",
+                        "code_disarm_required": "Kod kr\u00e4vs f\u00f6r avlarmning",
+                        "code_format": "Kodformat",
+                        "code_trigger_required": "Kodutl\u00f6sare kr\u00e4vs",
+                        "color_temp_template": "Mall f\u00f6r f\u00e4rgtemperatur",
+                        "command_off_template": "Mall f\u00f6r \"av\"-kommando",
+                        "command_on_template": "Mall f\u00f6r \"p\u00e5\"-kommando",
+                        "command_template": "Mall f\u00f6r kommando",
+                        "command_topic": "\u00c4mne f\u00f6r kommando",
+                        "content_type": "Inneh\u00e5lls typ",
+                        "force_update": "Tvinga uppdatering",
+                        "green_template": "Mall f\u00f6r gr\u00f6n",
+                        "image_encoding": "Bild kodning",
+                        "image_topic": "Bild \u00e4mne",
+                        "last_reset_value_template": "Mall f\u00f6r senaste \u00e5terst\u00e4llningsv\u00e4rde",
+                        "max": "Maximalt",
+                        "min": "Minimum",
+                        "mode": "L\u00e4ge",
+                        "mode_command_template": "Mall f\u00f6r driftl\u00e4geskommando",
+                        "mode_command_topic": "Topic f\u00f6r driftl\u00e4geskommando",
+                        "mode_state_template": "Mall f\u00f6r driftsl\u00e4gesv\u00e4rde",
+                        "mode_state_topic": "Topic f\u00f6r driftl\u00e4gesv\u00e4rde",
+                        "modes": "Driftl\u00e4gen som st\u00f6ds",
+                        "on_command_type": "\"P\u00e5\"-kommandotyp",
+                        "optimistic": "Optimistisk",
+                        "options": "St\u00e4ll in alternativ",
+                        "payload_off": "Nyttolast \"av\"",
+                        "payload_on": "Nyttolast \"p\u00e5\"",
+                        "payload_press": "Nyttolast \"tryck\"",
+                        "payload_reset": "Nyttolast \"\u00e5terst\u00e4ll\"",
+                        "position_closed": "Position \u201cSt\u00e4ngd\u201c",
+                        "position_open": "Position \u201c\u00d6ppen\u201c",
+                        "qos": "QoS",
+                        "red_template": "Mall f\u00f6r r\u00f6d",
+                        "retain": "Beh\u00e5ll",
+                        "state_off": "Tillst\u00e5nd \"av\"",
+                        "state_on": "Tillst\u00e5nd \"p\u00e5\"",
+                        "state_template": "Tillst\u00e5ndsmall",
+                        "state_topic": "\u00c4mne f\u00f6r tillst\u00e5nd",
+                        "state_value_template": "Mall f\u00f6r tillst\u00e5ndsv\u00e4rde",
+                        "step": "Steg",
+                        "support_duration": "St\u00f6d f\u00f6r varaktighet",
+                        "support_volume_set": "St\u00e4ll in volymst\u00f6d",
+                        "supported_color_modes": "F\u00e4rgl\u00e4gen som st\u00f6ds",
+                        "timezone": "Tidszon",
+                        "url_template": "URL mall",
+                        "url_topic": "URL \u00e4mne",
+                        "value_template": "V\u00e4rdemall"
+                    },
+                    "data_description": {
+                        "available_tones": "Sirenen st\u00f6der toner. Variabeln `ton` kommer att bli tillg\u00e4nglig f\u00f6r anv\u00e4ndning i inst\u00e4llningen \"Kommandomall\". [L\u00e4s mer.]({url}#available_tones)",
+                        "blue_template": "[Mall]({value_templating_url}) f\u00f6r att extrahera bl\u00e5 f\u00e4rg fr\u00e5n tillst\u00e5ndsnyttolasten. F\u00f6rv\u00e4ntat resultat \u00e4r ett heltal mellan 0 och 255.",
+                        "brightness_template": "[Mall]({value_templating_url}) f\u00f6r att extrahera ljusstyrka fr\u00e5n tillst\u00e5ndsnyttolasten. F\u00f6rv\u00e4ntat resultat \u00e4r ett heltal mellan 0 och 255.",
+                        "code": "Anger en kod f\u00f6r att aktivera eller inaktivera larmet i frontend. Observera att detta blockerar s\u00e4ndningen av MQTT-kommandon till den fj\u00e4rranslutna enheten om kodvalideringen misslyckas. [L\u00e4s mer.]({url}#code)",
+                        "code_arm_required": "Om denna inst\u00e4llning \u00e4r aktiverad kr\u00e4vs koden f\u00f6r att aktivera larmet. Om den inte \u00e4r aktiverad kontrolleras inte koden.",
+                        "code_disarm_required": "Om denna inst\u00e4llning \u00e4r aktiverad kr\u00e4vs koden f\u00f6r att avaktivera larmet. Om den inte \u00e4r aktiverad kontrolleras inte koden.",
+                        "code_format": "Ett regulj\u00e4rt uttryck f\u00f6r att validera en angiven kod n\u00e4r den anges i samband med \u00e5tg\u00e4rden att \u00f6ppna, l\u00e5sa eller l\u00e5sa upp MQTT-l\u00e5set. [L\u00e4s mer.]({url}#code_format)",
+                        "code_trigger_required": "Om denna inst\u00e4llning \u00e4r aktiverad m\u00e5ste koden anges manuellt f\u00f6r att larmet ska utl\u00f6sas. Om den inte \u00e4r aktiverad kontrolleras inte koden.",
+                        "color_temp_template": "[Mall]({value_templating_url}) f\u00f6r att extrahera f\u00e4rgtemperaturen i Kelvin fr\u00e5n tillst\u00e5ndsnyttolasten. F\u00f6rv\u00e4ntat resultat \u00e4r ett heltal.",
+                        "command_off_template": "[Mallen]({command_templating_url}) f\u00f6r tillst\u00e5nds\u00e4ndringar till \"av\". Tillg\u00e4ngliga variabler \u00e4r: `state` och `transition`.",
+                        "command_on_template": "[Mallen]({command_templating_url}) f\u00f6r tillst\u00e5nds\u00e4ndringar till \"p\u00e5\". Tillg\u00e4ngliga variabler: `state`, `brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`, `flash`, `transition` och `effect`. V\u00e4rdena `red`, `green`, `blue` och `brightness` anges som heltal mellan 0 och 255. V\u00e4rdet f\u00f6r `hue` anges som flyttal mellan 0 och 360. V\u00e4rdet f\u00f6r `sat` anges som flyttal mellan 0 och 100. V\u00e4rdet f\u00f6r `color_temp` anges som heltal och representerar grader Kelvin.",
+                        "command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till \u00e4mnet f\u00f6r kommandon. [L\u00e4s mera.]({url}#command_template)",
+                        "command_topic": "Publicerings\u00e4mnet som kommer att anv\u00e4ndas f\u00f6r att styra {platform}-entiteten. [L\u00e4s mer.]({url}#command_topic)",
+                        "content_type": "Inneh\u00e5llstypen eller bilddatan som tas emot vid bild \u00e4mnet.",
+                        "force_update": "Skickar uppdateringsh\u00e4ndelser \u00e4ven om v\u00e4rdet inte har \u00e4ndrats. Anv\u00e4ndbart om du vill ha meningsfulla v\u00e4rdegrafer i historiken. [L\u00e4s mer.]({url}#force_update)",
+                        "green_template": "[Mall]({value_templating_url}) f\u00f6r att extrahera gr\u00f6n f\u00e4rg fr\u00e5n tillst\u00e5ndsnyttolasten. F\u00f6rv\u00e4ntat resultat \u00e4r ett heltal mellan 0 och 255.",
+                        "image_encoding": "V\u00e4lj kodning f\u00f6r mottagen bild data",
+                        "image_topic": "MQTT \u00e4mnet prenumererade p\u00e5 att ta emot meddelanden som inneh\u00e5ller bilddata. [L\u00e4s mer.]({url}#image_topic)",
+                        "last_reset_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera den senaste \u00e5terst\u00e4llningen. N\u00e4r 'senaste \u00e5terst\u00e4llningsmallen' \u00e4r inst\u00e4lld s\u00e5 m\u00e5ste alternativet f\u00f6r tillst\u00e5ndsklass vara inst\u00e4lld p\u00e5 'totalt'. [L\u00e4s mer.]({url}#last_reset_value_template)",
+                        "max": "Maximalt v\u00e4rde. [L\u00e4s mer.]({url}#max)",
+                        "min": "Minimiv\u00e4rde. [L\u00e4s mer.]({url}#min)",
+                        "mode": "Styr hur numret ska visas i anv\u00e4ndargr\u00e4nssnittet. [L\u00e4s mer.]({url}#mode)",
+                        "mode_command_template": "[Mall]({command_templating_url}) f\u00f6r att definiera det driftsl\u00e4ge som ska skickas till topic f\u00f6r driftsl\u00e4geskommandot. [L\u00e4s mer.]({url}#mode_command_template)",
+                        "mode_command_topic": "Det MQTT-topic att publicera kommandon till f\u00f6r att \u00e4ndra driftl\u00e4ge. [L\u00e4s mer.]({url}#mode_command_topic)",
+                        "mode_state_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera driftl\u00e4gets status. [L\u00e4s mer.]({url}#mode_state_template)",
+                        "mode_state_topic": "Det MQTT-topic att prenumerera p\u00e5 f\u00f6r att ta emot meddelanden om driftl\u00e4ge. [L\u00e4s mer.]({url}#mode_state_topic)",
+                        "modes": "En lista \u00f6ver st\u00f6dda driftl\u00e4gen. [L\u00e4s mer.]({url}#modes)",
+                        "on_command_type": "Definierar n\u00e4r nyttolasten \"on\" skickas. Om du anv\u00e4nder \"Sist\" (standard) skickas alla style topics (ljusstyrka, f\u00e4rg osv.) f\u00f6rst och sedan en nyttolast \"on\" till topic f\u00f6r kommandon. Om du anv\u00e4nder \"F\u00f6rst\" s\u00e5 skickas f\u00f6rst nyttolasten \"on\" och sedan alla style topics. Om du anv\u00e4nder \"Ljusstyrka\" skickas endast kommandon f\u00f6r ljusstyrka i st\u00e4llet f\u00f6r nyttolasten \"on\" f\u00f6r att t\u00e4nda ljusk\u00e4llan.",
+                        "optimistic": "Flagga som anger om {platform}-entiteten arbetar i optimistiskt l\u00e4ge. [L\u00e4s mer.]({url}#optimistic)",
+                        "options": "Lista \u00f6ver alternativ som kan v\u00e4ljas.",
+                        "payload_off": "Nyttalasten som representerar avst\u00e4ngt tillst\u00e5nd.",
+                        "payload_on": "Nyttalasten som representerar p\u00e5slaget tillst\u00e5nd.",
+                        "payload_press": "Den nyttolast som ska skickas n\u00e4r knappen aktiveras.",
+                        "payload_reset": "Nyttelasten som tas emot vid tillst\u00e5nds\u00e4mnet som \u00e5terst\u00e4ller entiteten till ett ok\u00e4nt tillst\u00e5nd.",
+                        "position_closed": "Tal som representerar st\u00e4ngt l\u00e4ge. Ventilens position kommer att skalas till intervallet (position \"st\u00e4ngd\"...position \"\u00f6ppen\") n\u00e4r en \u00e5tg\u00e4rd utf\u00f6rs och skalas tillbaka n\u00e4r ett v\u00e4rde tas emot.",
+                        "position_open": "Tal som representerar \u00f6ppet l\u00e4ge. Ventilens position kommer att skalas till intervallet (position \"st\u00e4ngd\"...position \"\u00f6ppen\") n\u00e4r en \u00e5tg\u00e4rd utf\u00f6rs och skalas tillbaka n\u00e4r ett v\u00e4rde tas emot.",
+                        "qos": "Det QoS-v\u00e4rde som en {platform}-entiteten ska anv\u00e4nda.",
+                        "red_template": "[Mall]({value_templating_url}) f\u00f6r att extrahera r\u00f6d f\u00e4rg fr\u00e5n nyttolasten. F\u00f6rv\u00e4ntat resultat \u00e4r ett heltal mellan 0 och 255.",
+                        "retain": "V\u00e4lj om v\u00e4rden som publiceras av {platform}-entiteten ska beh\u00e5llas av MQTT-brokern.",
+                        "state_off": "Den inkommande nyttolasten som representerar tillst\u00e5ndet \"av\". Anv\u00e4nd endast n\u00e4r v\u00e4rdet som representerar tillst\u00e5ndet \"av\" i tillst\u00e5ndskommandot skiljer sig fr\u00e5n det v\u00e4rde som ska skickas till kommandot f\u00f6r att st\u00e4nga av enheten.",
+                        "state_on": "Den inkommande nyttolasten som representerar tillst\u00e5ndet \"p\u00e5\". Anv\u00e4nd endast n\u00e4r v\u00e4rdet som representerar tillst\u00e5ndet \"p\u00e5\" i tillst\u00e5ndskommandot skiljer sig fr\u00e5n det v\u00e4rde som ska skickas till kommandot f\u00f6r att sl\u00e5 p\u00e5 enheten.",
+                        "state_template": "[Mall]({value_templating_url}) f\u00f6r att extrahera tillst\u00e5nd fr\u00e5n nyttolasten.",
+                        "state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot {platform} tillst\u00e5ndsv\u00e4rden. [L\u00e4s mer.]({url}#state_topic)",
+                        "step": "Stegv\u00e4rde. Minsta v\u00e4rde 0,001.",
+                        "support_duration": "Sirenen st\u00f6der inst\u00e4llning av en varaktighet i sekunder. Variabeln `varaktighet` kommer att bli tillg\u00e4nglig f\u00f6r anv\u00e4ndning i inst\u00e4llningen \"Kommandomall\". [L\u00e4s mer.]({url}#support_duration)",
+                        "support_volume_set": "Sirenen st\u00f6der inst\u00e4llning av volym. Variabeln `volume_level` kommer att bli tillg\u00e4nglig f\u00f6r anv\u00e4ndning i inst\u00e4llningen \"Kommandomall\". [L\u00e4s mer.]({url}#support_volume_set)",
+                        "supported_color_modes": "En lista \u00f6ver f\u00e4rgl\u00e4gen som st\u00f6ds av ljusk\u00e4llan. M\u00f6jliga f\u00e4rgl\u00e4gen \u00e4r On/Off, Brightness, Color temperature, HS, XY, RGB, RGBW, RGBWW, White. Observera att om On/Off eller Brightness anv\u00e4nds s\u00e5 m\u00e5ste det vara det enda v\u00e4rdet i listan. [L\u00e4s mer.]({url}#supported_color_modes)",
+                        "timezone": "St\u00e4ll in en giltig [IANA-tidszonskod]({tz_abbr_url}). St\u00e4ll inte in detta alternativ om datum- och tidsstrukturen tillhandah\u00e5ller tidszonsinformation via statusuppdateringen.",
+                        "url_template": "[Mall]({value_templating_url}) f\u00f6r att extrahera en URL fr\u00e5n det mottagna URL \u00e4mnets nyttolastv\u00e4rde. [L\u00e4s mer.]({url}#url_template)",
+                        "url_topic": "MQTT \u00e4mnet prenumererade p\u00e5 att ta emot meddelanden som inneh\u00e5ller bildens URL. [L\u00e4s mer.]({url}#url_topic)",
+                        "value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera entitetsv\u00e4rdet f\u00f6r {platform}. [L\u00e4s mer.]({url}#value_template)"
+                    },
+                    "description": "V\u00e4nligen konfigurera MQTT-specifika detaljer f\u00f6r {platform}-entitet \"{entity}\":",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Nyttolast \u201dlarma bortal\u00e4ge\u201d",
+                                "payload_arm_custom_bypass": "Nyttolast \"anpassad f\u00f6rbikoppling av larm\"",
+                                "payload_arm_disarm": "Nyttolast \"larma av\"",
+                                "payload_arm_home": "Nyttolast \u201dlarma hemmal\u00e4ge\u201d",
+                                "payload_arm_night": "Nyttolast \u201dlarma nattl\u00e4ge\u201d",
+                                "payload_arm_vacation": "Nyttolast \u201dlarma semesterl\u00e4ge\u201d",
+                                "payload_trigger": "Nyttolast \"utl\u00f6s larm\""
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Nyttolasten som skickas n\u00e4r ett \"arm away\"-kommando utf\u00e4rdas.",
+                                "payload_arm_custom_bypass": "Nyttelasten som skickas n\u00e4r ett \"arm custom bypass\"-kommando utf\u00e4rdas.",
+                                "payload_arm_disarm": "Nyttolasten som skickas n\u00e4r ett \"disarm\"-kommando utf\u00e4rdas.",
+                                "payload_arm_home": "Nyttolasten som skickas n\u00e4r ett \"arm home\"-kommando utf\u00e4rdas.",
+                                "payload_arm_night": "Nyttolasten som skickas n\u00e4r ett \"arm night\"-kommando utf\u00e4rdas.",
+                                "payload_arm_vacation": "Nyttolasten som skickas n\u00e4r ett \"arm vacation\"-kommando utf\u00e4rdas.",
+                                "payload_trigger": "Nyttolasten som skickas n\u00e4r ett \"trigger alarm\"-kommando utf\u00e4rdas."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r larmpanelens nyttolast"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "\u00c5tg\u00e4rdsmall",
+                                "action_topic": "\u00c5tg\u00e4rds\u00e4mne"
+                            },
+                            "data_description": {
+                                "action_template": "En [mall]({value_templating_url}) f\u00f6r att \u00e5terge det v\u00e4rde som mottagits p\u00e5 \u00e5tg\u00e4rds-topic.",
+                                "action_topic": "Det MQTT-topic som ska prenumereras p\u00e5 f\u00f6r \u00e4ndringar av den aktuella \u00e5tg\u00e4rden. Om detta anges anv\u00e4nder klimatdiagrammet det mottagna v\u00e4rdet som datak\u00e4lla. En nyttolast med v\u00e4rdet \u201dNone\u201d \u00e5terst\u00e4ller den aktuella \u00e5tg\u00e4rdens tillst\u00e5nd. En tom nyttolast ignoreras. Giltiga \u00e5tg\u00e4rdsv\u00e4rden \u00e4r \u201doff\u201d, \u201dheating\u201d, \u201dcooling\u201d, \u201ddrying\u201d, \u201didle\u201d och \u201dfan\u201d. [L\u00e4s mer.]({url}#action_topic)"
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r aktuell \u00e5tg\u00e4rd"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "Mall f\u00f6r fl\u00e4ktl\u00e4geskommando",
+                                "fan_mode_command_topic": "Topic f\u00f6r fl\u00e4ktl\u00e4geskommando",
+                                "fan_mode_state_template": "Mall f\u00f6r fl\u00e4ktl\u00e4gestillst\u00e5nd",
+                                "fan_mode_state_topic": "Topic f\u00f6r fl\u00e4ktl\u00e4gesv\u00e4rde",
+                                "fan_modes": "Fl\u00e4ktl\u00e4gen"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r fl\u00e4ktl\u00e4ge.",
+                                "fan_mode_command_topic": "Det MQTT-topic f\u00f6r att publicera kommandon f\u00f6r att \u00e4ndra klimatets fl\u00e4ktl\u00e4ge. [L\u00e4s mer.]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera klimatets fl\u00e4ktl\u00e4gesv\u00e4rde.",
+                                "fan_mode_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot klimatets fl\u00e4ktl\u00e4ge. [L\u00e4s mer.]({url}#fan_mode_state_topic)",
+                                "fan_modes": "Lista \u00f6ver fl\u00e4ktl\u00e4gen som denna klimatanl\u00e4ggning kan k\u00f6ras i. Vanliga fl\u00e4ktl\u00e4gen \u00e4r `off`, `on`, `auto`, `low`, `medium`, `high`, `middle`, `focus` och `diffuse`."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r fl\u00e4ktl\u00e4ge"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "Nyttolast \"av\"",
+                                "payload_on": "Nyttolast \"p\u00e5\"",
+                                "power_command_template": "Mall f\u00f6r str\u00f6mkommando",
+                                "power_command_topic": "Topic f\u00f6r str\u00f6mkommandon"
+                            },
+                            "data_description": {
+                                "payload_off": "Nyttalasten som representerar avst\u00e4ngt tillst\u00e5nd.",
+                                "payload_on": "Nyttalasten som representerar p\u00e5slaget tillst\u00e5nd.",
+                                "power_command_template": "En [mall]({command_templating_url}) f\u00f6r att skapa den datapaket som ska publiceras i \u00e4mnet f\u00f6r str\u00f6mkommandot. Parametern `v\u00e4rde` anger om datapaketet ska vara \"p\u00e5\" eller \"av\".",
+                                "power_command_topic": "Det MQTT-topic att publicera kommandon som \u00e4ndrar klimatets str\u00f6mtillst\u00e5nd. Skickar nyttolasten konfigurerad med v\u00e4rdet \u201don\u201d eller \u201doff\u201d. [L\u00e4s mer.]({url}#power_command_topic)"
+                            },
+                            "name": "Effektinst\u00e4llningar"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "Mall f\u00f6r f\u00f6rinst\u00e4llt l\u00e4geskommando",
+                                "preset_mode_command_topic": "Topic f\u00f6r f\u00f6rinst\u00e4llt l\u00e4geskommando",
+                                "preset_mode_state_topic": "Topic f\u00f6r f\u00f6rinst\u00e4llt l\u00e4gestillst\u00e5nd",
+                                "preset_mode_value_template": "Mall f\u00f6r f\u00f6rinst\u00e4llt l\u00e4gesv\u00e4rde",
+                                "preset_modes": "F\u00f6rinst\u00e4llningsl\u00e4gen"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r f\u00f6rinst\u00e4llt l\u00e4ge.",
+                                "preset_mode_command_topic": "Det MQTT-topic f\u00f6r att publicera kommandon f\u00f6r att \u00e4ndra klimatets f\u00f6rinst\u00e4llda l\u00e4ge. [L\u00e4s mer.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot fl\u00e4ktens f\u00f6rinst\u00e4llda l\u00e4ge. [L\u00e4s mer.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera v\u00e4rdet f\u00f6r fl\u00e4ktens f\u00f6rinst\u00e4llda l\u00e4ge.",
+                                "preset_modes": "Lista \u00f6ver f\u00f6rinst\u00e4llda l\u00e4gen som denna klimatanl\u00e4ggning kan k\u00f6ras i. Vanliga f\u00f6rinst\u00e4llda l\u00e4gen \u00e4r `none`, `away`, `eco`, `boost`, `comfort`, `home`, `sleep` och `activity`."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r f\u00f6rinst\u00e4llt l\u00e4ge"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "Mall f\u00f6r horisontellt sv\u00e4ngl\u00e4geskommando",
+                                "swing_horizontal_mode_command_topic": "Topic f\u00f6r horisontellt sv\u00e4ngl\u00e4geskommando",
+                                "swing_horizontal_mode_state_template": "Mall f\u00f6r horisontellt sv\u00e4ngl\u00e4gestillst\u00e5nd",
+                                "swing_horizontal_mode_state_topic": "Topic f\u00f6r horisontellt sv\u00e4ngl\u00e4gestillst\u00e5nd",
+                                "swing_horizontal_modes": "Horisontella sv\u00e4ngl\u00e4gen"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r horisontellt sv\u00e4ngl\u00e4ge.",
+                                "swing_horizontal_mode_command_topic": "Det MQTT-topic f\u00f6r att publicera kommandon f\u00f6r att \u00e4ndra klimatets horisontella sv\u00e4ngl\u00e4ge. [L\u00e4s mer.]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera klimatets horisontella sv\u00e4ngl\u00e4gesv\u00e4rde.",
+                                "swing_horizontal_mode_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot klimatets horisontella sv\u00e4ngl\u00e4ge. [L\u00e4s mer.]({url}#swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "Lista \u00f6ver horisontella sv\u00e4ngl\u00e4gen som detta klimat kan k\u00f6ras i. Vanliga horisontella sv\u00e4ngl\u00e4gen \u00e4r `off` och `on`."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r horisontellt sv\u00e4ngl\u00e4ge"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "Mall f\u00f6r sv\u00e4ngl\u00e4geskommando",
+                                "swing_mode_command_topic": "Topic f\u00f6r sv\u00e4ngl\u00e4geskommando",
+                                "swing_mode_state_template": "Mall f\u00f6r sv\u00e4ngl\u00e4gestillst\u00e5nd",
+                                "swing_mode_state_topic": "Topic f\u00f6r sv\u00e4ngl\u00e4gesv\u00e4rde",
+                                "swing_modes": "Sv\u00e4ngl\u00e4gen"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r sv\u00e4ngl\u00e4ge.",
+                                "swing_mode_command_topic": "Det MQTT-topic f\u00f6r att publicera kommandon f\u00f6r att \u00e4ndra klimatets sv\u00e4ngl\u00e4ge. [L\u00e4s mer.]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera klimatets sv\u00e4ngl\u00e4gesv\u00e4rde.",
+                                "swing_mode_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot klimatets sv\u00e4ngl\u00e4ge. [L\u00e4s mer.]({url}#swing_mode_state_topic)",
+                                "swing_modes": "Lista \u00f6ver sv\u00e4ngl\u00e4gen som detta klimat kan k\u00f6ras i. Vanliga sv\u00e4ngl\u00e4gen \u00e4r `off`, `on`, `vertical`, `horizontal` och `both`."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r sv\u00e4ngl\u00e4ge"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Nyttolast \"st\u00e4ng\"",
+                                "payload_open": "Nyttolast \"\u00f6ppna\"",
+                                "payload_stop": "Nyttolast \"stopp\"",
+                                "payload_stop_tilt": "Nyttolast \"stopp lutning\"",
+                                "state_closed": "Tillst\u00e5nd \"st\u00e4ngd\"",
+                                "state_closing": "Tillst\u00e5nd \"st\u00e4nger\"",
+                                "state_open": "Tillst\u00e5nd \"\u00f6ppen\"",
+                                "state_opening": "Tillst\u00e5nd \"\u00f6ppnar\"",
+                                "state_stopped": "Tillst\u00e5nd \"stoppad\""
+                            },
+                            "data_description": {
+                                "payload_close": "Nyttolasten som skickas n\u00e4r ett \"st\u00e4ng\"kommando utf\u00e4rdas.",
+                                "payload_open": "Nyttolasten som skickas n\u00e4r ett \"\u00f6ppna\"kommando utf\u00e4rdas.",
+                                "payload_stop": "Nyttolasten som skickas n\u00e4r ett \"stopp\"kommando utf\u00e4rdas. L\u00e4mna tomt f\u00f6r att inaktivera \"stopp\"funktionen.",
+                                "payload_stop_tilt": "Nyttolasten som skickas n\u00e4r ett kommando \"stoppa tilt\" utf\u00e4rdas.",
+                                "state_closed": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar det \"st\u00e4ngda\" tillst\u00e5ndet.",
+                                "state_closing": "Nyttolasten som mottagits vid tillst\u00e5nds\u00e4mnet som representerar \"st\u00e4ngningstillst\u00e5ndet\".",
+                                "state_open": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"\u00f6ppet\".",
+                                "state_opening": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar \"\u00f6ppningstillst\u00e5ndet\".",
+                                "state_stopped": "Nyttolasten som mottagits vid det tillst\u00e5nds\u00e4mne som representerar tillst\u00e5ndet \"stoppat\" (f\u00f6r omslag som inte rapporterar tillst\u00e5ndet \"\u00f6ppet\"/\"st\u00e4ngt\")."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r nyttolast"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "Positionens \"st\u00e4ngda\" v\u00e4rde",
+                                "position_open": "Positionens \"\u00f6ppna\" v\u00e4rde",
+                                "position_template": "Mall f\u00f6r positionsv\u00e4rde",
+                                "position_topic": "\u00c4mne f\u00f6r positionstillst\u00e5nd",
+                                "set_position_template": "St\u00e4ll in positionsmall",
+                                "set_position_topic": "Ange positions\u00e4mne"
+                            },
+                            "data_description": {
+                                "position_closed": "Nummer som representerar en \"st\u00e4ngd\" position.",
+                                "position_open": "Nummer som representerar \"\u00f6ppen\" position.",
+                                "position_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera nyttolasten f\u00f6r positions\u00e4mnet. F\u00f6ljande variabler finns ocks\u00e5 tillg\u00e4ngliga i mallen: `entity_id`, `position_open`, `position_closed`, `tilt_min` och `tilt_max`. [L\u00e4s mer.]({url}#position_template)",
+                                "position_topic": "Det MQTT-\u00e4mne som man prenumererar p\u00e5 f\u00f6r att ta emot meddelanden om enhetens position. [L\u00e4s mer.]({url}#position_topic)",
+                                "set_position_template": "[Mall]({command_templating_url}) f\u00f6r att definiera den position som ska skickas till \u00e4mnet f\u00f6r inst\u00e4lld position. Inom mallen finns f\u00f6ljande variabler tillg\u00e4ngliga: `v\u00e4rde` (den skalade m\u00e5lpositionen), `entitets_id`, `position` (m\u00e5lpositionens procentandel), `\u00f6ppen_position`, `st\u00e4ngd_position`, `lutning_min` och `lutning_max`. [L\u00e4s mer.]({url}#set_position_template)",
+                                "set_position_topic": "Det MQTT-\u00e4mne som positionskommandon ska publiceras till. Du m\u00e5ste \u00e4ven anv\u00e4nda \u00e4mnet f\u00f6r inst\u00e4lld position om du vill anv\u00e4nda positions\u00e4mnet. Anv\u00e4nd mallen om positions\u00e4mnet kr\u00e4ver andra v\u00e4rden \u00e4n de som ligger inom intervallet \u201dst\u00e4ngd position\u201d \u2013 \u201d\u00f6ppen position\u201d. Om mallen inte \u00e4r definierad och positionen \"st\u00e4ngd\" != 100 och positionen \"\u00f6ppen\" != 0 ber\u00e4knas r\u00e4tt positionsv\u00e4rde utifr\u00e5n procentuell position. [L\u00e4s mer.]({url}#set_position_topic)"
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r l\u00e4ge"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "V\u00e4rde f\u00f6r lutning i l\u00e4ge \u201dst\u00e4ngt\u201d",
+                                "tilt_command_template": "Mall f\u00f6r lutningskommando",
+                                "tilt_command_topic": "\u00c4mne f\u00f6r lutningskommando",
+                                "tilt_max": "Maximal lutning",
+                                "tilt_min": "Minimal lutning",
+                                "tilt_opened_value": "Lutningsv\u00e4rde \"\u00f6ppet\"",
+                                "tilt_optimistic": "Tilt optimistisk",
+                                "tilt_status_template": "Mall f\u00f6r lutningsv\u00e4rde",
+                                "tilt_status_topic": "\u00c4mne f\u00f6r lutningsstatus"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "Det v\u00e4rde som skickas till \u201dtilt command topic\u201d n\u00e4r skyddets lutning \u00e4r st\u00e4ngd.",
+                                "tilt_command_template": "[Mall]({command_templating_url}) f\u00f6r att definiera den position som ska skickas till topic f\u00f6r tilt-kommandot. I mallen finns f\u00f6ljande variabler tillg\u00e4ngliga: `entity_id`, `tilt_position` (m\u00e5lpositionen f\u00f6r tilt i procent), `position_open`, `position_closed`, `tilt_min` och `tilt_max`. [L\u00e4s mer.]({url}#tilt_command_template)",
+                                "tilt_command_topic": "Det MQTT-topic att skicka kommandon f\u00f6r att styra skyddets lutning. [L\u00e4s mer.]({url}#tilt_command_topic)",
+                                "tilt_max": "Det maximala lutningsv\u00e4rdet.",
+                                "tilt_min": "Det l\u00e4gsta lutningsv\u00e4rdet.",
+                                "tilt_opened_value": "Det v\u00e4rde som skickas till \u201dtilt command topic\u201d n\u00e4r skyddets lutning \u00f6ppnas.",
+                                "tilt_optimistic": "Flagg som anger om tilt ska fungera i optimistiskt l\u00e4ge. Om topic f\u00f6r tilt-status inte har definierats fungerar tilt i optimistiskt l\u00e4ge som standard. [L\u00e4s mer.]({url}#tilt_optimistic)",
+                                "tilt_status_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera nyttolasten f\u00f6r tilt-status. F\u00f6ljande variabler finns ocks\u00e5 tillg\u00e4ngliga i mallen: `entity_id`, `position_open`, `position_closed`, `tilt_min` och `tilt_max`. [L\u00e4s mer.]({url}#tilt_status_template)",
+                                "tilt_status_topic": "Det MQTT-\u00e4mne att prenumerera p\u00e5 f\u00f6r att ta emot uppdaterade v\u00e4rden f\u00f6r tilt-status. [L\u00e4s mer.]({url}#tilt_status_topic)"
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r lutning"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "Mall f\u00f6r aktuell luftfuktighet",
+                                "current_humidity_topic": "Topic f\u00f6r aktuell luftfuktighet"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera det aktuella luftfuktighetsv\u00e4rdet. [L\u00e4s mer.]({url}#current_humidity_template)",
+                                "current_humidity_topic": "Det MQTT-\u00e4mne att prenumerera p\u00e5 f\u00f6r att ta emot uppdaterade v\u00e4rden f\u00f6r aktuell luftfuktighet. [L\u00e4s mer.]({url}#current_humidity_topic)"
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r aktuell luftfuktighet"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "Mall f\u00f6r aktuell temperatur",
+                                "current_temperature_topic": "Topic f\u00f6r aktuell temperatur"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera det aktuella temperaturv\u00e4rdet. [L\u00e4s mer.]({url}#current_temperature_template)",
+                                "current_temperature_topic": "Det MQTT-\u00e4mne att prenumerera p\u00e5 f\u00f6r att ta emot uppdaterade v\u00e4rden f\u00f6r aktuell temperatur. [L\u00e4s mer.]({url}#current_temperature_topic)"
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r aktuell temperatur"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "Mall f\u00f6r riktningskommando",
+                                "direction_command_topic": "Topic f\u00f6r riktningskommando",
+                                "direction_state_topic": "\u00c4mne f\u00f6r riktningstillst\u00e5nd",
+                                "direction_value_template": "Mall f\u00f6r riktningsv\u00e4rde"
+                            },
+                            "data_description": {
+                                "direction_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r riktningskommandon. Mallvariabeln `value` kommer att vara antingen `forward` eller `reverse`.",
+                                "direction_command_topic": "Det MQTT-\u00e4mne att publicera kommandon f\u00f6r att \u00e4ndra fl\u00e4ktens rotationsriktning. Nyttolasten \u00e4r antingen `forward` eller `reverse` och kan anpassas med hj\u00e4lp av mallen f\u00f6r riktningskommandon. [L\u00e4s mer.]({url}#direction_command_topic)",
+                                "direction_state_topic": "\u00c4mnet i MQTT som prenumereras p\u00e5 f\u00f6r att ta emot fl\u00e4ktriktningens tillst\u00e5nd. Godk\u00e4nda nyttolaster \u00e4r `forward` eller `reverse`. [L\u00e4s mer.]({url}#direction_state_topic)",
+                                "direction_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera v\u00e4rdet f\u00f6r fl\u00e4ktens riktning. Mallen ska returnera antingen `forward` eller `reverse`. Om mallen returnerar en tom str\u00e4ng ignoreras riktningen."
+                            },
+                            "name": "Riktningsinst\u00e4llningar"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "Mall f\u00f6r oscillationskommando",
+                                "oscillation_command_topic": "Topic f\u00f6r oscillationskommando",
+                                "oscillation_state_topic": "Topic f\u00f6r oscillationstillst\u00e5nd",
+                                "oscillation_value_template": "Mall f\u00f6r oscillationsv\u00e4rde",
+                                "payload_oscillation_off": "Nyttolast \"oscillation av\"",
+                                "payload_oscillation_on": "Nyttolast \"oscillation p\u00e5\""
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r oscillationskommandon.",
+                                "oscillation_command_topic": "Det MQTT-topic att publicera kommandon till f\u00f6r att \u00e4ndra fl\u00e4ktens oscillationstillst\u00e5nd. [L\u00e4s mer.]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "Det MQTT-topic att prenumerera p\u00e5 f\u00f6r att f\u00e5 information om fl\u00e4ktens oscillationstillst\u00e5nd. [L\u00e4s mer.]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera fl\u00e4ktens oscillationstillst\u00e5ndsv\u00e4rde.",
+                                "payload_oscillation_off": "Nyttalasten som representerar oscillationens avst\u00e4ngda tillst\u00e5nd.",
+                                "payload_oscillation_on": "Nyttalasten som representerar oscillationens p\u00e5slagna tillst\u00e5nd."
+                            },
+                            "name": "Oscillationsinst\u00e4llningar"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Nyttolast \"\u00e5terst\u00e4ll f\u00f6rinst\u00e4llningsl\u00e4ge\"",
+                                "preset_mode_command_template": "Mall f\u00f6r f\u00f6rinst\u00e4llt l\u00e4geskommando",
+                                "preset_mode_command_topic": "Topic f\u00f6r f\u00f6rinst\u00e4llt l\u00e4geskommando",
+                                "preset_mode_state_topic": "Topic f\u00f6r f\u00f6rinst\u00e4llt l\u00e4gestillst\u00e5nd",
+                                "preset_mode_value_template": "Mall f\u00f6r f\u00f6rinst\u00e4llt l\u00e4gesv\u00e4rde",
+                                "preset_modes": "F\u00f6rinst\u00e4llningsl\u00e4gen"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "En speciell nyttolast som \u00e5terst\u00e4ller fl\u00e4ktens f\u00f6rinst\u00e4llda l\u00e4gesattribut till ok\u00e4nt n\u00e4r det tas emot vid topic f\u00f6r f\u00f6rinst\u00e4llt l\u00e4gestillst\u00e5nd.",
+                                "preset_mode_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r f\u00f6rinst\u00e4llt l\u00e4ge.",
+                                "preset_mode_command_topic": "Det MQTT-topic att publicera kommandon till f\u00f6r att \u00e4ndra fl\u00e4ktens f\u00f6rinst\u00e4llda l\u00e4ge. [L\u00e4s mer.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot fl\u00e4ktens f\u00f6rinst\u00e4llda l\u00e4ge. [L\u00e4s mer.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera v\u00e4rdet f\u00f6r fl\u00e4ktens f\u00f6rinst\u00e4llda l\u00e4ge.",
+                                "preset_modes": "Lista \u00f6ver f\u00f6rinst\u00e4llda l\u00e4gen som den h\u00e4r fl\u00e4kten kan k\u00f6ras i. Vanliga exempel inkluderar auto, smart, whoosh, eco och breeze."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r f\u00f6rinst\u00e4llt l\u00e4ge"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Nyttolast \"\u00e5terst\u00e4ll procent\"",
+                                "percentage_command_template": "Mall f\u00f6r procentkommando",
+                                "percentage_command_topic": "Topic f\u00f6r procentkommando",
+                                "percentage_state_topic": "Topic f\u00f6r procent-tillst\u00e5nd",
+                                "percentage_value_template": "Mall f\u00f6r procentv\u00e4rde",
+                                "speed_range_max": "Hastighetsspann maximum",
+                                "speed_range_min": "Hastighetsspann minimum"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "En speciell nyttolast som \u00e5terst\u00e4ller fl\u00e4kthastighetens procentv\u00e4rde till ok\u00e4nt n\u00e4r det tas emot vid topic f\u00f6r procent-tillst\u00e5nd.",
+                                "percentage_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r procentkommandon.",
+                                "percentage_command_topic": "\u00c4mnet i MQTT som anv\u00e4nds f\u00f6r att publicera kommandon som \u00e4ndrar fl\u00e4kthastighetens tillst\u00e5nd utifr\u00e5n en procentinst\u00e4llning. V\u00e4rdet ska ligga inom intervallet fr\u00e5n \u201dspeed range min\u201d till \u201dspeed range max\u201d. [L\u00e4s mer.]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "Det MQTT-\u00e4mne att prenumerera p\u00e5 f\u00f6r att f\u00e5 information om fl\u00e4ktens hastighet. V\u00e4rdet ligger inom intervallet fr\u00e5n \u201dminsta hastighet\u201d till \u201dh\u00f6gsta hastighet\u201d. [L\u00e4s mer.]({url}#percentage_state_topic)",
+                                "percentage_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera hastigheten i procent.",
+                                "speed_range_max": "Det maximala v\u00e4rdet i det numeriska utg\u00e5ngsintervallet (motsvarande 100 %). Procentsteget \u00e4r 100 dividerat med antalet hastigheter inom \u201dhastighetsintervallet\u201d.",
+                                "speed_range_min": "Det minsta v\u00e4rdet i det numeriska utg\u00e5ngsintervallet (l\u00e4get \u201dav\u201d ing\u00e5r inte, s\u00e5 speed_range_min - 1 motsvarar 0 %). Procentsteget \u00e4r 100 dividerat med antalet hastigheter inom \u201dhastighetsintervallet\u201d."
+                            },
+                            "name": "Hastighetsinst\u00e4llningar"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "Separat ljusstyrka",
+                                "brightness_command_template": "Mall f\u00f6r kommandon f\u00f6r ljusstyrka",
+                                "brightness_command_topic": "Topic f\u00f6r kommandon f\u00f6r ljusstyrka",
+                                "brightness_scale": "Skala f\u00f6r ljusstyrka",
+                                "brightness_state_topic": "Topic f\u00f6r ljusstyrketillst\u00e5nd",
+                                "brightness_value_template": "Mall f\u00f6r ljusstyrkev\u00e4rde"
+                            },
+                            "data_description": {
+                                "brightness": "Flagga som definierar om ljusk\u00e4llan st\u00f6der ljusstyrka n\u00e4r RGB-, RGBW- eller RGBWW-f\u00e4rgl\u00e4get st\u00f6ds.",
+                                "brightness_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r ljusstyrka.",
+                                "brightness_command_topic": "Det publicerings-topic som kommer att anv\u00e4ndas f\u00f6r att styra ljusstyrkan. [L\u00e4s mer.]({url}#brightness_command_topic)",
+                                "brightness_scale": "Definierar det maximala ljusstyrkev\u00e4rdet (dvs. 100 %) f\u00f6r den maximala ljusstyrkan.",
+                                "brightness_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot v\u00e4rden f\u00f6r ljusstyrkans tillst\u00e5nd. [L\u00e4s mer.]({url}#brightness_state_topic)",
+                                "brightness_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera ljusstyrkans v\u00e4rde."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r ljusstyrka"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "Topic f\u00f6r f\u00e4rgl\u00e4gestillst\u00e5nd",
+                                "color_mode_value_template": "Mall f\u00f6r f\u00e4rgl\u00e4gesv\u00e4rde"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot uppdateringar av f\u00e4rgl\u00e4get. Om detta inte \u00e4r konfigurerat kommer f\u00e4rgl\u00e4get automatiskt att st\u00e4llas in enligt den senast mottagna giltiga f\u00e4rgen eller f\u00e4rgtemperaturen.",
+                                "color_mode_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera f\u00e4rgl\u00e4gesv\u00e4rdet."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r f\u00e4rgl\u00e4ge"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "Mall f\u00f6r kommandon f\u00f6r f\u00e4rgtemperatur",
+                                "color_temp_command_topic": "Topic f\u00f6r kommandon f\u00f6r f\u00e4rgtemperatur",
+                                "color_temp_state_topic": "Topic f\u00f6r f\u00e4rgtemperaturtillst\u00e5nd",
+                                "color_temp_value_template": "Mall f\u00f6r f\u00e4rgtemperaturv\u00e4rde"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r f\u00e4rgtemperatur.",
+                                "color_temp_command_topic": "Det publicerings-topic som kommer att anv\u00e4ndas f\u00f6r att styra f\u00e4rgtemperaturen. [L\u00e4s mer.]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att f\u00e5 uppdateringar av f\u00e4rgtemperaturtillst\u00e5nd. [L\u00e4s mer.]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera v\u00e4rdet f\u00f6r f\u00e4rgtemperatur."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r f\u00e4rgtemperatur"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Effekt",
+                                "effect_command_template": "Mall f\u00f6r kommandon f\u00f6r effekter",
+                                "effect_command_topic": "Topic f\u00f6r kommandon f\u00f6r effekter",
+                                "effect_list": "Effektlista",
+                                "effect_state_topic": "Topic f\u00f6r effekttillst\u00e5nd",
+                                "effect_template": "Mall f\u00f6r effekt",
+                                "effect_value_template": "V\u00e4rdemall f\u00f6r effekt"
+                            },
+                            "data_description": {
+                                "effect": "Flagga som definierar om ljusk\u00e4llan st\u00f6der effekter.",
+                                "effect_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r effekter.",
+                                "effect_command_topic": "Det publicerings-topic som kommer att anv\u00e4ndas f\u00f6r att styra ljusk\u00e4llans effekttillst\u00e5nd. [L\u00e4s mer.]({url}#effect_command_topic)",
+                                "effect_list": "Listan \u00f6ver effekter som ljusk\u00e4llan st\u00f6der.",
+                                "effect_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att f\u00e5 uppdateringar om effekttillst\u00e5nd. [L\u00e4s mer.]({url}#effect_state_topic)"
+                            },
+                            "name": "Effektinst\u00e4llningar"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "Mall f\u00f6r HS-kommandon",
+                                "hs_command_topic": "Topic f\u00f6r HS-kommandon",
+                                "hs_state_topic": "Topic f\u00f6r HS-tillst\u00e5nd",
+                                "hs_value_template": "Mall f\u00f6r HS-v\u00e4rde"
+                            },
+                            "data_description": {
+                                "hs_command_template": "Definierar en [mall]({command_templating_url}) f\u00f6r att skapa ett meddelande som skickas till topic f\u00f6r HS-kommandon. Tillg\u00e4ngliga variabler: `hue` och `sat`.",
+                                "hs_command_topic": "MQTT-topic f\u00f6r att publicera kommandon f\u00f6r att \u00e4ndra ljusk\u00e4llans f\u00e4rgtillst\u00e5nd i HS-format (Hue Saturation). Intervall f\u00f6r Hue: 0\u00b0 .. 360\u00b0; Intervall f\u00f6r Saturation: 0..100. OBS: Ljusstyrka skickas separat i topic f\u00f6r kommandon f\u00f6r ljusstyrka. [L\u00e4s mer.]({url}#hs_command_topic)",
+                                "hs_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att ta emot uppdateringar om f\u00e4rgtillst\u00e5nd i HS-format. Den f\u00f6rv\u00e4ntade nyttolasten \u00e4r nyans- och m\u00e4ttnadsv\u00e4rdena separerade med kommatecken, till exempel `359.5,100.0`. OBS: Ljusstyrka tas emot separat i topic om ljusstyrketillst\u00e5nd. [L\u00e4s mer.]({url}#hs_state_topic)",
+                                "hs_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera HS-v\u00e4rdet."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r HS-f\u00e4rgl\u00e4ge"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "Mall f\u00f6r RGB-kommandon",
+                                "rgb_command_topic": "Topic f\u00f6r RGB-kommandon",
+                                "rgb_state_topic": "Topic f\u00f6r RGB-tillst\u00e5nd",
+                                "rgb_value_template": "Mall f\u00f6r RGB-v\u00e4rde"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "Definierar en [mall]({command_templating_url}) f\u00f6r att skapa ett meddelande som skickas till topic f\u00f6r RGB-kommandon. Tillg\u00e4ngliga variabler: `red`, `green` och `blue`.",
+                                "rgb_command_topic": "Det MQTT-topic som publicerar kommandon f\u00f6r att \u00e4ndra ljusk\u00e4llans RGB-tillst\u00e5nd. [L\u00e4s mer.]({url}#rgb_command_topic)",
+                                "rgb_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att f\u00e5 RGB-tillst\u00e5nduppdateringar. Den f\u00f6rv\u00e4ntade nyttolasten \u00e4r RGB-v\u00e4rdena \u00e5tskilda av kommatecken, till exempel `255,0,127`. [L\u00e4s mer.]({url}#rgb_state_topic)",
+                                "rgb_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera RGB-v\u00e4rdet."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r RGB-f\u00e4rgl\u00e4ge"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "Mall f\u00f6r RGBW-kommandon",
+                                "rgbw_command_topic": "Topic f\u00f6r RGBW-kommandon",
+                                "rgbw_state_topic": "Topic f\u00f6r RGBW-tillst\u00e5nd",
+                                "rgbw_value_template": "Mall f\u00f6r RGBW-v\u00e4rde"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "Definierar en [mall]({command_templating_url}) f\u00f6r att skapa ett meddelande som skickas till topic f\u00f6r RGBW-kommandon. Tillg\u00e4ngliga variabler: `red`, `green`, `blue` och `white`.",
+                                "rgbw_command_topic": "Det MQTT-topic som publicerar kommandon f\u00f6r att \u00e4ndra ljusk\u00e4llans RGBW-tillst\u00e5nd. [L\u00e4s mer.]({url}#rgbw_command_topic)",
+                                "rgbw_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att f\u00e5 RGBW-tillst\u00e5nduppdateringar. Den f\u00f6rv\u00e4ntade nyttolasten \u00e4r RGBW-v\u00e4rdena \u00e5tskilda av kommatecken, till exempel `255,0,127,64`. [L\u00e4s mer.]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera RGBW-v\u00e4rdet."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r RGBW-f\u00e4rgl\u00e4ge"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "Mall f\u00f6r RGBWW-kommandon",
+                                "rgbww_command_topic": "Topic f\u00f6r RGBWW-kommandon",
+                                "rgbww_state_topic": "Topic f\u00f6r RGBWW-tillst\u00e5nd",
+                                "rgbww_value_template": "Mall f\u00f6r RGBWW-v\u00e4rde"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "Definierar en [mall]({command_templating_url}) f\u00f6r att skapa ett meddelande som skickas till topic f\u00f6r RGBWW-kommandon. Tillg\u00e4ngliga variabler: `red`, `green`, `blue`, `cold_white` och `warm_white`.",
+                                "rgbww_command_topic": "Det MQTT-topic som publicerar kommandon f\u00f6r att \u00e4ndra ljusk\u00e4llans RGBWW-tillst\u00e5nd. [L\u00e4s mer.]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att f\u00e5 RGBWW-tillst\u00e5nduppdateringar. Den f\u00f6rv\u00e4ntade nyttolasten \u00e4r RGBWW-v\u00e4rdena \u00e5tskilda av kommatecken, till exempel `255,0,127,64,32`. [L\u00e4s mer.]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera RGBWW-v\u00e4rdet."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r RGBWW-f\u00e4rgl\u00e4ge"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "Topic f\u00f6r White-kommandon",
+                                "white_scale": "Vitskala"
+                            },
+                            "data_description": {
+                                "white_command_topic": "Det MQTT-topic som publicerar kommandon f\u00f6r att \u00e4ndra ljusk\u00e4llan till vitt l\u00e4ge med en given ljusstyrka. [L\u00e4s mer.]({url}#white_command_topic)",
+                                "white_scale": "Definierar den maximala vitniv\u00e5n (dvs. 100 %) f\u00f6r maximalt v\u00e4rde."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r vitt f\u00e4rgl\u00e4ge"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "Mall f\u00f6r XY-kommandon",
+                                "xy_command_topic": "Topic f\u00f6r XY-kommandon",
+                                "xy_state_topic": "Topic f\u00f6r XY-tillst\u00e5nd",
+                                "xy_value_template": "Mall f\u00f6r XY-v\u00e4rde"
+                            },
+                            "data_description": {
+                                "xy_command_template": "Definierar en [mall]({command_templating_url}) f\u00f6r att skapa ett meddelande som skickas till topic f\u00f6r XY-kommandon. Tillg\u00e4ngliga variabler: `x` och `y`.",
+                                "xy_command_topic": "Det MQTT-topic som publicerar kommandon f\u00f6r att \u00e4ndra ljusk\u00e4llans XY-tillst\u00e5nd. [L\u00e4s mer.]({url}#xy_command_topic)",
+                                "xy_state_topic": "Det MQTT-topic som prenumererar p\u00e5 att f\u00e5 XY-tillst\u00e5nduppdateringar. Den f\u00f6rv\u00e4ntade nyttolasten \u00e4r X- och Y-v\u00e4rdena \u00e5tskilda av kommatecken, till exempel `0.675,0.322`. [L\u00e4s mer.]({url}#xy_state_topic)",
+                                "xy_value_template": "Definierar en [mall]({value_templating_url}) f\u00f6r att extrahera XY-v\u00e4rdet."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r XY-f\u00e4rgl\u00e4ge"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Nyttolast \"l\u00e5s\"",
+                                "payload_open": "Nyttolast \"\u00f6ppna\"",
+                                "payload_reset": "Nyttolast \"\u00e5terst\u00e4ll\"",
+                                "payload_unlock": "Nyttolast \"l\u00e5s upp\"",
+                                "state_jammed": "Nyttolast \"fastnat\"",
+                                "state_locked": "Tillst\u00e5nd \"l\u00e5st\"",
+                                "state_locking": "Tillst\u00e5nd \"l\u00e5ser\"",
+                                "state_unlocked": "Tillst\u00e5nd \"uppl\u00e5st\"",
+                                "state_unlocking": "Tillst\u00e5nd \"l\u00e5ser upp\""
+                            },
+                            "data_description": {
+                                "payload_lock": "Nyttolasten som skickas n\u00e4r ett \"l\u00e5s\"-kommando utf\u00e4rdas.",
+                                "payload_open": "Nyttolasten som skickas n\u00e4r ett \"\u00f6ppna\"-kommando utf\u00e4rdas. St\u00e4ll in denna nyttolast om ditt l\u00e5s st\u00f6der \u00e5tg\u00e4rden \"\u00f6ppna\".",
+                                "payload_reset": "Nyttelasten som tas emot vid tillst\u00e5nds\u00e4mnet som \u00e5terst\u00e4ller l\u00e5set till ett ok\u00e4nt tillst\u00e5nd.",
+                                "payload_unlock": "Nyttolasten som skickas n\u00e4r ett \"l\u00e5s upp\"-kommando utf\u00e4rdas.",
+                                "state_jammed": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"fastnat\".",
+                                "state_locked": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"l\u00e5st\".",
+                                "state_locking": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"l\u00e5ser\".",
+                                "state_unlocked": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"uppl\u00e5st\".",
+                                "state_unlocking": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"l\u00e5ser upp\"."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r l\u00e5sets nyttolast"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Upph\u00f6r att g\u00e4lla efter",
+                                "flash": "St\u00f6d f\u00f6r blixtfunktion",
+                                "flash_time_long": "Blixttid l\u00e5ng",
+                                "flash_time_short": "Blixttid kort",
+                                "max_kelvin": "Max Kelvin",
+                                "min_kelvin": "Min Kelvin",
+                                "off_delay": "Avst\u00e4ngningsf\u00f6rdr\u00f6jning",
+                                "transition": "St\u00f6d f\u00f6r \u00f6verg\u00e5ngstid"
+                            },
+                            "data_description": {
+                                "expire_after": "Om den \u00e4r inst\u00e4lld definierar den antalet sekunder efter att sensorns tillst\u00e5nd har l\u00f6pt ut om det inte har uppdaterats. Efter utg\u00e5ngen blir sensorns tillst\u00e5nd otillg\u00e4ngligt. Om den inte anges upph\u00f6r sensorns tillst\u00e5nd aldrig att g\u00e4lla. [L\u00e4s mer.]({url}#expire_after)",
+                                "flash": "Aktivera blixtfunktionen f\u00f6r den h\u00e4r ljusk\u00e4llan",
+                                "flash_time_long": "Varaktigheten, i sekunder, f\u00f6r en \"l\u00e5ng\" blixt.",
+                                "flash_time_short": "Varaktigheten, i sekunder, f\u00f6r en \"kort\" blixt.",
+                                "max_kelvin": "Den h\u00f6gsta f\u00e4rgtemperaturen i Kelvin.",
+                                "min_kelvin": "Den l\u00e4gsta f\u00e4rgtemperaturen i Kelvin.",
+                                "off_delay": "F\u00f6r sensorer som endast skickar \"p\u00e5\"-tillst\u00e5nds\u00e4ndringar (t.ex. PIR-sensorer) st\u00e4ller den h\u00e4r variabeln in en f\u00f6rdr\u00f6jning i sekunder, varefter sensorns tillst\u00e5nd automatiskt \u00e4ndras tillbaka till \"av\".",
+                                "transition": "Aktivera funktionen f\u00f6r \u00f6verg\u00e5ngstid f\u00f6r den h\u00e4r ljusk\u00e4llan"
+                            },
+                            "name": "\u00d6vriga inst\u00e4llningar"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "Mall f\u00f6r kommandot \"av\""
+                            },
+                            "name": "\u00d6vriga sireninst\u00e4llningar"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "H\u00f6gsta luftfuktighet",
+                                "min_humidity": "L\u00e4gsta luftfuktighet",
+                                "target_humidity_command_template": "Mall f\u00f6r kommando f\u00f6r m\u00e5lfuktighet",
+                                "target_humidity_command_topic": "Topic f\u00f6r kommando f\u00f6r m\u00e5lfuktighet",
+                                "target_humidity_state_template": "Mall f\u00f6r m\u00e5lfuktighetstillst\u00e5nd",
+                                "target_humidity_state_topic": "Topic f\u00f6r m\u00e5lfuktighetstillst\u00e5nd"
+                            },
+                            "data_description": {
+                                "max_humidity": "Den h\u00f6gsta m\u00e5lfuktigheten som kan st\u00e4llas in.",
+                                "min_humidity": "Den l\u00e4gsta m\u00e5lfuktigheten som kan st\u00e4llas in.",
+                                "target_humidity_command_template": "[Mall]({command_templating_url}) f\u00f6r att skapa nyttolasten som ska publiceras till topic f\u00f6r kommandon f\u00f6r m\u00e5lfuktighet.",
+                                "target_humidity_command_topic": "Det MQTT-topic att publicera kommandon till f\u00f6r att \u00e4ndra den \u00f6nskade luftfuktigheten. [L\u00e4s mer.]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "En [mall]({value_templating_url}) f\u00f6r att \u00e5terge det v\u00e4rde som mottagits p\u00e5 topic f\u00f6r m\u00e5lfuktighet.",
+                                "target_humidity_state_topic": "\u00c4mnet i MQTT som prenumereras p\u00e5 f\u00f6r \u00e4ndringar av m\u00e5lfuktigheten. [L\u00e4s mer.]({url}#humidity_state_topic)"
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r m\u00e5lfuktighet"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Initial temperatur",
+                                "max_temp": "Maximal temperatur",
+                                "min_temp": "L\u00e4gsta temperatur",
+                                "precision": "Precision",
+                                "temp_step": "Temperatursteg",
+                                "temperature_command_template": "Mall f\u00f6r temperaturkommando",
+                                "temperature_command_topic": "Topic f\u00f6r temperaturkommando",
+                                "temperature_high_command_template": "Mall f\u00f6r \u00f6vre temperaturkommando",
+                                "temperature_high_command_topic": "\u00c4mne f\u00f6r \u00f6vre temperaturkommando",
+                                "temperature_high_state_template": "Mall f\u00f6r \u00f6vre temperaturtillst\u00e5nd",
+                                "temperature_high_state_topic": "Topic f\u00f6r \u00f6vre temperaturtillst\u00e5nd",
+                                "temperature_low_command_template": "Mall f\u00f6r l\u00e4gre temperaturkommando",
+                                "temperature_low_command_topic": "\u00c4mne f\u00f6r l\u00e4gre temperaturkommando",
+                                "temperature_low_state_template": "Mall f\u00f6r l\u00e4gre temperaturtillst\u00e5nd",
+                                "temperature_low_state_topic": "Topic f\u00f6r l\u00e4gre temperaturtillst\u00e5nd",
+                                "temperature_state_template": "Mall f\u00f6r temperaturtillst\u00e5nd",
+                                "temperature_state_topic": "Topic f\u00f6r temperaturtillst\u00e5nd"
+                            },
+                            "data_description": {
+                                "initial": "Enheten initierar med denna m\u00e5ltemperatur.",
+                                "max_temp": "Den h\u00f6gsta m\u00e5ltemperatur som kan st\u00e4llas in.",
+                                "min_temp": "Den l\u00e4gsta m\u00e5ltemperatur som kan st\u00e4llas in.",
+                                "precision": "Noggrannheten i grader som termostaten arbetar med.",
+                                "temp_step": "M\u00e5ltemperaturen i grader Celsius eller Fahrenheit.",
+                                "temperature_command_template": "En [mall]({command_templating_url}) f\u00f6r att komponera nyttolasten som ska publiceras i topic f\u00f6r temperaturkommando.",
+                                "temperature_command_topic": "Det MQTT-topic att publicera kommandon till f\u00f6r att \u00e4ndra m\u00e5ltemperatur. [L\u00e4s mer.]({url}#temperature_command_topic)",
+                                "temperature_high_command_template": "En [mall]({command_templating_url}) f\u00f6r att komponera nyttolasten som ska publiceras i topic f\u00f6r \u00f6vre temperaturkommando.",
+                                "temperature_high_command_topic": "\u00c4mnet i MQTT som anv\u00e4nds f\u00f6r att publicera kommandon som \u00e4ndrar klimatets \u00f6vre m\u00e5ltemperatur. [L\u00e4s mer.]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "En [mall]({value_templating_url}) f\u00f6r att \u00e5terge det v\u00e4rde som mottagits p\u00e5 topic f\u00f6r \u00f6vre temperaturtillst\u00e5nd.",
+                                "temperature_high_state_topic": "\u00c4mnet i MQTT som prenumereras p\u00e5 f\u00f6r \u00e4ndringar av den \u00f6vre m\u00e5ltemperaturen. [L\u00e4s mer.]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "En [mall]({command_templating_url}) f\u00f6r att komponera nyttolasten som ska publiceras i topic f\u00f6r l\u00e4gre temperaturkommando.",
+                                "temperature_low_command_topic": "\u00c4mnet i MQTT som anv\u00e4nds f\u00f6r att publicera kommandon som \u00e4ndrar klimatets l\u00e4gre m\u00e5ltemperatur. [L\u00e4s mer.]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "En [mall]({value_templating_url}) f\u00f6r att \u00e5terge det v\u00e4rde som mottagits p\u00e5 topic f\u00f6r l\u00e4gre temperaturtillst\u00e5nd.",
+                                "temperature_low_state_topic": "\u00c4mnet i MQTT som prenumereras p\u00e5 f\u00f6r \u00e4ndringar av den l\u00e4gre m\u00e5ltemperaturen. [L\u00e4s mer.]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "En [mall]({value_templating_url}) f\u00f6r att \u00e5terge det v\u00e4rde som mottagits p\u00e5 topic f\u00f6r temperaturtillst\u00e5nd.",
+                                "temperature_state_topic": "\u00c4mnet i MQTT som prenumereras p\u00e5 f\u00f6r \u00e4ndringar av m\u00e5ltemperaturen. [L\u00e4s mer.]({url}#temperature_state_topic)"
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r m\u00e5ltemperatur"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maximal l\u00e4ngd",
+                                "min": "Minsta l\u00e4ngd",
+                                "mode": "L\u00e4ge",
+                                "pattern": "M\u00f6nster"
+                            },
+                            "data_description": {
+                                "max": "Maximal l\u00e4ngd p\u00e5 den inmatade texten",
+                                "min": "Minsta l\u00e4ngd p\u00e5 den inmatade texten",
+                                "mode": "L\u00e4ge f\u00f6r textinmatning",
+                                "pattern": "Ett giltigt regex-m\u00f6nster"
+                            },
+                            "name": "Andra inst\u00e4llningar f\u00f6r textentiteter"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Nyttolast \"st\u00e4ng\"",
+                                "payload_open": "Nyttolast \"\u00f6ppna\"",
+                                "payload_stop": "Nyttolast \"stopp\"",
+                                "state_closed": "Tillst\u00e5nd \"st\u00e4ngd\"",
+                                "state_closing": "Tillst\u00e5nd \"st\u00e4nger\"",
+                                "state_open": "Tillst\u00e5nd \"\u00f6ppen\"",
+                                "state_opening": "Tillst\u00e5nd \"\u00f6ppnar\""
+                            },
+                            "data_description": {
+                                "payload_close": "Nyttelasten som skickas n\u00e4r ett \"st\u00e4ng\"-kommando utf\u00e4rdas.",
+                                "payload_open": "Nyttelasten som skickas n\u00e4r ett \"\u00f6ppna\"-kommando utf\u00e4rdas.",
+                                "payload_stop": "Nyttolasten som skickas n\u00e4r ett \"stopp\"-kommando utf\u00e4rdas. St\u00e4ll endast in denna nyttolast om din ventil st\u00f6der \"stopp\"-\u00e5tg\u00e4rden.",
+                                "state_closed": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"st\u00e4ngd\".",
+                                "state_closing": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"st\u00e4nger\".",
+                                "state_open": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"\u00f6ppen\".",
+                                "state_opening": "Nyttolasten som tas emot vid tillst\u00e5nds\u00e4mnet som representerar tillst\u00e5ndet \"\u00f6ppnar\"."
+                            },
+                            "name": "Inst\u00e4llningar f\u00f6r ventilens nyttolast"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "Nyttolast \"av\"",
+                                "payload_on": "Nyttolast \"p\u00e5\"",
+                                "power_command_template": "Mall f\u00f6r str\u00f6mkommando",
+                                "power_command_topic": "Topic f\u00f6r str\u00f6mkommandon"
+                            },
+                            "data_description": {
+                                "payload_off": "Nyttalasten som representerar avst\u00e4ngt tillst\u00e5nd.",
+                                "payload_on": "Nyttalasten som representerar p\u00e5slaget tillst\u00e5nd.",
+                                "power_command_template": "En [mall]({command_templating_url}) f\u00f6r att skapa den datapaket som ska publiceras i \u00e4mnet f\u00f6r str\u00f6mkommandot. Parametern `v\u00e4rde` anger om datapaketet ska vara \"p\u00e5\" eller \"av\".",
+                                "power_command_topic": "Det MQTT-topic att publicera kommandon som \u00e4ndrar varmvattenberedarens str\u00f6mtillst\u00e5nd. Skickar nyttolasten konfigurerad med v\u00e4rdet \u201don\u201d eller \u201doff\u201d. [L\u00e4s mer.]({url}#power_command_topic)"
+                            },
+                            "name": "Str\u00f6minst\u00e4llningar"
+                        }
+                    },
+                    "title": "Konfigurera MQTT-enhet \"{mqtt_device}\""
+                },
+                "summary_menu": {
+                    "description": "Konfigurerade entiteter: \n{mqtt_items} \n\nBest\u00e4m vad du ska g\u00f6ra h\u00e4rn\u00e4st:",
+                    "menu_options": {
+                        "availability": "Konfigurera tillg\u00e4nglighet",
+                        "delete_entity": "Radera en entitet",
+                        "device": "Uppdatera enhetsegenskaper",
+                        "entity": "L\u00e4gg till en ytterligare entitet till \"{mqtt_device}\"",
+                        "export": "Exportera MQTT-enhetens konfiguration",
+                        "save_changes": "Spara \u00e4ndringar",
+                        "update_entity": "Uppdatera entitetsegenskaper"
+                    },
+                    "title": "Konfigurera om \"{mqtt_device}\""
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Entitet"
+                    },
+                    "data_description": {
+                        "component": "V\u00e4lj den entitet du vill uppdatera."
+                    },
+                    "description": "V\u00e4lj den entitet du vill uppdatera",
+                    "title": "V\u00e4lj entitet"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "F\u00f6rsta knappen",
+            "button_2": "Andra knappen",
+            "button_3": "Tredje knappen",
+            "button_4": "Fj\u00e4rde knappen",
+            "button_5": "Femte knappen",
+            "button_6": "Sj\u00e4tte knappen",
+            "turn_off": "Sl\u00e5 av",
+            "turn_on": "Sl\u00e5 p\u00e5"
+        },
+        "trigger_type": {
+            "button_double_press": "\u201d{subtype}\u201d dubbelklickad",
+            "button_long_press": "\u201d{subtype}\u201d kontinuerligt tryckt",
+            "button_long_release": "\u201d{subtype}\u201d sl\u00e4ppt efter l\u00e5ng tryckning",
+            "button_quadruple_press": "\u201d{subtype}\u201d fyrdubbelt klickad",
+            "button_quintuple_press": "\u201d{subtype}\u201d femfaldigt klickad",
+            "button_short_press": "\u201d{subtype}\u201d tryckt",
+            "button_short_release": "\u201d{subtype}\u201d sl\u00e4ppt",
+            "button_triple_press": "\u201d{subtype}\u201d trippelklickad"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "Det gick inte att starta appen {addon} p\u00e5 r\u00e4tt s\u00e4tt."
+        },
+        "command_template_error": {
+            "message": "Tolkning av mall `{command_template}` f\u00f6r entitet `{entity_id}` misslyckades med fel: {error}."
+        },
+        "invalid_platform_config_message": {
+            "message": "Det gick inte att ladda om YAML-konfigurationen f\u00f6r det manuellt konfigurerade MQTT-objektet `{domain}`. Meddelande: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "Kan inte publicera: \u00e4mnesmallen `{topic_template}` producerade ett ogiltigt \u00e4mne `{topic}` efter rendering ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "Det gick inte att prata med MQTT: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "Gr\u00e4nsen f\u00f6r MQTT-prenumerations-ID har n\u00e5tts. Det g\u00e5r inte att generera fler ID:n att prenumerera p\u00e5."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "Publicering till topic {topic} med ett intervall f\u00f6r meddelandets giltighetstid st\u00f6ds inte f\u00f6r protokollversionen {protocol}."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Det g\u00e5r inte att prenumerera p\u00e5 \u00e4mnet \u201d{topic}\u201d eftersom MQTT inte \u00e4r aktiverat. Kontrollera att MQTT \u00e4r korrekt konfigurerat."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Kan inte publicera till \u00e4mne \"{topic}\", kontrollera att MQTT \u00e4r korrekt konfigurerat."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Kan inte prenumerera p\u00e5 \u00e4mnet \"{topic}\", kontrollera att MQTT \u00e4r korrekt konfigurerat."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Det g\u00e5r inte att avsluta prenumerationen p\u00e5 \u00e4mnet \u201d{topic}\u201d tv\u00e5 g\u00e5nger."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "\u00c4mnet m\u00e5ste vara en str\u00e4ng! Fick: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Det g\u00e5r inte att ta bort utl\u00f6saren tv\u00e5 g\u00e5nger."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "Home Assistant uppt\u00e4ckte en ogiltig konfiguration f\u00f6r ett manuellt konfigurerat objekt.\n\nPlattformens dom\u00e4n: **{domain}**\nKonfigurationsfil: **{config_file}**\nN\u00e4ra rad: **{line}**\nHittad konfiguration:\n```yaml\n{config}\n```\nFel: **{error}**.\n\nSe till att konfigurationen \u00e4r giltig och [ladda om](/config/tools/yaml) de manuellt konfigurerade MQTT-objekten eller starta om Home Assistant f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "Ogiltig konfiguration hittades f\u00f6r MQTT-{domain}-objekt"
+        },
+        "protocol_5_migration": {
+            "description": "Den automatiska migreringen till MQTT-protokollversion 5 misslyckades. Den f\u00f6r n\u00e4rvarande konfigurerade protokollversionen f\u00f6r MQTT-m\u00e4klaren {broker} \u00e4r {protocol}, men den h\u00e4r protokollversionen \u00e4r f\u00f6r\u00e5ldrad och st\u00f6det f\u00f6r den kommer att tas bort. \n\nKontrollera att din m\u00e4klare st\u00f6der protokollversion 5. Uppdatera anslutningsinst\u00e4llningarna f\u00f6r din MQTT-m\u00e4klare och starta om Home Assistant f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "Migreringen av MQTT-protokollet misslyckades"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Den exporterade MQTT-enheten \u201d{name}\u201d har identifierats via MQTT-uppt\u00e4ckt. V\u00e4lj **Bekr\u00e4fta** f\u00f6r att bekr\u00e4fta att MQTT-enheten ska migreras till huvudkonfigurationen f\u00f6r MQTT och f\u00f6r att ta bort den befintliga underposten f\u00f6r MQTT-enheten. Se till att uppt\u00e4ckten sparas hos MQTT-brokern eller skickas p\u00e5 nytt efter att underposten har tagits bort, s\u00e5 att MQTT-enheten konfigureras korrekt. Alternativt kan du \u00e4ndra enhetsidentifierarna och de unika entitets-ID:na i din MQTT-uppt\u00e4cktkonfigurationspayload och avbryta denna reparation om du vill beh\u00e5lla MQTT-enhetens underpost.",
+                        "title": "Migrering av underpost f\u00f6r MQTT-enheten \u201d{name}\u201d till MQTT-uppt\u00e4ckt"
+                    }
+                }
+            },
+            "title": "Migrering av underpost f\u00f6r MQTT-enheten \u201d{name}\u201d till MQTT-uppt\u00e4ckt"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Den exporterade MQTT-enheten \u201d{name}\u201d har identifierats i YAML-konfigurationen. V\u00e4lj **Bekr\u00e4fta** f\u00f6r att bekr\u00e4fta att MQTT-enheten ska flyttas till huvudposten i MQTT-konfigurationen och f\u00f6r att ta bort den befintliga underposten f\u00f6r MQTT-enheten. Alternativt kan du \u00e4ndra enhetsidentifierarna och entiteternas unika ID:n i din configuration.yaml-fil och avbryta denna reparation om du vill beh\u00e5lla underposten f\u00f6r MQTT-enheten.",
+                        "title": "Migrering av underpost f\u00f6r MQTT-enheten \u201d{name}\u201d till YAML"
+                    }
+                }
+            },
+            "title": "Migrering av underpost f\u00f6r MQTT-enheten \u201d{name}\u201d till YAML"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant har uppt\u00e4ckt manuellt konfigurerade MQTT-objekt, men dessa objekt kan inte laddas eftersom MQTT inte \u00e4r korrekt konfigurerat. Se till att MQTT-brokern \u00e4r korrekt konfigurerad, eller ta bort MQTT-konfigurationen fr\u00e5n filen `configuration.yaml` och starta om Home Assistant f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "MQTT \u00e4r inte korrekt konfigurerat"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Ogiltigt f\u00f6delse\u00e4mne",
+            "bad_certificate": "CA-certifikatet \u00e4r ogiltigt",
+            "bad_client_cert": "Ogiltigt klientcertifikat, se till att en giltig fil tillhandah\u00e5lls",
+            "bad_client_cert_key": "Klientcertifikatet och den privata nyckeln \u00e4r inte ett giltigt par",
+            "bad_discovery_prefix": "Ogiltigt uppt\u00e4cktsprefix",
+            "bad_will": "Ogiltigt testamentes\u00e4mne",
+            "bad_ws_headers": "Ange giltiga HTTP-headers som ett JSON-objekt",
+            "cannot_connect": "Det gick inte att ansluta",
+            "client_key_error": "Ogiltig privat nyckelfil eller ogiltigt l\u00f6senord har angetts",
+            "invalid_inclusion": "Klientcertifikatet och den privata nyckeln m\u00e5ste konfigureras tillsammans"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Aktivera f\u00f6delsemeddelande",
+                    "birth_payload": "Nyttolast f\u00f6r f\u00f6delsemeddelande",
+                    "birth_qos": "QoS f\u00f6r f\u00f6delsemeddelande",
+                    "birth_retain": "Beh\u00e5ll f\u00f6delsemeddelande",
+                    "birth_topic": "\u00c4mne f\u00f6r f\u00f6delsemeddelande",
+                    "discovery": "Aktivera uppt\u00e4ckt",
+                    "discovery_prefix": "Prefix f\u00f6r uppt\u00e4ckt",
+                    "discovery_qos": "Discovery QoS",
+                    "will_enable": "Aktivera testamentesmeddelande",
+                    "will_payload": "Nyttolast f\u00f6r testamentesmeddelande",
+                    "will_qos": "QoS f\u00f6r testamentesmeddelande",
+                    "will_retain": "Beh\u00e5ll testamentesmeddelande",
+                    "will_topic": "\u00c4mne f\u00f6r testamentesmeddelande"
+                },
+                "data_description": {
+                    "birth_enable": "Om satt s\u00e5 kommer Home Assistant att publicera ett onlinemeddelande till din MQTT-broker n\u00e4r MQTT \u00e4r redo.",
+                    "birth_payload": "F\u00f6delsemeddelandet som publiceras n\u00e4r MQTT \u00e4r redo och ansluten.",
+                    "birth_qos": "QoS (quality of service) f\u00f6r f\u00f6delsemeddelandet som publiceras n\u00e4r MQTT \u00e4r redo och ansluten",
+                    "birth_retain": "Om satt s\u00e5 kommer din MQTT-broker att beh\u00e5lla f\u00f6delsemeddelandet som publiceras av Home Assistant.",
+                    "birth_topic": "Det MQTT-\u00e4mne d\u00e4r Home Assistant kommer att publicera ett f\u00f6delsemeddelande.",
+                    "discovery": "Alternativ f\u00f6r att aktivera automatisk MQTT-uppt\u00e4ckt.",
+                    "discovery_prefix": "Prefixet f\u00f6r konfigurations\u00e4mnen som MQTT-integrationen kommer att prenumerera p\u00e5.",
+                    "discovery_qos": "Kvaliteten p\u00e5 tj\u00e4nsten f\u00f6r discovery-prenumerationer till din MQTT-broker.",
+                    "will_enable": "Om satt s\u00e5 kommer Home Assistant att be din broker att publicera ett testamentesmeddelande n\u00e4r MQTT stoppas eller n\u00e4r den tappar anslutningen till din broker.",
+                    "will_payload": "Testamentesmeddelandet som publiceras n\u00e4r MQTT-integrationen stoppas eller n\u00e4r anslutningen bryts.",
+                    "will_qos": "QoS (quality of service) f\u00f6r testamentesmeddelandet som publiceras av din MQTT-broker.",
+                    "will_retain": "N\u00e4r inst\u00e4llningen \u00e4r aktiv kommer din MQTT-broker att beh\u00e5lla testamentesmeddelandet.",
+                    "will_topic": "Det MQTT-\u00e4mne som din MQTT-broker kommer att publicera ett testamentesmeddelande till."
+                },
+                "description": "Uppt\u00e4ckt \u2013 Om uppt\u00e4ckt \u00e4r aktiverat (rekommenderas), s\u00e5 kommer Home Assistant automatiskt att uppt\u00e4cka enheter och entiteter som publicerar sin konfiguration p\u00e5 MQTT-brokern. \nOm uppt\u00e4ckt \u00e4r inaktiverad m\u00e5ste all konfiguration g\u00f6ras manuellt.\nF\u00f6delsemeddelande \u2013 F\u00f6delsemeddelandet kommer att skickas varje g\u00e5ng Home Assistant (\u00e5ter)ansluter till MQTT-brokern.\nTestamentesmeddelande \u2013 Testamentesmeddelandet kommer att skickas varje g\u00e5ng Home Assistant f\u00f6rlorar sin anslutning till brokern, b\u00e5de i h\u00e4ndelse av en ren (t.ex. Home Assistant st\u00e4nger ner) och i h\u00e4ndelse av en oren (t.ex. Home Assistant kraschar eller f\u00f6rlorar sin n\u00e4tverksanslutning) fr\u00e5nkoppling.",
+                "title": "MQTT-alternativ"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Lokal kodvalidering",
+                "remote_code": "Validering av fj\u00e4rrkod med siffror",
+                "remote_code_text": "Validering av fj\u00e4rrkod med text"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "Larma p\u00e5 bortal\u00e4ge",
+                "arm_custom_bypass": "Larma p\u00e5 anpassat f\u00f6rbikopplingsl\u00e4ge",
+                "arm_home": "Larma p\u00e5 hemmal\u00e4ge",
+                "arm_night": "Larma p\u00e5 nattl\u00e4ge",
+                "arm_vacation": "Larma p\u00e5 semesterl\u00e4ge",
+                "trigger": "Utl\u00f6s larm"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Auto",
+                "cool": "Kyla",
+                "dry": "Avfukta",
+                "fan_only": "Endast fl\u00e4kt",
+                "heat": "V\u00e4rme",
+                "heat_cool": "V\u00e4rme/Kyla",
+                "off": "Av"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Konfiguration",
+                "diagnostic": "Diagnostisk"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64 kodning",
+                "raw": "R\u00e5data"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "Bilddata tas emot",
+                "image_url": "Bild URL har mottagits"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "Standardschema",
+                "json": "JSON",
+                "template": "Mall"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automatiskt",
+                "box": "Inmatningsf\u00e4lt",
+                "slider": "Slider"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Ljusstyrka",
+                "first": "F\u00f6rst",
+                "last": "Sist"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Larmkontrollpanel",
+                "binary_sensor": "Bin\u00e4r sensor",
+                "button": "Knapp",
+                "climate": "Klimat",
+                "cover": "Skydd",
+                "date": "Datum",
+                "datetime": "Datum/Tid",
+                "fan": "Fl\u00e4kt",
+                "image": "Bild",
+                "light": "Lampa",
+                "lock": "L\u00e5s",
+                "notify": "Aviseringar",
+                "number": "Antal",
+                "select": "Val",
+                "sensor": "Sensor",
+                "siren": "Siren",
+                "switch": "Brytare",
+                "text": "Text",
+                "time": "Tid",
+                "valve": "Ventil",
+                "water_heater": "Varmvattenberedare"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Auto",
+                "custom": "Anpassad",
+                "off": "Av"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Endast ljusstyrka",
+                "color_temp": "F\u00e4rgtemperatur",
+                "hs": "HS",
+                "onoff": "P\u00e5/Av",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Vitt",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "\u00d6vre/undre m\u00e5ltemperatur",
+                "none": "Ingen m\u00e5ltemperatur",
+                "single": "Enskild m\u00e5ltemperatur"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "L\u00f6senord",
+                "text": "Text"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Auto",
+                "eco": "Eko",
+                "electric": "Elektrisk",
+                "gas": "Gas",
+                "heat_pump": "V\u00e4rmepump",
+                "high_demand": "H\u00f6g efterfr\u00e5gan",
+                "off": "Av",
+                "performance": "Prestanda"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Skriver alla meddelanden fr\u00e5n ett specifikt \u00e4mne till filen \"mqtt_dump.txt\" i din konfigurationsmapp.",
+            "fields": {
+                "duration": {
+                    "description": "Hur l\u00e4nge vi ska lyssna efter meddelanden, angivet i sekunder.",
+                    "name": "Varaktighet"
+                },
+                "topic": {
+                    "description": "\u00c4mne att lyssna p\u00e5.",
+                    "name": "\u00c4mne"
+                }
+            },
+            "name": "Exportera"
+        },
+        "publish": {
+            "description": "Publicerar ett meddelande till ett MQTT-\u00e4mne.",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Om 'nyttolast' \u00e4r en Python byte-literal, utv\u00e4rdera byte-literal och publicera r\u00e5data.",
+                    "name": "Utv\u00e4rdera nyttolast"
+                },
+                "message_expiry_interval": {
+                    "description": "G\u00f6r att ett publicerat meddelande upph\u00f6r att g\u00e4lla efter det angivna intervallet om prenumeranten tillf\u00e4lligt var offline eller om meddelandet markerades som ett bevarat meddelande. St\u00f6ds endast med MQTT-protokollversion 5.0.",
+                    "name": "Meddelandets utg\u00e5ngsintervall"
+                },
+                "payload": {
+                    "description": "Nyttolasten som ska publiceras. Publicerar ett tomt meddelande om ingen anges.",
+                    "name": "Nyttolast"
+                },
+                "qos": {
+                    "description": "Quality of Service att anv\u00e4nda. 0: H\u00f6gst en g\u00e5ng. 1: Minst en g\u00e5ng. 2: Exakt en g\u00e5ng.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Om meddelandet ska ha beh\u00e5ll-flaggan inst\u00e4lld. Om satt s\u00e5 lagrar brokern det senaste meddelandet p\u00e5 ett \u00e4mne.",
+                    "name": "Beh\u00e5ll"
+                },
+                "topic": {
+                    "description": "\u00c4mne att publicera till.",
+                    "name": "\u00c4mne"
+                }
+            },
+            "name": "Publicera",
+            "sections": {
+                "publish_options": {
+                    "name": "Publiceringsalternativ"
+                }
+            }
+        },
+        "reload": {
+            "description": "Laddar om MQTT-entiteter fr\u00e5n YAML-konfigurationen.",
+            "name": "Ladda om"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "Utl\u00f6ses n\u00e4r ett visst meddelande tas emot p\u00e5 ett givet MQTT-topic.",
+            "fields": {
+                "payload": {
+                    "description": "Nyttolasten att utl\u00f6sa p\u00e5.",
+                    "name": "Nyttolast"
+                },
+                "topic": {
+                    "description": "MQTT-topic att lyssna p\u00e5.",
+                    "name": "\u00c4mne"
+                }
+            },
+            "name": "MQTT-meddelande mottaget"
+        }
+    }
+}

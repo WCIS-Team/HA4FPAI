@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Proverava da li je u jednoj ili vi\u0161e padaju\u0107ih lista izabrana odre\u0111ena opcija.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "option": {
+                    "description": "Opcije koje treba proveriti.",
+                    "name": "Opcija"
+                }
+            },
+            "name": "Opcija padaju\u0107eg menija izabrana"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "Promeni {entity_name} na prvu opciju",
+            "select_last": "Promeni {entity_name} na poslednju opciju",
+            "select_next": "Promeni {entity_name} na slede\u0107u opciju",
+            "select_option": "Promeni opciju entiteta {entity_name}",
+            "select_previous": "Promeni {entity_name} na prethodnu opciju"
+        },
+        "condition_type": {
+            "selected_option": "Trenutno izabrana opcija entiteta {entity_name}"
+        },
+        "extra_fields": {
+            "cycle": "Ciklus",
+            "for": "Trajanje",
+            "from": "Od",
+            "option": "Opcija",
+            "to": "Do"
+        },
+        "trigger_type": {
+            "current_option_changed": "Opcija entiteta {entity_name} je promenjena"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Padaju\u0107i meni",
+            "state_attributes": {
+                "options": {
+                    "name": "Opcije"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "Entitet {entity_id} nema opcija za izbor."
+        },
+        "not_valid_option": {
+            "message": "Opcija {option} nije ispravna za entitet {entity_id}. Ispravne opcije su: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "Bira prvu opciju iz padaju\u0107eg menija.",
+            "name": "Izaberi prvu opciju"
+        },
+        "select_last": {
+            "description": "Bira poslednju opciju iz padaju\u0107eg menija.",
+            "name": "Izaberi poslednju opciju"
+        },
+        "select_next": {
+            "description": "Bira slede\u0107u opciju iz padaju\u0107eg menija.",
+            "fields": {
+                "cycle": {
+                    "description": "Omogu\u0107ava automatski prelazak sa poslednje na prvu stavku.",
+                    "name": "Cikli\u010dno kretanje"
+                }
+            },
+            "name": "Izaberi slede\u0107u opciju"
+        },
+        "select_option": {
+            "description": "Bira opciju iz padaju\u0107eg menija.",
+            "fields": {
+                "option": {
+                    "description": "Specifi\u010dna vrednost koju treba dodeliti entitetu.",
+                    "name": "\u017deljena stavka"
+                }
+            },
+            "name": "Izaberi opciju"
+        },
+        "select_previous": {
+            "description": "Bira prethodnu opciju iz padaju\u0107eg menija.",
+            "fields": {
+                "cycle": {
+                    "description": "Omogu\u0107ava automatski prelazak sa prve na poslednju stavku (i obrnuto).",
+                    "name": "Cikli\u010dno kretanje"
+                }
+            },
+            "name": "Izaberi prethodnu opciju"
+        }
+    },
+    "title": "Padaju\u0107i meni",
+    "triggers": {
+        "selection_changed": {
+            "description": "Pokre\u0107e se kada se promeni opcija u jednom ili vi\u0161e padaju\u0107ih menija.",
+            "name": "Izbor u padaju\u0107em meniju promenjen"
+        }
+    }
+}

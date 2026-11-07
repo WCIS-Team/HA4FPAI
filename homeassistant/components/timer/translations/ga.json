@@ -1,0 +1,181 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "trigger_behavior_name": "Spreagadh nuair",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil lasc ama amh\u00e1in n\u00f3 n\u00edos m\u00f3 gn\u00edomhach.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an lasc ama gn\u00edomhach"
+        },
+        "is_idle": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il an bhfuil amad\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3 d\u00edomhaoin.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an lasc ama d\u00edomhaoin"
+        },
+        "is_paused": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil amad\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3 curtha ar sos.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an lasc ama curtha ar sos"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Amairead\u00f3ir",
+            "state": {
+                "active": "Gn\u00edomhach",
+                "idle": "D\u00edomhaoin",
+                "paused": "Sosaithe"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Fad"
+                },
+                "editable": {
+                    "name": "Bainistithe tr\u00edd an Chomh\u00e9adan \u00das\u00e1ideora",
+                    "state": {
+                        "false": "N\u00edl",
+                        "true": "T\u00e1"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Cr\u00edochna\u00edonn ag"
+                },
+                "last_transition": {
+                    "name": "An t-aistri\u00fa deireanach",
+                    "state": {
+                        "cancelled": "Cealaithe",
+                        "finished": "Cr\u00edochnaithe",
+                        "paused": "Sosaithe",
+                        "restarted": "Atosaithe",
+                        "started": "Thosaigh"
+                    }
+                },
+                "remaining": {
+                    "name": "F\u00e1gtha"
+                },
+                "restore": {
+                    "name": "Athch\u00f3irigh"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "Athshocra\u00edonn s\u00e9 fad an lasc ama go dt\u00ed an luach tosaigh deireanach ar a bhfuil aithne air gan an teagmhas cr\u00edochnaithe an lasc ama a ghn\u00edomhacht\u00fa."
+        },
+        "change": {
+            "description": "Athra\u00edonn s\u00e9 lasc ama tr\u00ed r\u00e9 \u00e1irithe a chur leis n\u00f3 a bhaint.",
+            "fields": {
+                "duration": {
+                    "description": "Fad le cur leis an lasc ama reatha n\u00f3 le baint uaidh.",
+                    "name": "Fad"
+                }
+            }
+        },
+        "finish": {
+            "description": "Cr\u00edochna\u00edonn s\u00e9 lasc ama at\u00e1 ag rith n\u00edos luaithe n\u00e1 mar a bh\u00ed sceidealaithe."
+        },
+        "pause": {
+            "description": "Cuireann s\u00e9 sos ar lasc ama at\u00e1 ag rith, ag coinne\u00e1il an fhaid at\u00e1 f\u00e1gtha le haghaidh lean\u00faint ar aghaidh n\u00edos d\u00e9ana\u00ed."
+        },
+        "reload": {
+            "description": "Athl\u00f3d\u00e1lann s\u00e9 lasc ama \u00f3n chumra\u00edocht YAML."
+        },
+        "start": {
+            "description": "Tosa\u00edonn s\u00e9 lasc ama n\u00f3 atosa\u00edonn s\u00e9 \u00e9 le fad ama socraithe.",
+            "fields": {
+                "duration": {
+                    "description": "Fad saincheaptha chun an lasc ama a atos\u00fa leis.",
+                    "name": "Fad"
+                }
+            }
+        }
+    },
+    "title": "Amairead\u00f3ir",
+    "triggers": {
+        "cancelled": {
+            "description": "Triggers when one or more timers are cancelled.",
+            "fields": {
+                "behavior": {
+                    "name": "Spreagadh nuair"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Cealaithe an lasc ama"
+        },
+        "finished": {
+            "description": "Spreagtar \u00e9 nuair a chr\u00edochna\u00edonn amad\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "behavior": {
+                    "name": "Spreagadh nuair"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Amad\u00f3ir cr\u00edochnaithe"
+        },
+        "paused": {
+            "description": "Spreagtar \u00e9 nuair a chuirtear sos ar amad\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "behavior": {
+                    "name": "Spreagadh nuair"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Sos curtha ar an lasc ama"
+        },
+        "remaining_time_reached": {
+            "description": "Spreagtar \u00e9 nuair a shroicheann lasc ama amh\u00e1in n\u00f3 n\u00edos m\u00f3 am ar leith at\u00e1 f\u00e1gtha.",
+            "fields": {
+                "remaining": {
+                    "name": "Am at\u00e1 f\u00e1gtha"
+                }
+            },
+            "name": "An t-am at\u00e1 f\u00e1gtha ag an amad\u00f3ir sroichte"
+        },
+        "restarted": {
+            "description": "Spreagtar \u00e9 nuair a atosa\u00edtear amad\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "behavior": {
+                    "name": "Spreagadh nuair"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Aththosa\u00edodh an lasc ama"
+        },
+        "started": {
+            "description": "Spreagann s\u00e9 nuair a thosa\u00edtear amaire amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "behavior": {
+                    "name": "Spreagadh nuair"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Cuireadh t\u00fas leis an lasc ama"
+        }
+    }
+}

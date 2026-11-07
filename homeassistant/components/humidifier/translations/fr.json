@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "condition_threshold_name": "Type de seuil",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "V\u00e9rifie si un ou plusieurs humidificateurs sont en train de s\u00e9cher.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur ass\u00e8che"
+        },
+        "is_humidifying": {
+            "description": "V\u00e9rifie si un ou plusieurs humidificateurs humidifient.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur humidifie"
+        },
+        "is_mode": {
+            "description": "V\u00e9rifie si un ou plusieurs humidificateurs sont r\u00e9gl\u00e9s sur un mode sp\u00e9cifique.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "mode": {
+                    "description": "Les modes de fonctionnement \u00e0 v\u00e9rifier.",
+                    "name": "Mode"
+                }
+            },
+            "name": "L'humidificateur est en mode"
+        },
+        "is_off": {
+            "description": "V\u00e9rifie si un ou plusieurs humidificateurs sont \u00e9teints.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur est \u00e9teint"
+        },
+        "is_on": {
+            "description": "V\u00e9rifie si un ou plusieurs humidificateurs sont allum\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur est allum\u00e9"
+        },
+        "is_target_humidity": {
+            "description": "V\u00e9rifie l'humidit\u00e9 cible d'un ou plusieurs humidificateurs.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "Humidit\u00e9 cible de l'humidificateur"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "D\u00e9finir l'humidit\u00e9 pour {entity_name}",
+            "set_mode": "Changer le mode de {entity_name}",
+            "toggle": "Basculer {entity_name}",
+            "turn_off": "D\u00e9sactiver {entity_name}",
+            "turn_on": "Activer {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} est d\u00e9fini sur un mode sp\u00e9cifique",
+            "is_off": "{entity_name} est d\u00e9sactiv\u00e9",
+            "is_on": "{entity_name} est activ\u00e9"
+        },
+        "extra_fields": {
+            "above": "Sup\u00e9rieur \u00e0",
+            "below": "Inf\u00e9rieur \u00e0",
+            "for": "Dur\u00e9e",
+            "humidity": "Humidit\u00e9",
+            "mode": "Mode"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} a \u00e9t\u00e9 activ\u00e9 ou d\u00e9sactiv\u00e9",
+            "target_humidity_changed": "L'humidit\u00e9 cible de {entity_name} a chang\u00e9",
+            "turned_off": "{entity_name} a \u00e9t\u00e9 d\u00e9sactiv\u00e9",
+            "turned_on": "{entity_name} a \u00e9t\u00e9 activ\u00e9"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Humidificateur",
+            "state": {
+                "off": "\u00c9teint",
+                "on": "Allum\u00e9"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Action",
+                    "state": {
+                        "drying": "S\u00e9chage",
+                        "humidifying": "Humidification",
+                        "idle": "Inactif",
+                        "off": "D\u00e9sactiv\u00e9"
+                    }
+                },
+                "available_modes": {
+                    "name": "Modes disponibles"
+                },
+                "current_humidity": {
+                    "name": "Humidit\u00e9 actuelle"
+                },
+                "humidity": {
+                    "name": "Humidit\u00e9 cible"
+                },
+                "max_humidity": {
+                    "name": "Humidit\u00e9 cible maximale"
+                },
+                "min_humidity": {
+                    "name": "Humidit\u00e9 cible minimale"
+                },
+                "mode": {
+                    "name": "Mode",
+                    "state": {
+                        "auto": "Auto",
+                        "away": "Absent",
+                        "baby": "B\u00e9b\u00e9",
+                        "boost": "Boost",
+                        "comfort": "Confort",
+                        "eco": "\u00c9co",
+                        "home": "Maison",
+                        "normal": "Normal",
+                        "sleep": "Sommeil"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "D\u00e9shumidificateur"
+        },
+        "humidifier": {
+            "name": "Humidificateur"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "L'humidit\u00e9 fournie {humidity} n'est pas valide. La plage accept\u00e9e est {min_humidity} \u00e0 {max_humidity}."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "D\u00e9finit l'humidit\u00e9 cible.",
+            "fields": {
+                "humidity": {
+                    "description": "Humidit\u00e9 cible.",
+                    "name": "Humidit\u00e9"
+                }
+            },
+            "name": "R\u00e9gler l'humidit\u00e9 cible"
+        },
+        "set_mode": {
+            "description": "D\u00e9finit le mode de fonctionnement d'un humidificateur.",
+            "fields": {
+                "mode": {
+                    "description": "Mode de fonctionnement. Par exemple, \u00ab\u00a0normal\u00a0\u00bb, \u00ab\u00a0eco\u00a0\u00bb ou \u00ab\u00a0away\u00a0\u00bb. Pour obtenir une liste des valeurs possibles, reportez-vous \u00e0 la documentation de l'int\u00e9gration.",
+                    "name": "Mode"
+                }
+            },
+            "name": "R\u00e9gler le mode"
+        },
+        "toggle": {
+            "description": "Allume/\u00e9teint un humidificateur.",
+            "name": "Basculer l'humidificateur"
+        },
+        "turn_off": {
+            "description": "\u00c9teint un humidificateur.",
+            "name": "\u00c9teindre l'humidificateur"
+        },
+        "turn_on": {
+            "description": "Allume un humidificateur.",
+            "name": "Allumer l'humidificateur"
+        }
+    },
+    "title": "Humidificateur",
+    "triggers": {
+        "mode_changed": {
+            "description": "Se d\u00e9clenche lorsque le mode de fonctionnement d'un ou plusieurs humidificateurs change.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "mode": {
+                    "description": "Les modes de fonctionnement sur lesquels d\u00e9clencher.",
+                    "name": "Mode"
+                }
+            },
+            "name": "Le mode de l'humidificateur a chang\u00e9"
+        },
+        "started_drying": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs humidificateurs commencent l'ass\u00e8chement.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur a commenc\u00e9 l'ass\u00e8chement"
+        },
+        "started_humidifying": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs humidificateurs commencent l'humidification.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur a commenc\u00e9 l'humidification"
+        },
+        "turned_off": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs humidificateurs s'\u00e9teignent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur s'est \u00e9teint"
+        },
+        "turned_on": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs humidificateurs s'allument.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "L'humidificateur s'est allum\u00e9"
+        }
+    }
+}

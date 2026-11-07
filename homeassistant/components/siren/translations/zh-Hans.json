@@ -1,0 +1,96 @@
+{
+    "common": {
+        "condition_behavior_name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c",
+        "condition_for_name": "\u81f3\u5c11",
+        "trigger_behavior_name": "\u89e6\u53d1\u6761\u4ef6",
+        "trigger_for_name": "\u81f3\u5c11"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u8b66\u62a5\u5668\u662f\u5426\u5173\u95ed\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        },
+        "is_on": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u8b66\u62a5\u5668\u662f\u5426\u5f00\u542f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u8b66\u62a5\u5668",
+            "state": {
+                "off": "\u5173\u95ed",
+                "on": "\u5f00\u542f"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "\u53ef\u7528\u8b66\u62a5\u58f0"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "name": "\u5207\u6362\u8b66\u62a5\u5668"
+        },
+        "turn_off": {
+            "name": "\u5173\u95ed\u8b66\u62a5\u5668"
+        },
+        "turn_on": {
+            "fields": {
+                "duration": {
+                    "description": "\u58f0\u97f3\u64ad\u653e\u7684\u79d2\u6570\u3002\u5fc5\u987b\u7531\u96c6\u6210\u652f\u6301\u3002",
+                    "name": "\u65f6\u957f"
+                },
+                "tone": {
+                    "description": "\u8981\u53d1\u51fa\u7684\u8b66\u62a5\u58f0\u3002\u5f53 available_tones \u5c5e\u6027\u662f\u6620\u5c04\u5bf9\u65f6\uff0c\u53ef\u4ee5\u4f7f\u7528\u952e\u6216\u503c\u3002\u5fc5\u987b\u7531\u96c6\u6210\u652f\u6301\u3002",
+                    "name": "\u8b66\u62a5\u58f0"
+                },
+                "volume_level": {
+                    "description": "\u97f3\u91cf\u30020 \u8868\u793a\u542c\u4e0d\u89c1\uff0c1 \u8868\u793a\u6700\u5927\u97f3\u91cf\u3002\u5fc5\u987b\u7531\u96c6\u6210\u652f\u6301\u3002",
+                    "name": "\u97f3\u91cf"
+                }
+            },
+            "name": "\u6253\u5f00\u8b66\u62a5\u5668"
+        }
+    },
+    "title": "\u8b66\u62a5\u5668",
+    "triggers": {
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u8b66\u62a5\u5668\u5df2\u5173\u95ed"
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u8b66\u62a5\u5668\u542f\u52a8"
+        }
+    }
+}

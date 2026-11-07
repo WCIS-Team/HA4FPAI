@@ -1,0 +1,163 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_event_active": {
+            "description": "Comprueba si uno o m\u00e1s calendarios tienen un evento activo.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El evento del calendario est\u00e1 activo."
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Calendario",
+            "state": {
+                "off": "Apagado",
+                "on": "Encendido"
+            },
+            "state_attributes": {
+                "all_day": {
+                    "name": "Todo el d\u00eda",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ed"
+                    }
+                },
+                "description": {
+                    "name": "Descripci\u00f3n"
+                },
+                "end_time": {
+                    "name": "Hora de finalizaci\u00f3n"
+                },
+                "location": {
+                    "name": "Ubicaci\u00f3n"
+                },
+                "message": {
+                    "name": "Mensaje"
+                },
+                "start_time": {
+                    "name": "Hora de inicio"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_calendar_list_events": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Utiliza `calendar.get_events` en su lugar, que admite m\u00faltiples entidades.\n\nPor favor, sustituye esta acci\u00f3n, ajusta tus automatizaciones y scripts y selecciona **Enviar** para cerrar este problema.",
+                        "title": "Se ha detectado el uso de la acci\u00f3n obsoleta calendar.list_events"
+                    }
+                }
+            },
+            "title": "Se ha detectado el uso de la acci\u00f3n obsoleta calendar.list_events"
+        }
+    },
+    "selector": {
+        "trigger_offset_type": {
+            "options": {
+                "after": "Despu\u00e9s de",
+                "before": "Antes de"
+            }
+        }
+    },
+    "services": {
+        "create_event": {
+            "description": "A\u00f1ade un nuevo evento de calendario.",
+            "fields": {
+                "description": {
+                    "description": "Una descripci\u00f3n m\u00e1s completa del evento que la proporcionada por el resumen.",
+                    "name": "Descripci\u00f3n"
+                },
+                "end_date": {
+                    "description": "La fecha en que debe finalizar el evento de todo el d\u00eda (excluyente).",
+                    "name": "Fecha de fin"
+                },
+                "end_date_time": {
+                    "description": "La fecha y hora en que debe finalizar el evento.",
+                    "name": "Hora de finalizaci\u00f3n"
+                },
+                "in": {
+                    "description": "D\u00edas o semanas en los que quieres crear el evento.",
+                    "name": "En"
+                },
+                "location": {
+                    "description": "La ubicaci\u00f3n del evento.",
+                    "name": "Ubicaci\u00f3n"
+                },
+                "start_date": {
+                    "description": "La fecha en que debe comenzar el evento de todo el d\u00eda.",
+                    "name": "Fecha de inicio"
+                },
+                "start_date_time": {
+                    "description": "La fecha y hora en que debe comenzar el evento.",
+                    "name": "Hora de inicio"
+                },
+                "summary": {
+                    "description": "Define un breve resumen o el asunto del evento.",
+                    "name": "Resumen"
+                }
+            },
+            "name": "Crear evento de calendario"
+        },
+        "get_events": {
+            "description": "Recupera eventos de un calendario dentro de un rango de tiempo.",
+            "fields": {
+                "duration": {
+                    "description": "Devuelve eventos activos desde la hora de inicio durante la duraci\u00f3n especificada.",
+                    "name": "Duraci\u00f3n"
+                },
+                "end_date_time": {
+                    "description": "Devuelve los eventos activos antes de este momento (exclusivo). No se puede utilizar con Duraci\u00f3n.",
+                    "name": "Hora de finalizaci\u00f3n"
+                },
+                "start_date_time": {
+                    "description": "Devuelve los eventos activos despu\u00e9s de este tiempo (exclusivo). Cuando no est\u00e1 configurado, el valor predeterminado es ahora.",
+                    "name": "Hora de inicio"
+                }
+            },
+            "name": "Obtener eventos del calendario"
+        }
+    },
+    "title": "Calendario",
+    "triggers": {
+        "event_ended": {
+            "description": "Se dispara cuando uno o m\u00e1s eventos del calendario finalizan.",
+            "fields": {
+                "offset": {
+                    "description": "Desfase respecto al final del evento.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Si se dispara antes o despu\u00e9s del final del evento, si se define un desfase.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "Evento del calendario finalizado"
+        },
+        "event_started": {
+            "description": "Se dispara cuando uno o m\u00e1s eventos del calendario comienzan.",
+            "fields": {
+                "offset": {
+                    "description": "Desfase respecto al inicio del evento.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Si se debe disparar antes o despu\u00e9s del inicio del evento, si se define un desfase.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "Evento del calendario iniciado"
+        }
+    }
+}

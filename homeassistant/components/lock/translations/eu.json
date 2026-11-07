@@ -1,0 +1,59 @@
+{
+    "device_automation": {
+        "action_type": {
+            "lock": "{entity_name} blokeatu",
+            "open": "{entity_name} ireki",
+            "unlock": "{entity_name} desblokeatu"
+        },
+        "condition_type": {
+            "is_locked": "{entity_name} blokeatuta dago",
+            "is_unlocked": "{entity_name} desblokeatuta dago"
+        },
+        "extra_fields": {
+            "for": "Iraupena"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} blokeatuta",
+            "unlocked": "{entity_name} desblokeatuta"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "state": {
+                "locked": "Itxita",
+                "open": "Irekita",
+                "opening": "Irekitzen"
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "{entity_id}-ren kodeak ez dator {code_format} patroiarekin bat."
+        }
+    },
+    "services": {
+        "lock": {
+            "fields": {
+                "code": {
+                    "name": "Kodea"
+                }
+            }
+        },
+        "open": {
+            "description": "Sarraila irekitzen du.",
+            "fields": {
+                "code": {
+                    "name": "Kodea"
+                }
+            },
+            "name": "Sarraila ireki"
+        },
+        "unlock": {
+            "fields": {
+                "code": {
+                    "name": "Kodea"
+                }
+            }
+        }
+    }
+}

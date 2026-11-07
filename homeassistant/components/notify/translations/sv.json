@@ -1,0 +1,88 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Aviseringar"
+        }
+    },
+    "issues": {
+        "migrate_notify": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "{integration_title} `notify`-tj\u00e4nsten(erna) \u00e4r migrerade. En ny `notify`-enhet \u00e4r nu tillg\u00e4nglig f\u00f6r att ers\u00e4tta varje \u00e4ldre `notify`-tj\u00e4nst.\n\nUppdatera alla automatiseringar f\u00f6r att anv\u00e4nda den nya `notify.send_message`-tj\u00e4nsten som exponeras med den nya enheten. N\u00e4r detta \u00e4r gjort, \u00e5tg\u00e4rda detta problem och starta om Home Assistant.",
+                        "title": "Migrera \u00e4ldre aviseringstj\u00e4nst {integration_title} f\u00f6r dom\u00e4nen `{domain}`"
+                    }
+                }
+            },
+            "title": "Migrering av aviseringstj\u00e4nsten {integration_title}"
+        },
+        "migrate_notify_service": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "{integration_title} `notify.{service_name}`-\u00e5tg\u00e4rden har migrerats, men det verkar som om den gamla `notify`-\u00e5tg\u00e4rden fortfarande anv\u00e4nds.\n\nEn ny `notify`-entitet finns nu tillg\u00e4nglig f\u00f6r att ers\u00e4tta varje \u00e4ldre `notify`-\u00e5tg\u00e4rd.\n\nUppdatera alla automatiseringar eller skript s\u00e5 att de anv\u00e4nder den nya `notify.send_message`-\u00e5tg\u00e4rden som exponeras med denna nya entitet. N\u00e4r detta \u00e4r gjort v\u00e4ljer du Bekr\u00e4fta och startar om Home Assistant.",
+                        "title": "Migrera \u00e4ldre aviseringstj\u00e4nst {integration_title} f\u00f6r dom\u00e4nen `{domain}`"
+                    }
+                }
+            },
+            "title": "\u00c4ldre \u00e5tg\u00e4rd `notify.{service_name}` anv\u00e4nds fortfarande"
+        }
+    },
+    "services": {
+        "notify": {
+            "description": "Skickar ett aviseringsmeddelande till valda m\u00e5l.",
+            "fields": {
+                "data": {
+                    "description": "Vissa integrationer tillhandah\u00e5ller ut\u00f6kad funktionalitet via detta f\u00e4lt. Mer information finns i dokumentationen f\u00f6r integrationen.",
+                    "name": "Data"
+                },
+                "message": {
+                    "description": "Aviseringens meddelandetext.",
+                    "name": "Meddelande"
+                },
+                "target": {
+                    "description": "I vissa integrationer kan du ange vilka m\u00e5l som ska f\u00e5 aviseringen. Mer information finns i integrationens dokumentation.",
+                    "name": "M\u00e5l"
+                },
+                "title": {
+                    "description": "Rubrik f\u00f6r din avisering.",
+                    "name": "Rubrik"
+                }
+            },
+            "name": "Skicka en avisering"
+        },
+        "persistent_notification": {
+            "description": "Skickar en avisering som visas i aviseringspanelen.",
+            "fields": {
+                "data": {
+                    "description": "Vissa integrationer tillhandah\u00e5ller ut\u00f6kad funktionalitet via detta f\u00e4lt. Mer information finns i dokumentationen f\u00f6r integrationen.",
+                    "name": "[%key_id:349730738%]"
+                },
+                "message": {
+                    "description": "[%key_id:349730739%]",
+                    "name": "[%key_id:349730740%]"
+                },
+                "title": {
+                    "description": "[%key_id:349730743%]",
+                    "name": "[%key_id:349730744%]"
+                }
+            },
+            "name": "Skicka en best\u00e4ndig avisering"
+        },
+        "send_message": {
+            "description": "Skickar ett aviseringsmeddelande.",
+            "fields": {
+                "message": {
+                    "description": "Ditt aviseringsmeddelande.",
+                    "name": "Meddelande"
+                },
+                "title": {
+                    "description": "Rubrik f\u00f6r din avisering.",
+                    "name": "Rubrik"
+                }
+            },
+            "name": "Skicka ett aviseringsmeddelande"
+        }
+    },
+    "title": "Aviseringar"
+}

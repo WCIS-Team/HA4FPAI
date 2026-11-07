@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Patikrina, ar yra vienas ar keli atnaujinimai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Atnaujinimas pasiekiamas"
+        },
+        "is_not_available": {
+            "description": "Testuoja, ar n\u0117ra vieno ar keli\u0173 atnaujinim\u0173.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Atnaujinimas nepasiekiamas"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Trukm\u0117"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} naujinio prieinamumas",
+            "turned_off": "{entity_name} tapo naujausia",
+            "turned_on": "{entity_name} yra naujinys"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Atnaujinimas",
+            "state": {
+                "off": "Naujausia",
+                "on": "Galimas atnaujinimas"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Automatinis atnaujinimas",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Taip"
+                    }
+                },
+                "in_progress": {
+                    "name": "Vykdoma",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Taip"
+                    }
+                },
+                "installed_version": {
+                    "name": "\u012ediegta versija"
+                },
+                "latest_version": {
+                    "name": "Naujausia versija"
+                },
+                "release_summary": {
+                    "name": "I\u0161leidimo santrauka"
+                },
+                "release_url": {
+                    "name": "I\u0161leidimo URL"
+                },
+                "skipped_version": {
+                    "name": "Praleista versija"
+                },
+                "title": {
+                    "name": "Pavadinimas"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Programin\u0117-technin\u0117 \u012franga"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "Atsargini\u0173 kopij\u0173 k\u016brimas nepalaikomas {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "Praleisto atnaujinimo i\u0161valymas nepalaikomas {entity_id}."
+        },
+        "no_update_available": {
+            "message": "N\u0117ra pasiekiam\u0173 atnaujinim\u0173 {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "N\u0117ra atnaujinim\u0173, kuriuos b\u016bt\u0173 galima praleisti {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "Praleisti atnaujinim\u0105 negalima, jei {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "Konkre\u010dios versijos diegimas nepalaikomas {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "Negalima praleisti ne\u017einomos versijos {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "Jau vyksta atnaujinimo diegimas, skirtas {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Pa\u0161alina praleistos versijos \u017eymekl\u012f i\u0161 naujinimo.",
+            "name": "I\u0161valyti praleist\u0105 naujinim\u0105"
+        },
+        "install": {
+            "description": "\u012ediegiamas \u012frenginio arba paslaugos naujinimas.",
+            "fields": {
+                "backup": {
+                    "description": "Jei integracija palaiko, prie\u0161 pradedant naujinim\u0105 sukuriama atsargin\u0117 kopija.",
+                    "name": "Atsargin\u0117 kopija"
+                },
+                "version": {
+                    "description": "Versija, kuri\u0105 reikia \u012fdiegti. Jei praleista, bus \u012fdiegta naujausia versija.",
+                    "name": "Versija"
+                }
+            },
+            "name": "\u012ediekite naujinim\u0105"
+        },
+        "skip": {
+            "description": "Pa\u017eymi \u0161iuo metu galim\u0105 atnaujinim\u0105 kaip praleist\u0105.",
+            "name": "Praleisti atnaujinim\u0105"
+        }
+    },
+    "title": "Atnaujinimas",
+    "triggers": {
+        "became_available": {
+            "description": "Suveikia, kai tampa prieinamas vienas ar keli atnaujinimai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Atnaujinimas tapo prieinamas"
+        }
+    }
+}

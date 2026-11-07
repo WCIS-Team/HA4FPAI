@@ -1,0 +1,651 @@
+{
+    "config": {
+        "abort": {
+            "addon_get_discovery_info_failed": "Det lykkedes ikke at hente oplysninger om Matter Server-appens opdagelse.",
+            "addon_info_failed": "Det lykkedes ikke at hente oplysninger om Matter Server-appen.",
+            "addon_install_failed": "Kunne ikke installere Matter Server-appen.",
+            "addon_start_failed": "Kunne ikke starte Matter Server-appen.",
+            "already_configured": "Enheden er allerede konfigureret",
+            "cannot_connect": "Forbindelse mislykkedes",
+            "not_matter_addon": "Den fundne app er ikke den officielle Matter Server-app.",
+            "reconfiguration_successful": "Matter-integrationen blev omkonfigureret."
+        },
+        "error": {
+            "cannot_connect": "Forbindelse mislykkedes",
+            "invalid_server_version": "Matter-serveren er ikke den korrekte version",
+            "unknown": "Uventet fejl"
+        },
+        "flow_title": "{name}",
+        "progress": {
+            "install_addon": "Vent venligst, mens installationen af Matter Server-appen afsluttes. Det kan tage flere minutter.",
+            "start_addon": "Vent venligst, mens Matter Server-appen starter. Denne app er det, der driver Matter i Home Assistant. Det kan tage et par sekunder."
+        },
+        "step": {
+            "hassio_confirm": {
+                "title": "Konfigur\u00e9r Matter-integrationen med Matter Server-appen"
+            },
+            "install_addon": {
+                "title": "Appinstallationen er startet"
+            },
+            "manual": {
+                "data": {
+                    "url": "URL"
+                }
+            },
+            "on_supervisor": {
+                "data": {
+                    "use_addon": "Brug den officielle Matter Server Supervisor-app"
+                },
+                "description": "Vil du bruge den officielle Matter Server Supervisor-app?\n\nHvis du allerede k\u00f8rer Matter Server i en anden app, i en brugerdefineret container, indbygget osv., skal du ikke v\u00e6lge denne indstilling.",
+                "title": "V\u00e6lg forbindelsesmetode"
+            },
+            "start_addon": {
+                "title": "Starter app."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "active_hardware_faults": {
+                "name": "Hardwarefejl"
+            },
+            "active_network_faults": {
+                "name": "Netv\u00e6rksfejl"
+            },
+            "active_radio_faults": {
+                "name": "Radiofejl"
+            },
+            "actuator": {
+                "name": "Aktuator"
+            },
+            "alarm_door": {
+                "name": "D\u00f8ralarm"
+            },
+            "battery_alert": {
+                "name": "Batterialarm"
+            },
+            "boost_state": {
+                "name": "Boost-tilstand"
+            },
+            "config_status_operational": {
+                "name": "Konfigurationsstatus"
+            },
+            "dishwasher_alarm_inflow": {
+                "name": "Indl\u00f8bsalarm"
+            },
+            "end_of_service": {
+                "name": "Levetid udl\u00f8bet"
+            },
+            "evse_charging_status": {
+                "name": "Opladningsstatus"
+            },
+            "evse_plug": {
+                "name": "Stiktilstand"
+            },
+            "hardware_fault": {
+                "name": "Hardwarefejl"
+            },
+            "interconnected_co_alarm": {
+                "name": "Sammenkoblet CO-alarm"
+            },
+            "interconnected_smoke_alarm": {
+                "name": "Sammenkoblet r\u00f8galarm"
+            },
+            "muted": {
+                "name": "Lydl\u00f8s"
+            },
+            "rain": {
+                "name": "Regn"
+            },
+            "test_in_progress": {
+                "name": "Test i gang"
+            },
+            "thermostat_remote_sensing_local_temperature": {
+                "name": "Fjernm\u00e5ling af rumtemperatur"
+            },
+            "thermostat_remote_sensing_occupancy": {
+                "name": "Fjernm\u00e5ling af tilstedev\u00e6relse"
+            },
+            "thermostat_remote_sensing_outdoor_temperature": {
+                "name": "Fjernm\u00e5ling af udetemperatur"
+            },
+            "valve_fault_blocked": {
+                "name": "Ventil blokeret"
+            },
+            "valve_fault_general_fault": {
+                "name": "Generel fejl"
+            },
+            "valve_fault_leaking": {
+                "name": "Ventil ut\u00e6t"
+            },
+            "water_freeze": {
+                "name": "Frostfare for vand"
+            },
+            "water_leak": {
+                "name": "Vandl\u00e6kage"
+            }
+        },
+        "button": {
+            "resume": {
+                "name": "Genoptag"
+            },
+            "self_test_request": {
+                "name": "Selvtest"
+            },
+            "start": {
+                "name": "Start"
+            },
+            "stop": {
+                "name": "Stop"
+            },
+            "temporary_mute_request": {
+                "name": "Midlertidig lydl\u00f8s"
+            }
+        },
+        "climate": {
+            "thermostat": {
+                "name": "Termostat",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "going_to_sleep": "G\u00e5r i seng",
+                            "vacation": "Ferie",
+                            "wake": "Opv\u00e5gning"
+                        }
+                    }
+                }
+            }
+        },
+        "cover": {
+            "cover": {
+                "name": "Gardin/port"
+            }
+        },
+        "event": {
+            "button": {
+                "state_attributes": {
+                    "event_type": {
+                        "state": {
+                            "initial_press": "Trykket",
+                            "long_press": "Holdt nede",
+                            "long_release": "Sluppet efter langt tryk",
+                            "multi_press_1": "Trykket \u00e9n gang",
+                            "multi_press_2": "Trykket to gange",
+                            "multi_press_3": "Trykket 3 gange",
+                            "multi_press_4": "Trykket 4 gange",
+                            "multi_press_5": "Trykket 5 gange",
+                            "multi_press_6": "Trykket 6 gange",
+                            "multi_press_7": "Trykket 7 gange",
+                            "multi_press_8": "Trykket 8 gange",
+                            "short_release": "Sluppet efter kort tryk",
+                            "switch_latched": "Kontakt skiftet"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan": {
+                "name": "Bl\u00e6ser"
+            }
+        },
+        "light": {
+            "light": {
+                "name": "Lys"
+            }
+        },
+        "lock": {
+            "lock": {
+                "name": "L\u00e5s"
+            }
+        },
+        "number": {
+            "auto_relock_timer": {
+                "name": "Tid f\u00f8r automatisk genl\u00e5sning"
+            },
+            "cook_time": {
+                "name": "Tilberedningstid"
+            },
+            "detection_delay": {
+                "name": "Detektionsforsinkelse"
+            },
+            "detection_threshold": {
+                "name": "Detektionsgr\u00e6nse"
+            },
+            "hold_time": {
+                "name": "Holdetid"
+            },
+            "led_indicator_intensity_off": {
+                "name": "LED-lysstyrke n\u00e5r slukket"
+            },
+            "led_indicator_intensity_on": {
+                "name": "LED-lysstyrke n\u00e5r t\u00e6ndt"
+            },
+            "off_transition_time": {
+                "name": "Overgangstid ved slukning"
+            },
+            "on_level": {
+                "name": "T\u00e6ndingsniveau"
+            },
+            "on_off_transition_time": {
+                "name": "Overgangstid ved t\u00e6nd/sluk"
+            },
+            "on_transition_time": {
+                "name": "Overgangstid ved t\u00e6nding"
+            },
+            "power_on_level": {
+                "name": "T\u00e6ndingsniveau"
+            },
+            "sensitivity_level": {
+                "name": "F\u00f8lsomhed"
+            },
+            "slat_rotation_time": {
+                "name": "Rotationstid for lameller"
+            },
+            "speaker_setpoint": {
+                "name": "Lydstyrke"
+            },
+            "temperature_offset": {
+                "name": "Temperaturkorrektion"
+            },
+            "temperature_setpoint": {
+                "name": "Indstillet temperatur"
+            },
+            "travel_time_down": {
+                "name": "K\u00f8retid ned"
+            },
+            "travel_time_up": {
+                "name": "K\u00f8retid op"
+            },
+            "user_code_temporary_disable_time": {
+                "name": "Sp\u00e6rretid efter forkert kode"
+            },
+            "valve_configuration_and_control_default_open_duration": {
+                "name": "Standardvarighed for \u00e5bning"
+            },
+            "wrong_code_entry_limit": {
+                "name": "Forkert kode-gr\u00e6nse"
+            }
+        },
+        "select": {
+            "door_lock_operating_mode": {
+                "name": "Driftstilstand",
+                "state": {
+                    "no_remote_lock_unlock": "Ingen fjernstyring af l\u00e5sen",
+                    "normal": "Normal",
+                    "passage": "Fri passage",
+                    "privacy": "Privatliv",
+                    "vacation": "Ferie"
+                }
+            },
+            "door_lock_sound_volume": {
+                "name": "Lydstyrke",
+                "state": {
+                    "silent": "Lydl\u00f8s"
+                }
+            },
+            "pump_operation_mode": {
+                "name": "tilstand",
+                "state": {
+                    "local": "Lokal",
+                    "maximum": "Maksimum",
+                    "minimum": "Minimum",
+                    "normal": "Normal"
+                }
+            },
+            "selected_chime": {
+                "name": "Klokkelyd"
+            },
+            "sensitivity_level": {
+                "name": "F\u00f8lsomhed",
+                "state": {
+                    "standard": "Standard"
+                }
+            },
+            "startup_on_off": {
+                "name": "Adf\u00e6rd ved t\u00e6nding",
+                "state": {
+                    "previous": "Forrige tilstand",
+                    "toggle": "Omskift til/fra"
+                }
+            },
+            "switch_type": {
+                "name": "Kontakttype",
+                "state": {
+                    "button": "Knap",
+                    "switch": "Kontakt"
+                }
+            },
+            "temperature_display_mode": {
+                "name": "Temperaturenhed"
+            }
+        },
+        "sensor": {
+            "active_current": {
+                "name": "Aktiv str\u00f8m"
+            },
+            "air_quality": {
+                "name": "Luftkvalitet",
+                "state": {
+                    "extremely_poor": "Ekstremt d\u00e5rlig",
+                    "fair": "Rimelig",
+                    "good": "God",
+                    "moderate": "Moderat",
+                    "poor": "D\u00e5rlig",
+                    "very_poor": "Meget d\u00e5rlig"
+                }
+            },
+            "apparent_current": {
+                "name": "Tilsyneladende str\u00f8m"
+            },
+            "auto_close_time": {
+                "name": "Automatisk lukningstidspunkt"
+            },
+            "battery_charge_state": {
+                "name": "Batteriopladningstilstand",
+                "state": {
+                    "charging": "Oplader",
+                    "full_charge": "Fuld opladning",
+                    "not_charging": "Oplader ikke"
+                }
+            },
+            "battery_voltage": {
+                "name": "Batterisp\u00e6nding"
+            },
+            "boot_reason": {
+                "name": "\u00c5rsag til opstart",
+                "state": {
+                    "brown_out_reset": "Nulstilling efter str\u00f8mafbrydelse",
+                    "hardware_watchdog_reset": "Nulstilling af hardware-overv\u00e5gning",
+                    "power_on_reboot": "Genstart ved opstart",
+                    "software_reset": "Nulstilling af software",
+                    "software_update_completed": "Softwareopdatering fuldf\u00f8rt",
+                    "software_watchdog_reset": "Nulstilling af softwareoverv\u00e5gning",
+                    "unspecified": "Uspecificeret"
+                }
+            },
+            "door_closed_events": {
+                "name": "Antal d\u00f8rlukninger"
+            },
+            "door_open_events": {
+                "name": "Antal d\u00f8r\u00e5bninger"
+            },
+            "energy_exported": {
+                "name": "Eksporteret energi"
+            },
+            "esa_state": {
+                "name": "Apparatets energitilstand",
+                "state": {
+                    "fault": "Fejl",
+                    "offline": "Offline",
+                    "online": "Online",
+                    "paused": "P\u00e5 pause",
+                    "power_adjust_active": "Str\u00f8mjustering"
+                }
+            },
+            "eve_weather_trend": {
+                "name": "Vejrtendens",
+                "state": {
+                    "cloudy": "Overskyet",
+                    "rainy": "Regnfuldt",
+                    "stormy": "Stormfuldt",
+                    "sunny": "Solrigt"
+                }
+            },
+            "nitrogen_dioxide": {
+                "name": "Nitrogendioxid"
+            },
+            "operational_error": {
+                "name": "Driftsfejl",
+                "state": {
+                    "brush_jammed": "B\u00f8rsten sidder fast",
+                    "cannot_reach_target_area": "Kan ikke n\u00e5 m\u00e5lomr\u00e5det",
+                    "command_invalid_in_state": "Kommandoen er ugyldig i den aktuelle tilstand",
+                    "dirty_water_tank_full": "Tanken til snavset vand er fuld",
+                    "dirty_water_tank_missing": "Tanken til snavset vand mangler",
+                    "failed_to_find_charging_dock": "Kunne ikke finde opladningsdocken"
+                }
+            },
+            "operational_state": {
+                "state": {
+                    "charging": "Oplader",
+                    "stopped": "Stoppet"
+                }
+            },
+            "outdoor_temperature": {
+                "name": "Udetemperatur"
+            },
+            "pi_heating_demand": {
+                "name": "Varmebehov"
+            },
+            "pump_control_mode": {
+                "name": "Kontroltilstand",
+                "state": {
+                    "automatic": "Automatisk",
+                    "constant_flow": "Konstant flow",
+                    "constant_pressure": "Konstant tryk",
+                    "constant_speed": "Konstant hastighed",
+                    "constant_temperature": "Konstant temperatur",
+                    "proportional_pressure": "Proportionelt tryk"
+                }
+            },
+            "pump_speed": {
+                "name": "Omdrejningshastighed"
+            },
+            "radon_concentration": {
+                "name": "Radonkoncentration"
+            },
+            "reactive_current": {
+                "name": "Reaktiv str\u00f8m"
+            },
+            "reboot_count": {
+                "name": "Genstartsantal"
+            },
+            "rms_current": {
+                "name": "Effektiv str\u00f8m"
+            },
+            "rms_voltage": {
+                "name": "Effektiv sp\u00e6nding"
+            },
+            "thread_channel": {
+                "name": "Thread-kanal"
+            },
+            "thread_network_name": {
+                "name": "Navn p\u00e5 Thread-netv\u00e6rk"
+            },
+            "thread_routing_role": {
+                "name": "Thread routing-rolle",
+                "state": {
+                    "end_device": "Slutenhed",
+                    "leader": "Leader",
+                    "reed": "Router-kvalificeret slutenhed",
+                    "router": "Router",
+                    "sleepy_end_device": "'S\u00f8vnig' slutenhed",
+                    "unassigned": "Ikke-tildelt",
+                    "unknown": "Ukendt",
+                    "unspecified": "Uspecificeret"
+                }
+            },
+            "uptime": {
+                "name": "Oppetid"
+            },
+            "valve_position": {
+                "name": "Ventilposition"
+            },
+            "wifi_rssi": {
+                "name": "WiFi RSSI"
+            },
+            "window_covering_target_position": {
+                "name": "\u00d8nsket \u00e5bningsposition"
+            }
+        },
+        "siren": {
+            "siren": {
+                "name": "Sirene"
+            }
+        },
+        "switch": {
+            "child_lock": {
+                "name": "B\u00f8rnel\u00e5s"
+            },
+            "display": {
+                "name": "Sk\u00e6rm"
+            },
+            "one_touch_locking": {
+                "name": "L\u00e5s med \u00e9t tryk"
+            },
+            "power": {
+                "name": "Elektrisk effekt"
+            },
+            "privacy_mode_button": {
+                "name": "Knap til privatlivstilstand"
+            },
+            "speaker_mute": {
+                "name": "Sl\u00e5 lyd fra"
+            },
+            "switch": {
+                "name": "Kontakt"
+            }
+        },
+        "vacuum": {
+            "vacuum": {
+                "name": "St\u00f8vsuger"
+            }
+        },
+        "valve": {
+            "valve": {
+                "name": "Ventil"
+            }
+        },
+        "water_heater": {
+            "water_heater": {
+                "name": "Vandvarmer"
+            }
+        }
+    },
+    "exceptions": {
+        "addon_not_installed": {
+            "message": "Matter Server-appen er ikke installeret endnu."
+        },
+        "addon_not_ready": {
+            "message": "Matter Server-appen er endnu ikke klar."
+        },
+        "addon_not_running": {
+            "message": "Matter Server-appen k\u00f8rer ikke endnu."
+        },
+        "credential_type_not_supported": {
+            "message": "L\u00e5sen underst\u00f8tter ikke legitimationsoplysninger af typen `{credential_type}`."
+        },
+        "invalid_credential_data": {
+            "message": "Ugyldige legitimationsoplysninger: {reason}."
+        },
+        "set_credential_failed": {
+            "message": "Kunne ikke angive legitimationsoplysninger: l\u00e5s returnerede status `{status}`."
+        }
+    },
+    "issues": {
+        "ipv6_disabled": {
+            "description": "Matter bruger IPv6 til at kommunikere med visse enheder, men IPv6 er deaktiveret p\u00e5 alle dine tilsluttede netv\u00e6rksgr\u00e6nseflader. Lokalt tilsluttede WiFi- og Ethernet-enheder fungerer muligvis stadig, men visse funktioner, s\u00e5som brug af en ekstern Thread-gr\u00e6nserouter, kr\u00e6ver, at IPv6 er aktiveret. V\u00e6lg \"L\u00e6r mere\" for at \u00e5bne netv\u00e6rksindstillingerne.",
+            "title": "IPv6 er deaktiveret, men kr\u00e6ves af Matter"
+        }
+    },
+    "services": {
+        "clear_lock_credential": {
+            "description": "Fjerner en legitimationsoplysning fra en l\u00e5s.",
+            "fields": {
+                "credential_index": {
+                    "description": "Indekset for legitimationsoplysninger, der skal ryddes.",
+                    "name": "Indeks over legitimationsoplysninger"
+                },
+                "credential_type": {
+                    "description": "Den type legitimationsoplysninger, der skal ryddes."
+                }
+            },
+            "name": "Ryd l\u00e5seoplysninger"
+        },
+        "clear_lock_user": {
+            "description": "Sletter en l\u00e5sebruger og alle tilh\u00f8rende legitimationsoplysninger. Brug indeks 65534 til at rydde alle brugere.",
+            "fields": {
+                "user_index": {
+                    "description": "Brugerpladsindekset (1-baseret) for at rydde, eller 65534 for at rydde alt.",
+                    "name": "Brugerindeks"
+                }
+            },
+            "name": "Ryd l\u00e5sebruger"
+        },
+        "get_lock_credential_status": {
+            "description": "Returnerer status for en legitimationsplads p\u00e5 en l\u00e5s.",
+            "fields": {
+                "credential_index": {
+                    "description": "Indekset for legitimationsoplysninger, der skal foresp\u00f8rges.",
+                    "name": "Legitimationsindeks"
+                },
+                "credential_type": {
+                    "description": "Den type legitimationsoplysninger, der skal foresp\u00f8rges.",
+                    "name": "Legitimationstype"
+                }
+            },
+            "name": "F\u00e5 status for l\u00e5seoplysninger"
+        },
+        "get_lock_info": {
+            "description": "Returnerer l\u00e5sefunktioner, herunder underst\u00f8ttede legitimationsoplysninger, brugerkapacitet og begr\u00e6nsninger for pinkodel\u00e6ngde.",
+            "name": "F\u00e5 l\u00e5seoplysninger"
+        },
+        "get_lock_users": {
+            "description": "Returnerer alle brugere, der er konfigureret p\u00e5 en l\u00e5s, med deres legitimationsoplysninger.",
+            "name": "F\u00e5 l\u00e5sebrugere"
+        },
+        "set_lock_credential": {
+            "description": "Tilf\u00f8jer eller opdaterer en legitimationsoplysning p\u00e5 en l\u00e5s.",
+            "fields": {
+                "credential_data": {
+                    "description": "Legitimationsoplysningerne. For PIN: kun cifre. For RFID: hexadecimal streng.",
+                    "name": "Legitimationsdata"
+                },
+                "credential_index": {
+                    "description": "Indekset for legitimationsoplysninger. Lad feltet st\u00e5 tomt for automatisk at finde en ledig plads.",
+                    "name": "Legitimationsindeks"
+                },
+                "credential_type": {
+                    "description": "Typen af legitimationsoplysninger (f.eks. pinkode, RFID, fingeraftryk).",
+                    "name": "Legitimationstype"
+                },
+                "user_index": {
+                    "description": "Brugerindekset, som legitimationsoplysningerne skal knyttes til. Lad feltet st\u00e5 tomt for automatisk tildeling.",
+                    "name": "Brugerindeks"
+                },
+                "user_status": {
+                    "description": "Brugerstatus, der skal indstilles, n\u00e5r en ny bruger oprettes for denne legitimationsoplysninger.",
+                    "name": "Brugerstatus"
+                },
+                "user_type": {
+                    "description": "Den brugertype, der skal angives, n\u00e5r en ny bruger oprettes til denne legitimationsoplysning.",
+                    "name": "Brugertype"
+                }
+            },
+            "name": "Opret l\u00e5selegitimationsoplysning"
+        },
+        "set_lock_user": {
+            "description": "Opretter eller opdaterer en l\u00e5se-bruger.",
+            "fields": {
+                "credential_rule": {
+                    "description": "Legitimationsreglen for brugeren.",
+                    "name": "Legitimationsregel"
+                },
+                "user_index": {
+                    "description": "Brugerens pladsindeks (1-baseret). Lad feltet st\u00e5 tomt for automatisk at finde en ledig plads.",
+                    "name": "Brugerindeks"
+                },
+                "user_name": {
+                    "description": "Navnet p\u00e5 brugeren.",
+                    "name": "Brugernavn"
+                },
+                "user_type": {
+                    "description": "Den type bruger, der skal oprettes.",
+                    "name": "Brugertype"
+                }
+            },
+            "name": "Indstil l\u00e5se bruger"
+        }
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "urz\u0105dzenie {entity_name} jest w domu",
+            "is_not_home": "urz\u0105dzenie {entity_name} jest poza domem"
+        },
+        "extra_fields": {
+            "zone": "Strefa"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} wejdzie do strefy",
+            "leaves": "{entity_name} opu\u015bci stref\u0119"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Lokalizator",
+            "state": {
+                "home": "w domu",
+                "not_home": "poza domem"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Bateria"
+                },
+                "gps_accuracy": {
+                    "name": "Dok\u0142adno\u015b\u0107 GPS"
+                },
+                "latitude": {
+                    "name": "Szeroko\u015b\u0107 geograficzna"
+                },
+                "longitude": {
+                    "name": "D\u0142ugo\u015b\u0107 geograficzna"
+                },
+                "source_type": {
+                    "name": "\u017ar\u00f3d\u0142o",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "router"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "see": {
+            "description": "R\u0119cznie zaktualizuj rekordy widzianego przestarza\u0142ego narz\u0119dzia do \u015bledzenia urz\u0105dze\u0144 w pliku known_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "Poziom na\u0142adowania baterii urz\u0105dzenia.",
+                    "name": "Poziom na\u0142adowania baterii"
+                },
+                "dev_id": {
+                    "description": "ID urz\u0105dzenia (znajd\u017a ID w pliku `known_devices.yaml`).",
+                    "name": "Identyfikator urz\u0105dzenia"
+                },
+                "gps": {
+                    "description": "Wsp\u00f3\u0142rz\u0119dne GPS lokalizacji urz\u0105dzenia, okre\u015blone za pomoc\u0105 szeroko\u015bci i d\u0142ugo\u015bci geograficznej (na przyk\u0142ad: [51.513845, -0.100539]).",
+                    "name": "Wsp\u00f3\u0142rz\u0119dne GPS"
+                },
+                "gps_accuracy": {
+                    "description": "Dok\u0142adno\u015b\u0107 wsp\u00f3\u0142rz\u0119dnych GPS.",
+                    "name": "Dok\u0142adno\u015b\u0107 GPS"
+                },
+                "host_name": {
+                    "description": "Nazwa hosta urz\u0105dzenia.",
+                    "name": "Nazwa hosta"
+                },
+                "location_name": {
+                    "description": "Nazwa lokalizacji, w kt\u00f3rej znajduje si\u0119 urz\u0105dzenie. Dost\u0119pne opcje to: `home`, `not_home` lub nazwa strefy.",
+                    "name": "Lokalizacja"
+                },
+                "mac": {
+                    "description": "Adres MAC urz\u0105dzenia.",
+                    "name": "Adres MAC"
+                }
+            }
+        }
+    },
+    "title": "Lokalizator"
+}

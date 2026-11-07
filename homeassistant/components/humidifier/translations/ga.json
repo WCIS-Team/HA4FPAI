@@ -1,0 +1,218 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil taiseoir amh\u00e1in n\u00f3 n\u00edos m\u00f3 ag triom\u00fa.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an taiseoir ag triom\u00fa"
+        },
+        "is_humidifying": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil taiseoir amh\u00e1in n\u00f3 n\u00edos m\u00f3 ag taisi\u00fa.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an taiseoir ag taisi\u00fa"
+        },
+        "is_mode": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil taiseoir amh\u00e1in n\u00f3 n\u00edos m\u00f3 socraithe ar mhodh ar leith.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "mode": {
+                    "description": "Na modhanna oibr\u00edochta le seice\u00e1il.",
+                    "name": "M\u00f3d"
+                }
+            },
+            "name": "T\u00e1 an taiseoir i m\u00f3d"
+        },
+        "is_off": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil taiseoir amh\u00e1in n\u00f3 n\u00edos m\u00f3 m\u00fachta.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an taiseoir m\u00fachta"
+        },
+        "is_on": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil taiseoir amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar si\u00fal.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an taiseoir ar si\u00fal"
+        },
+        "is_target_humidity": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il ar an taise sprice i gc\u00e1s taiseoir amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Taise sprioc an taiseora"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "Socraigh taise do {entity_name}",
+            "set_mode": "Athraigh m\u00f3d ar {entity_name}",
+            "toggle": "Scor\u00e1naigh {entity_name}",
+            "turn_off": "M\u00fach {entity_name}",
+            "turn_on": "Cas ar {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "T\u00e1 {entity_name} socraithe go m\u00f3d ar leith",
+            "is_off": "T\u00e1 {entity_name} m\u00fachta",
+            "is_on": "T\u00e1 {entity_name} ar si\u00fal"
+        },
+        "extra_fields": {
+            "above": "Thuas",
+            "below": "Th\u00edos",
+            "for": "Fad",
+            "humidity": "Taise",
+            "mode": "M\u00f3d"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} casta air n\u00f3 as",
+            "target_humidity_changed": "Athra\u00edodh sprioc-thaise {entity_name}",
+            "turned_off": "M\u00fachadh {entity_name}",
+            "turned_on": "T\u00e1 {entity_name} casta air"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Taiseoir",
+            "state": {
+                "off": "As",
+                "on": "Ar si\u00fal"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Gn\u00edomh",
+                    "state": {
+                        "drying": "Triom\u00fa",
+                        "humidifying": "Taisi\u00fa",
+                        "idle": "D\u00edomhaoin",
+                        "off": "As"
+                    }
+                },
+                "available_modes": {
+                    "name": "Modhanna at\u00e1 ar f\u00e1il"
+                },
+                "current_humidity": {
+                    "name": "Taise reatha"
+                },
+                "humidity": {
+                    "name": "Taise sprice"
+                },
+                "max_humidity": {
+                    "name": "Uasmh\u00e9id taise sprice"
+                },
+                "min_humidity": {
+                    "name": "\u00cdosmh\u00e9id taise sprice"
+                },
+                "mode": {
+                    "name": "M\u00f3d",
+                    "state": {
+                        "auto": "Uath",
+                        "away": "Ar shi\u00fal",
+                        "baby": "Leanbh",
+                        "boost": "Borradh",
+                        "comfort": "Chompord",
+                        "eco": "\u00c9icea",
+                        "home": "Baile",
+                        "normal": "Gn\u00e1th",
+                        "sleep": "Codladh"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "D\u00edthaiseoir"
+        },
+        "humidifier": {
+            "name": "Taiseoir"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "N\u00edl an taise a chuirtear ar f\u00e1il {humidity} bail\u00ed. Is \u00e9 {min_humidity} go {max_humidity} an raon glactha."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "Taise spriocdh\u00edrithe.",
+                    "name": "Taise"
+                }
+            }
+        },
+        "set_mode": {
+            "fields": {
+                "mode": {
+                    "description": "M\u00f3d oibr\u00edochta. Mar shampla, \"gn\u00e1th\", \"\u00e9icea\", n\u00f3 \"as baile\". Le haghaidh liosta de luachanna f\u00e9ideartha, f\u00e9ach ar an doicim\u00e9adacht chomhth\u00e1thaithe.",
+                    "name": "M\u00f3d"
+                }
+            }
+        }
+    },
+    "title": "Taiseoir",
+    "triggers": {
+        "mode_changed": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "mode": {
+                    "description": "Na modhanna oibr\u00edochta le spreagadh orthu.",
+                    "name": "M\u00f3d"
+                }
+            },
+            "name": "Athra\u00edodh m\u00f3d an taiseora"
+        },
+        "started_drying": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Thosaigh an taiseoir ag triom\u00fa"
+        },
+        "started_humidifying": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Thosaigh an taiseoir ag taisi\u00fa"
+        },
+        "turned_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Taiseoir m\u00fachta"
+        },
+        "turned_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Taiseoir casta air"
+        }
+    }
+}

@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se",
+        "condition_for_name": "Durante pelo menos",
+        "condition_threshold_name": "Tipo de limiar",
+        "trigger_behavior_name": "Disparar quando",
+        "trigger_for_name": "Durante pelo menos",
+        "trigger_threshold_name": "Tipo de limiar"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Verifica se um ou mais term\u00f3statos est\u00e3o a arrefecer.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O term\u00f3stato est\u00e1 a arrefecer"
+        },
+        "is_drying": {
+            "description": "Verifica se um ou mais term\u00f3statos est\u00e3o a secar.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O term\u00f3stato est\u00e1 a secar"
+        },
+        "is_heating": {
+            "description": "Verifica se um ou mais term\u00f3statos est\u00e3o a aquecer.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O term\u00f3stato est\u00e1 a aquecer"
+        },
+        "is_hvac_mode": {
+            "description": "Testa se um ou mais term\u00f3statos est\u00e3o definidos para um modo AVAC espec\u00edfico.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                },
+                "hvac_mode": {
+                    "description": "Os modos AVAC a testar.",
+                    "name": "Modos"
+                }
+            },
+            "name": "Termostato Modo AVAC"
+        },
+        "is_off": {
+            "description": "Verifica se um ou mais term\u00f3statos est\u00e3o desligados.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O term\u00f3stato est\u00e1 desligado"
+        },
+        "is_on": {
+            "description": "Verifica se um ou mais term\u00f3statos est\u00e3o ligados.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O term\u00f3stato est\u00e1 ligado"
+        },
+        "is_target_humidity": {
+            "description": "Testa o ponto de regula\u00e7\u00e3o da humidade de um ou mais term\u00f3statos.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                },
+                "threshold": {
+                    "name": "Tipo de limiar"
+                }
+            },
+            "name": "Humidade alvo do term\u00f3stato"
+        },
+        "is_target_temperature": {
+            "description": "Testa o ponto de regula\u00e7\u00e3o da temperatura de um ou mais term\u00f3statos.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                },
+                "threshold": {
+                    "name": "Tipo de limiar"
+                }
+            },
+            "name": "Temperatura alvo do term\u00f3stato"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Alterar o modo AVAC de {entity_name}",
+            "set_preset_mode": "Alterar pr\u00e9-defini\u00e7\u00e3o de {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} est\u00e1 definido num determinado modo AVAC",
+            "is_preset_mode": "{entity_name} est\u00e1 num determinado modo pr\u00e9-definido"
+        },
+        "extra_fields": {
+            "above": "Acima",
+            "below": "Abaixo",
+            "for": "Dura\u00e7\u00e3o",
+            "hvac_mode": "Modo AVAC",
+            "preset_mode": "Modo pr\u00e9-definido",
+            "to": "Para"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "A humidade medida por {entity_name} alterou-se",
+            "current_temperature_changed": "A temperatura medida por {entity_name} alterou-se",
+            "hvac_mode_changed": "Modo AVAC de {entity_name} alterado"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Term\u00f3stato",
+            "state": {
+                "auto": "Auto",
+                "cool": "Arrefecer",
+                "dry": "Secar",
+                "fan_only": "Ventila\u00e7\u00e3o",
+                "heat": "Aquecer",
+                "heat_cool": "Aquecer/Arrefecer",
+                "off": "Desligado"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Humidade atual"
+                },
+                "current_temperature": {
+                    "name": "Temperatura atual"
+                },
+                "fan_mode": {
+                    "name": "Modo da ventoinha",
+                    "state": {
+                        "auto": "Auto",
+                        "diffuse": "Difuso",
+                        "focus": "Concentrado",
+                        "high": "Alto",
+                        "low": "Baixo",
+                        "medium": "M\u00e9dio",
+                        "middle": "Meio",
+                        "off": "Desligado",
+                        "on": "Ligado",
+                        "top": "Total"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Modos da ventoinha"
+                },
+                "humidity": {
+                    "name": "Humidade pretendida"
+                },
+                "hvac_action": {
+                    "name": "Modo atual",
+                    "state": {
+                        "cooling": "A arrefecer",
+                        "defrosting": "Descongela\u00e7\u00e3o",
+                        "drying": "Desumidifica\u00e7\u00e3o",
+                        "fan": "Ventila\u00e7\u00e3o",
+                        "heating": "A aquecer",
+                        "idle": "Inativo",
+                        "off": "Desligado",
+                        "preheating": "Pr\u00e9-Aquecimento"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "Modos AVAC"
+                },
+                "max_humidity": {
+                    "name": "Humidade m\u00e1xima pretendida"
+                },
+                "max_temp": {
+                    "name": "Temperatura m\u00e1xima pretendida"
+                },
+                "min_humidity": {
+                    "name": "Humidade m\u00ednima pretendida"
+                },
+                "min_temp": {
+                    "name": "Temperatura m\u00ednima pretendida"
+                },
+                "preset_mode": {
+                    "name": "Pr\u00e9-definido",
+                    "state": {
+                        "activity": "Atividade",
+                        "away": "Ausente",
+                        "boost": "Turbo",
+                        "comfort": "Conforto",
+                        "eco": "Eco",
+                        "home": "Em casa",
+                        "none": "Nenhum",
+                        "sleep": "Dormir"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Pr\u00e9-defini\u00e7\u00f5es"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Modo de oscila\u00e7\u00e3o horizontal",
+                    "state": {
+                        "off": "Desligado",
+                        "on": "Ligado"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Modos horizontais de oscila\u00e7\u00e3o"
+                },
+                "swing_mode": {
+                    "name": "Modo de oscila\u00e7\u00e3o",
+                    "state": {
+                        "both": "Ambos",
+                        "horizontal": "Horizontal",
+                        "off": "Desligado",
+                        "on": "Ligado",
+                        "vertical": "Vertical"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Modos de oscila\u00e7\u00e3o"
+                },
+                "target_temp_high": {
+                    "name": "Temperatura m\u00e1xima pretendida"
+                },
+                "target_temp_low": {
+                    "name": "Temperatura m\u00ednima pretendida"
+                },
+                "target_temp_step": {
+                    "name": "Incremento"
+                },
+                "temperature": {
+                    "name": "Temperatura alvo"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "A humidade fornecida {humidity} n\u00e3o \u00e9 v\u00e1lida. O intervalo aceite \u00e9 de {min_humidity} a {max_humidity}."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "A \"Temperatura-alvo inferior\" n\u00e3o pode ser superior \u00e0 \"Temperatura-alvo superior\"."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "A a\u00e7\u00e3o definir temperatura foi utilizada com o par\u00e2metro \"Temperatura alvo\", mas a entidade n\u00e3o a suporta."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "A a\u00e7\u00e3o definir temperatura foi utilizada com o par\u00e2metro \"Temperatura alvo inferior/superior\", mas a entidade n\u00e3o o suporta."
+        },
+        "not_valid_fan_mode": {
+            "message": "O modo de ventila\u00e7\u00e3o {mode} n\u00e3o \u00e9 v\u00e1lido. Modos de ventila\u00e7\u00e3o v\u00e1lidos s\u00e3o: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "O modo de oscila\u00e7\u00e3o horizontal {mode} n\u00e3o \u00e9 v\u00e1lido. Os modos v\u00e1lidos de oscila\u00e7\u00e3o horizontal s\u00e3o: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "O modo AVAC {mode} n\u00e3o \u00e9 v\u00e1lido. Os modos AVAC v\u00e1lidos s\u00e3o: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "O modo predefinido {mode} n\u00e3o \u00e9 v\u00e1lido. Modos predefinidos v\u00e1lidos s\u00e3o: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "O modo de oscila\u00e7\u00e3o {mode} n\u00e3o \u00e9 v\u00e1lido. Modos de oscila\u00e7\u00e3o v\u00e1lidos s\u00e3o: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "A temperatura fornecida {check_temp} n\u00e3o \u00e9 v\u00e1lida. O intervalo aceite \u00e9 de {min_temp} a {max_temp}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "Define o modo de ventila\u00e7\u00e3o de um term\u00f3stato.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Modo de opera\u00e7\u00e3o da ventoinha.",
+                    "name": "Modo da ventoinha"
+                }
+            },
+            "name": "Definir o modo de ventila\u00e7\u00e3o do term\u00f3stato"
+        },
+        "set_humidity": {
+            "description": "Define a humidade alvo de um term\u00f3stato.",
+            "fields": {
+                "humidity": {
+                    "description": "Humidade pretendida.",
+                    "name": "Humidade"
+                }
+            },
+            "name": "Definir a humidade alvo do term\u00f3stato"
+        },
+        "set_hvac_mode": {
+            "description": "Define o modo AVAC de um term\u00f3stato.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Modo de opera\u00e7\u00e3o do AVAC.",
+                    "name": "Modo do AVAC"
+                }
+            },
+            "name": "Definir o modo AVAC do term\u00f3stato"
+        },
+        "set_preset_mode": {
+            "description": "Define o modo predefinido de um term\u00f3stato.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Modo pr\u00e9-definido.",
+                    "name": "Modo pr\u00e9-definido"
+                }
+            },
+            "name": "Definir o modo de pr\u00e9-sele\u00e7\u00e3o do term\u00f3stato"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "Define o modo de oscila\u00e7\u00e3o horizontal de um term\u00f3stato.",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Mode de opera\u00e7\u00e3o de oscila\u00e7\u00e3o horizontal.",
+                    "name": "Modo de oscila\u00e7\u00e3o horizontal"
+                }
+            },
+            "name": "Definir o modo de oscila\u00e7\u00e3o horizontal do term\u00f3stato"
+        },
+        "set_swing_mode": {
+            "description": "Define o modo de oscila\u00e7\u00e3o de um term\u00f3stato.",
+            "fields": {
+                "swing_mode": {
+                    "description": "Modo de opera\u00e7\u00e3o da fun\u00e7\u00e3o de oscila\u00e7\u00e3o.",
+                    "name": "Modo de oscila\u00e7\u00e3o"
+                }
+            },
+            "name": "Definir o modo de oscila\u00e7\u00e3o do term\u00f3stato"
+        },
+        "set_temperature": {
+            "description": "Define a temperatura alvo de um term\u00f3stato.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Modo de opera\u00e7\u00e3o do sistema AVAC.",
+                    "name": "Modo AVAC"
+                },
+                "target_temp_high": {
+                    "description": "A temperatura m\u00e1xima pretendida.",
+                    "name": "Temperatura m\u00e1xima pretendida"
+                },
+                "target_temp_low": {
+                    "description": "A temperatura m\u00ednima pretendida.",
+                    "name": "Temperatura m\u00ednima pretendida"
+                },
+                "temperature": {
+                    "description": "A temperatura pretendida.",
+                    "name": "Temperatura alvo"
+                }
+            },
+            "name": "Definir a temperatura alvo do term\u00f3stato",
+            "sections": {
+                "temperature_range": {
+                    "name": "Intervalo de temperatura"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Liga/desliga um term\u00f3stato.",
+            "name": "Alternar term\u00f3stato"
+        },
+        "turn_off": {
+            "description": "Desliga um term\u00f3stato.",
+            "name": "Desligar o term\u00f3stato"
+        },
+        "turn_on": {
+            "description": "Liga um term\u00f3stato.",
+            "name": "Ligar o term\u00f3stato"
+        }
+    },
+    "title": "Climatiza\u00e7\u00e3o",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Dispara quando o modo de um ou mais term\u00f3statos muda.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                },
+                "hvac_mode": {
+                    "description": "Os modos AVAC a usar como gatilho.",
+                    "name": "Modos"
+                }
+            },
+            "name": "Modo do term\u00f3stato alterado"
+        },
+        "started_cooling": {
+            "description": "Dispara quando um ou mais term\u00f3statos iniciam o arrefecimento.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Term\u00f3stato come\u00e7ou a arrefecer"
+        },
+        "started_drying": {
+            "description": "Dispara quando um ou mais term\u00f3statos iniciam o processo de secagem.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O term\u00f3stato come\u00e7ou a secar"
+        },
+        "started_heating": {
+            "description": "Dispara quando um ou mais term\u00f3statos come\u00e7am a aquecer.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Term\u00f3stato come\u00e7ou a aquecer"
+        },
+        "target_humidity_changed": {
+            "description": "Dispara quando o valor de refer\u00eancia da humidade de um ou mais term\u00f3statos se altera.",
+            "fields": {
+                "threshold": {
+                    "name": "Tipo de limiar"
+                }
+            },
+            "name": "Humidade alvo do term\u00f3stato alterada"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Dispara quando o valor de refer\u00eancia da humidade de um ou mais term\u00f3statos ultrapassa um limiar.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                },
+                "threshold": {
+                    "name": "Tipo de limiar"
+                }
+            },
+            "name": "A humidade alvo do term\u00f3stato ultrapassou o limiar"
+        },
+        "target_temperature_changed": {
+            "description": "Dispara quando o ponto de regula\u00e7\u00e3o da temperatura de um ou mais term\u00f3statos se altera.",
+            "fields": {
+                "threshold": {
+                    "name": "Tipo de limiar"
+                }
+            },
+            "name": "Temperatura alvo do term\u00f3stato alterada"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Dispara quando o ponto de regula\u00e7\u00e3o da temperatura de um ou mais term\u00f3statos ultrapassa um limiar.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                },
+                "threshold": {
+                    "name": "Tipo de limiar"
+                }
+            },
+            "name": "A temperatura-alvo do term\u00f3stato ultrapassou o limiar"
+        },
+        "turned_off": {
+            "description": "Dispara quando um ou mais term\u00f3statos se desligam.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Term\u00f3stato foi desligado"
+        },
+        "turned_on": {
+            "description": "Dispara quando um ou mais term\u00f3statos s\u00e3o ligados, independentemente do modo.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Term\u00f3stato ligado"
+        }
+    }
+}

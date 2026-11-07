@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb ennyi ideig",
+        "trigger_behavior_name": "Aktiv\u00e1l\u00f3dik, amikor",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb Assist seg\u00e9d\u00e1llom\u00e1s t\u00e9tlen-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s t\u00e9tlen"
+        },
+        "is_listening": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb Assist seg\u00e9d\u00e1llom\u00e1s figyel-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s figyel"
+        },
+        "is_processing": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb Assist seg\u00e9d\u00e1llom\u00e1s dolgozza-e fel az adatokat.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s feldolgoz"
+        },
+        "is_responding": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb Assist seg\u00e9d\u00e1llom\u00e1s v\u00e1laszol-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s v\u00e1laszol"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Assist seg\u00e9d\u00e1llom\u00e1s",
+            "state": {
+                "idle": "T\u00e9tlen",
+                "listening": "Hallgat\u00e1s",
+                "processing": "Feldolgoz\u00e1s",
+                "responding": "V\u00e1laszad\u00e1s"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "V\u00e1lasz azonos\u00edt\u00f3",
+                "sentences": "Mondatok"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "Lehet\u0151v\u00e9 teszi egy Assist hangvez\u00e9relt seg\u00e9d\u00e1llom\u00e1s sz\u00e1m\u00e1ra \u00fczenet bejelent\u00e9s\u00e9t.",
+            "fields": {
+                "media_id": {
+                    "description": "A bejelentend\u0151 m\u00e9diaazonos\u00edt\u00f3 a sz\u00f6vegfelolvas\u00e1s helyett.",
+                    "name": "M\u00e9dia azonos\u00edt\u00f3"
+                },
+                "message": {
+                    "description": "A bejelentend\u0151 \u00fczenet.",
+                    "name": "\u00dczenet"
+                },
+                "preannounce": {
+                    "description": "Hang lej\u00e1tsz\u00e1sa a bejelent\u00e9s el\u0151tt.",
+                    "name": "El\u0151hang"
+                },
+                "preannounce_media_id": {
+                    "description": "Egy\u00e9ni m\u00e9diaazonos\u00edt\u00f3, amelyet a bejelent\u00e9s el\u0151tt j\u00e1tszik le.",
+                    "name": "El\u0151hang m\u00e9diaazonos\u00edt\u00f3"
+                }
+            },
+            "name": "Bejelent\u00e9s seg\u00e9d\u00e1llom\u00e1son"
+        },
+        "ask_question": {
+            "description": "Lehet\u0151v\u00e9 teszi egy Assist hangvez\u00e9relt seg\u00e9d\u00e1llom\u00e1s sz\u00e1m\u00e1ra k\u00e9rd\u00e9s feltev\u00e9s\u00e9t \u00e9s a felhaszn\u00e1l\u00f3 v\u00e1lasz\u00e1nak fogad\u00e1s\u00e1t.",
+            "fields": {
+                "answers": {
+                    "description": "Lehets\u00e9ges v\u00e1laszok a k\u00e9rd\u00e9sre.",
+                    "name": "V\u00e1laszok"
+                },
+                "entity_id": {
+                    "description": "Az Assist seg\u00e9d\u00e1llom\u00e1s entit\u00e1s, amelyen kereszt\u00fcl a k\u00e9rd\u00e9s elhangzik.",
+                    "name": "Entit\u00e1s"
+                },
+                "preannounce": {
+                    "description": "Hang lej\u00e1tsz\u00e1sa az \u00fczenet vagy m\u00e9dia kezdete el\u0151tt.",
+                    "name": "El\u0151zetes hangjelz\u00e9s"
+                },
+                "preannounce_media_id": {
+                    "description": "Egy\u00e9ni m\u00e9diaazonos\u00edt\u00f3, amely a kezd\u0151 \u00fczenet vagy m\u00e9dia el\u0151tt ker\u00fcl lej\u00e1tsz\u00e1sra.",
+                    "name": "El\u0151zetes m\u00e9diaazonos\u00edt\u00f3"
+                },
+                "question": {
+                    "description": "A feltett k\u00e9rd\u00e9s sz\u00f6vege.",
+                    "name": "K\u00e9rd\u00e9s"
+                },
+                "question_media_id": {
+                    "description": "A k\u00e9rd\u00e9shez tartoz\u00f3 m\u00e9dia azonos\u00edt\u00f3ja, amely a sz\u00f6vegfelolvas\u00e1s helyett ker\u00fcl lej\u00e1tsz\u00e1sra.",
+                    "name": "K\u00e9rd\u00e9s m\u00e9diaazonos\u00edt\u00f3"
+                }
+            },
+            "name": "K\u00e9rd\u00e9s feltev\u00e9se seg\u00e9d\u00e1llom\u00e1son"
+        },
+        "start_conversation": {
+            "description": "Besz\u00e9lget\u00e9st ind\u00edt egy Assist hangvez\u00e9relt seg\u00e9d\u00e1llom\u00e1sr\u00f3l.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Adjon meg h\u00e1tt\u00e9rinform\u00e1ci\u00f3t a mesters\u00e9ges intelligenci\u00e1nak a k\u00e9r\u00e9sr\u0151l.",
+                    "name": "Tov\u00e1bbi rendszerutas\u00edt\u00e1s"
+                },
+                "preannounce": {
+                    "description": "Hang lej\u00e1tsz\u00e1sa az \u00fczenet vagy m\u00e9dia ind\u00edt\u00e1sa el\u0151tt.",
+                    "name": "El\u0151hang"
+                },
+                "preannounce_media_id": {
+                    "description": "Egy\u00e9ni m\u00e9diaazonos\u00edt\u00f3, amelyet az \u00fczenet vagy m\u00e9dia ind\u00edt\u00e1sa el\u0151tt j\u00e1tszik le.",
+                    "name": "El\u0151hang m\u00e9diaazonos\u00edt\u00f3"
+                },
+                "start_media_id": {
+                    "description": "A m\u00e9diaazonos\u00edt\u00f3, amelyet a sz\u00f6vegfelolvas\u00e1s helyett ind\u00edt\u00e1sra haszn\u00e1l.",
+                    "name": "M\u00e9dia azonos\u00edt\u00f3"
+                },
+                "start_message": {
+                    "description": "A kezd\u0151 \u00fczenet.",
+                    "name": "\u00dczenet"
+                }
+            },
+            "name": "Besz\u00e9lget\u00e9s ind\u00edt\u00e1sa seg\u00e9d\u00e1llom\u00e1son"
+        }
+    },
+    "title": "Assist seg\u00e9d\u00e1llom\u00e1s",
+    "triggers": {
+        "idle": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb Assist hangvez\u00e9relt seg\u00e9d\u00e1llom\u00e1s t\u00e9tlen \u00e1llapotba ker\u00fcl, miut\u00e1n v\u00e9grehajtott egy parancsot.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s t\u00e9tlen lett"
+        },
+        "listening": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb Assist hangvez\u00e9relt seg\u00e9d\u00e1llom\u00e1s elkezd figyelni valakinek a parancs\u00e1ra.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s figyelni kezdett"
+        },
+        "processing": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb Assist hangvez\u00e9relt seg\u00e9d\u00e1llom\u00e1s elkezdi feldolgozni a meghallott parancsot.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s feldolgoz\u00e1st kezdett"
+        },
+        "responding": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb Assist hangvez\u00e9relt seg\u00e9d\u00e1llom\u00e1s v\u00e1laszolni kezd egy parancsra annak feldolgoz\u00e1sa ut\u00e1n, vagy bejelent\u00e9st tesz.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Seg\u00e9d\u00e1llom\u00e1s v\u00e1laszolni kezdett"
+        }
+    }
+}

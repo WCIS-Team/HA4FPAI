@@ -1,0 +1,242 @@
+{
+    "conditions": {
+        "is_hvac_mode": {
+            "fields": {
+                "hvac_mode": {
+                    "name": "Modalit\u00e0"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Cambia modalit\u00e0 HVAC su {entity_name}",
+            "set_preset_mode": "Modifica modalit\u00e0 su {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} \u00e8 impostato su una modalit\u00e0 HVAC specifica",
+            "is_preset_mode": "{entity_name} \u00e8 impostato su una modalit\u00e0 preimpostata specifica"
+        },
+        "extra_fields": {
+            "above": "Maggiore di",
+            "below": "Minore di",
+            "for": "Durata",
+            "to": "A"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} umidit\u00e0 misurata modificata",
+            "current_temperature_changed": "{entity_name} temperatura misurata cambiata",
+            "hvac_mode_changed": "{entity_name} modalit\u00e0 HVAC modificata"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostato",
+            "state": {
+                "auto": "Automatico",
+                "cool": "Freddo",
+                "dry": "Deumidificazione",
+                "fan_only": "Ventilazione",
+                "heat": "Riscaldamento",
+                "heat_cool": "Caldo/Freddo",
+                "off": "Spento"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Umidit\u00e0 attuale"
+                },
+                "current_temperature": {
+                    "name": "Temperatura attuale"
+                },
+                "fan_mode": {
+                    "name": "Modalit\u00e0 ventilazione",
+                    "state": {
+                        "auto": "Automatico",
+                        "diffuse": "Diffuso",
+                        "focus": "Focalizzato",
+                        "high": "Alto/a",
+                        "low": "Basso/a",
+                        "medium": "Medio/a",
+                        "middle": "Mezzo",
+                        "off": "Spento",
+                        "on": "Acceso",
+                        "top": "Superiore"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Modalit\u00e0 di ventilazioni"
+                },
+                "humidity": {
+                    "name": "Umidit\u00e0 desiderata"
+                },
+                "hvac_action": {
+                    "name": "Azione in corso",
+                    "state": {
+                        "cooling": "Raffreddando",
+                        "drying": "In deumidificazione",
+                        "fan": "Ventilatore",
+                        "heating": "Riscaldamento",
+                        "idle": "Inattivo",
+                        "off": "Spento",
+                        "preheating": "Preriscaldamento"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "Modalit\u00e0 HVAC"
+                },
+                "max_humidity": {
+                    "name": "Umidit\u00e0 desiderata massima"
+                },
+                "max_temp": {
+                    "name": "Temperatura desiderata massima"
+                },
+                "min_humidity": {
+                    "name": "Umidit\u00e0 desiderata minima"
+                },
+                "min_temp": {
+                    "name": "Temperatura desiderata minima"
+                },
+                "preset_mode": {
+                    "name": "Preimpostato",
+                    "state": {
+                        "activity": "Attivit\u00e0",
+                        "away": "Fuori casa",
+                        "boost": "Boost",
+                        "comfort": "Comfort",
+                        "eco": "Eco",
+                        "home": "In casa",
+                        "none": "Nessuno",
+                        "sleep": "Sonno"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Preimpostazioni"
+                },
+                "swing_horizontal_mode": {
+                    "state": {
+                        "off": "Spento",
+                        "on": "Acceso"
+                    }
+                },
+                "swing_mode": {
+                    "name": "Modalit\u00e0 di oscillazione",
+                    "state": {
+                        "both": "Entrambi",
+                        "horizontal": "Orizzontale",
+                        "off": "Spento",
+                        "on": "Acceso",
+                        "vertical": "Verticale"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Modi di oscillazione"
+                },
+                "target_temp_high": {
+                    "name": "Temperatura desiderata pi\u00f9 alta"
+                },
+                "target_temp_low": {
+                    "name": "Temperatura desiderata pi\u00f9 bassa"
+                },
+                "target_temp_step": {
+                    "name": "Passo di temperatura desiderata"
+                },
+                "temperature": {
+                    "name": "Temperatura desiderata"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "missing_target_temperature_range_entity_feature": {
+            "message": "L\u2019azione Imposta temperatura \u00e8 stata utilizzata con il parametro \"Temperatura desiderata minima/massima\", ma l\u2019entit\u00e0 non lo supporta."
+        },
+        "not_valid_fan_mode": {
+            "message": "Modalit\u00e0 ventola {mode} non \u00e8 valido. Le modalit\u00e0 ventola valide sono: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "La modalit\u00e0 HVAC {mode} non \u00e8 valida. Le modalit\u00e0 HVAC valide sono: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "Modalit\u00e0 preimpostata {mode} non \u00e8 valido. Le modalit\u00e0 preimpostate valide sono: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "Modalit\u00e0 oscillante {mode} non \u00e8 valido. Le modalit\u00e0 di oscillazione valide sono: {modes}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "fields": {
+                "fan_mode": {
+                    "description": "Modalit\u00e0 di funzionamento del ventilatore.",
+                    "name": "Modalit\u00e0 ventola"
+                }
+            }
+        },
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "Umidit\u00e0 desiderata.",
+                    "name": "Umidit\u00e0"
+                }
+            }
+        },
+        "set_hvac_mode": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "Modalit\u00e0 di funzionamento HVAC.",
+                    "name": "Modalit\u00e0 HVAC"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "Modalit\u00e0 preimpostata.",
+                    "name": "Modalit\u00e0 preimpostata"
+                }
+            }
+        },
+        "set_swing_mode": {
+            "fields": {
+                "swing_mode": {
+                    "description": "Modalit\u00e0 di funzionamento oscillante.",
+                    "name": "Modalit\u00e0 di oscillazione"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "Modalit\u00e0 di funzionamento HVAC.",
+                    "name": "Modalit\u00e0 HVAC"
+                },
+                "target_temp_high": {
+                    "description": "Il punto di riferimento della temperatura massima.",
+                    "name": "Temperatura desiderata pi\u00f9 alta"
+                },
+                "target_temp_low": {
+                    "description": "Il punto di riferimento della temperatura minima.",
+                    "name": "Temperatura desiderata pi\u00f9 bassa"
+                },
+                "temperature": {
+                    "name": "Temperatura desiderata"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Attiva/disattiva un termostato"
+        }
+    },
+    "title": "Climatizzatore",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Si attiva quando uno o pi\u00f9 termostati cambiano"
+        },
+        "turned_off": {
+            "name": "Termostato spento"
+        },
+        "turned_on": {
+            "name": "Termostato acceso"
+        }
+    }
+}

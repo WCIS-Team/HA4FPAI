@@ -1,0 +1,225 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "section_additional_fields_name": "\u5176\u4ed6\u9078\u9805",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u6247\u6216\u591a\u6247\u98a8\u6247\u95dc\u9589\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u98a8\u6247\u95dc\u9589"
+        },
+        "is_on": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u6247\u6216\u591a\u6247\u98a8\u6247\u958b\u555f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u98a8\u6247\u958b\u555f"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "\u5207\u63db{entity_name}",
+            "turn_off": "\u95dc\u9589{entity_name}",
+            "turn_on": "\u958b\u555f{entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name}\u5df2\u95dc\u9589",
+            "is_on": "{entity_name}\u5df2\u958b\u555f"
+        },
+        "extra_fields": {
+            "for": "\u6301\u7e8c\u6642\u9593"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name}\u6253\u958b\u6216\u95dc\u9589",
+            "turned_off": "{entity_name}\u5df2\u95dc\u9589",
+            "turned_on": "{entity_name}\u5df2\u958b\u555f"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u98a8\u6247",
+            "state": {
+                "off": "\u95dc\u9589",
+                "on": "\u958b\u555f"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "\u65b9\u5411",
+                    "state": {
+                        "forward": "\u6b63\u5411",
+                        "reverse": "\u53cd\u5411"
+                    }
+                },
+                "oscillating": {
+                    "name": "\u64fa\u982d",
+                    "state": {
+                        "false": "\u5426",
+                        "true": "\u662f"
+                    }
+                },
+                "percentage": {
+                    "name": "\u98a8\u901f"
+                },
+                "percentage_step": {
+                    "name": "\u8b8a\u901f"
+                },
+                "preset_mode": {
+                    "name": "\u9810\u7f6e\u6a21\u5f0f"
+                },
+                "preset_modes": {
+                    "name": "\u53ef\u7528\u9810\u7f6e\u6a21\u5f0f"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "\u9810\u7f6e\u6a21\u5f0f {preset_mode} \u7121\u6548\u3001\u6709\u6548\u7684\u9810\u7f6e\u6a21\u5f0f\u70ba\uff1a{preset_modes}\u3002"
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "\u6b63\u5411",
+                "reverse": "\u53cd\u5411"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "\u964d\u4f4e\u98a8\u6247\u8f49\u901f\u3002",
+            "fields": {
+                "percentage_step": {
+                    "description": "\u4ee5\u767e\u5206\u6bd4\u6b65\u9032\u964d\u4f4e\u8f49\u901f\u3002",
+                    "name": "\u905e\u6e1b"
+                }
+            },
+            "name": "\u964d\u4f4e\u98a8\u6247\u8f49\u901f",
+            "sections": {
+                "additional_fields": {
+                    "name": "\u5176\u4ed6\u9078\u9805"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "\u63d0\u9ad8\u98a8\u6247\u8f49\u901f\u3002",
+            "fields": {
+                "percentage_step": {
+                    "description": "\u4ee5\u767e\u5206\u6bd4\u6b65\u9032\u63d0\u9ad8\u8f49\u901f\u3002",
+                    "name": "\u905e\u589e"
+                }
+            },
+            "name": "\u63d0\u9ad8\u98a8\u6247\u8f49\u901f",
+            "sections": {
+                "additional_fields": {
+                    "name": "\u5176\u4ed6\u9078\u9805"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "\u63a7\u5236\u98a8\u6247\u64fa\u52d5\u3002",
+            "fields": {
+                "oscillating": {
+                    "description": "\u958b\u555f/\u95dc\u9589\u64fa\u52d5\u3002",
+                    "name": "\u64fa\u52d5"
+                }
+            },
+            "name": "\u98a8\u6247\u64fa\u52d5"
+        },
+        "set_direction": {
+            "description": "\u8a2d\u5b9a\u98a8\u6247\u65cb\u8f49\u65b9\u5411\u3002",
+            "fields": {
+                "direction": {
+                    "description": "\u98a8\u6247\u65cb\u8f49\u65b9\u5411\u3002",
+                    "name": "\u65b9\u5411"
+                }
+            },
+            "name": "\u8a2d\u5b9a\u98a8\u6247\u8f49\u5411"
+        },
+        "set_percentage": {
+            "description": "\u8a2d\u5b9a\u98a8\u6247\u8f49\u901f\u3002",
+            "fields": {
+                "percentage": {
+                    "description": "\u98a8\u6247\u8f49\u901f\u3002",
+                    "name": "\u767e\u5206\u6bd4"
+                }
+            },
+            "name": "\u8a2d\u5b9a\u98a8\u6247\u8f49\u901f"
+        },
+        "set_preset_mode": {
+            "description": "\u8a2d\u5b9a\u98a8\u6247\u9810\u7f6e\u6a21\u5f0f\u3002",
+            "fields": {
+                "preset_mode": {
+                    "description": "\u9810\u7f6e\u98a8\u6247\u6a21\u5f0f\u3002",
+                    "name": "\u9810\u7f6e\u6a21\u5f0f"
+                }
+            },
+            "name": "\u8a2d\u5b9a\u98a8\u6247\u9810\u7f6e\u6a21\u5f0f"
+        },
+        "toggle": {
+            "description": "\u958b\u555f/\u95dc\u9589\u98a8\u6247\u3002",
+            "name": "\u5207\u63db\u98a8\u6247"
+        },
+        "turn_off": {
+            "description": "\u95dc\u9589\u98a8\u6247\u3002",
+            "name": "\u95dc\u9589\u98a8\u6247"
+        },
+        "turn_on": {
+            "description": "\u958b\u555f\u98a8\u6247\u3002",
+            "fields": {
+                "percentage": {
+                    "description": "\u98a8\u6247\u8f49\u901f\u3002",
+                    "name": "\u767e\u5206\u6bd4"
+                },
+                "preset_mode": {
+                    "description": "\u9810\u7f6e\u98a8\u6247\u6a21\u5f0f\u3002",
+                    "name": "\u9810\u7f6e\u6a21\u5f0f"
+                }
+            },
+            "name": "\u958b\u555f\u98a8\u6247"
+        }
+    },
+    "title": "\u98a8\u6247",
+    "triggers": {
+        "turned_off": {
+            "description": "\u7576\u4e00\u53f0\u6216\u591a\u53f0\u98a8\u6247\u95dc\u9589\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u98a8\u6247\u95dc\u9589\u6642"
+        },
+        "turned_on": {
+            "description": "\u7576\u4e00\u53f0\u6216\u591a\u53f0\u98a8\u6247\u958b\u555f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u98a8\u6247\u958b\u555f\u6642"
+        }
+    }
+}

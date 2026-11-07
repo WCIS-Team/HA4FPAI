@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u8b66\u5831\u5668\u95dc\u9589\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8b66\u5831\u5668\u95dc\u9589"
+        },
+        "is_on": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u8b66\u5831\u5668\u958b\u555f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8b66\u5831\u5668\u958b\u555f"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u8b66\u5831",
+            "state": {
+                "off": "\u95dc\u9589",
+                "on": "\u958b\u555f"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "\u53ef\u7528\u97f3\u8abf"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "\u5207\u63db\u8b66\u5831\u958b\u555f/\u95dc\u9589\u3002",
+            "name": "\u5207\u63db\u8b66\u5831"
+        },
+        "turn_off": {
+            "description": "\u95dc\u9589\u8b66\u5831\u3002",
+            "name": "\u95dc\u9589\u8b66\u5831"
+        },
+        "turn_on": {
+            "description": "\u958b\u555f\u8b66\u5831\u3002",
+            "fields": {
+                "duration": {
+                    "description": "\u8072\u97f3\u64ad\u653e\u7684\u79d2\u6578\u3002\u5fc5\u9808\u70ba\u6574\u5408\u6240\u652f\u63f4\u3002",
+                    "name": "\u6301\u7e8c\u6642\u9593"
+                },
+                "tone": {
+                    "description": "\u8981\u767c\u51fa\u7684\u97f3\u8abf\u3002\u7576 `available_tones` \u5c6c\u6027\u70ba\u6620\u5c04\u6642\uff0c\u53ef\u4ee5\u4f7f\u7528\u9375\u6216\u6578\u503c\u3002\u5fc5\u9808\u70ba\u6574\u5408\u6240\u652f\u6301\u3002",
+                    "name": "\u97f3\u8abf"
+                },
+                "volume_level": {
+                    "description": "\u97f3\u91cf\u3002 0 \u70ba\u807d\u4e0d\u898b\uff0c1 \u70ba\u6700\u5927\u97f3\u91cf\u3002\u5fc5\u9808\u70ba\u6574\u5408\u6240\u652f\u63f4\u3002",
+                    "name": "\u97f3\u91cf"
+                }
+            },
+            "name": "\u958b\u555f\u8b66\u5831"
+        }
+    },
+    "title": "\u8b66\u5831",
+    "triggers": {
+        "turned_off": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8b66\u5831\u5668\u95dc\u9589\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8b66\u5831\u5668\u95dc\u9589"
+        },
+        "turned_on": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8b66\u5831\u5668\u958b\u555f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8b66\u5831\u5668\u958b\u555f"
+        }
+    }
+}

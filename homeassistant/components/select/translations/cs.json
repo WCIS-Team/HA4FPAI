@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Otestuje, zda je v jednom nebo v\u00edce rozbalovac\u00edch seznamech vybr\u00e1na ur\u010dit\u00e1 volba.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                },
+                "option": {
+                    "description": "Volby, kter\u00e9 je t\u0159eba zkontrolovat.",
+                    "name": "Volba"
+                }
+            },
+            "name": "Je vybr\u00e1na polo\u017eka z rozbalovac\u00edho seznamu"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "Zm\u011bnit {entity_name} na prvn\u00ed volbu",
+            "select_last": "Zm\u011bnit {entity_name} na posledn\u00ed volbu",
+            "select_next": "Zm\u011bnit {entity_name} na n\u00e1sleduj\u00edc\u00ed volbu",
+            "select_option": "Zm\u011bnit volbu {entity_name}",
+            "select_previous": "Zm\u011bnit {entity_name} na p\u0159edchoz\u00ed volbu"
+        },
+        "condition_type": {
+            "selected_option": "Aktu\u00e1ln\u00ed vybran\u00e1 volba {entity_name}"
+        },
+        "extra_fields": {
+            "cycle": "Cyklus",
+            "for": "Doba trv\u00e1n\u00ed",
+            "from": "Od",
+            "option": "Volba",
+            "to": "Do"
+        },
+        "trigger_type": {
+            "current_option_changed": "Volba {entity_name} zm\u011bn\u011bna"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "V\u00fdb\u011br",
+            "state_attributes": {
+                "options": {
+                    "name": "Volby"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "Entita {entity_id} nem\u00e1 \u017e\u00e1dn\u00e9 volby na v\u00fdb\u011br."
+        },
+        "not_valid_option": {
+            "message": "Volba {option} nen\u00ed platn\u00e1 pro entitu {entity_id}; platn\u00e9 volby jsou: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "Vybere prvn\u00ed volbu v\u00fdb\u011bru.",
+            "name": "Vybrat prvn\u00ed volbu"
+        },
+        "select_last": {
+            "description": "Vybere posledn\u00ed volbu v\u00fdb\u011bru.",
+            "name": "Vybrat posledn\u00ed volbu"
+        },
+        "select_next": {
+            "description": "Vybere dal\u0161\u00ed volbu v\u00fdb\u011bru.",
+            "fields": {
+                "cycle": {
+                    "description": "Zda m\u00e1 volba cyklicky p\u0159ech\u00e1zet z posledn\u00ed na prvn\u00ed.",
+                    "name": "Cyklus"
+                }
+            },
+            "name": "Vybrat dal\u0161\u00ed volbu"
+        },
+        "select_option": {
+            "description": "Vybere volbu v\u00fdb\u011bru.",
+            "fields": {
+                "option": {
+                    "description": "Volba k v\u00fdb\u011bru.",
+                    "name": "Volba"
+                }
+            },
+            "name": "Vybrat v\u00fdb\u011br"
+        },
+        "select_previous": {
+            "description": "Vybere p\u0159edchoz\u00ed volbu v\u00fdb\u011bru.",
+            "fields": {
+                "cycle": {
+                    "description": "Zda m\u00e1 volba cyklicky p\u0159ech\u00e1zet od prvn\u00ed k posledn\u00ed.",
+                    "name": "Cyklus"
+                }
+            },
+            "name": "Vybrat p\u0159edchoz\u00ed volbu"
+        }
+    },
+    "title": "V\u00fdb\u011br",
+    "triggers": {
+        "selection_changed": {
+            "description": "Spust\u00ed se, kdy\u017e se zm\u011bn\u00ed vybran\u00e1 volba v jednom nebo v\u00edce rozbalovac\u00edch menu.",
+            "name": "V\u00fdb\u011br v rozbalovac\u00edm menu zm\u011bn\u011bn"
+        }
+    }
+}

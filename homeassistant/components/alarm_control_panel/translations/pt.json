@@ -1,0 +1,325 @@
+{
+    "common": {
+        "condition_behavior_name": "Comportamento",
+        "condition_for_name": "Durante pelo menos",
+        "trigger_behavior_name": "Disparar quando",
+        "trigger_for_name": "Durante pelo menos"
+    },
+    "conditions": {
+        "is_armed": {
+            "description": "Testa se um ou mais alarmes est\u00e3o armados.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O alarme est\u00e1 armado"
+        },
+        "is_armed_away": {
+            "description": "Testa se um ou mais alarmes est\u00e3o armados no modo ausente.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O alarme est\u00e1 armado no modo ausente"
+        },
+        "is_armed_home": {
+            "description": "Testa se um ou mais alarmes est\u00e3o armados no modo em casa.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O alarme est\u00e1 armado no modo em casa"
+        },
+        "is_armed_night": {
+            "description": "Testa se um ou mais alarmes est\u00e3o armados no modo noturno.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O alarme est\u00e1 armado no modo noite"
+        },
+        "is_armed_vacation": {
+            "description": "Testa se um ou mais alarmes est\u00e3o armados no modo de f\u00e9rias.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O alarme est\u00e1 armado em modo f\u00e9rias"
+        },
+        "is_disarmed": {
+            "description": "Testa se um ou mais alarmes est\u00e3o desarmados.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O alarme est\u00e1 desarmado"
+        },
+        "is_triggered": {
+            "description": "Testa se um ou mais alarmes s\u00e3o est\u00e3o disparados.",
+            "fields": {
+                "behavior": {
+                    "name": "Comportamento"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O alarme disparou"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "arm_away": "Armar {entity_name} Ausente",
+            "arm_home": "Armar {entity_name} Casa",
+            "arm_night": "Armar {entity_name} Noite",
+            "arm_vacation": "Armar {entity_name} F\u00e9rias",
+            "disarm": "Desarmar {entity_name}",
+            "trigger": "Despoletar {entity_name}"
+        },
+        "condition_type": {
+            "is_armed_away": "{entity_name} foi armado para Ausente",
+            "is_armed_home": "{entity_name} foi armado para Casa",
+            "is_armed_night": "{entity_name} foi armado para Noite",
+            "is_armed_vacation": "{entity_name} foi armado para F\u00e9rias",
+            "is_disarmed": "{entity_name} foi desarmado",
+            "is_triggered": "{entity_name} foi despoletado"
+        },
+        "extra_fields": {
+            "code": "C\u00f3digo",
+            "for": "Dura\u00e7\u00e3o"
+        },
+        "trigger_type": {
+            "armed_away": "{entity_name} armado Ausente",
+            "armed_home": "{entity_name} armado Casa",
+            "armed_night": "{entity_name} armado Noite",
+            "armed_vacation": "{entity_name} armado F\u00e9rias",
+            "disarmed": "{entity_name} desarmado",
+            "triggered": "{entity_name} despoletado"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Painel de controlo do alarme",
+            "state": {
+                "armed": "Armado",
+                "armed_away": "Armado Ausente",
+                "armed_custom_bypass": "Armado Desvio personalizado",
+                "armed_home": "Armado Casa",
+                "armed_night": "Armado Noite",
+                "armed_vacation": "Armado F\u00e9rias",
+                "arming": "A armar",
+                "disarmed": "Desarmado",
+                "disarming": "A desarmar",
+                "pending": "Pendente",
+                "triggered": "Disparado"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Alterado por"
+                },
+                "code_arm_required": {
+                    "name": "C\u00f3digo para armar",
+                    "state": {
+                        "false": "N\u00e3o requerido",
+                        "true": "Obrigat\u00f3rio"
+                    }
+                },
+                "code_format": {
+                    "name": "Formato do c\u00f3digo",
+                    "state": {
+                        "number": "N\u00famero",
+                        "text": "Texto"
+                    }
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "code_arm_required": {
+            "message": "Armar requer um c\u00f3digo, mas nenhum foi fornecido para {entity_id}."
+        }
+    },
+    "services": {
+        "alarm_arm_away": {
+            "description": "Arma um alarme no modo ausente.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3digo para armar o alarme.",
+                    "name": "C\u00f3digo"
+                }
+            },
+            "name": "Armar alarme ausente"
+        },
+        "alarm_arm_custom_bypass": {
+            "description": "Arma um alarme ao mesmo tempo que permite contornar uma \u00e1rea personalizada.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3digo para armar o alarme.",
+                    "name": "C\u00f3digo"
+                }
+            },
+            "name": "Armar o alarme com bypass personalizado"
+        },
+        "alarm_arm_home": {
+            "description": "Arma um alarme no modo casa.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3digo para armar o alarme.",
+                    "name": "C\u00f3digo"
+                }
+            },
+            "name": "Armar alarme casa"
+        },
+        "alarm_arm_night": {
+            "description": "Arma um alarme no modo noturno.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3digo para armar o alarme.",
+                    "name": "C\u00f3digo"
+                }
+            },
+            "name": "Armar alarme noite"
+        },
+        "alarm_arm_vacation": {
+            "description": "Arma um alarme no modo de f\u00e9rias.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3digo para armar o alarme.",
+                    "name": "C\u00f3digo"
+                }
+            },
+            "name": "Armar alarme f\u00e9rias"
+        },
+        "alarm_disarm": {
+            "description": "Desarma um alarme.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3digo para desarmar o alarme.",
+                    "name": "C\u00f3digo"
+                }
+            },
+            "name": "Desarmar alarme"
+        },
+        "alarm_trigger": {
+            "description": "Dispara um alarme manualmente.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3digo para armar o alarme.",
+                    "name": "C\u00f3digo"
+                }
+            },
+            "name": "Disparar alarme"
+        }
+    },
+    "title": "Painel de controlo do alarme",
+    "triggers": {
+        "armed": {
+            "description": "Dispara quando um ou mais alarmes s\u00e3o ativados, independentemente do modo.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Alarme foi armado"
+        },
+        "armed_away": {
+            "description": "Dispara quando um ou mais alarmes s\u00e3o ativados no modo \u00abausente\u00bb.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Alarme foi armado no modo ausente"
+        },
+        "armed_home": {
+            "description": "Dispara quando um ou mais alarmes s\u00e3o ativados no modo \u00abcasa\u00bb.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Alarme foi armado no modo em casa"
+        },
+        "armed_night": {
+            "description": "Dispara quando um ou mais alarmes s\u00e3o ativados no modo noturno.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Alarme foi armado no modo noite"
+        },
+        "armed_vacation": {
+            "description": "Dispara quando um ou mais alarmes s\u00e3o ativados no modo de f\u00e9rias.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Alarme foi armado no modo f\u00e9rias"
+        },
+        "disarmed": {
+            "description": "Dispara quando um ou mais alarmes s\u00e3o desarmados.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Alarme foi desarmado"
+        },
+        "triggered": {
+            "description": "Dispara quando um ou mais alarmes s\u00e3o acionados.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Alarme disparou"
+        }
+    }
+}

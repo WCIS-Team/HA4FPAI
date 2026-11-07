@@ -1,0 +1,192 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "V\u00e9rifie si une ou plusieurs serrures sont bloqu\u00e9es.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure est bloqu\u00e9e"
+        },
+        "is_locked": {
+            "description": "V\u00e9rifie si une ou plusieurs serrures sont verrouill\u00e9es.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure est verrouill\u00e9e"
+        },
+        "is_open": {
+            "description": "V\u00e9rifie si une ou plusieurs serrures sont ouvertes.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure est ouverte"
+        },
+        "is_unlocked": {
+            "description": "V\u00e9rifie si une ou plusieurs serrures sont d\u00e9verrouill\u00e9es.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure est d\u00e9verrouill\u00e9e"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "Verrouiller {entity_name}",
+            "open": "Ouvrir {entity_name}",
+            "unlock": "D\u00e9verrouiller {entity_name}"
+        },
+        "condition_type": {
+            "is_jammed": "{entity_name} est bloqu\u00e9",
+            "is_locked": "{entity_name} est verrouill\u00e9",
+            "is_locking": "{entity_name} est en train de se verrouiller",
+            "is_open": "{entity_name} est ouvert",
+            "is_opening": "{entity_name} est en train de s'ouvrir",
+            "is_unlocked": "{entity_name} est d\u00e9verrouill\u00e9",
+            "is_unlocking": "{entity_name} est en cours de d\u00e9verrouillage"
+        },
+        "extra_fields": {
+            "for": "Dur\u00e9e"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} verrouill\u00e9",
+            "open": "{entity_name} ouvert",
+            "unlocked": "{entity_name} d\u00e9verrouill\u00e9"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Verrou",
+            "state": {
+                "jammed": "Bloqu\u00e9",
+                "locked": "Verrouill\u00e9",
+                "locking": "Verrouillage",
+                "open": "Ouvert",
+                "opening": "Ouverture",
+                "unlocked": "D\u00e9verrouill\u00e9",
+                "unlocking": "D\u00e9verrouillage"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Modifi\u00e9 par"
+                },
+                "code_format": {
+                    "name": "Format du code"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "Le code de {entity_id} ne correspond pas au mod\u00e8le {code_format}."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "Verrouille une serrure.",
+            "fields": {
+                "code": {
+                    "description": "Code utilis\u00e9 pour verrouiller la serrure.",
+                    "name": "Code"
+                }
+            },
+            "name": "Verrouiller la serrure"
+        },
+        "open": {
+            "description": "Ouvre une serrure.",
+            "fields": {
+                "code": {
+                    "description": "Code utilis\u00e9 pour ouvrir la serrure.",
+                    "name": "Code"
+                }
+            },
+            "name": "Ouvrir la serrure"
+        },
+        "unlock": {
+            "description": "D\u00e9verrouille une serrure.",
+            "fields": {
+                "code": {
+                    "description": "Code utilis\u00e9 pour d\u00e9verrouiller la serrure.",
+                    "name": "Code"
+                }
+            },
+            "name": "D\u00e9verrouiller la serrure"
+        }
+    },
+    "title": "Verrou",
+    "triggers": {
+        "jammed": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs serrures se bloquent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure s'est bloqu\u00e9e"
+        },
+        "locked": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs serrures se verrouillent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure s'est verrouill\u00e9e"
+        },
+        "opened": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs serrures s'ouvrent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure s'est ouverte"
+        },
+        "unlocked": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs serrures se d\u00e9verrouillent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La serrure s'est d\u00e9verrouill\u00e9e"
+        }
+    }
+}

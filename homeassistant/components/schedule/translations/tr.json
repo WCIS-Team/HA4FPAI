@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "En az\u0131ndan"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Bir veya daha fazla zamanlama blo\u011funun \u015fu anda etkin olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Program kapal\u0131"
+        },
+        "is_on": {
+            "description": "Bir veya daha fazla zamanlama blo\u011funun \u015fu anda aktif olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Program a\u00e7\u0131k"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Zamanlama",
+            "state": {
+                "off": "Kapal\u0131",
+                "on": "A\u00e7\u0131k"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "Kullan\u0131c\u0131 arabirimi arac\u0131l\u0131\u011f\u0131yla y\u00f6netilir",
+                    "state": {
+                        "false": "Hay\u0131r",
+                        "true": "Evet"
+                    }
+                },
+                "next_event": {
+                    "name": "Sonraki etkinlik"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "Bir veya birden fazla zamanlaman\u0131n yap\u0131land\u0131r\u0131lm\u0131\u015f zaman aral\u0131klar\u0131n\u0131 al\u0131r.",
+            "name": "Program\u0131 al"
+        },
+        "reload": {
+            "description": "YAML yap\u0131land\u0131rmas\u0131ndan programlar\u0131 yeniden y\u00fckler.",
+            "name": "Planlamalar\u0131 yeniden y\u00fckle"
+        }
+    },
+    "title": "Zamanlama",
+    "triggers": {
+        "block_ended": {
+            "description": "Bir veya daha fazla zamanlama blo\u011fu sona erdi\u011finde tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Plan blo\u011fu sona erdi"
+        },
+        "block_started": {
+            "description": "Bir veya daha fazla zamanlama blo\u011fu ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Planlama blo\u011fu ba\u015flad\u0131"
+        }
+    }
+}

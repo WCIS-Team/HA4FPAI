@@ -1,0 +1,235 @@
+{
+    "common": {
+        "condition_threshold_name": "\u9608\u503c\u7c7b\u578b",
+        "trigger_for_name": "\u81f3\u5c11\u6301\u7eed",
+        "trigger_offset_name": "\u504f\u79fb",
+        "trigger_offset_type_name": "\u504f\u79fb\u7c7b\u578b",
+        "trigger_threshold_name": "\u9608\u503c\u7c7b\u578b",
+        "twilight_type_description": "\u66d9\u66ae\u5149\u9636\u6bb5\u3002",
+        "twilight_type_name": "\u66d9\u66ae\u5149\u7c7b\u578b"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "\u5c06\u592a\u9633\u9ad8\u5ea6\u4e0e\u60a8\u8bbe\u5b9a\u7684\u9608\u503c\u8fdb\u884c\u6bd4\u8f83\u3002",
+            "fields": {
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            },
+            "name": "\u592a\u9633\u9ad8\u5ea6"
+        },
+        "is_ascending": {
+            "description": "\u5224\u65ad\u592a\u9633\u662f\u5426\u6b63\u5728\u5347\u8d77\u3002",
+            "name": "\u592a\u9633\u6b63\u5728\u5347\u8d77"
+        },
+        "is_descending": {
+            "description": "\u5224\u65ad\u592a\u9633\u662f\u5426\u6b63\u5728\u843d\u4e0b\u3002",
+            "name": "\u592a\u9633\u6b63\u5728\u843d\u4e0b"
+        },
+        "is_evening_twilight": {
+            "description": "\u5224\u65ad\u5f53\u524d\u662f\u5426\u5904\u4e8e\u66ae\u5149\u65f6\u5206\uff0c\u53ef\u9009\u6307\u5b9a\u66d9\u66ae\u5149\u7c7b\u578b\u3002",
+            "fields": {
+                "type": {
+                    "description": "\u66d9\u66ae\u5149\u9636\u6bb5\u3002",
+                    "name": "\u66d9\u66ae\u5149\u7c7b\u578b"
+                }
+            },
+            "name": "\u73b0\u5728\u662f\u66ae\u5149\u65f6\u5206"
+        },
+        "is_morning_twilight": {
+            "description": "\u5224\u65ad\u5f53\u524d\u662f\u5426\u5904\u4e8e\u6668\u5149\u65f6\u5206\uff0c\u53ef\u9009\u6307\u5b9a\u66d9\u66ae\u5149\u7c7b\u578b\u3002",
+            "fields": {
+                "type": {
+                    "description": "\u66d9\u66ae\u5149\u9636\u6bb5\u3002",
+                    "name": "\u66d9\u66ae\u5149\u7c7b\u578b"
+                }
+            },
+            "name": "\u73b0\u5728\u662f\u6668\u5149\u65f6\u5206"
+        },
+        "is_night": {
+            "description": "\u5224\u65ad\u5f53\u524d\u662f\u5426\u4e3a\u591c\u665a\u3002",
+            "name": "\u73b0\u5728\u662f\u665a\u4e0a"
+        },
+        "is_set": {
+            "description": "\u5224\u65ad\u592a\u9633\u662f\u5426\u843d\u4e0b\u3002",
+            "name": "\u592a\u9633\u843d\u4e0b"
+        },
+        "is_up": {
+            "description": "\u5224\u65ad\u592a\u9633\u662f\u5426\u5347\u8d77\u3002",
+            "name": "\u592a\u9633\u5347\u8d77"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "\u60a8\u8981\u5f00\u59cb\u8bbe\u7f6e\u5417 \uff1f"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "\u592a\u9633\u6b63\u5728\u5347\u8d77",
+                "state": {
+                    "off": "\u8bbe\u7f6e\u4e2d",
+                    "on": "\u65e5\u51fa\u4e2d"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "\u4e0b\u4e2a\u6e05\u6668"
+            },
+            "next_dusk": {
+                "name": "\u4e0b\u4e2a\u9ec4\u660f"
+            },
+            "next_midnight": {
+                "name": "\u4e0b\u4e2a\u5348\u591c"
+            },
+            "next_noon": {
+                "name": "\u4e0b\u4e2a\u6b63\u5348"
+            },
+            "next_rising": {
+                "name": "\u4e0b\u6b21\u65e5\u51fa"
+            },
+            "next_setting": {
+                "name": "\u4e0b\u6b21\u65e5\u843d"
+            },
+            "solar_azimuth": {
+                "name": "\u592a\u9633\u65b9\u4f4d\u89d2"
+            },
+            "solar_elevation": {
+                "name": "\u592a\u9633\u9ad8\u5ea6\u89d2"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u65e5\u51fa\u65e5\u843d",
+            "state": {
+                "above_horizon": "\u767d\u5929",
+                "below_horizon": "\u591c\u665a"
+            }
+        }
+    },
+    "selector": {
+        "trigger_offset_type": {
+            "options": {
+                "after": "\u665a\u4e8e",
+                "before": "\u65e9\u4e8e"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "\u4efb\u610f",
+                "astronomical": "\u5929\u6587",
+                "civil": "\u6c11\u7528",
+                "nautical": "\u822a\u6d77"
+            }
+        }
+    },
+    "title": "\u65e5\u51fa\u65e5\u843d",
+    "triggers": {
+        "dawn": {
+            "description": "\u5728\u62c2\u6653\u65f6\u89e6\u53d1\uff0c\u5373\u6c11\u7528\u3001\u822a\u6d77\u6216\u5929\u6587\u66d9\u5149\u5f00\u59cb\u4e4b\u65f6\u3002",
+            "fields": {
+                "offset": {
+                    "name": "\u504f\u79fb"
+                },
+                "offset_type": {
+                    "name": "\u504f\u79fb\u7c7b\u578b"
+                },
+                "type": {
+                    "description": "\u66d9\u66ae\u5149\u9636\u6bb5\u3002",
+                    "name": "\u66d9\u66ae\u5149\u7c7b\u578b"
+                }
+            },
+            "name": "\u62c2\u6653"
+        },
+        "dusk": {
+            "description": "\u5728\u66ae\u5149\u7ed3\u675f\u65f6\u89e6\u53d1\uff0c\u5305\u62ec\u6c11\u7528\u3001\u822a\u6d77\u6216\u5929\u6587\u66ae\u5149\u3002",
+            "fields": {
+                "offset": {
+                    "name": "\u504f\u79fb"
+                },
+                "offset_type": {
+                    "name": "\u504f\u79fb\u7c7b\u578b"
+                },
+                "type": {
+                    "description": "\u66d9\u66ae\u5149\u9636\u6bb5\u3002",
+                    "name": "\u66d9\u66ae\u5149\u7c7b\u578b"
+                }
+            },
+            "name": "\u9ec4\u660f"
+        },
+        "elevation_changed": {
+            "description": "\u5f53\u592a\u9633\u9ad8\u5ea6\u89d2\u53d1\u751f\u53d8\u5316\u65f6\u89e6\u53d1\uff0c\u53ef\u9009\u62e9\u9650\u5236\u5728\u60a8\u8bbe\u7f6e\u7684\u9608\u503c\u6216\u8303\u56f4\u5185\u3002",
+            "fields": {
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            },
+            "name": "\u592a\u9633\u9ad8\u5ea6\u89d2\u5df2\u53d8\u5316"
+        },
+        "elevation_crossed_threshold": {
+            "description": "\u5f53\u592a\u9633\u9ad8\u5ea6\u89d2\u8d85\u8fc7\u60a8\u8bbe\u5b9a\u7684\u9608\u503c\u65f6\u89e6\u53d1\u3002",
+            "fields": {
+                "for": {
+                    "name": "\u81f3\u5c11\u6301\u7eed"
+                },
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            },
+            "name": "\u592a\u9633\u9ad8\u5ea6\u89d2\u8d85\u8fc7\u9608\u503c"
+        },
+        "solar_midnight": {
+            "description": "\u5728\u592a\u9633\u5230\u8fbe\u6700\u4f4e\u70b9\u65f6\u89e6\u53d1\u3002",
+            "fields": {
+                "offset": {
+                    "name": "\u504f\u79fb"
+                },
+                "offset_type": {
+                    "name": "\u504f\u79fb\u7c7b\u578b"
+                }
+            },
+            "name": "\u592a\u9633\u5348\u591c"
+        },
+        "solar_noon": {
+            "description": "\u5728\u592a\u9633\u5230\u8fbe\u6700\u9ad8\u70b9\u65f6\u89e6\u53d1\u3002",
+            "fields": {
+                "offset": {
+                    "name": "\u504f\u79fb"
+                },
+                "offset_type": {
+                    "name": "\u504f\u79fb\u7c7b\u578b"
+                }
+            },
+            "name": "\u592a\u9633\u6b63\u5348"
+        },
+        "sunrise": {
+            "description": "\u65e5\u51fa\u65f6\u89e6\u53d1\u3002",
+            "fields": {
+                "offset": {
+                    "name": "\u504f\u79fb"
+                },
+                "offset_type": {
+                    "name": "\u504f\u79fb\u7c7b\u578b"
+                }
+            },
+            "name": "\u65e5\u51fa"
+        },
+        "sunset": {
+            "description": "\u65e5\u843d\u65f6\u89e6\u53d1\u3002",
+            "fields": {
+                "offset": {
+                    "name": "\u504f\u79fb"
+                },
+                "offset_type": {
+                    "name": "\u504f\u79fb\u7c7b\u578b"
+                }
+            },
+            "name": "\u65e5\u843d"
+        }
+    }
+}

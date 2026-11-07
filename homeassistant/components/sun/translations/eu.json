@@ -1,0 +1,67 @@
+{
+    "common": {
+        "condition_threshold_name": "Atalase mota",
+        "trigger_threshold_name": "Atalase mota"
+    },
+    "conditions": {
+        "elevation": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Konfigurazioa hasi nahi duzu?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Eguzki-ateratzea",
+                "state": {
+                    "off": "Ezarpena",
+                    "on": "Ateratzea"
+                }
+            }
+        },
+        "sensor": {
+            "next_rising": {
+                "name": "Hurrengo ateratzea"
+            }
+        }
+    },
+    "selector": {
+        "twilight_type": {
+            "options": {
+                "any": "Edozein"
+            }
+        }
+    },
+    "triggers": {
+        "elevation_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "elevation_crossed_threshold": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "sunrise": {
+            "name": "Egunsentia"
+        },
+        "sunset": {
+            "name": "Ilunabarra"
+        }
+    }
+}

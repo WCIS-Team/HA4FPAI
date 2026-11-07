@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Testar om en eller flera Assist-satelliter \u00e4r inaktiva.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satellit \u00e4r inaktiv"
+        },
+        "is_listening": {
+            "description": "Testar om en eller flera Assist-satelliter lyssnar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satellit lyssnar"
+        },
+        "is_processing": {
+            "description": "Testar om en eller flera Assist-satelliter bearbetar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satellit bearbetar"
+        },
+        "is_responding": {
+            "description": "Testar om en eller flera Assist-satelliter svarar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satellit svarar"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Assist satellit",
+            "state": {
+                "idle": "Inaktiv",
+                "listening": "Lyssnar",
+                "processing": "Bearbetar",
+                "responding": "Svarar"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "Svars-ID",
+                "sentences": "Meningar"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "L\u00e5ter en Assist-satellit spela upp ett meddelande.",
+            "fields": {
+                "media_id": {
+                    "description": "Det media-ID som ska spelas upp i st\u00e4llet f\u00f6r att anv\u00e4nda text-till-tal.",
+                    "name": "Media-ID"
+                },
+                "message": {
+                    "description": "Det meddelande som ska spelas upp.",
+                    "name": "Meddelande"
+                },
+                "preannounce": {
+                    "description": "Spela upp ett ljud f\u00f6re meddelandet.",
+                    "name": "F\u00f6rannonsera"
+                },
+                "preannounce_media_id": {
+                    "description": "Media-ID f\u00f6r det ljud som ska spelas upp f\u00f6re meddelandet.",
+                    "name": "Media-ID f\u00f6rannonsering"
+                }
+            },
+            "name": "Spela upp p\u00e5 satellit"
+        },
+        "ask_question": {
+            "description": "L\u00e5ter en Assist-satellit st\u00e4lla en fr\u00e5ga och f\u00e5 anv\u00e4ndarens svar.",
+            "fields": {
+                "answers": {
+                    "description": "M\u00f6jliga svar p\u00e5 fr\u00e5gan.",
+                    "name": "Svar"
+                },
+                "entity_id": {
+                    "description": "Den Assist-satellitsentitet som fr\u00e5gan ska st\u00e4llas till",
+                    "name": "Entitet"
+                },
+                "preannounce": {
+                    "description": "Spela upp ett ljud f\u00f6re startmeddelandet eller media.",
+                    "name": "F\u00f6rannonsera"
+                },
+                "preannounce_media_id": {
+                    "description": "Media-ID f\u00f6r det ljud som ska spelas upp f\u00f6re startmeddelandet eller mediat.",
+                    "name": "F\u00f6rannonsering media-ID"
+                },
+                "question": {
+                    "description": "Fr\u00e5gan att st\u00e4lla.",
+                    "name": "Fr\u00e5ga"
+                },
+                "question_media_id": {
+                    "description": "Media-ID f\u00f6r fr\u00e5gan som ska anv\u00e4ndas ist\u00e4llet f\u00f6r text-till-tal.",
+                    "name": "Fr\u00e5ga media-ID"
+                }
+            },
+            "name": "St\u00e4ll fr\u00e5ga p\u00e5 satellit"
+        },
+        "start_conversation": {
+            "description": "Startar en konversation fr\u00e5n en Assist-satellit.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Tillhandah\u00e5ll bakgrundsinformation om din beg\u00e4ran till AI-agenten.",
+                    "name": "Extra systemprompt"
+                },
+                "preannounce": {
+                    "description": "Spela upp ett ljud f\u00f6re startmeddelandet eller media.",
+                    "name": "F\u00f6rannonsera"
+                },
+                "preannounce_media_id": {
+                    "description": "Media-ID f\u00f6r det ljud som ska spelas upp f\u00f6re startmeddelandet eller mediat.",
+                    "name": "Media-ID f\u00f6rannonsering"
+                },
+                "start_media_id": {
+                    "description": "Media-ID att b\u00f6rja med ist\u00e4llet f\u00f6r att anv\u00e4nda text-till-tal.",
+                    "name": "Media-ID"
+                },
+                "start_message": {
+                    "description": "Meddelande att b\u00f6rja med.",
+                    "name": "Meddelande"
+                }
+            },
+            "name": "Starta konversation p\u00e5 satellit"
+        }
+    },
+    "title": "Assist satellit",
+    "triggers": {
+        "idle": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera Assist-satelliter blir inaktiva efter att ha behandlat ett kommando.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satelliten blev inaktiv"
+        },
+        "listening": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera Assist-satelliter b\u00f6rjar lyssna efter ett kommando fr\u00e5n n\u00e5gon.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satelliten b\u00f6rjade lyssna"
+        },
+        "processing": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera Assist-satelliter b\u00f6rjar bearbeta ett kommando efter att ha h\u00f6rt det.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satelliten b\u00f6rjade bearbeta"
+        },
+        "responding": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera Assist-satelliter b\u00f6rjar svara p\u00e5 ett kommando efter att ha bearbetat det, eller b\u00f6rjar meddela n\u00e5got.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Satelliten b\u00f6rjade svara"
+        }
+    }
+}

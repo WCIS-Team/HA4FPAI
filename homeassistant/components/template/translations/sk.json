@@ -1,0 +1,1255 @@
+{
+    "common": {
+        "additional_options": "\u010eal\u0161ie mo\u017enosti",
+        "availability": "Dostupnos\u0165",
+        "availability_description": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`.",
+        "code_format": "Form\u00e1t k\u00f3du",
+        "device_class": "Trieda zariadenia",
+        "device_id_description": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+        "state": "Stav",
+        "temperature_unit": "Jednotka teploty",
+        "temperature_unit_description": "Jednotka pre \u013eubovo\u013en\u00fd v\u00fdstup \u0161abl\u00f3ny teploty. Jedna z mo\u017enost\u00ed je `\u00b0C`, `\u00b0F` alebo `K`.",
+        "turn_off": "Akcie pri vypnut\u00ed",
+        "turn_on": "Akcie pri zapnut\u00ed",
+        "unit_of_measurement": "Mern\u00e1 jednotka"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Akcie zabezpe\u010denie mimo domu",
+                    "arm_custom_bypass": "Akcie pri zabezpe\u010den\u00fd vlastn\u00e9 ob\u00eddenie",
+                    "arm_home": "Akcie zabezpe\u010denia domu",
+                    "arm_night": "Akcie zabezpe\u010denia noc",
+                    "arm_vacation": "Zabezpe\u010denie akcie dovolenka",
+                    "code_arm_required": "Je vy\u017eadovan\u00fd k\u00f3d pre zabezpe\u010denie",
+                    "code_format": "Form\u00e1t k\u00f3du",
+                    "device_id": "Zariadenie",
+                    "disarm": "Akcia deaktiv\u00e1cie",
+                    "name": "N\u00e1zov",
+                    "trigger": "Akcie pri spusten\u00ed",
+                    "value_template": "Stav"
+                },
+                "data_description": {
+                    "arm_away": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_away`. Prij\u00edma premenn\u00fa `k\u00f3d`.",
+                    "arm_custom_bypass": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_custom_bypass`. Prij\u00edma premenn\u00fa `code`.",
+                    "arm_home": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_home`. Prij\u00edma premenn\u00fa `code`.",
+                    "arm_night": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_night`. Prij\u00edma premenn\u00fa `code`.",
+                    "arm_vacation": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_vacation`. Prij\u00edma premenn\u00fa `k\u00f3d`.",
+                    "code_arm_required": "Ak je pravda, k\u00f3d je potrebn\u00fd na zapnutie alarmu.",
+                    "code_format": "Jedna z mo\u017enost\u00ed `\u010d\u00edslo`, `text` alebo `no_code`. Form\u00e1t k\u00f3du pou\u017e\u00edvan\u00e9ho na zapnutie/vypnutie alarmu.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "disarm": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu odomknut\u00e1. Prij\u00edma premenn\u00fa `code`.",
+                    "trigger": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa spust\u00ed \u00fastred\u0148a alarmu. Prij\u00edma premenn\u00fa `code`.",
+                    "value_template": "Definuje \u0161abl\u00f3nu na nastavenie stavu poplachov\u00e9ho panela. Platn\u00e9 v\u00fdstupn\u00e9 hodnoty zo \u0161abl\u00f3ny s\u00fa `zabezpe\u010den\u00fd_odchod`, `zabezpe\u010den\u00fd_domov`, `zabezpe\u010den\u00fd_noc`, `zabezpe\u010den\u00fd_dovolenka`, `zabezpe\u010den\u00fd`, `vypnut\u00fd` a `spusten\u00fd`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na ovl\u00e1dacieho panela alarmu"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "state": "Stav"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "state": "Sn\u00edma\u010d je `zapnut\u00fd`, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `pravdiv\u00fd`, `\u00e1no`, `zapnut\u00fd`, `zapn\u00fa\u0165` alebo kladn\u00e9 \u010d\u00edslo. Ak\u00e1ko\u013evek in\u00e1 hodnota ho zobraz\u00ed ako `vypnut\u00e9`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165",
+                            "delay_off": "Oneskorenie vypnutia",
+                            "delay_on": "Oneskorenie zapnutia"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`.",
+                            "delay_off": "Doba, po\u010das ktorej nesmie by\u0165 splnen\u00e1 podmienka \u0161abl\u00f3ny, ne\u017e sa tento sn\u00edma\u010d prepne do stavu `vypnut\u00e9`.",
+                            "delay_on": "Doba, po\u010das ktorej mus\u00ed by\u0165 splnen\u00e1 podmienka \u0161abl\u00f3ny, k\u00fdm sa tento sn\u00edma\u010d prepne do stavu `zapnut\u00fd`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na bin\u00e1rneho sn\u00edma\u010da"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "press": "Akcie pri stla\u010den\u00ed"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "press": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po stla\u010den\u00ed tla\u010didla."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Tla\u010didlo \u0161abl\u00f3ny"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Aktu\u00e1lna teplota",
+                    "device_id": "Zariadenie",
+                    "hvac_action": "Aktu\u00e1lna akcia",
+                    "hvac_mode": "HVAC re\u017eim",
+                    "hvac_modes": "Re\u017eimy HVAC",
+                    "name": "N\u00e1zov",
+                    "set_hvac_mode": "Akcie pri nastavenom re\u017eime HVAC",
+                    "set_temperature": "Akcie pri nastavenej teplote",
+                    "target_temperature": "Cie\u013eov\u00e1 teplota",
+                    "temperature_unit": "Jednotka teploty"
+                },
+                "data_description": {
+                    "current_temperature": "Definuje \u0161abl\u00f3nu pre aktu\u00e1lnu teplotu.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "hvac_action": "Definuje \u0161abl\u00f3nu pre aktu\u00e1lnu akciu syst\u00e9mu HVAC. Platn\u00e9 akcie syst\u00e9mu HVAC s\u00fa `chladenie`, `odmrazovanie`, `su\u0161enie`, `ventil\u00e1tor`, `k\u00farenie`, `\u010dakac\u00ed re\u017eim`, `vypnut\u00e9` a `predohrev`.",
+                    "hvac_mode": "Definuje \u0161abl\u00f3nu pre aktu\u00e1lny re\u017eim HVAC. Platn\u00e9 re\u017eimy HVAC s\u00fa `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` a `off`.",
+                    "hvac_modes": "Definuje \u0161abl\u00f3nu pre zoznam dostupn\u00fdch re\u017eimov HVAC. Platn\u00e9 re\u017eimy HVAC pre tento zoznam s\u00fa `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` a `off`.",
+                    "set_hvac_mode": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa pre klimatiz\u00e1ciu zad\u00e1 pr\u00edkaz `set_hvac_mode`. Prij\u00edma premenn\u00fa `hvac_mode`.",
+                    "set_temperature": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa klimatiz\u00e1cii odo\u0161le pr\u00edkaz `set_temperature`. Prij\u00edma premenn\u00e9 `hvac_mode`, `temperature`, `target_temp_high` a `target_temp_low`. Ak je prijat\u00e1 premenn\u00e1 `hvac_mode`, akcie `set_hvac_mode` sa vykonaj\u00fa pred akciami v `set_temperature`.",
+                    "target_temperature": "Definuje \u0161abl\u00f3nu pre cie\u013eov\u00fa teplotu.",
+                    "temperature_unit": "Jednotka pre \u013eubovo\u013en\u00fd v\u00fdstup \u0161abl\u00f3ny teploty. Jedna z mo\u017enost\u00ed je `\u00b0C`, `\u00b0F` alebo `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165",
+                            "max_temperature": "Maxim\u00e1lna cie\u013eov\u00e1 teplota",
+                            "min_temperature": "Minim\u00e1lna cie\u013eov\u00e1 teplota"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na termostatu"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Akcie pri zatvoren\u00ed",
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "open_cover": "Akcie pri otvoren\u00ed",
+                    "position": "Poloha",
+                    "set_cover_position": "Akcie na nastavenej poz\u00edcii",
+                    "state": "Stav",
+                    "stop_cover": "Akcie pri zastaven\u00ed"
+                },
+                "data_description": {
+                    "close_cover": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po zatvoren\u00ed krytu.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "open_cover": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri otvoren\u00ed obalu.",
+                    "position": "Definuje \u0161abl\u00f3nu na z\u00edskanie polohy ob\u00e1lky. Hodnoty s\u00fa \u010d\u00edsla medzi `0` (`zavret\u00fd`) a `100` (`otvoren\u00fd`).",
+                    "set_cover_position": "Definuje akcie, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je krytu zadan\u00fd pr\u00edkaz `set_cover_position`. Prij\u00edma premenn\u00fa `poz\u00edcia`.",
+                    "state": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu krytu. Platn\u00e9 v\u00fdstupn\u00e9 hodnoty zo \u0161abl\u00f3ny s\u00fa `otvoren\u00e9`, `otv\u00e1ranie`, `zatv\u00e1ranie` a `zatvoren\u00e9`, ktor\u00e9 s\u00fa priamo namapovan\u00e9 na zodpovedaj\u00face stavy. Ak je zadan\u00fd stav aj poz\u00edcia, zo \u0161abl\u00f3ny stavu sa nastavia iba `otv\u00e1ranie` a `zatv\u00e1ranie`.",
+                    "stop_cover": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri zastaven\u00ed krytu."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na obalu"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "in_zones": "Z\u00f3ny",
+                    "latitude": "Zemepisn\u00e1 \u0161\u00edrka",
+                    "longitude": "Zemepisn\u00e1 d\u013a\u017eka",
+                    "name": "N\u00e1zov"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "in_zones": "Definuje \u0161abl\u00f3nu, ktor\u00e1 vr\u00e1ti zoznam z\u00f3n, v ktor\u00fdch sa zariadenie na sledovanie pr\u00e1ve nach\u00e1dza. \u0160abl\u00f3na by mala vr\u00e1ti\u0165 zoznam ID ent\u00edt z\u00f3n. Ak sa sledova\u010d zariadenia nenach\u00e1dza v \u017eiadnej z\u00f3ne, \u0161abl\u00f3na by mala vr\u00e1ti\u0165 pr\u00e1zdny zoznam.",
+                    "latitude": "Definuje \u0161abl\u00f3nu na z\u00edskanie zemepisnej \u0161\u00edrky sledovacieho zariadenia. Platn\u00e9 hodnoty s\u00fa \u010d\u00edsla medzi `-90` a `90`.",
+                    "longitude": "Definuje \u0161abl\u00f3nu na z\u00edskanie zemepisnej d\u013a\u017eky sledovacieho zariadenia. Platn\u00e9 hodnoty s\u00fa \u010d\u00edsla medzi `-180` a `180`.",
+                    "name": "N\u00e1zov"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165",
+                            "location_accuracy": "Presnos\u0165 polohy"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`.",
+                            "location_accuracy": "Definuje \u0161abl\u00f3nu na z\u00edskanie presnosti polohy sledovacieho zariadenia v metroch. Platn\u00e9 hodnoty s\u00fa \u010d\u00edsla v\u00e4\u010d\u0161ie alebo rovn\u00e9 0."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na sledovania zariadenia"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "event_type": "Typ udalosti naposledy spustenej",
+                    "event_types": "Typy udalost\u00ed",
+                    "name": "N\u00e1zov"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "event_type": "Definuje \u0161abl\u00f3nu pre typ udalosti.",
+                    "event_types": "Definuje \u0161abl\u00f3nu pre zoznam dostupn\u00fdch typov udalost\u00ed."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na udalosti"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "percentage": "Percento",
+                    "set_percentage": "Akcie na nastaven\u00e9 percento",
+                    "speed_count": "Meranie r\u00fdchlosti",
+                    "state": "Stav",
+                    "turn_off": "Akcie pri vypnut\u00ed",
+                    "turn_on": "Akcie pri zapnut\u00ed"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "percentage": "Definuje \u0161abl\u00f3nu na z\u00edskanie percentu\u00e1lnej hodnoty ot\u00e1\u010dok ventil\u00e1tora.",
+                    "set_percentage": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je ventil\u00e1toru zadan\u00fd pr\u00edkaz na percento r\u00fdchlosti. Prij\u00edma premenn\u00fa `percento`.",
+                    "speed_count": "Po\u010det r\u00fdchlost\u00ed, ktor\u00e9 ventil\u00e1tor podporuje. Pou\u017e\u00edva sa na v\u00fdpo\u010det percentu\u00e1lneho kroku pre akcie `fan.increase_speed` a `fan.decrease_speed`.",
+                    "state": "Ventil\u00e1tor je `zapnut\u00fd`, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `pravdiv\u00e1`, `\u00e1no`, `zapnut\u00e9`, `zapn\u00fa\u0165` alebo kladn\u00e9 \u010d\u00edslo. Ak\u00e1ko\u013evek in\u00e1 hodnota ju zobraz\u00ed ako `vypnut\u00e9`.",
+                    "turn_off": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je ventil\u00e1tor vypnut\u00fd.",
+                    "turn_on": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je ventil\u00e1tor zapnut\u00fd. Dost\u00e1va premenn\u00e9 `percentage` a/alebo `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na ventil\u00e1tora"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "url": "URL",
+                    "verify_ssl": "Overi\u0165 SSL certifik\u00e1t"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "url": "Definuje \u0161abl\u00f3nu na z\u00edskanie adresy URL, na ktorej sa obr\u00e1zok zobrazuje.",
+                    "verify_ssl": "Povolenie alebo zak\u00e1zanie overovania certifik\u00e1tu SSL. Zak\u00e1\u017ete, ak chcete pou\u017ei\u0165 http URL adresu, alebo ak m\u00e1te certifik\u00e1t SSL s vlastn\u00fdm podpisom a nenain\u0161talovali ste certifik\u00e1t certifika\u010dnej autority, aby ste umo\u017enili overenie."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Obr\u00e1zok \u0161abl\u00f3ny"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "hs": "Farba HS",
+                    "level": "\u00darove\u0148 jasu",
+                    "name": "N\u00e1zov",
+                    "set_hs": "Akcie na nastavenej farbe HS",
+                    "set_level": "Akcie na stanovenej \u00farovni",
+                    "set_temperature": "Akcie pri nastavenej teplote farieb",
+                    "state": "Stav",
+                    "temperature": "Teplota farby",
+                    "turn_off": "Akcie pri vypnut\u00ed",
+                    "turn_on": "Akcie pri zapnut\u00ed"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "hs": "Definuje \u0161abl\u00f3nu na z\u00edskanie farby HS svetla. Mus\u00ed vykresli\u0165 tuple (odtie\u0148, s\u00fdtos\u0165).",
+                    "level": "Definuje \u0161abl\u00f3nu na z\u00edskanie jasu svetla. Platn\u00e9 hodnoty s\u00fa 0 a\u017e 255.",
+                    "set_hs": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je svetlu zadan\u00fd pr\u00edkaz farby HS. Dostupn\u00e9 premenn\u00e9: `hs` ako tuple, `h` a `s`.",
+                    "set_level": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa svetlu zad\u00e1 pr\u00edkaz na jas. Skript sa zavol\u00e1 iba vtedy, ak je vo volan\u00ed `turn_on` uveden\u00fd iba parameter `brightness` a volite\u013ene `transition`. Prij\u00edma premenn\u00e9 `jas` a volite\u013ene `prechod`.",
+                    "set_temperature": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa svetlu zad\u00e1 pr\u00edkaz teploty farby. Prij\u00edma premenn\u00fa `color_temp_kelvin`. M\u00f4\u017ee tie\u017e prij\u00edma\u0165 premenn\u00e9 `brightness` a/alebo `transition`.",
+                    "state": "Svetlo je `zapnut\u00e9`, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `pravdiv\u00e9`, `\u00e1no`, `zapnut\u00e9`, `povolen\u00e9` alebo kladn\u00e9 \u010d\u00edslo. Ak\u00e1ko\u013evek in\u00e1 hodnota ju vykresl\u00ed ako `vypnut\u00e9`.",
+                    "temperature": "Definuje \u0161abl\u00f3nu na z\u00edskanie teploty farby svetla.",
+                    "turn_off": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po vypnut\u00ed svetla.",
+                    "turn_on": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri zapnut\u00ed svetla."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na svetla"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Form\u00e1t k\u00f3du",
+                    "device_id": "Zariadenie",
+                    "lock": "Akcie pri uzamknut\u00ed",
+                    "name": "N\u00e1zov",
+                    "open": "Akcie pri otvoren\u00ed",
+                    "state": "Stav",
+                    "unlock": "Akcie pri odomknut\u00ed"
+                },
+                "data_description": {
+                    "code_format": "Definuje \u0161abl\u00f3nu na z\u00edskanie atrib\u00fatu `code_format` z\u00e1mku.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "lock": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je z\u00e1mok uzamknut\u00fd.",
+                    "open": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri otvoren\u00ed z\u00e1mku.",
+                    "state": "Definuje \u0161abl\u00f3nu na nastavenie stavu z\u00e1mku. Z\u00e1mok je uzamknut\u00fd, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `True`, `true`, `on` alebo `zamknut\u00e9`. Z\u00e1mok je odomknut\u00fd, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `False`, `false`, `off` alebo `odomknut\u00e9`. \u010eal\u0161ie platn\u00e9 stavy s\u00fa `zaseknut\u00e9`, `otv\u00e1ranie`, `zamykanie`, `otvori\u0165` a `odomykanie`.",
+                    "unlock": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je z\u00e1mok odomknut\u00fd."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Z\u00e1mok \u0161abl\u00f3ny"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "max": "Maxim\u00e1lna hodnota",
+                    "min": "Minim\u00e1lna hodnota",
+                    "name": "N\u00e1zov",
+                    "set_value": "Akcie na nastaven\u00fa hodnotu",
+                    "state": "Stav",
+                    "step": "Hodnota kroku",
+                    "unit_of_measurement": "Mern\u00e1 jednotka"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "max": "Definuje maxim\u00e1lnu hodnotu \u010d\u00edsla.",
+                    "min": "Definuje minim\u00e1lnu hodnotu \u010d\u00edsla.",
+                    "set_value": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je \u010d\u00edslo nastaven\u00e9 na hodnotu. Prij\u00edma premenn\u00fa `value`.",
+                    "state": "\u0160abl\u00f3na pre aktu\u00e1lnu hodnotu \u010d\u00edsla.",
+                    "step": "Definuje krok pr\u00edrastku/zn\u00ed\u017eenia \u010d\u00edsla.",
+                    "unit_of_measurement": "Definuje pr\u00edpadn\u00fa mern\u00fa jednotku \u010d\u00edsla."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u010c\u00edslo \u0161abl\u00f3ny"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "options": "Dostupn\u00e9 mo\u017enosti",
+                    "select_option": "Akcie na v\u00fdber",
+                    "state": "Stav"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "options": "\u0160abl\u00f3na pre dostupn\u00e9 mo\u017enosti v\u00fdberu.",
+                    "select_option": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je vybran\u00e1 niektor\u00e1 z mo\u017enost\u00ed zo zoznamu `Mo\u017enosti`. Dost\u00e1va premenn\u00fa `option`.",
+                    "state": "\u0160abl\u00f3na pre aktu\u00e1lnu hodnotu v\u00fdberu."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "V\u00fdber \u0161abl\u00f3ny"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "state": "Stav",
+                    "state_class": "Trieda stavu",
+                    "unit_of_measurement": "Mern\u00e1 jednotka"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "state": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu sn\u00edma\u010da. Ak je sn\u00edma\u010d \u010d\u00edseln\u00fd, t. j. m\u00e1 `state_class` alebo `unit_of_measurement`, \u0161abl\u00f3na stavu mus\u00ed by\u0165 zobrazen\u00e1 ako \u010d\u00edslo alebo ako `none`. \u0160abl\u00f3na stavu nesmie by\u0165 zobrazen\u00e1 ako re\u0165azec vr\u00e1tane `unknown` alebo `unavailable`. Na potla\u010denie vykres\u013eovania \u0161abl\u00f3ny stavu m\u00f4\u017ee by\u0165 definovan\u00e1 \u0161abl\u00f3na `dostupnos\u0165`.",
+                    "unit_of_measurement": "Definuje jednotku merania pre sn\u00edma\u010d, ak existuje. T\u00fdm sa zobraz\u00ed aj hodnota na z\u00e1klade nastavenia form\u00e1tu \u010d\u00edsla v profile pou\u017e\u00edvate\u013ea a ovplyvn\u00ed grafick\u00e9 zobrazenie vo vizualiz\u00e1cii hist\u00f3rie ako spojit\u00e1 hodnota."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3nov\u00fd sn\u00edma\u010d"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "turn_off": "Akcie pri vypnut\u00ed",
+                    "turn_on": "Akcie pri zapnut\u00ed",
+                    "value_template": "Stav"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "turn_off": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je vyp\u00edna\u010d vypnut\u00fd.",
+                    "turn_on": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po zapnut\u00ed prep\u00edna\u010da.",
+                    "value_template": "Definuje \u0161abl\u00f3nu na nastavenie stavu prep\u00edna\u010da. Ak nie je definovan\u00e1, prep\u00edna\u010d bude optimisticky predpoklada\u0165, \u017ee v\u0161etky pr\u00edkazy s\u00fa \u00faspe\u0161n\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Prep\u00edna\u010d \u0161abl\u00f3ny"
+            },
+            "update": {
+                "data": {
+                    "backup": "Z\u00e1lohovanie",
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "in_progress": "Prebieha",
+                    "install": "Akcie pri in\u0161tal\u00e1cii",
+                    "installed_version": "Nain\u0161talovan\u00e1 verzia",
+                    "latest_version": "Dostupn\u00e1 verzia",
+                    "name": "N\u00e1zov",
+                    "release_summary": "S\u00fahrn vydania",
+                    "release_url": "URL vydania",
+                    "specific_version": "Konkr\u00e9tna verzia",
+                    "title": "N\u00e1zov",
+                    "update_percentage": "Percento aktualiz\u00e1cie"
+                },
+                "data_description": {
+                    "backup": "Povo\u013ete alebo zak\u00e1\u017ete mo\u017enos\u0165 `automatick\u00e9 z\u00e1lohovanie pred aktualiz\u00e1ciou` pri oprave aktualiz\u00e1cie. Ak je vypnut\u00e1, premenn\u00e1 `z\u00e1lohovanie` bude po\u010das akcie `in\u0161tal\u00e1cia` v\u017edy poskytova\u0165 hodnotu `nepravda` a nebude akceptova\u0165 mo\u017enos\u0165 `z\u00e1lohovanie`.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "in_progress": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu rozpracovanosti.",
+                    "install": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri in\u0161tal\u00e1cii aktualiz\u00e1cie. Prij\u00edma premenn\u00e9 `specific_version` a `backup`, ak s\u00fa povolen\u00e9.",
+                    "installed_version": "Definuje \u0161abl\u00f3nu na z\u00edskanie nain\u0161talovanej verzie.",
+                    "latest_version": "Definuje \u0161abl\u00f3nu na z\u00edskanie najnov\u0161ej verzie.",
+                    "release_summary": "Definuje \u0161abl\u00f3nu na z\u00edskanie s\u00fahrnu vydania.",
+                    "release_url": "Definuje \u0161abl\u00f3nu na z\u00edskanie adresy URL vydania.",
+                    "specific_version": "Povolenie alebo zak\u00e1zanie pomocou premennej `version` s akciou `install`. Ak je zak\u00e1zan\u00e1, premenn\u00e1 `specific_version` bude v akcii `install` v\u017edy poskytova\u0165 hodnotu `None`",
+                    "title": "Definuje \u0161abl\u00f3nu na z\u00edskanie n\u00e1zvu aktualiz\u00e1cie.",
+                    "update_percentage": "Definuje \u0161abl\u00f3nu na z\u00edskanie percenta dokon\u010denia aktualiz\u00e1cie."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Aktualiz\u00e1cia \u0161abl\u00f3ny"
+            },
+            "user": {
+                "description": "Tento pomocn\u00edk umo\u017e\u0148uje vytv\u00e1ra\u0165 pomocn\u00e9 entity, ktor\u00e9 definuj\u00fa svoj stav pomocou \u0161abl\u00f3ny. Ak\u00fa \u0161abl\u00f3nu by ste chceli vytvori\u0165?",
+                "menu_options": {
+                    "alarm_control_panel": "Ovl\u00e1dac\u00ed panel alarmu",
+                    "binary_sensor": "Bin\u00e1rny sn\u00edma\u010d",
+                    "button": "Tla\u010didlo",
+                    "climate": "Klimatiz\u00e1cia",
+                    "cover": "Tienenie",
+                    "device_tracker": "Sledovanie zariadenia",
+                    "event": "Udalos\u0165",
+                    "fan": "Ventil\u00e1tor",
+                    "image": "Obr\u00e1zok",
+                    "light": "Svetlo",
+                    "lock": "Z\u00e1mok",
+                    "number": "\u010c\u00edslo",
+                    "select": "Vyberte",
+                    "sensor": "Sn\u00edma\u010d",
+                    "switch": "Prep\u00edna\u010d",
+                    "update": "Aktualizova\u0165",
+                    "vacuum": "Vys\u00e1va\u010d",
+                    "weather": "Po\u010dasie"
+                },
+                "title": "Pomocn\u00edk \u0161abl\u00f3ny"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Akcie na \u010distom mieste",
+                    "device_id": "Zariadenie",
+                    "fan_speed": "R\u00fdchlos\u0165 ventil\u00e1tora",
+                    "fan_speeds": "R\u00fdchlosti ventil\u00e1tora",
+                    "locate": "Akcie pri lokaliz\u00e1cii",
+                    "name": "N\u00e1zov",
+                    "pause": "Akcie pri pozastaven\u00ed",
+                    "return_to_base": "Akcie pri n\u00e1vrate do doku",
+                    "set_fan_speed": "Akcie pri nastavenej r\u00fdchlosti ventil\u00e1tora",
+                    "start": "Akcie pri spusten\u00ed",
+                    "state": "Stav",
+                    "stop": "Akcie pri zastaven\u00ed"
+                },
+                "data_description": {
+                    "clean_spot": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz \"Clean spot\".",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "fan_speed": "Definuje \u0161abl\u00f3nu na z\u00edskanie r\u00fdchlosti ventil\u00e1tora vys\u00e1va\u010da.",
+                    "fan_speeds": "Zoznam r\u00fdchlost\u00ed ventil\u00e1tora podporovan\u00fdch vys\u00e1va\u010dom.",
+                    "locate": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz 'Locate'.",
+                    "pause": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je vys\u00e1vanie pozastaven\u00e9.",
+                    "return_to_base": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz \"N\u00e1vrat do doku\".",
+                    "set_fan_speed": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz na nastavenie r\u00fdchlosti ventil\u00e1tora. Prij\u00edma premenn\u00fa `fan_speed`.",
+                    "start": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa spusti\u0165 pri spusten\u00ed vys\u00e1vania.",
+                    "state": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu v\u00e1kua. Platn\u00e9 hodnoty s\u00fa `cleaning`, `docked`, `idle`, `paused`, `returning` a `error`.",
+                    "stop": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010d zastav\u00ed."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na v\u00e1kua"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Podmienka",
+                    "device_id": "Zariadenie",
+                    "forecast_daily": "Denn\u00e1 predpove\u010f",
+                    "forecast_hourly": "Hodinov\u00e1 predpove\u010f",
+                    "humidity": "Vlhkos\u0165",
+                    "name": "N\u00e1zov",
+                    "temperature": "Teplota",
+                    "temperature_unit": "Jednotka teploty"
+                },
+                "data_description": {
+                    "condition": "Definuje \u0161abl\u00f3nu na z\u00edskanie aktu\u00e1lneho po\u010dasia",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "forecast_daily": "Definuje \u0161abl\u00f3nu na z\u00edskanie [denn\u00fdch \u00fadajov predpovede]({daily_link})",
+                    "forecast_hourly": "Definuje \u0161abl\u00f3nu na z\u00edskanie [hodinov\u00fdch \u00fadajov predpovede]({hourly_link})",
+                    "humidity": "Definuje \u0161abl\u00f3nu na z\u00edskanie aktu\u00e1lnej vlhkosti",
+                    "temperature": "Definuje \u0161abl\u00f3nu na z\u00edskanie aktu\u00e1lnej teploty",
+                    "temperature_unit": "Jednotka pre \u013eubovo\u013en\u00fd v\u00fdstup \u0161abl\u00f3ny teploty. Jedna z mo\u017enost\u00ed je `\u00b0C`, `\u00b0F` alebo `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na po\u010dasia"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Chyba pri vyhodnocovan\u00ed \u0161abl\u00f3ny form\u00e1tu k\u00f3du \"{code_format_template}\" pre {entity_id}: {cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "Chyba pri na\u010d\u00edtavan\u00ed ent\u00edt \u0161abl\u00f3ny: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "Pomocn\u00edk \u0161abl\u00f3ny bol odstr\u00e1nen\u00fd"
+                },
+                "error": {
+                    "invalid_device": "Vybran\u00e9 zariadenie u\u017e neexistuje"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Zariadenie"
+                        },
+                        "data_description": {
+                            "device_id": "Zariadenie, ku ktor\u00e9mu by mal by\u0165 tento pomocn\u00edk so \u0161abl\u00f3nami prepojen\u00fd."
+                        },
+                        "description": "Pomocn\u00edk \u0161abl\u00f3ny {name} bol priraden\u00fd k zariadeniu, ktor\u00e9 bolo rozdelen\u00e9 na viacero zariaden\u00ed. Pokia\u013e nie je vybran\u00e9 \u017eiadne zariadenie, tento pomocn\u00edk nie je priraden\u00fd k \u017eiadnemu zariadeniu.\n\nVyberte zariadenie, ku ktor\u00e9mu m\u00e1 by\u0165 tento pomocn\u00edk priraden\u00fd, alebo pole nechajte pr\u00e1zdne, ak ho nechcete priradi\u0165 k \u017eiadnemu zariadeniu.",
+                        "title": "Vyberte zariadenie pre {name}"
+                    }
+                }
+            },
+            "title": "Je potrebn\u00e9 op\u00e4\u0165 vybra\u0165 zariadenie pre pomocn\u00edka so \u0161abl\u00f3nami {name}"
+        },
+        "config_format_actions": {
+            "description": "V konfigur\u00e1cii \u0161abl\u00f3ny je mo\u017enos\u0165 akci\u00ed, ktor\u00e1 sa nesp\u00e1ruje s mo\u017enos\u0165ou sp\u00fa\u0161\u0165a\u010da. V verzii 2026.5 to bude chyba overenia konfigur\u00e1cie.\n\nPridajte do konfigur\u00e1cie sp\u00fa\u0161\u0165a\u010d alebo z konfigur\u00e1cie odstr\u00e1\u0148te mo\u017enos\u0165 akci\u00ed.\n\n```\n{config}\n```",
+            "title": "Mo\u017enos\u0165 akci\u00ed \u0161abl\u00f3ny vy\u017eaduje sp\u00fa\u0161\u0165a\u010d"
+        },
+        "config_format_triggers": {
+            "description": "Konfigur\u00e1cia \u0161abl\u00f3ny sp\u00fa\u0161\u0165a\u010da vy\u017eaduje sp\u00fa\u0161\u0165a\u010d a aspo\u0148 jednu dom\u00e9nu pri definovan\u00ed entity. V Home Assistant Core 2026.5 to bude chyba overenia konfigur\u00e1cie.\n\nOdstr\u00e1\u0148te osirel\u00fd sp\u00fa\u0161\u0165a\u010d z konfigur\u00e1cie.\n\n```\n{config}\n```",
+            "title": "Ne\u00fapln\u00e1 konfigur\u00e1cia \u0161abl\u00f3ny"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Akcie zabezpe\u010denie mimo domu",
+                    "arm_custom_bypass": "Akcie pri zabezpe\u010den\u00fd vlastn\u00e9 ob\u00eddenie",
+                    "arm_home": "Akcie zabezpe\u010denia domu",
+                    "arm_night": "Akcie zabezpe\u010denia noc",
+                    "arm_vacation": "Zabezpe\u010denie akcie dovolenka",
+                    "code_arm_required": "Je vy\u017eadovan\u00fd k\u00f3d pre zabezpe\u010denie",
+                    "code_format": "Form\u00e1t k\u00f3du",
+                    "device_id": "Zariadenie",
+                    "disarm": "Akcia deaktiv\u00e1cie",
+                    "trigger": "Akcie pri spusten\u00ed",
+                    "value_template": "Stav"
+                },
+                "data_description": {
+                    "arm_away": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_away`. Prij\u00edma premenn\u00fa `k\u00f3d`.",
+                    "arm_custom_bypass": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_custom_bypass`. Prij\u00edma premenn\u00fa `code`.",
+                    "arm_home": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_home`. Prij\u00edma premenn\u00fa `code`.",
+                    "arm_night": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_night`. Prij\u00edma premenn\u00fa `code`.",
+                    "arm_vacation": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je \u00fastred\u0148a alarmu zapnut\u00e1 na `arm_vacation`. Prij\u00edma premenn\u00fa `k\u00f3d`.",
+                    "code_arm_required": "Ak je pravda, k\u00f3d je potrebn\u00fd na zapnutie alarmu.",
+                    "code_format": "Jedna z mo\u017enost\u00ed `\u010d\u00edslo`, `text` alebo `no_code`. Form\u00e1t k\u00f3du pou\u017e\u00edvan\u00e9ho na zapnutie/vypnutie alarmu.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "disarm": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je \u00fastred\u0148a alarmu odomknut\u00e1. Prij\u00edma premenn\u00fa `code`.",
+                    "trigger": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa spust\u00ed \u00fastred\u0148a alarmu. Prij\u00edma premenn\u00fa `code`.",
+                    "value_template": "Definuje \u0161abl\u00f3nu na nastavenie stavu poplachov\u00e9ho panela. Platn\u00e9 v\u00fdstupn\u00e9 hodnoty zo \u0161abl\u00f3ny s\u00fa `zabezpe\u010den\u00fd_odchod`, `zabezpe\u010den\u00fd_domov`, `zabezpe\u010den\u00fd_noc`, `zabezpe\u010den\u00fd_dovolenka`, `zabezpe\u010den\u00fd`, `vypnut\u00fd` a `spusten\u00fd`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na ovl\u00e1dacieho panela alarmu"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "state": "Stav"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "state": "Sn\u00edma\u010d je `zapnut\u00fd`, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `pravdiv\u00fd`, `\u00e1no`, `zapnut\u00fd`, `zapn\u00fa\u0165` alebo kladn\u00e9 \u010d\u00edslo. Ak\u00e1ko\u013evek in\u00e1 hodnota ho zobraz\u00ed ako `vypnut\u00e9`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165",
+                            "delay_off": "Oneskorenie vypnutia",
+                            "delay_on": "Oneskorenie zapnutia"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`.",
+                            "delay_off": "Doba, po\u010das ktorej nesmie by\u0165 splnen\u00e1 podmienka \u0161abl\u00f3ny, ne\u017e sa tento sn\u00edma\u010d prepne do stavu `vypnut\u00e9`.",
+                            "delay_on": "Doba, po\u010das ktorej mus\u00ed by\u0165 splnen\u00e1 podmienka \u0161abl\u00f3ny, k\u00fdm sa tento sn\u00edma\u010d prepne do stavu `zapnut\u00fd`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na bin\u00e1rneho sn\u00edma\u010da"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "press": "Akcie pri stla\u010den\u00ed"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "press": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po stla\u010den\u00ed tla\u010didla."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Tla\u010didlo \u0161abl\u00f3ny"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Aktu\u00e1lna teplota",
+                    "device_id": "Zariadenie",
+                    "hvac_action": "Aktu\u00e1lna akcia",
+                    "hvac_mode": "HVAC re\u017eim",
+                    "hvac_modes": "Re\u017eimy HVAC",
+                    "name": "N\u00e1zov",
+                    "set_hvac_mode": "Akcie pri nastavenom re\u017eime HVAC",
+                    "set_temperature": "Akcie pri nastavenej teplote",
+                    "target_temperature": "Cie\u013eov\u00e1 teplota",
+                    "temperature_unit": "Jednotka teploty"
+                },
+                "data_description": {
+                    "current_temperature": "Definuje \u0161abl\u00f3nu pre aktu\u00e1lnu teplotu.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "hvac_action": "Definuje \u0161abl\u00f3nu pre aktu\u00e1lnu akciu syst\u00e9mu HVAC. Platn\u00e9 akcie syst\u00e9mu HVAC s\u00fa `chladenie`, `odmrazovanie`, `su\u0161enie`, `ventil\u00e1tor`, `k\u00farenie`, `\u010dakac\u00ed re\u017eim`, `vypnut\u00e9` a `predohrev`.",
+                    "hvac_mode": "Definuje \u0161abl\u00f3nu pre aktu\u00e1lny re\u017eim HVAC. Platn\u00e9 re\u017eimy HVAC s\u00fa `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` a `off`.",
+                    "hvac_modes": "Definuje \u0161abl\u00f3nu pre zoznam dostupn\u00fdch re\u017eimov HVAC. Platn\u00e9 re\u017eimy HVAC pre tento zoznam s\u00fa `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` a `off`.",
+                    "set_hvac_mode": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa pre klimatiz\u00e1ciu zad\u00e1 pr\u00edkaz `set_hvac_mode`. Prij\u00edma premenn\u00fa `hvac_mode`.",
+                    "set_temperature": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa klimatiz\u00e1cii odo\u0161le pr\u00edkaz `set_temperature`. Prij\u00edma premenn\u00e9 `hvac_mode`, `temperature`, `target_temp_high` a `target_temp_low`. Ak je prijat\u00e1 premenn\u00e1 `hvac_mode`, akcie `set_hvac_mode` sa vykonaj\u00fa pred akciami v `set_temperature`.",
+                    "target_temperature": "Definuje \u0161abl\u00f3nu pre cie\u013eov\u00fa teplotu.",
+                    "temperature_unit": "Jednotka pre \u013eubovo\u013en\u00fd v\u00fdstup \u0161abl\u00f3ny teploty. Jedna z mo\u017enost\u00ed je `\u00b0C`, `\u00b0F` alebo `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165",
+                            "max_temperature": "Maxim\u00e1lna cie\u013eov\u00e1 teplota",
+                            "min_temperature": "Minim\u00e1lna cie\u013eov\u00e1 teplota"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na termostatu"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Akcie pri zatvoren\u00ed",
+                    "device_id": "Zariadenie",
+                    "open_cover": "Akcie pri otvoren\u00ed",
+                    "position": "Poloha",
+                    "set_cover_position": "Akcie na nastavenej poz\u00edcii",
+                    "state": "Stav",
+                    "stop_cover": "Akcie pri zastaven\u00ed"
+                },
+                "data_description": {
+                    "close_cover": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po zatvoren\u00ed krytu.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "open_cover": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri otvoren\u00ed obalu.",
+                    "position": "Definuje \u0161abl\u00f3nu na z\u00edskanie polohy ob\u00e1lky. Hodnoty s\u00fa \u010d\u00edsla medzi `0` (`zavret\u00fd`) a `100` (`otvoren\u00fd`).",
+                    "set_cover_position": "Definuje akcie, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je krytu zadan\u00fd pr\u00edkaz `set_cover_position`. Prij\u00edma premenn\u00fa `poz\u00edcia`.",
+                    "state": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu krytu. Platn\u00e9 v\u00fdstupn\u00e9 hodnoty zo \u0161abl\u00f3ny s\u00fa `otvoren\u00e9`, `otv\u00e1ranie`, `zatv\u00e1ranie` a `zatvoren\u00e9`, ktor\u00e9 s\u00fa priamo namapovan\u00e9 na zodpovedaj\u00face stavy. Ak je zadan\u00fd stav aj poz\u00edcia, zo \u0161abl\u00f3ny stavu sa nastavia iba `otv\u00e1ranie` a `zatv\u00e1ranie`.",
+                    "stop_cover": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri zastaven\u00ed krytu."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na obalu"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "in_zones": "Z\u00f3ny",
+                    "latitude": "Zemepisn\u00e1 \u0161\u00edrka",
+                    "longitude": "Zemepisn\u00e1 d\u013a\u017eka"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "in_zones": "Definuje \u0161abl\u00f3nu, ktor\u00e1 vr\u00e1ti zoznam z\u00f3n, v ktor\u00fdch sa zariadenie na sledovanie pr\u00e1ve nach\u00e1dza. \u0160abl\u00f3na by mala vr\u00e1ti\u0165 zoznam ID ent\u00edt z\u00f3n. Ak sa sledova\u010d zariadenia nenach\u00e1dza v \u017eiadnej z\u00f3ne, \u0161abl\u00f3na by mala vr\u00e1ti\u0165 pr\u00e1zdny zoznam.",
+                    "latitude": "Definuje \u0161abl\u00f3nu na z\u00edskanie zemepisnej \u0161\u00edrky sledovacieho zariadenia. Platn\u00e9 hodnoty s\u00fa \u010d\u00edsla medzi `-90` a `90`.",
+                    "longitude": "Definuje \u0161abl\u00f3nu na z\u00edskanie zemepisnej d\u013a\u017eky sledovacieho zariadenia. Platn\u00e9 hodnoty s\u00fa \u010d\u00edsla medzi `-180` a `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165",
+                            "location_accuracy": "Presnos\u0165 polohy"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`.",
+                            "location_accuracy": "Definuje \u0161abl\u00f3nu na z\u00edskanie presnosti polohy sledovacieho zariadenia v metroch. Platn\u00e9 hodnoty s\u00fa \u010d\u00edsla v\u00e4\u010d\u0161ie alebo rovn\u00e9 0."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na sledovania zariadenia"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "event_type": "Typ udalosti naposledy spustenej",
+                    "event_types": "Typy udalost\u00ed",
+                    "name": "N\u00e1zov"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "event_type": "Definuje \u0161abl\u00f3nu pre typ udalosti.",
+                    "event_types": "Definuje \u0161abl\u00f3nu pre zoznam dostupn\u00fdch typov udalost\u00ed."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na udalosti"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "percentage": "Percento",
+                    "set_percentage": "Akcie na nastaven\u00e9 percento",
+                    "speed_count": "Meranie r\u00fdchlosti",
+                    "state": "Stav",
+                    "turn_off": "Akcie pri vypnut\u00ed",
+                    "turn_on": "Akcie pri zapnut\u00ed"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "percentage": "Definuje \u0161abl\u00f3nu na z\u00edskanie percentu\u00e1lnej hodnoty ot\u00e1\u010dok ventil\u00e1tora.",
+                    "set_percentage": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je ventil\u00e1toru zadan\u00fd pr\u00edkaz na percento r\u00fdchlosti. Prij\u00edma premenn\u00fa `percento`.",
+                    "speed_count": "Po\u010det r\u00fdchlost\u00ed, ktor\u00e9 ventil\u00e1tor podporuje. Pou\u017e\u00edva sa na v\u00fdpo\u010det percentu\u00e1lneho kroku pre akcie `fan.increase_speed` a `fan.decrease_speed`.",
+                    "state": "Ventil\u00e1tor je `zapnut\u00fd`, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `pravdiv\u00e1`, `\u00e1no`, `zapnut\u00e9`, `zapn\u00fa\u0165` alebo kladn\u00e9 \u010d\u00edslo. Ak\u00e1ko\u013evek in\u00e1 hodnota ju zobraz\u00ed ako `vypnut\u00e9`.",
+                    "turn_off": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f je ventil\u00e1tor vypnut\u00fd.",
+                    "turn_on": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je ventil\u00e1tor zapnut\u00fd. Dost\u00e1va premenn\u00e9 `percentage` a/alebo `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na ventil\u00e1tora"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "url": "URL",
+                    "verify_ssl": "Overi\u0165 SSL certifik\u00e1t"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "url": "Definuje \u0161abl\u00f3nu na z\u00edskanie adresy URL, na ktorej sa obr\u00e1zok zobrazuje.",
+                    "verify_ssl": "Povolenie alebo zak\u00e1zanie overovania certifik\u00e1tu SSL. Zak\u00e1\u017ete, ak chcete pou\u017ei\u0165 http URL adresu, alebo ak m\u00e1te certifik\u00e1t SSL s vlastn\u00fdm podpisom a nenain\u0161talovali ste certifik\u00e1t certifika\u010dnej autority, aby ste umo\u017enili overenie."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Obr\u00e1zok \u0161abl\u00f3ny"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "hs": "Farba HS",
+                    "level": "\u00darove\u0148 jasu",
+                    "name": "N\u00e1zov",
+                    "set_hs": "Akcie na nastavenej farbe HS",
+                    "set_level": "Akcie na stanovenej \u00farovni",
+                    "set_temperature": "Akcie pri nastavenej teplote farieb",
+                    "state": "Stav",
+                    "temperature": "Teplota farby",
+                    "turn_off": "Akcie pri vypnut\u00ed",
+                    "turn_on": "Akcie pri zapnut\u00ed"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "hs": "Definuje \u0161abl\u00f3nu na z\u00edskanie farby HS svetla. Mus\u00ed vykresli\u0165 tuple (odtie\u0148, s\u00fdtos\u0165).",
+                    "level": "Definuje \u0161abl\u00f3nu na z\u00edskanie jasu svetla. Platn\u00e9 hodnoty s\u00fa 0 a\u017e 255.",
+                    "set_hs": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je svetlu zadan\u00fd pr\u00edkaz farby HS. Dostupn\u00e9 premenn\u00e9: `hs` ako tuple, `h` a `s`.",
+                    "set_level": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa svetlu zad\u00e1 pr\u00edkaz na jas. Skript sa zavol\u00e1 iba vtedy, ak je vo volan\u00ed `turn_on` uveden\u00fd iba parameter `brightness` a volite\u013ene `transition`. Prij\u00edma premenn\u00e9 `jas` a volite\u013ene `prechod`.",
+                    "set_temperature": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f sa svetlu zad\u00e1 pr\u00edkaz teploty farby. Prij\u00edma premenn\u00fa `color_temp_kelvin`. M\u00f4\u017ee tie\u017e prij\u00edma\u0165 premenn\u00e9 `brightness` a/alebo `transition`.",
+                    "state": "Svetlo je `zapnut\u00e9`, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `pravdiv\u00e9`, `\u00e1no`, `zapnut\u00e9`, `povolen\u00e9` alebo kladn\u00e9 \u010d\u00edslo. Ak\u00e1ko\u013evek in\u00e1 hodnota ju vykresl\u00ed ako `vypnut\u00e9`.",
+                    "temperature": "Definuje \u0161abl\u00f3nu na z\u00edskanie teploty farby svetla.",
+                    "turn_off": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po vypnut\u00ed svetla.",
+                    "turn_on": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri zapnut\u00ed svetla."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na svetla"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Form\u00e1t k\u00f3du",
+                    "device_id": "Zariadenie",
+                    "lock": "Akcie pri uzamknut\u00ed",
+                    "open": "Akcie pri otvoren\u00ed",
+                    "state": "Stav",
+                    "unlock": "Akcie pri odomknut\u00ed"
+                },
+                "data_description": {
+                    "code_format": "Definuje \u0161abl\u00f3nu na z\u00edskanie atrib\u00fatu `code_format` z\u00e1mku.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "lock": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je z\u00e1mok uzamknut\u00fd.",
+                    "open": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri otvoren\u00ed z\u00e1mku.",
+                    "state": "Definuje \u0161abl\u00f3nu na nastavenie stavu z\u00e1mku. Z\u00e1mok je uzamknut\u00fd, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `True`, `true`, `on` alebo `zamknut\u00e9`. Z\u00e1mok je odomknut\u00fd, ak sa \u0161abl\u00f3na vyhodnot\u00ed ako `False`, `false`, `off` alebo `odomknut\u00e9`. \u010eal\u0161ie platn\u00e9 stavy s\u00fa `zaseknut\u00e9`, `otv\u00e1ranie`, `zamykanie`, `otvori\u0165` a `odomykanie`.",
+                    "unlock": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je z\u00e1mok odomknut\u00fd."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Z\u00e1mok \u0161abl\u00f3ny"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "max": "Maxim\u00e1lna hodnota",
+                    "min": "Minim\u00e1lna hodnota",
+                    "name": "N\u00e1zov",
+                    "set_value": "Akcie na nastaven\u00fa hodnotu",
+                    "state": "Stav",
+                    "step": "Hodnota kroku"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "max": "Definuje maxim\u00e1lnu hodnotu \u010d\u00edsla.",
+                    "min": "Definuje minim\u00e1lnu hodnotu \u010d\u00edsla.",
+                    "set_value": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je \u010d\u00edslo nastaven\u00e9 na hodnotu. Prij\u00edma premenn\u00fa `value`.",
+                    "state": "\u0160abl\u00f3na pre aktu\u00e1lnu hodnotu \u010d\u00edsla.",
+                    "step": "Definuje krok pr\u00edrastku/zn\u00ed\u017eenia \u010d\u00edsla."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u010c\u00edslo \u0161abl\u00f3ny"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "options": "Dostupn\u00e9 mo\u017enosti",
+                    "select_option": "Akcie na v\u00fdber",
+                    "state": "Stav"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "options": "\u0160abl\u00f3na pre dostupn\u00e9 mo\u017enosti v\u00fdberu.",
+                    "select_option": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je vybran\u00e1 niektor\u00e1 z mo\u017enost\u00ed zo zoznamu `Mo\u017enosti`. Dost\u00e1va premenn\u00fa `option`.",
+                    "state": "\u0160abl\u00f3na pre aktu\u00e1lnu hodnotu v\u00fdberu."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "V\u00fdber \u0161abl\u00f3ny"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "state": "Stav",
+                    "state_class": "Trieda stavu",
+                    "unit_of_measurement": "Mern\u00e1 jednotka"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "state": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu sn\u00edma\u010da. Ak je sn\u00edma\u010d \u010d\u00edseln\u00fd, t. j. m\u00e1 `state_class` alebo `unit_of_measurement`, \u0161abl\u00f3na stavu mus\u00ed by\u0165 zobrazen\u00e1 ako \u010d\u00edslo alebo ako `none`. \u0160abl\u00f3na stavu nesmie by\u0165 zobrazen\u00e1 ako re\u0165azec vr\u00e1tane `unknown` alebo `unavailable`. Na potla\u010denie vykres\u013eovania \u0161abl\u00f3ny stavu m\u00f4\u017ee by\u0165 definovan\u00e1 \u0161abl\u00f3na `dostupnos\u0165`.",
+                    "unit_of_measurement": "Definuje jednotku merania pre sn\u00edma\u010d, ak existuje. T\u00fdm sa zobraz\u00ed aj hodnota na z\u00e1klade nastavenia form\u00e1tu \u010d\u00edsla v profile pou\u017e\u00edvate\u013ea a ovplyvn\u00ed grafick\u00e9 zobrazenie vo vizualiz\u00e1cii hist\u00f3rie ako spojit\u00e1 hodnota."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3nov\u00fd sn\u00edma\u010d"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Zariadenie",
+                    "name": "N\u00e1zov",
+                    "turn_off": "Akcie pri vypnut\u00ed",
+                    "turn_on": "Akcie pri zapnut\u00ed",
+                    "value_template": "Stav"
+                },
+                "data_description": {
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "turn_off": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je vyp\u00edna\u010d vypnut\u00fd.",
+                    "turn_on": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 po zapnut\u00ed prep\u00edna\u010da.",
+                    "value_template": "Definuje \u0161abl\u00f3nu na nastavenie stavu prep\u00edna\u010da. Ak nie je definovan\u00e1, prep\u00edna\u010d bude optimisticky predpoklada\u0165, \u017ee v\u0161etky pr\u00edkazy s\u00fa \u00faspe\u0161n\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Prep\u00edna\u010d \u0161abl\u00f3ny"
+            },
+            "update": {
+                "data": {
+                    "backup": "Z\u00e1lohovanie",
+                    "device_class": "Trieda zariadenia",
+                    "device_id": "Zariadenie",
+                    "in_progress": "Prebieha",
+                    "install": "Akcie pri in\u0161tal\u00e1cii",
+                    "installed_version": "Nain\u0161talovan\u00e1 verzia",
+                    "latest_version": "Dostupn\u00e1 verzia",
+                    "name": "N\u00e1zov",
+                    "release_summary": "S\u00fahrn vydania",
+                    "release_url": "URL vydania",
+                    "specific_version": "Konkr\u00e9tna verzia",
+                    "title": "N\u00e1zov",
+                    "update_percentage": "Percento aktualiz\u00e1cie"
+                },
+                "data_description": {
+                    "backup": "Povo\u013ete alebo zak\u00e1\u017ete mo\u017enos\u0165 `automatick\u00e9 z\u00e1lohovanie pred aktualiz\u00e1ciou` pri oprave aktualiz\u00e1cie. Ak je vypnut\u00e1, premenn\u00e1 `z\u00e1lohovanie` bude po\u010das akcie `in\u0161tal\u00e1cia` v\u017edy poskytova\u0165 hodnotu `nepravda` a nebude akceptova\u0165 mo\u017enos\u0165 `z\u00e1lohovanie`.",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "in_progress": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu rozpracovanosti.",
+                    "install": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165 pri in\u0161tal\u00e1cii aktualiz\u00e1cie. Prij\u00edma premenn\u00e9 `specific_version` a `backup`, ak s\u00fa povolen\u00e9.",
+                    "installed_version": "Definuje \u0161abl\u00f3nu na z\u00edskanie nain\u0161talovanej verzie.",
+                    "latest_version": "Definuje \u0161abl\u00f3nu na z\u00edskanie najnov\u0161ej verzie.",
+                    "release_summary": "Definuje \u0161abl\u00f3nu na z\u00edskanie s\u00fahrnu vydania.",
+                    "release_url": "Definuje \u0161abl\u00f3nu na z\u00edskanie adresy URL vydania.",
+                    "specific_version": "Povolenie alebo zak\u00e1zanie pomocou premennej `version` s akciou `install`. Ak je zak\u00e1zan\u00e1, premenn\u00e1 `specific_version` bude v akcii `install` v\u017edy poskytova\u0165 hodnotu `None`",
+                    "title": "Definuje \u0161abl\u00f3nu na z\u00edskanie n\u00e1zvu aktualiz\u00e1cie.",
+                    "update_percentage": "Definuje \u0161abl\u00f3nu na z\u00edskanie percenta dokon\u010denia aktualiz\u00e1cie."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "Aktualiz\u00e1cia \u0161abl\u00f3ny"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Akcie na \u010distom mieste",
+                    "device_id": "Zariadenie",
+                    "fan_speed": "R\u00fdchlos\u0165 ventil\u00e1tora",
+                    "fan_speeds": "R\u00fdchlosti ventil\u00e1tora",
+                    "locate": "Akcie pri lokaliz\u00e1cii",
+                    "name": "N\u00e1zov",
+                    "pause": "Akcie pri pozastaven\u00ed",
+                    "return_to_base": "Akcie pri n\u00e1vrate do doku",
+                    "set_fan_speed": "Akcie pri nastavenej r\u00fdchlosti ventil\u00e1tora",
+                    "start": "Akcie pri spusten\u00ed",
+                    "state": "Stav",
+                    "stop": "Akcie pri zastaven\u00ed"
+                },
+                "data_description": {
+                    "clean_spot": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz \"Clean spot\".",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "fan_speed": "Definuje \u0161abl\u00f3nu na z\u00edskanie r\u00fdchlosti ventil\u00e1tora vys\u00e1va\u010da.",
+                    "fan_speeds": "Zoznam r\u00fdchlost\u00ed ventil\u00e1tora podporovan\u00fdch vys\u00e1va\u010dom.",
+                    "locate": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz 'Locate'.",
+                    "pause": "Definuje akcie, ktor\u00e9 sa maj\u00fa spusti\u0165, ke\u010f je vys\u00e1vanie pozastaven\u00e9.",
+                    "return_to_base": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz \"N\u00e1vrat do doku\".",
+                    "set_fan_speed": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010du zad\u00e1 pr\u00edkaz na nastavenie r\u00fdchlosti ventil\u00e1tora. Prij\u00edma premenn\u00fa `fan_speed`.",
+                    "start": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa spusti\u0165 pri spusten\u00ed vys\u00e1vania.",
+                    "state": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu v\u00e1kua. Platn\u00e9 hodnoty s\u00fa `cleaning`, `docked`, `idle`, `paused`, `returning` a `error`.",
+                    "stop": "Definuje \u010dinnosti, ktor\u00e9 sa maj\u00fa vykona\u0165, ke\u010f sa vys\u00e1va\u010d zastav\u00ed."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "data_description": {
+                            "availability": "Definuje \u0161abl\u00f3nu na z\u00edskanie stavu `dostupnosti` entity. Ak sa \u0161abl\u00f3na bu\u010f nevytvor\u00ed, alebo vr\u00e1ti `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` alebo nenulov\u00e9 \u010d\u00edslo, entita bude `dostupn\u00e1`. Ak \u0161abl\u00f3na vr\u00e1ti ak\u00fako\u013evek in\u00fa hodnotu, entita bude `nedostupn\u00e1`. Ak nie je nakonfigurovan\u00e1, entita bude v\u017edy `dostupn\u00e1`. V\u0161imnite si, \u017ee porovn\u00e1vanie re\u0165azcov nerozli\u0161uje ve\u013ek\u00e9 a mal\u00e9 p\u00edsmen\u00e1; povolen\u00e9 s\u00fa `\"TrUe\"` a `\"yEs\"`."
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na v\u00e1kua"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Podmienka",
+                    "device_id": "Zariadenie",
+                    "forecast_daily": "Denn\u00e1 predpove\u010f",
+                    "forecast_hourly": "Hodinov\u00e1 predpove\u010f",
+                    "humidity": "Vlhkos\u0165",
+                    "name": "N\u00e1zov",
+                    "temperature": "Teplota",
+                    "temperature_unit": "Jednotka teploty"
+                },
+                "data_description": {
+                    "condition": "Definuje \u0161abl\u00f3nu na z\u00edskanie aktu\u00e1lneho po\u010dasia",
+                    "device_id": "Vyberte zariadenie, ktor\u00e9 chcete prepoji\u0165 s touto entitou.",
+                    "forecast_daily": "Definuje \u0161abl\u00f3nu na z\u00edskanie [denn\u00fdch \u00fadajov predpovede]({daily_link})",
+                    "forecast_hourly": "Definuje \u0161abl\u00f3nu na z\u00edskanie [hodinov\u00fdch \u00fadajov predpovede]({hourly_link})",
+                    "humidity": "Definuje \u0161abl\u00f3nu na z\u00edskanie aktu\u00e1lnej vlhkosti",
+                    "temperature": "Definuje \u0161abl\u00f3nu na z\u00edskanie aktu\u00e1lnej teploty",
+                    "temperature_unit": "Jednotka pre \u013eubovo\u013en\u00fd v\u00fdstup \u0161abl\u00f3ny teploty. Jedna z mo\u017enost\u00ed je `\u00b0C`, `\u00b0F` alebo `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnos\u0165"
+                        },
+                        "name": "\u010eal\u0161ie mo\u017enosti"
+                    }
+                },
+                "title": "\u0160abl\u00f3na po\u010dasia"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "\u017diadny form\u00e1t k\u00f3du",
+                "number": "\u010c\u00edslo",
+                "text": "Text"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "\u017diadna mern\u00e1 jednotka"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Firmv\u00e9r"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Na\u010d\u00edta entity \u0161abl\u00f3ny z konfigur\u00e1cie YAML.",
+            "name": "Znovu na\u010d\u00edtanie \u0161abl\u00f3n ent\u00edt"
+        }
+    }
+}

@@ -1,0 +1,192 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "Testar om ett eller flera l\u00e5s har fastnat.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5s har fastnat"
+        },
+        "is_locked": {
+            "description": "Testar om ett eller flera l\u00e5s \u00e4r l\u00e5sta.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5s \u00e4r l\u00e5st"
+        },
+        "is_open": {
+            "description": "Testar om ett eller flera l\u00e5s \u00e4r \u00f6ppna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5s \u00e4r \u00f6ppet"
+        },
+        "is_unlocked": {
+            "description": "Testar om ett eller flera l\u00e5s \u00e4r ol\u00e5sta.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5s \u00e4r ol\u00e5st"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "L\u00e5s {entity_name}",
+            "open": "\u00d6ppna {entity_name}",
+            "unlock": "L\u00e5s upp {entity_name}"
+        },
+        "condition_type": {
+            "is_jammed": "{entity_name} har fastnat",
+            "is_locked": "{entity_name} \u00e4r l\u00e5st",
+            "is_locking": "{entity_name} l\u00e5ser",
+            "is_open": "{entity_name} \u00e4r \u00f6ppen",
+            "is_opening": "{entity_name} \u00f6ppnar",
+            "is_unlocked": "{entity_name} \u00e4r ol\u00e5st",
+            "is_unlocking": "{entity_name} l\u00e5ser upp"
+        },
+        "extra_fields": {
+            "for": "Varaktighet"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} l\u00e5st",
+            "open": "{entity_name} \u00f6ppnad",
+            "unlocked": "{entity_name} uppl\u00e5st"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "L\u00e5s",
+            "state": {
+                "jammed": "Fastnat",
+                "locked": "L\u00e5st",
+                "locking": "L\u00e5ser",
+                "open": "\u00d6ppen",
+                "opening": "\u00d6ppnar",
+                "unlocked": "Ol\u00e5st",
+                "unlocking": "L\u00e5ser upp"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "\u00c4ndrat av"
+                },
+                "code_format": {
+                    "name": "Kodformat"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "Koden f\u00f6r {entity_id} matchar inte m\u00f6nstret {code_format}."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "L\u00e5ser ett l\u00e5s.",
+            "fields": {
+                "code": {
+                    "description": "Kod som anv\u00e4nds f\u00f6r att l\u00e5sa.",
+                    "name": "Kod"
+                }
+            },
+            "name": "L\u00e5s l\u00e5s"
+        },
+        "open": {
+            "description": "\u00d6ppnar ett l\u00e5s.",
+            "fields": {
+                "code": {
+                    "description": "Kod som anv\u00e4nds f\u00f6r att \u00f6ppna.",
+                    "name": "Kod"
+                }
+            },
+            "name": "\u00d6ppna l\u00e5s"
+        },
+        "unlock": {
+            "description": "L\u00e5ser upp ett l\u00e5s.",
+            "fields": {
+                "code": {
+                    "description": "Kod som anv\u00e4nds f\u00f6r att l\u00e5sa upp.",
+                    "name": "Kod"
+                }
+            },
+            "name": "L\u00e5s upp"
+        }
+    },
+    "title": "L\u00e5s",
+    "triggers": {
+        "jammed": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera l\u00e5s fastnar.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5set har fastnat"
+        },
+        "locked": {
+            "description": "Utl\u00f6sare n\u00e4r ett eller flera l\u00e5s har l\u00e5sts.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5s l\u00e5st"
+        },
+        "opened": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera l\u00e5s \u00f6ppnas.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5set \u00f6ppnat"
+        },
+        "unlocked": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera l\u00e5s har l\u00e5sts upp.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "L\u00e5s ol\u00e5st"
+        }
+    }
+}

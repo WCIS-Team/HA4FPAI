@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Patikrina, ar aktyvus vienas ar keli laikma\u010diai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis aktyvus"
+        },
+        "is_idle": {
+            "description": "Patikrina, ar vienas ar keli laikma\u010diai yra nenaudojami.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis neveikia"
+        },
+        "is_paused": {
+            "description": "Tikrina, ar vienas ar keli laikma\u010diai yra pristabdyti.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis pristabdytas"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Laikmatis",
+            "state": {
+                "active": "aktyvus",
+                "idle": "Nedaroma nieko",
+                "paused": "Pristabdyta"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Trukm\u0117"
+                },
+                "editable": {
+                    "name": "Tvarkoma per naudotojo s\u0105saj\u0105",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Taip"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Baigiasi"
+                },
+                "last_transition": {
+                    "name": "Paskutinis per\u0117jimas",
+                    "state": {
+                        "cancelled": "At\u0161auktas",
+                        "finished": "Baigtas",
+                        "paused": "Pristabdytas",
+                        "restarted": "Paleistas i\u0161 naujo",
+                        "started": "Prad\u0117tas"
+                    }
+                },
+                "remaining": {
+                    "name": "Lik\u0119s laikas"
+                },
+                "restore": {
+                    "name": "Atkurti"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "I\u0161 naujo nustato laikma\u010dio trukm\u0119 iki paskutin\u0117s \u017einomos pradin\u0117s vert\u0117s, ne\u012fjungdamas laikma\u010dio pabaigos \u012fvykio.",
+            "name": "At\u0161aukti laikmat\u012f"
+        },
+        "change": {
+            "description": "Kei\u010dia laikmat\u012f prid\u0117damas arba atimdamas nurodyt\u0105 trukm\u0119.",
+            "fields": {
+                "duration": {
+                    "description": "Trukm\u0117, kuri\u0105 reikia prid\u0117ti prie veikimo laikma\u010dio arba atimti i\u0161 jo.",
+                    "name": "Trukm\u0117"
+                }
+            },
+            "name": "Keisti laikmat\u012f"
+        },
+        "finish": {
+            "description": "U\u017ebaigia laikmat\u012f anks\u010diau nei numatyta.",
+            "name": "Pabaigos laikmatis"
+        },
+        "pause": {
+            "description": "Pristabdo veikiant\u012f laikmat\u012f, i\u0161saugodamas likus\u012f laik\u0105, kad b\u016bt\u0173 galima t\u0119sti.",
+            "name": "Pristabdymo laikmatis"
+        },
+        "reload": {
+            "description": "I\u0161 naujo \u012fkelia laikma\u010dius i\u0161 YAML konfig\u016bracijos.",
+            "name": "Perkrauti laikma\u010dius"
+        },
+        "start": {
+            "description": "Paleid\u017eia laikmat\u012f arba paleid\u017eia j\u012f i\u0161 naujo tam tikr\u0105 laik\u0105.",
+            "fields": {
+                "duration": {
+                    "description": "Pasirinktin\u0117 trukm\u0117, per kuri\u0105 i\u0161 naujo paleid\u017eiamas laikmatis.",
+                    "name": "Trukm\u0117"
+                }
+            },
+            "name": "Paleisti laikmat\u012f"
+        }
+    },
+    "title": "Laikmatis",
+    "triggers": {
+        "cancelled": {
+            "description": "Suveikia, kai at\u0161aukiamas vienas ar keli laikma\u010diai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis at\u0161auktas"
+        },
+        "finished": {
+            "description": "Suveikia, kai baigiasi vienas ar keli laikma\u010diai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis baigtas"
+        },
+        "paused": {
+            "description": "Suveikia, kai pristabdomas vienas ar keli laikma\u010diai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis pristabdytas"
+        },
+        "remaining_time_reached": {
+            "description": "Suveikia, kai vienas ar keli laikma\u010diai pasiekia konkret\u0173 likus\u012f laik\u0105.",
+            "fields": {
+                "remaining": {
+                    "name": "Lik\u0119s laikas"
+                }
+            },
+            "name": "Lik\u0119s laikma\u010dio laikas pasiektas"
+        },
+        "restarted": {
+            "description": "Suveikia, kai vienas ar keli laikma\u010diai paleid\u017eiami i\u0161 naujo.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis paleistas i\u0161 naujo"
+        },
+        "started": {
+            "description": "Suveikia, kai paleid\u017eiamas vienas ar keli laikma\u010diai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Laikmatis paleistas"
+        }
+    }
+}

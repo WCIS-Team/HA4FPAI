@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie si",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "V\u00e9rifie si une ou plusieurs vannes sont ferm\u00e9es.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La vanne est ferm\u00e9e"
+        },
+        "is_open": {
+            "description": "V\u00e9rifie si une ou plusieurs vannes sont ouvertes.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La vanne est ouverte"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vanne",
+            "state": {
+                "closed": "Ferm\u00e9e",
+                "closing": "Fermeture",
+                "open": "Ouverte",
+                "opening": "Ouverture",
+                "stopped": "Arr\u00eat\u00e9e"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Position"
+                }
+            }
+        },
+        "gas": {
+            "name": "Gaz"
+        },
+        "water": {
+            "name": "Eau"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Ferme une vanne.",
+            "name": "Fermer la vanne"
+        },
+        "open_valve": {
+            "description": "Ouvre une vanne.",
+            "name": "Ouvrir la vanne"
+        },
+        "set_valve_position": {
+            "description": "D\u00e9place une vanne vers une position sp\u00e9cifique.",
+            "fields": {
+                "position": {
+                    "description": "Position cible.",
+                    "name": "Position"
+                }
+            },
+            "name": "D\u00e9finir la position de la vanne"
+        },
+        "stop_valve": {
+            "description": "Arr\u00eate le mouvement de la vanne.",
+            "name": "Arr\u00eater la vanne"
+        },
+        "toggle": {
+            "description": "Ouvre/ferme une vanne.",
+            "name": "Basculer la vanne"
+        }
+    },
+    "title": "Vanne",
+    "triggers": {
+        "closed": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs vannes se ferment.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La vanne s'est ferm\u00e9e"
+        },
+        "opened": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs vannes s'ouvrent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La vanne s'est ouverte"
+        }
+    }
+}

@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "condition_threshold_name": "Tip grani\u010dne vrednosti",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje",
+        "trigger_threshold_name": "Tip grani\u010dne vrednosti"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Proverava da li jedan ili vi\u0161e termostata hlade.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Termostat hladi"
+        },
+        "is_drying": {
+            "description": "Proverava da li jedan ili vi\u0161e termostata isu\u0161uju.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Termostat isu\u0161uje"
+        },
+        "is_heating": {
+            "description": "Proverava da li jedan ili vi\u0161e termostata greju.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Termostat greje"
+        },
+        "is_hvac_mode": {
+            "description": "Proverava da li su jedan ili vi\u0161e termostata pode\u0161eni na odre\u0111eni re\u017eim rada.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "hvac_mode": {
+                    "description": "Re\u017eimi klimatizacije koje treba proveriti.",
+                    "name": "Re\u017eim rada"
+                }
+            },
+            "name": "Re\u017eim rada termostata"
+        },
+        "is_off": {
+            "description": "Proverava da li su jedan ili vi\u0161e termostata isklju\u010deni.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Termostat isklju\u010den"
+        },
+        "is_on": {
+            "description": "Proverava da li su jedan ili vi\u0161e termostata uklju\u010deni.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Termostat uklju\u010den"
+        },
+        "is_target_humidity": {
+            "description": "Proverava zadatu vrednost vla\u017enosti vazduha za jedan ili vi\u0161e termostata.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna vla\u017enost vazduha termostata"
+        },
+        "is_target_temperature": {
+            "description": "Proverava zadatu temperaturu za jedan ili vi\u0161e termostata.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna temperatura termostata"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Promeni re\u017eim klimatizacije na {entity_name}",
+            "set_preset_mode": "Promeni predefinisani re\u017eim na {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} je pode\u0161en na odre\u0111eni re\u017eim klimatizacije",
+            "is_preset_mode": "{entity_name} je pode\u0161en na odre\u0111eni predefinisani re\u017eim"
+        },
+        "extra_fields": {
+            "above": "Iznad",
+            "below": "Ispod",
+            "for": "Trajanje",
+            "hvac_mode": "Re\u017eim klimatizacije",
+            "preset_mode": "Unapred pode\u0161eni re\u017eim",
+            "to": "Do"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "Izmerena vla\u017enost na {entity_name} se promenila",
+            "current_temperature_changed": "Izmerena temperatura na {entity_name} se promenila",
+            "hvac_mode_changed": "Re\u017eim klimatizacije na {entity_name} se promenio"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostat",
+            "state": {
+                "auto": "Automatski",
+                "cool": "Hla\u0111anje",
+                "dry": "Odvla\u017eivanje",
+                "fan_only": "Samo ventilator",
+                "heat": "Grejanje",
+                "heat_cool": "Grejanje/Hla\u0111enje",
+                "off": "Isklju\u010deno"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Trenutna vla\u017enost"
+                },
+                "current_temperature": {
+                    "name": "Trenutna temperatura"
+                },
+                "fan_mode": {
+                    "name": "Ventilator",
+                    "state": {
+                        "auto": "Automatski",
+                        "diffuse": "Raspr\u0161ivanje",
+                        "focus": "Usmereno",
+                        "high": "Visok",
+                        "low": "Nizak",
+                        "medium": "Srednji",
+                        "middle": "Srednji",
+                        "off": "Isklju\u010deno",
+                        "on": "Uklju\u010deno",
+                        "top": "Gore"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Brzina ventilatora"
+                },
+                "humidity": {
+                    "name": "Ciljna vla\u017enost"
+                },
+                "hvac_action": {
+                    "name": "Trenutna akcija",
+                    "state": {
+                        "cooling": "Hla\u0111enje",
+                        "defrosting": "Odmrzavanje",
+                        "drying": "Odvla\u017eivanje",
+                        "fan": "Ventilator",
+                        "heating": "Grejanje",
+                        "idle": "Mirovanje",
+                        "off": "Isklju\u010deno",
+                        "preheating": "Predgrevanje"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "HVAC re\u017eimi"
+                },
+                "max_humidity": {
+                    "name": "Minimalna ciljana vla\u017enost"
+                },
+                "max_temp": {
+                    "name": "Maksimalna ciljna temperatura"
+                },
+                "min_humidity": {
+                    "name": "Minimalna ciljna vla\u017enost"
+                },
+                "min_temp": {
+                    "name": "Minimalna ciljna temperatura"
+                },
+                "preset_mode": {
+                    "name": "Profil",
+                    "state": {
+                        "activity": "Aktivno",
+                        "away": "Van ku\u0107e",
+                        "boost": "Intenzivno",
+                        "comfort": "Udobno",
+                        "eco": "Eko",
+                        "home": "Kod ku\u0107e",
+                        "none": "Nijedno",
+                        "sleep": "No\u0107ni re\u017eim"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Unapred definisano"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Re\u017eim horizontalnog usmeravanja vazduha",
+                    "state": {
+                        "off": "Isklju\u010deno",
+                        "on": "Uklju\u010deno"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Horizontalni re\u017eimi usmeravanja vazduha"
+                },
+                "swing_mode": {
+                    "name": "Smer",
+                    "state": {
+                        "both": "Oba",
+                        "horizontal": "Horizontalno",
+                        "off": "Isklju\u010deno",
+                        "on": "Uklju\u010deno",
+                        "vertical": "Vertikalno"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Re\u017eimi usmeravanja vazduha"
+                },
+                "target_temp_high": {
+                    "name": "Gornja ciljna temperatura"
+                },
+                "target_temp_low": {
+                    "name": "Donja ciljna temperatura"
+                },
+                "target_temp_step": {
+                    "name": "Korak ciljne temperature"
+                },
+                "temperature": {
+                    "name": "Ciljna temperatura"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Vrednost {humidity} nije va\u017eec\u0301a. Prihvac\u0301eni opseg je od {min_humidity} do {max_humidity}."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "'Donja ciljana temperatura' ne mo\u017ee biti vi\u0161a od 'Gornje ciljane temperature'."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "Akcija postavljanja temperature kori\u0161tena je s parametrom 'Ciljana temperatura', ali entitet to ne podr\u017eava."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "Akcija postavljanja temperature kori\u0161tena je s parametrom 'Donja/gornja ciljana temperatura', ali entitet to ne podr\u017eava."
+        },
+        "not_valid_fan_mode": {
+            "message": "Na\u010din rada ventilatora {mode} nije valjan. Va\u017ee\u0107i na\u010dini rada ventilatora su: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "Horizontalni re\u017eim usmeravanja vazduha {mode} nije ispravan. Ispravni horizontalni re\u017eimi su: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "Re\u017eimi klimatizacije {mode} nije va\u017ee\u0107i. Va\u017ee\u0107i re\u017eimi klimatizacije su: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "Unapred postavljeni na\u010din rada {mode} nije valjan. Va\u017ee\u0107i unapred postavljeni na\u010dini rada su: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "Re\u017eim usmeravanja vazduha {mode} nije ispravan. Ispravni re\u017eimi su: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "Navedena temperatura {check_temp} nije va\u017eec\u0301a. Prihvac\u0301eni opseg je od {min_temp} do {max_temp}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "Pode\u0161ava re\u017eim rada ventilatora na termostatu.",
+            "fields": {
+                "fan_mode": {
+                    "description": "\u017deljeni nivo snage ventilatora (npr. Low, Medium, High, Auto) predvi\u0111en za aktivaciju.",
+                    "name": "Re\u017eim rada ventilatora"
+                }
+            },
+            "name": "Podesi re\u017eim rada ventilatora"
+        },
+        "set_humidity": {
+            "description": "Pode\u0161ava ciljnu vla\u017enost termostata.",
+            "fields": {
+                "humidity": {
+                    "description": "\u017deljeni procenat relativne vla\u017enosti vazduha koji sistem treba da odr\u017eava.",
+                    "name": "Nivo vla\u017enosti"
+                }
+            },
+            "name": "Podesi ciljnu vla\u017enost termostata"
+        },
+        "set_hvac_mode": {
+            "description": "Pode\u0161ava re\u017eim rada termostata.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "\u017deljena radna funkcija sistema predvi\u0111ena za aktivaciju.",
+                    "name": "Operativni re\u017eim"
+                }
+            },
+            "name": "Podesi re\u017eim rada termostata"
+        },
+        "set_preset_mode": {
+            "description": "Pode\u0161ava predefinisani re\u017eim rada termostata.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Naziv specifi\u010dnog re\u017eima rada predvi\u0111enog za aktivaciju.",
+                    "name": "Specijalni re\u017eim rada"
+                }
+            },
+            "name": "Podesi unapred definisan re\u017eim termostata"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "Pode\u0161ava horizontalno usmeravanje vazduha na termostatu.",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "\u017deljeni operativni re\u017eim horizontalnog usmeravanja vazduha predvi\u0111en za aktivaciju.",
+                    "name": "Re\u017eim horizontalnog zamaha"
+                }
+            },
+            "name": "Podesi horizontalnu oscilaciju krilaca"
+        },
+        "set_swing_mode": {
+            "description": "Pode\u0161ava usmeravanje vazduha na termostatu.",
+            "fields": {
+                "swing_mode": {
+                    "description": "\u017deljeni operativni re\u017eim kretanja usmeriva\u010da predvi\u0111en za aktivaciju.",
+                    "name": "Re\u017eim zamaha"
+                }
+            },
+            "name": "Podesi oscilaciju krilaca termostata"
+        },
+        "set_temperature": {
+            "description": "Pode\u0161ava ciljnu temperaturu termostata.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Opciona promena re\u017eima rada (npr. grejanje, hla\u0111enje) uporedo sa temperaturom.",
+                    "name": "Operativni re\u017eim"
+                },
+                "target_temp_high": {
+                    "description": "Maksimalna zadata temperatura.",
+                    "name": "Gornja ciljna temperatura"
+                },
+                "target_temp_low": {
+                    "description": "Minimalna zadata temperatura.",
+                    "name": "Donja ciljna temperatura"
+                },
+                "temperature": {
+                    "description": "Zadata temperatura.",
+                    "name": "Ciljna temperatura"
+                }
+            },
+            "name": "Podesi ciljnu temperaturu termostata",
+            "sections": {
+                "temperature_range": {
+                    "name": "Opseg temperature"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Menja status termostata izme\u0111u uklju\u010denog i isklju\u010denog stanja.",
+            "name": "Promeni stanje termostata"
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje termostat.",
+            "name": "Isklju\u010di termostat"
+        },
+        "turn_on": {
+            "description": "Uklju\u010duje termostat,",
+            "name": "Uklju\u010di termostat"
+        }
+    },
+    "title": "Klima",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Pokre\u0107e se kada se promeni re\u017eim rada jednog ili vi\u0161e termostata.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "hvac_mode": {
+                    "description": "Re\u017eimi klimatizacije koji pokre\u0107u radnju.",
+                    "name": "Re\u017eimi"
+                }
+            },
+            "name": "Re\u017eim rada termostata promenjen"
+        },
+        "started_cooling": {
+            "description": "Pokre\u0107e se kada jedan ili vi\u0161e termostata po\u010dnu sa hla\u0111enjem.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Hla\u0111enje termostata zapo\u010delo"
+        },
+        "started_drying": {
+            "description": "Pokre\u0107e se kada jedan ili vi\u0161e termostata po\u010dnu sa odvla\u017eivanjem.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Odvla\u017eivanje termostata zapo\u010delo"
+        },
+        "started_heating": {
+            "description": "Pokre\u0107e se kada jedan ili vi\u0161e termostata po\u010dnu sa grejanjem.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Grejanje termostata zapo\u010delo"
+        },
+        "target_humidity_changed": {
+            "description": "Pokre\u0107e se kada se promeni zadata vla\u017enost jednog ili vi\u0161e termostata.",
+            "fields": {
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna vla\u017enost termostata promenjena"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Pokre\u0107e se kada zadata vla\u017enost jednog ili vi\u0161e termostata pre\u0111e grani\u010dnu vrednost.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna vla\u017enost termostata pre\u0161la granicu"
+        },
+        "target_temperature_changed": {
+            "description": "Pokre\u0107e se kada se promeni zadata temperatura jednog ili vi\u0161e termostata.",
+            "fields": {
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna temperatura termostata promenjena"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Pokre\u0107e se kada zadata temperatura jednog ili vi\u0161e termostata pre\u0111e grani\u010dnu vrednost.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna temperatura termostata pre\u0161la granicu"
+        },
+        "turned_off": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e termostata isklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Termostat isklju\u010den"
+        },
+        "turned_on": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e termostata uklju\u010de, bez obzira na re\u017eim rada.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Termostat uklju\u010den"
+        }
+    }
+}

@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Comprueba si hay una o m\u00e1s actualizaciones disponibles.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Actualizaci\u00f3n disponible"
+        },
+        "is_not_available": {
+            "description": "Comprueba si una o m\u00e1s actualizaciones no est\u00e1n disponibles.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "La actualizaci\u00f3n no est\u00e1 disponible."
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Duraci\u00f3n"
+        },
+        "trigger_type": {
+            "changed_states": "La disponibilidad de la actualizaci\u00f3n de {entity_name} cambi\u00f3",
+            "turned_off": "{entity_name} se actualiz\u00f3",
+            "turned_on": "{entity_name} tiene una actualizaci\u00f3n disponible"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Actualizar",
+            "state": {
+                "off": "Actualizado",
+                "on": "Actualizaci\u00f3n disponible"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Actualizaci\u00f3n autom\u00e1tica",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ed"
+                    }
+                },
+                "in_progress": {
+                    "name": "En curso",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ed"
+                    }
+                },
+                "installed_version": {
+                    "name": "Versi\u00f3n instalada"
+                },
+                "latest_version": {
+                    "name": "\u00daltima versi\u00f3n"
+                },
+                "release_summary": {
+                    "name": "Resumen de la versi\u00f3n"
+                },
+                "release_url": {
+                    "name": "URL de la versi\u00f3n"
+                },
+                "skipped_version": {
+                    "name": "Versi\u00f3n omitida"
+                },
+                "title": {
+                    "name": "T\u00edtulo"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmware"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "No se admiten copias de seguridad para {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "No se admite borrar la actualizaci\u00f3n omitida para {entity_id}."
+        },
+        "no_update_available": {
+            "message": "No hay ninguna actualizaci\u00f3n disponible para {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "No hay ninguna actualizaci\u00f3n disponible para omitir para {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "No se admite omitir la actualizaci\u00f3n para {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "No se admite instalar una versi\u00f3n espec\u00edfica para {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "No se puede omitir una versi\u00f3n desconocida para {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "La instalaci\u00f3n de la actualizaci\u00f3n ya est\u00e1 en curso para {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Elimina el marcador de versi\u00f3n omitida de una actualizaci\u00f3n.",
+            "name": "Borrar actualizaci\u00f3n omitida"
+        },
+        "install": {
+            "description": "Instala una actualizaci\u00f3n para un dispositivo o servicio.",
+            "fields": {
+                "backup": {
+                    "description": "Si la integraci\u00f3n lo permite, esto crea una copia de seguridad antes de iniciar la actualizaci\u00f3n.",
+                    "name": "Copia de seguridad"
+                },
+                "version": {
+                    "description": "La versi\u00f3n a instalar. Si se omite, se instalar\u00e1 la \u00faltima versi\u00f3n.",
+                    "name": "Versi\u00f3n"
+                }
+            },
+            "name": "Instalar actualizaci\u00f3n"
+        },
+        "skip": {
+            "description": "Marca una actualizaci\u00f3n actualmente disponible como omitida.",
+            "name": "Omitir actualizaci\u00f3n"
+        }
+    },
+    "title": "Actualizar",
+    "triggers": {
+        "became_available": {
+            "description": "Se dispara cuando una o m\u00e1s actualizaciones est\u00e1n disponibles.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Actualizaci\u00f3n disponible"
+        }
+    }
+}

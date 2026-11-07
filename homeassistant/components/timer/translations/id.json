@@ -1,0 +1,66 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Timer",
+            "state": {
+                "active": "Aktif",
+                "idle": "Siaga",
+                "paused": "Dijeda"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Durasi"
+                },
+                "editable": {
+                    "name": "Dikelola lewat antarmuka",
+                    "state": {
+                        "false": "Tidak",
+                        "true": "Ya"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Selesai pada"
+                },
+                "remaining": {
+                    "name": "Sisa"
+                },
+                "restore": {
+                    "name": "Pulihkan"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "Mengatur ulang durasi timer ke nilai awal terakhir yang diketahui tanpa menghasilkan peristiwa timer selesai."
+        },
+        "change": {
+            "description": "Mengubah timer dengan menambah atau menguranginya dengan durasi yang ditetapkan.",
+            "fields": {
+                "duration": {
+                    "description": "Durasi untuk ditambahkan atau dikurangi dari timer yang berjalan.",
+                    "name": "Durasi"
+                }
+            }
+        },
+        "finish": {
+            "description": "Menyelesaikan timer."
+        },
+        "pause": {
+            "description": "Menjeda timer yang sedang berjalan, mempertahankan durasi yang tersisa untuk dilanjutkan nanti."
+        },
+        "reload": {
+            "description": "Muat ulang timer dari konfigurasi YAML."
+        },
+        "start": {
+            "description": "Memulai timer atau memulai ulang dengan durasi yang ditetapkan.",
+            "fields": {
+                "duration": {
+                    "description": "Durasi khusus untuk memulai ulang timer.",
+                    "name": "Durasi"
+                }
+            }
+        }
+    },
+    "title": "Timer"
+}

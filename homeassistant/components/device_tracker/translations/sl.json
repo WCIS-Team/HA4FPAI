@@ -1,0 +1,83 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} je doma",
+            "is_not_home": "{entity_name} ni doma"
+        },
+        "extra_fields": {
+            "zone": "Cona"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} vstopi v cono",
+            "leaves": "{entity_name} zapusti cono"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sledilnik naprave",
+            "state": {
+                "home": "Doma",
+                "not_home": "Odsoten"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Baterija"
+                },
+                "gps_accuracy": {
+                    "name": "Natan\u010dnost GPS"
+                },
+                "latitude": {
+                    "name": "Zemljepisna \u0161irina"
+                },
+                "longitude": {
+                    "name": "Zemljepisna dol\u017eina"
+                },
+                "source_type": {
+                    "name": "Vir",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "Usmerjevalnik"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Ro\u010dno posodobi zapise videnega zastarelega sledilnika naprav v datoteki known_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "Nivo napolnjenosti baterije naprave.",
+                    "name": "Nivo napolnjenosti baterije"
+                },
+                "dev_id": {
+                    "description": "ID naprave (poi\u0161\u010dite ID v `known_devices.yaml`).",
+                    "name": "ID naprave"
+                },
+                "gps": {
+                    "description": "GPS koordinate, kjer se nahaja naprava, dolo\u010dene z zemljepisno \u0161irino in dol\u017eino (na primer: [51.513845, -0.100539]).",
+                    "name": "GPS koordinate"
+                },
+                "gps_accuracy": {
+                    "description": "Natan\u010dnost GPS koordinat.",
+                    "name": "Natan\u010dnost GPS"
+                },
+                "host_name": {
+                    "description": "Ime gostitelja naprave.",
+                    "name": "Ime gostitelja"
+                },
+                "location_name": {
+                    "description": "Ime lokacije, kjer se naprava nahaja. Mo\u017enosti so: `home`, `not_home` ali ime cone.",
+                    "name": "Lokacija"
+                },
+                "mac": {
+                    "description": "MAC naslov naprave.",
+                    "name": "MAC naslov"
+                }
+            }
+        }
+    },
+    "title": "Sledilnik naprave"
+}

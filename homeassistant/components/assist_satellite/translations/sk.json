@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Testuje, \u010di je jeden alebo viac satelitov Assist ne\u010dinn\u00fdch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit je ne\u010dinn\u00fd"
+        },
+        "is_listening": {
+            "description": "Testuje, \u010di po\u010d\u00fava jeden alebo viac satelitov Assist.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit po\u010d\u00fava"
+        },
+        "is_processing": {
+            "description": "Testuje, \u010di sa spracov\u00e1va jeden alebo viac satelitov Assist.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit spracov\u00e1va"
+        },
+        "is_responding": {
+            "description": "Testuje, \u010di reaguje jeden alebo viac satelitov Assist.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit je reaguj\u00faci"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Asisten\u010dn\u00fd satelit",
+            "state": {
+                "idle": "Ne\u010dinn\u00fd",
+                "listening": "Po\u010d\u00favanie",
+                "processing": "Spracovanie",
+                "responding": "Odpovedanie"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "ID odpovede",
+                "sentences": "Vety"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "Umo\u017e\u0148uje satelitu Assist ozn\u00e1mi\u0165 spr\u00e1vu.",
+            "fields": {
+                "media_id": {
+                    "description": "ID m\u00e9dia, ktor\u00e9 sa m\u00e1 ozn\u00e1mi\u0165 namiesto pou\u017eitia prevodu textu na re\u010d.",
+                    "name": "ID m\u00e9dia"
+                },
+                "message": {
+                    "description": "Spr\u00e1va na ozn\u00e1menie.",
+                    "name": "Spr\u00e1va"
+                },
+                "preannounce": {
+                    "description": "Prehrajte zvuk pred ozn\u00e1men\u00edm.",
+                    "name": "Predbe\u017en\u00e9 ozn\u00e1menie"
+                },
+                "preannounce_media_id": {
+                    "description": "Vlastn\u00e9 ID m\u00e9dia, ktor\u00e9 sa m\u00e1 prehra\u0165 pred ozn\u00e1men\u00edm.",
+                    "name": "Predbe\u017en\u00e9 ozn\u00e1menie ID m\u00e9di\u00ed"
+                }
+            },
+            "name": "Ozn\u00e1menie na satelite"
+        },
+        "ask_question": {
+            "description": "Umo\u017e\u0148uje satelitu Assist polo\u017ei\u0165 ot\u00e1zku a z\u00edska\u0165 odpove\u010f pou\u017e\u00edvate\u013ea.",
+            "fields": {
+                "answers": {
+                    "description": "Mo\u017en\u00e9 odpovede na ot\u00e1zku.",
+                    "name": "Odpovede"
+                },
+                "entity_id": {
+                    "description": "Pom\u00f4\u017ete satelitnej jednotke polo\u017ei\u0165 ot\u00e1zku.",
+                    "name": "Entita"
+                },
+                "preannounce": {
+                    "description": "Prehr\u00e1vanie zvuku pred spusten\u00edm spr\u00e1vy alebo m\u00e9dia.",
+                    "name": "Predbe\u017en\u00e9 ozn\u00e1menie"
+                },
+                "preannounce_media_id": {
+                    "description": "Vlastn\u00e9 ID m\u00e9dia, ktor\u00e9 sa m\u00e1 prehra\u0165 pred \u00favodnou spr\u00e1vou alebo m\u00e9diom.",
+                    "name": "Predbe\u017en\u00e9 ozn\u00e1menie ID m\u00e9di\u00ed"
+                },
+                "question": {
+                    "description": "Ot\u00e1zka, ktor\u00fa si treba polo\u017ei\u0165.",
+                    "name": "Ot\u00e1zka"
+                },
+                "question_media_id": {
+                    "description": "ID m\u00e9dia ot\u00e1zky, ktor\u00e9 sa m\u00e1 pou\u017ei\u0165 namiesto prevodu textu na re\u010d.",
+                    "name": "ID m\u00e9dia ot\u00e1zky"
+                }
+            },
+            "name": "Polo\u017ei\u0165 ot\u00e1zku na satelite"
+        },
+        "start_conversation": {
+            "description": "Za\u010dne konverz\u00e1ciu zo satelitu Assist.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Poskytnite UI z\u00e1kladn\u00e9 inform\u00e1cie o \u017eiadosti.",
+                    "name": "Dodato\u010dn\u00e1 syst\u00e9mov\u00e1 v\u00fdzva"
+                },
+                "preannounce": {
+                    "description": "Prehr\u00e1vanie zvuku pred spusten\u00edm spr\u00e1vy alebo m\u00e9dia.",
+                    "name": "Predbe\u017en\u00e9 ozn\u00e1menie"
+                },
+                "preannounce_media_id": {
+                    "description": "Vlastn\u00e9 ID m\u00e9dia, ktor\u00e9 sa m\u00e1 prehra\u0165 pred \u00favodnou spr\u00e1vou alebo m\u00e9diom.",
+                    "name": "Predbe\u017en\u00e9 ozn\u00e1menie ID m\u00e9di\u00ed"
+                },
+                "start_media_id": {
+                    "description": "ID m\u00e9dia, s ktor\u00fdm m\u00f4\u017eete za\u010da\u0165 namiesto pou\u017eitia prevodu textu na re\u010d.",
+                    "name": "ID m\u00e9dia"
+                },
+                "start_message": {
+                    "description": "Spr\u00e1va na za\u010diatok.",
+                    "name": "Spr\u00e1va"
+                }
+            },
+            "name": "Za\u010da\u0165 konverz\u00e1ciu na satelite"
+        }
+    },
+    "title": "Asisten\u010dn\u00fd satelit",
+    "triggers": {
+        "idle": {
+            "description": "Spust\u00ed sa, ke\u010f sa jeden alebo viacero asisten\u010dn\u00fdch satelitov po spracovan\u00ed pr\u00edkazu prestane pou\u017e\u00edva\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit sa stal ne\u010dinn\u00fdm"
+        },
+        "listening": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viacero satelitov Assist za\u010dne \u010daka\u0165 na pr\u00edkaz od niektorej osoby.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit za\u010dal po\u010d\u00fava\u0165"
+        },
+        "processing": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viacero asisten\u010dn\u00fdch satelitov za\u010dne spracov\u00e1va\u0165 pr\u00edkaz po jeho vypo\u010dut\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit za\u010dal spracovanie"
+        },
+        "responding": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viacero satelitov Assist za\u010dne reagova\u0165 na pr\u00edkaz po jeho spracovan\u00ed alebo za\u010dne nie\u010do oznamova\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Satelit za\u010dal reagova\u0165"
+        }
+    }
+}

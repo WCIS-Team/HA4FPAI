@@ -1,0 +1,69 @@
+{
+    "exceptions": {
+        "entity_not_dynamically_created": {
+            "message": "O cen\u00e1rio {entity_id} n\u00e3o \u00e9 criado com a a\u00e7\u00e3o `scene.create`."
+        },
+        "entity_not_scene": {
+            "message": "{entity_id} n\u00e3o \u00e9 um ID de entidade de cen\u00e1rio v\u00e1lido."
+        }
+    },
+    "services": {
+        "apply": {
+            "description": "Ativa um cen\u00e1rio com configura\u00e7\u00e3o.",
+            "fields": {
+                "entities": {
+                    "description": "Lista de entidades e o seu estado alvo.",
+                    "name": "Estado das entidades"
+                },
+                "transition": {
+                    "description": "O tempo que os dispositivos levam para transitar para os estados definidos no cen\u00e1rio.",
+                    "name": "Transi\u00e7\u00e3o"
+                }
+            },
+            "name": "Aplicar cen\u00e1rio"
+        },
+        "create": {
+            "description": "Cria um novo cen\u00e1rio.",
+            "fields": {
+                "entities": {
+                    "description": "Lista de entidades e seus estados alvo. Se as suas entidades j\u00e1 estiverem no estado alvo, use antes `Instant\u00e2neo das entidades`.",
+                    "name": "Estado das entidades"
+                },
+                "scene_id": {
+                    "description": "O ID de entidade do novo cen\u00e1rio.",
+                    "name": "ID de entidade do cen\u00e1rio"
+                },
+                "snapshot_entities": {
+                    "description": "Lista de entidades a serem inclu\u00eddas no instant\u00e2neo. Ao tirar um instant\u00e2neo, regista o estado atual dessas entidades. Se n\u00e3o quiser usar o estado atual de todas as suas entidades para este cen\u00e1rio, pode combinar 'Instant\u00e2neo das entidades' com 'Estado das entidades'.",
+                    "name": "Instant\u00e2neo das entidades"
+                }
+            },
+            "name": "Criar cen\u00e1rio"
+        },
+        "delete": {
+            "description": "Apaga um cen\u00e1rio criado de forma din\u00e2mica.",
+            "name": "Eliminar cen\u00e1rio"
+        },
+        "reload": {
+            "description": "Recarrega os cen\u00e1rios a partir da configura\u00e7\u00e3o YAML.",
+            "name": "Recarregar cen\u00e1rios"
+        },
+        "turn_on": {
+            "description": "Ativa um cen\u00e1rio.",
+            "fields": {
+                "transition": {
+                    "description": "O tempo que os dispositivos levam para transitar para os estados definidos no cen\u00e1rio.",
+                    "name": "Transi\u00e7\u00e3o"
+                }
+            },
+            "name": "Ativar cen\u00e1rio"
+        }
+    },
+    "title": "Cena",
+    "triggers": {
+        "activated": {
+            "description": "Dispara quando um ou mais cen\u00e1rios s\u00e3o ativados.",
+            "name": "Cen\u00e1rio ativado"
+        }
+    }
+}

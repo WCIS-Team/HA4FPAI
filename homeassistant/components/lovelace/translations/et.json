@@ -1,0 +1,30 @@
+{
+    "exceptions": {
+        "failed_to_reload": {
+            "message": "Vaate ressursside taaslaadimine nurjus. Kontrolli oma konfiguratsiooni ja proovi uuesti."
+        },
+        "url_already_exists": {
+            "message": "URL \"{url}\" on juba kasutusel. Vali m\u00f5ni teine."
+        }
+    },
+    "issues": {
+        "yaml_mode_deprecated": {
+            "description": "YAML-t\u00f6\u00f6laua konfiguratsioon kasutab vana valikut `mode: yaml` mis eemaldatakse versioonis Home Assistant 2026.8. YAML-lauad t\u00f6\u00f6tavad edasi, pead lihtsalt uuendama nende m\u00e4\u00e4ratlemise viisi.\n\nKonfiguratsiooni uuendamine:\n\n1. Eemalda `configuration.yaml` failis sektsioonist `lovelace:` rida `mode: yaml`\n2. Lisa selle asemel:\n\n```yaml\nlovelace:\n  resource_mode: yaml\n  dashboards:\n    lovelace:\n      mode: yaml\n      filename: {config_file}\n      title: Overview\n      icon: mdi:view-dashboard\n      show_in_sidebar: true\n```\n\n3. Taask\u00e4ivita Home Assistant\n\nM\u00e4rkus: `resource_mode: yaml` s\u00e4ilitab ressursside laadimise YAML-ist. Kui soovite hallata ressursse hoopis kasutajaliidese kaudu, v\u00f5ite selle rea eemaldada ja viia oma ressursid \u00fcle Settings > Dashboards > Resources.",
+            "title": "Lovelace YAML konfiguratsioon vajab uuendamist"
+        }
+    },
+    "services": {
+        "reload_resources": {
+            "description": "Taaslaeb t\u00f6\u00f6laua ressursid YAML-konfiguratsioonist.",
+            "name": "Taaslae kuvapaneeli ressursid"
+        }
+    },
+    "system_health": {
+        "info": {
+            "dashboards": "Vaateid",
+            "mode": "Re\u017eiim",
+            "resources": "Ressursid",
+            "views": "Paneele"
+        }
+    }
+}

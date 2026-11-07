@@ -1,0 +1,165 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer",
+        "trigger_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Test of een, of meerdere, afstandsbedieningen zijn uitgeschakeld.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Afstandsbediening uitgeschakeld"
+        },
+        "is_on": {
+            "description": "Test of een, of meerdere, afstandsbedieningen zijn ingeschakeld.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Afstandsbediening ingeschakeld"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Zet {entity_name} aan/uit",
+            "turn_off": "{entity_name} uitzetten",
+            "turn_on": "{entity_name} aanzetten"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} is uitgeschakeld",
+            "is_on": "{entity_name} is ingeschakeld"
+        },
+        "extra_fields": {
+            "for": "Duur"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} aan- of uitgezet",
+            "turned_off": "{entity_name} uitgezet",
+            "turned_on": "{entity_name} aangezet"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Afstandsbediening",
+            "state": {
+                "off": "Uit",
+                "on": "Aan"
+            }
+        }
+    },
+    "services": {
+        "delete_command": {
+            "fields": {
+                "command": {
+                    "description": "De enkele opdracht of de lijst met opdrachten die verwijderd moeten worden.",
+                    "name": "Commando"
+                },
+                "device": {
+                    "description": "Apparaat waarvan opdrachten worden verwijderd.",
+                    "name": "Apparaat"
+                }
+            }
+        },
+        "learn_command": {
+            "fields": {
+                "alternative": {
+                    "description": "Als code als alternatief moet worden opgeslagen. Dit is handig voor discrete codes. Discrete codes worden gebruikt voor schakelaars die slechts \u00e9\u00e9n functie uitvoeren. Bijvoorbeeld een code om alleen een apparaat aan te zetten. Als het al aan is, verandert het verzenden van de code de status niet.",
+                    "name": "Alternatief"
+                },
+                "command": {
+                    "description": "Een enkele opdracht of een lijst met opdrachten om te leren.",
+                    "name": "Opdracht"
+                },
+                "command_type": {
+                    "description": "Het soort opdracht dat geleerd moet worden.",
+                    "name": "Type opdracht"
+                },
+                "device": {
+                    "description": "Apparaat-ID om opdracht van te leren.",
+                    "name": "Apparaat"
+                },
+                "timeout": {
+                    "description": "Time-out voor het leren van de opdracht.",
+                    "name": "Time-out"
+                }
+            }
+        },
+        "send_command": {
+            "description": "Verstuurt een commando of een lijst van commando's naar een apparaat.",
+            "fields": {
+                "command": {
+                    "description": "Een enkele opdracht of een lijst van opdrachten om te verzenden.",
+                    "name": "Opdracht"
+                },
+                "delay_secs": {
+                    "description": "De tijd die je wilt wachten tussen herhaalde opdrachten.",
+                    "name": "Vertraging seconden"
+                },
+                "device": {
+                    "description": "Apparaat-ID waarnaar de opdracht moet worden verzonden.",
+                    "name": "Apparaat"
+                },
+                "hold_secs": {
+                    "description": "De tijd dat je het wilt vasthouden voordat de release wordt verzonden.",
+                    "name": "Seconden vasthouden"
+                },
+                "num_repeats": {
+                    "description": "Het aantal keren dat jede opdrachten wilt herhalen.",
+                    "name": "Herhalingen"
+                }
+            }
+        },
+        "toggle": {
+            "name": "Omschakelen via de afstandsbediening"
+        },
+        "turn_off": {
+            "name": "Uitzetten via de afstandsbediening"
+        },
+        "turn_on": {
+            "fields": {
+                "activity": {
+                    "description": "Activiteits-ID of activiteitsnaam om te starten.",
+                    "name": "Activiteit"
+                }
+            },
+            "name": "Aanzetten via afstandsbediening"
+        }
+    },
+    "title": "Afstandsbediening",
+    "triggers": {
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Afstandsbediening uitgeschakeld"
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Afstandsbediening ingeschakeld"
+        }
+    }
+}

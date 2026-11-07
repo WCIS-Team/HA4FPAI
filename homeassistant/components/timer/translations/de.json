@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Timer aktiv sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer aktiv"
+        },
+        "is_idle": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Timer im Leerlauf sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer im Leerlauf"
+        },
+        "is_paused": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Timer pausiert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer pausiert"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Timer",
+            "state": {
+                "active": "Aktiv",
+                "idle": "Leerlauf",
+                "paused": "Pausiert"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Dauer"
+                },
+                "editable": {
+                    "name": "Verwaltet \u00fcber UI",
+                    "state": {
+                        "false": "Nein",
+                        "true": "Ja"
+                    }
+                },
+                "finishes_at": {
+                    "name": "L\u00e4uft ab"
+                },
+                "last_transition": {
+                    "name": "Letzter \u00dcbergang",
+                    "state": {
+                        "cancelled": "Abgebrochen",
+                        "finished": "Abgelaufen",
+                        "paused": "Pausiert",
+                        "restarted": "Neu gestartet",
+                        "started": "Gestartet"
+                    }
+                },
+                "remaining": {
+                    "name": "Verbleibend"
+                },
+                "restore": {
+                    "name": "Wiederherstellen"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "Setzt die Dauer eines Timers auf den letzten bekannten Anfangswert zur\u00fcck, ohne das Ereignis \u201eTimer abgelaufen\u201c auszul\u00f6sen.",
+            "name": "Timer abbrechen"
+        },
+        "change": {
+            "description": "\u00c4ndert einen Timer durch Addieren oder Subtrahieren einer angegebenen Dauer.",
+            "fields": {
+                "duration": {
+                    "description": "Dauer, die zum laufenden Timer addiert oder davon subtrahiert werden soll.",
+                    "name": "Dauer"
+                }
+            },
+            "name": "Timer \u00e4ndern"
+        },
+        "finish": {
+            "description": "Beendet einen Timer vorzeitig.",
+            "name": "Timer beenden"
+        },
+        "pause": {
+            "description": "Pausiert einen laufenden Timer und beh\u00e4lt die verbleibende Dauer f\u00fcr eine sp\u00e4tere Fortsetzung bei.",
+            "name": "Timer pausieren"
+        },
+        "reload": {
+            "description": "L\u00e4dt Timer aus der YAML-Konfiguration neu.",
+            "name": "Timer neu laden"
+        },
+        "start": {
+            "description": "Startet einen Timer oder startet ihn mit einer angegebenen Dauer neu.",
+            "fields": {
+                "duration": {
+                    "description": "Neue Dauer, mit der der Timer neu gestartet werden soll.",
+                    "name": "Dauer"
+                }
+            },
+            "name": "Timer starten"
+        }
+    },
+    "title": "Timer",
+    "triggers": {
+        "cancelled": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Timer abgebrochen werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer abgebrochen"
+        },
+        "finished": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Timer abgelaufen sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer abgelaufen"
+        },
+        "paused": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Timer pausiert werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer pausiert"
+        },
+        "remaining_time_reached": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Timer eine bestimmte Restzeit erreichen.",
+            "fields": {
+                "remaining": {
+                    "name": "Restzeit"
+                }
+            },
+            "name": "Timer-Restzeit erreicht"
+        },
+        "restarted": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Timer neu gestartet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer neu gestartet"
+        },
+        "started": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Timer gestartet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Timer gestartet"
+        }
+    }
+}

@@ -1,0 +1,199 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer",
+        "trigger_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_off": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_operation_mode": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_target_temperature": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "{entity_name} uitzetten",
+            "turn_on": "{entity_name} aanzetten"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Boiler",
+            "state": {
+                "eco": "Eco",
+                "electric": "Elektrisch",
+                "gas": "Gas",
+                "heat_pump": "Warmtepomp",
+                "off": "Uit",
+                "performance": "Prestatie"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Niet thuis mode",
+                    "state": {
+                        "off": "Uit",
+                        "on": "Aan"
+                    }
+                },
+                "current_operation": {
+                    "name": "Huidige werking"
+                },
+                "current_temperature": {
+                    "name": "Huidige temperatuur"
+                },
+                "max_temp": {
+                    "name": "Maximale doeltemperatuur"
+                },
+                "min_temp": {
+                    "name": "Minimale doeltemperatuur"
+                },
+                "operation_mode": {
+                    "state": {
+                        "eco": "Eco",
+                        "electric": "Elektrisch",
+                        "gas": "Gas",
+                        "heat_pump": "Warmtepomp",
+                        "off": "Uit",
+                        "performance": "Prestatie"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "Doeltemperatuur bovengrens"
+                },
+                "target_temp_low": {
+                    "name": "Doeltemperatuur ondergrens"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "Bedrijfsmodus {operation_mode} is niet geldig voor {entity_id}. Geldige bedrijfsmodi zijn: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "Bedrijfsmodus {operation_mode} is niet geldig voor {entity_id}. De lijst met bewerkingen is niet gedefinieerd."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "fields": {
+                "away_mode": {
+                    "description": "Nieuwe waarde voor niet-thuis mode.",
+                    "name": "Niet-thuis mode"
+                }
+            }
+        },
+        "set_operation_mode": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Nieuwe waarde van de bedrijfsmode. Raadpleeg de integratie documentatie voor een lijst van mogelijke modi.",
+                    "name": "Bedrijfsmodus"
+                }
+            },
+            "name": "Bedrijfsmodus instellen"
+        },
+        "set_temperature": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Nieuwe waarde van de bedrijfsmode. Raadpleeg de integratie documentatie voor een lijst van mogelijke modi.",
+                    "name": "Bedrijfsmodus"
+                },
+                "temperature": {
+                    "description": "Nieuwe doeltemperatuur voor de boiler in.",
+                    "name": "Temperatuur"
+                }
+            }
+        },
+        "turn_off": {
+            "name": "Boiler uitzetten"
+        },
+        "turn_on": {
+            "name": "Boiler aanzetten"
+        }
+    },
+    "title": "Boiler",
+    "triggers": {
+        "operation_mode_changed": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                },
+                "operation_mode": {
+                    "description": "De bedrijfsmodi waarop geactiveerd moeten worden.",
+                    "name": "Bedrijfsmodus"
+                }
+            },
+            "name": "Bedrijfsmodus van de boiler is gewijzigd"
+        },
+        "target_temperature_crossed_threshold": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    }
+}

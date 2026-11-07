@@ -1,0 +1,871 @@
+{
+    "common": {
+        "additional_options": "Aanvullende opties",
+        "device_class": "Apparaatklasse",
+        "state": "Status",
+        "unit_of_measurement": "Meeteenheid"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Acties bij inschakelen, afwezig",
+                    "arm_home": "Acties bij inschakelen, thuis aanwezig",
+                    "arm_night": "Acties bij inschakelen, nacht",
+                    "arm_vacation": "Acties bij inschakelen, vakantie",
+                    "code_arm_required": "Code voor inschakelen vereisen",
+                    "device_id": "Apparaat",
+                    "disarm": "Acties bij uitschakelen",
+                    "name": "Naam",
+                    "trigger": "Acties bij alarmering",
+                    "value_template": "Status"
+                },
+                "data_description": {
+                    "arm_away": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_away`. Ontvangt de variabele `code`.",
+                    "arm_custom_bypass": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel is ingeschakeld op `arm_custom_bypass`. Ontvangt de variabele `code`.",
+                    "arm_home": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_home`. Ontvangt de variabele `code`.",
+                    "arm_night": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_night`. Ontvangt de variabele `code`.",
+                    "arm_vacation": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_vacation`. Ontvangt de variabele `code`.",
+                    "code_arm_required": "Indien 'true', is de code vereist om het alarm in te schakelen.",
+                    "code_format": "Een van de volgende: `number`, `text` of `no_code`. Het formaat van de code die wordt gebruikt om het alarm in of uit te schakelen.",
+                    "disarm": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt uitgeschakeld. Ontvangt de variabele `code`.",
+                    "trigger": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt geactiveerd. Ontvangt de variabele `code`.",
+                    "value_template": "Definieert een template om de status van het alarmpaneel in te stellen. Geldige uitvoerwaarden vanuit het template zijn `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` en `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Alarm bedieningspaneel template"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "state": "Status"
+                },
+                "data_description": {
+                    "state": "De sensor staat aan als de template de waarde `True`, `yes`, `on`, `enable` of een positief getal heeft. Bij elke andere waarde wordt deze weergegeven als `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Binaire sensor template"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "press": "Acties bij indrukken"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Knop template"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Huidige temperatuur",
+                    "device_id": "Apparaat",
+                    "hvac_action": "Huidige actie",
+                    "hvac_modes": "HVAC modes",
+                    "name": "Naam",
+                    "target_temperature": "Gewenste temperatuur"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "max_temperature": "Maximale temperatuur",
+                            "min_temperature": "Minimale doeltemperatuur"
+                        },
+                        "name": "Aanvullende opties"
+                    }
+                }
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Acties bij sluiten",
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "open_cover": "Acties bij openen",
+                    "position": "Positie",
+                    "set_cover_position": "Acties bij instellen van positie",
+                    "state": "Status",
+                    "stop_cover": "Acties bij stoppen"
+                },
+                "data_description": {
+                    "close_cover": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking wordt gesloten.",
+                    "open_cover": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking wordt geopend.",
+                    "position": "Definieert een template om de positie van de bedekking te bepalen. De waarden zijn getallen tussen `0` (`gesloten`) en `100` (`open`).",
+                    "set_cover_position": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking het commando `set_cover_position` krijgt. Ontvangt de variabele `position`.",
+                    "stop_cover": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking wordt gestopt."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Bedekkingstemplate"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "in_zones": "Zones",
+                    "latitude": "Breedtegraad",
+                    "longitude": "Lengtegraad",
+                    "name": "Naam"
+                },
+                "data_description": {
+                    "in_zones": "Definieert een template die een lijst met zones teruggeeft waarin de apparaattracker zich momenteel bevindt. De template moet een lijst met ID\u2019s van zone-entiteiten teruggeven. Als de apparaattracker zich in geen enkele zone bevindt, moet de template een lege lijst teruggeven.",
+                    "latitude": "Definieert een template om de breedtegraad van de apparaattracker te verkrijgen. Geldige waarden zijn getallen tussen `-90` en `90`.",
+                    "longitude": "Definieert een template om de lengtegraad van de apparaattracker te verkrijgen. Geldige waarden zijn getallen tussen `-180` en `180`.",
+                    "name": "Naam"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Locatienauwkeurigheid"
+                        },
+                        "data_description": {
+                            "location_accuracy": "Hiermee wordt een template gedefinieerd om de nauwkeurigheid van de locatie van de apparaattracker in meters te bepalen. Geldige waarden zijn getallen groter dan of gelijk aan `0`."
+                        },
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template voor apparaattracker"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "event_type": "Laatst geactiveerde gebeurtenistype",
+                    "event_types": "Gebeurtenistypes",
+                    "name": "Naam"
+                },
+                "data_description": {
+                    "event_type": "Definieert een template voor het type van de gebeurtenis.",
+                    "event_types": "Definieert een template voor een lijst met beschikbare gebeurtenistypen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Gebeurtenistemplate"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "percentage": "Percentage",
+                    "set_percentage": "Acties bij percentage instellen",
+                    "speed_count": "Aantal snelheden",
+                    "state": "Status"
+                },
+                "data_description": {
+                    "percentage": "Definieert een template om het snelheidspercentage van de ventilator op te halen.",
+                    "speed_count": "Het aantal snelheden ondersteund door de ventilator. Wordt gebruikt om de percentagestap voor `fan.increase_speed` en `fan.decrease_speed` acties te berekenen.",
+                    "state": "Definieert een template om de status van de ventilator op te halen. Geldige waarden: `on`, `off`.",
+                    "turn_off": "Definieert acties om uit te voeren wanneer de ventilator is uitgeschakeld.",
+                    "turn_on": "Definieert acties die moeten worden uitgevoerd wanneer de ventilator wordt ingeschakeld. Ontvangt de variabelen `percentage` en/of `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template ventilator"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "url": "URL",
+                    "verify_ssl": "SSL-certificaat verifi\u00ebren"
+                },
+                "data_description": {
+                    "url": "Definieert een template om de URL op te halen waarop de afbeelding wordt weergegeven."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Afbeelding template"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "hs": "HS-kleur",
+                    "level": "Helderheidsniveau",
+                    "name": "Naam",
+                    "set_hs": "Acties bij het instellen van HS-kleur",
+                    "set_level": "Acties bij het instellen van niveau",
+                    "set_temperature": "Acties bij het instellen van kleurtemperatuur",
+                    "state": "Status",
+                    "temperature": "Kleurtemperatuur"
+                },
+                "data_description": {
+                    "hs": "Definieert een sjabloon om de HS-kleur van het licht te bepalen. Moet een tuple (tint, verzadiging) retourneren."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Lichttemplate"
+            },
+            "lock": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "lock": "Acties bij vergrendelen",
+                    "name": "Naam",
+                    "open": "Acties bij openen",
+                    "state": "Status",
+                    "unlock": "Acties bij ontgrendelen"
+                },
+                "data_description": {
+                    "lock": "Definieert acties die moeten worden uitgevoerd wanneer het slot vergrendeld is.",
+                    "open": "Definieert acties die moeten worden uitgevoerd wanneer het slot ontgrendeld is.",
+                    "unlock": "Definieert acties die moeten worden uitgevoerd wanneer het slot wordt ontgrendeld."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template slot"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "max": "Maximumwaarde",
+                    "min": "Minimumwaarde",
+                    "name": "Naam",
+                    "set_value": "Acties op ingestelde waarde",
+                    "step": "Stapwaarde",
+                    "unit_of_measurement": "Meeteenheid"
+                },
+                "data_description": {
+                    "max": "Bepaalt de maximale waarde van het getal.",
+                    "min": "Bepaalt de minimale waarde van het getal.",
+                    "set_value": "Bepaalt welke acties moeten worden uitgevoerd wanneer het getal op een bepaalde waarde wordt ingesteld. Ontvangt de variabele `value`.",
+                    "state": "Template voor de huidige waarde van het getal.",
+                    "step": "Bepaalt de stapgrootte voor het verhogen of verlagen van het getal.",
+                    "unit_of_measurement": "Bepaalt de eenheid van het getal, indien van toepassing."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Nummer template"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "options": "Beschikbare opties",
+                    "select_option": "Acties bij selecteren"
+                },
+                "data_description": {
+                    "options": "Template voor de beschikbare opties van de selectie.",
+                    "state": "Template voor de huidige waarde van de selectie."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Selectietemplate"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "state": "Status",
+                    "state_class": "Statusklasse",
+                    "unit_of_measurement": "Meeteenheid"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Sensor template"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "value_template": "Status"
+                },
+                "data_description": {
+                    "value_template": "Definieert een template om de status van de schakelaar in te stellen. Indien niet gedefinieerd, zal de schakelaar optimistisch aannemen dat alle commando's succesvol zijn."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Schakelaar template"
+            },
+            "update": {
+                "data": {
+                    "backup": "Back-up",
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "in_progress": "Bezig",
+                    "install": "Acties bij installeren",
+                    "installed_version": "Ge\u00efnstalleerde versie",
+                    "latest_version": "Nieuwste versie",
+                    "name": "Naam",
+                    "release_summary": "Samenvatting van de release",
+                    "release_url": "Release URL",
+                    "specific_version": "Specifieke versie",
+                    "title": "Titel",
+                    "update_percentage": "Updatepercentage"
+                },
+                "data_description": {
+                    "backup": "Schakel de optie `automatische back-up v\u00f3\u00f3r update` in of uit in de update-reparatie. Als deze optie is uitgeschakeld, zal de variabele `backup` tijdens de actie `install` altijd de waarde `False` aannemen en wordt de optie `backup` niet geaccepteerd.",
+                    "in_progress": "Definieert een template om de voortgangsstatus te bepalen.",
+                    "install": "Definieert acties die moeten worden uitgevoerd wanneer de update wordt ge\u00efnstalleerd. Ontvangt de variabelen `specific_version` en `backup` wanneer ingeschakeld.",
+                    "installed_version": "Definieert een template om de ge\u00efnstalleerde versie te bepalen.",
+                    "latest_version": "Definieert een template om de nieuwste versie te bepalen.",
+                    "release_summary": "Definieert een template om de release notes te bepalen",
+                    "release_url": "Definieert een template om de release-URL te bepalen.",
+                    "specific_version": "Schakel het gebruik van de variabele `version` bij de actie `install` in of uit. Als deze optie is uitgeschakeld, levert de variabele `specific_version` bij de actie `install` altijd de waarde `None` op",
+                    "title": "Definieert een template om de titel van de update te bepalen.",
+                    "update_percentage": "Definieert een template om het voortgangspercentage van de update te bepalen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Updatetemplate"
+            },
+            "user": {
+                "description": "Met deze helper kun je helper-entiteiten maken die hun status via een template defini\u00ebren. Wat voor soort template wil je maken?",
+                "menu_options": {
+                    "alarm_control_panel": "Alarmbedieningspaneel",
+                    "binary_sensor": "Binaire sensor",
+                    "button": "Knop",
+                    "climate": "Klimaat",
+                    "cover": "Bedekking",
+                    "device_tracker": "Apparaattracker",
+                    "event": "Gebeurtenis",
+                    "fan": "Ventilator",
+                    "image": "Afbeelding",
+                    "light": "Licht",
+                    "lock": "Slot",
+                    "number": "Nummer",
+                    "select": "Selectie",
+                    "sensor": "Sensor",
+                    "switch": "Schakelaar",
+                    "update": "Update",
+                    "vacuum": "Stofzuiger",
+                    "weather": "Weer"
+                },
+                "title": "Template helper"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Acties bij plek schoonmaken",
+                    "device_id": "Apparaat",
+                    "fan_speed": "Ventilatorsnelheid",
+                    "fan_speeds": "Ventilatorsnelheden",
+                    "locate": "Acties bij lokaliseren",
+                    "name": "Naam",
+                    "pause": "Acties bij pauzeren",
+                    "return_to_base": "Acties bij terugkeren naar het basisstation",
+                    "set_fan_speed": "Acties bij instellen ventilatorsnelheid",
+                    "start": "Acties bij het starten",
+                    "state": "Status",
+                    "stop": "Acties bij stoppen"
+                },
+                "data_description": {
+                    "start": "Bepaalt welke acties worden uitgevoerd wanneer de stofzuiger wordt gestart.",
+                    "state": "Definieert een template om de status van de stofzuiger op te vragen. Geldige waarden zijn `cleaning`, `docked`, `idle`, `paused`, `returning` en `error`.",
+                    "stop": "Bepaalt welke acties worden uitgevoerd wanneer de stofzuiger wordt gestopt."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template stofzuiger"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Voorwaarde",
+                    "device_id": "Apparaat",
+                    "forecast_daily": "Weersvoorspelling per dag",
+                    "forecast_hourly": "Weersvoorspelling per uur",
+                    "humidity": "Luchtvochtigheid",
+                    "name": "Naam",
+                    "temperature": "Temperatuur"
+                },
+                "data_description": {
+                    "condition": "Definieert een template om de huidige weersomstandigheden te bepalen",
+                    "forecast_daily": "Definieert een template om de [weersverwachting per dag]({daily_link}) te bepalen",
+                    "forecast_hourly": "Definieert een template om de [weersverwachting per uur]({hourly_link}) te bepalen",
+                    "humidity": "Definieert een template om de huidige luchtvochtigheid te bepalen",
+                    "temperature": "Definieert een template om de huidige temperatuur te bepalen"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Weertemplate"
+            }
+        }
+    },
+    "exceptions": {
+        "failed_to_reload_template_entities": {
+            "message": "Fout bij het opnieuw laden van template-entiteiten: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Apparaat"
+                        }
+                    }
+                }
+            }
+        },
+        "config_format_actions": {
+            "title": "Template-acties vereisen een trigger"
+        },
+        "config_format_triggers": {
+            "title": "Onvolledige template-configuratie"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Acties bij inschakelen, afwezig",
+                    "arm_home": "Acties bij inschakelen, thuis aanwezig",
+                    "arm_night": "Acties bij inschakelen, nacht",
+                    "arm_vacation": "Acties bij inschakelen, vakantie",
+                    "code_arm_required": "Code voor inschakelen vereisen",
+                    "device_id": "Apparaat",
+                    "disarm": "Acties bij uitschakelen",
+                    "trigger": "Acties bij alarmering",
+                    "value_template": "Status"
+                },
+                "data_description": {
+                    "arm_away": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_away`. Ontvangt de variabele `code`.",
+                    "arm_custom_bypass": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel is ingeschakeld op `arm_custom_bypass`. Ontvangt de variabele `code`.",
+                    "arm_home": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_home`. Ontvangt de variabele `code`.",
+                    "arm_night": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_night`. Ontvangt de variabele `code`.",
+                    "arm_vacation": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt ingeschakeld op `arm_vacation`. Ontvangt de variabele `code`.",
+                    "code_arm_required": "Indien 'true', is de code vereist om het alarm in te schakelen.",
+                    "code_format": "Een van de volgende: `number`, `text` of `no_code`. Het formaat van de code die wordt gebruikt om het alarm in of uit te schakelen.",
+                    "disarm": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt uitgeschakeld. Ontvangt de variabele `code`.",
+                    "trigger": "Definieert acties die moeten worden uitgevoerd wanneer het alarmbedieningspaneel wordt geactiveerd. Ontvangt de variabele `code`.",
+                    "value_template": "Definieert een template om de status van het alarmpaneel in te stellen. Geldige uitvoerwaarden vanuit het template zijn `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` en `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Alarm bedieningspaneel template"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "state": "Status"
+                },
+                "data_description": {
+                    "state": "De sensor staat aan als de template de waarde `True`, `yes`, `on`, `enable` of een positief getal heeft. Bij elke andere waarde wordt deze weergegeven als `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Binaire sensor template"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "press": "Acties bij indrukken"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Knop template"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Huidige temperatuur",
+                    "device_id": "Apparaat",
+                    "hvac_action": "Huidige actie",
+                    "hvac_modes": "HVAC modes",
+                    "name": "Naam",
+                    "target_temperature": "Gewenste temperatuur"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "max_temperature": "Maximale temperatuur",
+                            "min_temperature": "Minimale doeltemperatuur"
+                        },
+                        "name": "Aanvullende opties"
+                    }
+                }
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Acties bij sluiten",
+                    "device_id": "Apparaat",
+                    "open_cover": "Acties bij openen",
+                    "position": "Positie",
+                    "set_cover_position": "Acties bij instellen van positie",
+                    "state": "Status",
+                    "stop_cover": "Acties bij stoppen"
+                },
+                "data_description": {
+                    "close_cover": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking wordt gesloten.",
+                    "open_cover": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking wordt geopend.",
+                    "position": "Definieert een template om de positie van de bedekking te bepalen. De waarden zijn getallen tussen `0` (`gesloten`) en `100` (`open`).",
+                    "set_cover_position": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking het commando `set_cover_position` krijgt. Ontvangt de variabele `position`.",
+                    "stop_cover": "Definieert acties die moeten worden uitgevoerd wanneer de bedekking wordt gestopt."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Bedekkingstemplate"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "in_zones": "Zones",
+                    "latitude": "Breedtegraad",
+                    "longitude": "Lengtegraad"
+                },
+                "data_description": {
+                    "in_zones": "Definieert een template die een lijst met zones teruggeeft waarin de apparaattracker zich momenteel bevindt. De template moet een lijst met ID\u2019s van zone-entiteiten teruggeven. Als de apparaattracker zich in geen enkele zone bevindt, moet de template een lege lijst teruggeven.",
+                    "latitude": "Definieert een template om de breedtegraad van de apparaattracker te verkrijgen. Geldige waarden zijn getallen tussen `-90` en `90`.",
+                    "longitude": "Definieert een template om de lengtegraad van de apparaattracker te verkrijgen. Geldige waarden zijn getallen tussen `-180` en `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Locatienauwkeurigheid"
+                        },
+                        "data_description": {
+                            "location_accuracy": "Hiermee wordt een template gedefinieerd om de nauwkeurigheid van de locatie van de apparaattracker in meters te bepalen. Geldige waarden zijn getallen groter dan of gelijk aan `0`."
+                        },
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template voor apparaattracker"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "event_type": "Laatst geactiveerde gebeurtenistype",
+                    "event_types": "Gebeurtenistypes",
+                    "name": "Naam"
+                },
+                "data_description": {
+                    "event_type": "Definieert een template voor het type van de gebeurtenis.",
+                    "event_types": "Definieert een template voor een lijst met beschikbare gebeurtenistypen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Gebeurtenistemplate"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "percentage": "Percentage",
+                    "set_percentage": "Acties bij percentage instellen",
+                    "speed_count": "Aantal snelheden",
+                    "state": "Status"
+                },
+                "data_description": {
+                    "percentage": "Definieert een template om het snelheidspercentage van de ventilator op te halen.",
+                    "speed_count": "Het aantal snelheden ondersteund door de ventilator. Wordt gebruikt om de percentagestap voor `fan.increase_speed` en `fan.decrease_speed` acties te berekenen.",
+                    "state": "Definieert een template om de status van de ventilator op te halen. Geldige waarden: `on`, `off`.",
+                    "turn_off": "Definieert acties om uit te voeren wanneer de ventilator is uitgeschakeld.",
+                    "turn_on": "Definieert acties die moeten worden uitgevoerd wanneer de ventilator wordt ingeschakeld. Ontvangt de variabelen `percentage` en/of `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template ventilator"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "url": "URL",
+                    "verify_ssl": "SSL-certificaat verifi\u00ebren"
+                },
+                "data_description": {
+                    "url": "Definieert een template om de URL op te halen waarop de afbeelding wordt weergegeven."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Afbeelding template"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "hs": "HS-kleur",
+                    "level": "Helderheidsniveau",
+                    "name": "Naam",
+                    "set_hs": "Acties bij het instellen van HS-kleur",
+                    "set_level": "Acties bij het instellen van niveau",
+                    "set_temperature": "Acties bij het instellen van kleurtemperatuur",
+                    "state": "Status",
+                    "temperature": "Kleurtemperatuur"
+                },
+                "data_description": {
+                    "hs": "Definieert een sjabloon om de HS-kleur van het licht te bepalen. Moet een tuple (tint, verzadiging) retourneren."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Lichttemplate"
+            },
+            "lock": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "lock": "Acties bij vergrendelen",
+                    "open": "Acties bij openen",
+                    "state": "Status",
+                    "unlock": "Acties bij ontgrendelen"
+                },
+                "data_description": {
+                    "lock": "Definieert acties die moeten worden uitgevoerd wanneer het slot vergrendeld is.",
+                    "open": "Definieert acties die moeten worden uitgevoerd wanneer het slot ontgrendeld is.",
+                    "unlock": "Definieert acties die moeten worden uitgevoerd wanneer het slot wordt ontgrendeld."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template slot"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "max": "Maximumwaarde",
+                    "min": "Minimumwaarde",
+                    "name": "Naam",
+                    "set_value": "Acties op ingestelde waarde",
+                    "step": "Stapwaarde"
+                },
+                "data_description": {
+                    "max": "Bepaalt de maximale waarde van het getal.",
+                    "min": "Bepaalt de minimale waarde van het getal.",
+                    "set_value": "Bepaalt welke acties moeten worden uitgevoerd wanneer het getal op een bepaalde waarde wordt ingesteld. Ontvangt de variabele `value`.",
+                    "state": "Template voor de huidige waarde van het getal.",
+                    "step": "Bepaalt de stapgrootte voor het verhogen of verlagen van het getal."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Nummer template"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "name": "Naam",
+                    "options": "Beschikbare opties",
+                    "select_option": "Acties bij selecteren"
+                },
+                "data_description": {
+                    "options": "Template voor de beschikbare opties van de selectie.",
+                    "state": "Template voor de huidige waarde van de selectie."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Selectietemplate"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "state": "Status",
+                    "state_class": "Statusklasse",
+                    "unit_of_measurement": "Meeteenheid"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Sensor template"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Apparaat",
+                    "name": "Naam"
+                },
+                "data_description": {
+                    "value_template": "Definieert een template om de status van de schakelaar in te stellen. Indien niet gedefinieerd, zal de schakelaar optimistisch aannemen dat alle commando's succesvol zijn."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Schakelaar template"
+            },
+            "update": {
+                "data": {
+                    "backup": "Back-up",
+                    "device_class": "Apparaatklasse",
+                    "device_id": "Apparaat",
+                    "in_progress": "Bezig",
+                    "install": "Acties bij installeren",
+                    "installed_version": "Ge\u00efnstalleerde versie",
+                    "latest_version": "Nieuwste versie",
+                    "name": "Naam",
+                    "release_summary": "Samenvatting van de release",
+                    "release_url": "Release URL",
+                    "specific_version": "Specifieke versie",
+                    "title": "Titel",
+                    "update_percentage": "Updatepercentage"
+                },
+                "data_description": {
+                    "backup": "Schakel de optie `automatische back-up v\u00f3\u00f3r update` in of uit in de update-reparatie. Als deze optie is uitgeschakeld, zal de variabele `backup` tijdens de actie `install` altijd de waarde `False` aannemen en wordt de optie `backup` niet geaccepteerd.",
+                    "in_progress": "Definieert een template om de voortgangsstatus te bepalen.",
+                    "install": "Definieert acties die moeten worden uitgevoerd wanneer de update wordt ge\u00efnstalleerd. Ontvangt de variabelen `specific_version` en `backup` wanneer ingeschakeld.",
+                    "installed_version": "Definieert een template om de ge\u00efnstalleerde versie te bepalen.",
+                    "latest_version": "Definieert een template om de nieuwste versie te bepalen.",
+                    "release_summary": "Definieert een template om de release notes te bepalen",
+                    "release_url": "Definieert een template om de release-URL te bepalen.",
+                    "specific_version": "Schakel het gebruik van de variabele `version` bij de actie `install` in of uit. Als deze optie is uitgeschakeld, levert de variabele `specific_version` bij de actie `install` altijd de waarde `None` op",
+                    "title": "Definieert een template om de titel van de update te bepalen.",
+                    "update_percentage": "Definieert een template om het voortgangspercentage van de update te bepalen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Updatetemplate"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Acties bij plek schoonmaken",
+                    "device_id": "Apparaat",
+                    "fan_speed": "Ventilatorsnelheid",
+                    "fan_speeds": "Ventilatorsnelheden",
+                    "locate": "Acties bij lokaliseren",
+                    "name": "Naam",
+                    "pause": "Acties bij pauzeren",
+                    "return_to_base": "Acties bij terugkeren naar het basisstation",
+                    "set_fan_speed": "Acties bij instellen ventilatorsnelheid",
+                    "start": "Acties bij het starten",
+                    "state": "Status",
+                    "stop": "Acties bij stoppen"
+                },
+                "data_description": {
+                    "start": "Bepaalt welke acties worden uitgevoerd wanneer de stofzuiger wordt gestart.",
+                    "state": "Definieert een template om de status van de stofzuiger op te vragen. Geldige waarden zijn `cleaning`, `docked`, `idle`, `paused`, `returning` en `error`.",
+                    "stop": "Bepaalt welke acties worden uitgevoerd wanneer de stofzuiger wordt gestopt."
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Template stofzuiger"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Voorwaarde",
+                    "device_id": "Apparaat",
+                    "forecast_daily": "Weersvoorspelling per dag",
+                    "forecast_hourly": "Weersvoorspelling per uur",
+                    "humidity": "Luchtvochtigheid",
+                    "name": "Naam",
+                    "temperature": "Temperatuur"
+                },
+                "data_description": {
+                    "condition": "Definieert een template om de huidige weersomstandigheden te bepalen",
+                    "forecast_daily": "Definieert een template om de [weersverwachting per dag]({daily_link}) te bepalen",
+                    "forecast_hourly": "Definieert een template om de [weersverwachting per uur]({hourly_link}) te bepalen",
+                    "humidity": "Definieert een template om de huidige luchtvochtigheid te bepalen",
+                    "temperature": "Definieert een template om de huidige temperatuur te bepalen"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Aanvullende opties"
+                    }
+                },
+                "title": "Weertemplate"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Geen code-indeling",
+                "number": "Nummer",
+                "text": "Tekst"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Geen meeteenheid"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Firmware"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Herlaadt template-entiteiten uit de YAML-configuratie.",
+            "name": "Herlaad template entiteiten"
+        }
+    }
+}

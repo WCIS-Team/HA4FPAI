@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Testuje, \u010di je k dispoz\u00edcii jedna alebo viac aktualiz\u00e1ci\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Aktualiz\u00e1cia je k dispoz\u00edcii"
+        },
+        "is_not_available": {
+            "description": "Testuje, \u010di nie je k dispoz\u00edcii jedna alebo viac aktualiz\u00e1ci\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Aktualiz\u00e1cia nie je k dispoz\u00edcii"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Trvanie"
+        },
+        "trigger_type": {
+            "changed_states": "Dostupnos\u0165 aktualiz\u00e1cie {entity_name} sa zmenila",
+            "turned_off": "{entity_name} sa stalo aktu\u00e1lnym",
+            "turned_on": "{entity_name} m\u00e1 k dispoz\u00edcii aktualiz\u00e1ciu"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Aktualizova\u0165",
+            "state": {
+                "off": "Aktu\u00e1lne",
+                "on": "Aktualiz\u00e1cia k dispoz\u00edcii"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Automatick\u00e1 aktualiz\u00e1cia",
+                    "state": {
+                        "false": "Nie",
+                        "true": "\u00c1no"
+                    }
+                },
+                "in_progress": {
+                    "name": "Prebieha",
+                    "state": {
+                        "false": "Nie",
+                        "true": "\u00c1no"
+                    }
+                },
+                "installed_version": {
+                    "name": "Nain\u0161talovan\u00e1 verzia"
+                },
+                "latest_version": {
+                    "name": "Dostupn\u00e1 verzia"
+                },
+                "release_summary": {
+                    "name": "S\u00fahrn vydania"
+                },
+                "release_url": {
+                    "name": "URL vydania"
+                },
+                "skipped_version": {
+                    "name": "Vynechan\u00e1 verzia"
+                },
+                "title": {
+                    "name": "N\u00e1zov"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmv\u00e9r"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "Z\u00e1lohovanie nie je podporovan\u00e9 pre {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "Vymazanie presko\u010den\u00fdch aktualiz\u00e1ci\u00ed nie je podporovan\u00e9 pre {entity_id}."
+        },
+        "no_update_available": {
+            "message": "Nie je k dispoz\u00edcii \u017eiadna aktualiz\u00e1cia pre {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "Nie je k dispoz\u00edcii \u017eiadna aktualiz\u00e1cia na presko\u010denie {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "Preskakovanie aktualiz\u00e1cie nie je podporovan\u00e9 pre {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "In\u0161tal\u00e1cia konkr\u00e9tnej verzie nie je podporovan\u00e1 pre {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "Nemo\u017eno presko\u010di\u0165 nezn\u00e1mu verziu pre {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "In\u0161tal\u00e1cia aktualiz\u00e1cie u\u017e prebieha pre {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Odstr\u00e1ni zna\u010dku presko\u010denej verzie z aktualiz\u00e1cie.",
+            "name": "Vymaza\u0165 vynechan\u00fa aktualiz\u00e1ciu"
+        },
+        "install": {
+            "description": "Nain\u0161taluje aktualiz\u00e1ciu pre zariadenie alebo slu\u017ebu.",
+            "fields": {
+                "backup": {
+                    "description": "Ak to integr\u00e1cia podporuje, pred spusten\u00edm aktualiz\u00e1cie sa vytvor\u00ed z\u00e1loha.",
+                    "name": "Z\u00e1lohovanie"
+                },
+                "version": {
+                    "description": "Verzia na in\u0161tal\u00e1ciu. Ak sa vynech\u00e1, nain\u0161taluje sa najnov\u0161ia verzia.",
+                    "name": "Verzia"
+                }
+            },
+            "name": "In\u0161tal\u00e1cia aktualiz\u00e1cie"
+        },
+        "skip": {
+            "description": "Ozna\u010d\u00ed aktu\u00e1lne dostupn\u00fa aktualiz\u00e1ciu ako presko\u010den\u00fa.",
+            "name": "Vynecha\u0165 aktualiz\u00e1ciu"
+        }
+    },
+    "title": "Aktualizova\u0165",
+    "triggers": {
+        "became_available": {
+            "description": "Spust\u00ed sa, ke\u010f je k dispoz\u00edcii jedna alebo viac aktualiz\u00e1ci\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Aktualiz\u00e1cia je k dispoz\u00edcii"
+        }
+    }
+}

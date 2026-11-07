@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Andmebaasi varundamine kell {start_time} nurjus ressursside puudumise t\u00f5ttu. Varukoopiat ei saa usaldada ja see tuleb uuesti k\u00e4ivitada. See v\u00f5ib juhtuda, kui andmebaas on liiga suur v\u00f5i kui s\u00fcsteem on suure koormuse all. Kaalu s\u00fcsteemi riistvara uuendamist v\u00f5i andmebaasi suuruse v\u00e4hendamist, v\u00e4hendades s\u00e4ilitatavate ajaloop\u00e4evade arvu v\u00f5i luues filtrid.",
+            "title": "Andmebaasi varundamine nurjus ressursside puudumise t\u00f5ttu"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "{database_engine} i versioon {server_version} ei ole toetatud pikaajalise toega (LTS) versioon. L\u00fchiajaliste versioonide ja toetuse l\u00f5ppemise l\u00e4vel olevate LTS-versioonide tugi l\u00f5petatakse; uuenda \u00fchele toetatud LTS-versioonidest ({lts_versions}) ja taask\u00e4ivita Home Assistant, et salvestajat edasi kasutada.",
+            "title": "V\u00e4rskenda {database_engine} salvesti kasutamise j\u00e4tkamiseks minnes \u00fcle toetatud LTS-versioonile"
+        },
+        "database_engine_too_old": {
+            "description": "Versiooni tugi {server_version} jaoks {database_engine} l\u00f5peb; minimaalne toetatud versioon on {min_version}. Uuenda oma andmebaasi tarkvara ja taask\u00e4ivita Home Assistant.",
+            "title": "V\u00e4rskenda {database_engine} {min_version} v\u00f5i uuem, et diktofoni kasutamist j\u00e4tkata"
+        },
+        "maria_db_range_index_regression": {
+            "description": "MariaDB vanemate versioonide puhul esineb m\u00e4rkimisv\u00e4\u00e4rne j\u00f5udluse langus ajalooliste andmete otsimisel v\u00f5i andmebaasi puhastamisel. Uuenda MariaDB versioonile {min_version} v\u00f5i uuemale ja k\u00e4ivita Home Assistant uuesti. Kui kasutad MariaDB rakendust, uuenda see kindlasti uusima versioonini.",
+            "title": "MariaDB v\u00e4rskendamine versioonile {min_version} v\u00f5i uuemale mis lahendab olulise j\u00f5udlusprobleemi"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Peatab s\u00fcndmuste ja olekumuutuste salvestamise.",
+            "name": "L\u00fclita salvesti v\u00e4lja"
+        },
+        "enable": {
+            "description": "Alustab s\u00fcndmuste ja olekumuutuste salvestamist.",
+            "name": "Salvestaja lubamine"
+        },
+        "get_statistics": {
+            "description": "Otsib statistilisi andmeid \u00fcksuste kohta teatud ajavahemiku jooksul.",
+            "fields": {
+                "end_time": {
+                    "description": "Statistika p\u00e4ringu l\u00f5puaeg. Kui see j\u00e4etakse v\u00e4lja, tagastatakse kogu statistika alates algusaegadest.",
+                    "name": "L\u00f5puaeg"
+                },
+                "period": {
+                    "description": "Ajavahemik mille j\u00e4rgi statistikat r\u00fchmitada.",
+                    "name": "Ajavahemik"
+                },
+                "start_time": {
+                    "description": "Statistikap\u00e4ringu algusaeg.",
+                    "name": "Algusaeg"
+                },
+                "statistic_ids": {
+                    "description": "Olemi ID-d v\u00f5i statistilised ID-d mille statistika tagastatakse.",
+                    "name": "Statistilised ID-d"
+                },
+                "types": {
+                    "description": "Tagastatavate statistiliste v\u00e4\u00e4rtuste t\u00fc\u00fcbid.",
+                    "name": "T\u00fc\u00fcbid"
+                },
+                "units": {
+                    "description": "Valikuline \u00fchikute teisendamise kaardistamine.",
+                    "name": "\u00dchikud"
+                }
+            },
+            "name": "Salvestist statistika hankimine"
+        },
+        "purge": {
+            "description": "K\u00e4ivitab puhastus\u00fclesande vanade andmete puhastamiseks andmebaasist.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Rakendab lisaks ajap\u00f5hisele puhastamisele ka filtreid 'entity_id' ja 'event_type'.",
+                    "name": "Rakenda filter"
+                },
+                "keep_days": {
+                    "description": "Andmete andmebaasis hoidmise p\u00e4evade arv. Alates t\u00e4nasest lugedes tagasi. V\u00e4\u00e4rtus 7 t\u00e4hendab, et k\u00f5ik, mis on vanem kui n\u00e4dal, kustutatakse.",
+                    "name": "Salvestatud p\u00e4evade arv"
+                },
+                "repack": {
+                    "description": "P\u00fc\u00fcab s\u00e4\u00e4sta kettaruumi kirjutades kogu andmebaasi kirje \u00fcmber.",
+                    "name": "Tihendamine"
+                }
+            },
+            "name": "Salvesti andmebaasi t\u00fchjendamine"
+        },
+        "purge_entities": {
+            "description": "K\u00e4ivitab puhastustoimingu, et eemaldada andmebaasist konkreetsete olemitega seotud andmed.",
+            "fields": {
+                "domains": {
+                    "description": "Loetelu domeenidest mille andmed tuleb salvestaja andmebaasist eemaldada.",
+                    "name": "Eemaldatavad domeenid"
+                },
+                "entity_globs": {
+                    "description": "Globaalsete mustrite loend, mida kasutatakse \u00fcksuste valimiseks, mille andmed salvestaja andmebaasist eemaldada.",
+                    "name": "Olemite grupp eemaldamiseks"
+                },
+                "entity_id": {
+                    "description": "Olemite loend mille andmed tuleb salvesti andmebaasist eemaldada.",
+                    "name": "Eemaldatavad olemid"
+                },
+                "keep_days": {
+                    "description": "P\u00e4evade arv, mille jooksul hoitakse filtrile vastavate ridade andmeid. Alates t\u00e4nasest p\u00e4evast, lugedes tagasi. V\u00e4\u00e4rtus `7` t\u00e4hendab, et k\u00f5ik, mis on vanem kui n\u00e4dal, kustutatakse. Vaikimisi v\u00e4\u00e4rtus 0 p\u00e4eva eemaldab k\u00f5ik sobivad read kohe.",
+                    "name": "Salvestatud p\u00e4evade arv"
+                }
+            },
+            "name": "Salvesti \u00fcksuste t\u00fchjendamine"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Praegune k\u00e4ivitamise algusaeg",
+            "database_engine": "Andmebaasi mootor",
+            "database_version": "Andmebaasi versioon",
+            "estimated_db_size": "Andmebaasi hinnanguline suurus (MB)",
+            "oldest_recorder_run": "Vanim k\u00e4ivitamise algusaeg"
+        }
+    }
+}

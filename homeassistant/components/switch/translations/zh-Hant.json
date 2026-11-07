@@ -1,0 +1,117 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u958b\u95dc\u95dc\u9589\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u958b\u95dc\u95dc\u9589"
+        },
+        "is_on": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u958b\u95dc\u958b\u555f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u958b\u95dc\u958b\u555f"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "\u5207\u63db{entity_name}",
+            "turn_off": "\u95dc\u9589{entity_name}",
+            "turn_on": "\u958b\u555f{entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name}\u5df2\u95dc\u9589",
+            "is_on": "{entity_name}\u5df2\u958b\u555f"
+        },
+        "extra_fields": {
+            "for": "\u6301\u7e8c\u6642\u9593"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name}\u6253\u958b\u6216\u95dc\u9589",
+            "turned_off": "{entity_name}\u5df2\u95dc\u9589",
+            "turned_on": "{entity_name}\u5df2\u958b\u555f"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u958b\u95dc",
+            "state": {
+                "off": "\u95dc\u9589",
+                "on": "\u958b\u555f"
+            }
+        },
+        "outlet": {
+            "name": "\u63d2\u5ea7",
+            "state": {
+                "off": "\u95dc\u9589",
+                "on": "\u958b\u555f"
+            }
+        },
+        "switch": {
+            "name": "\u958b\u95dc",
+            "state": {
+                "off": "\u95dc\u9589",
+                "on": "\u958b\u555f"
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "\u6253\u958b/\u95dc\u9589\u958b\u95dc\u3002",
+            "name": "\u5207\u63db\u958b\u95dc"
+        },
+        "turn_off": {
+            "description": "\u95dc\u9589\u958b\u95dc\u3002",
+            "name": "\u95dc\u9589\u958b\u95dc"
+        },
+        "turn_on": {
+            "description": "\u6253\u958b\u958b\u95dc\u3002",
+            "name": "\u958b\u555f\u958b\u95dc"
+        }
+    },
+    "title": "\u958b\u95dc",
+    "triggers": {
+        "turned_off": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u958b\u95dc\u95dc\u9589\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u958b\u95dc\u5df2\u95dc\u9589"
+        },
+        "turned_on": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u958b\u95dc\u958b\u555f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u958b\u95dc\u5df2\u958b\u555f"
+        }
+    }
+}

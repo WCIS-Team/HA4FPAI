@@ -1,0 +1,108 @@
+{
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "Nastavi vla\u017enost za {entity_name}",
+            "set_mode": "Spremeni na\u010din na {entity_name}",
+            "toggle": "Preklopi {entity_name}",
+            "turn_off": "Izklopi {entity_name}",
+            "turn_on": "Vklopi {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} je nastavljen na dolo\u010den na\u010din",
+            "is_off": "{entity_name} je izklopljen",
+            "is_on": "{entity_name} je vklopljen"
+        },
+        "extra_fields": {
+            "above": "Nad",
+            "below": "Pod",
+            "for": "Trajanje",
+            "humidity": "Vla\u017enost",
+            "mode": "Na\u010din"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} je bil vklopljen ali izklopljen",
+            "target_humidity_changed": "{entity_name} spremenjena ciljna vla\u017enost",
+            "turned_off": "{entity_name} je bil izklopljen",
+            "turned_on": "{entity_name} je bil vklopljen"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vla\u017eilec",
+            "state": {
+                "off": "Izklopljeno",
+                "on": "Vklopljeno"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Akcija",
+                    "state": {
+                        "drying": "Su\u0161enje",
+                        "humidifying": "Vla\u017eenje",
+                        "idle": "Nedejaven",
+                        "off": "Izklopljeno"
+                    }
+                },
+                "available_modes": {
+                    "name": "Na\u010dini na voljo"
+                },
+                "current_humidity": {
+                    "name": "Trenutna vla\u017enost"
+                },
+                "humidity": {
+                    "name": "Ciljna vla\u017enost"
+                },
+                "max_humidity": {
+                    "name": "Najvi\u0161ja ciljna vla\u017enost"
+                },
+                "min_humidity": {
+                    "name": "Najni\u017eja ciljna vla\u017enost"
+                },
+                "mode": {
+                    "name": "Na\u010din",
+                    "state": {
+                        "auto": "Samodejno",
+                        "away": "Odsoten",
+                        "baby": "Dojen\u010dek",
+                        "boost": "Pove\u010danje",
+                        "comfort": "Udobje",
+                        "eco": "Eko",
+                        "home": "Doma",
+                        "normal": "Normalno",
+                        "sleep": "Spanje"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Razvla\u017eilec"
+        },
+        "humidifier": {
+            "name": "Vla\u017eilec"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Navedena vla\u017enost {humidity} ni veljavna. Sprejemljivo obmo\u010dje je od {min_humidity} do {max_humidity}."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "Ciljna vrednost.",
+                    "name": "Vla\u017enost"
+                }
+            }
+        },
+        "set_mode": {
+            "fields": {
+                "mode": {
+                    "description": "Na\u010din delovanja. Na primer \"normal\", \"eco\" ali  \"away\". Za seznam mo\u017enih vrednosti glejte dokumentacijo integracije.",
+                    "name": "Na\u010din"
+                }
+            }
+        }
+    },
+    "title": "Vla\u017eilec"
+}

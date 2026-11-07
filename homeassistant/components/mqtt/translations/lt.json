@@ -1,0 +1,1428 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Nepavyko prisijungti prie {addon} Patikrinkite program\u0117l\u0117s b\u016bsen\u0105 ir bandykite dar kart\u0105 v\u0117liau.",
+            "addon_info_failed": "Nepavyko gauti informacijos apie {addon} program\u0117l\u0119.",
+            "addon_install_failed": "Nepavyko \u012fdiegti {addon} program\u0117l\u0117s.",
+            "addon_start_failed": "Nepavyko paleisti {addon} program\u0117l\u0117s.",
+            "already_configured": "Paslauga jau sukonfig\u016bruota"
+        },
+        "error": {
+            "bad_birth": "Netinkama gimimo tema",
+            "bad_certificate": "CA sertifikatas neteisingas",
+            "bad_client_cert": "Neteisingas kliento sertifikatas, \u012fsitikinkite, kad pateiktas galiojantis failas",
+            "bad_client_cert_key": "Kliento sertifikatas ir privatus raktas n\u0117ra tinkama pora",
+            "bad_discovery_prefix": "Netinkamas atradimo prie\u0161d\u0117lis",
+            "bad_will": "Neteisinga testamento tema",
+            "bad_ws_headers": "Pateikite galiojan\u010dias HTTP antra\u0161tes kaip JSON subjekt\u0105",
+            "cannot_connect": "Nepavyko prisijungti",
+            "client_key_error": "Pateiktas neteisingas privataus rakto failas arba neteisingas slapta\u017eodis",
+            "invalid_auth": "Neteisingas autentifikavimas",
+            "invalid_inclusion": "Kliento sertifikatas ir privatusis raktas turi b\u016bti sukonfig\u016bruoti kartu"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Brokeris",
+                    "password": "Slapta\u017eodis",
+                    "port": "Portas",
+                    "protocol": "MQTT protokolas",
+                    "username": "Prisijungimo vardas"
+                },
+                "data_description": {
+                    "broker": "J\u016bs\u0173 MQTT brokerio pagrindinio kompiuterio pavadinimas arba IP adresas.",
+                    "password": "Slapta\u017eodis prisijungti prie savo MQTT brokerio.",
+                    "port": "Prievadas, kurio klausosi j\u016bs\u0173 MQTT brokeris. Pavyzd\u017eiui, 1883 m.",
+                    "protocol": "Naudojama MQTT protokolo versija. Atminkite, kad Home Assistant tyliai pasikeis \u012f 5 versij\u0105, jei j\u016bs\u0173 tarpininkas j\u0105 palaiko.",
+                    "username": "Vartotojo vardas, skirtas prisijungti prie MQTT brokerio."
+                },
+                "description": "\u012eveskite savo MQTT brokerio ry\u0161io informacij\u0105.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "\u012ekelkite pasirinktin\u012f CA sertifikato fail\u0105",
+                            "client_cert": "\u012ekelti kliento sertifikato fail\u0105",
+                            "client_id": "Kliento ID (palikite tu\u0161\u010di\u0105, jei norite atsitiktinai sugeneruoto)",
+                            "client_key": "\u012ekelti privataus rakto fail\u0105",
+                            "client_key_password": "Slapta\u017eodis",
+                            "keepalive": "Laikas tarp prane\u0161im\u0173 apie palaikym\u0105 siuntimo",
+                            "set_ca_cert": "Brokerio sertifikato patvirtinimas",
+                            "set_client_cert": "Naudokite kliento sertifikat\u0105",
+                            "tls_insecure": "Ignoruoti brokerio sertifikato patvirtinim\u0105",
+                            "transport": "MQTT transportas",
+                            "ws_headers": "WebSocket antra\u0161t\u0117s JSON formatu",
+                            "ws_path": "WebSocket kelias"
+                        },
+                        "data_description": {
+                            "certificate": "Pasirinktinis CA sertifikato failas, skirtas j\u016bs\u0173 MQTT brokerio sertifikatui patvirtinti.",
+                            "client_cert": "Kliento sertifikatas, skirtas autentifikavimui pagal j\u016bs\u0173 MQTT broker\u012f.",
+                            "client_id": "Unikalus ID, skirtas Home Assistant MQTT API identifikuoti kaip MQTT klient\u0105. Rekomenduojama palikti \u0161i\u0105 parinkt\u012f tu\u0161\u010di\u0105.",
+                            "client_key": "J\u016bs\u0173 kliento sertifikatui priklausantis privatusis rakto failas.",
+                            "client_key_password": "Privataus rakto failo slapta\u017eodis (jei nustatytas).",
+                            "keepalive": "Rekomenduojama reik\u0161m\u0117, ma\u017eesn\u0117 nei 90 sekund\u017ei\u0173. Numatytoji reik\u0161m\u0117 yra 60 sekund\u017ei\u0173.",
+                            "set_ca_cert": "Kai jau nustatyta kaip **Pasirinktinis**, sukonfig\u016bruojamas pasirinktinis CA patvirtinimo sertifikatas. Pasirinkite **Automatinis**, kad CA patvirtinimas b\u016bt\u0173 automatinis, arba \u012fkelkite pasirinktin\u012f CA sertifikat\u0105, kad b\u016bt\u0173 galima patvirtinti j\u016bs\u0173 MQTT brokerio sertifikat\u0105.",
+                            "set_client_cert": "Kai jau pasirinkta, kliento sertifikato autentifikavimas \u012fjungtas. \u012ekelkite kliento sertifikat\u0105 ir rakt\u0105, kad \u012fgalintum\u0117te.",
+                            "tls_insecure": "Galimyb\u0117 ignoruoti j\u016bs\u0173 MQTT brokerio sertifikato patvirtinim\u0105.",
+                            "transport": "Transportas, kuris bus naudojamas prisijungimui prie j\u016bs\u0173 MQTT brokerio.",
+                            "ws_headers": "WebSocket antra\u0161t\u0117s, kurios bus perduodamos per WebSocket pagrindu sukurt\u0105 ry\u0161\u012f su j\u016bs\u0173 MQTT tarpininku.",
+                            "ws_path": "WebSocket kelias, kuris bus naudojamas prisijungimui prie j\u016bs\u0173 MQTT brokerio."
+                        },
+                        "name": "Kiti nustatymai"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "Ar norite sukonfig\u016bruoti Home Assistant, kad prisijungt\u0173 prie MQTT brokerio, kur\u012f teikia? {addon} program\u0117l\u0117?",
+                "title": "MQTT brokeris per Home Assistant program\u0117l\u0119"
+            },
+            "install_addon": {
+                "title": "\u012ediegiama program\u0117l\u0117"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Slapta\u017eodis",
+                    "username": "Naudotojo vardas"
+                },
+                "data_description": {
+                    "password": "Slapta\u017eodis prisijungti prie savo MQTT brokerio.",
+                    "username": "Vartotojo vardas, skirtas prisijungti prie MQTT brokerio."
+                },
+                "description": "MQTT brokeris prane\u0161\u0117 apie autentifikavimo klaid\u0105. Patvirtinkite teising\u0105 brokerio vartotojo vard\u0105 ir slapta\u017eod\u012f.",
+                "title": "Reikalingas pakartotinis autentifikavimas su MQTT brokeriu"
+            },
+            "start_addon": {
+                "title": "Paleid\u017eiama program\u0117l\u0117"
+            },
+            "user": {
+                "description": "Pasirinkite, kaip norite prisijungti prie MQTT brokerio:",
+                "menu_options": {
+                    "addon": "Naudokit\u0117s oficialia {addon} program\u0117le.",
+                    "broker": "Rankiniu b\u016bdu \u012fveskite MQTT brokerio ry\u0161io duomenis"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "MQTT \u012frenginys su {platform} subjektu {entity} buvo s\u0117kmingai nustatytas. \n \n Atminkite, kad galite bet kada i\u0161 naujo sukonfig\u016bruoti MQTT \u012frengin\u012f, pvz., nor\u0117dami prid\u0117ti daugiau objekt\u0173."
+            },
+            "entry_type": "MQTT \u012frenginys",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "Parinktys gauti pozicij\u0105 ir nustatyti pozicijos tem\u0105 turi b\u016bti nustatytos kartu",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "Pozicijos vert\u0117s \u0161ablonas turi b\u016bti naudojamas kartu su pozicijos b\u016bsenos tema",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "Nustatytos pozicijos \u0161ablonas turi b\u016bti naudojamas su nustatytos pozicijos tema",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "Pakreipimo komandos \u0161ablonas turi b\u016bti naudojamas su pakreipimo komandos tema",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "Pakreipimo vert\u0117s \u0161ablonas turi b\u016bti naudojamas su pakreipimo b\u016bsenos tema",
+                "cover_value_template_must_be_used_with_state_topic": "Vert\u0117s \u0161ablonas turi b\u016bti naudojamas su b\u016bsenos temos parinktimi",
+                "empty_list_not_allowed": "Tu\u0161\u010dias s\u0105ra\u0161as neleid\u017eiamas. Prid\u0117kite bent vien\u0105 element\u0105.",
+                "fan_preset_mode_reset_in_preset_modes_list": "\u017dinut\u0117 \u201eatstatyti i\u0161 anksto nustatyt\u0105 re\u017eim\u0105\u201c negalioja kaip i\u0161 anksto nustatytas re\u017eimas",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "Grei\u010dio diapazono maksimalus dydis turi b\u016bti didesnis nei grei\u010dio diapazono min.",
+                "invalid_input": "Netinkama vert\u0117",
+                "invalid_regular_expression": "Turi b\u016bti galiojanti reguliarioji i\u0161rai\u0161ka",
+                "invalid_subscribe_topic": "Netinkama prenumeratos tema",
+                "invalid_supported_color_modes": "Netinkamas palaikom\u0173 spalv\u0173 re\u017eim\u0173 pasirinkimas",
+                "invalid_template": "Netinkamas \u0161ablonas",
+                "invalid_uom": "Pasirinkta \u012frengini\u0173 klas\u0117 nepalaiko matavimo vieneto \"{unit_of_measurement}\" , pa\u0161alinkite \u012frenginio klas\u0119, pasirinkite \u012frenginio klas\u0119, kuri palaiko \"{unit_of_measurement}\", arba pasirinkite palaikom\u0105 matavimo vienet\u0105 i\u0161 s\u0105ra\u0161o.",
+                "invalid_uom_for_state_class": "Pasirinkta b\u016bsenos klas\u0117 nepalaiko matavimo vieneto \"{unit_of_measurement}\". Pa\u0161alinkite b\u016bsenos klas\u0119, pasirinkite b\u016bsenos klas\u0119, kuri palaiko \"{unit_of_measurement}\", arba pasirinkite palaikom\u0105 matavimo vienet\u0105 i\u0161 s\u0105ra\u0161o.",
+                "invalid_url": "Netinkamas URL",
+                "last_reset_not_with_state_class_total": "Paskutin\u0117s i\u0161 naujo nustatytos vert\u0117s \u0161ablono parinktis tur\u0117t\u0173 b\u016bti naudojama tik su b\u016bsenos klase \"I\u0161 viso\"",
+                "max_below_min": "Maksimali vert\u0117 turi b\u016bti didesn\u0117 arba lygi minimaliai vertei",
+                "max_below_min_humidity": "Maksimali dr\u0117gm\u0117s vert\u0117 turi b\u016bti didesn\u0117 nei minimali dr\u0117gm\u0117s vert\u0117",
+                "max_below_min_kelvin": "Maksimali Kelvino vert\u0117 turi b\u016bti didesn\u0117 u\u017e minimali\u0105 Kelvino vert\u0119",
+                "max_below_min_temperature": "Maksimali temperat\u016bros vert\u0117 turi b\u016bti didesn\u0117 nei minimali temperat\u016bros vert\u0117",
+                "options_device_class_enum": "Nustatymas 'Parinktys' turi b\u016bti naudojamas su Enumeration \u012frenginio klase. Jei t\u0119site, esamos parinktys bus nustatytos i\u0161 naujo",
+                "options_not_allowed_with_state_class_or_uom": "'Parink\u010di\u0173' nustatymas neleid\u017eiamas, kai naudojama b\u016bsenos klas\u0117 arba matavimo vienetas",
+                "options_with_enum_device_class": "Konfig\u016bruokite sura\u0161ymo jutiklio parinktis",
+                "preset_mode_none_not_allowed": "I\u0161 anksto nustatytas \"n\u0117ra\" n\u0117ra tinkamas i\u0161 anksto nustatytas re\u017eimas",
+                "uom_required_for_device_class": "Pasirinktai \u012frenginio klasei reikalingas vienetas"
+            },
+            "initiate_flow": {
+                "reconfigure": "I\u0161 naujo konfig\u016bruoti MQTT \u012frengin\u012f",
+                "user": "Prid\u0117ti MQTT \u012frengin\u012f"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "Prieinamumo \u0161ablonas",
+                        "availability_topic": "Prieinamumo tema",
+                        "payload_available": "\u017dinut\u0117s turinys pasiekiamas",
+                        "payload_not_available": "\u017dinut\u0117s turinys nepasiekiama"
+                    },
+                    "data_description": {
+                        "availability_template": "[\u0160ablonas]( {value_templating_url} ), skirtas pateikti prieinamumo temos metu gaut\u0105 prieinamumo nauding\u0105j\u0105 apkrov\u0105",
+                        "availability_topic": "Tema, kurioje bus gaunama prieinamumo \u017einut\u0117",
+                        "payload_available": "\u017dinut\u0117, nurodanti, kad \u012frenginys pasiekiamas (numatytasis nustatymas yra 'prisijung\u0119s')",
+                        "payload_not_available": "\u017dinut\u0117, nurodanti, kad \u012frenginys nepasiekiamas (numatytasis nustatymas yra 'neprisijung\u0119s')"
+                    },
+                    "description": "Prieinamumo funkcija leid\u017eia \u012frenginiui prane\u0161ti apie savo prieinamum\u0105.",
+                    "title": "Prieinamumo parinktys"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Subjektas"
+                    },
+                    "data_description": {
+                        "component": "Pasirinkite norim\u0105 i\u0161trinti objekt\u0105. B\u016btinas bent vienas objektas."
+                    },
+                    "description": "I\u0161trinkite subjekt\u0105. Objektas bus pa\u0161alintas i\u0161 \u012frenginio. Pa\u0161alinus objekt\u0105, bus sugadinti visi nuo jo priklausantys automatika ar scenarijai.",
+                    "title": "I\u0161trinti subjekt\u0105"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "Konfig\u016bracijos URL",
+                        "manufacturer": "Gamintojas",
+                        "model": "Modelis",
+                        "model_id": "Modelio ID",
+                        "name": "Vardas"
+                    },
+                    "data_description": {
+                        "configuration_url": "Nuoroda \u012f tinklalap\u012f, kuriame galima tvarkyti \u0161io \u012frenginio konfig\u016bracij\u0105. Gali b\u016bti 'http://', 'https://' arba vidinis 'homeassistant://' URL.",
+                        "manufacturer": "Pvz., UAB Cleanmaster.",
+                        "model": "Pvz., 'Cleanmaster Pro'.",
+                        "model_id": "Pvz., '123NK2PRO'.",
+                        "name": "Rankiniu b\u016bdu prid\u0117to MQTT \u012frenginio pavadinimas."
+                    },
+                    "description": "\u012eveskite MQTT \u012frenginio informacij\u0105:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "Prane\u0161imo galiojimo intervalas",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "Paskelbto prane\u0161imo saugojimo laiko intervalas.",
+                                "qos": "Paslaugos kokyb\u0117s vert\u0117, kuri\u0105 tur\u0117t\u0173 naudoti \u012frenginio subjektai."
+                            },
+                            "name": "MQTT nustatymai"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "Aparatin\u0117s \u012frangos versija",
+                                "sw_version": "Programin\u0117s \u012frangos versija"
+                            },
+                            "data_description": {
+                                "hw_version": "\u012erenginio aparatin\u0117s \u012frangos versija. Pvz., 'v1.0 rev a'.",
+                                "sw_version": "\u012erenginio programin\u0117s \u012frangos versija. Pvz., '2025.1.0'."
+                            },
+                            "name": "Kiti \u012frenginio nustatymai"
+                        }
+                    },
+                    "title": "Konfig\u016bruokite MQTT \u012frenginio informacij\u0105"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Subjekto nuotrauka",
+                        "name": "Subjekto pavadinimas",
+                        "platform": "Subjekto tipas"
+                    },
+                    "data_description": {
+                        "entity_picture": "Priskirto paveiksl\u0117lio URL.",
+                        "name": "Objekto pavadinimas. Palikite tu\u0161\u010di\u0105, jei norite nustatyti reik\u0161m\u0119 'N\u0117ra', kad [pa\u017eym\u0117tum\u0117te j\u012f kaip pagrindin\u0119 MQTT \u012frenginio funkcij\u0105] ( {naming_entities_url} ).",
+                        "platform": "Objekto, kur\u012f reikia konfig\u016bruoti, tipas."
+                    },
+                    "description": "Sukonfig\u016bruokite pagrindinius {platform_label} objekto nustatymus {entity_name_label}",
+                    "title": "Konfig\u016bruoti MQTT \u012frengin\u012f \"{mqtt_device}\""
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Signalizacijos kodo patvirtinimo re\u017eimas",
+                        "climate_feature_action": "Dabartin\u0117 veiksm\u0173 parama",
+                        "climate_feature_current_humidity": "Dabartinis dr\u0117gm\u0117s palaikymas",
+                        "climate_feature_current_temperature": "Dabartin\u0117s temperat\u016bros palaikymas",
+                        "climate_feature_fan_modes": "Ventiliatoriaus re\u017eimo palaikymas",
+                        "climate_feature_power": "\u012ejungimo/i\u0161jungimo palaikymas",
+                        "climate_feature_preset_modes": "I\u0161 anksto nustatyt\u0173 re\u017eim\u0173 palaikymas",
+                        "climate_feature_swing_horizontal_modes": "Horizontalaus svyravimo re\u017eimo palaikymas",
+                        "climate_feature_swing_modes": "S\u016bpyni\u0173 re\u017eimo palaikymas",
+                        "climate_feature_target_humidity": "Tikslin\u0117s dr\u0117gm\u0117s palaikymas",
+                        "climate_feature_target_temperature": "Tikslin\u0117s temperat\u016bros palaikymas",
+                        "device_class": "\u012erenginio klas\u0117",
+                        "entity_category": "Subjekto kategorija",
+                        "fan_feature_direction": "Krypties palaikymas",
+                        "fan_feature_oscillation": "Osciliacijos palaikymas",
+                        "fan_feature_preset_modes": "I\u0161 anksto nustatyt\u0173 re\u017eim\u0173 palaikymas",
+                        "fan_feature_speed": "Grei\u010dio palaikymas",
+                        "image_processing_mode": "Vaizdo apdorojimo re\u017eimas",
+                        "options": "Prid\u0117ti parinkt\u012f",
+                        "reports_position": "Ataskait\u0173 pozicija",
+                        "schema": "Schema",
+                        "state_class": "B\u016bsenos klas\u0117",
+                        "suggested_display_precision": "Si\u016blomas rodymo tikslumas",
+                        "supported_features": "Palaikomos funkcijos",
+                        "temperature_unit": "Temperat\u016bros vienetas",
+                        "unit_of_measurement": "Matavimo vienetas",
+                        "water_heater_feature_current_temperature": "Dabartin\u0117s temperat\u016bros palaikymas",
+                        "water_heater_feature_power": "\u012ejungimo/i\u0161jungimo palaikymas"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Konfig\u016bruojama, kaip signalizacijos valdymo pultas patvirtina kod\u0105. Vietinis kodas sukonfig\u016bruojamas su objektu ir patvirtinamas Home Assistant. Nuotolinis kodas siun\u010diamas \u012f \u012frengin\u012f ir patvirtinamas nuotoliniu b\u016bdu. [Su\u017einokite daugiau.] ( {url} #kodas)",
+                        "climate_feature_action": "Klimatas palaiko dabartini\u0173 veiksm\u0173 prane\u0161im\u0105.",
+                        "climate_feature_current_humidity": "Klimatas padeda prane\u0161ti apie dabartin\u0119 dr\u0117gm\u0119.",
+                        "climate_feature_current_temperature": "Klimato funkcija palaiko esamos temperat\u016bros ataskait\u0173 teikim\u0105.",
+                        "climate_feature_fan_modes": "Klimatas palaiko ventiliatoriaus re\u017eimus.",
+                        "climate_feature_power": "Klimatas palaiko maitinimo \"\u012fjungimo\" ir \"i\u0161jungimo\" komandas.",
+                        "climate_feature_preset_modes": "Klimatas palaiko i\u0161 anksto nustatytus re\u017eimus.",
+                        "climate_feature_swing_horizontal_modes": "Klimatas palaiko horizontalius svyravimo re\u017eimus.",
+                        "climate_feature_swing_modes": "Klimatas palaiko svyravimo re\u017eimus.",
+                        "climate_feature_target_humidity": "Klimatas padeda nustatyti tikslin\u0119 dr\u0117gm\u0119.",
+                        "climate_feature_target_temperature": "Klimatas padeda nustatyti tikslin\u0119 temperat\u016br\u0105.",
+                        "device_class": "{platform} objekto \u012frenginio klas\u0117. [Su\u017einokite daugiau.] ( {url} #device_class)",
+                        "entity_category": "Leid\u017eia pa\u017eym\u0117ti objekt\u0105 kaip \u012frenginio konfig\u016bracij\u0105 arba diagnostik\u0105. Objektas su kategorija nebus rodomas debesies, Alexa ar \u201eGoogle Assistant komponentams ir nebus \u012ftrauktas \u012f netiesioginius veiksm\u0173 i\u0161kvietimus \u012f \u012frenginius ar sritis. Jutikli\u0173 objektams negalima priskirti \u012frenginio konfig\u016bracijos klas\u0117s. [Su\u017einokite daugiau.] ( {registry_properties_url} )",
+                        "fan_feature_direction": "Ventiliatorius palaiko krypt\u012f.",
+                        "fan_feature_oscillation": "Ventiliatorius palaiko osciliacij\u0105.",
+                        "fan_feature_preset_modes": "Ventiliatorius palaiko i\u0161 anksto nustatytus re\u017eimus.",
+                        "fan_feature_speed": "Ventiliatorius palaiko kelis grei\u010dius.",
+                        "image_processing_mode": "Pasirinkite, kaip bus gaunami vaizdo duomenys.",
+                        "options": "Leid\u017eiam\u0173 jutiklio b\u016bsenos ver\u010di\u0173 parinktys. Jutiklio \u012erenginio klas\u0117 turi b\u016bti nustatyta \u012f Enumeration. Nustatymo 'Parinktys' negalima naudoti kartu su b\u016bsenos klase arba matavimo vienetu.",
+                        "reports_position": "Nustatykite \u0161i\u0105 parinkt\u012f, jei vo\u017etuvas prane\u0161a apie pad\u0117t\u012f arba palaiko pad\u0117ties nustatym\u0105. \u012ejungus \u0161i\u0105 parinkt\u012f, bus skelbiama pad\u0117tis, o ne naudingoji apkrova, apibr\u0117\u017eta naudingosios apkrovos \"open\", naudingosios apkrovos \"close\" arba naudingosios apkrovos \"stop\". Gavus prane\u0161imus, b\u016bsenos tema priims skaitmeninius naudingosios apkrovos duomenis arba vien\u0105 i\u0161 sukonfig\u016bruot\u0173 b\u016bsenos prane\u0161im\u0173.",
+                        "schema": "Naudotina schema. [Su\u017einokite daugiau]({url}#comparison-of-light-mqtt-schemas)",
+                        "state_class": "[B\u016bsenos klas\u0117]({available_state_classes_url}) jutiklio. [Su\u017einokite daugiau.]({url}#valstyb\u0117s_klas\u0117)",
+                        "suggested_display_precision": "De\u0161imt\u0173j\u0173 tikslumu skai\u010dius, kuris tur\u0117t\u0173 b\u016bti naudojamas {platform} esyb\u0117s b\u016bsenos po apvalinimo. [Su\u017einokite daugiau]({url}#suggested_display_precision)",
+                        "supported_features": "Funkcijos, kurias palaiko objektas.",
+                        "temperature_unit": "Tai nustato natyv\u0173 matavimo vienet\u0105, su kuriuo veikia MQTT \u012frenginys.",
+                        "unit_of_measurement": "Apibr\u0117\u017eia matavimo vienet\u0105, jei toks yra.",
+                        "water_heater_feature_current_temperature": "Vandens \u0161ildytuvas palaiko esamos temperat\u016bros prane\u0161imo funkcij\u0105.",
+                        "water_heater_feature_power": "Vandens \u0161ildytuvas palaiko maitinimo \"\u012fjungimo\" ir \"i\u0161jungimo\" komandas."
+                    },
+                    "description": "Sukonfig\u016bruokite konkre\u010di\u0105 {platform} subjekto \"{entity}\" informacij\u0105:",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "Si\u016blomas rodymo tikslumas"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "De\u0161imtaini\u0173 skai\u010di\u0173 skai\u010dius, kuris tur\u0117t\u0173 b\u016bti naudojamas {platform} Objekto b\u016bsena po apvalinimo. [Su\u017einokite daugiau.]({url}#si\u016blomas_rodymo_tikslumas)"
+                            },
+                            "name": "Kiti nustatymai"
+                        }
+                    },
+                    "title": "Konfig\u016bruoti MQTT \u012frengin\u012f \"{mqtt_device}\""
+                },
+                "export": {
+                    "description": "Eksportavimas leid\u017eia perkelti MQTT \u012frenginio konfig\u016bracij\u0105 \u012f YAML pagrindu veikian\u010di\u0105 konfig\u016bracij\u0105 arba MQTT aptikim\u0105. Konfig\u016bracijos eksportavimas taip pat gali b\u016bti naudingas \u0161alinant triktis.",
+                    "menu_options": {
+                        "export_discovery": "Eksportuoti MQTT aptikimo informacij\u0105",
+                        "export_yaml": "Eksportuoti \u012f YAML konfig\u016bracij\u0105"
+                    },
+                    "title": "Eksportuoti MQTT \u012frenginio konfig\u016bracij\u0105"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Atradim\u0173 naudingoji apkrova:",
+                        "discovery_topic": "Atradim\u0173 tema"
+                    },
+                    "data_description": {
+                        "discovery_payload": "JSON [atradimo naudingoji apkrova]( {url} #device-discovery-payload), kurioje yra informacijos apie MQTT \u012frengin\u012f.",
+                        "discovery_topic": "[Atradim\u0173 tema]( {url} #discovery-topic), skirta publikuoti aptikimo informacij\u0105, naudojam\u0105 MQTT aptikimui inicijuoti. \u0160ioje temoje paskelbta tu\u0161\u010dia informacija pa\u0161alins \u012frengin\u012f ir atrastus objektus."
+                    },
+                    "description": "Norint leisti s\u0105rank\u0105 naudojant MQTT [discovery]( {url} #device-discovery-payload), aptikimo naudingoji apkrova turi b\u016bti publikuota aptikimo temoje. Nukopijuokite informacij\u0105 i\u0161 toliau pateikt\u0173 lauk\u0173. Home Assistant aptiks, ar MQTT \u012frenginio s\u0105ranka buvo bandyta naudojant MQTT aptikim\u0105, ir pasi\u016blys taisymo sraut\u0105, kad i\u0161valyt\u0173 nereikaling\u0105 papildom\u0105 \u012fra\u0161\u0105. Taip pat galite pasirinkti pakeisti identifikatorius, jei nenorite pa\u0161alinti papildomo \u012fra\u0161o.",
+                    "title": "Eksportuoti MQTT \u012frenginio konfig\u016bracij\u0105"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "Nukopijuokite \u017eemiau esan\u010di\u0105 YAML konfig\u016bracij\u0105:"
+                    },
+                    "data_description": {
+                        "yaml": "\u012ekelkite YAML konfig\u016bracij\u0105 \u012f savo [configuration.yaml]( {url} #yaml-configuration-listed-per-item)."
+                    },
+                    "description": "Galite nukopijuoti \u017eemiau esan\u010di\u0105 konfig\u016bracij\u0105 ir \u012fkelti j\u0105 \u012f savo configuration.yaml fail\u0105. Home Assistant aptiks, ar MQTT \u012frenginio s\u0105ranka buvo bandyta per YAML, ir pasi\u016blys taisymo sraut\u0105, kad i\u0161valytum\u0117te nereikaling\u0105 papildom\u0105 \u012fra\u0161\u0105. Taip pat galite pasirinkti pakeisti identifikatorius, jei nenorite pa\u0161alinti papildomo \u012fra\u0161o.",
+                    "title": "Eksportuoti MQTT \u012frenginio konfig\u016bracij\u0105"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "Galimi tonai",
+                        "blue_template": "M\u0117lynas \u0161ablonas",
+                        "brightness_template": "Ry\u0161kumo \u0161ablonas",
+                        "code": "Signalizacijos kodas",
+                        "code_arm_required": "Reikalinga kodin\u0117 ranka",
+                        "code_disarm_required": "Reikalingas kodinis i\u0161jungimas",
+                        "code_format": "Kodo formatas",
+                        "code_trigger_required": "Reikalingas kodo aktyviklis",
+                        "color_temp_template": "Spalv\u0173 temperat\u016bros \u0161ablonas",
+                        "command_off_template": "Komandos \"i\u0161jungta\" \u0161ablonas",
+                        "command_on_template": "Komandos \"\u012fjungta\" \u0161ablonas",
+                        "command_template": "Komandos \u0161ablonas",
+                        "command_topic": "Komand\u0173 tema",
+                        "content_type": "Turinio tipas",
+                        "force_update": "Priverstinai atnaujinti",
+                        "green_template": "\u017dalias \u0161ablonas",
+                        "image_encoding": "Vaizdo kodavimas",
+                        "image_topic": "Paveiksl\u0117lio tema",
+                        "last_reset_value_template": "Paskutinis i\u0161 naujo nustatytos vert\u0117s \u0161ablonas",
+                        "max": "Maksimalus",
+                        "min": "Minimalus",
+                        "mode": "Re\u017eimas",
+                        "mode_command_template": "Veikimo re\u017eimo komandos \u0161ablonas",
+                        "mode_command_topic": "Veikimo re\u017eimo komandos tema",
+                        "mode_state_template": "Veikimo re\u017eimo reik\u0161m\u0117s \u0161ablonas",
+                        "mode_state_topic": "Veikimo re\u017eimo b\u016bsenos tema",
+                        "modes": "Palaikomi veikimo re\u017eimai",
+                        "on_command_type": "Komandos tipas ON",
+                        "optimistic": "Optimisti\u0161kas",
+                        "options": "Nustatyti parinktis",
+                        "payload_off": "\u017dinut\u0117 \u201ei\u0161jungta\u201c",
+                        "payload_on": "\u017dinut\u0117 \u201e\u012fjungta\u201c",
+                        "payload_press": "\u017dinut\u0117 \u201epaspaustas\u201c",
+                        "payload_reset": "Naudingoji apkrova \"i\u0161 naujo nustatyti\"",
+                        "position_closed": "Pozicija \"u\u017edaryta\"",
+                        "position_open": "Pozicija \"atvira\"",
+                        "qos": "QoS",
+                        "red_template": "Raudonas \u0161ablonas",
+                        "retain": "I\u0161laikyti",
+                        "state_off": "B\u016bsena \"i\u0161jungta\"",
+                        "state_on": "B\u016bsena \u201e\u012fjungta\u201c",
+                        "state_template": "B\u016bsenos \u0161ablonas",
+                        "state_topic": "B\u016bsenos tema",
+                        "state_value_template": "B\u016bsenos vert\u0117s \u0161ablonas",
+                        "step": "\u017dingsnis",
+                        "support_duration": "Trukm\u0117s palaikymas",
+                        "support_volume_set": "Nustatyti garsumo palaikym\u0105",
+                        "supported_color_modes": "Palaikomi spalv\u0173 re\u017eimai",
+                        "timezone": "Laiko juosta",
+                        "url_template": "URL \u0161ablonas",
+                        "url_topic": "URL tema",
+                        "value_template": "Vert\u0117s \u0161ablonas"
+                    },
+                    "data_description": {
+                        "available_tones": "Sirena palaiko tonus. Kintamasis 'tonas' bus pasiekiamas nustatyme \"Komandos \u0161ablonas\". [Su\u017einokite daugiau.] ( {url} #available_tones)",
+                        "blue_template": "[Template]( {value_templating_url} ), skirta i\u0161gauti m\u0117lyn\u0105 spalv\u0105 i\u0161 b\u016bsenos naudingosios apkrovos reik\u0161m\u0117s. Tikimasi, kad \u0161ablono rezultatas bus sveikasis skai\u010dius nuo 0 iki 255.",
+                        "brightness_template": "[Template]( {value_templating_url} ), skirta i\u0161gauti ry\u0161kum\u0105 i\u0161 b\u016bsenos naudingosios apkrovos reik\u0161m\u0117s. Tikimasi, kad \u0161ablono rezultatas bus sveikasis skai\u010dius nuo 0 iki 255.",
+                        "code": "Nurodo kod\u0105, skirt\u0105 \u012fjungti arba i\u0161jungti aliarm\u0105 priekin\u0117je dalyje. Atminkite, kad tai blokuoja MQTT prane\u0161im\u0173 komand\u0173 siuntim\u0105 \u012f nuotolin\u012f \u012frengin\u012f, jei kodo patvirtinimas nepavyksta. [Su\u017einokite daugiau.] ( {url} #kodas)",
+                        "code_arm_required": "Jei nustatytas, kodas reikalingas signalizacijai \u012fjungti. Jei nenustatytas, kodas nepatvirtinamas.",
+                        "code_disarm_required": "Jei nustatytas, kodas reikalingas signalizacijai i\u0161jungti. Jei nenustatytas, kodas nepatvirtinamas.",
+                        "code_format": "Reguliarusis rei\u0161kinys, skirtas pateiktam kodui patvirtinti, kai jis nustatomas MQTT u\u017erakto atidarymo, u\u017erakinimo arba atrakinimo veiksmo metu. [Su\u017einokite daugiau.] ( {url} #code_format)",
+                        "code_trigger_required": "Jei nustatytas, kodas reikalingas norint rankiniu b\u016bdu suaktyvinti aliarm\u0105. Jei nenustatytas, kodas nepatvirtinamas.",
+                        "color_temp_template": "[\u0160ablonas]( {value_templating_url} ), skirtas spalvos temperat\u016brai kelvinais i\u0161gauti i\u0161 b\u016bsenos naudingosios apkrovos reik\u0161m\u0117s. Tikimasi, kad \u0161ablono rezultatas bus sveikasis skai\u010dius.",
+                        "command_off_template": "\"I\u0161jungtos\" b\u016bsenos pakeitim\u0173 [template]( {command_templating_url} ). Galimi kintamieji: `state` ir `transition`.",
+                        "command_on_template": "\u201e\u012ejungta\u201c b\u016bsena kei\u010diasi kintamajame [template]({command_templating_url}). Galimi kintamieji: `state`, `brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`, `flash`, `transition` ir `effect`. Reik\u0161m\u0117s `red`, `green`, `blue` ir `brightness` pateikiamos kaip sveikieji skai\u010diai nuo 0 iki 255 diapazono. `hue` reik\u0161m\u0117 pateikiama kaip slankiojo skai\u010diaus reik\u0161m\u0117 nuo 0 iki 360 diapazono. `sat` reik\u0161m\u0117 pateikiama kaip slankiojo skai\u010diaus reik\u0161m\u0117 nuo 0 iki 100. `color_temp` reik\u0161m\u0117 pateikiama kaip sveikasis skai\u010dius, atitinkantis Kelvino vienetus.",
+                        "command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas pateikti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama komandos temoje. [Su\u017einokite daugiau.]( {url} #command_template)",
+                        "command_topic": "Paskelbimo tema, kuri bus naudojama subjektui {platform} valdyti. [Su\u017einokite daugiau.]( {url} #command_topic)",
+                        "content_type": "Turinio tipas arba vaizdo duomenys, gaunami vaizdo temoje.",
+                        "force_update": "Siun\u010dia atnaujinimo \u012fvykius, net jei vert\u0117 nepasikeit\u0117. Naudinga, jei norite tur\u0117ti reik\u0161ming\u0173 reik\u0161mi\u0173 grafikus istorijoje. [Su\u017einokite daugiau.]({url}#force_update)",
+                        "green_template": "[Template]( {value_templating_url} ), skirta i\u0161gauti \u017eali\u0105 spalv\u0105 i\u0161 b\u016bsenos naudingosios apkrovos reik\u0161m\u0117s. Tikimasi, kad \u0161ablono rezultatas bus sveikasis skai\u010dius nuo 0 iki 255.",
+                        "image_encoding": "Pasirinkite gaut\u0173 vaizdo duomen\u0173 kodavim\u0105",
+                        "image_topic": "MQTT tema u\u017esiprenumeravo prane\u0161imus su vaizdo duomenimis. [Su\u017einokite daugiau.] ( {url} #image_topic)",
+                        "last_reset_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 galima i\u0161gauti paskutin\u012f atstatym\u0105. Kai nustatytas paskutinio atstatymo \u0161ablonas, b\u016bsenos klas\u0117s parinktis turi b\u016bti \u201eViso\u201c. [Su\u017einokite daugiau.]( {url} #last_reset_value_template)",
+                        "max": "Did\u017eiausia reik\u0161m\u0117. [Su\u017einokite daugiau.] ( {url} #max)",
+                        "min": "Minimali vert\u0117. [Su\u017einokite daugiau.] ( {url} #min)",
+                        "mode": "Valdykite, kaip numeris tur\u0117t\u0173 b\u016bti rodomas vartotojo s\u0105sajoje. [Su\u017einokite daugiau.] ( {url} #mode)",
+                        "mode_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas apibr\u0117\u017eti veikimo re\u017eim\u0105, kuris bus siun\u010diamas \u012f veikimo re\u017eimo komandos tem\u0105. [Su\u017einokite daugiau.]( {url} #mode_command_template)",
+                        "mode_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti veikimo re\u017eim\u0105. [Su\u017einokite daugiau.]({url}#mode_command_topic)",
+                        "mode_state_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 galima i\u0161gauti veikimo re\u017eimo b\u016bsen\u0105. [Su\u017einokite daugiau.]( {url} #mode_state_template)",
+                        "mode_state_topic": "MQTT tema u\u017esiprenumeravo gauti veikimo re\u017eimo b\u016bsenos prane\u0161imus. [Su\u017einokite daugiau.] ( {url} #mode_state_topic)",
+                        "modes": "Palaikom\u0173 veikimo re\u017eim\u0173 s\u0105ra\u0161as. [Su\u017einokite daugiau.] ( {url} #re\u017eimai)",
+                        "on_command_type": "Apibr\u0117\u017eia, kada siun\u010diama \u017einut\u0117 \u201e\u012fjungta\u201c. Naudojant \u201ePaskutinis\u201c (numatytasis), pirmiausia bus siun\u010diamos bet kokios stiliaus (ry\u0161kumo, spalvos ir kt.) temos, o tada \u2013 \u017einut\u0117 \u201e\u012fjungta\u201c \u012f komandos tem\u0105. Naudojant \u201ePirmasis\u201c, bus siun\u010diama \u017einut\u0117 \u201e\u012fjungta\u201c, o tada \u2013 bet kokios stiliaus temos. Naudojant \u201eRy\u0161kumas\u201c, bus siun\u010diamos tik ry\u0161kumo komandos, o ne \u017einut\u0117 \u201e\u012fjungta\u201c, kad \u012fjungtum\u0117te \u0161vies\u0105.",
+                        "optimistic": "\u017dyma, nurodanti, ar subjektas {platform} veikia optimistiniu re\u017eimu. [Su\u017einokite daugiau.]( {url} #optimistic)",
+                        "options": "Galim\u0173 pasirinkti parink\u010di\u0173 s\u0105ra\u0161as.",
+                        "payload_off": "\u017dinut\u0117s turinys, \u017eymintis b\u016bsen\u0105 \u201ei\u0161jungta\u201c.",
+                        "payload_on": "\u017dinut\u0117s turinys, \u017eymintis b\u016bsen\u0105 \u201e\u012fjungta\u201c.",
+                        "payload_press": "\u017dinut\u0117, kuri bus siun\u010diama suaktyvinus mygtuk\u0105.",
+                        "payload_reset": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri atkuria objekto b\u016bsen\u0105 \u012f ne\u017einom\u0105.",
+                        "position_closed": "Skai\u010dius, rodantis u\u017edaryt\u0105 pad\u0117t\u012f. Vo\u017etuvo pad\u0117tis bus pakeista \u012f diapazon\u0105 (pad\u0117tis \"u\u017edaryta\"...pad\u0117tis \"atidaryta\"), kai atliekamas veiksmas, ir suma\u017einta, kai gaunama reik\u0161m\u0117.",
+                        "position_open": "Skai\u010dius, \u017eymintis atidaryt\u0105 pad\u0117t\u012f. Vo\u017etuvo pad\u0117tis bus pakeista \u012f diapazon\u0105 (pad\u0117tis \u201eu\u017edaryta\u201c...pad\u0117tis \u201eatidaryta\u201c), kai atliekamas veiksmas, ir suma\u017einta, kai gaunama reik\u0161m\u0117.",
+                        "qos": "QoS reik\u0161m\u0117, kuri\u0105 tur\u0117t\u0173 naudoti {platform} subjektas.",
+                        "red_template": "[Template]( {value_templating_url} ), skirta i\u0161gauti raudon\u0105 spalv\u0105 i\u0161 b\u016bsenos naudingosios apkrovos reik\u0161m\u0117s. Tikimasi, kad \u0161ablono rezultatas bus sveikasis skai\u010dius nuo 0 iki 255.",
+                        "retain": "Pasirinkite, ar subjekto {platform} paskelbtos vert\u0117s tur\u0117t\u0173 b\u016bti saugomos MQTT brokeryje.",
+                        "state_off": "\u012eeinantis \u017einut\u0117s turinys, \u017eymintis \u201ei\u0161jungt\u0105\u201c b\u016bsen\u0105. Naudokite tik tada, kai b\u016bsenos temoje esanti reik\u0161m\u0117, \u017eyminti b\u016bsen\u0105 \u201ei\u0161jungta\u201c, skiriasi nuo reik\u0161m\u0117s, kuri tur\u0117t\u0173 b\u016bti siun\u010diama \u012f komandos tem\u0105, kad \u012frenginys b\u016bt\u0173 i\u0161jungtas.",
+                        "state_on": "\u012eeinantis \u017einut\u0117s turinys, \u017eymintis b\u016bsen\u0105 \u201e\u012fjungta\u201c. Naudokite tik tada, kai b\u016bsenos temoje esanti reik\u0161m\u0117, \u017eyminti b\u016bsen\u0105 \u201e\u012fjungta\u201c, skiriasi nuo reik\u0161m\u0117s, kuri tur\u0117t\u0173 b\u016bti siun\u010diama \u012f komandos tem\u0105, kad \u012frenginys b\u016bt\u0173 \u012fjungtas.",
+                        "state_template": "[Template]( {value_templating_url} ), kad i\u0161gaut\u0173 b\u016bsen\u0105 i\u0161 b\u016bsenos naudingosios apkrovos reik\u0161m\u0117s.",
+                        "state_topic": "MQTT tema u\u017esiprenumeravo {platform} b\u016bsenos vertes. [Su\u017einokite daugiau.]( {url} #state_topic)",
+                        "step": "\u017dingsnio reik\u0161m\u0117. Ma\u017eiausia reik\u0161m\u0117 0.001.",
+                        "support_duration": "Sirena palaiko trukm\u0117s nustatym\u0105 sekund\u0117mis. Kintamasis 'duration' bus pasiekiamas nustatyme \"Komandos \u0161ablonas\". [Su\u017einokite daugiau.] ( {url} #support_duration)",
+                        "support_volume_set": "Sirena palaiko garsumo nustatym\u0105. Kintamasis 'volume_level' bus pasiekiamas nustatyme \"Komandos \u0161ablonas\". [Su\u017einokite daugiau.] ( {url} #support_volume_set)",
+                        "supported_color_modes": "\u0160viestuvo palaikom\u0173 spalv\u0173 re\u017eim\u0173 s\u0105ra\u0161as. Galimi spalv\u0173 re\u017eimai: \u012fjungta/i\u0161jungta, ry\u0161kumas, spalvos temperat\u016bra, HS, XY, RGB, RGBW, RGBWW, balta. Atminkite, kad jei naudojama \u201e\u012fjungta/i\u0161jungta\u201c arba \u201ery\u0161kumas\u201c, tai turi b\u016bti vienintel\u0117 reik\u0161m\u0117 s\u0105ra\u0161e. [Su\u017einokite daugiau.] ( {url} #palaikomi_spalv\u0173_re\u017eimai)",
+                        "timezone": "Nustatykite galiojant\u012f [IANA laiko juostos identifikatori\u0173]({tz_abbr_url}). Nenustatykite \u0161ios parinkties, jei datos / laiko strukt\u016bra teikia laiko juostos informacij\u0105 per b\u016bsenos atnaujinim\u0105.",
+                        "url_template": "[\u0160ablonas]( {value_templating_url} ), skirtas URL i\u0161gauti i\u0161 gautos URL temos naudingosios apkrovos reik\u0161m\u0117s. [Su\u017einokite daugiau.]( {url} #url_template)",
+                        "url_topic": "MQTT tema u\u017esiprenumeravo prane\u0161imus su vaizdo URL. [Su\u017einokite daugiau.] ( {url} #url_topic)",
+                        "value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta {platform} objekto reik\u0161m\u0117. [Su\u017einokite daugiau.]( {url} #value_template)"
+                    },
+                    "description": "Sukonfig\u016bruokite MQTT konkre\u010di\u0105 i\u0161sami\u0105 {platform} subjekto \"{entity}\" informacij\u0105:",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Naudingoji apkrova \"i\u0161 rank\u0173\"",
+                                "payload_arm_custom_bypass": "Naudingoji apkrova \"apsaugoti pasirinktin\u012f ap\u0117jim\u0105\"",
+                                "payload_arm_disarm": "Naudingoji apkrova i\u0161jungta\"",
+                                "payload_arm_home": "Naudingoji apkrova \"signalizacija namuose\u201c",
+                                "payload_arm_night": "Naudingoji apkrova \"signalizacija nakt\u012f\u201c",
+                                "payload_arm_vacation": "Naudingoji apkrova \"signalizacijos atostogos\u201c",
+                                "payload_trigger": "Naudingoji apkrova \"suveikimo pavojaus signalas\""
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"atjungti apsaug\u0105\u201c.",
+                                "payload_arm_custom_bypass": "Na\u0161umas, siun\u010diamas, kai i\u0161duodamas komandos \"arm custom bypass\" (pasirinktinis apeinimas).",
+                                "payload_arm_disarm": "Na\u0161umas, siun\u010diamas, kai i\u0161duodamas komanda \"disarm\" (i\u0161jungti).",
+                                "payload_arm_home": "Na\u0161umas, siun\u010diamas, kai i\u0161duodamas komandos \"arm home\" (gr\u012f\u017eti \u012f pradin\u0119 pad\u0117t\u012f).",
+                                "payload_arm_night": "Na\u0161umas, siun\u010diamas, kai i\u0161duodamas komandos \"arm home\" (gr\u012f\u017eti \u012f pradin\u0119 pad\u0117t\u012f).",
+                                "payload_arm_vacation": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"\u012fjungti atostogas\".",
+                                "payload_trigger": "Na\u0161umas, siun\u010diamas, kai i\u0161duodamas komandos \"trigger alarm\" signalas."
+                            },
+                            "name": "Signalizacijos valdymo pulto naudingosios apkrovos nustatymai"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "Veiksmo \u0161ablonas",
+                                "action_topic": "Veiksmo tema"
+                            },
+                            "data_description": {
+                                "action_template": "[\u0160ablonas]( {value_templating_url} ), skirtas veiksmo temoje gautai vertei pateikti.",
+                                "action_topic": "MQTT tema, kuri\u0105 reikia prenumeruoti, norint gauti informacij\u0105 apie dabartinio veiksmo poky\u010dius. Jei \u0161i parinktis nustatyta, klimato grafikas naudoja gaut\u0105 vert\u0119 kaip duomen\u0173 \u0161altin\u012f. Duomen\u0173 paketas None i\u0161 naujo nustato dabartin\u0119 veiksmo b\u016bsen\u0105. Tu\u0161\u010dias duomen\u0173 paketas ignoruojamas. Galimos veiksmo reik\u0161m\u0117s: \"off\", \"heating\", \"cooling\", \"drying\", \"idle\" ir \"fan\". [Su\u017einokite daugiau.]({url}#action_topic)"
+                            },
+                            "name": "Dabartiniai veiksmo nustatymai"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "Ventiliatoriaus re\u017eimo komand\u0173 \u0161ablonas",
+                                "fan_mode_command_topic": "Ventiliatoriaus re\u017eimo komand\u0173 tema",
+                                "fan_mode_state_template": "Ventiliatoriaus re\u017eimo b\u016bsenos \u0161ablonas",
+                                "fan_mode_state_topic": "Ventiliatoriaus re\u017eimo b\u016bsenos tema",
+                                "fan_modes": "Ventiliatoriaus re\u017eimai"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sukurti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama ventiliatoriaus re\u017eimo komandos temoje.",
+                                "fan_mode_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti klimato ventiliatoriaus re\u017eim\u0105. [Su\u017einokite daugiau.] ( {url} #fan_mode_command_topic)",
+                                "fan_mode_state_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta klimato ventiliatoriaus re\u017eimo reik\u0161m\u0117.",
+                                "fan_mode_state_topic": "MQTT tema u\u017esiprenumeravo klimato ventiliatoriaus re\u017eimo gavim\u0105. [Su\u017einokite daugiau.] ( {url} #fan_mode_state_topic)",
+                                "fan_modes": "\u0160io klimato re\u017eimo ventiliatoriaus re\u017eim\u0173 s\u0105ra\u0161as. \u012eprasti ventiliatoriaus re\u017eimai su vertimais yra 'i\u0161jungta', '\u012fjungta', 'automatinis', 'ma\u017eas', 'vidutinis', 'didelis', 'vidutinis', 'fokusuotas' ir 'i\u0161sklaidytas'."
+                            },
+                            "name": "Ventiliatoriaus re\u017eimo nustatymai"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "\u017dinut\u0117 \u201ei\u0161jungta\u201c",
+                                "payload_on": "\u017dinut\u0117 \u201e\u012fjungta\u201c",
+                                "power_command_template": "Maitinimo komandos \u0161ablonas",
+                                "power_command_topic": "Galios komand\u0173 tema"
+                            },
+                            "data_description": {
+                                "payload_off": "\u017dinut\u0117s turinys, \u017eymintis b\u016bsen\u0105 \u201ei\u0161jungta\u201c.",
+                                "payload_on": "\u017dinut\u0117s turinys, \u017eymintis b\u016bsen\u0105 \u201e\u012fjungta\u201c.",
+                                "power_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sudaryti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama power\u201c komandos temoje. Parametras `value` yra naudingoji apkrova, nustatyta \"\u012fjungta\" arba \"i\u0161jungta\".",
+                                "power_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti klimato kaitos maitinimo b\u016bsen\u0105. Siun\u010dia nauding\u0105j\u0105 apkrov\u0105, sukonfig\u016bruot\u0105 su nauding\u0105ja apkrova \"\u012fjungta\" arba nauding\u0105ja apkrova \"i\u0161jungta\". [Su\u017einokite daugiau.] ( {url} #power_command_topic)"
+                            },
+                            "name": "Maitinimo nustatymai"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "I\u0161 anksto nustatyto re\u017eimo komandos \u0161ablonas",
+                                "preset_mode_command_topic": "I\u0161 anksto nustatyto re\u017eimo komand\u0173 tema",
+                                "preset_mode_state_topic": "I\u0161 anksto nustatyto re\u017eimo b\u016bsenos tema",
+                                "preset_mode_value_template": "I\u0161 anksto nustatyto re\u017eimo vert\u0117s \u0161ablonas",
+                                "preset_modes": "I\u0161 anksto nustatyti re\u017eimai"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama i\u0161 anksto nustatyto re\u017eimo komandos temoje.",
+                                "preset_mode_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti klimato i\u0161ankstinio nustatymo re\u017eim\u0105. [Su\u017einokite daugiau.] ( {url} #preset_mode_command_topic)",
+                                "preset_mode_state_topic": "MQTT tema u\u017esiprenumeravo ventiliatoriaus i\u0161ankstinio nustatymo re\u017eimo gavim\u0105. [Su\u017einokite daugiau.] ( {url} #preset_mode_state_topic)",
+                                "preset_mode_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta ventiliatoriaus i\u0161 anksto nustatyto re\u017eimo reik\u0161m\u0117.",
+                                "preset_modes": "I\u0161 anksto nustatyt\u0173 re\u017eim\u0173, kuriais \u0161is klimatas gali veikti, s\u0105ra\u0161as. \u012eprasti i\u0161 anksto nustatyti re\u017eimai, si\u016blantys vertimus, yra 'n\u0117ra', 'i\u0161vyk\u0119s', 'eco', 'padidinti', 'komfortas', 'namai', 'miegas' ir 'veikla'."
+                            },
+                            "name": "I\u0161 anksto nustatyti re\u017eimo nustatymai"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "Horizontalaus svyravimo re\u017eimo komandos \u0161ablonas",
+                                "swing_horizontal_mode_command_topic": "Horizontalaus svyravimo re\u017eimo komandos tema",
+                                "swing_horizontal_mode_state_template": "Horizontalaus svyravimo re\u017eimo b\u016bsenos \u0161ablonas",
+                                "swing_horizontal_mode_state_topic": "Horizontalaus svyravimo re\u017eimo b\u016bsenos tema",
+                                "swing_horizontal_modes": "Horizontalaus svyravimo re\u017eimai"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama horizontaliojo svyravimo re\u017eimo komandos temoje.",
+                                "swing_horizontal_mode_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti klimato horizontaliojo svyravimo re\u017eim\u0105. [Su\u017einokite daugiau.] ( {url} #swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta klimato horizontaliojo svyravimo re\u017eimo reik\u0161m\u0117.",
+                                "swing_horizontal_mode_state_topic": "MQTT tema u\u017esiprenumeravo klimato horizontaliojo svyravimo re\u017eimo informacij\u0105. [Su\u017einokite daugiau.] ( {url} #swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "Horizontali\u0173 s\u016bpyni\u0173 re\u017eim\u0173, kuriais gali veikti \u0161is klimatas, s\u0105ra\u0161as. \u012eprasti horizontal\u016bs s\u016bpyn\u0117s re\u017eimai, si\u016blantys vertimus, yra 'i\u0161jungta' ir '\u012fjungta'."
+                            },
+                            "name": "Horizontalaus svyravimo re\u017eimo nustatymai"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "Supimo re\u017eimo komandos \u0161ablonas",
+                                "swing_mode_command_topic": "S\u016bpyni\u0173 re\u017eimo komandos tema",
+                                "swing_mode_state_template": "S\u016bpyni\u0173 re\u017eimo b\u016bsenos \u0161ablonas",
+                                "swing_mode_state_topic": "S\u016bpyni\u0173 re\u017eimo b\u016bsenos tema",
+                                "swing_modes": "Supimo re\u017eimai"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama svyravimo re\u017eimo komandos temoje.",
+                                "swing_mode_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti klimato svyravim\u0173 re\u017eim\u0105. [Su\u017einokite daugiau.] ( {url} #swing_mode_command_topic)",
+                                "swing_mode_state_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta klimato svyravim\u0173 re\u017eimo reik\u0161m\u0117.",
+                                "swing_mode_state_topic": "MQTT tema u\u017esiprenumeravo klimato svyravim\u0173 re\u017eimo gavim\u0105. [Su\u017einokite daugiau.] ( {url} #swing_mode_state_topic)",
+                                "swing_modes": "\u0160io klimato re\u017eimo svyravimo re\u017eim\u0173 s\u0105ra\u0161as. \u012eprasti svyravimo re\u017eimai, kuri\u0173 vertimas yra `i\u0161jungta`, `\u012fjungta`, `vertikali`, `horizontali` ir `abu`."
+                            },
+                            "name": "Supimo re\u017eimo nustatymai"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "\u017dinut\u0117 \u201eu\u017edaryti\u201c",
+                                "payload_open": "\u017dinut\u0117 \u201eatidaryti\u201c",
+                                "payload_stop": "\u017dinut\u0117 \u201estop\u201c",
+                                "payload_stop_tilt": "\u017dinut\u0117 \u201estabdyti sukim\u0105si\u201c",
+                                "state_closed": "B\u016bsena \u201eu\u017edaryta\u201c",
+                                "state_closing": "B\u016bsena \u201eu\u017esidaro\u201c",
+                                "state_open": "B\u016bsena \u201eatidaryta\u201c",
+                                "state_opening": "B\u016bsena \u201eatsidaro\u201c",
+                                "state_stopped": "B\u016bsena \u201esustabdyta\u201c"
+                            },
+                            "data_description": {
+                                "payload_close": "\u017dinut\u0117, siun\u010diama i\u0161davus komand\u0105 \u201eu\u017edaryti\u201c.",
+                                "payload_open": "\u017dinut\u0117, siun\u010diama i\u0161davus komand\u0105 \u201eatidaryti\u201c.",
+                                "payload_stop": "\u017dinut\u0117, siun\u010diama, i\u0161davus komand\u0105 \u201estop\u201c. Palikite lauk\u0105 tu\u0161\u010di\u0105, jei norite i\u0161jungti \u201estop\u201c funkcij\u0105.",
+                                "payload_stop_tilt": "\u017dinut\u0117, siun\u010diama i\u0161davus komand\u0105 \u201estabdyti sukim\u0105si\u201c.",
+                                "state_closed": "\u017dinut\u0117, gauta b\u016bsenos temoje, kuri \u017eymi b\u016bsen\u0105 \u201eu\u017edaryta\u201c.",
+                                "state_closing": "\u017dinut\u0117, gauta b\u016bsenos temoje, kuri \u017eymi b\u016bsen\u0105 \u201eu\u017esidaro\u201c.",
+                                "state_open": "\u017dinut\u0117, gauta b\u016bsenos temoje, kuri \u017eymi b\u016bsen\u0105 \u201eatidaryta\u201c.",
+                                "state_opening": "\u017dinut\u0117, gauta b\u016bsenos temoje, kuri \u017eymi b\u016bsen\u0105 \u201eatsidaro\u201c.",
+                                "state_stopped": "\u017dinut\u0117, gauta b\u016bsenos temoje, kuri \u017eymi b\u016bsen\u0105 \u201esustabdyta\u201c (u\u017edangalams, kurie neprane\u0161a apie b\u016bsen\u0105 \u201eatidaryta\u201c/\u201eu\u017edaryta\u201c)."
+                            },
+                            "name": "\u017dinut\u0117s turinio nustatymai"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "Pozicijos \"u\u017edaryta\u201c reik\u0161m\u0117",
+                                "position_open": "Pozicijos \u201eatvira\u201c vert\u0117",
+                                "position_template": "Pozicijos vert\u0117s \u0161ablonas",
+                                "position_topic": "Pozicijos b\u016bsenos tema",
+                                "set_position_template": "Nustatyti pozicijos \u0161ablon\u0105",
+                                "set_position_topic": "Nustatyti pozicijos tem\u0105"
+                            },
+                            "data_description": {
+                                "position_closed": "Skai\u010dius, rei\u0161kiantis \"u\u017edar\u0105\u201c pozicij\u0105.",
+                                "position_open": "Skai\u010dius, rei\u0161kiantis \"atvir\u0105\u201c pozicij\u0105.",
+                                "position_template": "Apibr\u0117\u017eia [template]({value_templating_url}), kad b\u016bt\u0173 galima i\u0161gauti pozicijos temos nauding\u0105j\u0105 apkrov\u0105. \u0160ablone taip pat yra \u0161ie kintamieji: `entity_id`, `position_open`, `position_closed`, `tilt_min` ir `tilt_max`. [Su\u017einokite daugiau.]({url}#position_template)",
+                                "position_topic": "MQTT tema u\u017esiprenumeravo gauti vir\u0161elio pozicijos b\u016bsenos prane\u0161imus. [Su\u017einokite daugiau.] ( {url} #position_topic)",
+                                "set_position_template": "[Template]({command_templating_url}), kad apibr\u0117\u017etum\u0117te pozicij\u0105, kuri bus siun\u010diama \u012f nustatytos pozicijos tem\u0105. \u0160ablone yra \u0161ie kintamieji: `value` (mastelio tikslin\u0117 pozicija), `entity_id`, `position` (tikslin\u0117s pozicijos procentas), `position_open`, `position_closed`, `tilt_min` ir `tilt_max`. [Su\u017einokite daugiau.]({url}#set_position_template)",
+                                "set_position_topic": "MQTT tema, skirta publikuoti pozicijos komandas. Jei norite naudoti pozicijos tem\u0105, taip pat turite naudoti pozicijos nustatymo tem\u0105. Naudokite \u0161ablon\u0105, jei pozicijos temai reikia ver\u010di\u0173, kurios skiriasi nuo diapazono \u201eposition closed\u201c - \u201eposition_open\u201c. Jei \u0161ablonas neapibr\u0117\u017etas ir pozicija \u201eclosed\u201c != 100, o pozicija \u201eopen\u201c != 0, tada tinkama pozicijos vert\u0117 apskai\u010diuojama pagal procentin\u0119 pozicij\u0105. [Su\u017einokite daugiau.] ( {url} #set_position_topic)"
+                            },
+                            "name": "Pad\u0117ties nustatymai"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "Pakreipimo \"u\u017edaryta\" vert\u0117",
+                                "tilt_command_template": "Pakreipimo komandos \u0161ablonas",
+                                "tilt_command_topic": "Pakreipimo komandos tema",
+                                "tilt_max": "Did\u017eiausias pakreipimas",
+                                "tilt_min": "Pakreipimas min",
+                                "tilt_opened_value": "Pakreipimo \"atidaryta\" vert\u0117",
+                                "tilt_optimistic": "Pakreipkite optimisti\u0161kai",
+                                "tilt_status_template": "Pakreipimo vert\u0117s \u0161ablonas",
+                                "tilt_status_topic": "Pakreipimo b\u016bsenos tema"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "Reik\u0161m\u0117, kuri bus nusi\u0173sta \u012f \u201epakreipimo komandos tem\u0105\u201c, kai dangtelio pakreipimas bus u\u017edarytas.",
+                                "tilt_command_template": "[Template]({command_templating_url}), kad apibr\u0117\u017etum\u0117te pad\u0117t\u012f, kuri bus siun\u010diama \u012f pakreipimo komandos tem\u0105. \u0160ablone yra \u0161ie kintamieji: `entity_id`, `tilt_position` (tikslin\u0117 pakreipimo pad\u0117ties procentin\u0117 dalis), `position_open`, `position_closed`, `tilt_min` ir `tilt_max`. [Su\u017einokite daugiau.]({url}#tilt_command_template)",
+                                "tilt_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas valdyti vir\u0161elio pakreipim\u0105. [Su\u017einokite daugiau.] ( {url} #tilt_command_topic)",
+                                "tilt_max": "Did\u017eiausia pakreipimo vert\u0117.",
+                                "tilt_min": "Minimali pakreipimo vert\u0117.",
+                                "tilt_opened_value": "Reik\u0161m\u0117, kuri bus nusi\u0173sta \u012f \u201epakreipimo komandos tem\u0105\u201c, kai bus atidarytas dangtelio pakreipimas.",
+                                "tilt_optimistic": "\u017dym\u0117, nurodanti, ar pakreipimas veikia optimistiniu re\u017eimu. Jei pakreipimo b\u016bsenos tema neapibr\u0117\u017eta, pakreipimas pagal numatytuosius nustatymus veikia optimistiniu re\u017eimu. [Su\u017einokite daugiau.]( {url} #tilt_optimistic)",
+                                "tilt_status_template": "Apibr\u0117\u017eia [template]({value_templating_url}), kad b\u016bt\u0173 galima i\u0161gauti pakreipimo b\u016bsenos temos nauding\u0105j\u0105 apkrov\u0105. \u0160ablone yra \u0161ie kintamieji: `entity_id`, `position_open`, `position_closed`, `tilt_min` ir `tilt_max`. [Su\u017einokite daugiau.]({url}#tilt_status_template)",
+                                "tilt_status_topic": "MQTT tema u\u017esiprenumeravo, kad gaut\u0173 pakreipimo b\u016bsenos atnaujinimo reik\u0161mes. [Su\u017einokite daugiau.] ( {url} #tilt_status_topic)"
+                            },
+                            "name": "Pakreipimo nustatymai"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "Dabartinis dr\u0117gm\u0117s \u0161ablonas",
+                                "current_humidity_topic": "Aktuali dr\u0117gm\u0117s tema"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 galima i\u0161gauti dabartin\u0119 dr\u0117gm\u0117s vert\u0119. [Su\u017einokite daugiau.]( {url} #current_humidity_template)",
+                                "current_humidity_topic": "MQTT tema u\u017esiprenumeravo naujausias dr\u0117gm\u0117s vertes. [Su\u017einokite daugiau.] ( {url} #current_humidity_topic)"
+                            },
+                            "name": "Dabartiniai dr\u0117gm\u0117s nustatymai"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "Dabartin\u0117s temperat\u016bros \u0161ablonas",
+                                "current_temperature_topic": "Dabartin\u0117s temperat\u016bros tema"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 galima i\u0161gauti dabartin\u0119 temperat\u016bros reik\u0161m\u0119. [Su\u017einokite daugiau.]( {url} #current_temperature_template)",
+                                "current_temperature_topic": "MQTT tema u\u017esiprenumeravo dabartini\u0173 temperat\u016bros atnaujinim\u0173 ver\u010di\u0173 gavim\u0105. [Su\u017einokite daugiau.] ( {url} #current_temperature_topic)"
+                            },
+                            "name": "Dabartiniai temperat\u016bros nustatymai"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "Krypties komandos \u0161ablonas",
+                                "direction_command_topic": "Krypties komandos tema",
+                                "direction_state_topic": "Krypties b\u016bsenos tema",
+                                "direction_value_template": "Krypties vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "direction_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama komandos \u201edirection\u201c temoje. \u0160ablono kintamasis \u201evalue\u201c bus \u201eforward\u201c arba \u201ereverse\u201c.",
+                                "direction_command_topic": "MQTT tema, skirta publikuoti komandas ventiliatoriaus kryp\u010diai pakeisti. Naudingoji apkrova bus `pirmyn` arba `atgal` ir gali b\u016bti tinkinama naudojant krypties komand\u0173 \u0161ablon\u0105. [Su\u017einokite daugiau.] ( {url} #direction_command_topic)",
+                                "direction_state_topic": "MQTT tema su u\u017eprenumeruota ventiliatoriaus krypties b\u016bsena. Priimtini b\u016bsenos duomenys yra `forward` arba `reversre`. [Su\u017einokite daugiau.]({url}#direction_state_topic)",
+                                "direction_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta ventiliatoriaus krypties b\u016bsenos reik\u0161m\u0117. \u0160ablonas tur\u0117t\u0173 gr\u0105\u017einti arba 'pirmyn', arba 'atgal'. Kai \u0161ablonas gr\u0105\u017eina tu\u0161\u010di\u0105 eilut\u0119, kryptis bus ignoruojama."
+                            },
+                            "name": "Krypties nustatymai"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "Osciliacijos komandos \u0161ablonas",
+                                "oscillation_command_topic": "Osciliacijos komandos tema",
+                                "oscillation_state_topic": "Osciliacijos b\u016bsenos tema",
+                                "oscillation_value_template": "Osciliacijos vert\u0117s \u0161ablonas",
+                                "payload_oscillation_off": "\u017dinut\u0117 \u201esvyravimas i\u0161jungtas\u201c",
+                                "payload_oscillation_on": "\u017dinut\u0117 \u201esvyravimas \u012fjungtas\u201c"
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "[\u0160ablonas]({command_templating_url}), skirtas sudaryti nauding\u0105j\u0105 apkrov\u0105, kuri bus skelbiama svyravimo komandos tema.",
+                                "oscillation_command_topic": "MQTT tema, skirta publikuoti komandas ventiliatoriaus osciliacijos b\u016bsenai pakeisti. [Su\u017einokite daugiau.] ( {url} #oscillation_command_topic)",
+                                "oscillation_state_topic": "MQTT tema u\u017esiprenumeravo ventiliatoriaus svyravim\u0173 b\u016bsenos gavim\u0105. [Su\u017einokite daugiau.] ( {url} #oscillation_state_topic)",
+                                "oscillation_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), skirt\u0105 ventiliatoriaus svyravimo b\u016bsenos vertei i\u0161gauti.",
+                                "payload_oscillation_off": "\u017dinut\u0117s turinys, rodantis i\u0161jungto svyravimo b\u016bsen\u0105.",
+                                "payload_oscillation_on": "\u017dinut\u0117s turinys, rodantis \u012fjungto svyravimo b\u016bsen\u0105."
+                            },
+                            "name": "Osciliacijos nustatymai"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "\u017dinut\u0117 \u201eatstatyti i\u0161 anksto nustatyt\u0105 re\u017eim\u0105\u201c",
+                                "preset_mode_command_template": "I\u0161 anksto nustatyto re\u017eimo komandos \u0161ablonas",
+                                "preset_mode_command_topic": "I\u0161 anksto nustatyto re\u017eimo komand\u0173 tema",
+                                "preset_mode_state_topic": "I\u0161 anksto nustatyto re\u017eimo b\u016bsenos tema",
+                                "preset_mode_value_template": "I\u0161 anksto nustatyto re\u017eimo vert\u0117s \u0161ablonas",
+                                "preset_modes": "I\u0161 anksto nustatyti re\u017eimai"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Specialus \u017einut\u0117s turinys, kuris, gautas i\u0161 anksto nustatyto re\u017eimo b\u016bsenos temoje, atkuria ventiliatoriaus i\u0161 anksto nustatyto re\u017eimo b\u016bsenos atribut\u0105 \u012f ne\u017einom\u0105.",
+                                "preset_mode_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama i\u0161 anksto nustatyto re\u017eimo komandos temoje.",
+                                "preset_mode_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti ventiliatoriaus i\u0161 anksto nustatyt\u0105 re\u017eim\u0105. [Su\u017einokite daugiau.] ( {url} #preset_mode_command_topic)",
+                                "preset_mode_state_topic": "MQTT tema u\u017esiprenumeravo ventiliatoriaus i\u0161ankstinio nustatymo re\u017eimo gavim\u0105. [Su\u017einokite daugiau.] ( {url} #preset_mode_state_topic)",
+                                "preset_mode_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta ventiliatoriaus i\u0161 anksto nustatyto re\u017eimo reik\u0161m\u0117.",
+                                "preset_modes": "I\u0161 anksto nustatyt\u0173 re\u017eim\u0173, kuriais gali veikti \u0161is ventiliatorius, s\u0105ra\u0161as. \u012eprasti pavyzd\u017eiai: automatinis, i\u0161manusis, \u0161vilpiantis, eko ir v\u0117jelis."
+                            },
+                            "name": "I\u0161 anksto nustatyti re\u017eimo nustatymai"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "\u017dinut\u0117 \u201eatstatyti procentus\u201c",
+                                "percentage_command_template": "Procentin\u0117s dalies komandos \u0161ablonas",
+                                "percentage_command_topic": "Procentin\u0117 komandos tema",
+                                "percentage_state_topic": "Procentin\u0117s b\u016bsenos tema",
+                                "percentage_value_template": "Procentin\u0117s vert\u0117s \u0161ablonas",
+                                "speed_range_max": "Grei\u010dio diapazonas max",
+                                "speed_range_min": "Grei\u010dio diapazonas min"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Specialus \u017einut\u0117s turinys, kuris, gautas procentin\u0117s b\u016bsenos temoje, atkuria ventiliatoriaus grei\u010dio procentin\u0117s b\u016bsenos atribut\u0105 \u012f ne\u017einom\u0105.",
+                                "percentage_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sudaryti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama procentin\u0117s dalies komandos temoje.",
+                                "percentage_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas ventiliatoriaus grei\u010dio b\u016bsenai keisti pagal procentin\u012f nustatym\u0105. Reik\u0161m\u0117 turi b\u016bti diapazone nuo \"grei\u010dio diapazonas min\" iki \"grei\u010dio diapazonas maks\". [Su\u017einokite daugiau.]({url}#procent\u0173_komandos_tema)",
+                                "percentage_state_topic": "MQTT tema u\u017esiprenumeravo ventiliatoriaus grei\u010dio b\u016bsenos gavim\u0105. Tai reik\u0161m\u0117 diapazone nuo \"grei\u010dio diapazonas min\" iki \"grei\u010dio diapazonas maks\". [Su\u017einokite daugiau.]({url}#procentin\u0117_valstyb\u0117s_tema)",
+                                "percentage_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta grei\u010dio procentin\u0117 vert\u0117.",
+                                "speed_range_max": "Skaitmenin\u0117s i\u0161vesties diapazono maksimumas (atitinka 100 %). Procentinis \u017eingsnis yra 100 / grei\u010di\u0173 skai\u010dius \u201egrei\u010di\u0173 diapazone\u201c.",
+                                "speed_range_min": "Minimalus skaitinis i\u0161vesties diapazonas (i\u0161jungimas ne\u012ftrauktas, tod\u0117l speed_range_min - 1 rei\u0161kia 0 %). Procentinis \u017eingsnis yra 100 / grei\u010di\u0173 skai\u010dius \u201egrei\u010di\u0173 diapazone\u201c."
+                            },
+                            "name": "Grei\u010dio nustatymai"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "Atskiras ry\u0161kumas",
+                                "brightness_command_template": "Ry\u0161kumo komandos \u0161ablonas",
+                                "brightness_command_topic": "Ry\u0161kumo komandos tema",
+                                "brightness_scale": "Ry\u0161kumo skal\u0117",
+                                "brightness_state_topic": "Ry\u0161kumo b\u016bsenos tema",
+                                "brightness_value_template": "Ry\u0161kumo vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "brightness": "\u017dyma, apibr\u0117\u017eianti, ar \u0161viesa palaiko ry\u0161kum\u0105, kai palaikomas RGB, RGBW arba RGBWW spalv\u0173 re\u017eimas.",
+                                "brightness_command_template": "[\u0160ablonas]({command_templating_url}), skirtas sudaryti nauding\u0105j\u0105 apkrov\u0105, kuri bus skelbiama ry\u0161kios komandos tema.",
+                                "brightness_command_topic": "Leidinio tema, kuri bus naudojama \u0161viesumui valdyti. [Su\u017einokite daugiau]({url}#brightness_command_topic)",
+                                "brightness_scale": "Apibr\u0117\u017eia maksimal\u0173 ry\u0161kumo rodikl\u012f (t. y. 100 %) nuo maksimalaus ry\u0161kumo.",
+                                "brightness_state_topic": "MQTT tema, prenumeruojama ry\u0161kumo b\u016bsenos reik\u0161m\u0117ms gauti. [Su\u017einokite daugiau]({url}#brightness_state_topic)",
+                                "brightness_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 galima i\u0161gauti ry\u0161kumo reik\u0161m\u0119."
+                            },
+                            "name": "Ry\u0161kumo nustatymai"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "Spalv\u0173 re\u017eimo b\u016bsenos tema",
+                                "color_mode_value_template": "Spalv\u0173 re\u017eimo vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "MQTT tema, prenumeruojama spalv\u0173 re\u017eimo atnaujinimams gauti. Jei ji n\u0117ra sukonfig\u016bruota, spalv\u0173 re\u017eimas bus automati\u0161kai nustatomas pagal paskutin\u0119 gaut\u0105 galiojan\u010di\u0105 spalv\u0105 arba spalv\u0173 temperat\u016br\u0105.",
+                                "color_mode_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta spalv\u0173 re\u017eimo reik\u0161m\u0117."
+                            },
+                            "name": "Spalv\u0173 re\u017eimo nustatymai"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "Spalv\u0173 temperat\u016bros komandos \u0161ablonas",
+                                "color_temp_command_topic": "Spalv\u0173 temperat\u016bros komand\u0173 tema",
+                                "color_temp_state_topic": "Spalv\u0173 temperat\u016bros b\u016bsenos tema",
+                                "color_temp_value_template": "Spalv\u0173 temperat\u016bros vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sukurti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama spalvos temperat\u016bros komandos temoje.",
+                                "color_temp_command_topic": "Leidinio tema, kuri bus naudojama spalv\u0173 temperat\u016brai valdyti. [Su\u017einokite daugiau]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "MQTT tema, prenumeruojama spalv\u0173 temperat\u016bros b\u016bsenos atnaujinimams gauti. [Su\u017einokite daugiau]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 galima i\u0161gauti spalvos temperat\u016bros reik\u0161m\u0119."
+                            },
+                            "name": "Spalv\u0173 temperat\u016bros nustatymai"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Poveikis",
+                                "effect_command_template": "Efekto komandos \u0161ablonas",
+                                "effect_command_topic": "Efekto komandos tema",
+                                "effect_list": "Efekt\u0173 s\u0105ra\u0161as",
+                                "effect_state_topic": "Efekto b\u016bsenos tema",
+                                "effect_template": "Efekto \u0161ablonas",
+                                "effect_value_template": "Efekto vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "effect": "\u017dym\u0117, apibr\u0117\u017eianti, ar \u0161viesa palaiko efektus.",
+                                "effect_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama komandos effect temoje.",
+                                "effect_command_topic": "Publikavimo tema, kuri bus naudojama \u0161viesos efekto b\u016bsenai valdyti. [Su\u017einokite daugiau.] ( {url} #effect_command_topic)",
+                                "effect_list": "\u0160viesos palaikom\u0173 efekt\u0173 s\u0105ra\u0161as.",
+                                "effect_state_topic": "MQTT tema u\u017esiprenumeravo efekt\u0173 b\u016bsenos atnaujinimus. [Su\u017einokite daugiau.] ( {url} #effect_state_topic)"
+                            },
+                            "name": "Efekt\u0173 nustatymai"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "HS komandos \u0161ablonas",
+                                "hs_command_topic": "HS vadovavimo tema",
+                                "hs_state_topic": "HS b\u016bsenos tema",
+                                "hs_value_template": "HS vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "hs_command_template": "Apibr\u0117\u017eia [template]( {command_templating_url} ), skirt\u0105 \u017einutei, kuri bus siun\u010diama HS komandos temai, sukurti. Galimi kintamieji: `hue` ir `sat`.",
+                                "hs_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti \u0161viesos spalvos b\u016bsen\u0105 HS formatu (atspalvio sodrumas). Atspalvio diapazonas: 0\u00b0 .. 360\u00b0, sodrumo diapazonas: 0..100. Pastaba: ry\u0161kumas siun\u010diamas atskirai ry\u0161kumo komand\u0173 temoje. [Su\u017einokite daugiau.] ( {url} #hs_command_topic)",
+                                "hs_state_topic": "MQTT tema, u\u017eprenumeruota gauti spalvos b\u016bsenos atnauijimus HS formatu. Laukiamas \u017einut\u0117s turinys yra atspalvio ir sodrumo vert\u0117s, atskirtos kableliais, pvz., `359.5,100.0`. Pastaba: ry\u0161kumas gaunamas atskirai ry\u0161kumo b\u016bsenos temoje. [Su\u017einokite daugiau.]({url}#hs_state_topic)",
+                                "hs_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta HS reik\u0161m\u0117."
+                            },
+                            "name": "HS spalv\u0173 re\u017eimo nustatymai"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "RGB komandos \u0161ablonas",
+                                "rgb_command_topic": "RGB komandos tema",
+                                "rgb_state_topic": "RGB b\u016bsenos tema",
+                                "rgb_value_template": "RGB vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "Apibr\u0117\u017eia [template]( {command_templating_url} ) \u017einut\u0117s, kuri bus siun\u010diama \u012f RGB komandos tem\u0105, ra\u0161ymui. Galimi kintamieji: `raudona`, `\u017ealia` ir `m\u0117lyna`.",
+                                "rgb_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti \u0161viesos RGB b\u016bsen\u0105. [Su\u017einokite daugiau.] ( {url} #rgb_command_topic)",
+                                "rgb_state_topic": "MQTT tema, u\u017eprenumeruota gauti RGB b\u016bsenos atnaujinimus. Laukiamas \u017einut\u0117s turinys yra RGB reik\u0161m\u0117s, atskirtos kableliais, pavyzd\u017eiui, `255,0,127`. [Su\u017einokite daugiau.]({url}#rgb_state_topic)",
+                                "rgb_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta RGB reik\u0161m\u0117."
+                            },
+                            "name": "RGB spalv\u0173 re\u017eimo nustatymai"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "RGBW komandos \u0161ablonas",
+                                "rgbw_command_topic": "RGBW komandos tema",
+                                "rgbw_state_topic": "RGBW b\u016bsenos tema",
+                                "rgbw_value_template": "RGBW vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "Apibr\u0117\u017eia [template]( {command_templating_url} ), skirt\u0105 \u017einutei, kuri bus siun\u010diama \u012f RGBW komandos tem\u0105, sukurti. Galimi kintamieji: `raudona`, `\u017ealia`, `m\u0117lyna` ir `balta`.",
+                                "rgbw_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti \u0161viesos RGBW b\u016bsen\u0105. [Su\u017einokite daugiau.] ( {url} #rgbw_command_topic)",
+                                "rgbw_state_topic": "MQTT tema, u\u017eprenumeruota gauti RGBW b\u016bsenos atnaujinimus. Laukiamas \u017einut\u0117s turinys yra kableliais atskirtos RGBW reik\u0161m\u0117s, pavyzd\u017eiui, `255,0,127,64`. [Su\u017einokite daugiau]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta RGBW reik\u0161m\u0117."
+                            },
+                            "name": "RGBW spalv\u0173 re\u017eimo nustatymai"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "RGBWW komandos \u0161ablonas",
+                                "rgbww_command_topic": "RGBWW komandos tema",
+                                "rgbww_state_topic": "RGBWW b\u016bsenos tema",
+                                "rgbww_value_template": "RGBWW vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "Apibr\u0117\u017eia [template]({command_templating_url}), skirt\u0105 \u017einutei, kuri bus siun\u010diama \u012f RGBWW komandos tem\u0105, sukurti. Galimi kintamieji: `red`, `green`, `blue`, `cold_white` ir `warm_white`.",
+                                "rgbww_command_topic": "MQTT tema, skirta komandoms, kuriomis kei\u010diama \u0161viesos RGBWWW b\u016bsena, skelbti. [Su\u017einokite daugiau]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "MQTT tema, u\u017esiprenumeruota gauti RGBWWW b\u016bsenos atnaujinimus. Laukiamas \u017einut\u0117s turinys yra kableliais atskirtos RGBWW reik\u0161m\u0117s, pavyzd\u017eiui, `255,0,127,64,32`. [Su\u017einokite daugiau]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta RGBWW reik\u0161m\u0117."
+                            },
+                            "name": "RGBWW spalv\u0173 re\u017eimo nustatymai"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "Baltosios komandos tema",
+                                "white_scale": "Balta skal\u0117"
+                            },
+                            "data_description": {
+                                "white_command_topic": "MQTT tema, skirta komandoms skelbti, kad \u0161viesa b\u016bt\u0173 perjungta \u012f balt\u0105j\u012f re\u017eim\u0105 su tam tikru ry\u0161kumu. [Su\u017einokite daugiau]({url}#white_command_topic)",
+                                "white_scale": "Nustato did\u017eiausi\u0105 baltos spalvos lyg\u012f (t. y. 100 %)."
+                            },
+                            "name": "Baltos spalvos re\u017eimo nustatymai"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "XY komandos \u0161ablonas",
+                                "xy_command_topic": "XY komand\u0173 tema",
+                                "xy_state_topic": "XY b\u016bsenos tema",
+                                "xy_value_template": "XY vert\u0117s \u0161ablonas"
+                            },
+                            "data_description": {
+                                "xy_command_template": "Apibr\u0117\u017eia [template]( {command_templating_url} ), skirt\u0105 \u017einutei, kuri bus siun\u010diama XY komandos temai, sukurti. Galimi kintamieji: `x` ir `y`.",
+                                "xy_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti \u0161viesos XY b\u016bsen\u0105. [Su\u017einokite daugiau.] ( {url} #xy_command_topic)",
+                                "xy_state_topic": "MQTT tema u\u017eprenumeruoti gauti XY b\u016bsenos atnaujinimus. Laukiamas \u017einut\u0117s turinys yra X ir Y spalv\u0173 reik\u0161m\u0117s, atskirtos kableliais, pavyzd\u017eiui, `0.675,0.322`. [Su\u017einokite daugiau.] ({url}#xy_state_topic)",
+                                "xy_value_template": "Apibr\u0117\u017eia [template]( {value_templating_url} ), kad b\u016bt\u0173 i\u0161gauta XY reik\u0161m\u0117."
+                            },
+                            "name": "XY spalv\u0173 re\u017eimo nustatymai"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Naudingojo krovinio \"u\u017eraktas\u201c",
+                                "payload_open": "Naudingoji apkrova \"atidaryta\"",
+                                "payload_reset": "Naudingoji apkrova \"i\u0161 naujo nustatyti\"",
+                                "payload_unlock": "Naudingoji apkrova \"atrakinti\"",
+                                "state_jammed": "B\u016bsena \"u\u017estrigusi\"",
+                                "state_locked": "B\u016bkl\u0117 \"u\u017erakinta\"",
+                                "state_locking": "B\u016bkl\u0117 \"u\u017erakina\"",
+                                "state_unlocked": "B\u016bkl\u0117 \"atrakinta\"",
+                                "state_unlocking": "B\u016bkl\u0117 \"atrakina\""
+                            },
+                            "data_description": {
+                                "payload_lock": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"u\u017erakinti\".",
+                                "payload_open": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"atidaryti\". Nustatykite \u0161i\u0105 nauding\u0105j\u0105 apkrov\u0105, jei j\u016bs\u0173 spyna palaiko veiksm\u0105 \"atidaryti\".",
+                                "payload_reset": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri atkuria u\u017erakt\u0105 \u012f ne\u017einom\u0105 b\u016bsen\u0105.",
+                                "payload_unlock": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"atrakinti\".",
+                                "state_jammed": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi \"u\u017estrigusi\u0105\" b\u016bsen\u0105.",
+                                "state_locked": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi \"u\u017erakintos\" b\u016bsen\u0105.",
+                                "state_locking": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi \"u\u017erakinimo\" b\u016bsen\u0105.",
+                                "state_unlocked": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi \"atrakinta\" b\u016bsen\u0105.",
+                                "state_unlocking": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi 'atrakinimo' b\u016bsen\u0105."
+                            },
+                            "name": "U\u017erakinti naudingosios apkrovos nustatymus"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Galioja po",
+                                "flash": "Blyks\u0117s palaikymas",
+                                "flash_time_long": "Ilgas blykst\u0117s laikas",
+                                "flash_time_short": "Trumpas blykst\u0117s laikas",
+                                "max_kelvin": "Max Kelvinas",
+                                "min_kelvin": "Min Kelvinas",
+                                "off_delay": "I\u0160JUNGIMO delsa",
+                                "transition": "Pereinamojo laikotarpio parama"
+                            },
+                            "data_description": {
+                                "expire_after": "Jei nustatyta, apibr\u0117\u017eiama, kiek sekund\u017ei\u0173 po jutiklio b\u016bsenos galiojimo pabaigos, jei ji neatnaujinama. Pasibaigus galiojimo laikui, jutiklio b\u016bsena tampa neprieinama. Jei nenustatyta, jutiklio b\u016bsena niekada nepasibaigia. [Su\u017einokite daugiau.]({url}#galioja_po)",
+                                "flash": "\u012ejunkite \u0161io \u017eibinto blykst\u0117s funkcij\u0105",
+                                "flash_time_long": "\"Ilgos\" blykst\u0117s trukm\u0117 sekund\u0117mis.",
+                                "flash_time_short": "\"Trumpo\" blyksnio trukm\u0117 sekund\u0117mis.",
+                                "max_kelvin": "Maksimali spalvos temperat\u016bra Kelvino laipsniais.",
+                                "min_kelvin": "Minimali spalvos temperat\u016bra Kelvino laipsniais.",
+                                "off_delay": "Jutikliams, kurie siun\u010dia tik \"\u012fjungta\" b\u016bsenos atnaujinimus (pvz., PIR), \u0161is kintamasis nustato dels\u0105 sekund\u0117mis, po kurios jutiklio b\u016bsena bus atnaujinta atgal \u012f \"i\u0161jungta\".",
+                                "transition": "\u012ejungti \u0161ios \u0161viesos per\u0117jimo funkcij\u0105"
+                            },
+                            "name": "Kiti nustatymai"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "Komandos \"i\u0161jungta\" \u0161ablonas"
+                            },
+                            "data_description": {
+                                "command_off_template": "[\u0160ablonas]({command_templating_url}) \"i\u0161jungtos\" b\u016bsenos pakeitimams. Pagal numatytuosius nustatymus \"[Komandos \u0161ablonas]({url}Bus naudojamas #command_template)\". [Su\u017einokite daugiau.]({url}#komanda_i\u0161_template)"
+                            },
+                            "name": "Kiti sirenos nustatymai"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "Maksimali dr\u0117gm\u0117",
+                                "min_humidity": "Minimali dr\u0117gm\u0117",
+                                "target_humidity_command_template": "Tikslinio dr\u0117gnumo komandos \u0161ablonas",
+                                "target_humidity_command_topic": "Tikslin\u0117s dr\u0117gm\u0117s komandos tema",
+                                "target_humidity_state_template": "Tikslin\u0117s dr\u0117gm\u0117s b\u016bsenos \u0161ablonas",
+                                "target_humidity_state_topic": "Tikslin\u0117s dr\u0117gm\u0117s b\u016bsenos tema"
+                            },
+                            "data_description": {
+                                "max_humidity": "Did\u017eiausia tikslin\u0117 dr\u0117gm\u0117, kuri\u0105 galima nustatyti.",
+                                "min_humidity": "Minimali tikslin\u0117 dr\u0117gm\u0117, kuri\u0105 galima nustatyti.",
+                                "target_humidity_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sudaryti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama tikslin\u0117s dr\u0117gm\u0117s komandos temoje.",
+                                "target_humidity_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti klimato tikslin\u0119 dr\u0117gm\u0119. [Su\u017einokite daugiau.] ( {url} #humidity_command_topic)",
+                                "target_humidity_state_template": "[\u0160ablonas]( {value_templating_url} ), skirtas gauti tikslin\u0117s dr\u0117gm\u0117s b\u016bsenos temos reik\u0161m\u0119.",
+                                "target_humidity_state_topic": "MQTT tema, skirta prenumeruoti tikslin\u0117s dr\u0117gm\u0117s poky\u010dius. [Su\u017einokite daugiau.] ( {url} #humidity_state_topic)"
+                            },
+                            "name": "Tikslin\u0117s dr\u0117gm\u0117s nustatymai"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Pradin\u0117 temperat\u016bra",
+                                "max_temp": "Maksimali temperat\u016bra",
+                                "min_temp": "Minimali temperat\u016bra",
+                                "precision": "Tikslumas",
+                                "temp_step": "Temperat\u016bros \u017eingsnis",
+                                "temperature_command_template": "Temperat\u016bros komandos \u0161ablonas",
+                                "temperature_command_topic": "Temperat\u016bros komand\u0173 tema",
+                                "temperature_high_command_template": "Vir\u0161utin\u0117s temperat\u016bros komandos \u0161ablonas",
+                                "temperature_high_command_topic": "Vir\u0161utin\u0117s temperat\u016bros komandos tema",
+                                "temperature_high_state_template": "Vir\u0161utin\u0117s temperat\u016bros b\u016bsenos \u0161ablonas",
+                                "temperature_high_state_topic": "Vir\u0161utin\u0117s temperat\u016bros b\u016bsenos tema",
+                                "temperature_low_command_template": "\u017demesn\u0117s temperat\u016bros komandos \u0161ablonas",
+                                "temperature_low_command_topic": "\u017demesn\u0117s temperat\u016bros komandos tema",
+                                "temperature_low_state_template": "\u017demesn\u0117s temperat\u016bros b\u016bsenos \u0161ablonas",
+                                "temperature_low_state_topic": "\u017demesn\u0117s temperat\u016bros b\u016bsenos tema",
+                                "temperature_state_template": "Temperat\u016bros b\u016bsenos \u0161ablonas",
+                                "temperature_state_topic": "Temperat\u016bros b\u016bsenos tema"
+                            },
+                            "data_description": {
+                                "initial": "\u012erenginys inicijuojamas su \u0161ia tiksline temperat\u016bra.",
+                                "max_temp": "Maksimali tikslin\u0117 temperat\u016bra, kuri\u0105 galima nustatyti.",
+                                "min_temp": "Minimali tikslin\u0117 temperat\u016bra, kuri\u0105 galima nustatyti.",
+                                "precision": "Termostato veikimo tikslumas laipsniais.",
+                                "temp_step": "Tikslin\u0117s temperat\u016bros \u017eingsnis Celsijaus arba Farenheito laipsniais.",
+                                "temperature_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama temperat\u016bros komandos temoje.",
+                                "temperature_command_topic": "MQTT tema, skirta publikuoti komandas tikslinei temperat\u016brai keisti. [Su\u017einokite daugiau.]({url}#temperat\u016bros_komandos_tema)",
+                                "temperature_high_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sud\u0117ti \u012fkrovai, kuri bus publikuojama vir\u0161utin\u0117s temperat\u016bros komandos temoje.",
+                                "temperature_high_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti vir\u0161utin\u0119 klimato tikslin\u0119 temperat\u016br\u0105. [Su\u017einokite daugiau.] ( {url} #temperature_high_command_topic)",
+                                "temperature_high_state_template": "[\u0160ablonas]( {value_templating_url} ), skirtas gauti vir\u0161utin\u0117s temperat\u016bros b\u016bsenos temos reik\u0161m\u0119.",
+                                "temperature_high_state_topic": "MQTT tema, skirta prenumeruoti vir\u0161utin\u0117s tikslin\u0117s temperat\u016bros poky\u010dius. [Su\u017einokite daugiau.] ( {url} #temperature_high_state_topic)",
+                                "temperature_low_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sugeneruoti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama \u017eemesn\u0117s temperat\u016bros komandos temoje.",
+                                "temperature_low_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti klimato \u017eemesn\u0119 tikslin\u0119 temperat\u016br\u0105. [Su\u017einokite daugiau.] ( {url} #temperature_low_command_topic)",
+                                "temperature_low_state_template": "[\u0160ablonas]( {value_templating_url} ), skirtas gauti \u017eemesn\u0117s temperat\u016bros b\u016bsenos temos reik\u0161m\u0119.",
+                                "temperature_low_state_topic": "MQTT tema, skirta prenumeruoti \u017eemesn\u0117s tikslin\u0117s temperat\u016bros poky\u010dius. [Su\u017einokite daugiau.] ( {url} #temperature_low_state_topic)",
+                                "temperature_state_template": "[\u0160ablonas]( {value_templating_url} ), skirtas temperat\u016bros b\u016bsenos temoje gautai vertei pateikti.",
+                                "temperature_state_topic": "MQTT tema, skirta prenumeruoti tikslin\u0117s temperat\u016bros poky\u010dius. [Su\u017einokite daugiau.] ( {url} #temperature_state_topic)"
+                            },
+                            "name": "Tikslin\u0117s temperat\u016bros nustatymai"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maksimalus ilgis",
+                                "min": "Minimalus ilgis",
+                                "mode": "Re\u017eimas",
+                                "pattern": "Ra\u0161tas"
+                            },
+                            "data_description": {
+                                "max": "Maksimalus teksto \u012fvesties ilgis",
+                                "min": "Minimalus teksto \u012fvesties ilgis",
+                                "mode": "Teksto \u012fvesties re\u017eimas",
+                                "pattern": "Galiojantis reguliariosios i\u0161rai\u0161kos \u0161ablonas"
+                            },
+                            "name": "Kiti teksto objekto nustatymai"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Naudingoji apkrova \"u\u017edaryta\"",
+                                "payload_open": "Naudingoji apkrova \"atidaryta\"",
+                                "payload_stop": "Naudingoji apkrova \"stop\"",
+                                "state_closed": "Statusas \"u\u017edaryta\"",
+                                "state_closing": "Statusas \"u\u017edarymas\"",
+                                "state_open": "B\u016bkl\u0117 \"atvira\"",
+                                "state_opening": "B\u016bkl\u0117 \"atidarymas\""
+                            },
+                            "data_description": {
+                                "payload_close": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"u\u017edaryti\".",
+                                "payload_open": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"atidaryti\".",
+                                "payload_stop": "Naudingoji apkrova, siun\u010diama, kai duodama komanda \"stop\". Nustatykite \u0161i\u0105 nauding\u0105j\u0105 apkrov\u0105 tik tuo atveju, jei j\u016bs\u0173 vo\u017etuvas palaiko \"stop\" veiksm\u0105.",
+                                "state_closed": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi \"u\u017edar\u0105\" b\u016bsen\u0105.",
+                                "state_closing": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi \"u\u017edarymo\" b\u016bsen\u0105.",
+                                "state_open": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi b\u016bsen\u0105 \"atvira\".",
+                                "state_opening": "Naudingoji apkrova, gauta b\u016bsenos temoje, kuri \u017eymi \"pradin\u0119\" b\u016bsen\u0105."
+                            },
+                            "name": "Vo\u017etuvo naudingosios apkrovos nustatymai"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "\u017dinut\u0117 \u201ei\u0161jungta\u201c",
+                                "payload_on": "\u017dinut\u0117 \u201e\u012fjungta\u201c",
+                                "power_command_template": "Maitinimo komandos \u0161ablonas",
+                                "power_command_topic": "Galios komand\u0173 tema"
+                            },
+                            "data_description": {
+                                "payload_off": "\u017dinut\u0117s turinys, \u017eymintis b\u016bsen\u0105 \u201ei\u0161jungta\u201c.",
+                                "payload_on": "\u017dinut\u0117s turinys, \u017eymintis b\u016bsen\u0105 \u201e\u012fjungta\u201c.",
+                                "power_command_template": "[\u0160ablonas]( {command_templating_url} ), skirtas sudaryti nauding\u0105j\u0105 apkrov\u0105, kuri bus publikuojama power\u201c komandos temoje. Parametras `value` yra naudingoji apkrova, nustatyta \"\u012fjungta\" arba \"i\u0161jungta\".",
+                                "power_command_topic": "MQTT tema, skirta publikuoti komandas, skirtas pakeisti vandens \u0161ildytuvo maitinimo b\u016bsen\u0105. Siun\u010dia nauding\u0105j\u0105 apkrov\u0105, sukonfig\u016bruot\u0105 su nauding\u0105ja apkrova \"\u012fjungta\" arba nauding\u0105ja apkrova \"i\u0161jungta\". [Su\u017einokite daugiau.]({url}#power_command_topic)"
+                            },
+                            "name": "Maitinimo nustatymai"
+                        }
+                    },
+                    "title": "Konfig\u016bruoti MQTT \u012frengin\u012f \"{mqtt_device}\""
+                },
+                "summary_menu": {
+                    "description": "Nustatyti subjektai: \n {mqtt_items} \n \n Nuspr\u0119skite, k\u0105 daryti toliau:",
+                    "menu_options": {
+                        "availability": "Konfig\u016bruoti prieinamum\u0105",
+                        "delete_entity": "I\u0161trinkite subjekt\u0105",
+                        "device": "Atnaujinkite \u012frenginio savybes",
+                        "entity": "Prid\u0117ti kit\u0105 objekt\u0105 prie \"{mqtt_device}\"",
+                        "export": "Eksportuoti MQTT \u012frenginio konfig\u016bracij\u0105",
+                        "save_changes": "I\u0161saugoti pakeitimus",
+                        "update_entity": "Atnaujinkite subjekto ypatybes"
+                    },
+                    "title": "I\u0161 naujo sukonfig\u016bruoti \"{mqtt_device}\""
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Subjektas"
+                    },
+                    "data_description": {
+                        "component": "Pasirinkite objekt\u0105, kur\u012f norite atnaujinti."
+                    },
+                    "description": "Pasirinkite objekt\u0105, kur\u012f norite atnaujinti",
+                    "title": "Pasirinkite subjekt\u0105"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Pirmas mygtukas",
+            "button_2": "Antras mygtukas",
+            "button_3": "Tre\u010dias mygtukas",
+            "button_4": "Ketvirtas mygtukas",
+            "button_5": "Penktas mygtukas",
+            "button_6": "\u0160e\u0161tas mygtukas",
+            "turn_off": "I\u0161jungti",
+            "turn_on": "\u012ejungti"
+        },
+        "trigger_type": {
+            "button_double_press": "\"{subtype}\" dukart spustel\u0117ta",
+            "button_long_press": "\"{subtype}\" nuolat spaud\u017eiamas",
+            "button_long_release": "\"{subtype}\" i\u0161leistas po ilgo spaudimo",
+            "button_quadruple_press": "\"{subtype}\" keturgubas paspaudimas",
+            "button_quintuple_press": "\"{subtype}\" penkiagubas paspaudimas",
+            "button_short_press": "\"{subtype}\" spaud\u017eiamas",
+            "button_short_release": "\u201e{subtype}\u201c i\u0161leistas",
+            "button_triple_press": "\u201e{subtype}\u201c spustel\u0117jo tris kartus"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "Nepavyko tinkamai paleisti {addon} program\u0117l\u0117."
+        },
+        "command_template_error": {
+            "message": "Parsing template \u201e{command_template}\u201c for entity \u201e{entity_id}\u201c failed with error: {error}."
+        },
+        "invalid_platform_config_message": {
+            "message": "Rankiniu b\u016bdu sukonfig\u016bruoto MQTT YAML konfig\u016bracijos \u012fk\u0117limas i\u0161 naujo.' {domain}` Elementas nepavyko apdoroti. Prane\u0161imas: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "Nepavyko paskelbti: temos \u0161ablonas \u201e{topic_template}\u201c po pateikimo suk\u016br\u0117 netinkam\u0105 tem\u0105 \u201e{topic}\u201c ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "Klaida kalbant su MQTT: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "Pasiektas MQTT prenumeratos ID limitas. Negalima sugeneruoti daugiau ID prenumeratai."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "Skelbimas temoje {topic} su prane\u0161imo galiojimo intervalu protokolo versija nepalaikoma {protocol}."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Nepavyksta u\u017esiprenumeruoti temos \"{topic}\" kadangi MQTT ne\u012fjungtas, \u012fsitikinkite, kad MQTT tinkamai sukonfig\u016bruotas."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Negalima paskelbti temoje \"{topic}\" , \u012fsitikinkite, kad MQTT nustatyta tinkamai."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Negaliu u\u017esiprenumeruoti temos \"{topic}\", \u012fsitikinkite, kad MQTT nustatyta tinkamai."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Negalima du kartus atsisakyti temos \u201e{topic}\u201c prenumeratos."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "Tema turi b\u016bti eilut\u0117! Gavau: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Negalima du kartus pa\u0161alinti paleidiklio."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "Home Assistant aptiko netinkam\u0105 rankiniu b\u016bdu sukonfig\u016bruoto elemento konfig\u016bracij\u0105.\n\nPlatformos domenas: **{domain}**\nKonfig\u016bracijos failas: **{config_file}**\nArtimiausia linija: **{line}**\nRasta konfig\u016bracija:\n```yaml\n{config}\n```\nKlaida: **{error}**.\n\n\u012esitikinkite, kad konfig\u016bracija galioja, ir [reload](/config/tools/yaml) rankiniu b\u016bdu sukonfig\u016bruotus MQTT elementus arba paleiskite Home Assistant i\u0161 naujo, kad i\u0161spr\u0119stum\u0117te \u0161i\u0105 problem\u0105.",
+            "title": "Rasta netinkama MQTT {domain} elemento konfig\u016bracija"
+        },
+        "protocol_5_migration": {
+            "description": "Automatinis perk\u0117limas \u012f MQTT protokolo 5 versij\u0105 nepavyko. \u0160iuo metu sukonfig\u016bruota MQTT brokerio protokolo versija {broker} yra {protocol}, ta\u010diau \u0161i protokolo versija yra nebenaudojama ir jos palaikymas bus pa\u0161alintas.\n\n\u012esitikinkite, kad j\u016bs\u0173 brokeris palaiko 5 protokolo versij\u0105. Atnaujinkite MQTT brokerio ry\u0161io nustatymus ir paleiskite Home Assistant i\u0161 naujo, kad i\u0161spr\u0119stum\u0117te \u0161i\u0105 problem\u0105.",
+            "title": "MQTT protokolo perk\u0117limas nepavyko"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Eksportuotas MQTT \u012frenginys \"{name}\", identifikuotas naudojant MQTT aptikim\u0105. Pasirinkite **Pateikti**, kad patvirtintum\u0117te, jog MQTT \u012frenginys bus perkeltas \u012f pagrindin\u0119 MQTT konfig\u016bracij\u0105 ir pa\u0161alintum\u0117te esam\u0105 MQTT \u012frenginio poskyr\u012f. \u012esitikinkite, kad aptikimas i\u0161saugotas MQTT brokeryje arba i\u0161 naujo i\u0161si\u0173stas pa\u0161alinus poskyr\u012f, kad MQTT \u012frenginys b\u016bt\u0173 tinkamai nustatytas. Kaip alternatyv\u0105 galite pakeisti \u012frenginio identifikatorius ir unikalius objekto ID savo MQTT aptikimo konfig\u016bracijos pakete ir at\u0161aukti \u0161\u012f taisym\u0105, jei norite i\u0161saugoti MQTT \u012frenginio poskyr\u012f.",
+                        "title": "MQTT \u012frenginio \"{name}\" poskyrio perk\u0117limas \u012f MQTT aptikimo sistem\u0105"
+                    }
+                }
+            },
+            "title": "MQTT \u012frenginio \"{name}\" poskyrio perk\u0117limas \u012f MQTT aptikimo sistem\u0105"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Eksportuotas MQTT \u012frenginys \"{name}\", identifikuotas YAML konfig\u016bracijoje. Pasirinkite **Pateikti**, kad patvirtintum\u0117te, jog MQTT \u012frenginys bus perkeltas \u012f pagrindin\u012f MQTT konfig\u016bracijos \u012fra\u0161\u0105 ir pa\u0161alintum\u0117te esam\u0105 MQTT \u012frenginio po\u012fra\u0161\u012f. Kaip alternatyv\u0105 galite pakeisti \u012frenginio identifikatorius ir unikalius objekto ID savo configuration.yaml faile ir at\u0161aukti \u0161\u012f taisym\u0105, jei norite i\u0161saugoti MQTT \u012frenginio po\u012fra\u0161\u012f.",
+                        "title": "MQTT \u012frenginio \"{name}\" poskyrio perk\u0117limas \u012f YAML"
+                    }
+                }
+            },
+            "title": "MQTT \u012frenginio \"{name}\" poskyrio perk\u0117limas \u012f YAML"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant aptiko rankiniu b\u016bdu sukonfig\u016bruotus MQTT elementus, ta\u010diau \u0161i\u0173 element\u0173 negalima \u012fkelti, nes MQTT n\u0117ra tinkamai nustatytas. \u012esitikinkite, kad MQTT tarpininkas yra tinkamai nustatytas, arba pa\u0161alinkite MQTT konfig\u016bracij\u0105 i\u0161 failo `configuration.yaml` ir paleiskite Home Assistant i\u0161 naujo, kad i\u0161spr\u0119stum\u0117te \u0161i\u0105 problem\u0105.",
+            "title": "MQTT n\u0117ra tinkamai nustatytas"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Netinkama gimimo tema",
+            "bad_certificate": "CA sertifikatas neteisingas",
+            "bad_client_cert": "Neteisingas kliento sertifikatas, \u012fsitikinkite, kad pateiktas galiojantis failas",
+            "bad_client_cert_key": "Kliento sertifikatas ir privatus raktas n\u0117ra tinkama pora",
+            "bad_discovery_prefix": "Netinkamas atradimo prie\u0161d\u0117lis",
+            "bad_will": "Neteisinga testamento tema",
+            "bad_ws_headers": "Pateikite galiojan\u010dias HTTP antra\u0161tes kaip JSON subjekt\u0105",
+            "cannot_connect": "Nepavyko prisijungti",
+            "client_key_error": "Pateiktas neteisingas privataus rakto failas arba neteisingas slapta\u017eodis",
+            "invalid_inclusion": "Kliento sertifikatas ir privatusis raktas turi b\u016bti sukonfig\u016bruoti kartu"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "\u012egalinti gimimo prane\u0161im\u0105",
+                    "birth_payload": "Gimimo \u017einut\u0117s turinys",
+                    "birth_qos": "Gimimo \u017einut\u0117 QoS",
+                    "birth_retain": "I\u0161saugokite gimimo prane\u0161im\u0105",
+                    "birth_topic": "Gimimo \u017einut\u0117s tema",
+                    "discovery": "\u012egalinti atradim\u0105",
+                    "discovery_prefix": "Atradimo prie\u0161d\u0117lis",
+                    "discovery_qos": "Atradim\u0173 QoS",
+                    "will_enable": "\u012egalinti prane\u0161im\u0105",
+                    "will_payload": "Testamento \u017einut\u0117s turinys",
+                    "will_qos": "I\u0161si\u0173s QoS prane\u0161im\u0105",
+                    "will_retain": "Prane\u0161imas bus i\u0161saugotas",
+                    "will_topic": "Si\u0173s \u017einut\u0119 tema"
+                },
+                "data_description": {
+                    "birth_enable": "Kai nustatyta, \u201eHome Assistant\u201c paskelbs internetin\u012f prane\u0161im\u0105 j\u016bs\u0173 MQTT brokeriui, kai MQTT bus paruo\u0161tas.",
+                    "birth_payload": "\u201eGimimo\u201c prane\u0161imas, kuris paskelbiamas, kai MQTT yra paruo\u0161tas ir prijungtas.",
+                    "birth_qos": "\u201eBirth\u201c prane\u0161imo, kuris skelbiamas, kai MQTT yra paruo\u0161tas ir prijungtas, paslaugos kokyb\u0117",
+                    "birth_retain": "Kai nustatyta, Home Assistant i\u0161saugos j\u016bs\u0173 MQTT brokeriui paskelbt\u0105 \u201ebirth\u201c prane\u0161im\u0105.",
+                    "birth_topic": "MQTT tema, kurioje \u201eHome Assistant\u201c paskelbs gimimo prane\u0161im\u0105.",
+                    "discovery": "Galimyb\u0117 \u012fjungti automatin\u012f MQTT aptikim\u0105.",
+                    "discovery_prefix": "Konfig\u016bracijos tem\u0173 prie\u0161d\u0117lis, kur\u012f prenumeruoja MQTT integracija.",
+                    "discovery_qos": "J\u016bs\u0173 MQTT brokerio paie\u0161kos prenumerat\u0173 paslaugos kokyb\u0117.",
+                    "will_enable": "Kai nustatyta, \u201eHome Assistant\u201c papra\u0161ys j\u016bs\u0173 brokerio paskelbti \u201ewill\u201c prane\u0161im\u0105, kai MQTT bus sustabdytas arba kai praras ry\u0161\u012f su j\u016bs\u0173 brokeriu.",
+                    "will_payload": "Prane\u0161imas, kur\u012f j\u016bs\u0173 MQTT brokeris paskelbs kaip \u201etestament\u0105\u201c, kai MQTT integracija bus sustabdyta arba nutr\u016bks ry\u0161ys.",
+                    "will_qos": "J\u016bs\u0173 MQTT brokerio skelbiamo \u201ewill\u201c prane\u0161imo paslaugos kokyb\u0117.",
+                    "will_retain": "Kai tai nustatyta, j\u016bs\u0173 MQTT brokeris i\u0161saugos \u201ewill\u201c prane\u0161im\u0105.",
+                    "will_topic": "MQTT tema, kuriai j\u016bs\u0173 MQTT brokeris paskelbs \u201ewill\u201c prane\u0161im\u0105."
+                },
+                "description": "Atradimas \u2013 jei aptikimas \u012fjungtas (rekomenduojamas), \u201eHome Assistant\u201c automati\u0161kai aptiks prietaisus ir subjektus, kurie paskelbia savo konfig\u016bracij\u0105 MQTT brokeryje. Jei aptikimas i\u0161jungtas, visa konfig\u016bracija turi b\u016bti atliekama rankiniu b\u016bdu.\n Atradimo prie\u0161d\u0117lis \u2013 automatinio aptikimo konfig\u016bracijos temos prie\u0161d\u0117lis turi prasid\u0117ti.\n Gimimo prane\u0161imas \u2013 gimimo \u017einut\u0117 bus siun\u010diama kiekvien\u0105 kart\u0105, kai nam\u0173 pad\u0117j\u0117jas (i\u0161 naujo) prisijungs prie MQTT brokerio.\n Valios prane\u0161imas \u2013 valios prane\u0161imas bus siun\u010diamas kiekvien\u0105 kart\u0105, kai \u201eHome Assistant\u201c praras ry\u0161\u012f su brokeriu, tiek \u0161varaus (pvz., \u201eHome Assistant\u201c i\u0161sijungimo), tiek ne\u0161varumo atveju (pvz., \u201eHome Assistant\u201c sugenda arba nutr\u016bksta tinklo ry\u0161ys). atsijungti.",
+                "title": "MQTT parinktys"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Vietinio kodo patvirtinimas",
+                "remote_code": "Skaitmeninis nuotolinio kodo patvirtinimas",
+                "remote_code_text": "Nuotolinis teksto kodo patvirtinimas"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "\u012ejungti \u017eadintuv\u0105",
+                "arm_custom_bypass": "\u012ejungti signalizacij\u0105 su pasirinktiniu ap\u0117jimu",
+                "arm_home": "\u012ejungti nam\u0173 signalizacij\u0105",
+                "arm_night": "\u012ejungti \u017eadintuv\u0105 nakt\u012f",
+                "arm_vacation": "\u012ejungti signalizacij\u0105 atostog\u0173 metu",
+                "trigger": "Suaktyvinti aliarm\u0105"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Automatinis",
+                "cool": "V\u0117sinti",
+                "dry": "D\u017eiovinti",
+                "fan_only": "Tik ventiliatorius",
+                "heat": "\u0160ildyti",
+                "heat_cool": "\u0160ildyti/V\u0117sinti",
+                "off": "I\u0161jungta"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Konfig\u016bracija",
+                "diagnostic": "Diagnostinis"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64 kodavimas",
+                "raw": "Neapdoroti duomenys"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "Gauti vaizdo duomenys",
+                "image_url": "Gautas vaizdo URL"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "Numatytoji schema",
+                "json": "JSON",
+                "template": "\u0160ablonas"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automatinis",
+                "box": "\u012evesties laukas",
+                "slider": "Slankiklis"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Ry\u0161kumas",
+                "first": "Pirmas",
+                "last": "Paskutinis"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Signalizacijos valdymo pultas",
+                "binary_sensor": "Dvejetainis jutiklis",
+                "button": "Mygtukas",
+                "climate": "Termostatas",
+                "cover": "Vir\u0161elis",
+                "date": "Data",
+                "datetime": "Data/Laikas",
+                "fan": "Ventiliatorius",
+                "image": "Vaizdas",
+                "light": "Lempa",
+                "lock": "U\u017eraktas",
+                "notify": "Prane\u0161imai",
+                "number": "Skai\u010dius",
+                "select": "Pasirinkimas",
+                "sensor": "Jutiklis",
+                "siren": "Sirena",
+                "switch": "Jungiklis",
+                "text": "Tekstas",
+                "time": "Laikas",
+                "valve": "Vo\u017etuvas",
+                "water_heater": "Vandens \u0161ildytuvas"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automatinis",
+                "custom": "Pasirinktinis",
+                "off": "I\u0161jungta"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Tik ry\u0161kumas",
+                "color_temp": "Spalvos temperat\u016bra",
+                "hs": "HS",
+                "onoff": "\u012ejungta / i\u0161jungta",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Balta",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "Auk\u0161\u010diausia / \u017eemiausia tikslin\u0117 temperat\u016bra",
+                "none": "N\u0117ra tikslin\u0117s temperat\u016bros",
+                "single": "Viena tikslin\u0117 temperat\u016bra"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Slapta\u017eodis",
+                "text": "Tekstas"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Automatinis",
+                "eco": "Eco",
+                "electric": "Elektrinis",
+                "gas": "Dujos",
+                "heat_pump": "\u0160ilumos siurblys",
+                "high_demand": "Didel\u0117 paklausa",
+                "off": "I\u0161jungta",
+                "performance": "Spektaklis"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Ra\u0161o visus prane\u0161imus konkre\u010dia tema \u012f `mqtt_dump.txt` fail\u0105 konfig\u016bracijos aplanke.",
+            "fields": {
+                "duration": {
+                    "description": "Kiek laiko tur\u0117tume klausytis prane\u0161im\u0173 per kelias sekundes.",
+                    "name": "Trukm\u0117"
+                },
+                "topic": {
+                    "description": "Tema, kurios reikia klausytis.",
+                    "name": "Tema"
+                }
+            },
+            "name": "Eksportuoti"
+        },
+        "publish": {
+            "description": "Paskelbia prane\u0161im\u0105 MQTT tema.",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Jei 'Payload' yra Python bait\u0173 literalas, \u012fvertinkite bait\u0173 literal\u0105 ir paskelbkite neapdorotus duomenis.",
+                    "name": "\u012evertinti \u017einut\u0117s turin\u012f"
+                },
+                "message_expiry_interval": {
+                    "description": "Paskelbimo prane\u0161imo galiojimas baigiasi po nustatyto intervalo, jei \u012frenginio abonentas buvo laikinai neprisijung\u0119s arba prane\u0161imas buvo nustatytas kaip i\u0161saugotas. Palaikoma tik su MQTT protokolo 5.0 versija.",
+                    "name": "Prane\u0161imo galiojimo intervalas"
+                },
+                "payload": {
+                    "description": "\u017dinut\u0117s turinys, kur\u012f reikia paskelbti. Paskelbiamas tu\u0161\u010dia \u017einut\u0117, jei jis nepateiktas.",
+                    "name": "\u017dinut\u0117s turinys"
+                },
+                "qos": {
+                    "description": "Paslaugos kokyb\u0117. 0: daugiausia vien\u0105 kart\u0105. 1: bent kart\u0105. 2: lygiai vien\u0105 kart\u0105.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Jei prane\u0161ime tur\u0117t\u0173 b\u016bti nustatyta i\u0161saugojimo v\u0117liav\u0117l\u0117. Jei nustatyta, tarpininkas i\u0161saugo naujausi\u0105 prane\u0161im\u0105 apie tem\u0105.",
+                    "name": "I\u0161laikyti"
+                },
+                "topic": {
+                    "description": "Tema, \u012f kuri\u0105 skelbti.",
+                    "name": "Tema"
+                }
+            },
+            "name": "Paskelbti",
+            "sections": {
+                "publish_options": {
+                    "name": "Publikavimo parinktys"
+                }
+            }
+        },
+        "reload": {
+            "description": "I\u0161 naujo \u012fkelia MQTT subjektus i\u0161 YAML konfig\u016bracijos.",
+            "name": "\u012ekelti i\u0161 naujo"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "Suveikia gavus konkret\u0173 prane\u0161im\u0105 tam tikra MQTT tema.",
+            "fields": {
+                "payload": {
+                    "description": "\u017dinut\u0117s turinys, nuo kurio reikia suaktyvinti.",
+                    "name": "\u017dinut\u0117s turinys"
+                },
+                "topic": {
+                    "description": "MQTT tema, kurios verta klausytis.",
+                    "name": "Tema"
+                }
+            },
+            "name": "Gautas MQTT prane\u0161imas"
+        }
+    }
+}

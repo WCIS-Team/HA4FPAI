@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Die um {start_time} angegebene Datenbanksicherung ist aufgrund fehlender Ressourcen fehlgeschlagen. Das Backup ist nicht vertrauensw\u00fcrdig und muss neu gestartet werden. Dies kann passieren, wenn die Datenbank zu gro\u00df ist oder das System stark ausgelastet ist. Erw\u00e4ge ein Upgrade der Systemhardware oder eine Reduzierung der Gr\u00f6\u00dfe der Datenbank, indem du die Anzahl der aufzubewahrenden Verlaufstage verringerst oder einen Filter erstellst.",
+            "title": "Die Datenbanksicherung ist aufgrund fehlender Ressourcen fehlgeschlagen"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "Die Version {server_version} von {database_engine} ist keine unterst\u00fctzte Long-Term-Support-Version (LTS). Der Support f\u00fcr kurzfristige Releases und LTS-Versionen, deren Lebensdauer abgelaufen ist, wird eingestellt. Bitte f\u00fchre ein Upgrade auf eine der unterst\u00fctzten LTS-Versionen ({lts_versions}) durch und starte Home Assistant neu, um den Recorder weiterhin nutzen zu k\u00f6nnen.",
+            "title": "{database_engine} auf eine unterst\u00fctzte LTS-Version aktualisieren, um Recorder weiterhin nutzen zu k\u00f6nnen"
+        },
+        "database_engine_too_old": {
+            "description": "Die Unterst\u00fctzung f\u00fcr Version {server_version} von {database_engine} wird eingestellt; die minimal unterst\u00fctzte Version wird {min_version}. Bitte aktualisiere deine Datenbanksoftware und starte Home Assistant neu.",
+            "title": "{database_engine} auf {min_version} oder neuer aktualisieren, um Recorder weiterhin nutzen zu k\u00f6nnen"
+        },
+        "maria_db_range_index_regression": {
+            "description": "\u00c4ltere Versionen von MariaDB leiden unter einem erheblichen Leistungseinbruch beim Abrufen von Verlaufsdaten oder beim L\u00f6schen der Datenbank. Aktualisiere auf MariaDB Version {min_version} oder h\u00f6her und starte Home Assistant neu. Wenn du die MariaDB Core-App verwendest, stelle sicher, dass du sie auf die neueste Version aktualisierst.",
+            "title": "Aktualisiere MariaDB auf {min_version} oder h\u00f6her, um ein erhebliches Leistungsproblem zu beheben."
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Stoppt die Aufzeichnung von Ereignissen und Zustands\u00e4nderungen.",
+            "name": "Recorder deaktivieren"
+        },
+        "enable": {
+            "description": "Startet die Aufzeichnung von Ereignissen und Zustands\u00e4nderungen.",
+            "name": "Recorder aktivieren"
+        },
+        "get_statistics": {
+            "description": "Ruft Statistikdaten f\u00fcr Entit\u00e4ten innerhalb eines bestimmten Zeitraums ab.",
+            "fields": {
+                "end_time": {
+                    "description": "Der Endzeitpunkt der Statistikabfrage. Wenn diese Angabe weggelassen wird, werden alle Statistiken ab dem Startzeitpunkt zur\u00fcckgegeben.",
+                    "name": "Endzeitpunkt"
+                },
+                "period": {
+                    "description": "Der Zeitraum, nach dem Statistiken gruppiert werden sollen.",
+                    "name": "Zeitraum"
+                },
+                "start_time": {
+                    "description": "Der Startzeitpunkt f\u00fcr die Statistikabfrage.",
+                    "name": "Startzeitpunkt"
+                },
+                "statistic_ids": {
+                    "description": "Die Entit\u00e4ts-IDs oder Statistik-IDs, f\u00fcr die Statistiken zur\u00fcckgegeben werden sollen.",
+                    "name": "Statistik-IDs"
+                },
+                "types": {
+                    "description": "Die Arten von Statistikwerten, die zur\u00fcckgegeben werden sollen.",
+                    "name": "Arten"
+                },
+                "units": {
+                    "description": "Optionale Zuordnung der Einheitenumrechnung.",
+                    "name": "Einheiten"
+                }
+            },
+            "name": "Recorder-Statistiken abrufen"
+        },
+        "purge": {
+            "description": "Startet einen Bereinigungsvorgang, um alte Daten aus deiner Datenbank zu l\u00f6schen.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Wendet zus\u00e4tzlich zur zeitbasierten Bereinigung die Filter `entity_id` und `event_type` an.",
+                    "name": "Filter anwenden"
+                },
+                "keep_days": {
+                    "description": "Anzahl der Tage, die die Daten in der Datenbank verbleiben \u2013 r\u00fcckw\u00e4rts gez\u00e4hlt ab heute. Ein Wert von `7` bedeutet, dass alles \u00e4lter als eine Woche gel\u00f6scht wird.",
+                    "name": "Aufzubewahrende Tage"
+                },
+                "repack": {
+                    "description": "Versucht Speicherplatz zu sparen, indem die gesamte Datenbankdatei neu geschrieben wird.",
+                    "name": "Umpacken"
+                }
+            },
+            "name": "Recorder-Datenbank bereinigen"
+        },
+        "purge_entities": {
+            "description": "Startet einen Bereinigungsvorgang, um die Daten zu bestimmten Entit\u00e4ten aus deiner Datenbank zu entfernen.",
+            "fields": {
+                "domains": {
+                    "description": "Liste der Domains, deren Daten aus der Recorder-Datenbank entfernt werden sollen.",
+                    "name": "Zu entfernende Domains"
+                },
+                "entity_globs": {
+                    "description": "Liste der Glob-Muster zur Auswahl der Entit\u00e4ten, deren Daten aus der Recorder-Datenbank entfernt werden sollen.",
+                    "name": "Zu entfernende Entit\u00e4ts-Globs"
+                },
+                "entity_id": {
+                    "description": "Liste der Entit\u00e4ten, deren Daten aus der Recorder-Datenbank entfernt werden sollen.",
+                    "name": "Zu entfernende Entit\u00e4ten"
+                },
+                "keep_days": {
+                    "description": "Anzahl der Tage, die die Daten der Zeilen verbleiben, die zum Filter passen \u2013 r\u00fcckw\u00e4rts gez\u00e4hlt ab heute. Ein Wert von `7` bedeutet, dass alles \u00e4lter als eine Woche gel\u00f6scht wird. Der Standardwert von 0 Tagen entfernt alle \u00fcbereinstimmenden Zeilen sofort.",
+                    "name": "Aufzubewahrende Tage"
+                }
+            },
+            "name": "Recorder-Entit\u00e4ten bereinigen"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Startzeitpunkt des aktuellen Laufs",
+            "database_engine": "Datenbank-Engine",
+            "database_version": "Datenbank-Version",
+            "estimated_db_size": "Gesch\u00e4tzte Datenbankgr\u00f6\u00dfe (MiB)",
+            "oldest_recorder_run": "Startzeitpunkt des \u00e4ltesten Laufs"
+        }
+    }
+}

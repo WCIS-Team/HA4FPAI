@@ -1,0 +1,72 @@
+{
+    "config": {
+        "error": {
+            "invalid_known_hosts": "Los hosts conocidos deben ser una lista de hosts separados por comas."
+        },
+        "step": {
+            "config": {
+                "data": {
+                    "known_hosts": "A\u00f1adir host conocido"
+                },
+                "data_description": {
+                    "known_hosts": "Nombres de host o direcciones IP de dispositivos de transmisi\u00f3n, utilizar si el descubrimiento de mDNS no funciona"
+                },
+                "title": "Configuraci\u00f3n de Google Cast"
+            },
+            "confirm": {
+                "description": "\u00bfQuieres iniciar la configuraci\u00f3n?"
+            }
+        }
+    },
+    "exceptions": {
+        "app_not_supported": {
+            "message": "Aplicaci\u00f3n {app_name} no es compatible"
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "known_hosts": "A\u00f1adir host conocido"
+                },
+                "data_description": {
+                    "known_hosts": "Nombres de host o direcciones IP de dispositivos de transmisi\u00f3n, utilizar si el descubrimiento de mDNS no funciona"
+                },
+                "sections": {
+                    "more_options": {
+                        "data": {
+                            "ignore_cec": "Ignorar CEC",
+                            "uuid": "UUIDs permitidos"
+                        },
+                        "data_description": {
+                            "ignore_cec": "Una lista separada por comas de dispositivos Chromecast que deben ignorar los datos CEC para determinar la entrada activa. Esta lista se pasar\u00e1 a pychromecast.IGNORE_CEC.",
+                            "uuid": "Una lista separada por comas de UUIDs de dispositivos Cast para a\u00f1adir a Home Assistant. Util\u00edzala solo si no quieres a\u00f1adir todos los dispositivos Cast disponibles."
+                        },
+                        "name": "M\u00e1s opciones"
+                    }
+                },
+                "title": "Configuraci\u00f3n de Google Cast"
+            }
+        }
+    },
+    "services": {
+        "show_lovelace_view": {
+            "description": "Muestra una vista de panel de control en un dispositivo Google Cast.",
+            "fields": {
+                "dashboard_path": {
+                    "description": "La ruta URL del panel de control que se mostrar\u00e1; por defecto, si no se especifica, se utiliza `lovelace`.",
+                    "name": "Ruta del panel de control"
+                },
+                "entity_id": {
+                    "description": "Entidad de reproductor multimedia para mostrar la vista del panel de control.",
+                    "name": "Entidad"
+                },
+                "view_path": {
+                    "description": "La ruta URL de la vista del panel de control que se mostrar\u00e1.",
+                    "name": "Ruta a la vista"
+                }
+            },
+            "name": "Mostrar la vista del panel de control a trav\u00e9s de Google Cast"
+        }
+    }
+}

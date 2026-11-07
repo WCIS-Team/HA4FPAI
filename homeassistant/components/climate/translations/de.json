@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "condition_threshold_name": "Schwellenwerttyp",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens",
+        "trigger_threshold_name": "Schwellenwerttyp"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Thermostate im K\u00fchlbetrieb sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Thermostat im K\u00fchlbetrieb"
+        },
+        "is_drying": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Thermostate im Entfeuchtungsbetrieb sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Thermostat im Entfeuchtungsbetrieb"
+        },
+        "is_heating": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Thermostate im Heizbetrieb sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Thermostat im Heizbetrieb"
+        },
+        "is_hvac_mode": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Thermostate auf eine bestimmte HLK-Betriebsart eingestellt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "hvac_mode": {
+                    "description": "Die HLK-Betriebsarten, auf die gepr\u00fcft werden soll.",
+                    "name": "Betriebsarten"
+                }
+            },
+            "name": "HLK-Betriebsart eines Thermostats"
+        },
+        "is_off": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Thermostate ausgeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Thermostat ausgeschaltet"
+        },
+        "is_on": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Thermostate eingeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Thermostat eingeschaltet"
+        },
+        "is_target_humidity": {
+            "description": "Pr\u00fcft den Luftfeuchtigkeit-Sollwert eines oder mehrerer Thermostate.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Soll-Luftfeuchtigkeit eines Thermostats"
+        },
+        "is_target_temperature": {
+            "description": "Pr\u00fcft den Temperatur-Sollwert eines oder mehrerer Thermostate.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Soll-Temperatur eines Thermostats"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "HLK-Betriebsart von {entity_name} \u00e4ndern",
+            "set_preset_mode": "Voreinstellung von {entity_name} \u00e4ndern"
+        },
+        "condition_type": {
+            "is_hvac_mode": "Wenn {entity_name} auf eine bestimmte HLK-Betriebsart eingestellt ist",
+            "is_preset_mode": "Wenn auf {entity_name} eine bestimmte Voreinstellung aktiviert ist"
+        },
+        "extra_fields": {
+            "above": "\u00dcber",
+            "below": "Unter",
+            "for": "Dauer",
+            "hvac_mode": "HLK-Betriebsart",
+            "preset_mode": "Voreinstellung",
+            "to": "Auf"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "Sobald sich der Ist-Wert der Luftfeuchtigkeit von {entity_name} \u00e4ndert",
+            "current_temperature_changed": "Sobald sich der Ist-Wert der Temperatur von {entity_name} \u00e4ndert",
+            "hvac_mode_changed": "Sobald die HLK-Betriebsart von {entity_name} ge\u00e4ndert wird"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Thermostat",
+            "state": {
+                "auto": "Auto",
+                "cool": "K\u00fchlbetrieb",
+                "dry": "Entfeuchtung",
+                "fan_only": "Nur L\u00fcftung",
+                "heat": "Heizbetrieb",
+                "heat_cool": "Heizen/K\u00fchlen",
+                "off": "Aus"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Aktuelle Luftfeuchtigkeit"
+                },
+                "current_temperature": {
+                    "name": "Ist-Temperatur"
+                },
+                "fan_mode": {
+                    "name": "L\u00fcftermodus",
+                    "state": {
+                        "auto": "Auto",
+                        "diffuse": "Diffus",
+                        "focus": "Fokus",
+                        "high": "Hoch",
+                        "low": "Niedrig",
+                        "medium": "Mittel",
+                        "middle": "Mittig",
+                        "off": "Aus",
+                        "on": "Ein",
+                        "top": "Oben"
+                    }
+                },
+                "fan_modes": {
+                    "name": "L\u00fcfter-Betriebsarten"
+                },
+                "humidity": {
+                    "name": "Sollwert der Luftfeuchtigkeit"
+                },
+                "hvac_action": {
+                    "name": "Aktuelle Aktion",
+                    "state": {
+                        "cooling": "K\u00fchlbetrieb",
+                        "defrosting": "Enteisung",
+                        "drying": "Entfeuchtung",
+                        "fan": "L\u00fcftung",
+                        "heating": "Heizbetrieb",
+                        "idle": "Leerlauf",
+                        "off": "Aus",
+                        "preheating": "Vorheizen"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "HLK-Betriebsarten"
+                },
+                "max_humidity": {
+                    "name": "Maximaler Sollwert der Luftfeuchtigkeit"
+                },
+                "max_temp": {
+                    "name": "Maximale Soll-Temperatur"
+                },
+                "min_humidity": {
+                    "name": "Minimaler Sollwert der Luftfeuchtigkeit"
+                },
+                "min_temp": {
+                    "name": "Minimale Soll-Temperatur"
+                },
+                "preset_mode": {
+                    "name": "Voreinstellung",
+                    "state": {
+                        "activity": "Aktivit\u00e4t",
+                        "away": "Abwesend",
+                        "boost": "Boost",
+                        "comfort": "Komfort",
+                        "eco": "Eco",
+                        "home": "Zuhause",
+                        "none": "Ohne",
+                        "sleep": "Schlafen"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Voreinstellungen"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Horizontale Oszillationsart",
+                    "state": {
+                        "off": "Aus",
+                        "on": "Ein"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Horizontale Oszillationsarten"
+                },
+                "swing_mode": {
+                    "name": "Oszillationsart",
+                    "state": {
+                        "both": "Beides",
+                        "horizontal": "Horizontal",
+                        "off": "Aus",
+                        "on": "Ein",
+                        "vertical": "Vertikal"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Oszillationsarten"
+                },
+                "target_temp_high": {
+                    "name": "Obere Soll-Temperatur"
+                },
+                "target_temp_low": {
+                    "name": "Untere Soll-Temperatur"
+                },
+                "target_temp_step": {
+                    "name": "Soll-Temperatur-Schrittweite"
+                },
+                "temperature": {
+                    "name": "Soll-Temperatur"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Die angegebene Luftfeuchtigkeit {humidity} ist ung\u00fcltig. Der zul\u00e4ssige Bereich liegt zwischen {min_humidity} und {max_humidity}."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "'Untere Soll-Temperatur' darf nicht h\u00f6her als 'Obere Soll-Temperatur' sein."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "Die Aktion 'Temperatur einstellen' wurde mit dem Parameter 'Soll-Temperatur' verwendet, die Entit\u00e4t unterst\u00fctzt diesen jedoch nicht."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "Die Aktion 'Temperatur einstellen' wurde mit dem Parameter 'Untere/Obere Soll-Temperatur' verwendet, die Entit\u00e4t unterst\u00fctzt diesen jedoch nicht."
+        },
+        "not_valid_fan_mode": {
+            "message": "Der L\u00fcftermodus {mode} ist ung\u00fcltig. G\u00fcltige L\u00fcftermodi sind: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "Die horizontale Oszillationsart {mode} ist ung\u00fcltig. G\u00fcltige Oszillationsarten sind: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "Die HLK-Betriebsart {mode} ist ung\u00fcltig. G\u00fcltige HLK-Betriebsarten sind: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "Die Voreinstellung {mode} ist ung\u00fcltig. G\u00fcltige Voreinstellungen sind: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "Die Oszillationsart {mode} ist ung\u00fcltig. G\u00fcltige Oszillationsarten sind: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "Die angegebene Temperatur {check_temp} ist ung\u00fcltig. Akzeptierter Bereich ist {min_temp} bis {max_temp}"
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "Stellt die L\u00fcfter-Betriebsart eines Thermostats ein.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Betriebsart des L\u00fcfters.",
+                    "name": "L\u00fcftermodus"
+                }
+            },
+            "name": "L\u00fcftermodus eines Thermostats einstellen"
+        },
+        "set_humidity": {
+            "description": "Stellt die Soll-Luftfeuchtigkeit eines Thermostats ein.",
+            "fields": {
+                "humidity": {
+                    "description": "Sollwert der Luftfeuchtigkeit.",
+                    "name": "Luftfeuchtigkeit"
+                }
+            },
+            "name": "Soll-Luftfeuchtigkeit eines Thermostats einstellen"
+        },
+        "set_hvac_mode": {
+            "description": "Stellt die HLK-Betriebsart eines Thermostats ein.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Betriebsart der Heizung/L\u00fcftung/Klimatisierung.",
+                    "name": "HLK-Betriebsart"
+                }
+            },
+            "name": "HLK-Betriebsart eines Thermostats einstellen"
+        },
+        "set_preset_mode": {
+            "description": "Aktiviert die Voreinstellung eines Thermostats.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Voreingestellte Betriebsart.",
+                    "name": "Voreinstellung"
+                }
+            },
+            "name": "Voreinstellung eines Thermostats aktivieren"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "Stellt die horizontale Oszillationsart eines Thermostats ein",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Betriebsart der horizontalen L\u00fcfter-Oszillation.",
+                    "name": "Horizontale Oszillationsart"
+                }
+            },
+            "name": "Horizontale Oszillationsart eines Thermostats einstellen"
+        },
+        "set_swing_mode": {
+            "description": "Stellt die Oszillationsart eines Thermostats ein.",
+            "fields": {
+                "swing_mode": {
+                    "description": "Betriebsart der L\u00fcfter-Oszillation",
+                    "name": "Oszillationsart"
+                }
+            },
+            "name": "Oszillationsart eines Thermostats einstellen"
+        },
+        "set_temperature": {
+            "description": "Stellt die Solltemperatur eines Thermostats ein.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Betriebsart der Heizung/L\u00fcftung/Klimatisierung.",
+                    "name": "HLK-Betriebsart"
+                },
+                "target_temp_high": {
+                    "description": "Das Sollwert-Maximum f\u00fcr die Temperatur",
+                    "name": "Obere Soll-Temperatur"
+                },
+                "target_temp_low": {
+                    "description": "Das Sollwert-Minimum f\u00fcr die Temperatur",
+                    "name": "Untere Soll-Temperatur"
+                },
+                "temperature": {
+                    "description": "Der Sollwert f\u00fcr die Temperatur.",
+                    "name": "Soll-Temperatur"
+                }
+            },
+            "name": "Solltemperatur eines Thermostats einstellen",
+            "sections": {
+                "temperature_range": {
+                    "name": "Temperaturbereich"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Schaltet ein Thermostat zwischen ein und aus um.",
+            "name": "Thermostat umschalten"
+        },
+        "turn_off": {
+            "description": "Schaltet ein Thermostat aus.",
+            "name": "Thermostat ausschalten"
+        },
+        "turn_on": {
+            "description": "Schaltet ein Thermostat ein.",
+            "name": "Thermostat einschalten"
+        }
+    },
+    "title": "Klima",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Wird ausgel\u00f6st, sobald sich die Betriebsart eines oder mehrerer Thermostate \u00e4ndert.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "hvac_mode": {
+                    "description": "Die HLK-Betriebsarten, die als Ausl\u00f6ser dienen sollen.",
+                    "name": "Betriebsarten"
+                }
+            },
+            "name": "Betriebsart eines Thermostats ge\u00e4ndert"
+        },
+        "started_cooling": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Thermostate den K\u00fchlbetrieb starten.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "K\u00fchlbetrieb durch Thermostat gestartet"
+        },
+        "started_drying": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Thermostate die Entfeuchtung starten.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Entfeuchtung durch Thermostat gestartet"
+        },
+        "started_heating": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Thermostate den Heizbetrieb starten.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Heizbetrieb durch Thermostat gestartet"
+        },
+        "target_humidity_changed": {
+            "description": "Wird ausgel\u00f6st, sobald sich der Luftfeuchtigkeit-Sollwert eines oder mehrerer Thermostate \u00e4ndert.",
+            "fields": {
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Soll-Luftfeuchtigkeit eines Thermostats ge\u00e4ndert"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Wird ausgel\u00f6st, sobald der Luftfeuchtigkeit-Sollwert eines oder mehrerer Thermostate einen Schwellenwert \u00fcberschreitet.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Sollluftfeuchtigkeit-Schwellenwert f\u00fcr Thermostat \u00fcberschritten"
+        },
+        "target_temperature_changed": {
+            "description": "Wird ausgel\u00f6st, sobald sich der Temperatur-Sollwert eines oder mehrerer Thermostate \u00e4ndert.",
+            "fields": {
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Soll-Temperatur eines Thermostats ge\u00e4ndert"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Wird ausgel\u00f6st, sobald der Temperatur-Sollwert eines oder mehrerer Thermostate einen Schwellenwert \u00fcberschreitet.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Solltemperatur-Schwellenwert f\u00fcr Thermostat \u00fcberschritten"
+        },
+        "turned_off": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Thermostate ausgeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Thermostat ausgeschaltet"
+        },
+        "turned_on": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Thermostate eingeschaltet werden, unabh\u00e4ngig von der Betriebsart.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Thermostat eingeschaltet"
+        }
+    }
+}

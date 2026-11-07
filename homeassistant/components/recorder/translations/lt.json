@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Duomen\u0173 baz\u0117s atsargin\u0117 kopija, nurodyta {start_time} nepavyko d\u0117l i\u0161tekli\u0173 tr\u016bkumo. Atsargin\u0117 kopija negali b\u016bti patikima ir turi b\u016bti paleista i\u0161 naujo. Tai gali atsitikti, jei duomen\u0173 baz\u0117 yra per didel\u0117 arba jei sistema yra labai apkrauta. Apsvarstykite galimyb\u0119 atnaujinti sistemos aparatin\u0119 \u012frang\u0105 arba suma\u017einti duomen\u0173 baz\u0117s dyd\u012f suma\u017einant istorijos dien\u0173 skai\u010di\u0173, kuri\u0105 reikia i\u0161laikyti arba sukurti filtr\u0105.",
+            "title": "Duomen\u0173 baz\u0117s atsargin\u0117 kopija nepavyko d\u0117l i\u0161tekli\u0173 tr\u016bkumo"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "Versija {server_version} i\u0161 {database_engine} n\u0117ra palaikoma ilgalaikio palaikymo (LTS) versija. Trumpalaiki\u0173 ir pasibaigusio galiojimo LTS versij\u0173 palaikymas bus pa\u0161alintas; atnaujinkite \u012f vien\u0105 i\u0161 palaikom\u0173 LTS versij\u0173 ({lts_versions}) ir paleiskite Home Assistant i\u0161 naujo, kad gal\u0117tum\u0117te toliau naudoti \u012fra\u0161ymo \u012frengin\u012f.",
+            "title": "Atnaujinimas {database_engine} \u012f palaikom\u0105 LTS versij\u0105, kad gal\u0117tum\u0117te toliau naudoti \u012fra\u0161ymo \u012frengin\u012f"
+        },
+        "database_engine_too_old": {
+            "description": "Palaikymas versijai {server_version} i\u0161 {database_engine} baigiasi; bus palaikoma minimali versija {min_version}. Atnaujinkite duomen\u0173 baz\u0117s programin\u0119 \u012frang\u0105 ir paleiskite Home Assistant i\u0161 naujo.",
+            "title": "Atnaujinimas {database_engine} \u012f {min_version} arba v\u0117liau, jei norite toliau naudoti diktofon\u0105"
+        },
+        "maria_db_range_index_regression": {
+            "description": "Senesn\u0117se MariaDB versijose pastebimas didelis na\u0161umo suma\u017e\u0117jimas nuskaitant istorijos duomenis arba i\u0161valant duomen\u0173 baz\u0119. Atnaujinkite \u012f MariaDB versij\u0105. {min_version} arba naujesn\u0119 versij\u0105 ir paleiskite Home Assistant i\u0161 naujo. Jei naudojate MariaDB Core program\u0117l\u0119, b\u016btinai atnaujinkite j\u0105 \u012f naujausi\u0105 versij\u0105.",
+            "title": "Atnaujinkite MariaDB \u012f {min_version} arba v\u0117liau i\u0161spr\u0119skite svarbi\u0105 na\u0161umo problem\u0105"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Sustabdo \u012fvyki\u0173 ir b\u016bsenos poky\u010di\u0173 \u012fra\u0161ym\u0105.",
+            "name": "I\u0161jungti \u012fra\u0161ymo \u012frengin\u012f"
+        },
+        "enable": {
+            "description": "Pradedamas \u012fvyki\u0173 ir b\u016bsen\u0173 pasikeitim\u0173 \u012fra\u0161ymas.",
+            "name": "\u012ejungti \u012fra\u0161ymo \u012frengin\u012f"
+        },
+        "get_statistics": {
+            "description": "Gauna statistikos duomenis apie objektus per konkret\u0173 laikotarp\u012f.",
+            "fields": {
+                "end_time": {
+                    "description": "Statistikos u\u017eklausos pabaigos laikas. Jei nenurodyta, gr\u0105\u017einama visa statistika nuo prad\u017eios laiko.",
+                    "name": "Pabaigos laikas"
+                },
+                "period": {
+                    "description": "Laikotarpis, pagal kur\u012f grupuojama statistika.",
+                    "name": "Laikotarpis"
+                },
+                "start_time": {
+                    "description": "Statistikos u\u017eklausos prad\u017eios laikas.",
+                    "name": "Prad\u017eios laikas"
+                },
+                "statistic_ids": {
+                    "description": "Objekto ID arba statistikos ID, kuri\u0173 statistika turi b\u016bti pateikta.",
+                    "name": "Statistikos ID"
+                },
+                "types": {
+                    "description": "Gr\u0105\u017eintin\u0173 statistikos reik\u0161mi\u0173 tipai.",
+                    "name": "Tipai"
+                },
+                "units": {
+                    "description": "Pasirinktinis vienet\u0173 konvertavimo atvaizdavimas.",
+                    "name": "Vienetai"
+                }
+            },
+            "name": "Gaukite \u012fra\u0161ymo statistik\u0105"
+        },
+        "purge": {
+            "description": "Pradedama valymo u\u017eduotis \u2013 i\u0161valyti senus duomenis i\u0161 duomen\u0173 baz\u0117s.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Taikykite filtrus \u201eentity_id\u201c ir \u201eevent_type\u201c, neskaitant laiko pagr\u012fsto valymo.",
+                    "name": "Taikyti filtr\u0105"
+                },
+                "keep_days": {
+                    "description": "Duomen\u0173 saugojimo duomen\u0173 baz\u0117je dien\u0173 skai\u010dius. Nuo \u0161iandien, skai\u010diuojant atgal. Vert\u0117 \u201e7\u201c rei\u0161kia, kad viskas, kas senesn\u0117 nei savait\u0117, bus i\u0161valyta.",
+                    "name": "Dienos i\u0161laikyti"
+                },
+                "repack": {
+                    "description": "Bandykite sutaupyti vietos diske perra\u0161ydami vis\u0105 duomen\u0173 baz\u0117s fail\u0105.",
+                    "name": "Perpakuoti"
+                }
+            },
+            "name": "I\u0161valyti \u012fra\u0161ymo \u012frenginio duomen\u0173 baz\u0119"
+        },
+        "purge_entities": {
+            "description": "Pradeda valymo u\u017eduot\u012f, kad i\u0161 j\u016bs\u0173 duomen\u0173 baz\u0117s pa\u0161alint\u0173 su konkre\u010diais subjektais susijusius duomenis.",
+            "fields": {
+                "domains": {
+                    "description": "S\u0105ra\u0161as domen\u0173, kuri\u0173 duomenis reikia pa\u0161alinti i\u0161 \u012fra\u0161ymo \u012frenginio duomen\u0173 baz\u0117s.",
+                    "name": "Domenai, kuriuos reikia pa\u0161alinti"
+                },
+                "entity_globs": {
+                    "description": "S\u0105ra\u0161as globos \u0161ablon\u0173, naudojam\u0173 norint pasirinkti objektus, kuri\u0173 duomenys turi b\u016bti pa\u0161alinti i\u0161 \u012fra\u0161ymo \u012frenginio duomen\u0173 baz\u0117s.",
+                    "name": "Subjekto gaubliai, kuriuos reikia pa\u0161alinti"
+                },
+                "entity_id": {
+                    "description": "Subjekt\u0173, kuri\u0173 duomenys turi b\u016bti pa\u0161alinti i\u0161 Registratoriaus duomen\u0173 baz\u0117s, s\u0105ra\u0161as.",
+                    "name": "Pa\u0161alintini subjektai"
+                },
+                "keep_days": {
+                    "description": "Dien\u0173 skai\u010dius, per kur\u012f turi b\u016bti saugomi filtr\u0105 atitinkan\u010di\u0173 eilu\u010di\u0173 duomenys. Nuo \u0161iandien, skai\u010diuojant atgal. Vert\u0117 \u201e7\u201c rei\u0161kia, kad viskas, kas senesn\u0117 nei savait\u0119, bus i\u0161valyta. Numatytasis 0 dien\u0173 i\u0161 karto pa\u0161alins visas atitinkan\u010dias eilutes.",
+                    "name": "Dienos i\u0161laikyti"
+                }
+            },
+            "name": "I\u0161valyti \u012fra\u0161ymo \u012frenginio objektus"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Dabartinis b\u0117gimo prad\u017eios laikas",
+            "database_engine": "Duomen\u0173 baz\u0117s variklis",
+            "database_version": "Duomen\u0173 baz\u0117s versija",
+            "estimated_db_size": "Numatomas duomen\u0173 baz\u0117s dydis (MiB)",
+            "oldest_recorder_run": "Seniausias b\u0117gimo prad\u017eios laikas"
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "C\u00f3pia de seguran\u00e7a autom\u00e1tica",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Fase de c\u00f3pia de seguran\u00e7a"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Conclu\u00eddo com sucesso",
+                            "failed": "Falhou",
+                            "in_progress": "Em curso"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Motivo da falha",
+                        "state": {
+                            "backup_agent_error": "Erro do agente de c\u00f3pias de seguran\u00e7a",
+                            "backup_agent_unreachable": "Agente de c\u00f3pias de seguran\u00e7a inacess\u00edvel",
+                            "backup_manager_error": "Erro do gestor de c\u00f3pias de seguran\u00e7a",
+                            "backup_not_found": "Backup n\u00e3o encontrado",
+                            "backup_reader_writer_error": "Erro do leitor/gravador de c\u00f3pia de seguran\u00e7a",
+                            "decrypt_on_download_not_supported": "Desencriptar na transfer\u00eancia n\u00e3o \u00e9 suportado",
+                            "invalid_backup_filename": "Nome de ficheiro de c\u00f3pia de seguran\u00e7a inv\u00e1lido",
+                            "multiple_errors": "V\u00e1rios erros",
+                            "password_incorrect": "Palavra-passe incorreta",
+                            "unknown_error": "Erro desconhecido",
+                            "upload_failed": "O carregamento falhou"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Estado do Gestor de C\u00f3pias de Seguran\u00e7a",
+                "state": {
+                    "blocked": "Bloqueado",
+                    "create_backup": "A criar uma c\u00f3pia de seguran\u00e7a",
+                    "idle": "Inativo",
+                    "receive_backup": "A receber uma c\u00f3pia de seguran\u00e7a",
+                    "restore_backup": "A restaurar uma c\u00f3pia de seguran\u00e7a"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "\u00daltima tentativa de c\u00f3pia de seguran\u00e7a autom\u00e1tica"
+            },
+            "last_successful_automatic_backup": {
+                "name": "\u00daltima c\u00f3pia de seguran\u00e7a autom\u00e1tica bem-sucedida"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Pr\u00f3xima c\u00f3pia de seguran\u00e7a autom\u00e1tica agendada"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "A localiza\u00e7\u00e3o do backup `{agent_id}` n\u00e3o est\u00e1 dispon\u00edvel, mas ainda est\u00e1 configurada para backups autom\u00e1ticos.\n\nVisite a [p\u00e1gina de configura\u00e7\u00e3o de backups autom\u00e1ticos]({backup_settings}) para rever e atualizar as suas localiza\u00e7\u00f5es de backups. Os backups n\u00e3o ser\u00e3o carregados para localiza\u00e7\u00f5es selecionadas que n\u00e3o estejam dispon\u00edveis.",
+            "title": "A localiza\u00e7\u00e3o do backup {agent_id} n\u00e3o est\u00e1 dispon\u00edvel"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "As apps {failed_addons} n\u00e3o puderam ser inclu\u00eddas na c\u00f3pia de seguran\u00e7a autom\u00e1tica. Verifique os registos do Supervisor para obter mais informa\u00e7\u00f5es. Ser\u00e1 efetuada outra tentativa na pr\u00f3xima hora programada se estiver configurada uma agenda de c\u00f3pias de seguran\u00e7a.",
+            "title": "Nem todas as apps podem ser inclu\u00eddas na c\u00f3pia de seguran\u00e7a autom\u00e1tica"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "A c\u00f3pia de seguran\u00e7a autom\u00e1tica foi criada com erros: * Locais para os quais n\u00e3o foi poss\u00edvel carregar a c\u00f3pia de seguran\u00e7a: {failed_agents}\n* Apps para as quais n\u00e3o foi poss\u00edvel efetuar c\u00f3pia de seguran\u00e7a: {failed_addons}\n* Pastas das quais n\u00e3o foi poss\u00edvel efetuar a c\u00f3pia de seguran\u00e7a: {failed_folders}\n\nVerifique os registos do Core e do Supervisor para obter mais informa\u00e7\u00f5es. Ser\u00e1 efetuada outra tentativa na pr\u00f3xima hora programada se estiver configurada uma agenda de c\u00f3pias de seguran\u00e7a.",
+            "title": "A c\u00f3pia de seguran\u00e7a autom\u00e1tica foi criada com erros"
+        },
+        "automatic_backup_failed_create": {
+            "description": "O backup autom\u00e1tico n\u00e3o p\u00f4de ser criado. Por favor, verifique os logs para mais informa\u00e7\u00f5es. Outra tentativa ser\u00e1 feita na pr\u00f3xima hora agendada, se estiver configurado um hor\u00e1rio de backup.",
+            "title": "N\u00e3o foi poss\u00edvel criar o backup autom\u00e1tico"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "As pastas {failed_folders} n\u00e3o puderam ser inclu\u00eddas na c\u00f3pia de seguran\u00e7a autom\u00e1tica. Verifique os registos do Supervisor para obter mais informa\u00e7\u00f5es. Ser\u00e1 efetuada outra tentativa na pr\u00f3xima hora programada se estiver configurada uma agenda de c\u00f3pias de seguran\u00e7a.",
+            "title": "Nem todas as pastas podem ser inclu\u00eddas na c\u00f3pia de seguran\u00e7a autom\u00e1tica"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "N\u00e3o foi poss\u00edvel fazer o upload do backup autom\u00e1tico para as localiza\u00e7\u00f5es configuradas {failed_agents}. Verifique os registos para obter mais informa\u00e7\u00f5es. Ser\u00e1 efetuada outra tentativa na pr\u00f3xima hora programada, se estiver configurada uma agenda de c\u00f3pias de seguran\u00e7a.",
+            "title": "N\u00e3o foi poss\u00edvel carregar o backup autom\u00e1tico para as localiza\u00e7\u00f5es configuradas"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Cria um novo backup",
+            "name": "Criar backup"
+        },
+        "create_automatic": {
+            "description": "Cria um novo backup com configura\u00e7\u00f5es de backup autom\u00e1tico.",
+            "name": "Criar backup autom\u00e1tico"
+        }
+    }
+}

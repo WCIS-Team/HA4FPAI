@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Usluga je ve\u0107 pode\u0161ena",
+            "no_adapters": "Nisu prona\u0111eni nekonfigurisani Bluetooth adapteri."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "\u017delite li da podesite {name}?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adapter"
+                },
+                "description": "Izaberi Bluetooth adapter za pode\u0161avanje"
+            },
+            "single_adapter": {
+                "description": "\u017delite li da podesite Bluetooth adapter {name} {manufacturer} {model}?"
+            },
+            "user": {
+                "data": {
+                    "address": "Ure\u0111aj"
+                },
+                "description": "Izaberite ure\u0111aj za pode\u0161avanje"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "Bluetooth adapter **{adapter}** ({model}) radi u degradiranom re\u017eimu jer va\u0161 kontejner zahteva dodatne dozvole za potpuni pristup Bluetooth hardveru.\n\nMolimo vas da pratite uputstva u na\u0161oj dokumentaciji kako biste dodali potrebne dozvole:  \n[Bluetooth dozvole za Docker]({docs_url})\n\nNakon dodavanja ovih dozvola, ponovo pokrenite va\u0161 Home Assistant kontejner da bi izmene stupile na snagu.",
+            "title": "Bluetooth adapter zahteva dodatna ovlas\u0107enja"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "Bluetooth adapter **{adapter}** ({model}) je zaglavljen u pasivnom re\u017eimu skeniranja iako je zatra\u017een aktivni re\u017eim skeniranja. **Automatski oporavak je poku\u0161an, ali nije uspeo.** Ovo je verovatno problem kernela, firmvera ili operativnog sistema i sistem zahteva potpuno isklju\u010divanje napajanja da bi se adapter oporavio.\n\nU pasivnom re\u017eimu, adapter mo\u017ee samo da prima pakete ogla\u0161avanja (advertisements), ali ne mo\u017ee da zahteva dodatne podatke od ure\u0111aja, \u0161to \u0107e uticati na otkrivanje i funkcionalnost ure\u0111aja.\n** Potrebna je ru\u010dna intervencija:**\n1.  **Potpuno isklju\u010dite sistem (ne samo restart)\n2.  **Uklonite napajanje (izvucite kabl ili isklju\u010dite prekida\u010d)\n3.  Sa\u010dekajte 10 sekundi\n4. Vratite napajanje i pokrenite sistem\n\nAko problem ostane i nakon potpunog isklju\u010divanja:\n- Proverite a\u017euriranja kernela/firmvera\n- Ugra\u0111eni Bluetooth adapter mo\u017ee imati hardverske probleme",
+            "title": "Bluetooth adapter zahteva ponovno pokretanje sistema"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "Bluetooth adapter **{adapter}** ({model}) je zaglavljen u pasivnom re\u017eimu skeniranja iako je zatra\u017een aktivni re\u017eim. **Automatski oporavak je poku\u0161an, ali nije uspeo.** Ovo je verovatno problem sa kernelom, firmverom ili operativnim sistemom i adapter zahteva ru\u010dno isklju\u010divanje i uklju\u010divanje da bi se oporavio.\n\nU pasivnom re\u017eimu, adapter mo\u017ee samo da prima ogla\u0161avanja (advertisements), ali ne mo\u017ee da zahteva dodatne podatke od ure\u0111aja, \u0161to \u0107e uticati na otkrivanje i funkcionalnost ure\u0111aja.\n\n**Potrebna je ru\u010dna intervencija:**  \n1. **Isklju\u010dite USB adapter**  \n2. Sa\u010dekajte 5 sekundi  \n3. **Ponovo ga uklju\u010dite**  \n4. Sa\u010dekajte da Home Assistant detektuje adapter  \n\nAko problem ostane i nakon ponovnog uklju\u010divanja:  \n- Probajte drugi USB port  \n- Proverite a\u017euriranja kernela/firmvera  \n- Razmislite o kori\u0161\u0107enju drugog Bluetooth adaptera",
+            "title": "Bluetooth USB adapter zahteva ru\u010dno isklju\u010divanje i uklju\u010divanje napajanja."
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Lokalni Bluetooth adapteri koji ne podr\u017eavaju pasivno skeniranje ne mogu biti pode\u0161eni.",
+            "remote_adapters_not_supported": "Bluetooth konfiguracija za udaljene adaptere nije podr\u017eana."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Re\u017eim skeniranja"
+                },
+                "data_description": {
+                    "mode": "Re\u017eim \u201eAutomatski\u201c se preporu\u010duje za ve\u0107inu konfiguracija. On \u0161tedi bateriju va\u0161ih Bluetooth ure\u0111aja, dok istovremeno brzo pronalazi nove ure\u0111aje i a\u017euriranja."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Aktivno (tro\u0161i vi\u0161e baterije ure\u0111aja, najbr\u017ea a\u017euriranja)",
+                "auto": "Automatski (preporu\u010deno, \u0161tedi bateriju ure\u0111aja)",
+                "passive": "Pasivno (najmanja potro\u0161nja baterije ure\u0111aja, neki detalji mogu nedostajati)"
+            }
+        }
+    }
+}

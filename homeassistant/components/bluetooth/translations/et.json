@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Teenus on juba h\u00e4\u00e4lestatud",
+            "no_adapters": "Konfigureerimata Bluetoothi adaptereid ei leitud."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "Kas seadistada {name} ?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adapter"
+                },
+                "description": "Vali seadistamiseks Bluetooth-adapter"
+            },
+            "single_adapter": {
+                "description": "Kas seadistada Bluetoothi adapter {name} {manufacturer} {model} ?"
+            },
+            "user": {
+                "data": {
+                    "address": "Seade"
+                },
+                "description": "Vali h\u00e4\u00e4lestatav seade"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "Bluetooth-adapter **{adapter}** ({model}) t\u00f6\u00f6tab halvenenud re\u017eiimis, sest konteiner vajab Bluetooth-riistvarale t\u00e4ielikuks juurdep\u00e4\u00e4suks t\u00e4iendavaid \u00f5igusi.\n\nJ\u00e4rgi vajalike \u00f5iguste lisamiseks meie dokumentatsiooni juhiseid: [Bluetooth permissions for Docker]({docs_url}) \n\nP\u00e4rast nende \u00f5iguste lisamist k\u00e4ivita Home Assistanti konteiner uuesti, et muudatused j\u00f5ustuksid.",
+            "title": "Bluetooth-adapter n\u00f5uab t\u00e4iendavaid \u00f5igusi"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "Bluetooth-adapter ** {adapter} ** ( {model} ) on passiivsesse skannimisre\u017eiimi kinni j\u00e4\u00e4nud hoolimata aktiivse skannimisre\u017eiimi taotlemisest. **Automaatset taastamist prooviti kuid see eba\u00f5nnestus.** See on t\u00f5en\u00e4oliselt kerneli, p\u00fcsivara v\u00f5i operatsioonis\u00fcsteemi probleem ning adapteri taastamiseks on vaja t\u00e4ielikku toitets\u00fcklit. \n \n Passiivses re\u017eiimis saab adapter vastu v\u00f5tta ainult reklaame, kuid ei saa seadmetelt lisaandmeid taotleda, mis m\u00f5jutab seadmete tuvastamist ja funktsionaalsust. \n \n **N\u00f5utav k\u00e4sitsi sekkumine:** \n 1. **L\u00fclita s\u00fcsteem t\u00e4ielikult v\u00e4lja** (mitte ainult taask\u00e4ivita) \n 2. **Eemalda toide** (eemalda pistik pistikupesast v\u00f5i l\u00fclita s\u00fcsteem v\u00e4lja) \n 3. Oota 10 sekundit \n 4. Taasta toide ja taask\u00e4ivita s\u00fcsteem \n \n Kui probleem p\u00fcsib p\u00e4rast toite ts\u00fcklit: \n - Kontrolli kerneli/p\u00fcsivara v\u00e4rskendusi \n - Integreeritud Bluetooth-adapteril v\u00f5ib olla riistvaraprobleeme",
+            "title": "Bluetooth-adapter n\u00f5uab s\u00fcsteemi toitets\u00fcklit"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "Bluetooth-adapter ** {adapter} ** ( {model} ) on passiivseses skannimisre\u017eiimi kinni j\u00e4\u00e4nud hoolimata aktiivse skannimisre\u017eiimi taotlemisest. **Automaatset taastamist prooviti kuid see eba\u00f5nnestus.** See on t\u00f5en\u00e4oliselt kerneli, p\u00fcsivara v\u00f5i operatsioonis\u00fcsteemi probleem ning adapteri taastamiseks on vaja k\u00e4sitsi toite taask\u00e4ivitamist. \n \n Passiivses re\u017eiimis saab adapter vastu v\u00f5tta ainult reklaame, kuid ei saa seadmetelt lisaandmeid taotleda, mis m\u00f5jutab seadmete tuvastamist ja funktsionaalsust. \n \n **N\u00f5utav on k\u00e4sitsi sekkumine:** \n 1. **\u00dchenda USB-adapter lahti** \n 2. Oodake 5 sekundit \n 3. **\u00dchenda see uuesti** \n 4. Oota kuni Home Assistant adapteri tuvastab \n \n Kui probleem p\u00fcsib p\u00e4rast toite ts\u00fcklit: \n - Proovi teist USB-porti \n - Kontrolli kerneli/p\u00fcsivara v\u00e4rskendusi \n - Kaalu teise Bluetooth-adapteri kasutamist",
+            "title": "Bluetoothi USB-adapter vajab k\u00e4sitsi toite taask\u00e4ivitamist"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Kohalikke Bluetoothi adaptereid, mis ei toeta passiivset skannimist, ei saa seadistada.",
+            "remote_adapters_not_supported": "Kaugadapterite Bluetoothi \u200b\u200bkonfiguratsiooni ei toetata."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Skaneerimisre\u017eiim"
+                },
+                "data_description": {
+                    "mode": "Enamiku seadistuste puhul on soovitatav automaatne re\u017eiim. See s\u00e4\u00e4stab  Bluetooth-seadmete akut, leides samal ajal uusi seadmeid ja v\u00e4rskendusi kiiresti."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Aktiivne (kasutab rohkem seadme akut, kiireimad v\u00e4rskendused)",
+                "auto": "Automaatne (soovitatav, s\u00e4\u00e4stab seadme akut)",
+                "passive": "Passiivne (madalaim seadme akukulu, m\u00f5ned andmed v\u00f5ivad puududa)"
+            }
+        }
+    }
+}

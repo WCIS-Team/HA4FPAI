@@ -1,0 +1,141 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_event_active": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Kalender",
+            "state": {
+                "off": "Uit",
+                "on": "Aan"
+            },
+            "state_attributes": {
+                "all_day": {
+                    "name": "De hele dag",
+                    "state": {
+                        "false": "Nee",
+                        "true": "Ja"
+                    }
+                },
+                "description": {
+                    "name": "Omschrijving"
+                },
+                "end_time": {
+                    "name": "Eindtijd"
+                },
+                "location": {
+                    "name": "Locatie"
+                },
+                "message": {
+                    "name": "Bericht"
+                },
+                "start_time": {
+                    "name": "Begintijd"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_calendar_list_events": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Gebruik in plaats daarvan `calendar.get_events` die meerdere entiteiten ondersteunt. Vervang deze actie en pas je automatiseringen en scripts aan en selecteer **Verzenden** om dit probleem te sluiten.",
+                        "title": "Gebruik van verouderde actie calendar.list_events gedetecteerd"
+                    }
+                }
+            },
+            "title": "Gebruik van verouderde actie calendar.list_events gedetecteerd"
+        }
+    },
+    "services": {
+        "create_event": {
+            "description": "Voegt een nieuwe agenda-afspraak toe.",
+            "fields": {
+                "description": {
+                    "description": "Een uitgebreidere beschrijving van de gebeurtenis dan de samenvatting.",
+                    "name": "Omschrijving"
+                },
+                "end_date": {
+                    "description": "De datum waarop de gebeurtenis dat de hele dag duurt moet eindigen (exclusief).",
+                    "name": "Einddatum"
+                },
+                "end_date_time": {
+                    "description": "De datum en tijd waarop de gebeurtenis moet eindigen.",
+                    "name": "Eindtijd"
+                },
+                "in": {
+                    "description": "Dagen of weken waarin je de gebeurtenis wilt aanmaken.",
+                    "name": "In"
+                },
+                "location": {
+                    "description": "De locatie van de gebeurtenis.",
+                    "name": "Locatie"
+                },
+                "start_date": {
+                    "description": "De datum waarop de gebeurtenis, dat de hele dag duurt, moet beginnen.",
+                    "name": "Begindatum"
+                },
+                "start_date_time": {
+                    "description": "De datum en tijd waarop de gebeurtenis moet beginnen.",
+                    "name": "Begintijd"
+                },
+                "summary": {
+                    "description": "Definieert de korte samenvatting of het onderwerp voor de gebeurtenis.",
+                    "name": "Samenvatting"
+                }
+            }
+        },
+        "get_events": {
+            "fields": {
+                "duration": {
+                    "description": "Geeft actieve gebeurtenissen terug vanaf Begintijd voor de opgegeven duur.",
+                    "name": "Duur"
+                },
+                "end_date_time": {
+                    "description": "Geeft actieve gebeurtenissen voor deze tijd (exclusief). Kan niet worden gebruikt met \"Duur\".",
+                    "name": "Eindtijd"
+                },
+                "start_date_time": {
+                    "description": "Geeft actieve gebeurtenissen na deze tijd (exclusief). Indien niet ingesteld, staat deze standaard op nu.",
+                    "name": "Begintijd"
+                }
+            }
+        }
+    },
+    "title": "Kalender",
+    "triggers": {
+        "event_ended": {
+            "fields": {
+                "offset": {
+                    "name": "Verschuiving"
+                },
+                "offset_type": {
+                    "description": "Of er voor of na het einde van de gebeurtenis wordt geactiveerd, als een verschuiving is ingesteld.",
+                    "name": "Type verschuiving"
+                }
+            },
+            "name": "Agendagebeurtenis be\u00ebindigd"
+        },
+        "event_started": {
+            "fields": {
+                "offset": {
+                    "name": "Verschuiving"
+                }
+            }
+        }
+    }
+}

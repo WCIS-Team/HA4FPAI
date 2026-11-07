@@ -1,0 +1,121 @@
+{
+    "common": {
+        "condition_for_name": "Legal\u00e1bb ennyi ideig",
+        "trigger_behavior_name": "Esem\u00e9nyind\u00edt\u00f3, ha",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig"
+    },
+    "conditions": {
+        "is_value": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb sz\u00e1ml\u00e1l\u00f3 \u00e9rt\u00e9ke megfelel-e a felt\u00e9teleknek.",
+            "fields": {
+                "behavior": {
+                    "name": "Felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b t\u00edpusa"
+                }
+            },
+            "name": "Sz\u00e1ml\u00e1l\u00f3 \u00e9rt\u00e9ke"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sz\u00e1ml\u00e1l\u00f3",
+            "state_attributes": {
+                "editable": {
+                    "name": "Felhaszn\u00e1l\u00f3i fel\u00fclet \u00e1ltal kezelt",
+                    "state": {
+                        "false": "Nem",
+                        "true": "Igen"
+                    }
+                },
+                "initial": {
+                    "name": "Alap\u00e9rtelmezett \u00e9rt\u00e9k"
+                },
+                "maximum": {
+                    "name": "Maximum"
+                },
+                "minimum": {
+                    "name": "Minimum"
+                },
+                "step": {
+                    "name": "L\u00e9pt\u00e9k"
+                }
+            }
+        }
+    },
+    "services": {
+        "decrement": {
+            "description": "Egy sz\u00e1ml\u00e1l\u00f3 cs\u00f6kkent\u00e9se a l\u00e9p\u00e9sk\u00f6z \u00e9rt\u00e9k\u00e9vel.",
+            "name": "Sz\u00e1ml\u00e1l\u00f3 cs\u00f6kkent\u00e9se"
+        },
+        "increment": {
+            "description": "Egy sz\u00e1ml\u00e1l\u00f3 n\u00f6vel\u00e9se a l\u00e9p\u00e9sk\u00f6z \u00e9rt\u00e9k\u00e9vel.",
+            "name": "Sz\u00e1ml\u00e1l\u00f3 n\u00f6vel\u00e9se"
+        },
+        "reset": {
+            "description": "Egy sz\u00e1ml\u00e1l\u00f3 vissza\u00e1ll\u00edt\u00e1sa a kezdeti \u00e9rt\u00e9k\u00e9re.",
+            "name": "Sz\u00e1ml\u00e1l\u00f3 null\u00e1z\u00e1sa"
+        },
+        "set_value": {
+            "description": "A sz\u00e1ml\u00e1l\u00f3 be\u00e1ll\u00edt\u00e1sa egy adott \u00e9rt\u00e9kre.",
+            "fields": {
+                "value": {
+                    "description": "Az entit\u00e1shoz be\u00e1ll\u00edtand\u00f3 \u00faj sz\u00e1ml\u00e1l\u00f3 \u00e9rt\u00e9k.",
+                    "name": "\u00c9rt\u00e9k"
+                }
+            },
+            "name": "Sz\u00e1ml\u00e1l\u00f3 \u00e9rt\u00e9k\u00e9nek be\u00e1ll\u00edt\u00e1sa"
+        }
+    },
+    "title": "Sz\u00e1ml\u00e1l\u00f3",
+    "triggers": {
+        "decremented": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb sz\u00e1ml\u00e1l\u00f3 \u00e9rt\u00e9ke cs\u00f6kken.",
+            "name": "Sz\u00e1ml\u00e1l\u00f3 cs\u00f6kkent"
+        },
+        "incremented": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb sz\u00e1ml\u00e1l\u00f3 \u00e9rt\u00e9ke n\u00f6vekszik.",
+            "name": "Sz\u00e1ml\u00e1l\u00f3 n\u00f6vekedett"
+        },
+        "maximum_reached": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb sz\u00e1ml\u00e1l\u00f3 el\u00e9ri a maxim\u00e1lis \u00e9rt\u00e9k\u00e9t.",
+            "fields": {
+                "behavior": {
+                    "name": "Esem\u00e9nyind\u00edt\u00f3, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Sz\u00e1ml\u00e1l\u00f3 el\u00e9rte a maximumot"
+        },
+        "minimum_reached": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb sz\u00e1ml\u00e1l\u00f3 el\u00e9ri a minim\u00e1lis \u00e9rt\u00e9k\u00e9t.",
+            "fields": {
+                "behavior": {
+                    "name": "Esem\u00e9nyind\u00edt\u00f3, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Sz\u00e1ml\u00e1l\u00f3 el\u00e9rte a minimumot"
+        },
+        "reset": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb sz\u00e1ml\u00e1l\u00f3t alaphelyzetbe \u00e1ll\u00edtanak.",
+            "fields": {
+                "behavior": {
+                    "name": "Esem\u00e9nyind\u00edt\u00f3, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Sz\u00e1ml\u00e1l\u00f3 null\u00e1zva"
+        }
+    }
+}

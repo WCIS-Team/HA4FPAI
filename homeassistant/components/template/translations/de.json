@@ -1,0 +1,1255 @@
+{
+    "common": {
+        "additional_options": "Zus\u00e4tzliche Optionen",
+        "availability": "Verf\u00fcgbarkeit",
+        "availability_description": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig.",
+        "code_format": "Code-Format",
+        "device_class": "Ger\u00e4teklasse",
+        "device_id_description": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+        "state": "Zustand",
+        "temperature_unit": "Temperatureinheit",
+        "temperature_unit_description": "Die Einheit f\u00fcr jede Temperatur-Ausgabe des Templates. M\u00f6gliche Werte: `\u00b0C`, `\u00b0F` oder `K`.",
+        "turn_off": "Aktionen bei Ausschalten",
+        "turn_on": "Aktionen bei Einschalten",
+        "unit_of_measurement": "Ma\u00dfeinheit"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Aktionen bei Aktivieren im Abwesendmodus",
+                    "arm_custom_bypass": "Aktionen bei Aktivieren mit Bypass",
+                    "arm_home": "Aktionen bei Aktivieren im Zuhausemodus",
+                    "arm_night": "Aktionen bei Aktivieren im Nachtmodus",
+                    "arm_vacation": "Aktionen bei Aktivieren im Urlaubsmodus",
+                    "code_arm_required": "Code f\u00fcr Aktivierung erforderlich",
+                    "code_format": "Code-Format",
+                    "device_id": "Ger\u00e4t",
+                    "disarm": "Aktionen bei Deaktivieren",
+                    "name": "Name",
+                    "trigger": "Aktionen bei Ausl\u00f6sen",
+                    "value_template": "Zustand"
+                },
+                "data_description": {
+                    "arm_away": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_away` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_custom_bypass": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_custom_bypass` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_home": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_home` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_night": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_night` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_vacation": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_vacation` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "code_arm_required": "Wenn aktiviert, ist der Code erforderlich, um die Alarmzentrale zu aktivieren.",
+                    "code_format": "Entweder `number`, `text` oder `no_code`. Format f\u00fcr den Code, der zum Aktivieren/Deaktivieren der Alarmzentrale verwendet wird.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "disarm": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale deaktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "trigger": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale ausgel\u00f6st wird. Empf\u00e4ngt die Variable `code`.",
+                    "value_template": "Definiert ein Template zum Einstellen des Zustands der Alarmzentrale. G\u00fcltige Ausgabewerte des Template sind `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` und `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Alarmzentrale-Template"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "state": "Zustand"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "state": "Der Sensor ist 'on`, wenn das Template als `True`, `yes`, `on`, `enable` oder eine positive Zahl ausgewertet wird. Jeder andere Wert wird als `off` ausgewertet."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit",
+                            "delay_off": "Verz\u00f6gerung aus",
+                            "delay_on": "Verz\u00f6gerung ein"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig.",
+                            "delay_off": "Die Zeitspanne, in der der Template-Zustand nicht erf\u00fcllt sein darf, bevor dieser Sensor auf `off` schaltet.",
+                            "delay_on": "Die Zeitspanne, in der der Template-Zustand erf\u00fcllt sein muss, bevor dieser Sensor auf `on` schaltet."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Bin\u00e4rsensor-Template"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "press": "Aktionen bei Dr\u00fccken"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "press": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Taste gedr\u00fcckt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Tasten-Template"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Ist-Temperatur",
+                    "device_id": "Ger\u00e4t",
+                    "hvac_action": "Aktuelle Aktion",
+                    "hvac_mode": "HLK-Betriebsart",
+                    "hvac_modes": "HLK-Betriebsarten",
+                    "name": "Name",
+                    "set_hvac_mode": "Aktionen bei Einstellen der HLK-Betriebsart",
+                    "set_temperature": "Aktionen bei Einstellen der Temperatur",
+                    "target_temperature": "Soll-Temperatur",
+                    "temperature_unit": "Temperatureinheit"
+                },
+                "data_description": {
+                    "current_temperature": "Definiert ein Template f\u00fcr die Ist-Temperatur.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "hvac_action": "Definiert ein Template f\u00fcr die aktuelle HLK-Aktion. G\u00fcltige HLK-Aktionen sind `cooling`, `defrosting`, `drying`, `fan`, `heating`, `idle`, `off` und `preheating`.",
+                    "hvac_mode": "Definiert ein Template f\u00fcr die aktuelle HLK-Betriebsart. G\u00fcltige HLK-Betriebsarten sind `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` und `off`.",
+                    "hvac_modes": "Definiert ein Template f\u00fcr eine Liste verf\u00fcgbarer HLK-Betriebsarten. G\u00fcltige HLK-Betriebsarten f\u00fcr die Liste sind `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` und `off`.",
+                    "set_hvac_mode": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Klimaanlage der Befehl `set_hvac_mode` gesendet wird. Empf\u00e4ngt die Variable `hvac_mode`.",
+                    "set_temperature": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Klimaanlage der Befehl `set_temperature` gesendet wird. Empf\u00e4ngt die Variablen `hvac_mode`, `temperature`, `target_temp_high` und `target_temp_low`. Wird `hvac_mode` empfangen, werden die Aktionen unter `set_hvac_mode` vor den Aktionen unter `set_temperature` ausgef\u00fchrt.",
+                    "target_temperature": "Definiert ein Template f\u00fcr die Soll-Temperatur.",
+                    "temperature_unit": "Die Einheit f\u00fcr jede Temperatur-Ausgabe des Templates. M\u00f6gliche Werte: `\u00b0C`, `\u00b0F` oder `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit",
+                            "max_temperature": "Maximale Soll-Temperatur",
+                            "min_temperature": "Minimale Soll-Temperatur"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Thermostat-Template"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Aktionen bei Schlie\u00dfen",
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "open_cover": "Aktionen bei \u00d6ffnen",
+                    "position": "Position",
+                    "set_cover_position": "Aktionen bei Einstellen der Position",
+                    "state": "Zustand",
+                    "stop_cover": "Aktionen bei Stoppen"
+                },
+                "data_description": {
+                    "close_cover": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung geschlossen wird.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "open_cover": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung ge\u00f6ffnet wird.",
+                    "position": "Definiert ein Template, um die Position der Abdeckung zu ermitteln. Werte sind Zahlen zwischen `0` (`closed`) und `100` (`open`).",
+                    "set_cover_position": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung den Befehl `set_cover_position` erh\u00e4lt. Empf\u00e4ngt die Variable `position`.",
+                    "state": "Definiert ein Template, um den Zustand der Abdeckung zu ermitteln. G\u00fcltige Ausgabewerte des Templates sind `open`, `opening`, `closing` und `closed`, die direkt auf die entsprechenden Zust\u00e4nde abgebildet werden. Wenn sowohl ein Zustand als auch eine Position angegeben werden, werden nur `opening` und `closing` vom Zustandstemplate gesetzt.",
+                    "stop_cover": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung gestoppt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Abdeckung-Template"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "in_zones": "Zonen",
+                    "latitude": "Breitengrad",
+                    "longitude": "L\u00e4ngengrad",
+                    "name": "Name"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "in_zones": "Definiert ein Template, das eine Liste der Zonen zur\u00fcckgibt, in denen sich der Ger\u00e4te-Tracker gerade befindet. Das Template sollte eine Liste von Zonen-Entit\u00e4ts-IDs zur\u00fcckgeben. Befindet sich der Ger\u00e4te-Tracker in keiner Zone, sollte das Template eine leere Liste zur\u00fcckgeben.",
+                    "latitude": "Definiert ein Template, um den Breitengrad des Ger\u00e4te-Trackers zu ermitteln. G\u00fcltige Werte sind Zahlen zwischen `-90` und `90`.",
+                    "longitude": "Definiert ein Template, um den L\u00e4ngengrad des Ger\u00e4te-Trackers zu ermitteln. G\u00fcltige Werte sind Zahlen zwischen `-180` und `180`.",
+                    "name": "Name"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit",
+                            "location_accuracy": "Standortgenauigkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig.",
+                            "location_accuracy": "Definiert ein Template, um die Genauigkeit der Position des Ger\u00e4te-Trackers in Metern zu ermitteln. G\u00fcltige Werte sind Zahlen gr\u00f6\u00dfer oder gleich `0`."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Ger\u00e4te-Tracker-Template"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "event_type": "Letzter ausgel\u00f6ster Ereignistyp",
+                    "event_types": "Ereignistypen",
+                    "name": "Name"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "event_type": "Definiert ein Template f\u00fcr den Typ des Ereignisses.",
+                    "event_types": "Definiert ein Template f\u00fcr eine Liste verf\u00fcgbarer Ereignistypen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Ereignis-Template"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "percentage": "Prozentsatz",
+                    "set_percentage": "Aktionen bei Einstellen des Prozentsatzes",
+                    "speed_count": "Geschwindigkeitsstufen",
+                    "state": "Zustand",
+                    "turn_off": "Aktionen bei Ausschalten",
+                    "turn_on": "Aktionen bei Einschalten"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "percentage": "Definiert ein Template, um den Drehzahlprozentsatz des Ventilators abzurufen.",
+                    "set_percentage": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Ventilator einen Befehl f\u00fcr den Drehzahlprozentsatz erh\u00e4lt. Empf\u00e4ngt die Variable `percentage`.",
+                    "speed_count": "Die Anzahl der vom Ventilator unterst\u00fctzten Geschwindigkeitsstufen. Wird verwendet, um den Prozentschritt f\u00fcr die Aktionen `fan.increase_speed` und `fan.decrease_speed` zu berechnen.",
+                    "state": "Der Ventilator ist `on`, wenn das Template als `True`, `yes`, `on`, `enable` oder eine positive Zahl ausgewertet wird. Jeder andere Wert wird als `off` ausgewertet.",
+                    "turn_off": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Ventilator ausgeschaltet wird.",
+                    "turn_on": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Ventilator eingeschaltet wird. Empf\u00e4ngt die Variablen `percentage` und/oder `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Ventilator-Template"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "url": "URL",
+                    "verify_ssl": "SSL-Zertifikat \u00fcberpr\u00fcfen"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "url": "Definiert ein Template zum Abrufen der URL, unter der das Bild bereitgestellt wird.",
+                    "verify_ssl": "Aktiviert oder deaktiviert die SSL-Zertifikats\u00fcberpr\u00fcfung. Deaktiviere diese Option, um eine http-URL zu verwenden, oder wenn du \u00fcber ein selbstsigniertes SSL-Zertifikat verf\u00fcgst und das CA-Zertifikat nicht installiert hast, um die \u00dcberpr\u00fcfung zu aktivieren."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Bild-Template"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "hs": "HS-Farbe",
+                    "level": "Helligkeitsstufe",
+                    "name": "Name",
+                    "set_hs": "Aktionen bei Einstellen der HS-Farbe",
+                    "set_level": "Aktionen bei Einstellen der Helligkeit",
+                    "set_temperature": "Aktionen bei Einstellen der Farbtemperatur",
+                    "state": "Zustand",
+                    "temperature": "Farbtemperatur",
+                    "turn_off": "Aktionen bei Ausschalten",
+                    "turn_on": "Aktionen bei Einschalten"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "hs": "Definiert ein Template zum Abrufen der HS-Farbe der Leuchte. Muss ein Tupel (Farbton, S\u00e4ttigung) wiedergeben.",
+                    "level": "Definiert ein Template zum Abrufen der Helligkeit der Leuchte. G\u00fcltige Werte sind 0 bis 255.",
+                    "set_hs": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte einen HS-Farbbefehl erh\u00e4lt. Verf\u00fcgbare Variablen: `hs` als Tupel, `h` und `s`.",
+                    "set_level": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte einen Helligkeitsbefehl erh\u00e4lt. Das Skript wird nur aufgerufen, wenn der `turn_on` Aufruf nur `brightness` und optional `transition` enth\u00e4lt. Empf\u00e4ngt die Variablen `brightness` und, optional, `transition`.",
+                    "set_temperature": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte einen Farbtemperaturbefehl erh\u00e4lt. Empf\u00e4ngt die Variable `color_temp_kelvin`. Kann auch die Variablen `brightness` und/oder `transition` erhalten.",
+                    "state": "Die Leuchte ist `on`, wenn das Template `True`, `yes`, `on`, `enable` oder eine positive Zahl ergibt. Jeder andere Wert f\u00fchrt zu `off`.",
+                    "temperature": "Definiert ein Template, um die Farbtemperatur der Leuchte abzurufen.",
+                    "turn_off": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte ausgeschaltet wird.",
+                    "turn_on": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte eingeschaltet wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Leuchten-Template"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Code-Format",
+                    "device_id": "Ger\u00e4t",
+                    "lock": "Aktionen bei Verriegeln",
+                    "name": "Name",
+                    "open": "Aktionen bei \u00d6ffnen",
+                    "state": "Zustand",
+                    "unlock": "Aktionen bei Entriegeln"
+                },
+                "data_description": {
+                    "code_format": "Definiert ein Template, um das Attribut `code_format` des Schlosses abzurufen.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "lock": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Schloss verriegelt wird.",
+                    "open": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Schloss ge\u00f6ffnet wird.",
+                    "state": "Definiert ein Template, um den Zustand des Schlosses festzulegen. Das Schloss ist verriegelt, wenn das Template als `True`, `true`, `on`, oder `locked` ausgewertet wird. Das Schloss ist entriegelt, wenn das Template als `False`, `false`, `off` oder `unlocked` ausgewertet wird. Andere g\u00fcltige Zust\u00e4nde sind `jammed`, `opening`, `locking`, `open` und `unlocking`.",
+                    "unlock": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Schloss entriegelt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Schloss-Template"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "max": "Maximalwert",
+                    "min": "Minimalwert",
+                    "name": "Name",
+                    "set_value": "Aktionen bei Einstellen des Wertes",
+                    "state": "Zustand",
+                    "step": "Schrittwert",
+                    "unit_of_measurement": "Ma\u00dfeinheit"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "max": "Definiert den Maximalwert der Zahl.",
+                    "min": "Definiert den Minimalwert der Zahl.",
+                    "set_value": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Zahl ein Wert zugewiesen wird. Empf\u00e4ngt die Variable `value`.",
+                    "state": "Template f\u00fcr den aktuellen Wert der Zahl.",
+                    "step": "Definiert den Inkrement-/Dekrementschritt der Zahl.",
+                    "unit_of_measurement": "Definiert die Ma\u00dfeinheit der Zahl, sofern vorhanden."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Zahlenwert-Template"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "options": "Verf\u00fcgbare Optionen",
+                    "select_option": "Aktionen bei Ausw\u00e4hlen",
+                    "state": "Zustand"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "options": "Template f\u00fcr die verf\u00fcgbaren Optionen der Auswahl.",
+                    "select_option": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald eine `option` von der `options`-Liste ausgew\u00e4hlt wird. Empf\u00e4ngt die Variable `option`.",
+                    "state": "Template f\u00fcr den aktuellen Wert der Auswahl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Auswahl-Template"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "state": "Zustand",
+                    "state_class": "Zustandsklasse",
+                    "unit_of_measurement": "Ma\u00dfeinheit"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "state": "Definiert ein Template, um den Zustand des Sensors zu ermitteln. Wenn der Sensor numerisch ist, d.h. er hat eine `state_class` oder eine `unit_of_measurement`, muss das Zustandstemplate eine Zahl oder `none` ausgeben. Das Zustandstemplate darf keine Zeichenkette wiedergeben, einschlie\u00dflich `unknown` oder `unavailable`. Ein `availability`-Template kann definiert werden, um die Auswertung des Zustandstemplates zu unterdr\u00fccken.",
+                    "unit_of_measurement": "Definiert die Ma\u00dfeinheit f\u00fcr den Sensor, sofern vorhanden. Dadurch wird der Wert auch basierend auf der Zahlenformat-Einstellung im Benutzerprofil angezeigt und die grafische Darstellung in der Verlaufsvisualisierung als kontinuierlicher Wert beeinflusst."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Sensor-Template"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "turn_off": "Aktionen bei Ausschalten",
+                    "turn_on": "Aktionen bei Einschalten",
+                    "value_template": "Zustand"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "turn_off": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Schalter ausgeschaltet wird.",
+                    "turn_on": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Schalter eingeschaltet wird.",
+                    "value_template": "Definiert ein Template zum Festlegen des Schalter-Zustands. Wenn nicht definiert, geht der Schalter optimistisch davon aus, dass alle Befehle erfolgreich sind."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Schalter-Template"
+            },
+            "update": {
+                "data": {
+                    "backup": "Backup",
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "in_progress": "In Arbeit",
+                    "install": "Aktionen bei Installation",
+                    "installed_version": "Installierte Version",
+                    "latest_version": "Neueste Version",
+                    "name": "Name",
+                    "release_summary": "Release-Zusammenfassung",
+                    "release_url": "Release-URL",
+                    "specific_version": "Spezifische Version",
+                    "title": "Titel",
+                    "update_percentage": "Update-Prozentsatz"
+                },
+                "data_description": {
+                    "backup": "Aktiviert oder deaktiviert die Option`automatic backup before update` in der Update-Reparatur. Wenn diese Option deaktiviert ist, liefert die Variable `backup` w\u00e4hrend der `install`-Aktion immer `False` und die `backup`-Option wird nicht akzeptiert.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "in_progress": "Definiert ein Template zum Abrufen des \u201eIn Arbeit\u201c-Zustands.",
+                    "install": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Update installiert wird. Empf\u00e4ngt die Variablen `specific_version` und `backup`, wenn aktiviert.",
+                    "installed_version": "Definiert ein Template zum Abrufen der installierten Version.",
+                    "latest_version": "Definiert ein Template zum Abrufen der neuesten Version.",
+                    "release_summary": "Definiert ein Template zum Abrufen der Release-Zusammenfassung.",
+                    "release_url": "Definiert ein Template zum Abrufen der Release-URL.",
+                    "specific_version": "Aktiviert oder deaktiviert die Verwendung der Variable `version` mit der Aktion `install`. Wenn deaktiviert, liefert die Variable `specific_version` in den `install`-Aktionen immer `None`",
+                    "title": "Definiert ein Template zum Abrufen des Update-Titels.",
+                    "update_percentage": "Definiert ein Template zum Abrufen des Prozentsatzes des Update-Fortschritts."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Update-Template"
+            },
+            "user": {
+                "description": "Dieser Helfer erlaubt dir, Helfer-Entit\u00e4ten zu erstellen, die ihren Zustand mithilfe eines Templates bestimmen. Welche Art von Template m\u00f6chtest du erstellen?",
+                "menu_options": {
+                    "alarm_control_panel": "Alarmzentrale",
+                    "binary_sensor": "Bin\u00e4rsensor",
+                    "button": "Taste",
+                    "climate": "Klima",
+                    "cover": "Abdeckung",
+                    "device_tracker": "Ger\u00e4te-Tracker",
+                    "event": "Ereignis",
+                    "fan": "Ventilator",
+                    "image": "Bild",
+                    "light": "Leuchte",
+                    "lock": "Schloss",
+                    "number": "Zahl",
+                    "select": "Auswahl",
+                    "sensor": "Sensor",
+                    "switch": "Schalter",
+                    "update": "Update",
+                    "vacuum": "Staubsauger",
+                    "weather": "Wetter"
+                },
+                "title": "Template-Helfer"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Aktionen bei 'Fleck reinigen'",
+                    "device_id": "Ger\u00e4t",
+                    "fan_speed": "Saugkraft",
+                    "fan_speeds": "Saugkraft-Stufen",
+                    "locate": "Aktionen bei Ortung",
+                    "name": "Name",
+                    "pause": "Aktionen bei Pausieren",
+                    "return_to_base": "Aktionen bei R\u00fcckkehr zur Ladestation",
+                    "set_fan_speed": "Aktionen bei Einstellen der Saugkraft",
+                    "start": "Aktionen bei Starten",
+                    "state": "Zustand",
+                    "stop": "Aktionen bei Stoppen"
+                },
+                "data_description": {
+                    "clean_spot": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen 'Fleck reinigen'-Befehl erh\u00e4lt.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "fan_speed": "Definiert ein Template zum Abrufen der Saugkraft des Staubsaugers.",
+                    "fan_speeds": "Liste der vom Staubsauger unterst\u00fctzten Saugkraftstufen.",
+                    "locate": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen 'Orten'-Befehl erh\u00e4lt.",
+                    "pause": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger pausiert wird.",
+                    "return_to_base": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen 'Zur\u00fcck zur Ladestation'-Befehl erh\u00e4lt.",
+                    "set_fan_speed": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen Befehl zur Einstellung der Saugkraft erh\u00e4lt. Empf\u00e4ngt die Variable `fan_speed`.",
+                    "start": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger gestartet wird.",
+                    "state": "Definiert ein Template zum Abrufen des Zustands des Staubsaugers. G\u00fcltige Werte sind `cleaning`, `docked`, `idle`, `paused`, `returning` und `error`.",
+                    "stop": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger gestoppt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Staubsauger-Template"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Bedingungen",
+                    "device_id": "Ger\u00e4t",
+                    "forecast_daily": "Vorhersage t\u00e4glich",
+                    "forecast_hourly": "Vorhersage st\u00fcndlich",
+                    "humidity": "Luftfeuchtigkeit",
+                    "name": "Name",
+                    "temperature": "Temperatur",
+                    "temperature_unit": "Temperatureinheit"
+                },
+                "data_description": {
+                    "condition": "Definiert ein Template, um die aktuellen Wetterbedingungen abzurufen.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "forecast_daily": "Definiert ein Template, um die [t\u00e4glichen Prognosedaten]({daily_link}) abzurufen",
+                    "forecast_hourly": "Definiert ein Template, um die [st\u00fcndlichen Prognosedaten]({hourly_link}) abzurufen",
+                    "humidity": "Definiert ein Template, um die aktuelle Luftfeuchtigkeit abzurufen.",
+                    "temperature": "Definiert ein Template, um die aktuelle Temperatur abzurufen.",
+                    "temperature_unit": "Die Einheit f\u00fcr jede Temperatur-Ausgabe des Templates. M\u00f6gliche Werte: `\u00b0C`, `\u00b0F` oder `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Wetter-Template"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Fehler beim Auswerten des Codeformat-Template \u201e{code_format_template}\u201c f\u00fcr {entity_id}:{cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "Fehler beim Neuladen der Template-Entit\u00e4ten: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "Der Template-Helfer wurde entfernt"
+                },
+                "error": {
+                    "invalid_device": "Das ausgew\u00e4hlte Ger\u00e4t existiert nicht mehr."
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Ger\u00e4t"
+                        },
+                        "data_description": {
+                            "device_id": "Das Ger\u00e4t, mit dem dieser Template-Helfer verkn\u00fcpft werden soll."
+                        },
+                        "description": "Der Template-Helfer {name} war mit einem Ger\u00e4t verkn\u00fcpft, das in mehrere Ger\u00e4te aufgeteilt wurde. Solange kein Ger\u00e4t ausgew\u00e4hlt ist, ist der Helfer mit keinem Ger\u00e4t verkn\u00fcpft.\n\nW\u00e4hle das Ger\u00e4t aus, mit dem dieser Helfer verkn\u00fcpft werden soll, oder lasse das Feld leer, um ihn nicht mit einem Ger\u00e4t zu verkn\u00fcpfen.",
+                        "title": "Ger\u00e4t ausw\u00e4hlen f\u00fcr {name}"
+                    }
+                }
+            },
+            "title": "Das Ger\u00e4t f\u00fcr den Template-Helfer {name} muss erneut ausgew\u00e4hlt werden"
+        },
+        "config_format_actions": {
+            "description": "In der Template-Konfiguration befindet sich eine Aktionsoption, die nicht mit einer Ausl\u00f6seroption gekoppelt ist. Dies f\u00fchrt zu einem Validierungsfehler der Konfiguration in 2026.5.\n\nBitte f\u00fcge der Konfiguration einen Ausl\u00f6ser hinzu oder entferne die Aktionsoption aus der Konfiguration.\n\n```\n{config}\n```",
+            "title": "Template-Aktionsoption ben\u00f6tigt einen Ausl\u00f6ser"
+        },
+        "config_format_triggers": {
+            "description": "Die Konfiguration einer Ausl\u00f6ser-Template ben\u00f6tigt einen Ausl\u00f6ser und mindestens eine Dom\u00e4ne beim Definieren einer Entit\u00e4t. Dies f\u00fchrt zu einem Validierungsfehler der Konfiguration in Home Assistant Core 2026.5.\n\nBitte entferne den verwaisten Ausl\u00f6ser aus der Konfiguration. \n\n ```\n {config}\n ```",
+            "title": "Unvollst\u00e4ndige Template-Konfiguration"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Aktionen bei Aktivieren im Abwesendmodus",
+                    "arm_custom_bypass": "Aktionen bei Aktivieren mit Bypass",
+                    "arm_home": "Aktionen bei Aktivieren im Zuhausemodus",
+                    "arm_night": "Aktionen bei Aktivieren im Nachtmodus",
+                    "arm_vacation": "Aktionen bei Aktivieren im Urlaubsmodus",
+                    "code_arm_required": "Code f\u00fcr Aktivierung erforderlich",
+                    "code_format": "Code-Format",
+                    "device_id": "Ger\u00e4t",
+                    "disarm": "Aktionen bei Deaktivieren",
+                    "trigger": "Aktionen bei Ausl\u00f6sen",
+                    "value_template": "Zustand"
+                },
+                "data_description": {
+                    "arm_away": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_away` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_custom_bypass": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_custom_bypass` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_home": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_home` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_night": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_night` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "arm_vacation": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale als `arm_vacation` aktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "code_arm_required": "Wenn aktiviert, ist der Code erforderlich, um die Alarmzentrale zu aktivieren.",
+                    "code_format": "Entweder `number`, `text` oder `no_code`. Format f\u00fcr den Code, der zum Aktivieren/Deaktivieren der Alarmzentrale verwendet wird.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "disarm": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale deaktiviert wird. Empf\u00e4ngt die Variable `code`.",
+                    "trigger": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Alarmzentrale ausgel\u00f6st wird. Empf\u00e4ngt die Variable `code`.",
+                    "value_template": "Definiert ein Template zum Einstellen des Zustands der Alarmzentrale. G\u00fcltige Ausgabewerte des Template sind `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` und `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Alarmzentrale-Template"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "state": "Zustand"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "state": "Der Sensor ist 'on`, wenn das Template als `True`, `yes`, `on`, `enable` oder eine positive Zahl ausgewertet wird. Jeder andere Wert wird als `off` ausgewertet."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit",
+                            "delay_off": "Verz\u00f6gerung aus",
+                            "delay_on": "Verz\u00f6gerung ein"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig.",
+                            "delay_off": "Die Zeitspanne, in der der Template-Zustand nicht erf\u00fcllt sein darf, bevor dieser Sensor auf `off` schaltet.",
+                            "delay_on": "Die Zeitspanne, in der der Template-Zustand erf\u00fcllt sein muss, bevor dieser Sensor auf `on` schaltet."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Bin\u00e4rsensor-Template"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "press": "Aktionen bei Dr\u00fccken"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "press": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Taste gedr\u00fcckt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Tasten-Template"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Ist-Temperatur",
+                    "device_id": "Ger\u00e4t",
+                    "hvac_action": "Aktuelle Aktion",
+                    "hvac_mode": "HLK-Betriebsart",
+                    "hvac_modes": "HLK-Betriebsarten",
+                    "name": "Name",
+                    "set_hvac_mode": "Aktionen bei Einstellen der HLK-Betriebsart",
+                    "set_temperature": "Aktionen bei Einstellen der Temperatur",
+                    "target_temperature": "Soll-Temperatur",
+                    "temperature_unit": "Temperatureinheit"
+                },
+                "data_description": {
+                    "current_temperature": "Definiert ein Template f\u00fcr die Ist-Temperatur.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "hvac_action": "Definiert ein Template f\u00fcr die aktuelle HLK-Aktion. G\u00fcltige HLK-Aktionen sind `cooling`, `defrosting`, `drying`, `fan`, `heating`, `idle`, `off` und `preheating`.",
+                    "hvac_mode": "Definiert ein Template f\u00fcr die aktuelle HLK-Betriebsart. G\u00fcltige HLK-Betriebsarten sind `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` und `off`.",
+                    "hvac_modes": "Definiert ein Template f\u00fcr eine Liste verf\u00fcgbarer HLK-Betriebsarten. G\u00fcltige HLK-Betriebsarten f\u00fcr die Liste sind `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` und `off`.",
+                    "set_hvac_mode": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Klimaanlage der Befehl `set_hvac_mode` gesendet wird. Empf\u00e4ngt die Variable `hvac_mode`.",
+                    "set_temperature": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Klimaanlage der Befehl `set_temperature` gesendet wird. Empf\u00e4ngt die Variablen `hvac_mode`, `temperature`, `target_temp_high` und `target_temp_low`. Wird `hvac_mode` empfangen, werden die Aktionen unter `set_hvac_mode` vor den Aktionen unter `set_temperature` ausgef\u00fchrt.",
+                    "target_temperature": "Definiert ein Template f\u00fcr die Soll-Temperatur.",
+                    "temperature_unit": "Die Einheit f\u00fcr jede Temperatur-Ausgabe des Templates. M\u00f6gliche Werte: `\u00b0C`, `\u00b0F` oder `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit",
+                            "max_temperature": "Maximale Soll-Temperatur",
+                            "min_temperature": "Minimale Soll-Temperatur"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Thermostat-Template"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Aktionen bei Schlie\u00dfen",
+                    "device_id": "Ger\u00e4t",
+                    "open_cover": "Aktionen bei \u00d6ffnen",
+                    "position": "Position",
+                    "set_cover_position": "Aktionen bei Einstellen der Position",
+                    "state": "Zustand",
+                    "stop_cover": "Aktionen bei Stoppen"
+                },
+                "data_description": {
+                    "close_cover": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung geschlossen wird.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "open_cover": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung ge\u00f6ffnet wird.",
+                    "position": "Definiert ein Template, um die Position der Abdeckung zu ermitteln. Werte sind Zahlen zwischen `0` (`closed`) und `100` (`open`).",
+                    "set_cover_position": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung den Befehl `set_cover_position` erh\u00e4lt. Empf\u00e4ngt die Variable `position`.",
+                    "state": "Definiert ein Template, um den Zustand der Abdeckung zu ermitteln. G\u00fcltige Ausgabewerte des Templates sind `open`, `opening`, `closing` und `closed`, die direkt auf die entsprechenden Zust\u00e4nde abgebildet werden. Wenn sowohl ein Zustand als auch eine Position angegeben werden, werden nur `opening` und `closing` vom Zustandstemplate gesetzt.",
+                    "stop_cover": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Abdeckung gestoppt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Abdeckung-Template"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "in_zones": "Zonen",
+                    "latitude": "Breitengrad",
+                    "longitude": "L\u00e4ngengrad"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "in_zones": "Definiert ein Template, das eine Liste der Zonen zur\u00fcckgibt, in denen sich der Ger\u00e4te-Tracker gerade befindet. Das Template sollte eine Liste von Zonen-Entit\u00e4ts-IDs zur\u00fcckgeben. Befindet sich der Ger\u00e4te-Tracker in keiner Zone, sollte das Template eine leere Liste zur\u00fcckgeben.",
+                    "latitude": "Definiert ein Template, um den Breitengrad des Ger\u00e4te-Trackers zu ermitteln. G\u00fcltige Werte sind Zahlen zwischen `-90` und `90`.",
+                    "longitude": "Definiert ein Template, um den L\u00e4ngengrad des Ger\u00e4te-Trackers zu ermitteln. G\u00fcltige Werte sind Zahlen zwischen `-180` und `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit",
+                            "location_accuracy": "Standortgenauigkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig.",
+                            "location_accuracy": "Definiert ein Template, um die Genauigkeit der Position des Ger\u00e4te-Trackers in Metern zu ermitteln. G\u00fcltige Werte sind Zahlen gr\u00f6\u00dfer oder gleich `0`."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Ger\u00e4te-Tracker-Template"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "event_type": "Letzter ausgel\u00f6ster Ereignistyp",
+                    "event_types": "Ereignistypen",
+                    "name": "Name"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "event_type": "Definiert ein Template f\u00fcr den Typ des Ereignisses.",
+                    "event_types": "Definiert ein Template f\u00fcr eine Liste verf\u00fcgbarer Ereignistypen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Ereignis-Template"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "percentage": "Prozentsatz",
+                    "set_percentage": "Aktionen bei Einstellen des Prozentsatzes",
+                    "speed_count": "Geschwindigkeitsstufen",
+                    "state": "Zustand",
+                    "turn_off": "Aktionen bei Ausschalten",
+                    "turn_on": "Aktionen bei Einschalten"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "percentage": "Definiert ein Template, um den Drehzahlprozentsatz des Ventilators abzurufen.",
+                    "set_percentage": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Ventilator einen Befehl f\u00fcr den Drehzahlprozentsatz erh\u00e4lt. Empf\u00e4ngt die Variable `percentage`.",
+                    "speed_count": "Die Anzahl der vom Ventilator unterst\u00fctzten Geschwindigkeitsstufen. Wird verwendet, um den Prozentschritt f\u00fcr die Aktionen `fan.increase_speed` und `fan.decrease_speed` zu berechnen.",
+                    "state": "Der Ventilator ist `on`, wenn das Template als `True`, `yes`, `on`, `enable` oder eine positive Zahl ausgewertet wird. Jeder andere Wert wird als `off` ausgewertet.",
+                    "turn_off": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Ventilator ausgeschaltet wird.",
+                    "turn_on": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Ventilator eingeschaltet wird. Empf\u00e4ngt die Variablen `percentage` und/oder `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Ventilator-Template"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "url": "URL",
+                    "verify_ssl": "SSL-Zertifikat \u00fcberpr\u00fcfen"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "url": "Definiert ein Template zum Abrufen der URL, unter der das Bild bereitgestellt wird.",
+                    "verify_ssl": "Aktiviert oder deaktiviert die SSL-Zertifikats\u00fcberpr\u00fcfung. Deaktiviere diese Option, um eine http-URL zu verwenden, oder wenn du \u00fcber ein selbstsigniertes SSL-Zertifikat verf\u00fcgst und das CA-Zertifikat nicht installiert hast, um die \u00dcberpr\u00fcfung zu aktivieren."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Bild-Template"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "hs": "HS-Farbe",
+                    "level": "Helligkeitsstufe",
+                    "name": "Name",
+                    "set_hs": "Aktionen bei Einstellen der HS-Farbe",
+                    "set_level": "Aktionen bei Einstellen der Helligkeit",
+                    "set_temperature": "Aktionen bei Einstellen der Farbtemperatur",
+                    "state": "Zustand",
+                    "temperature": "Farbtemperatur",
+                    "turn_off": "Aktionen bei Ausschalten",
+                    "turn_on": "Aktionen bei Einschalten"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "hs": "Definiert ein Template zum Abrufen der HS-Farbe der Leuchte. Muss ein Tupel (Farbton, S\u00e4ttigung) wiedergeben.",
+                    "level": "Definiert ein Template zum Abrufen der Helligkeit der Leuchte. G\u00fcltige Werte sind 0 bis 255.",
+                    "set_hs": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte einen HS-Farbbefehl erh\u00e4lt. Verf\u00fcgbare Variablen: `hs` als Tupel, `h` und `s`.",
+                    "set_level": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte einen Helligkeitsbefehl erh\u00e4lt. Das Skript wird nur aufgerufen, wenn der `turn_on` Aufruf nur `brightness` und optional `transition` enth\u00e4lt. Empf\u00e4ngt die Variablen `brightness` und, optional, `transition`.",
+                    "set_temperature": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte einen Farbtemperaturbefehl erh\u00e4lt. Empf\u00e4ngt die Variable `color_temp_kelvin`. Kann auch die Variablen `brightness` und/oder `transition` erhalten.",
+                    "state": "Die Leuchte ist `on`, wenn das Template `True`, `yes`, `on`, `enable` oder eine positive Zahl ergibt. Jeder andere Wert f\u00fchrt zu `off`.",
+                    "temperature": "Definiert ein Template, um die Farbtemperatur der Leuchte abzurufen.",
+                    "turn_off": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte ausgeschaltet wird.",
+                    "turn_on": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald die Leuchte eingeschaltet wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Leuchten-Template"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Code-Format",
+                    "device_id": "Ger\u00e4t",
+                    "lock": "Aktionen bei Verriegeln",
+                    "open": "Aktionen bei \u00d6ffnen",
+                    "state": "Zustand",
+                    "unlock": "Aktionen bei Entriegeln"
+                },
+                "data_description": {
+                    "code_format": "Definiert ein Template, um das Attribut `code_format` des Schlosses abzurufen.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "lock": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Schloss verriegelt wird.",
+                    "open": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Schloss ge\u00f6ffnet wird.",
+                    "state": "Definiert ein Template, um den Zustand des Schlosses festzulegen. Das Schloss ist verriegelt, wenn das Template als `True`, `true`, `on`, oder `locked` ausgewertet wird. Das Schloss ist entriegelt, wenn das Template als `False`, `false`, `off` oder `unlocked` ausgewertet wird. Andere g\u00fcltige Zust\u00e4nde sind `jammed`, `opening`, `locking`, `open` und `unlocking`.",
+                    "unlock": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Schloss entriegelt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Schloss-Template"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "max": "Maximalwert",
+                    "min": "Minimalwert",
+                    "name": "Name",
+                    "set_value": "Aktionen bei Einstellen des Wertes",
+                    "state": "Zustand",
+                    "step": "Schrittwert"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "max": "Definiert den Maximalwert der Zahl.",
+                    "min": "Definiert den Minimalwert der Zahl.",
+                    "set_value": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Zahl ein Wert zugewiesen wird. Empf\u00e4ngt die Variable `value`.",
+                    "state": "Template f\u00fcr den aktuellen Wert der Zahl.",
+                    "step": "Definiert den Inkrement-/Dekrementschritt der Zahl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Zahlenwert-Template"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "options": "Verf\u00fcgbare Optionen",
+                    "select_option": "Aktionen bei Ausw\u00e4hlen",
+                    "state": "Zustand"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "options": "Template f\u00fcr die verf\u00fcgbaren Optionen der Auswahl.",
+                    "select_option": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald eine `option` von der `options`-Liste ausgew\u00e4hlt wird. Empf\u00e4ngt die Variable `option`.",
+                    "state": "Template f\u00fcr den aktuellen Wert der Auswahl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Auswahl-Template"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "state": "Zustand",
+                    "state_class": "Zustandsklasse",
+                    "unit_of_measurement": "Ma\u00dfeinheit"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "state": "Definiert ein Template, um den Zustand des Sensors zu ermitteln. Wenn der Sensor numerisch ist, d.h. er hat eine `state_class` oder eine `unit_of_measurement`, muss das Zustandstemplate eine Zahl oder `none` ausgeben. Das Zustandstemplate darf keine Zeichenkette wiedergeben, einschlie\u00dflich `unknown` oder `unavailable`. Ein `availability`-Template kann definiert werden, um die Auswertung des Zustandstemplates zu unterdr\u00fccken.",
+                    "unit_of_measurement": "Definiert die Ma\u00dfeinheit f\u00fcr den Sensor, sofern vorhanden. Dadurch wird der Wert auch basierend auf der Zahlenformat-Einstellung im Benutzerprofil angezeigt und die grafische Darstellung in der Verlaufsvisualisierung als kontinuierlicher Wert beeinflusst."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Sensor-Template"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Ger\u00e4t",
+                    "name": "Name",
+                    "turn_off": "Aktionen bei Ausschalten",
+                    "turn_on": "Aktionen bei Einschalten",
+                    "value_template": "Zustand"
+                },
+                "data_description": {
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "turn_off": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Schalter ausgeschaltet wird.",
+                    "turn_on": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Schalter eingeschaltet wird.",
+                    "value_template": "Definiert ein Template zum Festlegen des Schalter-Zustands. Wenn nicht definiert, geht der Schalter optimistisch davon aus, dass alle Befehle erfolgreich sind."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Schalter-Template"
+            },
+            "update": {
+                "data": {
+                    "backup": "Backup",
+                    "device_class": "Ger\u00e4teklasse",
+                    "device_id": "Ger\u00e4t",
+                    "in_progress": "In Arbeit",
+                    "install": "Aktionen bei Installation",
+                    "installed_version": "Installierte Version",
+                    "latest_version": "Neueste Version",
+                    "name": "Name",
+                    "release_summary": "Release-Zusammenfassung",
+                    "release_url": "Release-URL",
+                    "specific_version": "Spezifische Version",
+                    "title": "Titel",
+                    "update_percentage": "Update-Prozentsatz"
+                },
+                "data_description": {
+                    "backup": "Aktiviert oder deaktiviert die Option`automatic backup before update` in der Update-Reparatur. Wenn diese Option deaktiviert ist, liefert die Variable `backup` w\u00e4hrend der `install`-Aktion immer `False` und die `backup`-Option wird nicht akzeptiert.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "in_progress": "Definiert ein Template zum Abrufen des \u201eIn Arbeit\u201c-Zustands.",
+                    "install": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald das Update installiert wird. Empf\u00e4ngt die Variablen `specific_version` und `backup`, wenn aktiviert.",
+                    "installed_version": "Definiert ein Template zum Abrufen der installierten Version.",
+                    "latest_version": "Definiert ein Template zum Abrufen der neuesten Version.",
+                    "release_summary": "Definiert ein Template zum Abrufen der Release-Zusammenfassung.",
+                    "release_url": "Definiert ein Template zum Abrufen der Release-URL.",
+                    "specific_version": "Aktiviert oder deaktiviert die Verwendung der Variable `version` mit der Aktion `install`. Wenn deaktiviert, liefert die Variable `specific_version` in den `install`-Aktionen immer `None`",
+                    "title": "Definiert ein Template zum Abrufen des Update-Titels.",
+                    "update_percentage": "Definiert ein Template zum Abrufen des Prozentsatzes des Update-Fortschritts."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Update-Template"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Aktionen bei 'Fleck reinigen'",
+                    "device_id": "Ger\u00e4t",
+                    "fan_speed": "Saugkraft",
+                    "fan_speeds": "Saugkraft-Stufen",
+                    "locate": "Aktionen bei Ortung",
+                    "name": "Name",
+                    "pause": "Aktionen bei Pausieren",
+                    "return_to_base": "Aktionen bei R\u00fcckkehr zur Ladestation",
+                    "set_fan_speed": "Aktionen bei Einstellen der Saugkraft",
+                    "start": "Aktionen bei Starten",
+                    "state": "Zustand",
+                    "stop": "Aktionen bei Stoppen"
+                },
+                "data_description": {
+                    "clean_spot": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen 'Fleck reinigen'-Befehl erh\u00e4lt.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "fan_speed": "Definiert ein Template zum Abrufen der Saugkraft des Staubsaugers.",
+                    "fan_speeds": "Liste der vom Staubsauger unterst\u00fctzten Saugkraftstufen.",
+                    "locate": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen 'Orten'-Befehl erh\u00e4lt.",
+                    "pause": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger pausiert wird.",
+                    "return_to_base": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen 'Zur\u00fcck zur Ladestation'-Befehl erh\u00e4lt.",
+                    "set_fan_speed": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger einen Befehl zur Einstellung der Saugkraft erh\u00e4lt. Empf\u00e4ngt die Variable `fan_speed`.",
+                    "start": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger gestartet wird.",
+                    "state": "Definiert ein Template zum Abrufen des Zustands des Staubsaugers. G\u00fcltige Werte sind `cleaning`, `docked`, `idle`, `paused`, `returning` und `error`.",
+                    "stop": "Definiert Aktionen, die ausgef\u00fchrt werden sollen, sobald der Staubsauger gestoppt wird."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "data_description": {
+                            "availability": "Definiert ein Template, um den Zustand `available` der Entit\u00e4t abzurufen. Wenn das Template nicht gerendert werden kann oder `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` oder eine Zahl ungleich Null zur\u00fcckgibt, ist die Entit\u00e4t `available`. Gibt das Template einen anderen Wert zur\u00fcck, ist die Entit\u00e4t `unavailable`. Wenn nicht konfiguriert, ist die Entit\u00e4t immer `available`. Beachte, dass beim Zeichenfolgenvergleich die Gro\u00df-/Kleinschreibung nicht ber\u00fccksichtigt wird; `\"TrUe\"` und `\"yEs\"` sind zul\u00e4ssig."
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Staubsauger-Template"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Bedingungen",
+                    "device_id": "Ger\u00e4t",
+                    "forecast_daily": "Vorhersage t\u00e4glich",
+                    "forecast_hourly": "Vorhersage st\u00fcndlich",
+                    "humidity": "Luftfeuchtigkeit",
+                    "name": "Name",
+                    "temperature": "Temperatur",
+                    "temperature_unit": "Temperatureinheit"
+                },
+                "data_description": {
+                    "condition": "Definiert ein Template, um die aktuellen Wetterbedingungen abzurufen.",
+                    "device_id": "W\u00e4hle ein Ger\u00e4t aus, das mit dieser Entit\u00e4t verkn\u00fcpft werden soll.",
+                    "forecast_daily": "Definiert ein Template, um die [t\u00e4glichen Prognosedaten]({daily_link}) abzurufen",
+                    "forecast_hourly": "Definiert ein Template, um die [st\u00fcndlichen Prognosedaten]({hourly_link}) abzurufen",
+                    "humidity": "Definiert ein Template, um die aktuelle Luftfeuchtigkeit abzurufen.",
+                    "temperature": "Definiert ein Template, um die aktuelle Temperatur abzurufen.",
+                    "temperature_unit": "Die Einheit f\u00fcr jede Temperatur-Ausgabe des Templates. M\u00f6gliche Werte: `\u00b0C`, `\u00b0F` oder `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Verf\u00fcgbarkeit"
+                        },
+                        "name": "Zus\u00e4tzliche Optionen"
+                    }
+                },
+                "title": "Wetter-Template"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Kein Codeformat",
+                "number": "Nummer",
+                "text": "Text"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Keine Ma\u00dfeinheit"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Firmware"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "L\u00e4dt Template-Entit\u00e4ten aus der YAML-Konfiguration nach.",
+            "name": "Template-Entit\u00e4ten neu laden"
+        }
+    }
+}

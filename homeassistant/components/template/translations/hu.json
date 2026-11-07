@@ -1,0 +1,1255 @@
+{
+    "common": {
+        "additional_options": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok",
+        "availability": "El\u00e9rhet\u0151s\u00e9gi sablon",
+        "availability_description": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott.",
+        "code_format": "K\u00f3d form\u00e1tuma",
+        "device_class": "Eszk\u00f6zoszt\u00e1ly",
+        "device_id_description": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+        "state": "\u00c1llapot",
+        "temperature_unit": "H\u0151m\u00e9rs\u00e9klet-m\u00e9rt\u00e9kegys\u00e9g",
+        "temperature_unit_description": "A h\u0151m\u00e9rs\u00e9kletet megad\u00f3 sablonok kimenet\u00e9nek m\u00e9rt\u00e9kegys\u00e9ge. Lehets\u00e9ges \u00e9rt\u00e9kek: `\u00b0C`, `\u00b0F` vagy `K`.",
+        "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+        "turn_on": "M\u0171veletek bekapcsol\u00e1skor",
+        "unit_of_measurement": "M\u00e9rt\u00e9kegys\u00e9g"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "M\u0171veletek \u201et\u00e1voll\u00e9t\u201d \u00e9les\u00edt\u00e9skor",
+                    "arm_custom_bypass": "M\u0171veletek egy\u00e9ni \u00e1thidal\u00e1skor",
+                    "arm_home": "M\u0171veletek \u201eotthon\u201d \u00e9les\u00edt\u00e9skor",
+                    "arm_night": "M\u0171veletek \u201e\u00e9jszaka\u201d \u00e9les\u00edt\u00e9skor",
+                    "arm_vacation": "M\u0171veletek \u201evak\u00e1ci\u00f3\u201d \u00e9les\u00edt\u00e9skor",
+                    "code_arm_required": "\u00c9les\u00edt\u00e9si k\u00f3d sz\u00fcks\u00e9ges",
+                    "code_format": "K\u00f3d form\u00e1tuma",
+                    "device_id": "Eszk\u00f6z",
+                    "disarm": "M\u0171veletek hat\u00e1stalan\u00edt\u00e1skor",
+                    "name": "Elnevez\u00e9s",
+                    "trigger": "M\u0171veletek riaszt\u00e1s eset\u00e9n",
+                    "value_template": "\u00c1llapot"
+                },
+                "data_description": {
+                    "arm_away": "Akkor fut le, amikor a riaszt\u00f3 \u201et\u00e1voll\u00e9t\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_custom_bypass": "Akkor fut le, amikor a riaszt\u00f3 \u201eegy\u00e9ni \u00e1thidal\u00e1s\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_home": "Akkor fut le, amikor a riaszt\u00f3 \u201eotthon\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_night": "Akkor fut le, amikor a riaszt\u00f3 \u201e\u00e9jszaka\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_vacation": "Akkor fut le, amikor a riaszt\u00f3 \u201enyaral\u00e1s\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "code_arm_required": "Ha igaz, a riaszt\u00f3 \u00e9les\u00edt\u00e9s\u00e9hez sz\u00fcks\u00e9ges a k\u00f3d.",
+                    "code_format": "A k\u00f3d form\u00e1tuma: `number`, `text` vagy `no_code`.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "disarm": "Akkor fut le, amikor a riaszt\u00f3 hat\u00e1stalan\u00edt\u00e1sra ker\u00fcl. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`.",
+                    "trigger": "Akkor fut le, amikor a riaszt\u00f3 riaszt\u00e1st ind\u00edt. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`.",
+                    "value_template": "Sablon a riaszt\u00f3 panel \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending`, `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon riaszt\u00f3 vez\u00e9rl\u0151panel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "state": "\u00c1llapot"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "state": "Az \u00e9rz\u00e9kel\u0151 akkor van \u201ebekapcsolva\u201d (`on`), ha a sablon `True`, `yes`, `on`, `enable` vagy pozit\u00edv sz\u00e1m eredm\u00e9nyt ad. B\u00e1rmely m\u00e1s \u00e9rt\u00e9k \u201ekikapcsolt\u201d (`off`) \u00e1llapotot jelent."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon",
+                            "delay_off": "Kikapcsol\u00e1si k\u00e9sleltet\u00e9s",
+                            "delay_on": "Bekapcsol\u00e1si k\u00e9sleltet\u00e9s"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott.",
+                            "delay_off": "Az az id\u0151tartam, ameddig a sablon felt\u00e9tel\u00e9nek nem szabad teljes\u00fclnie ahhoz, hogy a szenzor `off` \u00e1llapotra v\u00e1ltson.",
+                            "delay_on": "Az az id\u0151tartam, ameddig a sablon felt\u00e9tel\u00e9nek teljes\u00fclnie kell ahhoz, hogy a szenzor `on` \u00e1llapotra v\u00e1ltson."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon bin\u00e1ris \u00e9rz\u00e9kel\u0151"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "press": "Nyom\u00e1sra v\u00e9grehajtand\u00f3 m\u0171veletek"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "press": "Akkor fut le, amikor a gomb megnyom\u00e1sra ker\u00fcl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon gomb"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet",
+                    "device_id": "Eszk\u00f6z",
+                    "hvac_action": "Aktu\u00e1lis m\u0171velet",
+                    "hvac_mode": "HVAC-\u00fczemm\u00f3d",
+                    "hvac_modes": "M\u0171k\u00f6d\u00e9si m\u00f3dok",
+                    "name": "Elnevez\u00e9s",
+                    "set_hvac_mode": "M\u0171veletek HVAC-\u00fczemm\u00f3d be\u00e1ll\u00edt\u00e1sakor",
+                    "set_temperature": "M\u0171veletek h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sakor",
+                    "target_temperature": "K\u00edv\u00e1nt h\u0151m\u00e9rs\u00e9klet",
+                    "temperature_unit": "H\u0151m\u00e9rs\u00e9klet-m\u00e9rt\u00e9kegys\u00e9g"
+                },
+                "data_description": {
+                    "current_temperature": "Sablon az aktu\u00e1lis h\u0151m\u00e9rs\u00e9klethez.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "hvac_action": "Sablon az aktu\u00e1lis HVAC-m\u0171velethez. \u00c9rv\u00e9nyes HVAC-m\u0171veletek: `cooling`, `defrosting`, `drying`, `fan`, `heating`, `idle`, `off` \u00e9s `preheating`.",
+                    "hvac_mode": "Sablon az aktu\u00e1lis HVAC-\u00fczemm\u00f3dhoz. \u00c9rv\u00e9nyes HVAC-\u00fczemm\u00f3dok: `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` \u00e9s `off`.",
+                    "hvac_modes": "Sablon az el\u00e9rhet\u0151 HVAC-\u00fczemm\u00f3dok list\u00e1j\u00e1hoz. A lista \u00e9rv\u00e9nyes HVAC-\u00fczemm\u00f3djai: `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` \u00e9s `off`.",
+                    "set_hvac_mode": "Azok a m\u0171veletek, amelyek akkor futnak le, amikor a kl\u00edmaeszk\u00f6z `set_hvac_mode` parancsot kap. A `hvac_mode` v\u00e1ltoz\u00f3t kapja meg.",
+                    "set_temperature": "Azok a m\u0171veletek, amelyek akkor futnak le, amikor a kl\u00edmaeszk\u00f6z `set_temperature` parancsot kap. A `hvac_mode`, `temperature`, `target_temp_high` \u00e9s `target_temp_low` v\u00e1ltoz\u00f3kat kapja meg. Ha a `hvac_mode` \u00e9rkezik, a `set_hvac_mode` m\u0171veletek a `set_temperature` m\u0171veletei el\u0151tt futnak le.",
+                    "target_temperature": "Meghat\u00e1rozza a c\u00e9lh\u0151m\u00e9rs\u00e9klet sablonj\u00e1t.",
+                    "temperature_unit": "A h\u0151m\u00e9rs\u00e9kletet megad\u00f3 sablonok kimenet\u00e9nek m\u00e9rt\u00e9kegys\u00e9ge. Lehets\u00e9ges \u00e9rt\u00e9kek: `\u00b0C`, `\u00b0F` vagy `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon",
+                            "max_temperature": "Maxim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet",
+                            "min_temperature": "Minim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon termoszt\u00e1t"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "M\u0171veletek z\u00e1r\u00e1skor",
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "open_cover": "M\u0171veletek nyit\u00e1skor",
+                    "position": "Poz\u00edci\u00f3",
+                    "set_cover_position": "M\u0171veletek poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1sakor",
+                    "state": "\u00c1llapot",
+                    "stop_cover": "M\u0171veletek meg\u00e1ll\u00edt\u00e1skor"
+                },
+                "data_description": {
+                    "close_cover": "Akkor fut le, amikor az \u00e1rny\u00e9kol\u00f3 bez\u00e1r\u00f3dik.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "open_cover": "Akkor fut le, amikor az \u00e1rny\u00e9kol\u00f3 kiny\u00edlik.",
+                    "position": "Sablon az \u00e1rny\u00e9kol\u00f3 poz\u00edci\u00f3j\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `0` (z\u00e1rt) \u00e9s `100` (nyitott) k\u00f6z\u00f6tti sz\u00e1mokCover.",
+                    "set_cover_position": "Akkor fut le, amikor `set_cover_position` parancs \u00e9rkezik. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `position`.",
+                    "state": "Sablon az \u00e1rny\u00e9kol\u00f3 \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. A sablon \u00e9rv\u00e9nyes kimeneti \u00e9rt\u00e9kei: `open`, `opening`, `closing` \u00e9s `closed`, amelyek k\u00f6zvetlen\u00fcl a megfelel\u0151 \u00e1llapotokra k\u00e9pez\u0151dnek le. Ha az \u00e1llapot \u00e9s a poz\u00edci\u00f3 is meg van adva, az \u00e1llapotsablonb\u00f3l csak az `opening` \u00e9s a `closing` \u00e9rt\u00e9ket veszi \u00e1t a rendszer.",
+                    "stop_cover": "Akkor fut le, amikor az \u00e1rny\u00e9kol\u00f3 le\u00e1ll."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon alap\u00fa \u00e1rny\u00e9kol\u00f3."
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "in_zones": "Z\u00f3n\u00e1k",
+                    "latitude": "Sz\u00e9less\u00e9gi fok",
+                    "longitude": "Hossz\u00fas\u00e1gi fok",
+                    "name": "Elnevez\u00e9s"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "in_zones": "Meghat\u00e1roz egy sablont, amely visszaadja azon z\u00f3n\u00e1k list\u00e1j\u00e1t, amelyekben az eszk\u00f6zk\u00f6vet\u0151t jelenleg tart\u00f3zkodik. A sablonnak z\u00f3na entit\u00e1sazonos\u00edt\u00f3k list\u00e1j\u00e1t kell visszaadnia. Ha az eszk\u00f6zk\u00f6vet\u0151 nem tart\u00f3zkodik egyetlen z\u00f3n\u00e1ban sem, a sablonnak \u00fcres list\u00e1t kell visszaadnia.",
+                    "latitude": "Meghat\u00e1roz egy sablont az eszk\u00f6zk\u00f6vet\u00e9s sz\u00e9less\u00e9gi fok\u00e1nak lek\u00e9r\u00e9s\u00e9hez. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `-90` \u00e9s `90` k\u00f6z\u00f6tti sz\u00e1mok.",
+                    "longitude": "Meghat\u00e1roz egy sablont az eszk\u00f6zk\u00f6vet\u00e9s hossz\u00fas\u00e1gi fok\u00e1nak lek\u00e9r\u00e9s\u00e9hez. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `-180` \u00e9s `180` k\u00f6z\u00f6tti sz\u00e1mok.",
+                    "name": "Elnevez\u00e9s"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon",
+                            "location_accuracy": "Helymeghat\u00e1roz\u00e1s pontoss\u00e1ga"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott.",
+                            "location_accuracy": "Sablon az eszk\u00f6zk\u00f6vet\u0151 helymeghat\u00e1roz\u00e1si pontoss\u00e1g\u00e1nak lek\u00e9rdez\u00e9s\u00e9hez m\u00e9terben. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek a `0`-n\u00e1l nagyobb vagy azzal egyenl\u0151 sz\u00e1mok."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon eszk\u00f6zk\u00f6vet\u00e9s"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "event_type": "Utolj\u00e1ra kiv\u00e1ltott esem\u00e9nyt\u00edpus",
+                    "event_types": "Esem\u00e9nyt\u00edpusok",
+                    "name": "Elnevez\u00e9s"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "event_type": "Sablon az esem\u00e9ny t\u00edpus\u00e1hoz.",
+                    "event_types": "Sablon az el\u00e9rhet\u0151 esem\u00e9nyt\u00edpusok list\u00e1j\u00e1hoz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon esem\u00e9ny"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "percentage": "Sz\u00e1zal\u00e9k",
+                    "set_percentage": "M\u0171veletek sz\u00e1zal\u00e9kos sebess\u00e9g be\u00e1ll\u00edt\u00e1sakor",
+                    "speed_count": "Sebess\u00e9gek sz\u00e1ma",
+                    "state": "\u00c1llapot",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "percentage": "Sablon a ventil\u00e1tor sebess\u00e9g\u00e9nek sz\u00e1zal\u00e9kos \u00e9rt\u00e9k\u00e9hez.",
+                    "set_percentage": "Azok a m\u0171veletek, amelyek akkor futnak le, amikor a ventil\u00e1tor sebess\u00e9g\u00e9t sz\u00e1zal\u00e9kos \u00e9rt\u00e9kkel \u00e1ll\u00edtj\u00e1k be. A `percentage` v\u00e1ltoz\u00f3t kapja meg.",
+                    "speed_count": "A ventil\u00e1tor \u00e1ltal t\u00e1mogatott sebess\u00e9gek sz\u00e1ma. Ez alapj\u00e1n sz\u00e1molja ki a l\u00e9ptet\u00e9st a `fan.increase_speed` \u00e9s `fan.decrease_speed` m\u0171veletekhez.",
+                    "state": "A ventil\u00e1tor \u201ebekapcsolt\u201d \u00e1llapotban van, ha a sablon `True`, `yes`, `on`, `enable` vagy pozit\u00edv sz\u00e1m. M\u00e1s \u00e9rt\u00e9k eset\u00e9n \u201ekikapcsolt\u201d.",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor.",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor. A `percentage` \u00e9s/vagy `preset_mode` v\u00e1ltoz\u00f3t kapja meg."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon ventil\u00e1tor"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "url": "URL",
+                    "verify_ssl": "SSL-tan\u00fas\u00edtv\u00e1ny ellen\u0151rz\u00e9se"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "url": "Sablon a k\u00e9p URL-j\u00e9hez.",
+                    "verify_ssl": "SSL tan\u00fas\u00edtv\u00e1ny ellen\u0151rz\u00e9s\u00e9nek enged\u00e9lyez\u00e9se vagy letilt\u00e1sa. Letiltand\u00f3, ha HTTP-t haszn\u00e1l vagy ha az SSL tan\u00fas\u00edtv\u00e1ny saj\u00e1t al\u00e1\u00edr\u00e1s\u00fa, \u00e9s nincs telep\u00edtve a hiteles\u00edt\u00e9si l\u00e1nc."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon k\u00e9p"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "hs": "HS sz\u00edn",
+                    "level": "F\u00e9nyer\u0151szint",
+                    "name": "Elnevez\u00e9s",
+                    "set_hs": "M\u0171veletek HS sz\u00edn be\u00e1ll\u00edt\u00e1sakor",
+                    "set_level": "M\u0171veletek f\u00e9nyer\u0151 be\u00e1ll\u00edt\u00e1sakor",
+                    "set_temperature": "M\u0171veletek sz\u00ednh\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sakor",
+                    "state": "\u00c1llapot",
+                    "temperature": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "hs": "Sablon a f\u00e9ny HS sz\u00edn\u00e9hez. Egy (sz\u00edn\u00e1rnyalat, tel\u00edtetts\u00e9g) \u00e9rt\u00e9kp\u00e1rt kell visszaadnia.",
+                    "level": "Sablon a f\u00e9ny f\u00e9nyerej\u00e9hez. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: 0\u2013255.",
+                    "set_hs": "M\u0171veletek HS sz\u00edn be\u00e1ll\u00edt\u00e1sakor. V\u00e1ltoz\u00f3k: `hs` (p\u00e1r), `h`, `s`.",
+                    "set_level": "M\u0171veletek f\u00e9nyer\u0151 be\u00e1ll\u00edt\u00e1sakor. Csak akkor h\u00edv\u00f3dik meg, ha a `turn_on` csak `brightness`-t (\u00e9s opcion\u00e1lisan `transition`-t) tartalmaz. V\u00e1ltoz\u00f3k: `brightness`, `transition`.",
+                    "set_temperature": "M\u0171veletek sz\u00ednh\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sakor. V\u00e1ltoz\u00f3k: `color_temp_kelvin`, valamint opcion\u00e1lisan `brightness` \u00e9s/vagy `transition`.",
+                    "state": "A vil\u00e1g\u00edt\u00e1s \u201ebekapcsolt\u201d \u00e1llapotban van, ha a sablon `True`, `yes`, `on`, `enable` vagy pozit\u00edv sz\u00e1m. M\u00e1s \u00e9rt\u00e9k eset\u00e9n \u201ekikapcsolt\u201d.",
+                    "temperature": "Sablon a sz\u00ednh\u0151m\u00e9rs\u00e9klethez.",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon vil\u00e1g\u00edt\u00e1s"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "K\u00f3d form\u00e1tuma",
+                    "device_id": "Eszk\u00f6z",
+                    "lock": "M\u0171veletek z\u00e1rol\u00e1skor",
+                    "name": "Elnevez\u00e9s",
+                    "open": "M\u0171veletek nyit\u00e1skor",
+                    "state": "\u00c1llapot",
+                    "unlock": "M\u0171veletek felold\u00e1skor"
+                },
+                "data_description": {
+                    "code_format": "Sablon a `code_format` attrib\u00fatumhoz.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "lock": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a z\u00e1r z\u00e1rol\u00e1sra ker\u00fcl.",
+                    "open": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a z\u00e1r kinyit\u00e1sra ker\u00fcl.",
+                    "state": "Sablon a z\u00e1r \u00e1llapot\u00e1nak be\u00e1ll\u00edt\u00e1s\u00e1hoz. A z\u00e1r z\u00e1rt \u00e1llapot\u00fa, ha a sablon ki\u00e9rt\u00e9kel\u00e9se `True`, `true`, `on` vagy `locked`. A z\u00e1r nyitott \u00e1llapot\u00fa, ha a sablon ki\u00e9rt\u00e9kel\u00e9se `False`, `false`, `off` vagy `unlocked`. Tov\u00e1bbi \u00e9rv\u00e9nyes \u00e1llapotok: `jammed`, `opening`, `locking`, `open` \u00e9s `unlocking`.",
+                    "unlock": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a z\u00e1r felold\u00e1sra ker\u00fcl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon z\u00e1r"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "max": "Maxim\u00e1lis \u00e9rt\u00e9k",
+                    "min": "Minim\u00e1lis \u00e9rt\u00e9k",
+                    "name": "Elnevez\u00e9s",
+                    "set_value": "M\u0171veletek az \u00e9rt\u00e9k be\u00e1ll\u00edt\u00e1sakor",
+                    "state": "\u00c1llapot",
+                    "step": "L\u00e9p\u00e9s \u00e9rt\u00e9ke",
+                    "unit_of_measurement": "M\u00e9rt\u00e9kegys\u00e9g"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "max": "A sz\u00e1m maxim\u00e1lis \u00e9rt\u00e9k\u00e9nek meghat\u00e1roz\u00e1sa.",
+                    "min": "A sz\u00e1m minim\u00e1lis \u00e9rt\u00e9k\u00e9nek meghat\u00e1roz\u00e1sa.",
+                    "set_value": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a sz\u00e1m \u00e9rt\u00e9ke be\u00e1ll\u00edt\u00e1sra ker\u00fcl. A `value` v\u00e1ltoz\u00f3t kapja meg.",
+                    "state": "Sablon a sz\u00e1m aktu\u00e1lis \u00e9rt\u00e9k\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "step": "Meghat\u00e1rozza a sz\u00e1m n\u00f6vel\u00e9si/cs\u00f6kkent\u00e9si l\u00e9p\u00e9s\u00e9t.",
+                    "unit_of_measurement": "A sz\u00e1m m\u00e9rt\u00e9kegys\u00e9g\u00e9nek meghat\u00e1roz\u00e1sa, ha van ilyen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon sz\u00e1m"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "options": "El\u00e9rhet\u0151 lehet\u0151s\u00e9gek",
+                    "select_option": "M\u0171veletek a kiv\u00e1laszt\u00e1skor",
+                    "state": "\u00c1llapot"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "options": "Sablon a v\u00e1laszt\u00f3 el\u00e9rhet\u0151 opci\u00f3inak meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "select_option": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor egy `option` ker\u00fcl kiv\u00e1laszt\u00e1sra az `options` list\u00e1b\u00f3l. A `option` v\u00e1ltoz\u00f3t kapja meg.",
+                    "state": "Sablon a v\u00e1laszt\u00f3 aktu\u00e1lis \u00e9rt\u00e9k\u00e9hez."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon kiv\u00e1laszt\u00e1sa"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "state": "\u00c1llapot",
+                    "state_class": "\u00c1llapotoszt\u00e1ly",
+                    "unit_of_measurement": "M\u00e9rt\u00e9kegys\u00e9g"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "state": "Sablon a szenzor \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. Ha a szenzor numerikus (azaz van `state_class` vagy `unit_of_measurement` \u00e9rt\u00e9ke), a sablon eredm\u00e9ny\u00e9nek sz\u00e1mnak vagy `none` \u00e9rt\u00e9knek kell lennie. Nem lehet sz\u00f6veg, p\u00e9ld\u00e1ul `unknown` vagy `unavailable`. Az \u00e1llapotsablon v\u00e9grehajt\u00e1s\u00e1t `availability` sablon is korl\u00e1tozhatja.",
+                    "unit_of_measurement": "A szenzor m\u00e9rt\u00e9kegys\u00e9g\u00e9nek meghat\u00e1roz\u00e1sa, ha van ilyen. Ez hat\u00e1ssal van a felhaszn\u00e1l\u00f3i profilban be\u00e1ll\u00edtott sz\u00e1mform\u00e1tumra \u00e9s a t\u00f6rt\u00e9neti megjelen\u00edt\u00e9s grafikus \u00e1br\u00e1zol\u00e1s\u00e1ra is."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon \u00e9rz\u00e9kel\u0151"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor",
+                    "value_template": "\u00c1llapot"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "turn_off": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a kapcsol\u00f3 kikapcsol\u00e1sra ker\u00fcl.",
+                    "turn_on": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a kapcsol\u00f3 bekapcsol\u00e1sra ker\u00fcl.",
+                    "value_template": "Egy sablont hat\u00e1roz meg a kapcsol\u00f3 \u00e1llapot\u00e1nak be\u00e1ll\u00edt\u00e1s\u00e1hoz. Ha nincs meghat\u00e1rozva, a kapcsol\u00f3 optimista m\u00f3don felt\u00e9telezi, hogy minden parancs sikeres."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon kapcsol\u00f3"
+            },
+            "update": {
+                "data": {
+                    "backup": "Biztons\u00e1gi ment\u00e9s",
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "in_progress": "Folyamatban",
+                    "install": "M\u0171veletek telep\u00edt\u00e9skor",
+                    "installed_version": "Telep\u00edtett verzi\u00f3",
+                    "latest_version": "Leg\u00fajabb verzi\u00f3",
+                    "name": "Elnevez\u00e9s",
+                    "release_summary": "Kiad\u00e1si \u00f6sszefoglal\u00f3",
+                    "release_url": "Kiad\u00e1si URL",
+                    "specific_version": "Konkr\u00e9t verzi\u00f3",
+                    "title": "Megnevez\u00e9s",
+                    "update_percentage": "Friss\u00edt\u00e9s sz\u00e1zal\u00e9ka"
+                },
+                "data_description": {
+                    "backup": "A `friss\u00edt\u00e9s el\u0151tti automatikus biztons\u00e1gi ment\u00e9s` opci\u00f3 enged\u00e9lyez\u00e9se vagy letilt\u00e1sa a jav\u00edt\u00e1si folyamatban. Ha le van tiltva, a `backup` v\u00e1ltoz\u00f3 mindig `False` \u00e9rt\u00e9ket ad vissza a `telep\u00edt\u00e9s` m\u0171veletben, \u00e9s a `backup` opci\u00f3 nem lesz el\u00e9rhet\u0151.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "in_progress": "Sablon a folyamatban l\u00e9v\u0151 friss\u00edt\u00e9s \u00e1llapot\u00e1hoz.",
+                    "install": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a friss\u00edt\u00e9s telep\u00edt\u00e9sre ker\u00fcl. A `specific_version` \u00e9s `backup` v\u00e1ltoz\u00f3k \u00e9rkeznek, ha enged\u00e9lyezve vannak.",
+                    "installed_version": "Sablon a telep\u00edtett verzi\u00f3 meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "latest_version": "Sablon a legfrissebb verzi\u00f3 meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "release_summary": "Sablon a kiad\u00e1s \u00f6sszefoglal\u00f3j\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "release_url": "Sablon a kiad\u00e1s URL-j\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "specific_version": "A `version` v\u00e1ltoz\u00f3 haszn\u00e1lat\u00e1nak enged\u00e9lyez\u00e9se vagy tilt\u00e1sa a `telep\u00edt\u00e9s` m\u0171velet sor\u00e1n. Ha tiltott, a `specific_version` v\u00e1ltoz\u00f3 mindig `None` \u00e9rt\u00e9ket ad vissza a `telep\u00edt\u00e9s` sor\u00e1n.",
+                    "title": "Sablon a friss\u00edt\u00e9s c\u00edm\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "update_percentage": "Sablon a friss\u00edt\u00e9s el\u0151rehalad\u00e1si sz\u00e1zal\u00e9k\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon friss\u00edt\u00e9s"
+            },
+            "user": {
+                "description": "Ez a seg\u00edt\u0151 lehet\u0151v\u00e9 teszi olyan seg\u00edt\u0151 entit\u00e1sok l\u00e9trehoz\u00e1s\u00e1t, amelyek sablon haszn\u00e1lat\u00e1val hat\u00e1rozz\u00e1k meg az \u00e1llapotukat. Milyen sablont szeretne l\u00e9trehozni?",
+                "menu_options": {
+                    "alarm_control_panel": "Riaszt\u00f3 k\u00f6zpont",
+                    "binary_sensor": "Bin\u00e1ris \u00e9rz\u00e9kel\u0151",
+                    "button": "Gomb",
+                    "climate": "Kl\u00edma",
+                    "cover": "\u00c1rny\u00e9kol\u00f3",
+                    "device_tracker": "Eszk\u00f6z nyomk\u00f6vet\u0151",
+                    "event": "Esem\u00e9ny",
+                    "fan": "Ventil\u00e1tor",
+                    "image": "K\u00e9p",
+                    "light": "Vil\u00e1g\u00edt\u00e1s",
+                    "lock": "Z\u00e1r",
+                    "number": "Sz\u00e1m",
+                    "select": "Kiv\u00e1laszt\u00e1s",
+                    "sensor": "\u00c9rz\u00e9kel\u0151",
+                    "switch": "Kapcsol\u00f3",
+                    "update": "Friss\u00edt\u00e9s",
+                    "vacuum": "Porsz\u00edv\u00f3",
+                    "weather": "Id\u0151j\u00e1r\u00e1s"
+                },
+                "title": "Sablon seg\u00edt\u0151"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "M\u0171veletek folt takar\u00edt\u00e1s eset\u00e9n",
+                    "device_id": "Eszk\u00f6z",
+                    "fan_speed": "Ventil\u00e1torsebess\u00e9g",
+                    "fan_speeds": "Ventil\u00e1torsebess\u00e9gek",
+                    "locate": "M\u0171veletek helymeghat\u00e1roz\u00e1s eset\u00e9n",
+                    "name": "Elnevez\u00e9s",
+                    "pause": "M\u0171veletek sz\u00fcneteltet\u00e9s eset\u00e9n",
+                    "return_to_base": "M\u0171veletek dokkol\u00f3ra visszat\u00e9r\u00e9s eset\u00e9n",
+                    "set_fan_speed": "M\u0171veletek ventil\u00e1torsebess\u00e9g be\u00e1ll\u00edt\u00e1sakor",
+                    "start": "M\u0171veletek ind\u00edt\u00e1s eset\u00e9n",
+                    "state": "\u00c1llapot",
+                    "stop": "M\u0171veletek le\u00e1ll\u00edt\u00e1s eset\u00e9n"
+                },
+                "data_description": {
+                    "clean_spot": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 \u201eFolt takar\u00edt\u00e1s\u201d parancsot kap.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "fan_speed": "Sablon a porsz\u00edv\u00f3 ventil\u00e1torsebess\u00e9g\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "fan_speeds": "A porsz\u00edv\u00f3 \u00e1ltal t\u00e1mogatott ventil\u00e1torsebess\u00e9gek list\u00e1ja.",
+                    "locate": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 \u201eHelymeghat\u00e1roz\u00e1s\u201d parancsot kap.",
+                    "pause": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 sz\u00fcneteltet\u00e9sre ker\u00fcl.",
+                    "return_to_base": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 \u201eVissza a dokkol\u00f3ra\u201d parancsot kap.",
+                    "set_fan_speed": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 ventil\u00e1torsebess\u00e9g-be\u00e1ll\u00edt\u00e1st kap. A `fan_speed` v\u00e1ltoz\u00f3t kapja meg.",
+                    "start": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 elindul.",
+                    "state": "Sablon a porsz\u00edv\u00f3 \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `cleaning`, `docked`, `idle`, `paused`, `returning`, `error`.",
+                    "stop": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 le\u00e1ll\u00edt\u00e1sra ker\u00fcl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon porsz\u00edv\u00f3"
+            },
+            "weather": {
+                "data": {
+                    "condition": "\u00c1llapot",
+                    "device_id": "Eszk\u00f6z",
+                    "forecast_daily": "Napi el\u0151rejelz\u00e9s",
+                    "forecast_hourly": "\u00d3r\u00e1nk\u00e9nti el\u0151rejelz\u00e9s",
+                    "humidity": "P\u00e1ratartalom",
+                    "name": "Elnevez\u00e9s",
+                    "temperature": "H\u0151m\u00e9rs\u00e9klet",
+                    "temperature_unit": "H\u0151m\u00e9rs\u00e9klet-m\u00e9rt\u00e9kegys\u00e9g"
+                },
+                "data_description": {
+                    "condition": "Sablon meghat\u00e1roz\u00e1sa a jelenlegi id\u0151j\u00e1r\u00e1si \u00e1llapot lek\u00e9rdez\u00e9s\u00e9hez",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "forecast_daily": "Sablon meghat\u00e1roz\u00e1sa a [napi el\u0151rejelz\u00e9si adatok]({daily_link}) lek\u00e9rdez\u00e9s\u00e9hez",
+                    "forecast_hourly": "Sablon meghat\u00e1roz\u00e1sa az [\u00f3r\u00e1nk\u00e9nti el\u0151rejelz\u00e9si adatok]({hourly_link}) lek\u00e9rdez\u00e9s\u00e9hez",
+                    "humidity": "Sablon meghat\u00e1roz\u00e1sa a jelenlegi p\u00e1ratartalom lek\u00e9rdez\u00e9s\u00e9hez",
+                    "temperature": "Sablon meghat\u00e1roz\u00e1sa a jelenlegi h\u0151m\u00e9rs\u00e9klet lek\u00e9rdez\u00e9s\u00e9hez",
+                    "temperature_unit": "A h\u0151m\u00e9rs\u00e9kletet megad\u00f3 sablonok kimenet\u00e9nek m\u00e9rt\u00e9kegys\u00e9ge. Lehets\u00e9ges \u00e9rt\u00e9kek: `\u00b0C`, `\u00b0F` vagy `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon id\u0151j\u00e1r\u00e1s"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Hiba t\u00f6rt\u00e9nt a(z) \"{code_format_template}\" k\u00f3dsablon \u00e9rt\u00e9kel\u00e9sekor a(z) {entity_id} eset\u00e9ben: {cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "Hiba a sablon entit\u00e1sok \u00fajrat\u00f6lt\u00e9sekor: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "A sablon seg\u00e9d el lett t\u00e1vol\u00edtva"
+                },
+                "error": {
+                    "invalid_device": "A kiv\u00e1lasztott eszk\u00f6z m\u00e1r nem l\u00e9tezik"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Eszk\u00f6z"
+                        },
+                        "data_description": {
+                            "device_id": "Az az eszk\u00f6z, amelyhez ezt a sablon seg\u00e9det hozz\u00e1 kell kapcsolni."
+                        },
+                        "description": "A(z) {name} sablon seg\u00e9d olyan eszk\u00f6zh\u00f6z volt hozz\u00e1kapcsolva, amely t\u00f6bb eszk\u00f6zre lett sz\u00e9tosztva. Am\u00edg nem v\u00e1laszt ki eszk\u00f6zt, a seg\u00e9d nincs eszk\u00f6zh\u00f6z kapcsolva.\n\nV\u00e1lassza ki azt az eszk\u00f6zt, amelyhez a seg\u00e9det hozz\u00e1 kell kapcsolni, vagy hagyja \u00fcresen, ha nem szeretn\u00e9 eszk\u00f6zh\u00f6z kapcsolni.",
+                        "title": "Eszk\u00f6z kiv\u00e1laszt\u00e1sa a(z) {name} sz\u00e1m\u00e1ra"
+                    }
+                }
+            },
+            "title": "A(z) {name} sablon seg\u00e9d eszk\u00f6z\u00e9t \u00fajra ki kell v\u00e1lasztani"
+        },
+        "config_format_actions": {
+            "description": "A sablon konfigur\u00e1ci\u00f3j\u00e1ban van egy m\u0171velet opci\u00f3, amely nem p\u00e1rosul esem\u00e9nyind\u00edt\u00f3 opci\u00f3val. Ez a 2026.5-\u00f6s verzi\u00f3ban konfigur\u00e1ci\u00f3\u00e9rv\u00e9nyes\u00edt\u00e9si hib\u00e1t fog okozni.\n\nK\u00e9rj\u00fck, adjon esem\u00e9nyind\u00edt\u00f3t a konfigur\u00e1ci\u00f3hoz, vagy t\u00e1vol\u00edtsa el a m\u0171velet opci\u00f3t a konfigur\u00e1ci\u00f3b\u00f3l.\n\n```\n{config}\n```",
+            "title": "A sablon m\u0171velet opci\u00f3 esem\u00e9nyind\u00edt\u00f3t ig\u00e9nyel"
+        },
+        "config_format_triggers": {
+            "description": "Az esem\u00e9nyind\u00edt\u00f3s sablon konfigur\u00e1ci\u00f3j\u00e1hoz entit\u00e1s megad\u00e1sakor sz\u00fcks\u00e9g van egy esem\u00e9nyind\u00edt\u00f3ra \u00e9s legal\u00e1bb egy tartom\u00e1nyra. Ez a Home Assistant Core 2026.5-\u00f6s verzi\u00f3j\u00e1ban konfigur\u00e1ci\u00f3\u00e9rv\u00e9nyes\u00edt\u00e9si hib\u00e1t fog okozni.\n\nK\u00e9rj\u00fck, t\u00e1vol\u00edtsa el az \u00e1rva esem\u00e9nyind\u00edt\u00f3t a konfigur\u00e1ci\u00f3b\u00f3l.\n\n```\n{config}\n```",
+            "title": "Hi\u00e1nyos sablon konfigur\u00e1ci\u00f3"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "M\u0171veletek \u201et\u00e1voll\u00e9t\u201d \u00e9les\u00edt\u00e9skor",
+                    "arm_custom_bypass": "M\u0171veletek egy\u00e9ni \u00e1thidal\u00e1skor",
+                    "arm_home": "M\u0171veletek \u201eotthon\u201d \u00e9les\u00edt\u00e9skor",
+                    "arm_night": "M\u0171veletek \u201e\u00e9jszaka\u201d \u00e9les\u00edt\u00e9skor",
+                    "arm_vacation": "M\u0171veletek \u201evak\u00e1ci\u00f3\u201d \u00e9les\u00edt\u00e9skor",
+                    "code_arm_required": "\u00c9les\u00edt\u00e9si k\u00f3d sz\u00fcks\u00e9ges",
+                    "code_format": "K\u00f3d form\u00e1tuma",
+                    "device_id": "Eszk\u00f6z",
+                    "disarm": "M\u0171veletek hat\u00e1stalan\u00edt\u00e1skor",
+                    "trigger": "M\u0171veletek riaszt\u00e1s eset\u00e9n",
+                    "value_template": "\u00c1llapot"
+                },
+                "data_description": {
+                    "arm_away": "Akkor fut le, amikor a riaszt\u00f3 \u201et\u00e1voll\u00e9t\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_custom_bypass": "Akkor fut le, amikor a riaszt\u00f3 \u201eegy\u00e9ni \u00e1thidal\u00e1s\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_home": "Akkor fut le, amikor a riaszt\u00f3 \u201eotthon\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_night": "Akkor fut le, amikor a riaszt\u00f3 \u201e\u00e9jszaka\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "arm_vacation": "Akkor fut le, amikor a riaszt\u00f3 \u201enyaral\u00e1s\u201d m\u00f3dba kapcsol. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`",
+                    "code_arm_required": "Ha igaz, a riaszt\u00f3 \u00e9les\u00edt\u00e9s\u00e9hez sz\u00fcks\u00e9ges a k\u00f3d.",
+                    "code_format": "A k\u00f3d form\u00e1tuma: `number`, `text` vagy `no_code`.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "disarm": "Akkor fut le, amikor a riaszt\u00f3 hat\u00e1stalan\u00edt\u00e1sra ker\u00fcl. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`.",
+                    "trigger": "Akkor fut le, amikor a riaszt\u00f3 riaszt\u00e1st ind\u00edt. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `code`.",
+                    "value_template": "Sablon a riaszt\u00f3 panel \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending`, `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon riaszt\u00f3 vez\u00e9rl\u0151panel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "state": "\u00c1llapot"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "state": "Az \u00e9rz\u00e9kel\u0151 akkor van \u201ebekapcsolva\u201d (`on`), ha a sablon `True`, `yes`, `on`, `enable` vagy pozit\u00edv sz\u00e1m eredm\u00e9nyt ad. B\u00e1rmely m\u00e1s \u00e9rt\u00e9k \u201ekikapcsolt\u201d (`off`) \u00e1llapotot jelent."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon",
+                            "delay_off": "Kikapcsol\u00e1si k\u00e9sleltet\u00e9s",
+                            "delay_on": "Bekapcsol\u00e1si k\u00e9sleltet\u00e9s"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott.",
+                            "delay_off": "Az az id\u0151tartam, ameddig a sablon felt\u00e9tel\u00e9nek nem szabad teljes\u00fclnie ahhoz, hogy a szenzor `off` \u00e1llapotra v\u00e1ltson.",
+                            "delay_on": "Az az id\u0151tartam, ameddig a sablon felt\u00e9tel\u00e9nek teljes\u00fclnie kell ahhoz, hogy a szenzor `on` \u00e1llapotra v\u00e1ltson."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon bin\u00e1ris \u00e9rz\u00e9kel\u0151"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "press": "Nyom\u00e1sra v\u00e9grehajtand\u00f3 m\u0171veletek"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "press": "Akkor fut le, amikor a gomb megnyom\u00e1sra ker\u00fcl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon gomb"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet",
+                    "device_id": "Eszk\u00f6z",
+                    "hvac_action": "Aktu\u00e1lis m\u0171velet",
+                    "hvac_mode": "HVAC-\u00fczemm\u00f3d",
+                    "hvac_modes": "M\u0171k\u00f6d\u00e9si m\u00f3dok",
+                    "name": "Elnevez\u00e9s",
+                    "set_hvac_mode": "M\u0171veletek HVAC-\u00fczemm\u00f3d be\u00e1ll\u00edt\u00e1sakor",
+                    "set_temperature": "M\u0171veletek h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sakor",
+                    "target_temperature": "K\u00edv\u00e1nt h\u0151m\u00e9rs\u00e9klet",
+                    "temperature_unit": "H\u0151m\u00e9rs\u00e9klet-m\u00e9rt\u00e9kegys\u00e9g"
+                },
+                "data_description": {
+                    "current_temperature": "Sablon az aktu\u00e1lis h\u0151m\u00e9rs\u00e9klethez.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "hvac_action": "Sablon az aktu\u00e1lis HVAC-m\u0171velethez. \u00c9rv\u00e9nyes HVAC-m\u0171veletek: `cooling`, `defrosting`, `drying`, `fan`, `heating`, `idle`, `off` \u00e9s `preheating`.",
+                    "hvac_mode": "Sablon az aktu\u00e1lis HVAC-\u00fczemm\u00f3dhoz. \u00c9rv\u00e9nyes HVAC-\u00fczemm\u00f3dok: `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` \u00e9s `off`.",
+                    "hvac_modes": "Sablon az el\u00e9rhet\u0151 HVAC-\u00fczemm\u00f3dok list\u00e1j\u00e1hoz. A lista \u00e9rv\u00e9nyes HVAC-\u00fczemm\u00f3djai: `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` \u00e9s `off`.",
+                    "set_hvac_mode": "Azok a m\u0171veletek, amelyek akkor futnak le, amikor a kl\u00edmaeszk\u00f6z `set_hvac_mode` parancsot kap. A `hvac_mode` v\u00e1ltoz\u00f3t kapja meg.",
+                    "set_temperature": "Azok a m\u0171veletek, amelyek akkor futnak le, amikor a kl\u00edmaeszk\u00f6z `set_temperature` parancsot kap. A `hvac_mode`, `temperature`, `target_temp_high` \u00e9s `target_temp_low` v\u00e1ltoz\u00f3kat kapja meg. Ha a `hvac_mode` \u00e9rkezik, a `set_hvac_mode` m\u0171veletek a `set_temperature` m\u0171veletei el\u0151tt futnak le.",
+                    "target_temperature": "Meghat\u00e1rozza a c\u00e9lh\u0151m\u00e9rs\u00e9klet sablonj\u00e1t.",
+                    "temperature_unit": "A h\u0151m\u00e9rs\u00e9kletet megad\u00f3 sablonok kimenet\u00e9nek m\u00e9rt\u00e9kegys\u00e9ge. Lehets\u00e9ges \u00e9rt\u00e9kek: `\u00b0C`, `\u00b0F` vagy `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon",
+                            "max_temperature": "Maxim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet",
+                            "min_temperature": "Minim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon termoszt\u00e1t"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "M\u0171veletek z\u00e1r\u00e1skor",
+                    "device_id": "Eszk\u00f6z",
+                    "open_cover": "M\u0171veletek nyit\u00e1skor",
+                    "position": "Poz\u00edci\u00f3",
+                    "set_cover_position": "M\u0171veletek poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1sakor",
+                    "state": "\u00c1llapot",
+                    "stop_cover": "M\u0171veletek meg\u00e1ll\u00edt\u00e1skor"
+                },
+                "data_description": {
+                    "close_cover": "Akkor fut le, amikor az \u00e1rny\u00e9kol\u00f3 bez\u00e1r\u00f3dik.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "open_cover": "Akkor fut le, amikor az \u00e1rny\u00e9kol\u00f3 kiny\u00edlik.",
+                    "position": "Sablon az \u00e1rny\u00e9kol\u00f3 poz\u00edci\u00f3j\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `0` (z\u00e1rt) \u00e9s `100` (nyitott) k\u00f6z\u00f6tti sz\u00e1mokCover.",
+                    "set_cover_position": "Akkor fut le, amikor `set_cover_position` parancs \u00e9rkezik. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3: `position`.",
+                    "state": "Sablon az \u00e1rny\u00e9kol\u00f3 \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. A sablon \u00e9rv\u00e9nyes kimeneti \u00e9rt\u00e9kei: `open`, `opening`, `closing` \u00e9s `closed`, amelyek k\u00f6zvetlen\u00fcl a megfelel\u0151 \u00e1llapotokra k\u00e9pez\u0151dnek le. Ha az \u00e1llapot \u00e9s a poz\u00edci\u00f3 is meg van adva, az \u00e1llapotsablonb\u00f3l csak az `opening` \u00e9s a `closing` \u00e9rt\u00e9ket veszi \u00e1t a rendszer.",
+                    "stop_cover": "Akkor fut le, amikor az \u00e1rny\u00e9kol\u00f3 le\u00e1ll."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon alap\u00fa \u00e1rny\u00e9kol\u00f3."
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "in_zones": "Z\u00f3n\u00e1k",
+                    "latitude": "Sz\u00e9less\u00e9gi fok",
+                    "longitude": "Hossz\u00fas\u00e1gi fok"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "in_zones": "Meghat\u00e1roz egy sablont, amely visszaadja azon z\u00f3n\u00e1k list\u00e1j\u00e1t, amelyekben az eszk\u00f6zk\u00f6vet\u0151t jelenleg tart\u00f3zkodik. A sablonnak z\u00f3na entit\u00e1sazonos\u00edt\u00f3k list\u00e1j\u00e1t kell visszaadnia. Ha az eszk\u00f6zk\u00f6vet\u0151 nem tart\u00f3zkodik egyetlen z\u00f3n\u00e1ban sem, a sablonnak \u00fcres list\u00e1t kell visszaadnia.",
+                    "latitude": "Meghat\u00e1roz egy sablont az eszk\u00f6zk\u00f6vet\u00e9s sz\u00e9less\u00e9gi fok\u00e1nak lek\u00e9r\u00e9s\u00e9hez. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `-90` \u00e9s `90` k\u00f6z\u00f6tti sz\u00e1mok.",
+                    "longitude": "Meghat\u00e1roz egy sablont az eszk\u00f6zk\u00f6vet\u00e9s hossz\u00fas\u00e1gi fok\u00e1nak lek\u00e9r\u00e9s\u00e9hez. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `-180` \u00e9s `180` k\u00f6z\u00f6tti sz\u00e1mok."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon",
+                            "location_accuracy": "Helymeghat\u00e1roz\u00e1s pontoss\u00e1ga"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott.",
+                            "location_accuracy": "Sablon az eszk\u00f6zk\u00f6vet\u0151 helymeghat\u00e1roz\u00e1si pontoss\u00e1g\u00e1nak lek\u00e9rdez\u00e9s\u00e9hez m\u00e9terben. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek a `0`-n\u00e1l nagyobb vagy azzal egyenl\u0151 sz\u00e1mok."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon eszk\u00f6zk\u00f6vet\u00e9s"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "event_type": "Utolj\u00e1ra kiv\u00e1ltott esem\u00e9nyt\u00edpus",
+                    "event_types": "Esem\u00e9nyt\u00edpusok",
+                    "name": "Elnevez\u00e9s"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "event_type": "Sablon az esem\u00e9ny t\u00edpus\u00e1hoz.",
+                    "event_types": "Sablon az el\u00e9rhet\u0151 esem\u00e9nyt\u00edpusok list\u00e1j\u00e1hoz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon esem\u00e9ny"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "percentage": "Sz\u00e1zal\u00e9k",
+                    "set_percentage": "M\u0171veletek sz\u00e1zal\u00e9kos sebess\u00e9g be\u00e1ll\u00edt\u00e1sakor",
+                    "speed_count": "Sebess\u00e9gek sz\u00e1ma",
+                    "state": "\u00c1llapot",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "percentage": "Sablon a ventil\u00e1tor sebess\u00e9g\u00e9nek sz\u00e1zal\u00e9kos \u00e9rt\u00e9k\u00e9hez.",
+                    "set_percentage": "Azok a m\u0171veletek, amelyek akkor futnak le, amikor a ventil\u00e1tor sebess\u00e9g\u00e9t sz\u00e1zal\u00e9kos \u00e9rt\u00e9kkel \u00e1ll\u00edtj\u00e1k be. A `percentage` v\u00e1ltoz\u00f3t kapja meg.",
+                    "speed_count": "A ventil\u00e1tor \u00e1ltal t\u00e1mogatott sebess\u00e9gek sz\u00e1ma. Ez alapj\u00e1n sz\u00e1molja ki a l\u00e9ptet\u00e9st a `fan.increase_speed` \u00e9s `fan.decrease_speed` m\u0171veletekhez.",
+                    "state": "A ventil\u00e1tor \u201ebekapcsolt\u201d \u00e1llapotban van, ha a sablon `True`, `yes`, `on`, `enable` vagy pozit\u00edv sz\u00e1m. M\u00e1s \u00e9rt\u00e9k eset\u00e9n \u201ekikapcsolt\u201d.",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor.",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor. A `percentage` \u00e9s/vagy `preset_mode` v\u00e1ltoz\u00f3t kapja meg."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon ventil\u00e1tor"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "url": "URL",
+                    "verify_ssl": "SSL-tan\u00fas\u00edtv\u00e1ny ellen\u0151rz\u00e9se"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "url": "Sablon a k\u00e9p URL-j\u00e9hez.",
+                    "verify_ssl": "SSL tan\u00fas\u00edtv\u00e1ny ellen\u0151rz\u00e9s\u00e9nek enged\u00e9lyez\u00e9se vagy letilt\u00e1sa. Letiltand\u00f3, ha HTTP-t haszn\u00e1l vagy ha az SSL tan\u00fas\u00edtv\u00e1ny saj\u00e1t al\u00e1\u00edr\u00e1s\u00fa, \u00e9s nincs telep\u00edtve a hiteles\u00edt\u00e9si l\u00e1nc."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon k\u00e9p"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "hs": "HS sz\u00edn",
+                    "level": "F\u00e9nyer\u0151szint",
+                    "name": "Elnevez\u00e9s",
+                    "set_hs": "M\u0171veletek HS sz\u00edn be\u00e1ll\u00edt\u00e1sakor",
+                    "set_level": "M\u0171veletek f\u00e9nyer\u0151 be\u00e1ll\u00edt\u00e1sakor",
+                    "set_temperature": "M\u0171veletek sz\u00ednh\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sakor",
+                    "state": "\u00c1llapot",
+                    "temperature": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "hs": "Sablon a f\u00e9ny HS sz\u00edn\u00e9hez. Egy (sz\u00edn\u00e1rnyalat, tel\u00edtetts\u00e9g) \u00e9rt\u00e9kp\u00e1rt kell visszaadnia.",
+                    "level": "Sablon a f\u00e9ny f\u00e9nyerej\u00e9hez. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: 0\u2013255.",
+                    "set_hs": "M\u0171veletek HS sz\u00edn be\u00e1ll\u00edt\u00e1sakor. V\u00e1ltoz\u00f3k: `hs` (p\u00e1r), `h`, `s`.",
+                    "set_level": "M\u0171veletek f\u00e9nyer\u0151 be\u00e1ll\u00edt\u00e1sakor. Csak akkor h\u00edv\u00f3dik meg, ha a `turn_on` csak `brightness`-t (\u00e9s opcion\u00e1lisan `transition`-t) tartalmaz. V\u00e1ltoz\u00f3k: `brightness`, `transition`.",
+                    "set_temperature": "M\u0171veletek sz\u00ednh\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sakor. V\u00e1ltoz\u00f3k: `color_temp_kelvin`, valamint opcion\u00e1lisan `brightness` \u00e9s/vagy `transition`.",
+                    "state": "A vil\u00e1g\u00edt\u00e1s \u201ebekapcsolt\u201d \u00e1llapotban van, ha a sablon `True`, `yes`, `on`, `enable` vagy pozit\u00edv sz\u00e1m. M\u00e1s \u00e9rt\u00e9k eset\u00e9n \u201ekikapcsolt\u201d.",
+                    "temperature": "Sablon a sz\u00ednh\u0151m\u00e9rs\u00e9klethez.",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon vil\u00e1g\u00edt\u00e1s"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "K\u00f3d form\u00e1tuma",
+                    "device_id": "Eszk\u00f6z",
+                    "lock": "M\u0171veletek z\u00e1rol\u00e1skor",
+                    "open": "M\u0171veletek nyit\u00e1skor",
+                    "state": "\u00c1llapot",
+                    "unlock": "M\u0171veletek felold\u00e1skor"
+                },
+                "data_description": {
+                    "code_format": "Sablon a `code_format` attrib\u00fatumhoz.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "lock": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a z\u00e1r z\u00e1rol\u00e1sra ker\u00fcl.",
+                    "open": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a z\u00e1r kinyit\u00e1sra ker\u00fcl.",
+                    "state": "Sablon a z\u00e1r \u00e1llapot\u00e1nak be\u00e1ll\u00edt\u00e1s\u00e1hoz. A z\u00e1r z\u00e1rt \u00e1llapot\u00fa, ha a sablon ki\u00e9rt\u00e9kel\u00e9se `True`, `true`, `on` vagy `locked`. A z\u00e1r nyitott \u00e1llapot\u00fa, ha a sablon ki\u00e9rt\u00e9kel\u00e9se `False`, `false`, `off` vagy `unlocked`. Tov\u00e1bbi \u00e9rv\u00e9nyes \u00e1llapotok: `jammed`, `opening`, `locking`, `open` \u00e9s `unlocking`.",
+                    "unlock": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a z\u00e1r felold\u00e1sra ker\u00fcl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon z\u00e1r"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "max": "Maxim\u00e1lis \u00e9rt\u00e9k",
+                    "min": "Minim\u00e1lis \u00e9rt\u00e9k",
+                    "name": "Elnevez\u00e9s",
+                    "set_value": "M\u0171veletek az \u00e9rt\u00e9k be\u00e1ll\u00edt\u00e1sakor",
+                    "state": "\u00c1llapot",
+                    "step": "L\u00e9p\u00e9s \u00e9rt\u00e9ke"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "max": "A sz\u00e1m maxim\u00e1lis \u00e9rt\u00e9k\u00e9nek meghat\u00e1roz\u00e1sa.",
+                    "min": "A sz\u00e1m minim\u00e1lis \u00e9rt\u00e9k\u00e9nek meghat\u00e1roz\u00e1sa.",
+                    "set_value": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a sz\u00e1m \u00e9rt\u00e9ke be\u00e1ll\u00edt\u00e1sra ker\u00fcl. A `value` v\u00e1ltoz\u00f3t kapja meg.",
+                    "state": "Sablon a sz\u00e1m aktu\u00e1lis \u00e9rt\u00e9k\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "step": "Meghat\u00e1rozza a sz\u00e1m n\u00f6vel\u00e9si/cs\u00f6kkent\u00e9si l\u00e9p\u00e9s\u00e9t."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon sz\u00e1m"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "options": "El\u00e9rhet\u0151 lehet\u0151s\u00e9gek",
+                    "select_option": "M\u0171veletek a kiv\u00e1laszt\u00e1skor",
+                    "state": "\u00c1llapot"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "options": "Sablon a v\u00e1laszt\u00f3 el\u00e9rhet\u0151 opci\u00f3inak meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "select_option": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor egy `option` ker\u00fcl kiv\u00e1laszt\u00e1sra az `options` list\u00e1b\u00f3l. A `option` v\u00e1ltoz\u00f3t kapja meg.",
+                    "state": "Sablon a v\u00e1laszt\u00f3 aktu\u00e1lis \u00e9rt\u00e9k\u00e9hez."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon kiv\u00e1laszt\u00e1sa"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "state": "\u00c1llapot",
+                    "state_class": "\u00c1llapotoszt\u00e1ly",
+                    "unit_of_measurement": "M\u00e9rt\u00e9kegys\u00e9g"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "state": "Sablon a szenzor \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. Ha a szenzor numerikus (azaz van `state_class` vagy `unit_of_measurement` \u00e9rt\u00e9ke), a sablon eredm\u00e9ny\u00e9nek sz\u00e1mnak vagy `none` \u00e9rt\u00e9knek kell lennie. Nem lehet sz\u00f6veg, p\u00e9ld\u00e1ul `unknown` vagy `unavailable`. Az \u00e1llapotsablon v\u00e9grehajt\u00e1s\u00e1t `availability` sablon is korl\u00e1tozhatja.",
+                    "unit_of_measurement": "A szenzor m\u00e9rt\u00e9kegys\u00e9g\u00e9nek meghat\u00e1roz\u00e1sa, ha van ilyen. Ez hat\u00e1ssal van a felhaszn\u00e1l\u00f3i profilban be\u00e1ll\u00edtott sz\u00e1mform\u00e1tumra \u00e9s a t\u00f6rt\u00e9neti megjelen\u00edt\u00e9s grafikus \u00e1br\u00e1zol\u00e1s\u00e1ra is."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon \u00e9rz\u00e9kel\u0151"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Eszk\u00f6z",
+                    "name": "Elnevez\u00e9s",
+                    "turn_off": "M\u0171veletek kikapcsol\u00e1skor",
+                    "turn_on": "M\u0171veletek bekapcsol\u00e1skor",
+                    "value_template": "\u00c1llapot"
+                },
+                "data_description": {
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "turn_off": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a kapcsol\u00f3 kikapcsol\u00e1sra ker\u00fcl.",
+                    "turn_on": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a kapcsol\u00f3 bekapcsol\u00e1sra ker\u00fcl.",
+                    "value_template": "Egy sablont hat\u00e1roz meg a kapcsol\u00f3 \u00e1llapot\u00e1nak be\u00e1ll\u00edt\u00e1s\u00e1hoz. Ha nincs meghat\u00e1rozva, a kapcsol\u00f3 optimista m\u00f3don felt\u00e9telezi, hogy minden parancs sikeres."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon kapcsol\u00f3"
+            },
+            "update": {
+                "data": {
+                    "backup": "Biztons\u00e1gi ment\u00e9s",
+                    "device_class": "Eszk\u00f6zoszt\u00e1ly",
+                    "device_id": "Eszk\u00f6z",
+                    "in_progress": "Folyamatban",
+                    "install": "M\u0171veletek telep\u00edt\u00e9skor",
+                    "installed_version": "Telep\u00edtett verzi\u00f3",
+                    "latest_version": "Leg\u00fajabb verzi\u00f3",
+                    "name": "Elnevez\u00e9s",
+                    "release_summary": "Kiad\u00e1si \u00f6sszefoglal\u00f3",
+                    "release_url": "Kiad\u00e1si URL",
+                    "specific_version": "Konkr\u00e9t verzi\u00f3",
+                    "title": "Megnevez\u00e9s",
+                    "update_percentage": "Friss\u00edt\u00e9s sz\u00e1zal\u00e9ka"
+                },
+                "data_description": {
+                    "backup": "A `friss\u00edt\u00e9s el\u0151tti automatikus biztons\u00e1gi ment\u00e9s` opci\u00f3 enged\u00e9lyez\u00e9se vagy letilt\u00e1sa a jav\u00edt\u00e1si folyamatban. Ha le van tiltva, a `backup` v\u00e1ltoz\u00f3 mindig `False` \u00e9rt\u00e9ket ad vissza a `telep\u00edt\u00e9s` m\u0171veletben, \u00e9s a `backup` opci\u00f3 nem lesz el\u00e9rhet\u0151.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "in_progress": "Sablon a folyamatban l\u00e9v\u0151 friss\u00edt\u00e9s \u00e1llapot\u00e1hoz.",
+                    "install": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a friss\u00edt\u00e9s telep\u00edt\u00e9sre ker\u00fcl. A `specific_version` \u00e9s `backup` v\u00e1ltoz\u00f3k \u00e9rkeznek, ha enged\u00e9lyezve vannak.",
+                    "installed_version": "Sablon a telep\u00edtett verzi\u00f3 meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "latest_version": "Sablon a legfrissebb verzi\u00f3 meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "release_summary": "Sablon a kiad\u00e1s \u00f6sszefoglal\u00f3j\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "release_url": "Sablon a kiad\u00e1s URL-j\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "specific_version": "A `version` v\u00e1ltoz\u00f3 haszn\u00e1lat\u00e1nak enged\u00e9lyez\u00e9se vagy tilt\u00e1sa a `telep\u00edt\u00e9s` m\u0171velet sor\u00e1n. Ha tiltott, a `specific_version` v\u00e1ltoz\u00f3 mindig `None` \u00e9rt\u00e9ket ad vissza a `telep\u00edt\u00e9s` sor\u00e1n.",
+                    "title": "Sablon a friss\u00edt\u00e9s c\u00edm\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "update_percentage": "Sablon a friss\u00edt\u00e9s el\u0151rehalad\u00e1si sz\u00e1zal\u00e9k\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon friss\u00edt\u00e9s"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "M\u0171veletek folt takar\u00edt\u00e1s eset\u00e9n",
+                    "device_id": "Eszk\u00f6z",
+                    "fan_speed": "Ventil\u00e1torsebess\u00e9g",
+                    "fan_speeds": "Ventil\u00e1torsebess\u00e9gek",
+                    "locate": "M\u0171veletek helymeghat\u00e1roz\u00e1s eset\u00e9n",
+                    "name": "Elnevez\u00e9s",
+                    "pause": "M\u0171veletek sz\u00fcneteltet\u00e9s eset\u00e9n",
+                    "return_to_base": "M\u0171veletek dokkol\u00f3ra visszat\u00e9r\u00e9s eset\u00e9n",
+                    "set_fan_speed": "M\u0171veletek ventil\u00e1torsebess\u00e9g be\u00e1ll\u00edt\u00e1sakor",
+                    "start": "M\u0171veletek ind\u00edt\u00e1s eset\u00e9n",
+                    "state": "\u00c1llapot",
+                    "stop": "M\u0171veletek le\u00e1ll\u00edt\u00e1s eset\u00e9n"
+                },
+                "data_description": {
+                    "clean_spot": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 \u201eFolt takar\u00edt\u00e1s\u201d parancsot kap.",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "fan_speed": "Sablon a porsz\u00edv\u00f3 ventil\u00e1torsebess\u00e9g\u00e9nek meghat\u00e1roz\u00e1s\u00e1hoz.",
+                    "fan_speeds": "A porsz\u00edv\u00f3 \u00e1ltal t\u00e1mogatott ventil\u00e1torsebess\u00e9gek list\u00e1ja.",
+                    "locate": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 \u201eHelymeghat\u00e1roz\u00e1s\u201d parancsot kap.",
+                    "pause": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 sz\u00fcneteltet\u00e9sre ker\u00fcl.",
+                    "return_to_base": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 \u201eVissza a dokkol\u00f3ra\u201d parancsot kap.",
+                    "set_fan_speed": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 ventil\u00e1torsebess\u00e9g-be\u00e1ll\u00edt\u00e1st kap. A `fan_speed` v\u00e1ltoz\u00f3t kapja meg.",
+                    "start": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 elindul.",
+                    "state": "Sablon a porsz\u00edv\u00f3 \u00e1llapot\u00e1nak meghat\u00e1roz\u00e1s\u00e1hoz. \u00c9rv\u00e9nyes \u00e9rt\u00e9kek: `cleaning`, `docked`, `idle`, `paused`, `returning`, `error`.",
+                    "stop": "M\u0171veletek meghat\u00e1roz\u00e1sa, amikor a porsz\u00edv\u00f3 le\u00e1ll\u00edt\u00e1sra ker\u00fcl."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "data_description": {
+                            "availability": "Olyan sablont hat\u00e1roz meg, amely alapj\u00e1n az entit\u00e1s `available` \u00e1llapotot kap. Ha a sablon nem renderelhet\u0151 vagy az eredm\u00e9nye `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` vagy b\u00e1rmely nem nulla sz\u00e1m, akkor az entit\u00e1s el\u00e9rhet\u0151nek sz\u00e1m\u00edt. Minden m\u00e1s eredm\u00e9ny eset\u00e9n az entit\u00e1s nem el\u00e9rhet\u0151. Ha nincs be\u00e1ll\u00edtva, az entit\u00e1s mindig el\u00e9rhet\u0151 lesz. A sz\u00f6veges \u00f6sszehasonl\u00edt\u00e1s nem \u00e9rz\u00e9keny a kis- \u00e9s nagybet\u0171kre; p\u00e9ld\u00e1ul `\"TrUe\"` \u00e9s `\"yEs\"` is elfogadott."
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon porsz\u00edv\u00f3"
+            },
+            "weather": {
+                "data": {
+                    "condition": "\u00c1llapot",
+                    "device_id": "Eszk\u00f6z",
+                    "forecast_daily": "Napi el\u0151rejelz\u00e9s",
+                    "forecast_hourly": "\u00d3r\u00e1nk\u00e9nti el\u0151rejelz\u00e9s",
+                    "humidity": "P\u00e1ratartalom",
+                    "name": "Elnevez\u00e9s",
+                    "temperature": "H\u0151m\u00e9rs\u00e9klet",
+                    "temperature_unit": "H\u0151m\u00e9rs\u00e9klet-m\u00e9rt\u00e9kegys\u00e9g"
+                },
+                "data_description": {
+                    "condition": "Sablon meghat\u00e1roz\u00e1sa a jelenlegi id\u0151j\u00e1r\u00e1si \u00e1llapot lek\u00e9rdez\u00e9s\u00e9hez",
+                    "device_id": "V\u00e1lasszon ki egy eszk\u00f6zt, amelyhez az entit\u00e1s kapcsol\u00f3djon.",
+                    "forecast_daily": "Sablon meghat\u00e1roz\u00e1sa a [napi el\u0151rejelz\u00e9si adatok]({daily_link}) lek\u00e9rdez\u00e9s\u00e9hez",
+                    "forecast_hourly": "Sablon meghat\u00e1roz\u00e1sa az [\u00f3r\u00e1nk\u00e9nti el\u0151rejelz\u00e9si adatok]({hourly_link}) lek\u00e9rdez\u00e9s\u00e9hez",
+                    "humidity": "Sablon meghat\u00e1roz\u00e1sa a jelenlegi p\u00e1ratartalom lek\u00e9rdez\u00e9s\u00e9hez",
+                    "temperature": "Sablon meghat\u00e1roz\u00e1sa a jelenlegi h\u0151m\u00e9rs\u00e9klet lek\u00e9rdez\u00e9s\u00e9hez",
+                    "temperature_unit": "A h\u0151m\u00e9rs\u00e9kletet megad\u00f3 sablonok kimenet\u00e9nek m\u00e9rt\u00e9kegys\u00e9ge. Lehets\u00e9ges \u00e9rt\u00e9kek: `\u00b0C`, `\u00b0F` vagy `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "El\u00e9rhet\u0151s\u00e9gi sablon"
+                        },
+                        "name": "Tov\u00e1bbi be\u00e1ll\u00edt\u00e1sok"
+                    }
+                },
+                "title": "Sablon id\u0151j\u00e1r\u00e1s"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Nincs k\u00f3dform\u00e1tum",
+                "number": "Sz\u00e1m",
+                "text": "Sz\u00f6veg"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Nincs m\u00e9rt\u00e9kegys\u00e9g"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Firmware"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "\u00dajrat\u00f6lti a sablon entit\u00e1sokat a YAML-konfigur\u00e1ci\u00f3b\u00f3l.",
+            "name": "Sablon entit\u00e1sok \u00fajrat\u00f6lt\u00e9se"
+        }
+    }
+}

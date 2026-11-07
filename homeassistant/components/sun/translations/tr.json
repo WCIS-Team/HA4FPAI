@@ -1,0 +1,399 @@
+{
+    "common": {
+        "condition_threshold_name": "E\u015fik tipi",
+        "period_description": "Dikkate al\u0131nmas\u0131 gereken zaman dilimi: sabah, ak\u015fam veya her ikisi de.",
+        "period_name": "D\u00f6nem",
+        "trigger_for_name": "En az\u0131ndan",
+        "trigger_offset_name": "Telafi",
+        "trigger_offset_type_description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+        "trigger_offset_type_name": "Ofset tipi",
+        "trigger_threshold_name": "E\u015fik tipi",
+        "twilight_type_description": "Alacakaranl\u0131k evresi.",
+        "twilight_type_name": "Alacakaranl\u0131k t\u00fcr\u00fc"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "G\u00fcne\u015fin y\u00fcksekli\u011fini, sizin belirledi\u011finiz bir e\u015fik de\u011feriyle kar\u015f\u0131la\u015ft\u0131rarak kontrol eder.",
+            "fields": {
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "G\u00fcne\u015fin y\u00fcksekli\u011fi"
+        },
+        "is_ascending": {
+            "description": "G\u00fcne\u015fin do\u011fup do\u011fmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "name": "G\u00fcne\u015f y\u00fckseliyor"
+        },
+        "is_blue_hour": {
+            "description": "Mavi saat olup olmad\u0131\u011f\u0131n\u0131 kontrol eder; iste\u011fe ba\u011fl\u0131 olarak belirli bir zaman aral\u0131\u011f\u0131 i\u00e7in de kontrol edilebilir.",
+            "fields": {
+                "period": {
+                    "description": "Dikkate al\u0131nmas\u0131 gereken zaman dilimi: sabah, ak\u015fam veya her ikisi de.",
+                    "name": "D\u00f6nem"
+                }
+            },
+            "name": "Mavi saat"
+        },
+        "is_descending": {
+            "description": "G\u00fcne\u015fin bat\u0131p batmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "name": "G\u00fcne\u015f bat\u0131yor"
+        },
+        "is_evening_twilight": {
+            "description": "Ak\u015fam alacakaranl\u0131\u011f\u0131 olup olmad\u0131\u011f\u0131n\u0131, iste\u011fe ba\u011fl\u0131 olarak belirli bir t\u00fcr olup olmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "fields": {
+                "type": {
+                    "description": "Alacakaranl\u0131k evresi.",
+                    "name": "Alacakaranl\u0131k t\u00fcr\u00fc"
+                }
+            },
+            "name": "Ak\u015fam alacakaranl\u0131\u011f\u0131"
+        },
+        "is_golden_hour": {
+            "description": "Alt\u0131n saat olup olmad\u0131\u011f\u0131n\u0131, iste\u011fe ba\u011fl\u0131 olarak belirli bir s\u00fcre i\u00e7in test eder.",
+            "fields": {
+                "period": {
+                    "description": "Dikkate al\u0131nmas\u0131 gereken zaman dilimi: sabah, ak\u015fam veya her ikisi de.",
+                    "name": "D\u00f6nem"
+                }
+            },
+            "name": "Alt\u0131n saat"
+        },
+        "is_midnight_sun": {
+            "description": "Gece yar\u0131s\u0131 g\u00fcne\u015fi olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "name": "Bu gece yar\u0131s\u0131 g\u00fcne\u015fi"
+        },
+        "is_morning_twilight": {
+            "description": "Sabah alacakaranl\u0131\u011f\u0131 olup olmad\u0131\u011f\u0131n\u0131, iste\u011fe ba\u011fl\u0131 olarak belirli bir t\u00fcr olup olmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "fields": {
+                "type": {
+                    "description": "Alacakaranl\u0131k evresi.",
+                    "name": "Alacakaranl\u0131k t\u00fcr\u00fc"
+                }
+            },
+            "name": "Sabah alacakaranl\u0131\u011f\u0131"
+        },
+        "is_night": {
+            "description": "Gece olup olmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "name": "Gece oldu"
+        },
+        "is_polar_night": {
+            "description": "Kutup gecesi olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "name": "Kutup gecesi"
+        },
+        "is_set": {
+            "description": "G\u00fcne\u015fin bat\u0131p batmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "name": "G\u00fcne\u015f batt\u0131"
+        },
+        "is_up": {
+            "description": "G\u00fcne\u015fin do\u011fup do\u011fmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "name": "G\u00fcne\u015f do\u011fdu"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Kurulumu ba\u015flatmak istiyor musunuz?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "G\u00fcne\u015f do\u011fuyor",
+                "state": {
+                    "off": "Ayar",
+                    "on": "Y\u00fckseliyor"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "Sonraki \u015fafak"
+            },
+            "next_dusk": {
+                "name": "Sonraki alacakaranl\u0131k"
+            },
+            "next_midnight": {
+                "name": "Sonraki gece yar\u0131s\u0131"
+            },
+            "next_noon": {
+                "name": "Sonraki \u00f6\u011flen"
+            },
+            "next_rising": {
+                "name": "Sonraki y\u00fckselen"
+            },
+            "next_setting": {
+                "name": "Sonraki ayar"
+            },
+            "solar_azimuth": {
+                "name": "G\u00fcne\u015f azimutu"
+            },
+            "solar_elevation": {
+                "name": "G\u00fcne\u015f y\u00fcksekli\u011fi"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "G\u00fcne\u015f",
+            "state": {
+                "above_horizon": "G\u00fcnd\u00fcz",
+                "below_horizon": "Ufkun alt\u0131nda"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Herhangi bir",
+                "evening": "Ak\u015fam",
+                "morning": "Sabah"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Sonra",
+                "before": "\u00d6nce"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Herhangi bir",
+                "astronomical": "Astronomik",
+                "civil": "Sivil",
+                "nautical": "Deniz"
+            }
+        }
+    },
+    "title": "G\u00fcne\u015f",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Mavi saat sona erdi\u011finde, sabah, ak\u015fam veya her ikisinde de tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                },
+                "period": {
+                    "description": "Dikkate al\u0131nmas\u0131 gereken zaman dilimi: sabah, ak\u015fam veya her ikisi de.",
+                    "name": "D\u00f6nem"
+                }
+            },
+            "name": "Mavi saat sona erdi"
+        },
+        "blue_hour_started": {
+            "description": "Sabah, ak\u015fam veya her iki saatte de mavi saat ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                },
+                "period": {
+                    "description": "Dikkate al\u0131nmas\u0131 gereken zaman dilimi: sabah, ak\u015fam veya her ikisi de.",
+                    "name": "D\u00f6nem"
+                }
+            },
+            "name": "Mavi saat ba\u015flad\u0131"
+        },
+        "dawn": {
+            "description": "Sivil, denizcilik veya astronomik alacakaranl\u0131\u011f\u0131n ba\u015flad\u0131\u011f\u0131 \u015fafak vaktinde tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                },
+                "type": {
+                    "description": "Alacakaranl\u0131k evresi.",
+                    "name": "Alacakaranl\u0131k t\u00fcr\u00fc"
+                }
+            },
+            "name": "\u015eafak"
+        },
+        "dusk": {
+            "description": "G\u00fcn bat\u0131m\u0131nda, yani sivil, denizcilik veya astronomik alacakaranl\u0131\u011f\u0131n sona erdi\u011fi zaman tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                },
+                "type": {
+                    "description": "Alacakaranl\u0131k evresi.",
+                    "name": "Alacakaranl\u0131k t\u00fcr\u00fc"
+                }
+            },
+            "name": "Alacakaranl\u0131k"
+        },
+        "elevation_changed": {
+            "description": "G\u00fcne\u015fin y\u00fcksekli\u011fi de\u011fi\u015fti\u011finde tetiklenir; iste\u011fe ba\u011fl\u0131 olarak belirledi\u011finiz bir e\u015fik veya aral\u0131kla s\u0131n\u0131rland\u0131r\u0131labilir.",
+            "fields": {
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "G\u00fcne\u015fin y\u00fcksekli\u011fi de\u011fi\u015fti"
+        },
+        "elevation_crossed_threshold": {
+            "description": "G\u00fcne\u015fin y\u00fcksekli\u011fi belirledi\u011finiz bir e\u015fi\u011fi a\u015ft\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "for": {
+                    "name": "En az\u0131ndan"
+                },
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "G\u00fcne\u015fin y\u00fckseli\u011fi e\u015fi\u011fi a\u015ft\u0131"
+        },
+        "golden_hour_ended": {
+            "description": "Alt\u0131n saat sona erdi\u011finde, sabah, ak\u015fam veya her ikisinde de tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                },
+                "period": {
+                    "description": "Dikkate al\u0131nmas\u0131 gereken zaman dilimi: sabah, ak\u015fam veya her ikisi de.",
+                    "name": "D\u00f6nem"
+                }
+            },
+            "name": "Alt\u0131n saat sona erdi"
+        },
+        "golden_hour_started": {
+            "description": "Alt\u0131n saat ba\u015flad\u0131\u011f\u0131nda, sabah, ak\u015fam veya her ikisinde de tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                },
+                "period": {
+                    "description": "Dikkate al\u0131nmas\u0131 gereken zaman dilimi: sabah, ak\u015fam veya her ikisi de.",
+                    "name": "D\u00f6nem"
+                }
+            },
+            "name": "Alt\u0131n saat ba\u015flad\u0131"
+        },
+        "midnight_sun_ended": {
+            "description": "Gece yar\u0131s\u0131 g\u00fcne\u015fi d\u00f6nemi sona erdi\u011finde ve g\u00fcne\u015f tekrar batt\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "Gece yar\u0131s\u0131 g\u00fcne\u015fi sona erdi"
+        },
+        "midnight_sun_started": {
+            "description": "Gece yar\u0131s\u0131 g\u00fcne\u015fi d\u00f6nemi ba\u015flad\u0131\u011f\u0131nda ve g\u00fcne\u015f batmay\u0131 b\u0131rakt\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "Gece yar\u0131s\u0131 g\u00fcne\u015fi ba\u015flad\u0131"
+        },
+        "polar_night_ended": {
+            "description": "Kutup gecesi d\u00f6nemi sona erdi\u011finde ve g\u00fcne\u015f yeniden do\u011fdu\u011funda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "Kutup gecesi sona erdi"
+        },
+        "polar_night_started": {
+            "description": "Kutup gecesi d\u00f6nemi ba\u015flad\u0131\u011f\u0131nda ve g\u00fcne\u015f do\u011fmay\u0131 b\u0131rakt\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "Kutup gecesi ba\u015flad\u0131"
+        },
+        "solar_midnight": {
+            "description": "G\u00fcne\u015f en al\u00e7ak noktas\u0131na ula\u015ft\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "G\u00fcne\u015f gece yar\u0131s\u0131"
+        },
+        "solar_noon": {
+            "description": "G\u00fcne\u015f en y\u00fcksek noktas\u0131na ula\u015ft\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "G\u00fcne\u015f \u00f6\u011fle vakti"
+        },
+        "sunrise": {
+            "description": "G\u00fcne\u015f do\u011fdu\u011funda tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "G\u00fcn Do\u011fumu"
+        },
+        "sunset": {
+            "description": "G\u00fcne\u015f bat\u0131nca tetiklenir.",
+            "fields": {
+                "offset": {
+                    "name": "Telafi"
+                },
+                "offset_type": {
+                    "description": "G\u00fcne\u015f olay\u0131ndan \u00f6nce mi yoksa sonra m\u0131 tetiklenece\u011fi.",
+                    "name": "Ofset tipi"
+                }
+            },
+            "name": "G\u00fcn Bat\u0131m\u0131"
+        }
+    }
+}

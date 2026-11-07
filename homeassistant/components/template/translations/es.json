@@ -1,0 +1,1255 @@
+{
+    "common": {
+        "additional_options": "Opciones adicionales",
+        "availability": "Disponibilidad",
+        "availability_description": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos.",
+        "code_format": "Formato de c\u00f3digo",
+        "device_class": "Clase de dispositivo",
+        "device_id_description": "Selecciona un dispositivo para vincularlo a esta entidad.",
+        "state": "Estado",
+        "temperature_unit": "Unidad de temperatura",
+        "temperature_unit_description": "La unidad para cualquier salida de plantilla de temperatura. Una de \u00b0C, \u00b0F o K.",
+        "turn_off": "Acciones al apagar",
+        "turn_on": "Acciones al encender",
+        "unit_of_measurement": "Unidad de medida"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Acciones al armar ausente",
+                    "arm_custom_bypass": "Acciones al armar derivaci\u00f3n personalizada",
+                    "arm_home": "Acciones al armar en casa",
+                    "arm_night": "Acciones al armar de noche",
+                    "arm_vacation": "Acciones al armar en vacaciones",
+                    "code_arm_required": "Se requiere c\u00f3digo para armar",
+                    "code_format": "Formato de c\u00f3digo",
+                    "device_id": "Dispositivo",
+                    "disarm": "Acciones al desarmar",
+                    "name": "Nombre",
+                    "trigger": "Acciones al dispararse",
+                    "value_template": "Estado"
+                },
+                "data_description": {
+                    "arm_away": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado en modo `arm_away`. Recibe la variable `code`.",
+                    "arm_custom_bypass": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado con `arm_custom_bypass`. Recibe la variable `code`.",
+                    "arm_home": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado en `arm_home`. Recibe la variable `code`.",
+                    "arm_night": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado en modo `arm_night`. Recibe la variable `code`.",
+                    "arm_vacation": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado con `arm_vacation`. Recibe la variable `code`.",
+                    "code_arm_required": "Si es verdadero, se requiere el c\u00f3digo para activar la alarma.",
+                    "code_format": "Uno de `number`, `text` o `no_code`. Formato del c\u00f3digo utilizado para armar/desarmar la alarma.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "disarm": "Define las acciones a ejecutar cuando el panel de control de la alarma se desarma. Recibe la variable `code`.",
+                    "trigger": "Define las acciones que se ejecutar\u00e1n cuando se dispare el panel de control de la alarma. Recibe la variable `code`.",
+                    "value_template": "Define una plantilla para establecer el estado del panel de alarma. Los valores de salida v\u00e1lidos de la plantilla son `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` y `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de panel de control de alarma"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "state": "Estado"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "state": "El sensor est\u00e1 `on` si la plantilla se eval\u00faa como `True`, `yes`, `on`, `enable` o un n\u00famero positivo. Cualquier otro valor lo har\u00e1 como `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad",
+                            "delay_off": "Retardo al desactivar",
+                            "delay_on": "Retardo al activar"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos.",
+                            "delay_off": "Tiempo durante el que no debe cumplirse el estado de la plantilla antes de que este sensor cambie a `apagado`.",
+                            "delay_on": "Tiempo durante el que debe cumplirse el estado de la plantilla antes de que este sensor cambie a `encendido`."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Sensor binario de plantilla"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "press": "Acciones al pulsar"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "press": "Define las acciones que se ejecutar\u00e1n cuando se pulse el bot\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla bot\u00f3n"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Temperatura actual",
+                    "device_id": "Dispositivo",
+                    "hvac_action": "Acci\u00f3n en curso",
+                    "hvac_mode": "Modo HVAC",
+                    "hvac_modes": "Modos del HVAC",
+                    "name": "Nombre",
+                    "set_hvac_mode": "Acciones al establecer el modo HVAC",
+                    "set_temperature": "Acciones al establecer la temperatura",
+                    "target_temperature": "Temperatura deseada",
+                    "temperature_unit": "Unidad de temperatura"
+                },
+                "data_description": {
+                    "current_temperature": "Define una plantilla para la temperatura actual.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "hvac_action": "Define una plantilla para la acci\u00f3n de HVAC actual. Las acciones de HVAC v\u00e1lidas son cooling, defrosting, drying, fan, heating, idle, off y preheating.",
+                    "hvac_mode": "Define una plantilla para el modo HVAC actual. Los modos HVAC v\u00e1lidos son auto, cool, dry, fan_only, heat, heat_cool y off.",
+                    "hvac_modes": "Define una plantilla para una lista de modos de HVAC disponibles. Los modos de HVAC v\u00e1lidos para la lista son auto, cool, dry, fan_only, heat, heat_cool y off.",
+                    "set_hvac_mode": "Define las acciones a ejecutar cuando el clima recibe un comando set_hvac_mode. Recibe la variable hvac_mode.",
+                    "set_temperature": "Define las acciones a ejecutar cuando el clima recibe un comando set_temperature. Recibe las variables hvac_mode, temperature, target_temp_high y target_temp_low. Si se recibe hvac_mode, las acciones de set_hvac_mode se ejecutan antes que las acciones de set_temperature.",
+                    "target_temperature": "Define una plantilla para la temperatura objetivo.",
+                    "temperature_unit": "La unidad para cualquier salida de plantilla de temperatura. Una de \u00b0C, \u00b0F o K."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad",
+                            "max_temperature": "Temperatura deseada m\u00e1xima",
+                            "min_temperature": "Temperatura deseada m\u00ednima"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de termostato"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Acciones al cerrar",
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "open_cover": "Acciones al abrir",
+                    "position": "Posici\u00f3n",
+                    "set_cover_position": "Acciones al establecer la posici\u00f3n",
+                    "state": "Estado",
+                    "stop_cover": "Acciones al detener"
+                },
+                "data_description": {
+                    "close_cover": "Define acciones a ejecutar cuando la persiana est\u00e1 cerrada.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "open_cover": "Define acciones a ejecutar cuando se abre la persiana.",
+                    "position": "Define una plantilla para obtener la posici\u00f3n de la persiana. Los valores son n\u00fameros entre 0 (cerrado) y 100 (abierto).",
+                    "set_cover_position": "Define las acciones que se ejecutan cuando se asigna a la persiana el comando `set_cover_position`. Recibe la variable `position`.",
+                    "state": "Define una plantilla para obtener el estado de la persiana. Los valores de salida v\u00e1lidos de la plantilla son `open`, `opening`, `closing` y `closed`, que se asignan directamente a los estados correspondientes. Si se especifican tanto un estado como una posici\u00f3n, solo `opening` y `closing` se establecen a partir de la plantilla de estado.",
+                    "stop_cover": "Define las acciones a ejecutar cuando se detiene la persiana."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de persiana"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "in_zones": "Zonas",
+                    "latitude": "Latitud",
+                    "longitude": "Longitud",
+                    "name": "Nombre"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "in_zones": "Define una plantilla que devuelve una lista de las zonas en las que se encuentra actualmente el rastreador de dispositivos. La plantilla debe devolver una lista de identificadores de entidades de zona. Si el rastreador de dispositivos no se encuentra en ninguna zona, la plantilla debe devolver una lista vac\u00eda.",
+                    "latitude": "Define una plantilla para obtener la latitud del rastreador del dispositivo. Los valores v\u00e1lidos son n\u00fameros entre `-90` y `90`.",
+                    "longitude": "Define una plantilla para obtener la longitud del rastreador del dispositivo. Los valores v\u00e1lidos son n\u00fameros entre `-180` y `180`.",
+                    "name": "Nombre"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad",
+                            "location_accuracy": "Precisi\u00f3n de ubicaci\u00f3n"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos.",
+                            "location_accuracy": "Define una plantilla para obtener la precisi\u00f3n de la ubicaci\u00f3n del rastreador del dispositivo en metros. Los valores v\u00e1lidos son n\u00fameros mayores o iguales que `0`."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de rastreador de dispositivos"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "event_type": "\u00daltimo tipo de evento disparado",
+                    "event_types": "Tipos de eventos",
+                    "name": "Nombre"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "event_type": "Define una plantilla para el tipo de evento.",
+                    "event_types": "Define una plantilla para una lista de tipos de eventos disponibles."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de evento"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "percentage": "Porcentaje",
+                    "set_percentage": "Acciones al establecer el porcentaje",
+                    "speed_count": "Recuento de velocidad",
+                    "state": "Estado",
+                    "turn_off": "Acciones al apagar",
+                    "turn_on": "Acciones al encender"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "percentage": "Define una plantilla para obtener el porcentaje de velocidad del ventilador.",
+                    "set_percentage": "Define las acciones que se ejecutan cuando se da al ventilador un comando de porcentaje de velocidad. Recibe la variable `percentage`.",
+                    "speed_count": "El n\u00famero de velocidades que admite el ventilador. Se utiliza para calcular el incremento porcentual de las acciones `fan.increase_speed` y `fan.decrease_speed`.",
+                    "state": "El ventilador est\u00e1 `on` si la plantilla se eval\u00faa como `True`, `yes`, `on`, `enable` o un n\u00famero positivo. Cualquier otro valor lo mostrar\u00e1 como `off`.",
+                    "turn_off": "Define acciones a ejecutar cuando se apaga el ventilador.",
+                    "turn_on": "Define las acciones que se ejecutan al encender el ventilador. Recibe las variables `percentage` y/o `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de ventilador"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "url": "URL",
+                    "verify_ssl": "Verificar el certificado SSL"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "url": "Define una plantilla para obtener la URL en la que se sirve la imagen.",
+                    "verify_ssl": "Habilitar o deshabilitar la verificaci\u00f3n del certificado SSL. Desactivar para utilizar una URL http o, si tienes un certificado SSL autofirmado y no has instalado el certificado de CA para habilitar la verificaci\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla imagen"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "hs": "Color HS",
+                    "level": "Nivel de brillo",
+                    "name": "Nombre",
+                    "set_hs": "Acciones al establecer el color HS",
+                    "set_level": "Acciones al establecer el nivel",
+                    "set_temperature": "Acciones al establecer la temperatura de color",
+                    "state": "Estado",
+                    "temperature": "Temperatura de color",
+                    "turn_off": "Acciones al apagar",
+                    "turn_on": "Acciones al encender"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "hs": "Define una plantilla para obtener el color HS de la luz. Debe representar una tupla (tono, saturaci\u00f3n).",
+                    "level": "Define una plantilla para obtener el brillo de la luz. Los valores v\u00e1lidos son de 0 a 255.",
+                    "set_hs": "Define las acciones que se ejecutan cuando se asigna a la luz un comando de color HS. Variables disponibles: `hs` como tupla, `h` y `s`.",
+                    "set_level": "Define las acciones que se ejecutan al recibir un comando de brillo. El script solo se llamar\u00e1 si la llamada `turn_on` solo contiene `brightness` y, opcionalmente, `transition`. Recibe las variables `brightness` y, opcionalmente, `transition`.",
+                    "set_temperature": "Define las acciones que se ejecutan cuando se asigna a la luz un comando de temperatura de color. Recibe la variable `color_temp_kelvin`. Tambi\u00e9n puede recibir las variables `brightness` y/o `transition`.",
+                    "state": "La luz est\u00e1 encendida si la plantilla se eval\u00faa como `True`, `yes`, `on`, `enable` o un n\u00famero positivo. Cualquier otro valor la mostrar\u00e1 como `off`.",
+                    "temperature": "Define una plantilla para obtener la temperatura de color de la luz.",
+                    "turn_off": "Define acciones a ejecutar cuando se apaga la luz.",
+                    "turn_on": "Define acciones a ejecutar cuando se enciende la luz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de luz"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Formato de c\u00f3digo",
+                    "device_id": "Dispositivo",
+                    "lock": "Acciones al bloquear",
+                    "name": "Nombre",
+                    "open": "Acciones al abrir",
+                    "state": "Estado",
+                    "unlock": "Acciones al desbloquear"
+                },
+                "data_description": {
+                    "code_format": "Define una plantilla para obtener el atributo `code_format` de la cerradura.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "lock": "Define acciones a ejecutar cuando la cerradura est\u00e1 bloqueada.",
+                    "open": "Define acciones a ejecutar cuando se abre la cerradura.",
+                    "state": "Define una plantilla para establecer el estado de la cerradura. La cerradura est\u00e1 bloqueada si la plantilla se eval\u00faa como `True`, `true`, `on` o `locked`. La cerradura est\u00e1 desbloqueada si la plantilla se eval\u00faa como `False`, `false`, `off` o `unlocked`. Otros estados v\u00e1lidos son `jammed`, `opening`, `locking`, `open` y `unlocking`.",
+                    "unlock": "Define las acciones que se ejecutar\u00e1n cuando se desbloquea la cerradura."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de cerradura"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "max": "Valor m\u00e1ximo",
+                    "min": "Valor m\u00ednimo",
+                    "name": "Nombre",
+                    "set_value": "Acciones sobre el valor establecido",
+                    "state": "Estado",
+                    "step": "Valor del paso",
+                    "unit_of_measurement": "Unidad de medida"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "max": "Define el valor m\u00e1ximo del n\u00famero.",
+                    "min": "Define el valor m\u00ednimo del n\u00famero.",
+                    "set_value": "Define las acciones que se ejecutan cuando el n\u00famero se establece en un valor. Recibe la variable `value`.",
+                    "state": "Plantilla para el valor actual del n\u00famero.",
+                    "step": "Define el paso de incremento/decremento del n\u00famero.",
+                    "unit_of_measurement": "Define la unidad de medida del n\u00famero, si la hay."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla n\u00famero"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "options": "Opciones disponibles",
+                    "select_option": "Acciones al seleccionar",
+                    "state": "Estado"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "options": "Plantilla para seleccionar las opciones disponibles.",
+                    "select_option": "Define las acciones que se ejecutan al seleccionar una opci\u00f3n de la lista de opciones. Recibe la variable `option`.",
+                    "state": "Plantilla para el valor actual de la selecci\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de selecci\u00f3n"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "state": "Estado",
+                    "state_class": "Clase de estado",
+                    "unit_of_measurement": "Unidad de medida"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "state": "Define una plantilla para obtener el estado del sensor. Si el sensor es num\u00e9rico, es decir, tiene una `state_class` o una `unit_of_measurement`, la plantilla de estado debe mostrarse como un n\u00famero o como `none`. La plantilla de estado no debe mostrarse como una cadena, incluyendo `unknown` o `unavailable`. Se puede definir una plantilla de `availability` para suprimir la visualizaci\u00f3n de la plantilla de estado.",
+                    "unit_of_measurement": "Define la unidad de medida del sensor, si la hay. Esto tambi\u00e9n mostrar\u00e1 el valor seg\u00fan la configuraci\u00f3n del formato num\u00e9rico en el perfil del usuario e influir\u00e1 en la presentaci\u00f3n gr\u00e1fica del historial como un valor continuo."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Sensor de plantilla"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "turn_off": "Acciones al apagar",
+                    "turn_on": "Acciones al encender",
+                    "value_template": "Estado"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "turn_off": "Define las acciones que se ejecutar\u00e1n cuando se apague el interruptor.",
+                    "turn_on": "Define las acciones que se ejecutar\u00e1n cuando se encienda el interruptor.",
+                    "value_template": "Define una plantilla para establecer el estado del interruptor. Si no se define, el interruptor asumir\u00e1 de manera optimista que todos los comandos fueron exitosos."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla interruptor"
+            },
+            "update": {
+                "data": {
+                    "backup": "Copia de seguridad",
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "in_progress": "En curso",
+                    "install": "Acciones en la instalaci\u00f3n",
+                    "installed_version": "Versi\u00f3n instalada",
+                    "latest_version": "\u00daltima versi\u00f3n",
+                    "name": "Nombre",
+                    "release_summary": "Resumen de la versi\u00f3n",
+                    "release_url": "URL de la versi\u00f3n",
+                    "specific_version": "Versi\u00f3n espec\u00edfica",
+                    "title": "T\u00edtulo",
+                    "update_percentage": "Porcentaje de actualizaci\u00f3n"
+                },
+                "data_description": {
+                    "backup": "Habilita o deshabilita la opci\u00f3n `Copia de seguridad autom\u00e1tica antes de actualizar` en la reparaci\u00f3n de actualizaciones. Al deshabilitarla, la variable `backup` siempre mostrar\u00e1 `Falso` durante la acci\u00f3n `install` y no aceptar\u00e1 la opci\u00f3n `backup`.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "in_progress": "Define una plantilla para obtener el estado en curso.",
+                    "install": "Define las acciones que se ejecutan al instalar la actualizaci\u00f3n. Recibe las variables `specific_version` y `backup` cuando est\u00e1n habilitadas.",
+                    "installed_version": "Define una plantilla para obtener la versi\u00f3n instalada.",
+                    "latest_version": "Define una plantilla para obtener la \u00faltima versi\u00f3n.",
+                    "release_summary": "Define una plantilla para obtener el resumen de la versi\u00f3n.",
+                    "release_url": "Define una plantilla para obtener la URL de la versi\u00f3n.",
+                    "specific_version": "Habilita o deshabilita el uso de la variable `version` con la acci\u00f3n `install`. Al deshabilitarla, la variable `specific_version` siempre proporcionar\u00e1 `None` en las acciones `install`.",
+                    "title": "Define una plantilla para obtener el t\u00edtulo de la actualizaci\u00f3n.",
+                    "update_percentage": "Define una plantilla para obtener el porcentaje de finalizaci\u00f3n de la actualizaci\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de actualizaci\u00f3n"
+            },
+            "user": {
+                "description": "Este ayudante te permite crear entidades ayudantes que definen su estado utilizando una plantilla. \u00bfQu\u00e9 tipo de plantilla te gustar\u00eda crear?",
+                "menu_options": {
+                    "alarm_control_panel": "Panel de control de alarma",
+                    "binary_sensor": "Sensor binario",
+                    "button": "Bot\u00f3n",
+                    "climate": "Climatizaci\u00f3n",
+                    "cover": "Persiana",
+                    "device_tracker": "Rastreador de dispositivos",
+                    "event": "Evento",
+                    "fan": "Ventilador",
+                    "image": "Imagen",
+                    "light": "Luz",
+                    "lock": "Cerradura",
+                    "number": "N\u00famero",
+                    "select": "Seleccionar",
+                    "sensor": "Sensor",
+                    "switch": "Interruptor",
+                    "update": "Actualizar",
+                    "vacuum": "Aspiradora",
+                    "weather": "Clima"
+                },
+                "title": "Ayudante de plantilla"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Acciones al limpiar un lugar",
+                    "device_id": "Dispositivo",
+                    "fan_speed": "Velocidad del ventilador",
+                    "fan_speeds": "Velocidades del ventilador",
+                    "locate": "Acciones al localizar",
+                    "name": "Nombre",
+                    "pause": "Acciones al pausar",
+                    "return_to_base": "Acciones al regresar a la base",
+                    "set_fan_speed": "Acciones al establecer la velocidad del ventilador",
+                    "start": "Acciones al iniciar",
+                    "state": "Estado",
+                    "stop": "Acciones al detener"
+                },
+                "data_description": {
+                    "clean_spot": "Define las acciones que se ejecutar\u00e1n cuando la aspiradora reciba la orden \"Limpiar punto\".",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "fan_speed": "Define una plantilla para obtener la velocidad del ventilador de la aspiradora.",
+                    "fan_speeds": "Lista de velocidades del ventilador que admite la aspiradora.",
+                    "locate": "Define las acciones que se ejecutar\u00e1n cuando la aspiradora reciba un comando \"Localizar\".",
+                    "pause": "Define las acciones a ejecutar cuando se pausa la aspiradora.",
+                    "return_to_base": "Define las acciones que se ejecutar\u00e1n cuando la aspiradora reciba la orden \"Regresar a la base\".",
+                    "set_fan_speed": "Define las acciones que se ejecutan cuando se le da a la aspiradora la orden de ajustar la velocidad del ventilador. Recibe la variable `fan_speed`.",
+                    "start": "Define las acciones que se ejecutar\u00e1n cuando se inicie la aspiradora.",
+                    "state": "Define una plantilla para obtener el estado de la aspiradora. Los valores v\u00e1lidos son `cleaning`, `docked`, `idle`, `paused`, `returning` y `error`.",
+                    "stop": "Define las acciones que se ejecutar\u00e1n cuando se detenga la aspiradora."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de aspiradora"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Condici\u00f3n",
+                    "device_id": "Dispositivo",
+                    "forecast_daily": "Pron\u00f3stico diario",
+                    "forecast_hourly": "Pron\u00f3stico cada hora",
+                    "humidity": "Humedad",
+                    "name": "Nombre",
+                    "temperature": "Temperatura",
+                    "temperature_unit": "Unidad de temperatura"
+                },
+                "data_description": {
+                    "condition": "Define una plantilla para obtener el estado actual del tiempo",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "forecast_daily": "Define una plantilla para obtener los [datos de pron\u00f3stico diario]({daily_link})",
+                    "forecast_hourly": "Define una plantilla para obtener los [datos de pron\u00f3stico horario]({hourly_link})",
+                    "humidity": "Define una plantilla para obtener la humedad actual.",
+                    "temperature": "Define una plantilla para obtener la temperatura actual.",
+                    "temperature_unit": "La unidad para cualquier salida de plantilla de temperatura. Una de \u00b0C, \u00b0F o K."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de clima"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Error al evaluar la plantilla de formato de c\u00f3digo \"{code_format_template}\" para {entity_id}: {cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "Error al volver a cargar las entidades de la plantilla: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "El ayudante de plantilla ha sido eliminado"
+                },
+                "error": {
+                    "invalid_device": "El dispositivo seleccionado ya no existe"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Dispositivo"
+                        },
+                        "data_description": {
+                            "device_id": "El dispositivo al que debe estar vinculado este ayudante de plantilla."
+                        },
+                        "description": "El ayudante de plantilla {name} estaba vinculado a un dispositivo que se ha dividido en varios dispositivos. Hasta que se seleccione un dispositivo, el ayudante no estar\u00e1 vinculado a ning\u00fan dispositivo.\n\nSelecciona el dispositivo al que debe estar vinculado este ayudante, o d\u00e9jalo en blanco para no vincularlo a ning\u00fan dispositivo.",
+                        "title": "Selecciona el dispositivo para {name}"
+                    }
+                }
+            },
+            "title": "Es necesario seleccionar de nuevo el dispositivo del ayudante de plantilla {name}"
+        },
+        "config_format_actions": {
+            "description": "Hay una opci\u00f3n `actions` en la configuraci\u00f3n de la plantilla que no est\u00e1 asociada a una opci\u00f3n `trigger`. Esto ser\u00e1 un error de validaci\u00f3n de la configuraci\u00f3n en 2026.5. \n\nA\u00f1ade un disparador a la configuraci\u00f3n o elimina la opci\u00f3n `actions` de la configuraci\u00f3n.\n\n```\n{config} \n```",
+            "title": "La opci\u00f3n de acciones de plantilla requiere un activador."
+        },
+        "config_format_triggers": {
+            "description": "Una configuraci\u00f3n de plantilla de disparador necesita un disparador y al menos un dominio al definir una entidad. Esto ser\u00e1 un error de validaci\u00f3n de la configuraci\u00f3n en Home Assistant Core 2026.5.\n\nElimina el disparador hu\u00e9rfano de la configuraci\u00f3n.\n\n\n```\n{config}\n```",
+            "title": "Configuraci\u00f3n de plantilla incompleta"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Acciones al armar ausente",
+                    "arm_custom_bypass": "Acciones al armar derivaci\u00f3n personalizada",
+                    "arm_home": "Acciones al armar en casa",
+                    "arm_night": "Acciones al armar de noche",
+                    "arm_vacation": "Acciones al armar en vacaciones",
+                    "code_arm_required": "Se requiere c\u00f3digo para armar",
+                    "code_format": "Formato de c\u00f3digo",
+                    "device_id": "Dispositivo",
+                    "disarm": "Acciones al desarmar",
+                    "trigger": "Acciones al dispararse",
+                    "value_template": "Estado"
+                },
+                "data_description": {
+                    "arm_away": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado en modo `arm_away`. Recibe la variable `code`.",
+                    "arm_custom_bypass": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado con `arm_custom_bypass`. Recibe la variable `code`.",
+                    "arm_home": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado en `arm_home`. Recibe la variable `code`.",
+                    "arm_night": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado en modo `arm_night`. Recibe la variable `code`.",
+                    "arm_vacation": "Define las acciones que se ejecutan cuando el panel de control de la alarma est\u00e1 armado con `arm_vacation`. Recibe la variable `code`.",
+                    "code_arm_required": "Si es verdadero, se requiere el c\u00f3digo para activar la alarma.",
+                    "code_format": "Uno de `number`, `text` o `no_code`. Formato del c\u00f3digo utilizado para armar/desarmar la alarma.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "disarm": "Define las acciones a ejecutar cuando el panel de control de la alarma se desarma. Recibe la variable `code`.",
+                    "trigger": "Define las acciones que se ejecutar\u00e1n cuando se dispare el panel de control de la alarma. Recibe la variable `code`.",
+                    "value_template": "Define una plantilla para establecer el estado del panel de alarma. Los valores de salida v\u00e1lidos de la plantilla son `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` y `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de panel de control de alarma"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "state": "Estado"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "state": "El sensor est\u00e1 `on` si la plantilla se eval\u00faa como `True`, `yes`, `on`, `enable` o un n\u00famero positivo. Cualquier otro valor lo har\u00e1 como `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad",
+                            "delay_off": "Retardo al desactivar",
+                            "delay_on": "Retardo al activar"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos.",
+                            "delay_off": "Tiempo durante el que no debe cumplirse el estado de la plantilla antes de que este sensor cambie a `apagado`.",
+                            "delay_on": "Tiempo durante el que debe cumplirse el estado de la plantilla antes de que este sensor cambie a `encendido`."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Sensor binario de plantilla"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "press": "Acciones al pulsar"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "press": "Define las acciones que se ejecutar\u00e1n cuando se pulse el bot\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla bot\u00f3n"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Temperatura actual",
+                    "device_id": "Dispositivo",
+                    "hvac_action": "Acci\u00f3n en curso",
+                    "hvac_mode": "Modo HVAC",
+                    "hvac_modes": "Modos del HVAC",
+                    "name": "Nombre",
+                    "set_hvac_mode": "Acciones al establecer el modo HVAC",
+                    "set_temperature": "Acciones al establecer la temperatura",
+                    "target_temperature": "Temperatura deseada",
+                    "temperature_unit": "Unidad de temperatura"
+                },
+                "data_description": {
+                    "current_temperature": "Define una plantilla para la temperatura actual.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "hvac_action": "Define una plantilla para la acci\u00f3n de HVAC actual. Las acciones de HVAC v\u00e1lidas son cooling, defrosting, drying, fan, heating, idle, off y preheating.",
+                    "hvac_mode": "Define una plantilla para el modo HVAC actual. Los modos HVAC v\u00e1lidos son auto, cool, dry, fan_only, heat, heat_cool y off.",
+                    "hvac_modes": "Define una plantilla para una lista de modos de HVAC disponibles. Los modos de HVAC v\u00e1lidos para la lista son auto, cool, dry, fan_only, heat, heat_cool y off.",
+                    "set_hvac_mode": "Define las acciones a ejecutar cuando el clima recibe un comando set_hvac_mode. Recibe la variable hvac_mode.",
+                    "set_temperature": "Define las acciones a ejecutar cuando el clima recibe un comando set_temperature. Recibe las variables hvac_mode, temperature, target_temp_high y target_temp_low. Si se recibe hvac_mode, las acciones de set_hvac_mode se ejecutan antes que las acciones de set_temperature.",
+                    "target_temperature": "Define una plantilla para la temperatura objetivo.",
+                    "temperature_unit": "La unidad para cualquier salida de plantilla de temperatura. Una de \u00b0C, \u00b0F o K."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad",
+                            "max_temperature": "Temperatura deseada m\u00e1xima",
+                            "min_temperature": "Temperatura deseada m\u00ednima"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de termostato"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Acciones al cerrar",
+                    "device_id": "Dispositivo",
+                    "open_cover": "Acciones al abrir",
+                    "position": "Posici\u00f3n",
+                    "set_cover_position": "Acciones al establecer la posici\u00f3n",
+                    "state": "Estado",
+                    "stop_cover": "Acciones al detener"
+                },
+                "data_description": {
+                    "close_cover": "Define acciones a ejecutar cuando la persiana est\u00e1 cerrada.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "open_cover": "Define acciones a ejecutar cuando se abre la persiana.",
+                    "position": "Define una plantilla para obtener la posici\u00f3n de la persiana. Los valores son n\u00fameros entre 0 (cerrado) y 100 (abierto).",
+                    "set_cover_position": "Define las acciones que se ejecutan cuando se asigna a la persiana el comando `set_cover_position`. Recibe la variable `position`.",
+                    "state": "Define una plantilla para obtener el estado de la persiana. Los valores de salida v\u00e1lidos de la plantilla son `open`, `opening`, `closing` y `closed`, que se asignan directamente a los estados correspondientes. Si se especifican tanto un estado como una posici\u00f3n, solo `opening` y `closing` se establecen a partir de la plantilla de estado.",
+                    "stop_cover": "Define las acciones a ejecutar cuando se detiene la persiana."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de persiana"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "in_zones": "Zonas",
+                    "latitude": "Latitud",
+                    "longitude": "Longitud"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "in_zones": "Define una plantilla que devuelve una lista de las zonas en las que se encuentra actualmente el rastreador de dispositivos. La plantilla debe devolver una lista de identificadores de entidades de zona. Si el rastreador de dispositivos no se encuentra en ninguna zona, la plantilla debe devolver una lista vac\u00eda.",
+                    "latitude": "Define una plantilla para obtener la latitud del rastreador del dispositivo. Los valores v\u00e1lidos son n\u00fameros entre `-90` y `90`.",
+                    "longitude": "Define una plantilla para obtener la longitud del rastreador del dispositivo. Los valores v\u00e1lidos son n\u00fameros entre `-180` y `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad",
+                            "location_accuracy": "Precisi\u00f3n de ubicaci\u00f3n"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos.",
+                            "location_accuracy": "Define una plantilla para obtener la precisi\u00f3n de la ubicaci\u00f3n del rastreador del dispositivo en metros. Los valores v\u00e1lidos son n\u00fameros mayores o iguales que `0`."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de rastreador de dispositivos"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "event_type": "\u00daltimo tipo de evento disparado",
+                    "event_types": "Tipos de eventos",
+                    "name": "Nombre"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "event_type": "Define una plantilla para el tipo de evento.",
+                    "event_types": "Define una plantilla para una lista de tipos de eventos disponibles."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de evento"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "percentage": "Porcentaje",
+                    "set_percentage": "Acciones al establecer el porcentaje",
+                    "speed_count": "Recuento de velocidad",
+                    "state": "Estado",
+                    "turn_off": "Acciones al apagar",
+                    "turn_on": "Acciones al encender"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "percentage": "Define una plantilla para obtener el porcentaje de velocidad del ventilador.",
+                    "set_percentage": "Define las acciones que se ejecutan cuando se da al ventilador un comando de porcentaje de velocidad. Recibe la variable `percentage`.",
+                    "speed_count": "El n\u00famero de velocidades que admite el ventilador. Se utiliza para calcular el incremento porcentual de las acciones `fan.increase_speed` y `fan.decrease_speed`.",
+                    "state": "El ventilador est\u00e1 `on` si la plantilla se eval\u00faa como `True`, `yes`, `on`, `enable` o un n\u00famero positivo. Cualquier otro valor lo mostrar\u00e1 como `off`.",
+                    "turn_off": "Define acciones a ejecutar cuando se apaga el ventilador.",
+                    "turn_on": "Define las acciones que se ejecutan al encender el ventilador. Recibe las variables `percentage` y/o `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de ventilador"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "url": "URL",
+                    "verify_ssl": "Verificar el certificado SSL"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "url": "Define una plantilla para obtener la URL en la que se sirve la imagen.",
+                    "verify_ssl": "Habilitar o deshabilitar la verificaci\u00f3n del certificado SSL. Desactivar para utilizar una URL http o, si tienes un certificado SSL autofirmado y no has instalado el certificado de CA para habilitar la verificaci\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla imagen"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "hs": "Color HS",
+                    "level": "Nivel de brillo",
+                    "name": "Nombre",
+                    "set_hs": "Acciones al establecer el color HS",
+                    "set_level": "Acciones al establecer el nivel",
+                    "set_temperature": "Acciones al establecer la temperatura de color",
+                    "state": "Estado",
+                    "temperature": "Temperatura de color",
+                    "turn_off": "Acciones al apagar",
+                    "turn_on": "Acciones al encender"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "hs": "Define una plantilla para obtener el color HS de la luz. Debe representar una tupla (tono, saturaci\u00f3n).",
+                    "level": "Define una plantilla para obtener el brillo de la luz. Los valores v\u00e1lidos son de 0 a 255.",
+                    "set_hs": "Define las acciones que se ejecutan cuando se asigna a la luz un comando de color HS. Variables disponibles: `hs` como tupla, `h` y `s`.",
+                    "set_level": "Define las acciones que se ejecutan al recibir un comando de brillo. El script solo se llamar\u00e1 si la llamada `turn_on` solo contiene `brightness` y, opcionalmente, `transition`. Recibe las variables `brightness` y, opcionalmente, `transition`.",
+                    "set_temperature": "Define las acciones que se ejecutan cuando se asigna a la luz un comando de temperatura de color. Recibe la variable `color_temp_kelvin`. Tambi\u00e9n puede recibir las variables `brightness` y/o `transition`.",
+                    "state": "La luz est\u00e1 encendida si la plantilla se eval\u00faa como `True`, `yes`, `on`, `enable` o un n\u00famero positivo. Cualquier otro valor la mostrar\u00e1 como `off`.",
+                    "temperature": "Define una plantilla para obtener la temperatura de color de la luz.",
+                    "turn_off": "Define acciones a ejecutar cuando se apaga la luz.",
+                    "turn_on": "Define acciones a ejecutar cuando se enciende la luz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de luz"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Formato de c\u00f3digo",
+                    "device_id": "Dispositivo",
+                    "lock": "Acciones al bloquear",
+                    "open": "Acciones al abrir",
+                    "state": "Estado",
+                    "unlock": "Acciones al desbloquear"
+                },
+                "data_description": {
+                    "code_format": "Define una plantilla para obtener el atributo `code_format` de la cerradura.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "lock": "Define acciones a ejecutar cuando la cerradura est\u00e1 bloqueada.",
+                    "open": "Define acciones a ejecutar cuando se abre la cerradura.",
+                    "state": "Define una plantilla para establecer el estado de la cerradura. La cerradura est\u00e1 bloqueada si la plantilla se eval\u00faa como `True`, `true`, `on` o `locked`. La cerradura est\u00e1 desbloqueada si la plantilla se eval\u00faa como `False`, `false`, `off` o `unlocked`. Otros estados v\u00e1lidos son `jammed`, `opening`, `locking`, `open` y `unlocking`.",
+                    "unlock": "Define las acciones que se ejecutar\u00e1n cuando se desbloquea la cerradura."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de cerradura"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "max": "Valor m\u00e1ximo",
+                    "min": "Valor m\u00ednimo",
+                    "name": "Nombre",
+                    "set_value": "Acciones sobre el valor establecido",
+                    "state": "Estado",
+                    "step": "Valor del paso"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "max": "Define el valor m\u00e1ximo del n\u00famero.",
+                    "min": "Define el valor m\u00ednimo del n\u00famero.",
+                    "set_value": "Define las acciones que se ejecutan cuando el n\u00famero se establece en un valor. Recibe la variable `value`.",
+                    "state": "Plantilla para el valor actual del n\u00famero.",
+                    "step": "Define el paso de incremento/decremento del n\u00famero."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla n\u00famero"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "options": "Opciones disponibles",
+                    "select_option": "Acciones al seleccionar",
+                    "state": "Estado"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "options": "Plantilla para seleccionar las opciones disponibles.",
+                    "select_option": "Define las acciones que se ejecutan al seleccionar una opci\u00f3n de la lista de opciones. Recibe la variable `option`.",
+                    "state": "Plantilla para el valor actual de la selecci\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de selecci\u00f3n"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "state": "Estado",
+                    "state_class": "Clase de estado",
+                    "unit_of_measurement": "Unidad de medida"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "state": "Define una plantilla para obtener el estado del sensor. Si el sensor es num\u00e9rico, es decir, tiene una `state_class` o una `unit_of_measurement`, la plantilla de estado debe mostrarse como un n\u00famero o como `none`. La plantilla de estado no debe mostrarse como una cadena, incluyendo `unknown` o `unavailable`. Se puede definir una plantilla de `availability` para suprimir la visualizaci\u00f3n de la plantilla de estado.",
+                    "unit_of_measurement": "Define la unidad de medida del sensor, si la hay. Esto tambi\u00e9n mostrar\u00e1 el valor seg\u00fan la configuraci\u00f3n del formato num\u00e9rico en el perfil del usuario e influir\u00e1 en la presentaci\u00f3n gr\u00e1fica del historial como un valor continuo."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Sensor de plantilla"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nombre",
+                    "turn_off": "Acciones al apagar",
+                    "turn_on": "Acciones al encender",
+                    "value_template": "Estado"
+                },
+                "data_description": {
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "turn_off": "Define las acciones que se ejecutar\u00e1n cuando se apague el interruptor.",
+                    "turn_on": "Define las acciones que se ejecutar\u00e1n cuando se encienda el interruptor.",
+                    "value_template": "Define una plantilla para establecer el estado del interruptor. Si no se define, el interruptor asumir\u00e1 de manera optimista que todos los comandos fueron exitosos."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla interruptor"
+            },
+            "update": {
+                "data": {
+                    "backup": "Copia de seguridad",
+                    "device_class": "Clase de dispositivo",
+                    "device_id": "Dispositivo",
+                    "in_progress": "En curso",
+                    "install": "Acciones en la instalaci\u00f3n",
+                    "installed_version": "Versi\u00f3n instalada",
+                    "latest_version": "\u00daltima versi\u00f3n",
+                    "name": "Nombre",
+                    "release_summary": "Resumen de la versi\u00f3n",
+                    "release_url": "URL de la versi\u00f3n",
+                    "specific_version": "Versi\u00f3n espec\u00edfica",
+                    "title": "T\u00edtulo",
+                    "update_percentage": "Porcentaje de actualizaci\u00f3n"
+                },
+                "data_description": {
+                    "backup": "Habilita o deshabilita la opci\u00f3n `Copia de seguridad autom\u00e1tica antes de actualizar` en la reparaci\u00f3n de actualizaciones. Al deshabilitarla, la variable `backup` siempre mostrar\u00e1 `Falso` durante la acci\u00f3n `install` y no aceptar\u00e1 la opci\u00f3n `backup`.",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "in_progress": "Define una plantilla para obtener el estado en curso.",
+                    "install": "Define las acciones que se ejecutan al instalar la actualizaci\u00f3n. Recibe las variables `specific_version` y `backup` cuando est\u00e1n habilitadas.",
+                    "installed_version": "Define una plantilla para obtener la versi\u00f3n instalada.",
+                    "latest_version": "Define una plantilla para obtener la \u00faltima versi\u00f3n.",
+                    "release_summary": "Define una plantilla para obtener el resumen de la versi\u00f3n.",
+                    "release_url": "Define una plantilla para obtener la URL de la versi\u00f3n.",
+                    "specific_version": "Habilita o deshabilita el uso de la variable `version` con la acci\u00f3n `install`. Al deshabilitarla, la variable `specific_version` siempre proporcionar\u00e1 `None` en las acciones `install`.",
+                    "title": "Define una plantilla para obtener el t\u00edtulo de la actualizaci\u00f3n.",
+                    "update_percentage": "Define una plantilla para obtener el porcentaje de finalizaci\u00f3n de la actualizaci\u00f3n."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de actualizaci\u00f3n"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Acciones al limpiar un lugar",
+                    "device_id": "Dispositivo",
+                    "fan_speed": "Velocidad del ventilador",
+                    "fan_speeds": "Velocidades del ventilador",
+                    "locate": "Acciones al localizar",
+                    "name": "Nombre",
+                    "pause": "Acciones al pausar",
+                    "return_to_base": "Acciones al regresar a la base",
+                    "set_fan_speed": "Acciones al establecer la velocidad del ventilador",
+                    "start": "Acciones al iniciar",
+                    "state": "Estado",
+                    "stop": "Acciones al detener"
+                },
+                "data_description": {
+                    "clean_spot": "Define las acciones que se ejecutar\u00e1n cuando la aspiradora reciba la orden \"Limpiar punto\".",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "fan_speed": "Define una plantilla para obtener la velocidad del ventilador de la aspiradora.",
+                    "fan_speeds": "Lista de velocidades del ventilador que admite la aspiradora.",
+                    "locate": "Define las acciones que se ejecutar\u00e1n cuando la aspiradora reciba un comando \"Localizar\".",
+                    "pause": "Define las acciones a ejecutar cuando se pausa la aspiradora.",
+                    "return_to_base": "Define las acciones que se ejecutar\u00e1n cuando la aspiradora reciba la orden \"Regresar a la base\".",
+                    "set_fan_speed": "Define las acciones que se ejecutan cuando se le da a la aspiradora la orden de ajustar la velocidad del ventilador. Recibe la variable `fan_speed`.",
+                    "start": "Define las acciones que se ejecutar\u00e1n cuando se inicie la aspiradora.",
+                    "state": "Define una plantilla para obtener el estado de la aspiradora. Los valores v\u00e1lidos son `cleaning`, `docked`, `idle`, `paused`, `returning` y `error`.",
+                    "stop": "Define las acciones que se ejecutar\u00e1n cuando se detenga la aspiradora."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "data_description": {
+                            "availability": "Define una plantilla para obtener el estado \"available\" de la entidad. Si la plantilla falla o devuelve `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, o un n\u00famero distinto de cero, la entidad estar\u00e1 `available`. Si la plantilla devuelve cualquier otro valor, la entidad ser\u00e1 `unavailable`. Si no se configura, la entidad siempre estar\u00e1 \"available\". Ten en cuenta que la comparaci\u00f3n de cadenas no distingue entre may\u00fasculas y min\u00fasculas; `\"TrUe\"` y `\"yEs\"` est\u00e1n permitidos."
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de aspiradora"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Condici\u00f3n",
+                    "device_id": "Dispositivo",
+                    "forecast_daily": "Pron\u00f3stico diario",
+                    "forecast_hourly": "Pron\u00f3stico cada hora",
+                    "humidity": "Humedad",
+                    "name": "Nombre",
+                    "temperature": "Temperatura",
+                    "temperature_unit": "Unidad de temperatura"
+                },
+                "data_description": {
+                    "condition": "Define una plantilla para obtener el estado actual del tiempo",
+                    "device_id": "Selecciona un dispositivo para vincularlo a esta entidad.",
+                    "forecast_daily": "Define una plantilla para obtener los [datos de pron\u00f3stico diario]({daily_link})",
+                    "forecast_hourly": "Define una plantilla para obtener los [datos de pron\u00f3stico horario]({hourly_link})",
+                    "humidity": "Define una plantilla para obtener la humedad actual.",
+                    "temperature": "Define una plantilla para obtener la temperatura actual.",
+                    "temperature_unit": "La unidad para cualquier salida de plantilla de temperatura. Una de \u00b0C, \u00b0F o K."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilidad"
+                        },
+                        "name": "Opciones adicionales"
+                    }
+                },
+                "title": "Plantilla de clima"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Sin formato de c\u00f3digo",
+                "number": "N\u00famero",
+                "text": "Texto"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Sin unidad de medida"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Firmware"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Recarga entidades de plantilla desde la configuraci\u00f3n YAML.",
+            "name": "Recargar entidades de plantilla"
+        }
+    }
+}

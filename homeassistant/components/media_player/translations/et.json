@@ -1,0 +1,593 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "condition_threshold_name": "L\u00e4vi",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt",
+        "trigger_threshold_name": "L\u00e4vi"
+    },
+    "conditions": {
+        "is_muted": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu meediam\u00e4ngijat on vaigistatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija on summutatud"
+        },
+        "is_not_playing": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu meediam\u00e4ngijat ei taasesita",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija ei taasesita"
+        },
+        "is_off": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu meediam\u00e4ngijat on v\u00e4lja l\u00fclitatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija on v\u00e4lja l\u00fclitatud"
+        },
+        "is_on": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu meediam\u00e4ngijat on sisse l\u00fclitatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija on sisse l\u00fclitatud"
+        },
+        "is_paused": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu meediam\u00e4ngijat on peatatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija on peatatud"
+        },
+        "is_playing": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu meediam\u00e4ngijat m\u00e4ngivad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija m\u00e4ngib"
+        },
+        "is_unmuted": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu meediam\u00e4ngijat ei ole summutatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija ei ole summutatud"
+        },
+        "is_volume": {
+            "description": "Testib \u00fche v\u00f5i mitme meediam\u00e4ngija helitugevust.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "threshold": {
+                    "name": "L\u00e4vi"
+                }
+            },
+            "name": "Meediam\u00e4ngija helitugevus"
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "{entity_name} puhverdab",
+            "is_idle": "{entity_name} on j\u00f5udeolekus",
+            "is_off": "{entity_name} on v\u00e4lja l\u00fclitatud",
+            "is_on": "{entity_name} on sisse l\u00fclitatud",
+            "is_paused": "{entity_name} on peatatud",
+            "is_playing": "{entity_name} m\u00e4ngib"
+        },
+        "extra_fields": {
+            "for": "Kestus"
+        },
+        "trigger_type": {
+            "buffering": "{entity_name} alustab puhverdamist",
+            "changed_states": "{entity_name} l\u00fclitus sisse v\u00f5i v\u00e4lja",
+            "idle": "{entity_name} muutub j\u00f5udeolekusse",
+            "paused": "{entity_name} on pausil",
+            "playing": "{entity_name} alustab taasesitamist",
+            "turned_off": "{entity_name} l\u00fclitus v\u00e4lja",
+            "turned_on": "{entity_name} l\u00fclitus sisse"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Meediam\u00e4ngija",
+            "state": {
+                "buffering": "Puhverdamine",
+                "idle": "Ootel",
+                "off": "V\u00e4ljas",
+                "on": "Sees",
+                "paused": "Peatatud",
+                "playing": "M\u00e4ngib",
+                "standby": "Unere\u017eiimil"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "Rakenduse ID"
+                },
+                "app_name": {
+                    "name": "Rakendus"
+                },
+                "entity_picture_local": {
+                    "name": "Kohalikult juurdep\u00e4\u00e4setav olemi pilt"
+                },
+                "groups_members": {
+                    "name": "R\u00fchma liikmed"
+                },
+                "is_volume_muted": {
+                    "name": "Vaigistatud",
+                    "state": {
+                        "false": "Ei",
+                        "true": "Jah"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Albumi esitaja"
+                },
+                "media_album_name": {
+                    "name": "Album"
+                },
+                "media_artist": {
+                    "name": "Esitaja"
+                },
+                "media_channel": {
+                    "name": "Kanal"
+                },
+                "media_content_id": {
+                    "name": "Sisu ID"
+                },
+                "media_content_type": {
+                    "name": "Sisu t\u00fc\u00fcp",
+                    "state": {
+                        "album": "Album",
+                        "app": "Rakendus",
+                        "artist": "Esitaja",
+                        "channel": "Kanal",
+                        "channels": "Kanalid",
+                        "composer": "Helilooja",
+                        "contributing_artist": "Kaasesitaja",
+                        "episode": "Osa",
+                        "game": "M\u00e4ng",
+                        "genre": "\u017danr",
+                        "image": "Pilt",
+                        "movie": "Film",
+                        "music": "Muusika",
+                        "playlist": "Esitusloend",
+                        "podcast": "Taskuh\u00e4\u00e4ling",
+                        "season": "Hooaeg",
+                        "track": "Lugu",
+                        "tvshow": "Telesaade",
+                        "url": "URL",
+                        "video": "Video"
+                    }
+                },
+                "media_duration": {
+                    "name": "Kestus"
+                },
+                "media_episode": {
+                    "name": "Osa"
+                },
+                "media_playlist": {
+                    "name": "Esitusloend"
+                },
+                "media_position": {
+                    "name": "Positsioon"
+                },
+                "media_position_updated_at": {
+                    "name": "Positsioon v\u00e4rskendatud"
+                },
+                "media_season": {
+                    "name": "Hooaeg"
+                },
+                "media_series_title": {
+                    "name": "Seeria"
+                },
+                "media_title": {
+                    "name": "Nimetus"
+                },
+                "media_track": {
+                    "name": "Lugu"
+                },
+                "repeat": {
+                    "name": "Korda",
+                    "state": {
+                        "all": "K\u00f5ik lood",
+                        "off": "V\u00e4ljas",
+                        "one": "\u00dcks kord"
+                    }
+                },
+                "shuffle": {
+                    "name": "Juhuesitus",
+                    "state": {
+                        "false": "V\u00e4ljas",
+                        "true": "Sees"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Heli re\u017eiim"
+                },
+                "sound_mode_list": {
+                    "name": "Saadaolevad helire\u017eiimid"
+                },
+                "source": {
+                    "name": "Allikas"
+                },
+                "source_list": {
+                    "name": "Saadaolevad allikad"
+                },
+                "volume_level": {
+                    "name": "Helitugevus"
+                }
+            }
+        },
+        "projector": {
+            "name": "Projektor"
+        },
+        "receiver": {
+            "name": "Vastuv\u00f5tja"
+        },
+        "speaker": {
+            "name": "K\u00f5lar"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Lisa j\u00e4rjekorda",
+                "next": "Esita j\u00e4rgmine",
+                "play": "Esita",
+                "replace": "Esita kohe ja t\u00fchjenda j\u00e4rjekord"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "Korda k\u00f5iki",
+                "off": "V\u00e4ljas",
+                "one": "Korda \u00fchte"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Sirvib saadaolevaid meediume.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Sirvitava sisu ID. S\u00f5ltub integratsioonist.",
+                    "name": "Sisu ID"
+                },
+                "media_content_type": {
+                    "description": "Sirvitava sisu t\u00fc\u00fcp, nt pilt, muusika, telesaade, video, jagu, kanal v\u00f5i esitusloend.",
+                    "name": "Sisu t\u00fc\u00fcp"
+                }
+            },
+            "name": "Meediasisu sirvimine"
+        },
+        "clear_playlist": {
+            "description": "Eemaldab k\u00f5ik elemendid meediam\u00e4ngija esitusloendist.",
+            "name": "T\u00fchjenda meediam\u00e4ngija esitusloend"
+        },
+        "join": {
+            "description": "R\u00fchmitab meediam\u00e4ngijad s\u00fcnkroonseks taasesituseks. T\u00f6\u00f6tab ainult toetatud multiroomi audios\u00fcsteemides.",
+            "fields": {
+                "group_members": {
+                    "description": "M\u00e4ngijad, mis s\u00fcnkroonitakse taasesitusega, mis on m\u00e4\u00e4ratud jaotises \"sihtm\u00e4rgid\".",
+                    "name": "R\u00fchma liikmed"
+                }
+            },
+            "name": "Liitu meediam\u00e4ngijatega"
+        },
+        "media_next_track": {
+            "description": "Valib meediam\u00e4ngijas j\u00e4rgmise loo.",
+            "name": "J\u00e4rgmine lugu"
+        },
+        "media_pause": {
+            "description": "Peatab meediam\u00e4ngija taasesituse.",
+            "name": "Meedia paus"
+        },
+        "media_play": {
+            "description": "Alustab meediam\u00e4ngijas taasesitust.",
+            "name": "Esita sisu"
+        },
+        "media_play_pause": {
+            "description": "L\u00fclitab meediam\u00e4ngija taasesituse/pausi re\u017eiimi.",
+            "name": "Meedia esitamine/peatamine"
+        },
+        "media_previous_track": {
+            "description": "Valib meediam\u00e4ngijas eelmise loo.",
+            "name": "Eelmine lugu"
+        },
+        "media_seek": {
+            "description": "V\u00f5imaldab minna meediam\u00e4ngijas parajasti m\u00e4ngitava meediumi teise ossa.",
+            "fields": {
+                "seek_position": {
+                    "description": "Sihtpositsioon praegu esitatavas meedias. Vorming s\u00f5ltub platvormist.",
+                    "name": "Positsioon"
+                }
+            },
+            "name": "Otsi meediat"
+        },
+        "media_stop": {
+            "description": "Peatab meediam\u00e4ngija taasesituse.",
+            "name": "Peata meedia"
+        },
+        "play_media": {
+            "description": "K\u00e4ivitab m\u00e4\u00e4ratud meedia m\u00e4ngimise meediam\u00e4ngijas.",
+            "fields": {
+                "announce": {
+                    "description": "Kui meediat peaks teavitusena m\u00e4ngima.",
+                    "name": "Teavita"
+                },
+                "enqueue": {
+                    "description": "Kas sisu tuleks praegu esitada v\u00f5i j\u00e4rjekorda lisada.",
+                    "name": "Pane j\u00e4rjekorda"
+                },
+                "media": {
+                    "description": "Esitamiseks valitud sisu.",
+                    "name": "Sisu"
+                }
+            },
+            "name": "Esita m\u00e4\u00e4ratud meediat"
+        },
+        "repeat_set": {
+            "description": "M\u00e4\u00e4rab meediam\u00e4ngija kordusre\u017eiimi.",
+            "fields": {
+                "repeat": {
+                    "description": "Kas meediat (\u00fcks v\u00f5i k\u00f5ik) tuleks esitada ts\u00fcklina v\u00f5i mitte.",
+                    "name": "Kordusre\u017eiim"
+                }
+            },
+            "name": "Meediam\u00e4ngija korduse m\u00e4\u00e4ramine"
+        },
+        "search_media": {
+            "description": "Otsib saadaolevat meediat.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Sirvitava sisu ID. S\u00f5ltub integratsioonist.",
+                    "name": "Sisu ID"
+                },
+                "media_content_type": {
+                    "description": "Sirvitava sisu t\u00fc\u00fcp, nt pilt, muusika, telesaade, video, jagu, kanal v\u00f5i esitusloend.",
+                    "name": "Sisu t\u00fc\u00fcp"
+                },
+                "media_filter_classes": {
+                    "description": "Meediumiklasside loend mille alusel otsingutulemusi filtreerida.",
+                    "name": "Meediumiklassi filtrid"
+                },
+                "search_query": {
+                    "description": "Termin mida otsida.",
+                    "name": "Otsingu p\u00e4ring"
+                }
+            },
+            "name": "Otsi meediat"
+        },
+        "select_sound_mode": {
+            "description": "Valib meediam\u00e4ngija konkreetse helire\u017eiimi.",
+            "fields": {
+                "sound_mode": {
+                    "description": "Helire\u017eiimi nimi, millele l\u00fclitada.",
+                    "name": "Helire\u017eiim"
+                }
+            },
+            "name": "Vali meediam\u00e4ngija helire\u017eiim"
+        },
+        "select_source": {
+            "description": "Saadab meediumipleierile k\u00e4su sisendallika muutmiseks.",
+            "fields": {
+                "source": {
+                    "description": "Allika nimi, millele l\u00fclitada. Platvormist s\u00f5ltuv.",
+                    "name": "Allikas"
+                }
+            },
+            "name": "Vali meediam\u00e4ngija allikas"
+        },
+        "shuffle_set": {
+            "description": "Lubab v\u00f5i keelab meediam\u00e4ngija juhusliku esituse re\u017eiimi.",
+            "fields": {
+                "shuffle": {
+                    "description": "Kas juhuesitusre\u017eiim on lubatud v\u00f5i mitte.",
+                    "name": "Juhuesitus"
+                }
+            },
+            "name": "Meediam\u00e4ngija juhusliku esituse m\u00e4\u00e4ramine"
+        },
+        "toggle": {
+            "description": "L\u00fclitab meediam\u00e4ngija sisse/v\u00e4lja.",
+            "name": "Meediam\u00e4ngija sisse/v\u00e4lja l\u00fclitamine"
+        },
+        "turn_off": {
+            "description": "L\u00fclitab meediam\u00e4ngija toite v\u00e4lja.",
+            "name": "L\u00fclita meediam\u00e4ngija v\u00e4lja"
+        },
+        "turn_on": {
+            "description": "L\u00fclitab meediam\u00e4ngija toite sisse.",
+            "name": "L\u00fclita meediam\u00e4ngija sisse"
+        },
+        "unjoin": {
+            "description": "Eemaldab meediam\u00e4ngija grupist. T\u00f6\u00f6tab ainult platvormidel, mis toetavad m\u00e4ngijagruppe.",
+            "name": "Meediam\u00e4ngija lahti\u00fchendamine"
+        },
+        "volume_down": {
+            "description": "V\u00e4hendab meediam\u00e4ngija helitugevust.",
+            "name": "V\u00e4henda meediam\u00e4gijai helitugevust"
+        },
+        "volume_mute": {
+            "description": "Vaigistab v\u00f5i t\u00fchistab meediam\u00e4ngija vaigistamise.",
+            "fields": {
+                "is_volume_muted": {
+                    "description": "M\u00e4\u00e4rab, kas see on vaigistatud v\u00f5i mitte.",
+                    "name": "Vaigistatud"
+                }
+            },
+            "name": "Meediam\u00e4ngija vaigistamine/vaigistamise t\u00fchistamine"
+        },
+        "volume_set": {
+            "description": "M\u00e4\u00e4rab meediam\u00e4ngija helitugevuse taseme.",
+            "fields": {
+                "volume_level": {
+                    "description": "Helitugevus. 0 on kuuldamatu, 1 on maksimaalne helitugevus.",
+                    "name": "Tase"
+                }
+            },
+            "name": "Meediapleieri helitugevuse m\u00e4\u00e4ramine"
+        },
+        "volume_up": {
+            "description": "Suurendab meediam\u00e4ngija helitugevust.",
+            "name": "Suurendage meediapleieri helitugevust"
+        }
+    },
+    "title": "Meediam\u00e4ngija",
+    "triggers": {
+        "muted": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme meediam\u00e4ngija vaigistamist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija on vaigistatud"
+        },
+        "paused_playing": {
+            "description": "K\u00e4ivitub p\u00e4rast seda kui \u00fcks v\u00f5i mitu meediam\u00e4ngijat peatavad m\u00e4ngimise.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija m\u00e4ngimine peatub"
+        },
+        "started_playing": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme meediam\u00e4ngija m\u00e4ngimise alustamist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija hakkas m\u00e4ngima"
+        },
+        "stopped_playing": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu meediapleierit l\u00f5petavad esitamise.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija l\u00f5petab m\u00e4ngimise"
+        },
+        "turned_off": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme meediam\u00e4ngija v\u00e4ljal\u00fclitamist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija on v\u00e4lja l\u00fclitatud"
+        },
+        "turned_on": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme meediam\u00e4ngija sissel\u00fclitamist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija on sisse l\u00fclitatud"
+        },
+        "unmuted": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme meediam\u00e4ngija vaigistamise t\u00fchistamist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Meediam\u00e4ngija vaigistus on t\u00fchistatud"
+        },
+        "volume_changed": {
+            "description": "K\u00e4ivitub kui \u00fche v\u00f5i mitme meediam\u00e4ngija helitugevus muutub.",
+            "fields": {
+                "threshold": {
+                    "name": "L\u00e4vi"
+                }
+            },
+            "name": "Meediam\u00e4ngija helitugevus muutus"
+        },
+        "volume_crossed_threshold": {
+            "description": "K\u00e4ivitub kui \u00fche v\u00f5i mitme meediam\u00e4ngija helitugevus \u00fcletab k\u00fcnnise.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "threshold": {
+                    "name": "L\u00e4vi"
+                }
+            },
+            "name": "Meediam\u00e4ngija helitugevus \u00fcletas l\u00e4vendi"
+        }
+    }
+}

@@ -1,0 +1,120 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer",
+        "trigger_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_available": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_not_available": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Duur"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} update beschikbaarheid gewijzigd",
+            "turned_off": "{entity_name} werd up-to-date",
+            "turned_on": "{entity_name} heeft een update beschikbaar"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Update",
+            "state": {
+                "off": "Up-to-date",
+                "on": "Update beschikbaar"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Auto update",
+                    "state": {
+                        "false": "Nee",
+                        "true": "Ja"
+                    }
+                },
+                "in_progress": {
+                    "name": "Bezig",
+                    "state": {
+                        "false": "Nee",
+                        "true": "Ja"
+                    }
+                },
+                "installed_version": {
+                    "name": "Ge\u00efnstalleerde versie"
+                },
+                "latest_version": {
+                    "name": "Nieuwste versie"
+                },
+                "release_summary": {
+                    "name": "Samenvatting van de release"
+                },
+                "release_url": {
+                    "name": "Release URL"
+                },
+                "skipped_version": {
+                    "name": "Overgeslagen versie"
+                },
+                "title": {
+                    "name": "Titel"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmware"
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Verwijdert de overgeslagen versiemarkering van een update.",
+            "name": "Overgeslagen updates wissen"
+        },
+        "install": {
+            "fields": {
+                "backup": {
+                    "name": "Back-up"
+                },
+                "version": {
+                    "description": "De versie die ge\u00efnstalleerd moet worden. Als deze wordt weggelaten, wordt de laatste versie ge\u00efnstalleerd.",
+                    "name": "Versie"
+                }
+            },
+            "name": "Update installeren"
+        },
+        "skip": {
+            "name": "Update overslaan"
+        }
+    },
+    "title": "Update",
+    "triggers": {
+        "became_available": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    }
+}

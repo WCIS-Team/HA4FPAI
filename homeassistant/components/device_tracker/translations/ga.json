@@ -1,0 +1,107 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "T\u00e1 {entity_name} sa bhaile",
+            "is_not_home": "N\u00edl {entity_name} sa bhaile"
+        },
+        "extra_fields": {
+            "zone": "Crios"
+        },
+        "trigger_type": {
+            "enters": "T\u00e9ann {entity_name} isteach i gcrios",
+            "leaves": "F\u00e1gann {entity_name} crios"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Rianaitheoir gl\u00e9as",
+            "state": {
+                "home": "Baile",
+                "not_home": "Ar shi\u00fal"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Ceallra\u00ed"
+                },
+                "gps_accuracy": {
+                    "name": "Cruinneas GPS"
+                },
+                "latitude": {
+                    "name": "Domhanleithead"
+                },
+                "longitude": {
+                    "name": "Domhanfhad"
+                },
+                "source_type": {
+                    "name": "Foinse",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "R\u00f3daire"
+                    }
+                },
+                "tracking_type": {
+                    "name": "Cine\u00e1l rianaithe",
+                    "state": {
+                        "connection": "Ceangal",
+                        "position": "Seasamh"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "associated_zone_missing": {
+            "description": "T\u00e1 an t-eintiteas scan\u00f3ra `{entity_id}` bainteach leis an gcrios `{zone}`, ach baineadh an crios sin.\n\nChun seo a shocr\u00fa, athchumraigh an scan\u00f3ir chun crios difri\u00fail a \u00fas\u00e1id n\u00f3 athchruthaigh an crios at\u00e1 ar iarraidh.",
+            "title": "T\u00e1 an scan\u00f3ir bainteach le crios bainte"
+        },
+        "deprecated_see_action": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "T\u00e1 an gn\u00edomh `device_tracker.see` imithe i l\u00e9ig agus bainfear \u00e9 i Home Assistant Core 2027.5.\n\nBain \u00fas\u00e1id as [teimpl\u00e9ad rianaitheora gl\u00e9as]({docs_url}) ina ionad, ansin bain aon \u00fas\u00e1id den ghn\u00edomh seo \u00f3 do uathoibrithe agus scripteanna agus roghnaigh **Cuir Isteach** chun an cheist seo a dh\u00fanadh.",
+                        "title": "Braitheadh \u200b\u200b\u00fas\u00e1id an ghn\u00edmh at\u00e1 imithe i l\u00e9ig device_tracker.see"
+                    }
+                }
+            },
+            "title": "Braitheadh \u200b\u200b\u00fas\u00e1id an ghn\u00edmh at\u00e1 imithe i l\u00e9ig device_tracker.see"
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Nuashonraigh de l\u00e1imh taifid rianaitheora gl\u00e9asanna oidhreachta a chonacthas sa chomhad known_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "Leibh\u00e9al ceallra\u00ed na feiste.",
+                    "name": "Leibh\u00e9al ceallra\u00ed"
+                },
+                "dev_id": {
+                    "description": "ID an fheiste (aimsigh an ID i `known_devices.yaml`).",
+                    "name": "Aitheantas Gl\u00e9as"
+                },
+                "gps": {
+                    "description": "Comhordan\u00e1id\u00ed GPS ina bhfuil an gl\u00e9as suite, sonraithe de r\u00e9ir domhanleithid agus domhanfhaid (mar shampla: [51.513845, -0.100539]).",
+                    "name": "Comhordan\u00e1id\u00ed GPS"
+                },
+                "gps_accuracy": {
+                    "description": "Cruinneas na gcomhordan\u00e1id\u00ed GPS.",
+                    "name": "Cruinneas GPS"
+                },
+                "host_name": {
+                    "description": "Ainm \u00f3stach na feiste.",
+                    "name": "Ainm \u00f3stach"
+                },
+                "location_name": {
+                    "description": "Ainm an tsu\u00edmh ina bhfuil an gl\u00e9as suite. Is iad na roghanna: `baile`, `n\u00ed_bhaile`, n\u00f3 ainm an chrios.",
+                    "name": "Su\u00edomh"
+                },
+                "mac": {
+                    "description": "Seoladh MAC na feiste.",
+                    "name": "Seoladh MAC"
+                }
+            }
+        }
+    },
+    "title": "Rianaitheoir gl\u00e9as"
+}

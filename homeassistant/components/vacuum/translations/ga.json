@@ -1,0 +1,169 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil fol\u00fasghlant\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3 ag glanadh.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an fol\u00fasghlant\u00f3ir ag glanadh"
+        },
+        "is_docked": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil fol\u00fasghlant\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3 dugaithe.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an fol\u00fasghlant\u00f3ir dug\u00e1ilte"
+        },
+        "is_encountering_an_error": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil earr\u00e1id ag teacht ar fhol\u00fasghlant\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 earr\u00e1id ag teacht ar an fol\u00fasghlant\u00f3ir"
+        },
+        "is_paused": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil fol\u00fasghlant\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar sos.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an fol\u00fasghlant\u00f3ir ar sos"
+        },
+        "is_returning": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil fol\u00fasghlant\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3 ag filleadh ar an duga.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an fol\u00fasghlant\u00f3ir ag filleadh"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Lig do {entity_name} glanadh",
+            "dock": "Lig do {entity_name} filleadh ar an duga"
+        },
+        "condition_type": {
+            "is_cleaning": "T\u00e1 {entity_name} ag glanadh",
+            "is_docked": "T\u00e1 {entity_name} dugaithe"
+        },
+        "extra_fields": {
+            "for": "Fad"
+        },
+        "trigger_type": {
+            "cleaning": "Thosaigh {entity_name} ag glanadh",
+            "docked": "{entity_name} dugaithe"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Fol\u00fasghlant\u00f3ir",
+            "state": {
+                "cleaning": "Glanadh",
+                "docked": "Dugaithe",
+                "error": "Earr\u00e1id",
+                "idle": "D\u00edomhaoin",
+                "off": "As",
+                "on": "Ar si\u00fal",
+                "paused": "Sosaithe",
+                "returning": "Ag filleadh ar an duga"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "N\u00edl map\u00e1il limist\u00e9ir cumraithe do `{entity_id}`. Cumraigh an map\u00e1il deighleog-go-limist\u00e9ar sula n-\u00fas\u00e1ideann t\u00fa an gn\u00edomh seo."
+        },
+        "areas_not_mapped": {
+            "message": "N\u00edl na ceantair seo a leanas map\u00e1ilte chuig aon deighleoga de fhol\u00fasghlant\u00f3ir\u00ed spriocdh\u00edrithe: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "T\u00e1 athr\u00fa tagtha ar dheighleoga fol\u00fais do {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Limist\u00e9ir le glanadh.",
+                    "name": "Ceantair"
+                }
+            }
+        },
+        "send_command": {
+            "fields": {
+                "command": {
+                    "description": "Ord\u00fa le forghn\u00edomh\u00fa. T\u00e1 na horduithe saini\u00fail don chomhth\u00e1th\u00fa.",
+                    "name": "Ord\u00fa"
+                },
+                "params": {
+                    "description": "Paraim\u00e9adair don ord\u00fa. T\u00e1 na paraim\u00e9adair saini\u00fail don chomhth\u00e1th\u00fa.",
+                    "name": "Paraim\u00e9adair"
+                }
+            }
+        },
+        "set_fan_speed": {
+            "fields": {
+                "fan_speed": {
+                    "description": "Luas an fean. Braitheann an luach ar an gcomhth\u00e1th\u00fa. B\u00edonn c\u00e9imeanna luais ag roinnt comhth\u00e1th\u00fa, cos\u00fail le 'me\u00e1nach'. \u00das\u00e1ideann cuid acu c\u00e9atad\u00e1n, idir 0 agus 100.",
+                    "name": "Luas an fean"
+                }
+            }
+        }
+    },
+    "title": "Fol\u00fasghlant\u00f3ir",
+    "triggers": {
+        "errored": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "paused_cleaning": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "returned_to_dock": {
+            "description": "Spreagtar \u00e9 nuair a bh\u00edonn fol\u00fasghlant\u00f3ir amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar ais sa duga.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Fol\u00fasghlant\u00f3ir ar ais chuig an duga"
+        },
+        "started_cleaning": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "started_returning": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Thosaigh an fol\u00fasghlant\u00f3ir ag filleadh ar an duga"
+        }
+    }
+}

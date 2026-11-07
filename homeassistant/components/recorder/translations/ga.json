@@ -1,0 +1,103 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Theip ar ch\u00faltaca an bhunachair shonra\u00ed a luadh ag {start_time} mar gheall ar easpa acmhainn\u00ed. N\u00ed f\u00e9idir muin\u00edn a bheith agat as an gc\u00faltaca agus n\u00ed m\u00f3r \u00e9 a atos\u00fa. F\u00e9adfaidh s\u00e9 seo tarl\u00fa m\u00e1 t\u00e1 an bunachar sonra\u00ed r\u00f3-mh\u00f3r n\u00f3 m\u00e1 t\u00e1 an c\u00f3ras faoi ualach trom. Smaoinigh ar chrua-earra\u00ed an ch\u00f3rais a uasghr\u00e1d\u00fa n\u00f3 m\u00e9id an bhunachair shonra\u00ed a laghd\u00fa tr\u00ed l\u00edon na laethanta staire at\u00e1 le coinne\u00e1il a laghd\u00fa n\u00f3 scagaire a chruth\u00fa.",
+            "title": "Theip ar ch\u00faltaca bunachar sonra\u00ed mar gheall ar easpa acmhainn\u00ed"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "N\u00ed leagan taca\u00edochta fadt\u00e9armach (LTS) \u00e9 leagan {server_version} de {database_engine}. Bainfear taca\u00edocht d'eisi\u00faint\u00ed gearrth\u00e9armacha agus d'eisi\u00faint\u00ed LTS ag deireadh a saoil; uasghr\u00e1daigh chuig ceann de na leaganacha LTS a dtaca\u00edtear leo ({lts_versions}) agus atos\u00fa Home Assistant le lean\u00faint ar aghaidh ag \u00fas\u00e1id an taifead\u00e1in.",
+            "title": "Nuashonraigh {database_engine} go leagan LTS a dtaca\u00edtear leis chun lean\u00faint ar aghaidh ag \u00fas\u00e1id an taifead\u00e1in"
+        },
+        "database_engine_too_old": {
+            "description": "T\u00e1 deireadh ag teacht leis an taca\u00edocht do leagan {server_version} de {database_engine}; is \u00e9 {min_version} an leagan \u00edosta a thac\u00f3far leis. Uasghr\u00e1daigh do bhogearra\u00ed bunachar sonra\u00ed agus atos\u00fa Home Assistant le do thoil.",
+            "title": "Nuashonraigh {database_engine} go {min_version} n\u00f3 n\u00edos d\u00e9ana\u00ed chun lean\u00faint ar aghaidh ag \u00fas\u00e1id an taifead\u00e1in"
+        },
+        "maria_db_range_index_regression": {
+            "title": "Nuashonraigh MariaDB go {min_version} n\u00f3 n\u00edos d\u00e9ana\u00ed chun fadhb feidhm\u00edochta shuntasach a r\u00e9iteach"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Stopann s\u00e9 taifeadadh imeachta\u00ed agus athruithe st\u00e1it."
+        },
+        "enable": {
+            "description": "Tosa\u00edonn s\u00e9 ag taifeadadh imeachta\u00ed agus athruithe st\u00e1it."
+        },
+        "get_statistics": {
+            "description": "Aisghabhann sonra\u00ed staitisti\u00fala d'eintitis laistigh de thr\u00e9imhse ama shonrach.",
+            "fields": {
+                "end_time": {
+                    "description": "An t-am deiridh don fhiosr\u00fa staitistic\u00ed. Mura nd\u00e9antar \u00e9, seolann s\u00e9 na staitistic\u00ed go l\u00e9ir \u00f3n am tosaigh ar aghaidh.",
+                    "name": "Am deiridh"
+                },
+                "period": {
+                    "description": "An tr\u00e9imhse ama chun staitistic\u00ed a ghr\u00fap\u00e1il de r\u00e9ir.",
+                    "name": "Sreabhadh"
+                },
+                "start_time": {
+                    "description": "An t-am tosaigh don fhiosr\u00fa staitistic\u00ed.",
+                    "name": "Am tosaithe"
+                },
+                "statistic_ids": {
+                    "description": "Na haitheantais eintitis n\u00f3 na haitheantais staitistic\u00ed a mbeidh staitistic\u00ed le tabhairt ar ais d\u00f3ibh.",
+                    "name": "Aitheant\u00f3ir\u00ed Staitistic\u00ed"
+                },
+                "types": {
+                    "description": "Na cine\u00e1lacha luachanna staitisti\u00fala le tabhairt ar ais.",
+                    "name": "Cine\u00e1lacha"
+                },
+                "units": {
+                    "description": "Map\u00e1il chomhsh\u00f3 aonaid roghnach.",
+                    "name": "Aonaid"
+                }
+            }
+        },
+        "purge": {
+            "description": "Tosa\u00edonn s\u00e9 an tasc glantach\u00e1in - chun seanshonra\u00ed a ghlanadh \u00f3 do bhunachar sonra\u00ed.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Cuir scagair\u00ed `entity_id` agus `event_type` i bhfeidhm chomh maith le glanadh bunaithe ar am.",
+                    "name": "Cuir scagaire i bhfeidhm"
+                },
+                "keep_days": {
+                    "description": "L\u00edon na laethanta chun na sonra\u00ed a choinne\u00e1il sa bhunachar sonra\u00ed. Ag tos\u00fa inniu, ag comhaireamh siar. Cialla\u00edonn luach `7` go nd\u00e9anfar gach rud at\u00e1 n\u00edos sine n\u00e1 seachtain a ghlanadh.",
+                    "name": "Laethanta le coinne\u00e1il"
+                },
+                "repack": {
+                    "description": "D\u00e9an iarracht sp\u00e1s diosca a sh\u00e1bh\u00e1il tr\u00edd an gcomhad bunachar sonra\u00ed ar fad a athscr\u00edobh.",
+                    "name": "Athphac\u00e1il"
+                }
+            }
+        },
+        "purge_entities": {
+            "description": "Tosa\u00edonn s\u00e9 tasc glantach\u00e1in chun na sonra\u00ed a bhaineann le heintitis shonracha a bhaint as do bhunachar sonra\u00ed.",
+            "fields": {
+                "domains": {
+                    "description": "Liosta fearainn ar g\u00e1 na sonra\u00ed a bhaint as bunachar sonra\u00ed an Taifead\u00e1in ina leith.",
+                    "name": "Fearainn le baint"
+                },
+                "entity_globs": {
+                    "description": "Liosta de phatr\u00fain chruinne a \u00fas\u00e1idtear chun na heintitis a roghn\u00fa a bhfuil na sonra\u00ed le baint as bunachar sonra\u00ed an Taifead\u00e1in.",
+                    "name": "Globanna eintitis le baint"
+                },
+                "entity_id": {
+                    "description": "Liosta eintiteas a bhfuil na sonra\u00ed le baint as bunachar sonra\u00ed an Taifead\u00e1in ina leith.",
+                    "name": "Eintitis le baint"
+                },
+                "keep_days": {
+                    "description": "L\u00edon na laethanta chun na sonra\u00ed a choinne\u00e1il do na sraitheanna a mheaitse\u00e1lann an scagaire. Ag tos\u00fa inniu, ag comhaireamh siar. Cialla\u00edonn luach `7` go nd\u00e9anfar gach rud at\u00e1 n\u00edos sine n\u00e1 seachtain a ghlanadh. Bainfear na sraitheanna meaitse\u00e1la go l\u00e9ir l\u00e1ithreach leis an luach r\u00e9amhshocraithe de 0 l\u00e1.",
+                    "name": "Laethanta le coinne\u00e1il"
+                }
+            }
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Am tosaithe reatha an rith",
+            "database_engine": "Inneall bunachar sonra\u00ed",
+            "database_version": "Inneall bunachar sonra\u00ed",
+            "estimated_db_size": "M\u00e9id measta an bhunachair shonra\u00ed (MiB)",
+            "oldest_recorder_run": "Am tosaithe an rith is sine"
+        }
+    }
+}

@@ -1,0 +1,615 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "mount": {
+                "name": "Povezano"
+            },
+            "state": {
+                "name": "Pokrenuto"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "Verzija OS Agent-a"
+            },
+            "apparmor_version": {
+                "name": "Verzija AppArmor-a"
+            },
+            "cpu_percent": {
+                "name": "Procenat iskori\u0161\u0107enosti CPU-a"
+            },
+            "disk_free": {
+                "name": "Slobodan prostor"
+            },
+            "disk_total": {
+                "name": "Ukupan kapacitet"
+            },
+            "disk_used": {
+                "name": "Zauzet prostor"
+            },
+            "memory_percent": {
+                "name": "Procenat memorije"
+            },
+            "version": {
+                "name": "Verzija"
+            },
+            "version_latest": {
+                "name": "Dostupna verzija"
+            }
+        },
+        "update": {
+            "update": {
+                "name": "A\u017euriranje"
+            }
+        }
+    },
+    "exceptions": {
+        "mount_reload_error": {
+            "message": "Neuspe\u0161no ponovno u\u010ditavanje ta\u010dke povezivanja {name}: {error}"
+        },
+        "mount_reload_invalid_device": {
+            "message": "Ure\u0111aj nije ta\u010dka povezivanja nadzornog sistema"
+        },
+        "supervisor_not_connected": {
+            "message": "Nema veze sa supervizorom / sistem je preoptere\u0107en"
+        },
+        "supervisor_update_pending": {
+            "message": "Supervisor nije a\u017euran tokom inicijalizacije. Pokrenuto a\u017euriranje, ponovni poku\u0161aj nakon zavr\u0161etka."
+        }
+    },
+    "issues": {
+        "issue_addon_app_port_conflict": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e primeniti re\u0161enje. Proverite Supervisor dnevnike za vi\u0161e detalja."
+                },
+                "step": {
+                    "addon_execute_start": {
+                        "description": "Aplikacija {addon} ima konflikt na portu {port}. Aplikacija ne mo\u017ee to da promeni u pode\u0161avanjima. Molimo vas da deinstalirate aplikaciju ili da zaustavite i rekonfiguri\u0161ete drugi servis koji koristi port {port}. Kada ga deblokirate, ponovo izaberite ovu opciju da biste pokrenuli aplikaciju."
+                    },
+                    "fix_menu": {
+                        "description": "Aplikacija {addon} ima konflikt na portu {port}. Mo\u017eete obrisati konfiguraciju porta u pode\u0161avanjima aplikacije da biste automatski re\u0161ili ovaj problem i pokrenuli je, ili mo\u017eete ru\u010dno deblokirati port zaustavljanjem ili rekonfigurisanjem drugog servisa koji ga koristi.",
+                        "menu_options": {
+                            "addon_clear_port_config": "Obri\u0161ite konfiguraciju porta",
+                            "addon_execute_start": "Pokrenite nakon ru\u010dnog deblokiranja"
+                        }
+                    }
+                }
+            },
+            "title": "Konflikt portova aplikacije"
+        },
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e primeniti ispravku. Proverite Supervisor zapise za vi\u0161e detalja."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Aplikacija {addon} je pode\u0161ena da se pokre\u0107e pri podizanju sistema, ali pokretanje nije uspelo. Ovo se obi\u010dno de\u0161ava kada je konfiguracija neispravna ili kada isti port koriste vi\u0161e aplikacija. Proverite konfiguraciju, kao i zapise za {addon} i Supervisor.\n\nKoristite \u201ePokreni\u201d da poku\u0161ate ponovo ili \u201eOnemogu\u0107i\u201d da isklju\u010dite opciju pokretanja pri podizanju sistema.",
+                        "menu_options": {
+                            "addon_disable_boot": "Onemogu\u0107i",
+                            "addon_execute_start": "Pokreni"
+                        }
+                    }
+                }
+            },
+            "title": "Aplikacija nije uspela da se pokrene pri pokretanju sistema"
+        },
+        "issue_addon_deprecated_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e deinstalirati aplikaciju. Proverite Supervisor zapise za vi\u0161e detalja."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "Aplikacija {addon} je ozna\u010dena kao zastarela od strane programera. To zna\u010di da se vi\u0161e ne odr\u017eava i da vremenom mo\u017ee prestati sa radom ili postati bezbednosni rizik.\n\nPregledajte [datoteku readme]({addon_info}) i [dokumentaciju]({addon_documentation}) ove aplikacije da biste videli da li je programer ostavio uputstva.\n\nIzborom opcije **\u201ePo\u0161alji\u201c** deinstalira\u0107ete ovu zastarelu aplikaciju i trajno obrisati sve u njenoj fascikli sa privatnim podacima, uklju\u010duju\u0107i sve baze podataka, akreditive i druga interna stanja koja \u010duva. Najpre napravite [rezervnu kopiju]({backup_url}) ako mislite da \u0107e vam ti podaci kasnije zatrebati.\n\nAlternativno, mo\u017eete pogledati [pomo\u0107 za Home Assistant]({help_url}) i [forum zajednice]({community_url}) za alternative na koje mo\u017eete da pre\u0111ete."
+                    }
+                }
+            },
+            "title": "Instalirana aplikacija je zastarela"
+        },
+        "issue_addon_deprecated_arch_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije uspelo deinstaliranje aplikacije. Proverite zapise Supervisor-a (logs) za vi\u0161e detalja."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "Aplikacija {addon} podr\u017eava samo arhitekture i/ili ma\u0161ine koje Home Assistant vi\u0161e ne podr\u017eava. \n\nPresta\u0107e sa radom u budu\u0107oj verziji.Izborom opcije **\u201ePo\u0161alji\u201c** deinstalira\u0107ete ovu zastarelu aplikaciju i trajno obrisati sve u njenoj fascikli sa privatnim podacima, uklju\u010duju\u0107i sve baze podataka, akreditive i druga interna stanja koja \u010duva. Najpre napravite [rezervnu kopiju]({backup_url}) ako mislite da \u0107e vam ti podaci kasnije zatrebati.\n\nAlternativno, mo\u017eete pogledati [pomo\u0107 za Home Assistant]({help_url}) i [forum zajednice]({community_url}) za alternative na koje mo\u017eete da pre\u0111ete."
+                    }
+                }
+            },
+            "title": "Instalirana aplikacija je napravljen za nepodr\u017eane arhitekture i/ili ma\u0161ine"
+        },
+        "issue_addon_detached_addon_missing": {
+            "description": "Repozitorijum za aplikaciju {addon} nedostaje. To zna\u010di da ne\u0107e dobijati a\u017euriranja, a bekapi mo\u017eda ne\u0107e biti ispravno vra\u0107eni jer Home Assistant Supervisor mo\u017eda ne\u0107e mo\u0107i da izgradi/preuzme potrebne resurse.\n\nProverite [dokumentaciju aplikacije]({addon_url}) za uputstva za instalaciju i dodajte repozitorijum u prodavnicu.",
+            "title": "Nedostaje repozitorijum za instaliranu aplikaciju"
+        },
+        "issue_addon_detached_addon_removed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e deinstalirati aplikaciju. Proverite Supervisor zapise za vi\u0161e detalja."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "Aplikacija {addon} je uklonjena iz spremi\u0161ta iz kog je instalirana. To zna\u010di da ne\u0107e primati a\u017euriranja, a rezervne kopije se mo\u017eda ne\u0107e ispravno vratiti jer Home Assistant Supervisor mo\u017eda ne\u0107e mo\u0107i da napravi ili preuzme potrebne resurse.\n\nIzborom opcije **\u201ePo\u0161alji\u201c** deinstalira\u0107ete aplikaciju i trajno obrisati sve u njenoj fascikli sa privatnim podacima, uklju\u010duju\u0107i sve baze podataka, akreditive i druga interna stanja koja \u010duva. Najpre napravite [rezervnu kopiju]({backup_url}) ako mislite da \u0107e vam ti podaci kasnije zatrebati.\n\nAlternativno, mo\u017eete pogledati [pomo\u0107 za Home Assistant]({help_url}) i [forum zajednice]({community_url}) za alternative na koje mo\u017eete da pre\u0111ete."
+                    }
+                }
+            },
+            "title": "Instalirana aplikacija je uklonjena iz repozitorijuma"
+        },
+        "issue_addon_pwned": {
+            "description": "Aplikacija {addon} koristi lozinke/tajne podatke u svojoj konfiguraciji koji su detektovani kao nesigurni. Pogledajte [provaljene lozinke i tajne]({more_info_pwned}) za vi\u0161e informacija o ovom problemu.",
+            "title": "Otkrivene nesigurne tajne u konfiguraciji aplikacije"
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e primeniti ispravku. Proverite Supervisor zapise za vi\u0161e detalja."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Nije uspelo pode\u0161avanje za \u201e{reference}\u201c. Ovo se mo\u017ee dogoditi kada je skladi\u0161ni ure\u0111aj nedostupan ili kada lokalni podaci blokiraju lokaciju montiranja. Za vi\u0161e detalja proverite logove hosta u potrazi za gre\u0161kama usluge montiranja.\n\nKoristite ponovno u\u010ditavanje da biste poku\u0161ali ponovo. Ako treba da a\u017eurirate \u201e{reference}\u201c, idite na [skladi\u0161te]({storage_url}).",
+                        "menu_options": {
+                            "mount_execute_reload": "Ponovo u\u010ditaj",
+                            "mount_execute_remove": "Ukloni",
+                            "mount_move_local_data": "Premestite lokalne podatke koji blokiraju"
+                        }
+                    },
+                    "mount_execute_remove": {
+                        "description": "Izaberite **Po\u0161alji** da biste uklonili mre\u017eni skladi\u0161ni prostor \u201e{reference}\u201c iz Home Assistant-a. Ovo ne uti\u010de na podatke koji se nalaze na samom ure\u0111aju, ali automatizacije, rezervne kopije ili aplikacije koje se oslanjaju na ovo skladi\u0161te vi\u0161e ne\u0107e imati pristup njemu.\n\nMre\u017eni skladi\u0161ni prostor mo\u017eete ponovo dodati kasnije u sekciji [skladi\u0161te]({storage_url})."
+                    },
+                    "mount_move_local_data": {
+                        "description": "Izaberite **Po\u0161aljite** da biste premestili lokalne podatke koji blokiraju \u201e{reference}\u201c u fasciklu \u201e{reference}_local_recovery\u201c i ponovo podesili montiranje.\n\nDatoteke ne\u0107e biti obrisane. Za medijske i deljene ta\u010dke montiranja, fascikla za oporavak se kreira pored same ta\u010dke montiranja, gde je mo\u017eete pregledati i ukloniti. Za rezervne kopije (backup), ona se sme\u0161ta u lokalno skladi\u0161te rezervnih kopija."
+                    }
+                }
+            },
+            "title": "Gre\u0161ka mre\u017enog ure\u0111aja za skladi\u0161tenje"
+        },
+        "issue_system_disk_lifetime": {
+            "description": "Disk za podatke je prema\u0161io 90% o\u010dekivanog \u017eivotnog veka. Disk mo\u017ee uskoro otkazati, \u0161to mo\u017ee dovesti do gubitka podataka. Trebalo bi ga uskoro zameniti i migrirati podatke.",
+            "title": "\u017divotni vek diska prema\u0161uje 90%"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Jedno ili vi\u0161e ponovnih pokretanja nije uspelo. Proverite Supervisor zapise za vi\u0161e detalja."
+                },
+                "step": {
+                    "system_execute_rebuild": {
+                        "description": "Podrazumevana konfiguracija za aplikacije i Home Assistant je izmenjena. Da biste a\u017eurirali konfiguraciju sa novim podrazumevanim vrednostima, potrebno je ponovno pokretanje za slede\u0107e:\n\n- {components}"
+                    }
+                }
+            },
+            "title": "Potrebno ponovno pokretanje"
+        },
+        "issue_system_free_space": {
+            "description": "Na disku za podatke je ostalo samo {free_space}GB slobodnog prostora. Ovo mo\u017ee izazvati probleme sa stabilno\u0161\u0107u sistema i ometati funkcije kao \u0161to su bekap i a\u017euriranja. Idite na [skladi\u0161te]({storage_url}) da vidite \u0161ta zauzima prostor ili pogledajte [oslobodite skladi\u0161te]({more_info_free_space}) za savete kako da oslobodite prostor.",
+            "title": "Disk za podatke ima malo slobodnog prostora"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e preimenovati datoteku sistem. Proverite Supervisor zapise za vi\u0161e detalja."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Na lokaciji {reference}, detektovali smo jo\u0161 jedan aktivni disk sa podacima (koji sadr\u017ei fajl sistem hassos-data sa druge instalacije Home Assistanta).\n\nMorate odlu\u010diti \u0161ta \u017eelite sa njim. U suprotnom, Home Assistant bi mogao da odabere pogre\u0161an disk prilikom ponovnog pokretanja sistema.\n\nAko ne \u017eelite da koristite ovaj disk, isklju\u010dite ga iz sistema. Ako ga ostavite priklju\u010denog, odaberite jednu od slede\u0107ih opcija:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Koristi detektovani podatkovni disk umesto trenutnog sistema",
+                            "system_rename_data_disk": "Ozna\u010di kao neaktivni podatkovni disk (preimenuj sistem datoteka)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "Izaberite **Potvrdi** da biste postavili {reference} kao aktivni disk za podatke. Jedini i jedinstveni.\n\nVi\u0161e ne\u0107ete imati pristup trenutnim Home Assistant podacima (bi\u0107e ozna\u010deni kao neaktivni disk). Nakon ponovnog pokretanja, va\u0161 sistem \u0107e biti u stanju u kojem su Home Assistant podaci na disku {reference}."
+                    }
+                }
+            },
+            "title": "Otkriveno je vi\u0161e diskova sa podacima"
+        },
+        "issue_system_ntp_sync_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e ponovo omogu\u0107iti NTP. Proverite zapise Supervisor-a za vi\u0161e detalja."
+                },
+                "step": {
+                    "system_enable_ntp": {
+                        "description": "Ure\u0111aj nije uspeo da kontaktira pode\u0161ene servere vremena (NTP). Pomo\u0107u sekundarne provere na mre\u017ei, utvr\u0111eno je da je sistemsko vreme bilo neta\u010dno za vi\u0161e od 1 sat. Vreme je ispravljeno, a NTP usluga je privremeno onemogu\u0107ena kako bi se ispravka primenila. Da bi sistemsko vreme ostalo ta\u010dno, preporu\u010dujemo da re\u0161ite problem koji spre\u010dava pristup NTP serverima.\n\nProverite **Host zapise**  da istra\u017eite za\u0161to NTP serveri nisu dostupni. Kada problem bude re\u0161en, izaberite **Potvrdi** da ponovo omogu\u0107ite NTP uslugu."
+                    }
+                }
+            },
+            "title": "Pronadjen je problem sa sinhronizacijom vremena."
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nije mogu\u0107e ponovo pokrenuti sistem. Proverite Supervisor zapise za vi\u0161e detalja."
+                },
+                "step": {
+                    "system_execute_reboot": {
+                        "description": "Settings were changed which require a system reboot to take effect.\nIzmenjena su pode\u0161avanja koja zahtevaju ponovno pokretanje sistema da bi stupila na snagu.\n\nIzaberite **Ponovo pokreni** da biste sada ponovo pokrenuli sistem. Home Assistant i sve aplikacije bi\u0107e nedostupni na kratko vreme."
+                    }
+                }
+            },
+            "title": "Potrebno je ponovno pokretanje"
+        },
+        "legacy_homeassistant_folder": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Automatizacija ili skripta je pozvala akciju hassio.backup_partial ili hassio.restore_partial sa stavkom \"homeassistant\" navedenom u listi folders. Ovo je zastareli alijas za opciju homeassistant: true i u budu\u0107im verzijama vi\u0161e ne\u0107e biti prihva\u0107en.\n\nA\u017eurirajte pogo\u0111ene automatizacije i skripte tako \u0161to \u0107ete postaviti `homeassistant: true` i ukloniti `\u201ehomeassistant\u201c` iz liste `folders`. Kada to uradite, izaberite **Potvrdi** da ozna\u010dite da je problem re\u0161en.",
+                        "title": "Zastarela \u201ehomeassistant\u201c fascikla u delimi\u010dnoj rezervnoj kopiji"
+                    }
+                }
+            },
+            "title": "Zastarela \u201ehomeassistant\u201c fascikla u delimi\u010dnoj rezervnoj kopiji"
+        },
+        "unhealthy": {
+            "description": "Sistem je trenutno neispravan zbog {reason}. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Neispravan sistem \u2013 {reason}"
+        },
+        "unhealthy_data_filesystem_check_error": {
+            "description": "Rad sistema je trenutno naru\u0161en jer je otkazala provera integriteta fajl sistema na data particiji. Do ovoga je moglo do\u0107i usled iznenadnog nestanka struje ili kvara na disku, \u0161to mo\u017ee ugroziti pode\u0161avanja, aplikacije ili rezervne kopije. Za pomo\u0107 u re\u0161avanju problema izaberite \u201eSaznajte vi\u0161e\u201c.",
+            "title": "Sistem je neispravan \u2014 neuspe\u0161na provera fajl sistema na data particiji"
+        },
+        "unhealthy_docker": {
+            "description": "Sistem je trenutno neispravan jer je Docker nepravilno konfigurisan. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Neispravan sistem \u2013 Docker je nepravilno konfigurisan"
+        },
+        "unhealthy_docker_gateway_unprotected": {
+            "description": "Sistem je trenutno neispravan jer Supervisor nije mogao da primeni za\u0161titu mre\u017ene barijere za IP adresu Docker mre\u017enog prolaza. Za re\u0161avanje problema izaberite \u201eSaznajte vi\u0161e\u201d.",
+            "title": "Sistem je neispravan \u2013 Docker mre\u017eni prolaz je neza\u0161ti\u0107en"
+        },
+        "unhealthy_duplicate_os_installation": {
+            "description": "Sistem trenutno nije stabilan jer je otkriveno vi\u0161e instalacija Home Assistant OS-a. Za pomo\u0107 pri re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201d.",
+            "title": "Sistem nije stabilan \u2013 Dupla instalacija Home Assistant OS-a"
+        },
+        "unhealthy_os_filesystem_check_error": {
+            "description": "Rad sistema je trenutno naru\u0161en jer je otkazala provera integriteta fajl sistema na particiji operativnog sistema. Do ovoga je moglo do\u0107i usled iznenadnog nestanka struje ili kvara na disku. Za pomo\u0107 u re\u0161avanju problema izaberite \u201eSaznajte vi\u0161e\u201c.",
+            "title": "Sistem je neispravan \u2014 neuspe\u0161na provera fajl sistema na OS particiji"
+        },
+        "unhealthy_oserror_bad_message": {
+            "description": "Sistem trenutno nije stabilan jer je operativni sistem prijavio gre\u0161ku: Bad message. Za pomo\u0107 pri re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201d.",
+            "title": "Sistem nije stabilan \u2013 Gre\u0161ka operativnog sistema: Bad message"
+        },
+        "unhealthy_privileged": {
+            "description": "Sistem je trenutno neispravan jer nema privilegovan pristup Docker okru\u017eenju. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Neispravan sistem \u2013 Nema privilegovan pristup"
+        },
+        "unhealthy_setup": {
+            "description": "Sistem je trenutno neispravan jer pode\u0161avanje nije zavr\u0161eno. Postoji vi\u0161e razloga zbog kojih do ovoga mo\u017ee do\u0107i. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Neispravan sistem \u2013 Pode\u0161avanje nije uspelo"
+        },
+        "unhealthy_supervisor": {
+            "description": "Sistem je trenutno neispravan jer poku\u0161aj a\u017euriranja Supervisor-a na najnoviju verziju nije uspeo. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Neispravan sistem \u2013 A\u017euriranje Supervisora nije uspelo"
+        },
+        "unhealthy_untrusted": {
+            "description": "Sistem je trenutno neispravan jer je detektovano kori\u0161\u0107enje nepoverljivog koda ili slika. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Neispravan sistem \u2013 Nepouzdan kod"
+        },
+        "unsupported": {
+            "description": "Sistem nije podr\u017ean zbog {reason}. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 {reason}"
+        },
+        "unsupported_apparmor": {
+            "description": "Sistem nije podr\u017ean jer AppArmor ne radi ispravno, pa aplikacije rade na neza\u0161ti\u0107en i nesiguran na\u010din. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa AppArmor-om"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Sistem nije podr\u017ean jer se koristi pogre\u0161na verzija Docker CGroup-a. Iskoristite link da saznate koja je verzija ispravna i kako da ovo popravite.",
+            "title": "Nepodr\u017ean sistem \u2013 Verzija CGroup-a"
+        },
+        "unsupported_connectivity_check": {
+            "description": "Sistem nije podr\u017ean jer Home Assistant ne mo\u017ee da utvrdi kada je internet veza dostupna. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Provera povezivanja onemogu\u0107ena"
+        },
+        "unsupported_dbus": {
+            "description": "Sistem nije podr\u017ean jer D-Bus ne radi ispravno. Mnoge funkcije otkazuju bez ovoga jer Supervisor ne mo\u017ee da komunicira sa hostom. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa D-Bus-om"
+        },
+        "unsupported_dns_server": {
+            "description": "Sistem nije podr\u017ean jer navedeni DNS server ne radi ispravno, a rezervna DNS opcija je isklju\u010dena. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa DNS serverom"
+        },
+        "unsupported_docker_configuration": {
+            "description": "Sistem nije podr\u017ean jer Docker daemon radi na neo\u010dekivan na\u010din. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Docker pogre\u0161no pode\u0161en"
+        },
+        "unsupported_docker_version": {
+            "description": "Sistem nije podr\u017ean jer je verzija Docker-a zastarela. Za informacije o potrebnoj verziji i na\u010dinu re\u0161avanja ovog problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Verzija Docker-a"
+        },
+        "unsupported_home_assistant_core_version": {
+            "description": "Sistem nije podr\u017ean jer verzija Home Assistant Core koja se koristi nije podr\u017eana. Za informacije o re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201d.",
+            "title": "Nepodr\u017ean sistem \u2013 verzija Home Assistant Core"
+        },
+        "unsupported_job_conditions": {
+            "description": "Sistem nije podr\u017ean jer su isklju\u010deni jedan ili vi\u0161e uslova za poslove (job conditions) koji \u0161tite od neo\u010dekivanih kvarova i o\u0161te\u0107enja. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Za\u0161tite onemogu\u0107ene"
+        },
+        "unsupported_lxc": {
+            "description": "Sistem nije podr\u017ean jer se pokre\u0107e unutar LXC virtuelne ma\u0161ine. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Otkriven LXC"
+        },
+        "unsupported_network_manager": {
+            "description": "Sistem nije podr\u017ean jer Network Manager nedostaje, nije aktivan ili je nepravilno konfigurisan. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa Network Manager-om"
+        },
+        "unsupported_os": {
+            "description": "Sistem nije podr\u017ean jer operativni sistem koji koristite nije testiran niti odr\u017eavan za rad sa Supervisor-om. Za informacije o podr\u017eanim operativnim sistemima i na\u010dinu re\u0161avanja ovog problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Operativni sistem"
+        },
+        "unsupported_os_agent": {
+            "description": "Sistem nije podr\u017ean jer OS-Agent nedostaje, nije aktivan ili je nepravilno konfigurisan. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa OS-Agent-om"
+        },
+        "unsupported_os_version": {
+            "description": "Sistem nije podr\u017ean jer verzija Home Assistant OS koja se koristi nije podr\u017eana. Za informacije o re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201d.",
+            "title": "Nepodr\u017ean sistem \u2013 verzija Home Assistant OS"
+        },
+        "unsupported_restart_policy": {
+            "description": "Sistem nije podr\u017ean jer jedan Docker kontejner ima pode\u0161eno pravilo ponovnog pokretanja, \u0161to mo\u017ee izazvati probleme pri paljenju sistema. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Politika ponovnog pokretanja kontejnera"
+        },
+        "unsupported_software": {
+            "description": "Sistem nije podr\u017ean jer je detektovan dodatni softver van Home Assistant ekosistema. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Nepodr\u017ean softver"
+        },
+        "unsupported_supervisor_version": {
+            "description": "Sistem nije podr\u017ean jer se koristi zastarela verzija Supervisor-a, a automatsko a\u017euriranje je isklju\u010deno. Za informacije o re\u0161avanju problema, izaberite Saznajte vi\u0161e.",
+            "title": "Nepodr\u017ean sistem \u2013 Verzija Supervisor-a"
+        },
+        "unsupported_systemd": {
+            "description": "Sistem nije podr\u017ean jer Systemd nedostaje, neaktivan je ili je pogre\u0161no pode\u0161en. Za informacije o re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201c.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa Systemd-om"
+        },
+        "unsupported_systemd_journal": {
+            "description": "Sistem nije podr\u017ean jer Systemd Journal i/ili gateway servis nedostaje, neaktivan je ili je pogre\u0161no pode\u0161en. Za informacije o re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201c.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa Systemd Journal-om"
+        },
+        "unsupported_systemd_resolved": {
+            "description": "Sistem nije podr\u017ean jer Systemd Resolved nedostaje, neaktivan je ili je pogre\u0161no pode\u0161en. Za informacije o re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201c.",
+            "title": "Nepodr\u017ean sistem \u2013 Problemi sa Systemd-Resolved"
+        },
+        "unsupported_virtualization_image": {
+            "description": "Sistem nije podr\u017ean jer Home Assistant OS slika koja se koristi nije namenjena za rad u virtualizovanom okru\u017eenju. Za informacije o re\u0161avanju problema izaberite \u201eSaznaj vi\u0161e\u201d.",
+            "title": "Nepodr\u017ean sistem - Neispravna OS slika za virtualizaciju"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Vr\u0161i ponovno pokretanje svih radnih procesa izabranog sistemskog dodatka.",
+            "fields": {
+                "addon": {
+                    "description": "Sistemski identifikator dodatka predvi\u0111enog za ponovno pokretanje.",
+                    "name": "Identifikator dodatka"
+                }
+            },
+            "name": "Ponovo pokreni dodatak"
+        },
+        "addon_start": {
+            "description": "Inicira radni proces izabranog sistemskog dodatka (Add-on).",
+            "fields": {
+                "addon": {
+                    "description": "Sistemski identifikator dodatka predvi\u0111enog za aktivaciju.",
+                    "name": "Identifikator dodatka"
+                }
+            },
+            "name": "Pokreni dodatak"
+        },
+        "addon_stdin": {
+            "description": "Prosle\u0111uje tekstualne komande ili podatke direktno u standardni ulaz (stdin) izabranog dadatka.",
+            "fields": {
+                "addon": {
+                    "description": "Sistemski identifikator dodatka koji podr\u017eava prijem podataka putem standardnog ulaza.",
+                    "name": "Identifikator dodatka"
+                }
+            },
+            "name": "Upi\u0161i podatke u stdin dodatka"
+        },
+        "addon_stop": {
+            "description": "Vr\u0161i trenutnu obustavu rada izabranog sistemskog dodatka.",
+            "fields": {
+                "addon": {
+                    "description": "Sistemski identifikator dodatka predvi\u0111enenog za trenutno zaustavljanje.",
+                    "name": "Identifikator dodatka"
+                }
+            },
+            "name": "Zaustavi dodatak"
+        },
+        "app_restart": {
+            "description": "Vr\u0161i ponovno pokretanje svih procesa izabrane sistemske aplikacije.",
+            "fields": {
+                "app": {
+                    "description": "Sistemski identifikator aplikacije predvi\u0111ene za ponovno pokretanje.",
+                    "name": "Aplikacija"
+                }
+            },
+            "name": "Ponovo pokreni aplikaciju"
+        },
+        "app_start": {
+            "description": "Inicira radni proces izabrane sistemske aplikacije.",
+            "fields": {
+                "app": {
+                    "description": "Sistemski identifikator aplikacije predvi\u0111ene za pokretanje.",
+                    "name": "Aplikacija"
+                }
+            },
+            "name": "Pokreni aplikaciju"
+        },
+        "app_stdin": {
+            "description": "Prosle\u0111uje komande ili podatke direktno u standardni ulaz (stdin) izabrane aplikacije.",
+            "fields": {
+                "app": {
+                    "description": "Sistemski identifikator aplikacije koja podr\u017eava prijem podataka putem standardnog ulaza.",
+                    "name": "Aplikacija"
+                },
+                "input": {
+                    "description": "Tekstualni sadr\u017eaj ili niz komandi predvi\u0111enih za prosle\u0111ivanje aplikaciji.",
+                    "name": "Sadr\u017eaj unosa"
+                }
+            },
+            "name": "Upi\u0161i podatke u stdin aplikacije"
+        },
+        "app_stop": {
+            "description": "Vr\u0161i trenutnu obustavu rada izabrane sistemske aplikacije.",
+            "fields": {
+                "app": {
+                    "description": "Sistemski identifikator aplikacije predvi\u0111ene za zaustavljanje.",
+                    "name": "Aplikacija"
+                }
+            },
+            "name": "Zaustavi aplikaciju"
+        },
+        "backup_full": {
+            "description": "Generi\u0161e sveobuhvatnu rezervnu kopiju celokupnog sistema.",
+            "fields": {
+                "compressed": {
+                    "description": "Aktiviranje kompresije podataka radi optimizacije veli\u010dine arhivske datoteke.",
+                    "name": "Kompresija"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Onemogu\u0107ava arhiviranje sistemske baze podataka u ovoj kopiji.",
+                    "name": "Isklju\u010divanje baze podataka"
+                },
+                "location": {
+                    "description": "Identifikator mre\u017ene lokacije predvi\u0111ene za skladi\u0161tenje arhive.",
+                    "name": "Lokacija"
+                },
+                "name": {
+                    "description": "Prilago\u0111eni naziv arhive. Ukoliko se ne unese, dodeljuje se sistemski vremenski pe\u010dat.",
+                    "name": "Naziv"
+                },
+                "password": {
+                    "description": "Sigurnosni klju\u010d neophodan za enkripciju i za\u0161titu arhiviranog sadr\u017eaja.",
+                    "name": "Lozinka"
+                }
+            },
+            "name": "Kreiraj potpunu rezervnu kopiju"
+        },
+        "backup_partial": {
+            "description": "Generi\u0161e rezervnu kopiju selektovanih sistemskih segmenata.",
+            "fields": {
+                "addons": {
+                    "description": "Zastarela opcija (koristite polje \u201eAplikacije\u201d iznad).",
+                    "name": "Dodaci (zastarelo)"
+                },
+                "apps": {
+                    "description": "Spisak identifikatora aplikacija predvi\u0111enih za arhiviranje.",
+                    "name": "Aplikacije"
+                },
+                "compressed": {
+                    "description": "Aktiviranje kompresije podataka radi optimizacije veli\u010dine arhivske datoteke.",
+                    "name": "Kompresija"
+                },
+                "folders": {
+                    "description": "Defini\u0161e dodatne direktorijume namenjene za proces arhiviranja.",
+                    "name": "Fascikle"
+                },
+                "homeassistant": {
+                    "description": "Uklju\u010duje pode\u0161avanja Home Assistant-a u rezervnu kopiju.",
+                    "name": "Pode\u0161avanja Home Assistant-a"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Onemogu\u0107ava arhiviranje sistemske baze podataka u ovoj kopiji.",
+                    "name": "Isklju\u010divanje baze podataka"
+                },
+                "location": {
+                    "description": "Identifikator mre\u017ene lokacije predvi\u0111ene za skladi\u0161tenje arhive.",
+                    "name": "Lokacija"
+                },
+                "name": {
+                    "description": "Prilago\u0111eni naziv arhive. Ukoliko se ne unese, dodeljuje se sistemski vremenski pe\u010dat.",
+                    "name": "Naziv"
+                },
+                "password": {
+                    "description": "Sigurnosni klju\u010d neophodan za enkripciju i za\u0161titu arhiviranog sadr\u017eaja.",
+                    "name": "Lozinka"
+                }
+            },
+            "name": "Kreiraj delimi\u010dnu rezervnu kopiju"
+        },
+        "host_reboot": {
+            "description": "Vr\u0161i kompletno ponovno pokretanje mati\u010dnog hardvera na kojem je instaliran sistem.",
+            "name": "Ponovo pokreni host sistem"
+        },
+        "host_shutdown": {
+            "description": "Vr\u0161i potpuno prekidanje napajanja i ga\u0161enje mati\u010dnog hardvera.",
+            "name": "Isklju\u010di host sistem"
+        },
+        "mount_reload": {
+            "description": "Inicira ponovno uspostavljanje veze i osve\u017eava status izabrane mre\u017ene lokacije (npr. NAS).",
+            "fields": {
+                "device_id": {
+                    "description": "Jedinstveni identifikator mre\u017ene lokacije predvi\u0111ene za ponovno povezivanje.",
+                    "name": "Identifikator mre\u017enog deljenja"
+                }
+            },
+            "name": "Ponovo u\u010ditaj montirani mre\u017eni disk"
+        },
+        "restore_full": {
+            "description": "Vra\u0107a celokupni sistem na parametre definisane u izabranoj rezervnoj kopiji.",
+            "fields": {
+                "password": {
+                    "description": "Opciona lozinka neophodna za dekripciju arhiviranog sadr\u017eaja.",
+                    "name": "Lozinka"
+                },
+                "slug": {
+                    "description": "Jedinstveni sistemski identifikator (slug) arhive predvi\u0111ene za restauraciju.",
+                    "name": "Identifikator rezervne kopije (ID)"
+                }
+            },
+            "name": "Obnovi iz potpune rezervne kopije"
+        },
+        "restore_partial": {
+            "description": "Vr\u0161i povra\u0107aj selektovanih sistemskih segmenata iz arhivirane kopije.",
+            "fields": {
+                "addons": {
+                    "description": "Zastarela opcija (koristite polje \u201eAplikacije\u201d).",
+                    "name": "Dodaci (zastarelo)"
+                },
+                "apps": {
+                    "description": "Spisak identifikatora aplikacija predvi\u0111enih za restauraciju.",
+                    "name": "Aplikacije"
+                },
+                "folders": {
+                    "description": "Spisak dodatnih direktorijuma namenjenih za proces obnavljanja.",
+                    "name": "Fascikle"
+                },
+                "homeassistant": {
+                    "description": "Vra\u0107a Home Assistant podatke.",
+                    "name": "Pode\u0161avanja Home Assistant-a"
+                },
+                "password": {
+                    "description": "Opciona lozinka neophodna za dekripciju arhiviranog sadr\u017eaja.",
+                    "name": "Lozinka"
+                },
+                "slug": {
+                    "description": "Jedinstveni sistemski identifikator (slug) arhive predvi\u0111ene za restauraciju.",
+                    "name": "Identifikator rezervne kopije (ID)"
+                }
+            },
+            "name": "Obnovi iz delimi\u010dne rezervne kopije"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Verzija agenta",
+            "board": "Platforma",
+            "disk_life_time": "\u017divotni vek diska",
+            "disk_total": "Ukupan kapacitet",
+            "disk_used": "Zauzet prostor",
+            "docker_version": "Verzija Dockera",
+            "healthy": "Stabilanost",
+            "host_os": "Operativni sistem hosta",
+            "installed_addons": "Instalirane aplikacije",
+            "nameservers": "Nameserveri",
+            "supervisor_api": "Supervisor API",
+            "supervisor_version": "Verzija Supervisor-a",
+            "supported": "Podr\u017ean",
+            "update_channel": "Kanal a\u017euriranja",
+            "version_api": "Verzija API-ja"
+        }
+    }
+}

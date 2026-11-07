@@ -1,0 +1,1255 @@
+{
+    "common": {
+        "additional_options": "Dodatne opcije",
+        "availability": "Dostupnost",
+        "availability_description": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni.",
+        "code_format": "Format k\u00f4da",
+        "device_class": "Klasa ure\u0111aja",
+        "device_id_description": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+        "state": "Stanje",
+        "temperature_unit": "Jedinica temperature",
+        "temperature_unit_description": "Jedinica za bilo koji izlaz \u0161ablona temperature. Jedna od \u201e\u00b0C\u201c, \u201e\u00b0F\u201c, ili \u201eK\u201c.",
+        "turn_off": "Akcije pri isklju\u010divanju",
+        "turn_on": "Akcije pri uklju\u010divanju",
+        "unit_of_measurement": "Jedinica mere"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Akcije pri aktiviranju (odsutan)",
+                    "arm_custom_bypass": "Akcije pri aktiviranju uz prilago\u0111eno premo\u0161\u0107avanje",
+                    "arm_home": "Akcije pri aktiviranju (kod ku\u0107e)",
+                    "arm_night": "Akcije pri aktiviranju (no\u0107)",
+                    "arm_vacation": "Akcije pri aktiviranju (odmor)",
+                    "code_arm_required": "Neophodan k\u00f4d za aktivaciju",
+                    "code_format": "Format k\u00f4da",
+                    "device_id": "Ure\u0111aj",
+                    "disarm": "Akcije pri deaktiviranju",
+                    "name": "Naziv",
+                    "trigger": "Akcije pri aktiviranju",
+                    "value_template": "Stanje"
+                },
+                "data_description": {
+                    "arm_away": "Defini\u0161e akcije koje se izvr\u0161avaju kada se alarm kontrolni panel aktivira u re\u017eimu `arm_away`. Prima promenljivu `code`.",
+                    "arm_custom_bypass": "Defini\u0161e akcije koje se izvr\u0161avaju kada je alarmna centrala aktivirana u re\u017eimu \u201earm_custom_bypass\u201c. Prima promenljivu `code`.",
+                    "arm_home": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira u re\u017eimu `arm_home`. Prima promenljivu `code`.",
+                    "arm_night": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira u re\u017eimu `arm_night`. Prima promenljivu `code`.",
+                    "arm_vacation": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira u re\u017eimu `arm_vacation`. Prima promenljivu `code`.",
+                    "code_arm_required": "Ako je ozna\u010deno, k\u00f4d je neophodan za aktivaciju alarma.",
+                    "code_format": "Jedno od slede\u0107eg: \u201ebroj\u201c, \u201etekst\u201c ili \u201ebez koda\u201c. Format za kod koji se koristi za aktiviranje i deaktiviranje alarma.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "disarm": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel deaktivira. Prima promenljivu `code`.",
+                    "trigger": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira (triggered). Prima promenljivu `code`.",
+                    "value_template": "Defini\u0161e \u0161ablon za pode\u0161avanje stanja alarmne table. Va\u017ee\u0107e izlazne vrednosti iz \u0161ablona su 'armed_away', 'armed_home', 'armed_night', 'armed_vacation', 'arming', 'disarmed', 'pending' i 'triggered'."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za alarmni panel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "state": "Stanje"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "state": "Senzor se smatra uklju\u010denim ako \u0161ablon vrati vrednost True, yes, on, enable ili pozitivan broj. Bilo koja druga vrednost \u0107e ga prikazati kao isklju\u010den."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost",
+                            "delay_off": "Ka\u0161njenje isklju\u010divanja",
+                            "delay_on": "Ka\u0161njenje uklju\u010divanja"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni.",
+                            "delay_off": "Vreme tokom kojeg uslov \u0161ablona ne sme biti ispunjen da bi ovaj senzor pre\u0161ao u status \u201eisklju\u010deno\u201d.",
+                            "delay_on": "Vreme tokom kojeg uslov \u0161ablona mora biti ispunjen da bi ovaj senzor pre\u0161ao u status \u201euklju\u010deno\u201d."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za binarni senzor"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "press": "Akcije pri pritisku"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "press": "Defini\u0161e akcije koje se izvr\u0161avaju kada je dugme pritisnuto."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za dugme"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Trenutna temperatura",
+                    "device_id": "Ure\u0111aj",
+                    "hvac_action": "Trenutna akcija",
+                    "hvac_mode": "HVAC re\u017eim",
+                    "hvac_modes": "HVAC re\u017eimi",
+                    "name": "Naziv",
+                    "set_hvac_mode": "Akcije pri pode\u0161avanju HVAC re\u017eima",
+                    "set_temperature": "Akcije pri pode\u0161avanju temperature",
+                    "target_temperature": "Ciljna temperatura",
+                    "temperature_unit": "Jedinica temperature"
+                },
+                "data_description": {
+                    "current_temperature": "Defini\u0161e \u0161ablon za trenutnu temperaturu.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "hvac_action": "Defini\u0161e \u0161ablon za trenutnu HVAC radnju. Va\u017ee\u0107e HVAC radnje su 'cooling', 'defrosting', 'drying', 'fan', 'heating', 'idle', 'off' i 'preheating'.",
+                    "hvac_mode": "Defini\u0161e \u0161ablon za trenutni HVAC re\u017eim. Va\u017ee\u0107i HVAC re\u017eimi su 'auto', 'cool', 'dry', 'fan_only', 'heat', 'heat_cool' i 'off'.",
+                    "hvac_modes": "Defini\u0161e \u0161ablon za listu dostupnih HVAC re\u017eima. Va\u017ee\u0107i HVAC re\u017eimi za listu su 'auto', 'cool', 'dry', 'fan_only', 'heat', 'heat_cool' i 'off'.",
+                    "set_hvac_mode": "Defini\u0161e akcije koje se pokre\u0107u kada klima primi komandu set_hvac_mode. Prima promenljivu `hvac_mode`.",
+                    "set_temperature": "Defini\u0161e akcije koje se pokre\u0107u kada klima primi komandu set_temperature. Prima promenljive `hvac_mode`, `temperature`, `target_temp_high`, i `target_temp_low`. Ako je`hvac_mode`  primljen, akcije za `set_hvac_mode` se izvr\u0161avaju pre akcija u `set_temperature`.",
+                    "target_temperature": "Defini\u0161e \u0161ablon za ciljnu temperaturu.",
+                    "temperature_unit": "Jedinica za bilo koji izlaz \u0161ablona temperature. Jedna od \u201e\u00b0C\u201c, \u201e\u00b0F\u201c, ili \u201eK\u201c."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost",
+                            "max_temperature": "Maksimalna ciljna temperatura",
+                            "min_temperature": "Minimalna ciljna temperatura"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon termostata"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Akcije pri zatvaranju",
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "open_cover": "Akcije pri otvaranju",
+                    "position": "Polo\u017eaj",
+                    "set_cover_position": "Akcije pri pode\u0161avanju polo\u017eaja",
+                    "state": "Stanje",
+                    "stop_cover": "Akcije pri zaustavljanju"
+                },
+                "data_description": {
+                    "close_cover": "Defini\u0161e akcije koje se izvr\u0161avaju kada se pokriva\u010d zatvori.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "open_cover": "Defini\u0161e akcije koje se izvr\u0161avaju kada se pokriva\u010d otvori.",
+                    "position": "Defini\u0161e \u0161ablon za polo\u017eaj zastora. Va\u017ee\u0107e vrednosti su brojevi izme\u0111u '0' ('zatvoreno') i '100' ('otvoreno')",
+                    "set_cover_position": "Defini\u0161e akcije koje se izvr\u0161avaju kada pokriva\u010d (cover) primi komandu `set_cover_position`. Vra\u0107a promenljivu `position`.",
+                    "state": "Defini\u0161e \u0161ablon za stanje zastora. Va\u017ee\u0107e izlazne vrednosti iz \u0161ablona su 'open', 'opening', 'closing' i 'closed' koje se direktno mapiraju u odgovaraju\u0107a stanja. Ako su navedeni i \u0161ablon stanja i polo\u017eaja, samo 'opening' i 'closing' se pode\u0161avaju iz \u0161ablona stanja.",
+                    "stop_cover": "Defini\u0161e akcije koje se izvr\u0161avaju kada je zastor (cover) zaustavljen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za zastor"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "in_zones": "Zone",
+                    "latitude": "Geografska \u0161irina",
+                    "longitude": "Geografska du\u017eina",
+                    "name": "Naziv"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "in_zones": "Defini\u0161e \u0161ablon koji vra\u0107a listu zona u kojima se ure\u0111aj za pra\u0107enje trenutno nalazi. \u0160ablon treba da vrati listu ID-jeva entiteta zona. Ako ure\u0111aj za pra\u0107enje nije ni u jednoj zoni, \u0161ablon treba da vrati praznu listu.",
+                    "latitude": "Defini\u0161e \u0161ablon za geografsku \u0161irinu ure\u0111aja za pra\u0107enje. Va\u017ee\u0107e vrednosti su brojevi izme\u0111u -90 i 90.",
+                    "longitude": "Defini\u0161e \u0161ablon za geografsku du\u017einu ure\u0111aja za pra\u0107enje. Va\u017ee\u0107e vrednosti su brojevi izme\u0111u -180 i 180.",
+                    "name": "Naziv"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost",
+                            "location_accuracy": "Ta\u010dnost lokacije"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni.",
+                            "location_accuracy": "Defini\u0161e \u0161ablon za ta\u010dnost lokacije ure\u0111aja za pra\u0107enje u metrima. Va\u017ee\u0107e vrednosti su brojevi ve\u0107i ili jednaki 0."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon pratioca lokacije"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "event_type": "Tip zadnjeg doga\u0111aja",
+                    "event_types": "Tipovi doga\u0111aja",
+                    "name": "Naziv"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "event_type": "Defini\u0161e \u0161ablon za tip doga\u0111aja.",
+                    "event_types": "Defini\u0161e \u0161ablon za listu dostupnih tipova doga\u0111aja."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za doga\u0111aj"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "percentage": "Procenat",
+                    "set_percentage": "Akcije pri pode\u0161avanju procenta",
+                    "speed_count": "Broj brzina",
+                    "state": "Stanje",
+                    "turn_off": "Akcije pri isklju\u010divanju",
+                    "turn_on": "Akcije pri uklju\u010divanju"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "percentage": "Defini\u0161e \u0161ablon za procenat brzine ventilatora.",
+                    "set_percentage": "Defini\u0161e radnje koje se izvr\u0161avaju kada ventilator dobije komandu sa procentom brzine. Prima promenljivu `procenat`.",
+                    "speed_count": "Broj nivoa brzine za izra\u010dunavanje koraka (procenta) kod promene brzine.",
+                    "state": "Ventilator je \u201euklju\u010den\u201d ako \u0161ablon vrati vrednost True, yes, on, enable ili pozitivan broj. Bilo koja druga vrednost \u0107e ga prikazati kao \u201eisklju\u010den\u201d.",
+                    "turn_off": "Defini\u0161e akcije koje se izvr\u0161avaju kada je ventilator isklju\u010den.",
+                    "turn_on": "Defini\u0161e akcije koje se izvr\u0161avaju kada se ventilator uklju\u010di. Prima promenljive `percentage` i/ili `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za ventilator"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "url": "URL adresa",
+                    "verify_ssl": "Proveri SSL potvrde"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "url": "Defini\u0161e \u0161ablon za URL adresu na kojoj se slika nalazi.",
+                    "verify_ssl": "Omogu\u0107ava ili onemogu\u0107ava proveru SSL sertifikata. Isklju\u010dite za HTTP adrese ili samopotpisane sertifikate."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za sliku"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "hs": "Nijansa i zasi\u0107enost boje",
+                    "level": "Nivo osvetljenja",
+                    "name": "Naziv",
+                    "set_hs": "Akcije pri pode\u0161avanju nijanse i zasi\u0107enja",
+                    "set_level": "Akcije pri pode\u0161avanju nivoa",
+                    "set_temperature": "Akcije pri pode\u0161avanju temperature boje",
+                    "state": "Stanje",
+                    "temperature": "Temperatura boje",
+                    "turn_off": "Akcije pri isklju\u010divanju",
+                    "turn_on": "Akcije pri uklju\u010divanju"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "hs": "Defini\u0161e \u0161ablon za HS boju svetla. Mora da vrati par (nijansa, zasi\u0107enost).",
+                    "level": "Defini\u0161e \u0161ablon za osvetljenost svetla. Va\u017ee\u0107e vrednosti su od 0 do 255.",
+                    "set_hs": "Defini\u0161e akcije koje se pokre\u0107u kada svetlo primi HS komandu boje. Dostupne promenljive: `hs` kao par, `h` i `s`.",
+                    "set_level": "Defini\u0161e akcije koje se pokre\u0107u kada svetlo primi komandu za osvetljenost. Skripta \u0107e biti pozvana samo ako`turn_on` poziv sadr\u017ei samo `brightness`, i opciono `transition`. Prima promenljive `brightness` i opciono `transition`.",
+                    "set_temperature": "Defini\u0161e akcije koje se pokre\u0107u kada svetlo primi komandu za temperaturu boje. Prima promenljivu `color_temp_kelvin`. Mo\u017ee tako\u0111e primiti promenljive `brightness` i/ili `transition`.",
+                    "state": "Svetlo se smatra uklju\u010denim ako \u0161ablon vrati vrednost True, yes, on, enable ili pozitivan broj. Bilo koja druga vrednost \u0107e ga prikazati kao isklju\u010deno.",
+                    "temperature": "Defini\u0161e \u0161ablon za temperaturu boje svetla.",
+                    "turn_off": "Defini\u0161e akcije koje se pokre\u0107u kada se svetlo isklju\u010di.",
+                    "turn_on": "Defini\u0161e akcije koje se pokre\u0107u kada se svetlo uklju\u010di."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za svetlo"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Format k\u00f4da",
+                    "device_id": "Ure\u0111aj",
+                    "lock": "Akcije pri zaklju\u010davanju",
+                    "name": "Naziv",
+                    "open": "Akcije pri otvaranju",
+                    "state": "Stanje",
+                    "unlock": "Akcije pri otklju\u010davanju"
+                },
+                "data_description": {
+                    "code_format": "Defini\u0161e \u0161ablon za atribut 'code_format' brave.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "lock": "Defini\u0161e akcije koje se izvr\u0161avaju kada je brava zaklju\u010dana.",
+                    "open": "Defini\u0161e akcije koje se izvr\u0161avaju kada je brava otvorena.",
+                    "state": "Defini\u0161e \u0161ablon za pode\u0161avanje stanja brave. Brava je zaklju\u010dana ako \u0161ablon vrati vrednost 'True', 'true', 'on' ili 'locked'. Brava je otklju\u010dana ako \u0161ablon vrati vrednost 'False', 'false', 'off' ili 'unlocked'. Ostala va\u017ee\u0107a stanja su 'jammed', 'opening', 'locking', 'open' i 'unlocking'.",
+                    "unlock": "Defini\u0161e akcije koje se izvr\u0161avaju kada je brava otklju\u010dana."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za bravu"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "max": "Maksimalna vrednost",
+                    "min": "Minimalna vrednost",
+                    "name": "Naziv",
+                    "set_value": "Akcije pri pode\u0161avanju vrednosti",
+                    "state": "Stanje",
+                    "step": "Vrednost koraka",
+                    "unit_of_measurement": "Jedinica mere"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "max": "Defini\u0161e maksimalnu vrednost broja.",
+                    "min": "Defini\u0161e minimalnu vrednost broja.",
+                    "set_value": "Defini\u0161e akcije koje se izvr\u0161avaju kada se broj postavi na odre\u0111enu vrednost. Prima promenljivu `value`.",
+                    "state": "\u0160ablon za trenutnu vrednost broja.",
+                    "step": "Defini\u0161e korak pove\u0107anja/smanjenja broja.",
+                    "unit_of_measurement": "Merna jedinica (npr. %, \u00b0C, kg)"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za broj"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "options": "Dostupne opcije",
+                    "select_option": "Akcije pri izboru",
+                    "state": "Stanje"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "options": "\u0160ablon za listu dostupnih opcija.",
+                    "select_option": "Defini\u0161e akcije koje se izvr\u0161avaju kada je izabrana neka opcija sa liste opcija. Prima promenljivu `option`.",
+                    "state": "\u0160ablon za trenutno odabranu opciju."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za izbor"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "state": "Stanje",
+                    "state_class": "Klasa stanja",
+                    "unit_of_measurement": "Jedinica mere"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "state": "Defini\u0161e \u0161ablon za stanje senzora. Ako je senzor numeri\u010dki, tj. ima 'state_class' ili 'unit_of_measurement', \u0161ablon stanja mora vratiti broj ili 'none'. \u0160ablon stanja ne sme vratiti tekstualni niz, uklju\u010duju\u0107i 'unknown' ili 'unavailable'. \u0160ablon dostupnosti ('availability') mo\u017ee biti definisan kako bi se spre\u010dilo renderovanje \u0161ablona stanja.",
+                    "unit_of_measurement": "Defini\u0161e mernu jedinicu senzora, ako postoji. Ovo tako\u0111e omogu\u0107ava prikaz vrednosti prema formatu brojeva iz tvog profila i uti\u010de na to da se u istoriji grafik prikazuje kao neprekidna linija."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za senzor"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "turn_off": "Akcije pri isklju\u010divanju",
+                    "turn_on": "Akcije pri uklju\u010divanju",
+                    "value_template": "Stanje"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "turn_off": "Defini\u0161e akcije koje \u0107e se izvr\u0161iti kada se prekida\u010d isklju\u010di.",
+                    "turn_on": "Defini\u0161e akcije koje \u0107e se izvr\u0161iti kada se prekida\u010d uklju\u010di.",
+                    "value_template": "Defini\u0161e \u0161ablon za pode\u0161avanje stanja prekida\u010da. Ako nije definisan, prekida\u010d \u0107e optimisti\u010dki pretpostaviti da su sve komande uspe\u0161ne."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za prekida\u010d"
+            },
+            "update": {
+                "data": {
+                    "backup": "Rezervna kopija",
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "in_progress": "U toku",
+                    "install": "Akcije pri instalaciji",
+                    "installed_version": "Trenutna verzija",
+                    "latest_version": "Dostupna verzija",
+                    "name": "Naziv",
+                    "release_summary": "Sa\u017eetak izdanja",
+                    "release_url": "URL adresa izdanja",
+                    "specific_version": "Specifi\u010dna verzija",
+                    "title": "Naslov",
+                    "update_percentage": "Procenat a\u017euriranja"
+                },
+                "data_description": {
+                    "backup": "Omogu\u0107ava ili onemogu\u0107ava opciju \u201eautomatska rezervna kopija pre a\u017euriranja\u201c u popravci a\u017euriranja. Kada je isklju\u010deno, promenljiva \u201ebackup\u201c \u0107e uvek vra\u0107ati vrednost \u201eFalse\u201c tokom akcije \u201einstall\u201c i ne\u0107e prihvatati opciju \u201ebackup\u201c.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "in_progress": "Defini\u0161e \u0161ablon za stanje trenutnog napretka.",
+                    "install": "Defini\u0161e akcije koje se izvr\u0161avaju prilikom instalacije a\u017euriranja. Ako su omogu\u0107ene, radnja dobija promenljive`specific_version` i `backup`.",
+                    "installed_version": "Defini\u0161e \u0161ablon za instaliranu verziju.",
+                    "latest_version": "Defini\u0161e \u0161ablon za najnoviju verziju.",
+                    "release_summary": "Defini\u0161e \u0161ablon za rezime izdanja.",
+                    "release_url": "Defini\u0161e \u0161ablon za URL adresu izdanja.",
+                    "specific_version": "Omogu\u0107ava kori\u0161\u0107enje promenljive `version` uz akciju `install`. Ako je isklju\u010deno, promenljiva `specific_version` \u0107e uvek imati vrednost `None` unutar `install` akcije",
+                    "title": "Defini\u0161e \u0161ablon za naslov a\u017euriranja.",
+                    "update_percentage": "Defini\u0161e \u0161ablon za procenat zavr\u0161enosti a\u017euriranja."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160abron za a\u017euriranje"
+            },
+            "user": {
+                "description": "Ovaj \u0161ablon za pomo\u0107ni entitet vam omogu\u0107ava da kreirate pomo\u0107ne entitete \u010dije se stanje defini\u0161e pomo\u0107u \u0161ablona. Koju vrstu \u0161ablona \u017eelite da kreirate?",
+                "menu_options": {
+                    "alarm_control_panel": "Alarmni panel",
+                    "binary_sensor": "Binarni senzor",
+                    "button": "Dugme",
+                    "climate": "Klima",
+                    "cover": "Zastor",
+                    "device_tracker": "Pra\u0107enje ure\u0111aja",
+                    "event": "Doga\u0111aj",
+                    "fan": "Ventilator",
+                    "image": "Slika",
+                    "light": "Svetlo",
+                    "lock": "Brava",
+                    "number": "Broj",
+                    "select": "Padaju\u0107i meni",
+                    "sensor": "Senzor",
+                    "switch": "Prekida\u010d",
+                    "update": "A\u017euriranje",
+                    "vacuum": "Usisiva\u010d",
+                    "weather": "Vremenska prognoza"
+                },
+                "title": "\u0160ablonski pomo\u0107ni entitet"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Akcije pri \u010di\u0161\u0107enju ta\u010dke",
+                    "device_id": "Ure\u0111aj",
+                    "fan_speed": "Brzina ventilatora",
+                    "fan_speeds": "Brzine ventilatora",
+                    "locate": "Akcije pri lociranju",
+                    "name": "Naziv",
+                    "pause": "Akcije pri pauziranju",
+                    "return_to_base": "Akcije pri povratku na bazu",
+                    "set_fan_speed": "Akcije pri promeni brzine ventilatora",
+                    "start": "Akcije pri pokretanju",
+                    "state": "Stanje",
+                    "stop": "Akcije pri zaustavljanju"
+                },
+                "data_description": {
+                    "clean_spot": "Defini\u0161e akcije koje se pokre\u0107u kada usisiva\u010d dobije komandu  'Clean spot'.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "fan_speed": "Defini\u0161e \u0161ablon za brzinu ventilatora usisiva\u010da.",
+                    "fan_speeds": "Lista podr\u017eanih brzina ventilatora.",
+                    "locate": "Defini\u0161e akcije koje se pokre\u0107u kada usisiva\u010d dobije komandu  'Locate'.",
+                    "pause": "Defini\u0161e akcije koje se pokre\u0107u kada se usisiva\u010d pauzira.",
+                    "return_to_base": "Defini\u0161e akcije koje se pokre\u0107u kada usisiva\u010d dobije komandu 'Return to dock'.",
+                    "set_fan_speed": "Defini\u0161e akcije koje se izvr\u0161avaju kada usisiva\u010d dobije komandu za pode\u0161avanje brzine ventilatora. Prima promenljivu `fan_speed`.",
+                    "start": "Defini\u0161e akcije koje se pokre\u0107u kada se usisiva\u010d startuje.",
+                    "state": "Defini\u0161e \u0161ablon za stanje usisiva\u010da. Va\u017ee\u0107e vrednosti su 'cleaning', 'docked', 'idle', 'paused', 'returning' i 'error'.",
+                    "stop": "Defini\u0161e akcije koje se izvr\u0161avaju kada se usisiva\u010d zaustavi."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon usisiva\u010da"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Stanje",
+                    "device_id": "Ure\u0111aj",
+                    "forecast_daily": "Dnevna prognoza",
+                    "forecast_hourly": "Satna prognoza",
+                    "humidity": "Vla\u017enost",
+                    "name": "Naziv",
+                    "temperature": "Temperatura",
+                    "temperature_unit": "Jedinica temperature"
+                },
+                "data_description": {
+                    "condition": "Defini\u0161e \u0161ablon za trenutne vremenske prilike",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "forecast_daily": "Defini\u0161e \u0161ablon za podatke o [dnevnoj prognozi]({daily_link})",
+                    "forecast_hourly": "Defini\u0161e \u0161ablon za podatke o [satnoj prognozi]({hourly_link})",
+                    "humidity": "Defini\u0161e \u0161ablon za trenutnu vla\u017enost",
+                    "temperature": "Defini\u0161e \u0161ablon za trenutnu temperaturu",
+                    "temperature_unit": "Jedinica za bilo koji izlaz \u0161ablona temperature. Jedna od \u201e\u00b0C\u201c, \u201e\u00b0F\u201c, ili \u201eK\u201c."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon vremenske prognoze"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Gre\u0161ka pri obradi \u0161ablona za format koda \u201e{code_format_template}\u201c za entitet {entity_id}: {cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "Gre\u0161ka pri osve\u017eavanju entiteta \u0161ablona: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "\u0160ablonski pomo\u0107nik je uklonjen"
+                },
+                "error": {
+                    "invalid_device": "Izabrani ure\u0111aj vi\u0161e ne postoji"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Ure\u0111aj"
+                        },
+                        "data_description": {
+                            "device_id": "Ure\u0111aj sa kojim ovaj \u0161ablonski pomo\u0107nik treba da bude povezan."
+                        },
+                        "description": "\u0160ablonski pomo\u0107nik {name} je bio povezan sa ure\u0111ajem koji je podeljen na vi\u0161e ure\u0111aja. Dok ne izaberete ure\u0111aj, pomo\u0107nik ne\u0107e biti povezan ni sa jednim ure\u0111ajem.\n\nIzaberite ure\u0111aj sa kojim ovaj pomo\u0107nik treba da bude povezan ili ostavite prazno ako ne \u017eelite da ga pove\u017eete sa ure\u0111ajem.",
+                        "title": "Izbor ure\u0111aja za {name}"
+                    }
+                }
+            },
+            "title": "Potrebno je ponovo izabrati ure\u0111aj za \u0161ablonskog pomo\u0107nika {name}"
+        },
+        "config_format_actions": {
+            "description": "U konfiguraciji \u0161ablona postoji opcija radnja koja se ne uparuje sa opcijom pokreta\u010da. Ovo \u0107e biti gre\u0161ka validacije konfiguracije u 2026.5.\n\nMolimo dodajte pokreta\u010d u konfiguraciju ili uklonite opciju radnji iz konfiguracije.\n\n```\n{config}\n```",
+            "title": "Opcija \u0161ablonskih radnji zahteva pokreta\u010d"
+        },
+        "config_format_triggers": {
+            "description": "Konfiguracija \u0161ablona pokreta\u010da mora da sadr\u017ei pokreta\u010d i najmanje jedan domen prilikom definisanja entiteta. Ovo \u0107e biti gre\u0161ka validacije konfiguracije u Home Assistant Core 2026.5.\n\nMolimo uklonite napu\u0161teni pokreta\u010d iz konfiguracije.\n\n```\n{config}\n```",
+            "title": "Nepotpuna konfiguracija \u0161ablona"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Akcije pri aktiviranju (odsutan)",
+                    "arm_custom_bypass": "Akcije pri aktiviranju uz prilago\u0111eno premo\u0161\u0107avanje",
+                    "arm_home": "Akcije pri aktiviranju (kod ku\u0107e)",
+                    "arm_night": "Akcije pri aktiviranju (no\u0107)",
+                    "arm_vacation": "Akcije pri aktiviranju (odmor)",
+                    "code_arm_required": "Neophodan k\u00f4d za aktivaciju",
+                    "code_format": "Format k\u00f4da",
+                    "device_id": "Ure\u0111aj",
+                    "disarm": "Akcije pri deaktiviranju",
+                    "trigger": "Akcije pri aktiviranju",
+                    "value_template": "Stanje"
+                },
+                "data_description": {
+                    "arm_away": "Defini\u0161e akcije koje se izvr\u0161avaju kada se alarm kontrolni panel aktivira u re\u017eimu `arm_away`. Prima promenljivu `code`.",
+                    "arm_custom_bypass": "Defini\u0161e akcije koje se izvr\u0161avaju kada je alarmna centrala aktivirana u re\u017eimu \u201earm_custom_bypass\u201c. Prima promenljivu `code`.",
+                    "arm_home": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira u re\u017eimu `arm_home`. Prima promenljivu `code`.",
+                    "arm_night": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira u re\u017eimu `arm_night`. Prima promenljivu `code`.",
+                    "arm_vacation": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira u re\u017eimu `arm_vacation`. Prima promenljivu `code`.",
+                    "code_arm_required": "Ako je ozna\u010deno, k\u00f4d je neophodan za aktivaciju alarma.",
+                    "code_format": "Jedno od slede\u0107eg: \u201ebroj\u201c, \u201etekst\u201c ili \u201ebez koda\u201c. Format za kod koji se koristi za aktiviranje i deaktiviranje alarma.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "disarm": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel deaktivira. Prima promenljivu `code`.",
+                    "trigger": "Defini\u0161e akcije koje se pokre\u0107u kada se alarmni panel aktivira (triggered). Prima promenljivu `code`.",
+                    "value_template": "Defini\u0161e \u0161ablon za pode\u0161avanje stanja alarmne table. Va\u017ee\u0107e izlazne vrednosti iz \u0161ablona su 'armed_away', 'armed_home', 'armed_night', 'armed_vacation', 'arming', 'disarmed', 'pending' i 'triggered'."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za alarmni panel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "state": "Stanje"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "state": "Senzor se smatra uklju\u010denim ako \u0161ablon vrati vrednost True, yes, on, enable ili pozitivan broj. Bilo koja druga vrednost \u0107e ga prikazati kao isklju\u010den."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost",
+                            "delay_off": "Ka\u0161njenje isklju\u010divanja",
+                            "delay_on": "Ka\u0161njenje uklju\u010divanja"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni.",
+                            "delay_off": "Vreme tokom kojeg uslov \u0161ablona ne sme biti ispunjen da bi ovaj senzor pre\u0161ao u status \u201eisklju\u010deno\u201d.",
+                            "delay_on": "Vreme tokom kojeg uslov \u0161ablona mora biti ispunjen da bi ovaj senzor pre\u0161ao u status \u201euklju\u010deno\u201d."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za binarni senzor"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "press": "Akcije pri pritisku"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "press": "Defini\u0161e akcije koje se izvr\u0161avaju kada je dugme pritisnuto."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za dugme"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Trenutna temperatura",
+                    "device_id": "Ure\u0111aj",
+                    "hvac_action": "Trenutna akcija",
+                    "hvac_mode": "HVAC re\u017eim",
+                    "hvac_modes": "HVAC re\u017eimi",
+                    "name": "Naziv",
+                    "set_hvac_mode": "Akcije pri pode\u0161avanju HVAC re\u017eima",
+                    "set_temperature": "Akcije pri pode\u0161avanju temperature",
+                    "target_temperature": "Ciljna temperatura",
+                    "temperature_unit": "Jedinica temperature"
+                },
+                "data_description": {
+                    "current_temperature": "Defini\u0161e \u0161ablon za trenutnu temperaturu.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "hvac_action": "Defini\u0161e \u0161ablon za trenutnu HVAC radnju. Va\u017ee\u0107e HVAC radnje su 'cooling', 'defrosting', 'drying', 'fan', 'heating', 'idle', 'off' i 'preheating'.",
+                    "hvac_mode": "Defini\u0161e \u0161ablon za trenutni HVAC re\u017eim. Va\u017ee\u0107i HVAC re\u017eimi su 'auto', 'cool', 'dry', 'fan_only', 'heat', 'heat_cool' i 'off'.",
+                    "hvac_modes": "Defini\u0161e \u0161ablon za listu dostupnih HVAC re\u017eima. Va\u017ee\u0107i HVAC re\u017eimi za listu su 'auto', 'cool', 'dry', 'fan_only', 'heat', 'heat_cool' i 'off'.",
+                    "set_hvac_mode": "Defini\u0161e akcije koje se pokre\u0107u kada klima primi komandu set_hvac_mode. Prima promenljivu `hvac_mode`.",
+                    "set_temperature": "Defini\u0161e akcije koje se pokre\u0107u kada klima primi komandu set_temperature. Prima promenljive `hvac_mode`, `temperature`, `target_temp_high`, i `target_temp_low`. Ako je`hvac_mode`  primljen, akcije za `set_hvac_mode` se izvr\u0161avaju pre akcija u `set_temperature`.",
+                    "target_temperature": "Defini\u0161e \u0161ablon za ciljnu temperaturu.",
+                    "temperature_unit": "Jedinica za bilo koji izlaz \u0161ablona temperature. Jedna od \u201e\u00b0C\u201c, \u201e\u00b0F\u201c, ili \u201eK\u201c."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost",
+                            "max_temperature": "Maksimalna ciljna temperatura",
+                            "min_temperature": "Minimalna ciljna temperatura"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon termostata"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Akcije pri zatvaranju",
+                    "device_id": "Ure\u0111aj",
+                    "open_cover": "Akcije pri otvaranju",
+                    "position": "Polo\u017eaj",
+                    "set_cover_position": "Akcije pri pode\u0161avanju polo\u017eaja",
+                    "state": "Stanje",
+                    "stop_cover": "Akcije pri zaustavljanju"
+                },
+                "data_description": {
+                    "close_cover": "Defini\u0161e akcije koje se izvr\u0161avaju kada se pokriva\u010d zatvori.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "open_cover": "Defini\u0161e akcije koje se izvr\u0161avaju kada se pokriva\u010d otvori.",
+                    "position": "Defini\u0161e \u0161ablon za polo\u017eaj zastora. Va\u017ee\u0107e vrednosti su brojevi izme\u0111u '0' ('zatvoreno') i '100' ('otvoreno')",
+                    "set_cover_position": "Defini\u0161e akcije koje se izvr\u0161avaju kada pokriva\u010d (cover) primi komandu `set_cover_position`. Vra\u0107a promenljivu `position`.",
+                    "state": "Defini\u0161e \u0161ablon za stanje zastora. Va\u017ee\u0107e izlazne vrednosti iz \u0161ablona su 'open', 'opening', 'closing' i 'closed' koje se direktno mapiraju u odgovaraju\u0107a stanja. Ako su navedeni i \u0161ablon stanja i polo\u017eaja, samo 'opening' i 'closing' se pode\u0161avaju iz \u0161ablona stanja.",
+                    "stop_cover": "Defini\u0161e akcije koje se izvr\u0161avaju kada je zastor (cover) zaustavljen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za zastor"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "in_zones": "Zone",
+                    "latitude": "Geografska \u0161irina",
+                    "longitude": "Geografska du\u017eina"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "in_zones": "Defini\u0161e \u0161ablon koji vra\u0107a listu zona u kojima se ure\u0111aj za pra\u0107enje trenutno nalazi. \u0160ablon treba da vrati listu ID-jeva entiteta zona. Ako ure\u0111aj za pra\u0107enje nije ni u jednoj zoni, \u0161ablon treba da vrati praznu listu.",
+                    "latitude": "Defini\u0161e \u0161ablon za geografsku \u0161irinu ure\u0111aja za pra\u0107enje. Va\u017ee\u0107e vrednosti su brojevi izme\u0111u -90 i 90.",
+                    "longitude": "Defini\u0161e \u0161ablon za geografsku du\u017einu ure\u0111aja za pra\u0107enje. Va\u017ee\u0107e vrednosti su brojevi izme\u0111u -180 i 180."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost",
+                            "location_accuracy": "Ta\u010dnost lokacije"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni.",
+                            "location_accuracy": "Defini\u0161e \u0161ablon za ta\u010dnost lokacije ure\u0111aja za pra\u0107enje u metrima. Va\u017ee\u0107e vrednosti su brojevi ve\u0107i ili jednaki 0."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon pratioca lokacije"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "event_type": "Tip zadnjeg doga\u0111aja",
+                    "event_types": "Tipovi doga\u0111aja",
+                    "name": "Naziv"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "event_type": "Defini\u0161e \u0161ablon za tip doga\u0111aja.",
+                    "event_types": "Defini\u0161e \u0161ablon za listu dostupnih tipova doga\u0111aja."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za doga\u0111aj"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "percentage": "Procenat",
+                    "set_percentage": "Akcije pri pode\u0161avanju procenta",
+                    "speed_count": "Broj brzina",
+                    "state": "Stanje",
+                    "turn_off": "Akcije pri isklju\u010divanju",
+                    "turn_on": "Akcije pri uklju\u010divanju"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "percentage": "Defini\u0161e \u0161ablon za procenat brzine ventilatora.",
+                    "set_percentage": "Defini\u0161e radnje koje se izvr\u0161avaju kada ventilator dobije komandu sa procentom brzine. Prima promenljivu `procenat`.",
+                    "speed_count": "Broj nivoa brzine za izra\u010dunavanje koraka (procenta) kod promene brzine.",
+                    "state": "Ventilator je \u201euklju\u010den\u201d ako \u0161ablon vrati vrednost True, yes, on, enable ili pozitivan broj. Bilo koja druga vrednost \u0107e ga prikazati kao \u201eisklju\u010den\u201d.",
+                    "turn_off": "Defini\u0161e akcije koje se izvr\u0161avaju kada je ventilator isklju\u010den.",
+                    "turn_on": "Defini\u0161e akcije koje se izvr\u0161avaju kada se ventilator uklju\u010di. Prima promenljive `percentage` i/ili `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za ventilator"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "url": "URL adresa",
+                    "verify_ssl": "Proveri SSL potvrde"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "url": "Defini\u0161e \u0161ablon za URL adresu na kojoj se slika nalazi.",
+                    "verify_ssl": "Omogu\u0107ava ili onemogu\u0107ava proveru SSL sertifikata. Isklju\u010dite za HTTP adrese ili samopotpisane sertifikate."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za sliku"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "hs": "Nijansa i zasi\u0107enost boje",
+                    "level": "Nivo osvetljenja",
+                    "name": "Naziv",
+                    "set_hs": "Akcije pri pode\u0161avanju nijanse i zasi\u0107enja",
+                    "set_level": "Akcije pri pode\u0161avanju nivoa",
+                    "set_temperature": "Akcije pri pode\u0161avanju temperature boje",
+                    "state": "Stanje",
+                    "temperature": "Temperatura boje",
+                    "turn_off": "Akcije pri isklju\u010divanju",
+                    "turn_on": "Akcije pri uklju\u010divanju"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "hs": "Defini\u0161e \u0161ablon za HS boju svetla. Mora da vrati par (nijansa, zasi\u0107enost).",
+                    "level": "Defini\u0161e \u0161ablon za osvetljenost svetla. Va\u017ee\u0107e vrednosti su od 0 do 255.",
+                    "set_hs": "Defini\u0161e akcije koje se pokre\u0107u kada svetlo primi HS komandu boje. Dostupne promenljive: `hs` kao par, `h` i `s`.",
+                    "set_level": "Defini\u0161e akcije koje se pokre\u0107u kada svetlo primi komandu za osvetljenost. Skripta \u0107e biti pozvana samo ako`turn_on` poziv sadr\u017ei samo `brightness`, i opciono `transition`. Prima promenljive `brightness` i opciono `transition`.",
+                    "set_temperature": "Defini\u0161e akcije koje se pokre\u0107u kada svetlo primi komandu za temperaturu boje. Prima promenljivu `color_temp_kelvin`. Mo\u017ee tako\u0111e primiti promenljive `brightness` i/ili `transition`.",
+                    "state": "Svetlo se smatra uklju\u010denim ako \u0161ablon vrati vrednost True, yes, on, enable ili pozitivan broj. Bilo koja druga vrednost \u0107e ga prikazati kao isklju\u010deno.",
+                    "temperature": "Defini\u0161e \u0161ablon za temperaturu boje svetla.",
+                    "turn_off": "Defini\u0161e akcije koje se pokre\u0107u kada se svetlo isklju\u010di.",
+                    "turn_on": "Defini\u0161e akcije koje se pokre\u0107u kada se svetlo uklju\u010di."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za svetlo"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Format k\u00f4da",
+                    "device_id": "Ure\u0111aj",
+                    "lock": "Akcije pri zaklju\u010davanju",
+                    "open": "Akcije pri otvaranju",
+                    "state": "Stanje",
+                    "unlock": "Akcije pri otklju\u010davanju"
+                },
+                "data_description": {
+                    "code_format": "Defini\u0161e \u0161ablon za atribut 'code_format' brave.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "lock": "Defini\u0161e akcije koje se izvr\u0161avaju kada je brava zaklju\u010dana.",
+                    "open": "Defini\u0161e akcije koje se izvr\u0161avaju kada je brava otvorena.",
+                    "state": "Defini\u0161e \u0161ablon za pode\u0161avanje stanja brave. Brava je zaklju\u010dana ako \u0161ablon vrati vrednost 'True', 'true', 'on' ili 'locked'. Brava je otklju\u010dana ako \u0161ablon vrati vrednost 'False', 'false', 'off' ili 'unlocked'. Ostala va\u017ee\u0107a stanja su 'jammed', 'opening', 'locking', 'open' i 'unlocking'.",
+                    "unlock": "Defini\u0161e akcije koje se izvr\u0161avaju kada je brava otklju\u010dana."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za bravu"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "max": "Maksimalna vrednost",
+                    "min": "Minimalna vrednost",
+                    "name": "Naziv",
+                    "set_value": "Akcije pri pode\u0161avanju vrednosti",
+                    "state": "Stanje",
+                    "step": "Vrednost koraka"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "max": "Defini\u0161e maksimalnu vrednost broja.",
+                    "min": "Defini\u0161e minimalnu vrednost broja.",
+                    "set_value": "Defini\u0161e akcije koje se izvr\u0161avaju kada se broj postavi na odre\u0111enu vrednost. Prima promenljivu `value`.",
+                    "state": "\u0160ablon za trenutnu vrednost broja.",
+                    "step": "Defini\u0161e korak pove\u0107anja/smanjenja broja."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za broj"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "options": "Dostupne opcije",
+                    "select_option": "Akcije pri izboru",
+                    "state": "Stanje"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "options": "\u0160ablon za listu dostupnih opcija.",
+                    "select_option": "Defini\u0161e akcije koje se izvr\u0161avaju kada je izabrana neka opcija sa liste opcija. Prima promenljivu `option`.",
+                    "state": "\u0160ablon za trenutno odabranu opciju."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za izbor"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "state": "Stanje",
+                    "state_class": "Klasa stanja",
+                    "unit_of_measurement": "Jedinica mere"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "state": "Defini\u0161e \u0161ablon za stanje senzora. Ako je senzor numeri\u010dki, tj. ima 'state_class' ili 'unit_of_measurement', \u0161ablon stanja mora vratiti broj ili 'none'. \u0160ablon stanja ne sme vratiti tekstualni niz, uklju\u010duju\u0107i 'unknown' ili 'unavailable'. \u0160ablon dostupnosti ('availability') mo\u017ee biti definisan kako bi se spre\u010dilo renderovanje \u0161ablona stanja.",
+                    "unit_of_measurement": "Defini\u0161e mernu jedinicu senzora, ako postoji. Ovo tako\u0111e omogu\u0107ava prikaz vrednosti prema formatu brojeva iz tvog profila i uti\u010de na to da se u istoriji grafik prikazuje kao neprekidna linija."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za senzor"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Ure\u0111aj",
+                    "name": "Naziv",
+                    "turn_off": "Akcije pri isklju\u010divanju",
+                    "turn_on": "Akcije pri uklju\u010divanju",
+                    "value_template": "Stanje"
+                },
+                "data_description": {
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "turn_off": "Defini\u0161e akcije koje \u0107e se izvr\u0161iti kada se prekida\u010d isklju\u010di.",
+                    "turn_on": "Defini\u0161e akcije koje \u0107e se izvr\u0161iti kada se prekida\u010d uklju\u010di.",
+                    "value_template": "Defini\u0161e \u0161ablon za pode\u0161avanje stanja prekida\u010da. Ako nije definisan, prekida\u010d \u0107e optimisti\u010dki pretpostaviti da su sve komande uspe\u0161ne."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon za prekida\u010d"
+            },
+            "update": {
+                "data": {
+                    "backup": "Rezervna kopija",
+                    "device_class": "Klasa ure\u0111aja",
+                    "device_id": "Ure\u0111aj",
+                    "in_progress": "U toku",
+                    "install": "Akcije pri instalaciji",
+                    "installed_version": "Trenutna verzija",
+                    "latest_version": "Dostupna verzija",
+                    "name": "Naziv",
+                    "release_summary": "Sa\u017eetak izdanja",
+                    "release_url": "URL adresa izdanja",
+                    "specific_version": "Specifi\u010dna verzija",
+                    "title": "Naslov",
+                    "update_percentage": "Procenat a\u017euriranja"
+                },
+                "data_description": {
+                    "backup": "Omogu\u0107ava ili onemogu\u0107ava opciju \u201eautomatska rezervna kopija pre a\u017euriranja\u201c u popravci a\u017euriranja. Kada je isklju\u010deno, promenljiva \u201ebackup\u201c \u0107e uvek vra\u0107ati vrednost \u201eFalse\u201c tokom akcije \u201einstall\u201c i ne\u0107e prihvatati opciju \u201ebackup\u201c.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "in_progress": "Defini\u0161e \u0161ablon za stanje trenutnog napretka.",
+                    "install": "Defini\u0161e akcije koje se izvr\u0161avaju prilikom instalacije a\u017euriranja. Ako su omogu\u0107ene, radnja dobija promenljive`specific_version` i `backup`.",
+                    "installed_version": "Defini\u0161e \u0161ablon za instaliranu verziju.",
+                    "latest_version": "Defini\u0161e \u0161ablon za najnoviju verziju.",
+                    "release_summary": "Defini\u0161e \u0161ablon za rezime izdanja.",
+                    "release_url": "Defini\u0161e \u0161ablon za URL adresu izdanja.",
+                    "specific_version": "Omogu\u0107ava kori\u0161\u0107enje promenljive `version` uz akciju `install`. Ako je isklju\u010deno, promenljiva `specific_version` \u0107e uvek imati vrednost `None` unutar `install` akcije",
+                    "title": "Defini\u0161e \u0161ablon za naslov a\u017euriranja.",
+                    "update_percentage": "Defini\u0161e \u0161ablon za procenat zavr\u0161enosti a\u017euriranja."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160abron za a\u017euriranje"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Akcije pri \u010di\u0161\u0107enju ta\u010dke",
+                    "device_id": "Ure\u0111aj",
+                    "fan_speed": "Brzina ventilatora",
+                    "fan_speeds": "Brzine ventilatora",
+                    "locate": "Akcije pri lociranju",
+                    "name": "Naziv",
+                    "pause": "Akcije pri pauziranju",
+                    "return_to_base": "Akcije pri povratku na bazu",
+                    "set_fan_speed": "Akcije pri promeni brzine ventilatora",
+                    "start": "Akcije pri pokretanju",
+                    "state": "Stanje",
+                    "stop": "Akcije pri zaustavljanju"
+                },
+                "data_description": {
+                    "clean_spot": "Defini\u0161e akcije koje se pokre\u0107u kada usisiva\u010d dobije komandu  'Clean spot'.",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "fan_speed": "Defini\u0161e \u0161ablon za brzinu ventilatora usisiva\u010da.",
+                    "fan_speeds": "Lista podr\u017eanih brzina ventilatora.",
+                    "locate": "Defini\u0161e akcije koje se pokre\u0107u kada usisiva\u010d dobije komandu  'Locate'.",
+                    "pause": "Defini\u0161e akcije koje se pokre\u0107u kada se usisiva\u010d pauzira.",
+                    "return_to_base": "Defini\u0161e akcije koje se pokre\u0107u kada usisiva\u010d dobije komandu 'Return to dock'.",
+                    "set_fan_speed": "Defini\u0161e akcije koje se izvr\u0161avaju kada usisiva\u010d dobije komandu za pode\u0161avanje brzine ventilatora. Prima promenljivu `fan_speed`.",
+                    "start": "Defini\u0161e akcije koje se pokre\u0107u kada se usisiva\u010d startuje.",
+                    "state": "Defini\u0161e \u0161ablon za stanje usisiva\u010da. Va\u017ee\u0107e vrednosti su 'cleaning', 'docked', 'idle', 'paused', 'returning' i 'error'.",
+                    "stop": "Defini\u0161e akcije koje se izvr\u0161avaju kada se usisiva\u010d zaustavi."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "data_description": {
+                            "availability": "Defini\u0161e \u0161ablon za stanje dostupnosti ('available') entiteta. Ako renderovanje \u0161ablona ne uspe ili ako vrati 'True', '1', 'true', 'yes', 'on', 'enable' ili bilo koji broj koji nije nula, entitet \u0107e biti dostupan ('available'). Ako \u0161ablon vrati bilo koju drugu vrednost, entitet \u0107e biti nedostupan ('unavailable'). Ako nije konfigurisan, entitet \u0107e uvek biti dostupan. Imajte na umu da provera teksta ne pravi razliku izme\u0111u velikih i malih slova; 'TrUe' i 'yEs' su dozvoljeni."
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon usisiva\u010da"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Stanje",
+                    "device_id": "Ure\u0111aj",
+                    "forecast_daily": "Dnevna prognoza",
+                    "forecast_hourly": "Satna prognoza",
+                    "humidity": "Vla\u017enost",
+                    "name": "Naziv",
+                    "temperature": "Temperatura",
+                    "temperature_unit": "Jedinica temperature"
+                },
+                "data_description": {
+                    "condition": "Defini\u0161e \u0161ablon za trenutne vremenske prilike",
+                    "device_id": "Izbor ure\u0111aja za povezivanje sa ovim entitetom.",
+                    "forecast_daily": "Defini\u0161e \u0161ablon za podatke o [dnevnoj prognozi]({daily_link})",
+                    "forecast_hourly": "Defini\u0161e \u0161ablon za podatke o [satnoj prognozi]({hourly_link})",
+                    "humidity": "Defini\u0161e \u0161ablon za trenutnu vla\u017enost",
+                    "temperature": "Defini\u0161e \u0161ablon za trenutnu temperaturu",
+                    "temperature_unit": "Jedinica za bilo koji izlaz \u0161ablona temperature. Jedna od \u201e\u00b0C\u201c, \u201e\u00b0F\u201c, ili \u201eK\u201c."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Dostupnost"
+                        },
+                        "name": "Dodatne opcije"
+                    }
+                },
+                "title": "\u0160ablon vremenske prognoze"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Bez formata k\u00f4da",
+                "number": "Broj",
+                "text": "Tekst"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Bez merne jedinice"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Firmver"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Ponovo u\u010ditava entitete \u0161ablona iz YAML konfiguracije.",
+            "name": "Ponovo u\u010ditaj entitete \u0161ablona"
+        }
+    }
+}

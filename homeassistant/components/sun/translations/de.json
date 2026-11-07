@@ -1,0 +1,414 @@
+{
+    "common": {
+        "condition_threshold_name": "Schwellenwerttyp",
+        "period_description": "Die zu ber\u00fccksichtigende Tageszeit: morgens, abends oder beides.",
+        "period_name": "Zeitraum",
+        "trigger_for_name": "F\u00fcr mindestens",
+        "trigger_offset_description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+        "trigger_offset_name": "Versatz",
+        "trigger_offset_type_description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+        "trigger_offset_type_name": "Versatz-Typ",
+        "trigger_threshold_name": "Schwellenwerttyp",
+        "twilight_type_description": "Die D\u00e4mmerungsphase.",
+        "twilight_type_name": "D\u00e4mmerungstyp"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Pr\u00fcft den Sonnenstand anhand eines von dir festgelegten Schwellenwerts.",
+            "fields": {
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Sonnen-Elevation"
+        },
+        "is_ascending": {
+            "description": "Pr\u00fcft, ob die Sonne am Himmel aufsteigt.",
+            "name": "Sonne steigend"
+        },
+        "is_blue_hour": {
+            "description": "Pr\u00fcft, ob gerade blaue Stunde ist, optional f\u00fcr einen bestimmten Zeitraum.",
+            "fields": {
+                "period": {
+                    "description": "Die zu ber\u00fccksichtigende Tageszeit: morgens, abends oder beides.",
+                    "name": "Zeitraum"
+                }
+            },
+            "name": "Blaue Stunde"
+        },
+        "is_descending": {
+            "description": "Pr\u00fcft, ob die Sonne am Himmel sinkt.",
+            "name": "Sonne sinkend"
+        },
+        "is_evening_twilight": {
+            "description": "Pr\u00fcft, ob Abendd\u00e4mmerung herrscht, optional einer bestimmten Art.",
+            "fields": {
+                "type": {
+                    "description": "Die D\u00e4mmerungsphase.",
+                    "name": "D\u00e4mmerungstyp"
+                }
+            },
+            "name": "Abendd\u00e4mmerung"
+        },
+        "is_golden_hour": {
+            "description": "Pr\u00fcft, ob gerade goldene Stunde ist, optional f\u00fcr einen bestimmten Zeitraum.",
+            "fields": {
+                "period": {
+                    "description": "Die zu ber\u00fccksichtigende Tageszeit: morgens, abends oder beides.",
+                    "name": "Zeitraum"
+                }
+            },
+            "name": "Goldene Stunde"
+        },
+        "is_midnight_sun": {
+            "description": "Pr\u00fcft, ob es Mitternachtssonne ist.",
+            "name": "Mitternachtssonne"
+        },
+        "is_morning_twilight": {
+            "description": "Pr\u00fcft, ob Morgend\u00e4mmerung herrscht, optional einer bestimmten Art.",
+            "fields": {
+                "type": {
+                    "description": "Die D\u00e4mmerungsphase.",
+                    "name": "D\u00e4mmerungstyp"
+                }
+            },
+            "name": "Morgend\u00e4mmerung"
+        },
+        "is_night": {
+            "description": "Pr\u00fcft, ob es Nacht ist.",
+            "name": "Nacht"
+        },
+        "is_polar_night": {
+            "description": "Pr\u00fcft, ob Polarnacht herrscht.",
+            "name": "Polarnacht"
+        },
+        "is_set": {
+            "description": "Pr\u00fcft, ob die Sonne untergegangen ist.",
+            "name": "Sonne untergegangen"
+        },
+        "is_up": {
+            "description": "Pr\u00fcft, ob die Sonne aufgegangen ist.",
+            "name": "Sonne aufgegangen"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "M\u00f6chtest du mit der Einrichtung beginnen?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Solare Zunahme",
+                "state": {
+                    "off": "Abnehmend",
+                    "on": "Zunehmend"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "N\u00e4chste Morgend\u00e4mmerung"
+            },
+            "next_dusk": {
+                "name": "N\u00e4chste Abendd\u00e4mmerung"
+            },
+            "next_midnight": {
+                "name": "N\u00e4chste Mitternacht"
+            },
+            "next_noon": {
+                "name": "N\u00e4chster H\u00f6chststand"
+            },
+            "next_rising": {
+                "name": "N\u00e4chster Aufgang"
+            },
+            "next_setting": {
+                "name": "N\u00e4chster Untergang"
+            },
+            "solar_azimuth": {
+                "name": "Solarer Azimut"
+            },
+            "solar_elevation": {
+                "name": "Solare Elevation"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sonne",
+            "state": {
+                "above_horizon": "\u00dcber dem Horizont",
+                "below_horizon": "Unter dem Horizont"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Beliebig",
+                "evening": "Abend",
+                "morning": "Morgen"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Nach",
+                "before": "Vor"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Beliebig",
+                "astronomical": "Astronomisch",
+                "civil": "B\u00fcrgerlich",
+                "nautical": "Nautisch"
+            }
+        }
+    },
+    "title": "Sonne",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Wird ausgel\u00f6st, sobald die blaue Stunde endet, morgens, abends oder beides.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                },
+                "period": {
+                    "description": "Die zu ber\u00fccksichtigende Tageszeit: morgens, abends oder beides.",
+                    "name": "Zeitraum"
+                }
+            },
+            "name": "Blaue Stunde beendet"
+        },
+        "blue_hour_started": {
+            "description": "Wird ausgel\u00f6st, sobald die blaue Stunde beginnt, morgens, abends oder beides.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                },
+                "period": {
+                    "description": "Die zu ber\u00fccksichtigende Tageszeit: morgens, abends oder beides.",
+                    "name": "Zeitraum"
+                }
+            },
+            "name": "Blaue Stunde begonnen"
+        },
+        "dawn": {
+            "description": "Wird bei Tagesanbruch ausgel\u00f6st, sobald die b\u00fcrgerliche, nautische oder astronomische D\u00e4mmerung beginnt.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                },
+                "type": {
+                    "description": "Die D\u00e4mmerungsphase.",
+                    "name": "D\u00e4mmerungstyp"
+                }
+            },
+            "name": "Morgend\u00e4mmerung"
+        },
+        "dusk": {
+            "description": "Wird bei Einbruch der Dunkelheit ausgel\u00f6st, sobald die b\u00fcrgerliche, nautische oder astronomische D\u00e4mmerung endet.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                },
+                "type": {
+                    "description": "Die D\u00e4mmerungsphase.",
+                    "name": "D\u00e4mmerungstyp"
+                }
+            },
+            "name": "Abendd\u00e4mmerung"
+        },
+        "elevation_changed": {
+            "description": "Wird bei jeder \u00c4nderung des Sonnenstands ausgel\u00f6st, optional begrenzt auf einen von dir festgelegten Schwellenwert oder Bereich.",
+            "fields": {
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Sonnen-Elevation ge\u00e4ndert"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Wird ausgel\u00f6st, sobald der Sonnenstand einen von dir festgelegten Schwellenwert \u00fcberschreitet.",
+            "fields": {
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Schwellenwert der Sonnen-Elevation \u00fcberschritten"
+        },
+        "golden_hour_ended": {
+            "description": "Wird ausgel\u00f6st, sobald die goldene Stunde endet, morgens, abends oder beides.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                },
+                "period": {
+                    "description": "Die zu ber\u00fccksichtigende Tageszeit: morgens, abends oder beides.",
+                    "name": "Zeitraum"
+                }
+            },
+            "name": "Goldene Stunde beendet"
+        },
+        "golden_hour_started": {
+            "description": "Wird ausgel\u00f6st, sobald die goldene Stunde beginnt, morgens, abends oder beides.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                },
+                "period": {
+                    "description": "Die zu ber\u00fccksichtigende Tageszeit: morgens, abends oder beides.",
+                    "name": "Zeitraum"
+                }
+            },
+            "name": "Goldene Stunde begonnen"
+        },
+        "midnight_sun_ended": {
+            "description": "Wird ausgel\u00f6st, sobald die Mitternachtssonnenzeit endet und die Sonne wieder untergeht.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Mitternachtssonne beendet"
+        },
+        "midnight_sun_started": {
+            "description": "Wird ausgel\u00f6st, sobald die Mitternachtssonnenzeit beginnt und die Sonne nicht mehr untergeht.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Mitternachtssonne begonnen"
+        },
+        "polar_night_ended": {
+            "description": "Wird ausgel\u00f6st, sobald die Polarnacht endet und die Sonne wieder aufgeht.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Polarnacht beendet"
+        },
+        "polar_night_started": {
+            "description": "Wird ausgel\u00f6st, sobald die Polarnacht beginnt und die Sonne nicht mehr aufgeht.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Polarnacht begonnen"
+        },
+        "solar_midnight": {
+            "description": "Wird ausgel\u00f6st, sobald die Sonne ihren tiefsten Punkt erreicht.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Sonnenmitternacht"
+        },
+        "solar_noon": {
+            "description": "Wird ausgel\u00f6st, sobald die Sonne ihren h\u00f6chsten Punkt erreicht.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Sonnenmittag"
+        },
+        "sunrise": {
+            "description": "Wird bei Sonnenaufgang ausgel\u00f6st.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Sonnenaufgang"
+        },
+        "sunset": {
+            "description": "Wird bei Sonnenuntergang ausgel\u00f6st.",
+            "fields": {
+                "offset": {
+                    "description": "Zeit, die vor oder nach dem Sonnenereignis ausgel\u00f6st werden soll.",
+                    "name": "Versatz"
+                },
+                "offset_type": {
+                    "description": "Ob die Ausl\u00f6sung vor oder nach dem Sonnenereignis erfolgen soll.",
+                    "name": "Versatz-Typ"
+                }
+            },
+            "name": "Sonnenuntergang"
+        }
+    }
+}

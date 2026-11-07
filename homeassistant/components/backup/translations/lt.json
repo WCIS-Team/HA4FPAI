@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatin\u0117 atsargin\u0117 kopija",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Atsargin\u0117s kopijos k\u016brimo etapas"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "S\u0117kmingai u\u017ebaigta",
+                            "failed": "Nepavyko",
+                            "in_progress": "Vykdoma"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Gedimo prie\u017eastis",
+                        "state": {
+                            "backup_agent_error": "Atsargin\u0117s kopijos agento klaida",
+                            "backup_agent_unreachable": "Atsarginio kopijavimo agentas nepasiekiamas",
+                            "backup_manager_error": "Atsargini\u0173 kopij\u0173 tvarkykl\u0117s klaida",
+                            "backup_not_found": "Atsargin\u0117 kopija nerasta",
+                            "backup_reader_writer_error": "Atsarginio skaitytuvo/ra\u0161ymo klaida",
+                            "decrypt_on_download_not_supported": "I\u0161\u0161ifravimas atsisiuntimo metu nepalaikomas",
+                            "invalid_backup_filename": "Neteisingas atsargin\u0117s kopijos failo pavadinimas",
+                            "multiple_errors": "Kelios klaidos",
+                            "password_incorrect": "Slapta\u017eodis neteisingas",
+                            "unknown_error": "Ne\u017einoma klaida",
+                            "upload_failed": "\u012ek\u0117limas nepavyko"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Atsargini\u0173 kopij\u0173 tvarkykl\u0117s b\u016bsena",
+                "state": {
+                    "blocked": "U\u017eblokuotas",
+                    "create_backup": "Atsargin\u0117s kopijos k\u016brimas",
+                    "idle": "Nedaroma nieko",
+                    "receive_backup": "Atsargin\u0117s kopijos gavimas",
+                    "restore_backup": "Atsargin\u0117s kopijos atk\u016brimas"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Paskutinis bandymas automati\u0161kai sukurti atsargin\u0119 kopij\u0105"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Paskutin\u0117 s\u0117kminga automatin\u0117 atsargin\u0117 kopija"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Kitas suplanuotas automatinis atsarginis kopijavimas"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Atsargin\u0117s kopijos vieta ' {agent_id} ' nepasiekiama, bet vis tiek sukonfig\u016bruota automatin\u0117ms atsargin\u0117ms kopijoms kurti. \n \n Apsilankykite [automatin\u0117s atsargin\u0117s kopijos konfig\u016bracijos puslapyje] ( {backup_settings} ), kad per\u017ei\u016br\u0117tum\u0117te ir atnaujintum\u0117te atsargini\u0173 kopij\u0173 k\u016brimo vietas. Atsargin\u0117s kopijos nebus \u012fkeltos \u012f pasirinktas vietas, kurios nepasiekiamos.",
+            "title": "Atsargin\u0117 vieta {agent_id} nepasiekiama"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Program\u0117l\u0117s {failed_addons} Nepavyko \u012ftraukti \u012f automatin\u0119 atsargin\u0119 kopij\u0105. Daugiau informacijos rasite pri\u017ei\u016br\u0117tojo \u017eurnaluose. Jei sukonfig\u016bruotas atsargin\u0117s kopijos k\u016brimo grafikas, bus bandoma sukurti dar kart\u0105 kitu suplanuotu laiku.",
+            "title": "Ne visos programos gali b\u016bti \u012ftrauktos \u012f automatin\u012f atsargini\u0173 kopij\u0173 k\u016brim\u0105"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Automatin\u0117 atsargin\u0117 kopija buvo sukurta su klaidomis: \n * Vietos, \u012f kurias nepavyko \u012fkelti atsargin\u0117s kopijos: {failed_agents}\n* Program\u0117l\u0117s, kuri\u0173 atsargini\u0173 kopij\u0173 nepavyko sukurti: {failed_addons}\n* Aplankai, kuri\u0173 atsargini\u0173 kopij\u0173 sukurti nepavyko: {failed_folders}\n\nDaugiau informacijos rasite pagrindiniuose ir pri\u017ei\u016br\u0117tojo \u017eurnaluose. Jei sukonfig\u016bruotas atsargini\u0173 kopij\u0173 k\u016brimo grafikas, kit\u0105 kart\u0105 bus bandoma atkurti duomenis.",
+            "title": "Automatin\u0117 atsargin\u0117 kopija sukurta su klaidomis"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Nepavyko sukurti automatin\u0117s atsargin\u0117s kopijos. Nor\u0117dami gauti daugiau informacijos, patikrinkite \u017eurnalus. Kitas bandymas bus atliktas kitu suplanuotu laiku, jei bus sukonfig\u016bruotas atsarginis grafikas.",
+            "title": "Nepavyko sukurti automatin\u0117s atsargin\u0117s kopijos"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Aplank\u0173 {failed_folders} nepavyko \u012ftraukti \u012f automatin\u0119 atsargin\u0119 kopij\u0105. Daugiau informacijos rasite pri\u017ei\u016br\u0117tojo \u017eurnaluose. Jei sukonfig\u016bruotas atsargin\u0117s kopijos k\u016brimo grafikas, bus bandoma sukurti dar kart\u0105 kitu suplanuotu laiku.",
+            "title": "\u012e automatin\u0119 atsargin\u0119 kopij\u0105 galima \u012ftraukti ne visus aplankus"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Automatin\u0117s atsargin\u0117s kopijos nepavyko \u012fkelti \u012f sukonfig\u016bruotas vietas {failed_agents}. Nor\u0117dami gauti daugiau informacijos, patikrinkite \u017eurnalus. Kitas bandymas bus atliktas kitu suplanuotu laiku, jei bus sukonfig\u016bruotas atsargin\u0117s kopijos grafikas.",
+            "title": "Automatin\u0117s atsargin\u0117s kopijos nepavyko \u012fkelti \u012f sukonfig\u016bruotas vietas"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Sukuria nauj\u0105 atsargin\u0119 kopij\u0105.",
+            "name": "Sukurti atsargin\u0119 kopij\u0105"
+        },
+        "create_automatic": {
+            "description": "Sukuria nauj\u0105 atsargin\u0119 kopij\u0105 su automatinio atsarginio kopijavimo nustatymais.",
+            "name": "Sukurkite automatin\u0119 atsargin\u0119 kopij\u0105"
+        }
+    }
+}

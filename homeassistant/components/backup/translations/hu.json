@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatikus biztons\u00e1gi ment\u00e9s",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Ment\u00e9si szakasz"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Sikeresen befejezve",
+                            "failed": "Sikertelen",
+                            "in_progress": "Folyamatban"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Hiba oka",
+                        "state": {
+                            "backup_agent_error": "Biztons\u00e1gi ment\u00e9si \u00fcgyn\u00f6k hib\u00e1ja",
+                            "backup_agent_unreachable": "A biztons\u00e1gi ment\u00e9si \u00fcgyn\u00f6k nem el\u00e9rhet\u0151",
+                            "backup_manager_error": "Biztons\u00e1gi ment\u00e9skezel\u0151 hib\u00e1ja",
+                            "backup_not_found": "A biztons\u00e1gi ment\u00e9s nem tal\u00e1lhat\u00f3",
+                            "backup_reader_writer_error": "Biztons\u00e1gi ment\u00e9s olvas\u00e1si/\u00edr\u00e1si hib\u00e1ja",
+                            "decrypt_on_download_not_supported": "Let\u00f6lt\u00e9s k\u00f6zbeni visszafejt\u00e9s nem t\u00e1mogatott",
+                            "invalid_backup_filename": "\u00c9rv\u00e9nytelen biztons\u00e1gi ment\u00e9s f\u00e1jln\u00e9v",
+                            "multiple_errors": "T\u00f6bb hiba is el\u0151fordult",
+                            "password_incorrect": "Helytelen jelsz\u00f3",
+                            "unknown_error": "Ismeretlen hiba",
+                            "upload_failed": "Felt\u00f6lt\u00e9s sikertelen"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Biztons\u00e1gi ment\u00e9skezel\u0151 \u00e1llapota",
+                "state": {
+                    "blocked": "Blokkolva",
+                    "create_backup": "Biztons\u00e1gi ment\u00e9s l\u00e9trehoz\u00e1sa",
+                    "idle": "T\u00e9tlen",
+                    "receive_backup": "Biztons\u00e1gi ment\u00e9s fogad\u00e1sa",
+                    "restore_backup": "Biztons\u00e1gi ment\u00e9s vissza\u00e1ll\u00edt\u00e1sa"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Legut\u00f3bbi automatikus ment\u00e9si k\u00eds\u00e9rlet"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Utols\u00f3 sikeres automatikus biztons\u00e1gi ment\u00e9s"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "K\u00f6vetkez\u0151 \u00fctemezett automatikus biztons\u00e1gi ment\u00e9s"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "A(z) `{agent_id}` biztons\u00e1gi ment\u00e9si hely nem el\u00e9rhet\u0151, de tov\u00e1bbra is automatikus ment\u00e9sre van be\u00e1ll\u00edtva.\n\nK\u00e9rj\u00fck, l\u00e1togassa meg az [automatikus biztons\u00e1gi ment\u00e9s be\u00e1ll\u00edt\u00e1si oldal\u00e1t]({backup_settings}), hogy ellen\u0151rizze \u00e9s friss\u00edtse a ment\u00e9si helyeket. Az el\u00e9rhetetlen helyekre nem ker\u00fclnek felt\u00f6lt\u00e9sre a biztons\u00e1gi ment\u00e9sek.",
+            "title": "A(z) {agent_id} biztons\u00e1gi ment\u00e9si hely nem el\u00e9rhet\u0151"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "A(z) {failed_addons} b\u0151v\u00edtm\u00e9nyeket nem siker\u00fclt belefoglalni az automatikus ment\u00e9sbe. Tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt ellen\u0151rizze a Supervisor napl\u00f3it. Ha van be\u00e1ll\u00edtott ment\u00e9si \u00fctemez\u00e9s, a rendszer a k\u00f6vetkez\u0151 \u00fctemezett id\u0151pontban \u00fajra megpr\u00f3b\u00e1lja.",
+            "title": "Nem minden b\u0151v\u00edtm\u00e9nyt siker\u00fclt belefoglalni az automatikus ment\u00e9sbe"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Az automatikus ment\u00e9s hib\u00e1kkal j\u00f6tt l\u00e9tre:\n* Helyek, ahov\u00e1 a ment\u00e9st nem siker\u00fclt felt\u00f6lteni: {failed_agents}\n* B\u0151v\u00edtm\u00e9nyek, amelyeket nem siker\u00fclt menteni: {failed_addons}\n* Mapp\u00e1k, amelyeket nem siker\u00fclt menteni: {failed_folders}\n\nTov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt ellen\u0151rizze a Core \u00e9s a Supervisor napl\u00f3it. Ha van be\u00e1ll\u00edtott ment\u00e9si \u00fctemez\u00e9s, a rendszer a k\u00f6vetkez\u0151 \u00fctemezett id\u0151pontban \u00fajra megpr\u00f3b\u00e1lja.",
+            "title": "Az automatikus ment\u00e9s hib\u00e1kkal j\u00f6tt l\u00e9tre"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Az automatikus biztons\u00e1gi ment\u00e9s nem siker\u00fclt. K\u00e9rj\u00fck, ellen\u0151rizze a napl\u00f3kat tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt! Ha biztons\u00e1gi ment\u00e9si \u00fctemez\u00e9s van be\u00e1ll\u00edtva, a k\u00f6vetkez\u0151 \u00fctemezett id\u0151pontban \u00fajabb k\u00eds\u00e9rlet t\u00f6rt\u00e9nik.",
+            "title": "Az automatikus biztons\u00e1gi ment\u00e9s nem j\u00f6tt l\u00e9tre"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "A(z) {failed_folders} mapp\u00e1kat nem siker\u00fclt belefoglalni az automatikus ment\u00e9sbe. Tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt ellen\u0151rizze a Supervisor napl\u00f3it. Ha van be\u00e1ll\u00edtott ment\u00e9si \u00fctemez\u00e9s, a rendszer a k\u00f6vetkez\u0151 \u00fctemezett id\u0151pontban \u00fajra megpr\u00f3b\u00e1lja.",
+            "title": "Nem minden mapp\u00e1t siker\u00fclt belefoglalni az automatikus ment\u00e9sbe"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Az automatikus biztons\u00e1gi ment\u00e9st nem siker\u00fclt felt\u00f6lteni a be\u00e1ll\u00edtott helyekre: {failed_agents}. K\u00e9rj\u00fck, ellen\u0151rizze a napl\u00f3kat tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt. Ha biztons\u00e1gi ment\u00e9si \u00fctemez\u00e9s van be\u00e1ll\u00edtva, a k\u00f6vetkez\u0151 \u00fctemezett id\u0151pontban \u00fajabb k\u00eds\u00e9rlet t\u00f6rt\u00e9nik.",
+            "title": "Az automatikus biztons\u00e1gi ment\u00e9st nem siker\u00fclt felt\u00f6lteni a be\u00e1ll\u00edtott helyekre"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "\u00daj biztons\u00e1gi ment\u00e9st hoz l\u00e9tre.",
+            "name": "Biztons\u00e1gi m\u00e1solat k\u00e9sz\u00edt\u00e9se"
+        },
+        "create_automatic": {
+            "description": "\u00daj biztons\u00e1gi ment\u00e9st hoz l\u00e9tre az automatikus ment\u00e9si be\u00e1ll\u00edt\u00e1sokkal.",
+            "name": "Automatikus biztons\u00e1gi ment\u00e9s l\u00e9trehoz\u00e1sa"
+        }
+    }
+}

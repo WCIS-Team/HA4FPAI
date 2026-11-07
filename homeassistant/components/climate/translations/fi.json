@@ -1,0 +1,207 @@
+{
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Vaihda HVAC-tilaa {entity_name}:ss\u00e4.",
+            "set_preset_mode": "Muuta esiasetusta kohteessa {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} on asetettu tiettyyn HVAC-tilaan.",
+            "is_preset_mode": "{entity_name} on asetettu tiettyyn esiasetettuun tilaan."
+        },
+        "extra_fields": {
+            "for": "Kesto",
+            "hvac_mode": "HVAC-tila",
+            "preset_mode": "Esiasetettu tila"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} mitattu kosteus muuttui",
+            "current_temperature_changed": "{entity_name} l\u00e4mp\u00f6tila muuttui",
+            "hvac_mode_changed": "{entity_name} HVAC-tila muuttui"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostaatti",
+            "state": {
+                "cool": "J\u00e4\u00e4hdytys",
+                "dry": "Kuivaus",
+                "fan_only": "Vain tuuletin",
+                "heat": "L\u00e4mmitys",
+                "heat_cool": "L\u00e4mmitys/j\u00e4\u00e4hdytys",
+                "off": "Pois"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Nykyinen kosteus"
+                },
+                "current_temperature": {
+                    "name": "Nykyinen l\u00e4mp\u00f6tila"
+                },
+                "fan_mode": {
+                    "name": "Tuuletintila",
+                    "state": {
+                        "diffuse": "Diffuusi",
+                        "focus": "Keskity",
+                        "middle": "Keski",
+                        "off": "Pois",
+                        "on": "P\u00e4\u00e4ll\u00e4",
+                        "top": "Huippu"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Tuuletintilat"
+                },
+                "humidity": {
+                    "name": "Tavoitekosteus"
+                },
+                "hvac_action": {
+                    "name": "Nykyinen toiminta",
+                    "state": {
+                        "cooling": "J\u00e4\u00e4hdytys",
+                        "drying": "Kuivaus",
+                        "fan": "Tuuletin",
+                        "heating": "L\u00e4mmitys",
+                        "idle": "Toimeton",
+                        "off": "Pois",
+                        "preheating": "Esil\u00e4mmitys"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "HVAC-tilat"
+                },
+                "max_humidity": {
+                    "name": "Maksimi tavoitekosteus"
+                },
+                "max_temp": {
+                    "name": "Maksimi tavoitel\u00e4mp\u00f6tila"
+                },
+                "min_humidity": {
+                    "name": "Minimi tavoitekosteus"
+                },
+                "min_temp": {
+                    "name": "Minimi tavoitel\u00e4mp\u00f6tila"
+                },
+                "preset_mode": {
+                    "name": "Esiasetus",
+                    "state": {
+                        "activity": "Toiminta",
+                        "boost": "Tehostus",
+                        "comfort": "Mukavuus",
+                        "eco": "Eko",
+                        "home": "Kotona",
+                        "none": "Ei mit\u00e4\u00e4n",
+                        "sleep": "Nukkuminen"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Esiasetukset"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Vaakasuuntainen heilutustila",
+                    "state": {
+                        "off": "Pois",
+                        "on": "P\u00e4\u00e4ll\u00e4"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Vaakasuuntaiset heilutustilat"
+                },
+                "swing_mode": {
+                    "name": "Heilutustila",
+                    "state": {
+                        "both": "Molemmat",
+                        "horizontal": "Vaakasuora",
+                        "off": "Pois",
+                        "on": "P\u00e4\u00e4ll\u00e4",
+                        "vertical": "Pystysuuntainen"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Heilutustila"
+                },
+                "target_temp_high": {
+                    "name": "Yl\u00e4-tavoitel\u00e4mp\u00f6tila"
+                },
+                "target_temp_low": {
+                    "name": "Ala-tavoitel\u00e4mp\u00f6tila"
+                },
+                "target_temp_step": {
+                    "name": "Tavoitel\u00e4mp\u00f6tila-askel"
+                },
+                "temperature": {
+                    "name": "Tavoitel\u00e4mp\u00f6tila"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_fan_mode": {
+            "message": "Tuulettimen tila {mode} ei kelpaa. Kelvolliset tuuletintilat ovat: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "Esiasetustila {mode} ei kelpaa. Voimassa olevat esiasetustilat ovat: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "Swing-tila {mode} ei kelpaa. Kelvolliset swing-tilat ovat: {modes}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "fields": {
+                "fan_mode": {
+                    "description": "Tuulettimen toimintatila.",
+                    "name": "Tuuletintila"
+                }
+            }
+        },
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "Tavoitekosteus.",
+                    "name": "Kosteus"
+                }
+            }
+        },
+        "set_hvac_mode": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "HVAC-toimintatila.",
+                    "name": "HVAC-tila"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "Esiasetettu tila.",
+                    "name": "Esiasetettu tila"
+                }
+            }
+        },
+        "set_swing_horizontal_mode": {
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Vaakasuuntaisen heilutuksen toimintatila.",
+                    "name": "Vaakasuuntainen heilutustila"
+                }
+            }
+        },
+        "set_swing_mode": {
+            "fields": {
+                "swing_mode": {
+                    "description": "Heilutus toimintatila.",
+                    "name": "Heilutustila"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "HVAC-toimintatila.",
+                    "name": "HVAC-tila"
+                }
+            }
+        }
+    },
+    "title": "Ilmasto"
+}

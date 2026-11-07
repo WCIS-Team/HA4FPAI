@@ -1,0 +1,99 @@
+{
+    "common": {
+        "trigger_for_name": "Per almeno"
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "Chiudi {entity_name}",
+            "open": "Apri {entity_name}",
+            "unlock": "Sblocca {entity_name}"
+        },
+        "condition_type": {
+            "is_locked": "{entity_name} \u00e8 chiusa",
+            "is_unlocked": "{entity_name} \u00e8 aperta"
+        },
+        "extra_fields": {
+            "for": "Durata"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} \u00e8 chiusa",
+            "unlocked": "{entity_name} \u00e8 aperta"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Serratura",
+            "state": {
+                "jammed": "Inceppata",
+                "locked": "Bloccato/a",
+                "locking": "In chiusura",
+                "open": "Aperto",
+                "opening": "In apertura",
+                "unlocked": "Sbloccato/a",
+                "unlocking": "In apertura"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Modificato da"
+                },
+                "code_format": {
+                    "name": "Formato del codice"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "Il codice per {entity_id} non corrisponde al modello {code_format}."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "Blocca una serratura.",
+            "fields": {
+                "code": {
+                    "description": "Codice utilizzato per bloccare la serratura.",
+                    "name": "Codice"
+                }
+            }
+        },
+        "open": {
+            "description": "Apre una serratura.",
+            "fields": {
+                "code": {
+                    "description": "Codice utilizzato per aprire la serratura.",
+                    "name": "Codice"
+                }
+            }
+        },
+        "unlock": {
+            "description": "Sblocca una serratura.",
+            "fields": {
+                "code": {
+                    "description": "Codice utilizzato per sbloccare la serratura.",
+                    "name": "Codice"
+                }
+            }
+        }
+    },
+    "title": "Serratura",
+    "triggers": {
+        "jammed": {
+            "name": "Serratura inceppata"
+        },
+        "locked": {
+            "name": "Serratura bloccata"
+        },
+        "opened": {
+            "name": "Serratura aperta"
+        },
+        "unlocked": {
+            "fields": {
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "Serratura sbloccata"
+        }
+    }
+}

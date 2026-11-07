@@ -1,0 +1,225 @@
+{
+    "common": {
+        "condition_behavior_name": "Podm\u00ednka je spln\u011bna, kdy\u017e",
+        "condition_for_name": "Alespo\u0148 na",
+        "section_additional_fields_name": "Dal\u0161\u00ed volby",
+        "trigger_behavior_name": "Spustit, kdy\u017e",
+        "trigger_for_name": "Alespo\u0148 na"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Otestuje, zda je vypnut\u00fd jeden nebo v\u00edce ventil\u00e1tor\u016f.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Ventil\u00e1tor je vypnut\u00fd"
+        },
+        "is_on": {
+            "description": "Otestuje, zda je zapnut\u00fd jeden nebo v\u00edce ventil\u00e1tor\u016f.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Ventil\u00e1tor je zapnut\u00fd"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "P\u0159epnout {entity_name}",
+            "turn_off": "Vypnout {entity_name}",
+            "turn_on": "Zapnout {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} je vypnuto",
+            "is_on": "{entity_name} je zapnuto"
+        },
+        "extra_fields": {
+            "for": "Doba trv\u00e1n\u00ed"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} bylo zapnuto nebo vypnuto",
+            "turned_off": "{entity_name} bylo vypnuto",
+            "turned_on": "{entity_name} bylo zapnuto"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventil\u00e1tor",
+            "state": {
+                "off": "Vypnuto",
+                "on": "Zapnuto"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Sm\u011br",
+                    "state": {
+                        "forward": "Vp\u0159ed",
+                        "reverse": "Vzad"
+                    }
+                },
+                "oscillating": {
+                    "name": "Oscilace",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Ano"
+                    }
+                },
+                "percentage": {
+                    "name": "Rychlost"
+                },
+                "percentage_step": {
+                    "name": "Krok rychlosti"
+                },
+                "preset_mode": {
+                    "name": "P\u0159ednastaven\u00fd re\u017eim"
+                },
+                "preset_modes": {
+                    "name": "Dostupn\u00e9 p\u0159ednastaven\u00e9 re\u017eimy"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "Re\u017eim p\u0159edvolby {preset_mode} nen\u00ed platn\u00fd, platn\u00e9 re\u017eimy p\u0159edvoleb jsou: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Vp\u0159ed",
+                "reverse": "Vzad"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "Sn\u00ed\u017e\u00ed rychlost ventil\u00e1toru.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Procentu\u00e1ln\u00ed krok, o kter\u00fd m\u00e1 b\u00fdt rychlost sn\u00ed\u017eena.",
+                    "name": "Sn\u00ed\u017eit"
+                }
+            },
+            "name": "Sn\u00ed\u017eit rychlost ventil\u00e1toru",
+            "sections": {
+                "additional_fields": {
+                    "name": "Dal\u0161\u00ed volby"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "Zv\u00fd\u0161\u00ed rychlost ventil\u00e1toru.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Procentu\u00e1ln\u00ed krok, o kter\u00fd m\u00e1 b\u00fdt rychlost zv\u00fd\u0161ena.",
+                    "name": "Zv\u00fd\u0161it"
+                }
+            },
+            "name": "Zv\u00fd\u0161it rychlost ventil\u00e1toru",
+            "sections": {
+                "additional_fields": {
+                    "name": "Dal\u0161\u00ed volby"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "Ovl\u00e1d\u00e1 oscilaci ventil\u00e1toru.",
+            "fields": {
+                "oscillating": {
+                    "description": "Zapne/Vypne oscilaci.",
+                    "name": "Oscilace"
+                }
+            },
+            "name": "Oscilovat ventil\u00e1tor"
+        },
+        "set_direction": {
+            "description": "Nastav\u00ed sm\u011br ot\u00e1\u010den\u00ed ventil\u00e1toru.",
+            "fields": {
+                "direction": {
+                    "description": "Sm\u011br ot\u00e1\u010den\u00ed ventil\u00e1toru.",
+                    "name": "Sm\u011br"
+                }
+            },
+            "name": "Nastavit sm\u011br ventil\u00e1toru"
+        },
+        "set_percentage": {
+            "description": "Nastav\u00ed rychlost ventil\u00e1toru.",
+            "fields": {
+                "percentage": {
+                    "description": "Rychlost ventil\u00e1toru.",
+                    "name": "Procento"
+                }
+            },
+            "name": "Nastavit rychlost ventil\u00e1toru"
+        },
+        "set_preset_mode": {
+            "description": "Nastav\u00ed re\u017eim p\u0159edvolby ventil\u00e1toru.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Re\u017eim p\u0159edvolby ventil\u00e1toru.",
+                    "name": "Re\u017eim p\u0159edvolby"
+                }
+            },
+            "name": "Nastavit re\u017eim p\u0159edvolby ventil\u00e1toru"
+        },
+        "toggle": {
+            "description": "Zap\u00edn\u00e1/Vyp\u00edn\u00e1 ventil\u00e1tor.",
+            "name": "P\u0159epnout ventil\u00e1tor"
+        },
+        "turn_off": {
+            "description": "Vypne ventil\u00e1tor.",
+            "name": "Vypnout ventil\u00e1tor"
+        },
+        "turn_on": {
+            "description": "Zapne ventil\u00e1tor.",
+            "fields": {
+                "percentage": {
+                    "description": "Rychlost ventil\u00e1toru.",
+                    "name": "Procento"
+                },
+                "preset_mode": {
+                    "description": "Re\u017eim p\u0159edvolby ventil\u00e1toru.",
+                    "name": "Re\u017eim p\u0159edvolby"
+                }
+            },
+            "name": "Zapnout ventil\u00e1tor"
+        }
+    },
+    "title": "Ventil\u00e1tor",
+    "triggers": {
+        "turned_off": {
+            "description": "Spust\u00ed se, kdy\u017e se vypne jeden nebo v\u00edce ventil\u00e1tor\u016f.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Ventil\u00e1tor je vypnut\u00fd"
+        },
+        "turned_on": {
+            "description": "Spust\u00ed se, kdy\u017e se zapne jeden nebo v\u00edce ventil\u00e1tor\u016f.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Ventil\u00e1tor je zapnut\u00fd"
+        }
+    }
+}

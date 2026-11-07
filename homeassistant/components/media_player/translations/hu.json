@@ -1,0 +1,593 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb ennyi ideje",
+        "condition_threshold_name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k",
+        "trigger_behavior_name": "Aktiv\u00e1l\u00f3dik, amikor",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideje",
+        "trigger_threshold_name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k"
+    },
+    "conditions": {
+        "is_muted": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 n\u00e9m\u00edtva van-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 n\u00e9m\u00edtva van"
+        },
+        "is_not_playing": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 nem j\u00e1tszik-e le.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 nem j\u00e1tszik le"
+        },
+        "is_off": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 ki van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 kikapcsolva"
+        },
+        "is_on": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 be van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 bekapcsolva"
+        },
+        "is_paused": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 sz\u00fcneteltetve van-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 sz\u00fcneteltetve"
+        },
+        "is_playing": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 lej\u00e1tszik-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 lej\u00e1tszik"
+        },
+        "is_unmuted": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 nincs-e n\u00e9m\u00edtva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 nincs n\u00e9m\u00edtva"
+        },
+        "is_volume": {
+            "description": "Ellen\u0151rzi egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 hangerej\u00e9t.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 hangereje"
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "{entity_name} pufferel",
+            "is_idle": "{entity_name} t\u00e9tlen",
+            "is_off": "{entity_name} ki van kapcsolva",
+            "is_on": "{entity_name} be van kapcsolva",
+            "is_paused": "{entity_name} sz\u00fcneteltetve",
+            "is_playing": "{entity_name} lej\u00e1tszik"
+        },
+        "extra_fields": {
+            "for": "Id\u0151tartam"
+        },
+        "trigger_type": {
+            "buffering": "{entity_name} pufferelni kezd",
+            "changed_states": "{entity_name} be- vagy kikapcsolt",
+            "idle": "{entity_name} t\u00e9tlenn\u00e9 v\u00e1lik",
+            "paused": "{entity_name} sz\u00fcneteltetve",
+            "playing": "{entity_name} megkezdi a lej\u00e1tsz\u00e1st",
+            "turned_off": "{entity_name} ki lett kapcsolva",
+            "turned_on": "{entity_name} be lett kapcsolva"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "M\u00e9dialej\u00e1tsz\u00f3",
+            "state": {
+                "buffering": "Pufferel\u00e9s",
+                "idle": "T\u00e9tlen",
+                "off": "Ki",
+                "on": "Be",
+                "paused": "Sz\u00fcnetel",
+                "playing": "Lej\u00e1tsz\u00e1s",
+                "standby": "K\u00e9szenl\u00e9tben"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "App azonos\u00edt\u00f3"
+                },
+                "app_name": {
+                    "name": "App"
+                },
+                "entity_picture_local": {
+                    "name": "Helyileg el\u00e9rhet\u0151 entit\u00e1sk\u00e9p"
+                },
+                "groups_members": {
+                    "name": "A csoport tagjai"
+                },
+                "is_volume_muted": {
+                    "name": "N\u00e9m\u00edtva",
+                    "state": {
+                        "false": "Nem",
+                        "true": "Igen"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Album el\u0151ad\u00f3"
+                },
+                "media_album_name": {
+                    "name": "Album"
+                },
+                "media_artist": {
+                    "name": "El\u0151ad\u00f3"
+                },
+                "media_channel": {
+                    "name": "Csatorna"
+                },
+                "media_content_id": {
+                    "name": "Tartalom azonos\u00edt\u00f3"
+                },
+                "media_content_type": {
+                    "name": "Tartalom t\u00edpus",
+                    "state": {
+                        "album": "Album",
+                        "app": "App",
+                        "artist": "El\u0151ad\u00f3",
+                        "channel": "Csatorna",
+                        "channels": "Csatorna",
+                        "composer": "Zeneszerz\u0151",
+                        "contributing_artist": "K\u00f6zrem\u0171k\u00f6d\u0151 el\u0151ad\u00f3",
+                        "episode": "Epiz\u00f3d",
+                        "game": "J\u00e1t\u00e9k",
+                        "genre": "M\u0171faj",
+                        "image": "K\u00e9p",
+                        "movie": "Film",
+                        "music": "Zene",
+                        "playlist": "Lej\u00e1tsz\u00e1si lista",
+                        "podcast": "Podcast",
+                        "season": "\u00c9vad",
+                        "track": "Sz\u00e1m",
+                        "tvshow": "TV-m\u0171sor",
+                        "url": "URL",
+                        "video": "Vide\u00f3"
+                    }
+                },
+                "media_duration": {
+                    "name": "Id\u0151tartam"
+                },
+                "media_episode": {
+                    "name": "Epiz\u00f3d"
+                },
+                "media_playlist": {
+                    "name": "Lej\u00e1tsz\u00e1si lista"
+                },
+                "media_position": {
+                    "name": "Poz\u00edci\u00f3"
+                },
+                "media_position_updated_at": {
+                    "name": "Poz\u00edci\u00f3 friss\u00edtve"
+                },
+                "media_season": {
+                    "name": "\u00c9vad"
+                },
+                "media_series_title": {
+                    "name": "Sorozat"
+                },
+                "media_title": {
+                    "name": "C\u00edm"
+                },
+                "media_track": {
+                    "name": "Sz\u00e1m"
+                },
+                "repeat": {
+                    "name": "Ism\u00e9tl\u00e9si m\u00f3d",
+                    "state": {
+                        "all": "\u00d6sszes",
+                        "off": "Ki",
+                        "one": "Egy"
+                    }
+                },
+                "shuffle": {
+                    "name": "V\u00e9letlen sorrend",
+                    "state": {
+                        "false": "Ki",
+                        "true": "Be"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Hangz\u00e1s"
+                },
+                "sound_mode_list": {
+                    "name": "El\u00e9rhet\u0151 hangz\u00e1s m\u00f3dok"
+                },
+                "source": {
+                    "name": "Forr\u00e1s"
+                },
+                "source_list": {
+                    "name": "El\u00e9rhet\u0151 forr\u00e1sok/bemenetek"
+                },
+                "volume_level": {
+                    "name": "Hanger\u0151"
+                }
+            }
+        },
+        "projector": {
+            "name": "Projektor"
+        },
+        "receiver": {
+            "name": "Vev\u0151egys\u00e9g"
+        },
+        "speaker": {
+            "name": "Hangsz\u00f3r\u00f3"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Hozz\u00e1ad\u00e1s a sorhoz",
+                "next": "K\u00f6vetkez\u0151 lej\u00e1tsz\u00e1sa",
+                "play": "Lej\u00e1tsz\u00e1s",
+                "replace": "Lej\u00e1tsz\u00e1s most \u00e9s a sor t\u00f6rl\u00e9se"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "\u00d6sszes ism\u00e9tl\u00e9se",
+                "off": "Ki",
+                "one": "Egy ism\u00e9tl\u00e9se"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "El\u00e9rhet\u0151 m\u00e9dia b\u00f6ng\u00e9sz\u00e9se.",
+            "fields": {
+                "media_content_id": {
+                    "description": "A b\u00f6ng\u00e9szni k\u00edv\u00e1nt tartalom azonos\u00edt\u00f3ja. Integr\u00e1ci\u00f3f\u00fcgg\u0151.",
+                    "name": "Tartalomazonos\u00edt\u00f3"
+                },
+                "media_content_type": {
+                    "description": "A b\u00f6ng\u00e9szend\u0151 tartalom t\u00edpusa, p\u00e9ld\u00e1ul k\u00e9p, zene, t\u00e9v\u00e9m\u0171sor, vide\u00f3, epiz\u00f3d, csatorna vagy lej\u00e1tsz\u00e1si lista.",
+                    "name": "Tartalomt\u00edpus"
+                }
+            },
+            "name": "M\u00e9dia b\u00f6ng\u00e9sz\u00e9se"
+        },
+        "clear_playlist": {
+            "description": "Elt\u00e1vol\u00edtja az \u00f6sszes elemet a m\u00e9dialej\u00e1tsz\u00f3 lej\u00e1tsz\u00e1si list\u00e1j\u00e1b\u00f3l.",
+            "name": "Lej\u00e1tsz\u00e1si lista t\u00f6rl\u00e9se"
+        },
+        "join": {
+            "description": "M\u00e9dialej\u00e1tsz\u00f3k \u00f6sszekapcsol\u00e1sa szinkron lej\u00e1tsz\u00e1s c\u00e9lj\u00e1b\u00f3l. Csak t\u00e1mogatott t\u00f6bbszob\u00e1s audiorendszereken m\u0171k\u00f6dik.",
+            "fields": {
+                "group_members": {
+                    "description": "Azok a lej\u00e1tsz\u00f3k, amelyek szinkroniz\u00e1lva lesznek a 'C\u00e9l' mez\u0151ben megadott lej\u00e1tsz\u00e1ssal.",
+                    "name": "Az \u00f6sszekapcsolt csoport tagjai"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3k \u00f6sszekapcsol\u00e1sa"
+        },
+        "media_next_track": {
+            "description": "Kiv\u00e1lasztja a k\u00f6vetkez\u0151 sz\u00e1mot a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "name": "K\u00f6vetkez\u0151 sz\u00e1m"
+        },
+        "media_pause": {
+            "description": "Sz\u00fcnetelteti a lej\u00e1tsz\u00e1st a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "name": "M\u00e9dia sz\u00fcneteltet\u00e9se"
+        },
+        "media_play": {
+            "description": "Elind\u00edtja a lej\u00e1tsz\u00e1st a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "name": "M\u00e9dia lej\u00e1tsz\u00e1sa"
+        },
+        "media_play_pause": {
+            "description": "V\u00e1ltja a lej\u00e1tsz\u00e1s/sz\u00fcnet \u00e1llapotot a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "name": "M\u00e9dia lej\u00e1tsz\u00e1sa/sz\u00fcneteltet\u00e9se"
+        },
+        "media_previous_track": {
+            "description": "Kiv\u00e1lasztja az el\u0151z\u0151 sz\u00e1mot a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "name": "El\u0151z\u0151 sz\u00e1m"
+        },
+        "media_seek": {
+            "description": "Lehet\u0151v\u00e9 teszi, hogy a m\u00e9dialej\u00e1tsz\u00f3n \u00e9ppen lej\u00e1tszott m\u00e9dia egy m\u00e1sik r\u00e9sz\u00e9re ugorjon.",
+            "fields": {
+                "seek_position": {
+                    "description": "C\u00e9lpoz\u00edci\u00f3 az aktu\u00e1lisan lej\u00e1tszott m\u00e9di\u00e1ban. A form\u00e1tum platformf\u00fcgg\u0151.",
+                    "name": "Poz\u00edci\u00f3"
+                }
+            },
+            "name": "M\u00e9dia pozicion\u00e1l\u00e1sa"
+        },
+        "media_stop": {
+            "description": "Le\u00e1ll\u00edtja a lej\u00e1tsz\u00e1st a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "name": "M\u00e9dia le\u00e1ll\u00edt\u00e1sa"
+        },
+        "play_media": {
+            "description": "Elkezdi lej\u00e1tszani a megadott m\u00e9di\u00e1t a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "fields": {
+                "announce": {
+                    "description": "Annak megad\u00e1sa, hogy a m\u00e9dia tartalmat bejelent\u00e9sk\u00e9nt kell-e lej\u00e1tszani.",
+                    "name": "Bejelent\u00e9s"
+                },
+                "enqueue": {
+                    "description": "Meghat\u00e1rozza, hogy a tartalmat azonnal le kell-e j\u00e1tszani vagy hozz\u00e1 kell-e adni a lej\u00e1tsz\u00e1si list\u00e1hoz.",
+                    "name": "Lej\u00e1tsz\u00e1si list\u00e1hoz ad"
+                },
+                "media": {
+                    "description": "A lej\u00e1tsz\u00e1sra kiv\u00e1lasztott m\u00e9dia.",
+                    "name": "M\u00e9dia"
+                }
+            },
+            "name": "Megadott m\u00e9dia lej\u00e1tsz\u00e1sa"
+        },
+        "repeat_set": {
+            "description": "Be\u00e1ll\u00edtja a m\u00e9dialej\u00e1tsz\u00f3 ism\u00e9tl\u00e9si m\u00f3dj\u00e1t.",
+            "fields": {
+                "repeat": {
+                    "description": "Megadja, hogy a m\u00e9dia (egy vagy mindegyik) ism\u00e9tl\u0151dve legyen-e lej\u00e1tszva.",
+                    "name": "Ism\u00e9tl\u00e9si m\u00f3d"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 ism\u00e9tl\u00e9s\u00e9nek be\u00e1ll\u00edt\u00e1sa"
+        },
+        "search_media": {
+            "description": "El\u00e9rhet\u0151 m\u00e9diumok keres\u00e9se.",
+            "fields": {
+                "media_content_id": {
+                    "description": "A b\u00f6ng\u00e9szni k\u00edv\u00e1nt tartalom azonos\u00edt\u00f3ja. Integr\u00e1ci\u00f3f\u00fcgg\u0151.",
+                    "name": "Tartalomazonos\u00edt\u00f3"
+                },
+                "media_content_type": {
+                    "description": "A b\u00f6ng\u00e9szend\u0151 tartalom t\u00edpusa, p\u00e9ld\u00e1ul k\u00e9p, zene, t\u00e9v\u00e9m\u0171sor, vide\u00f3, epiz\u00f3d, csatorna vagy lej\u00e1tsz\u00e1si lista.",
+                    "name": "Tartalomt\u00edpus"
+                },
+                "media_filter_classes": {
+                    "description": "A keres\u00e9si eredm\u00e9nyek sz\u0171r\u00e9s\u00e9hez haszn\u00e1lt m\u00e9diat\u00edpusok list\u00e1ja.",
+                    "name": "M\u00e9diaoszt\u00e1ly sz\u0171r\u0151"
+                },
+                "search_query": {
+                    "description": "A keresend\u0151 kifejez\u00e9s.",
+                    "name": "Keres\u00e9si kifejez\u00e9s"
+                }
+            },
+            "name": "M\u00e9dia keres\u00e9se"
+        },
+        "select_sound_mode": {
+            "description": "Egy adott hangz\u00e1s kiv\u00e1laszt\u00e1sa a m\u00e9dialej\u00e1tsz\u00f3n.",
+            "fields": {
+                "sound_mode": {
+                    "description": "A v\u00e1ltani k\u00edv\u00e1nt hangz\u00e1s neve.",
+                    "name": "Hangz\u00e1s"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 hangz\u00e1s\u00e1nak kiv\u00e1laszt\u00e1sa"
+        },
+        "select_source": {
+            "description": "Parancsot k\u00fcld a m\u00e9dialej\u00e1tsz\u00f3nak a bemeneti forr\u00e1s megv\u00e1ltoztat\u00e1s\u00e1ra.",
+            "fields": {
+                "source": {
+                    "description": "A bemeneti jelforr\u00e1s neve, amelyre \u00e1t kell v\u00e1ltani. Platformf\u00fcgg\u0151.",
+                    "name": "Forr\u00e1s"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 forr\u00e1s\u00e1nak kiv\u00e1laszt\u00e1sa"
+        },
+        "shuffle_set": {
+            "description": "Enged\u00e9lyezi vagy letiltja a m\u00e9dialej\u00e1tsz\u00f3 kever\u00e9s m\u00f3dj\u00e1t.",
+            "fields": {
+                "shuffle": {
+                    "description": "Megadja, hogy a m\u00e9dia v\u00e9letlenszer\u0171 sorrendben legyen-e lej\u00e1tszva.",
+                    "name": "Kever\u00e9si m\u00f3d"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 kever\u00e9s\u00e9nek be\u00e1ll\u00edt\u00e1sa"
+        },
+        "toggle": {
+            "description": "A m\u00e9dialej\u00e1tsz\u00f3 be/ki kapcsol\u00e1sa.",
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 \u00e1tkapcsol\u00e1sa"
+        },
+        "turn_off": {
+            "description": "Kikapcsolja a m\u00e9dialej\u00e1tsz\u00f3t.",
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 kikapcsol\u00e1sa"
+        },
+        "turn_on": {
+            "description": "Bekapcsolja a m\u00e9dialej\u00e1tsz\u00f3t.",
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 bekapcsol\u00e1sa"
+        },
+        "unjoin": {
+            "description": "Elt\u00e1vol\u00edtja a m\u00e9dialej\u00e1tsz\u00f3t egy csoportb\u00f3l. Csak olyan platformokon m\u0171k\u00f6dik, amelyek t\u00e1mogatj\u00e1k a lej\u00e1tsz\u00f3k csoportos\u00edt\u00e1s\u00e1t.",
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 sz\u00e9tv\u00e1laszt\u00e1sa"
+        },
+        "volume_down": {
+            "description": "Cs\u00f6kkenti a m\u00e9dialej\u00e1tsz\u00f3 hangerej\u00e9t.",
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 hangerej\u00e9nek cs\u00f6kkent\u00e9se"
+        },
+        "volume_mute": {
+            "description": "Eln\u00e9m\u00edtja vagy visszahangos\u00edtja a m\u00e9dialej\u00e1tsz\u00f3t.",
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Meghat\u00e1rozza, hogy n\u00e9m\u00edtva van-e vagy sem.",
+                    "name": "N\u00e9m\u00edtva"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 eln\u00e9m\u00edt\u00e1sa/felold\u00e1sa"
+        },
+        "volume_set": {
+            "description": "Be\u00e1ll\u00edtja a m\u00e9dialej\u00e1tsz\u00f3 hangerej\u00e9t.",
+            "fields": {
+                "volume_level": {
+                    "description": "A hanger\u0151. A 0 nem hallhat\u00f3, az 1 a maxim\u00e1lis hanger\u0151.",
+                    "name": "Szint"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 hangerej\u00e9nek be\u00e1ll\u00edt\u00e1sa"
+        },
+        "volume_up": {
+            "description": "N\u00f6veli a m\u00e9dialej\u00e1tsz\u00f3 hangerej\u00e9t.",
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 hangerej\u00e9nek n\u00f6vel\u00e9se"
+        }
+    },
+    "title": "M\u00e9dialej\u00e1tsz\u00f3",
+    "triggers": {
+        "muted": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 n\u00e9m\u00edt\u00e1sra ker\u00fcl.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 n\u00e9m\u00edtva"
+        },
+        "paused_playing": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 sz\u00fcnetelteti a lej\u00e1tsz\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 sz\u00fcneteltette a lej\u00e1tsz\u00e1st"
+        },
+        "started_playing": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 elkezdi a lej\u00e1tsz\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 elkezdte a lej\u00e1tsz\u00e1st"
+        },
+        "stopped_playing": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 le\u00e1ll\u00edtja a lej\u00e1tsz\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 le\u00e1llt"
+        },
+        "turned_off": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 kikapcsol.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 kikapcsolt"
+        },
+        "turned_on": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 bekapcsol.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 bekapcsolt"
+        },
+        "unmuted": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 n\u00e9m\u00edt\u00e1sa megsz\u0171nik.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 n\u00e9m\u00edt\u00e1sa feloldva"
+        },
+        "volume_changed": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 hangereje megv\u00e1ltozik.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 hangereje megv\u00e1ltozott"
+        },
+        "volume_crossed_threshold": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb m\u00e9dialej\u00e1tsz\u00f3 hangereje \u00e1tl\u00e9p egy k\u00fcsz\u00f6b\u00e9rt\u00e9ket.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideje"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k"
+                }
+            },
+            "name": "M\u00e9dialej\u00e1tsz\u00f3 hangereje \u00e1tl\u00e9pte a k\u00fcsz\u00f6b\u00e9rt\u00e9ket"
+        }
+    }
+}

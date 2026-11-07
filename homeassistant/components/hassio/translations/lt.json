@@ -1,0 +1,610 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "mount": {
+                "name": "Prijungtas"
+            },
+            "state": {
+                "name": "Veikia"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "OS agento versija"
+            },
+            "apparmor_version": {
+                "name": "AppArmor versija"
+            },
+            "cpu_percent": {
+                "name": "Procesoriaus procentas"
+            },
+            "disk_free": {
+                "name": "Laisvas diskas"
+            },
+            "disk_total": {
+                "name": "Bendras disko kiekis"
+            },
+            "disk_used": {
+                "name": "Naudojamas diskas"
+            },
+            "memory_percent": {
+                "name": "Atminties procentas"
+            },
+            "version": {
+                "name": "Versija"
+            },
+            "version_latest": {
+                "name": "Naujausia versija"
+            }
+        },
+        "update": {
+            "update": {
+                "name": "Atnaujinimas"
+            }
+        }
+    },
+    "exceptions": {
+        "mount_reload_error": {
+            "message": "Nepavyko \u012fkelti i\u0161 naujo tvirtinimo elemento {name}: {error}"
+        },
+        "mount_reload_invalid_device": {
+            "message": "\u012erenginys n\u0117ra pri\u017ei\u016br\u0117tojo prijungimo ta\u0161kas"
+        },
+        "supervisor_not_connected": {
+            "message": "Nesujungta su vadovu / sistema per daug u\u017eimta"
+        },
+        "supervisor_update_pending": {
+            "message": "Supervisor pasen\u0119s diegimo metu. Atnaujinimas suaktyvintas, bus bandoma dar kart\u0105, kai bus baigta."
+        }
+    },
+    "issues": {
+        "issue_addon_app_port_conflict": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko pritaikyti pataisos. Daugiau informacijos rasite pri\u017ei\u016br\u0117tojo \u017eurnaluose."
+                },
+                "step": {
+                    "addon_execute_start": {
+                        "description": "Programoje {addon} kilo prievado konfliktas su prievadu {port}. Programoje \u0161io parametro negalima pakeisti nustatymuose. Pra\u0161ome pa\u0161alinti program\u0105 arba sustabdyti ir i\u0161 naujo sukonfig\u016bruoti kit\u0105 paslaug\u0105, naudojant prievad\u0105 {port}. Kai blokavimas bus pa\u0161alintas, v\u0117l pasirinkite \u0161i\u0105 parinkt\u012f, kad paleistum\u0117te program\u0105."
+                    },
+                    "fix_menu": {
+                        "description": "Programoje {addon} kilo prievado konfliktas su prievadu {port}. Nor\u0117dami automati\u0161kai i\u0161spr\u0119sti \u0161i\u0105 problem\u0105 ir paleisti program\u0105, galite i\u0161valyti prievado konfig\u016bracij\u0105 programos nustatymuose arba rankiniu b\u016bdu atblokuoti prievad\u0105, sustabdydami ar i\u0161 naujo sukonfig\u016bruodami kit\u0105 paslaug\u0105, kuri j\u012f naudoja.",
+                        "menu_options": {
+                            "addon_clear_port_config": "I\u0161valyti prievado konfig\u016bracij\u0105",
+                            "addon_execute_start": "Prad\u0117ti po rankinio atblokavimo"
+                        }
+                    }
+                }
+            },
+            "title": "Program\u0117l\u0117s prievado konfliktas"
+        },
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko pritaikyti pataisos. Nor\u0117dami gauti daugiau informacijos, patikrinkite vadovo \u017eurnalus."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Program\u0117l\u0117 {addon} nustatyta paleisti sistem\u0105 \u012fkrovos metu, bet nepavyko paleisti. Paprastai taip nutinka, kai konfig\u016bracija neteisinga arba tas pats prievadas naudojamas keliose programose. Patikrinkite konfig\u016bracij\u0105 ir \u017eurnalus, ar n\u0117ra {addon} ir pri\u017ei\u016br\u0117tojas. \n \n Nor\u0117dami bandyti dar kart\u0105, naudokite Prad\u0117ti arba I\u0161jungti, kad i\u0161jungtum\u0117te parinkt\u012f Paleisti paleid\u017eiant.",
+                        "menu_options": {
+                            "addon_disable_boot": "I\u0161jungti",
+                            "addon_execute_start": "Prad\u0117ti"
+                        }
+                    }
+                }
+            },
+            "title": "Programos paleidimas nepavyko"
+        },
+        "issue_addon_deprecated_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko pa\u0161alinti program\u0117l\u0117s. Daugiau informacijos rasite pri\u017ei\u016br\u0117tojo \u017eurnaluose."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "Program\u0117l\u0117 {addon} k\u016br\u0117jo pa\u017eym\u0117tas kaip nebenaudojamas. Tai rei\u0161kia, kad jis nebepri\u017ei\u016brimas, tod\u0117l laikui b\u0117gant gali sugesti arba tapti saugumo problema.\n\nPer\u017ei\u016br\u0117kite [readme]({addon_info}) ir [dokumentacija]({addon_documentation}) program\u0117l\u0117s, kad pamatytum\u0117te, ar k\u016br\u0117jas pateik\u0117 instrukcijas.\n\nPasirinkus **Pateikti**, \u0161i nebenaudojama programa bus pa\u0161alinta ir visam laikui i\u0161trinta viskas, kas yra jos priva\u010diame duomen\u0173 aplanke, \u012fskaitant visas duomen\u0173 bazes, kredencialus ir kit\u0105 vidin\u0119 b\u016bsen\u0105, kuri ten buvo saugoma. Sukurkite [atsargin\u0119 kopij\u0105]({backup_url}) pirmiausia, jei v\u0117liau jums gali prireikti t\u0173 duomen\u0173.\n\nArba galite per\u017ei\u016br\u0117ti [Nam\u0173 asistento pagalb\u0105]({help_url}) ir [bendruomen\u0117s forume]({community_url}) alternatyv\u0173, \u012f kurias b\u016bt\u0173 galima pereiti."
+                    }
+                }
+            },
+            "title": "\u012ediegta programa nebenaudojama"
+        },
+        "issue_addon_deprecated_arch_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko pa\u0161alinti program\u0117l\u0117s. Daugiau informacijos rasite pri\u017ei\u016br\u0117tojo \u017eurnaluose."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "Program\u0117l\u0117 {addon} palaiko tik tas architekt\u016bras ir (arba) ma\u0161inas, kuri\u0173 Home Assistant nebepalaiko. B\u016bsimoje versijoje ji nebeveiks.\n\nPasirinkus **Pateikti**, \u0161i nebenaudojama programa bus pa\u0161alinta ir visam laikui i\u0161trinta viskas, kas yra jos priva\u010diame duomen\u0173 aplanke, \u012fskaitant visas duomen\u0173 bazes, kredencialus ir kit\u0105 vidin\u0119 b\u016bsen\u0105, kuri ten buvo saugoma. Sukurkite [atsargin\u0119 kopij\u0105]({backup_url}) pirmiausia, jei v\u0117liau jums gali prireikti t\u0173 duomen\u0173.\n\nArba galite per\u017ei\u016br\u0117ti [Home Assistant pagalb\u0105]({help_url}) ir [bendruomen\u0117s forume]({community_url}) alternatyv\u0173, \u012f kurias b\u016bt\u0173 galima pereiti."
+                    }
+                }
+            },
+            "title": "\u012ediegta programa sukurta nepalaikomoms architekt\u016broms ir (arba) ma\u0161inoms"
+        },
+        "issue_addon_detached_addon_missing": {
+            "description": "Program\u0117l\u0117s saugykla {addon} tr\u016bksta. Tai rei\u0161kia, kad programa negaus atnaujinim\u0173, o atsargin\u0117s kopijos gali b\u016bti atkurtos netinkamai, nes nam\u0173 asistento pri\u017ei\u016br\u0117tojas gali negal\u0117ti sukurti / atsisi\u0173sti reikiam\u0173 i\u0161tekli\u0173. \n \n Patikrinkite [program\u0117l\u0117s dokumentacij\u0105]({addon_url}) diegimo instrukcijas ir prid\u0117kite saugykl\u0105 prie parduotuv\u0117s.",
+            "title": "Tr\u016bksta \u012fdiegtos programos saugyklos"
+        },
+        "issue_addon_detached_addon_removed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko pa\u0161alinti program\u0117l\u0117s. Daugiau informacijos rasite pri\u017ei\u016br\u0117tojo \u017eurnaluose."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "Program\u0117l\u0117 {addon} buvo pa\u0161alintas i\u0161 saugyklos, i\u0161 kurios buvo \u012fdiegtas. Tai rei\u0161kia, kad jis negaus atnaujinim\u0173, o atsargin\u0117s kopijos gali b\u016bti atkurtos netinkamai, nes Home Assistant Supervisor gali negal\u0117ti sukurti / atsisi\u0173sti reikiam\u0173 i\u0161tekli\u0173.\n\nPasirinkus **Pateikti**, programa bus pa\u0161alinta ir visam laikui i\u0161trinta viskas, kas yra jos priva\u010diame duomen\u0173 aplanke, \u012fskaitant visas duomen\u0173 bazes, kredencialus ir kit\u0105 vidin\u0119 b\u016bsen\u0105, kuri ten buvo saugoma. Sukurkite [atsargin\u0119 kopij\u0105]({backup_url}) pirmiausia, jei v\u0117liau jums gali prireikti t\u0173 duomen\u0173.\n\nArba galite per\u017ei\u016br\u0117ti [Nam\u0173 asistento pagalb\u0105]({help_url}) ir [bendruomen\u0117s forume]({community_url}) alternatyv\u0173, \u012f kurias b\u016bt\u0173 galima pereiti."
+                    }
+                }
+            },
+            "title": "\u012ediegta programa buvo pa\u0161alinta i\u0161 saugyklos"
+        },
+        "issue_addon_pwned": {
+            "description": "Program\u0117l\u0117 {addon} savo konfig\u016bracijoje naudoja slaptus raktus / slapta\u017eod\u017eius, kurie aptinkami kaip nesaug\u016bs. \u017dr. [slapta\u017eod\u017eiai ir slapti raktai]({more_info_pwned}) daugiau informacijos \u0161ia tema.",
+            "title": "Program\u0117l\u0117s konfig\u016bracijoje aptikti nesaug\u016bs slapti kodai"
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko pritaikyti pataisos. Nor\u0117dami gauti daugiau informacijos, patikrinkite vadovo \u017eurnalus."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Nepavyko nustatyti `{reference}`. Tai gali nutikti, kai saugojimo \u012frenginys nepasiekiamas arba kai vietiniai duomenys blokuoja prijungimo viet\u0105. Nor\u0117dami gauti daugiau informacijos, patikrinkite pagrindinio kompiuterio \u017eurnalus, ar n\u0117ra prijungimo paslaugos klaid\u0173.\n\nNor\u0117dami bandyti dar kart\u0105, naudokite Perkrauti. Jei reikia atnaujinti ' {reference} ', eikite \u012f [saugykl\u0105]({storage_url}).",
+                        "menu_options": {
+                            "mount_execute_reload": "\u012ekelti i\u0161 naujo",
+                            "mount_execute_remove": "Pa\u0161alinti",
+                            "mount_move_local_data": "Perkelkite blokuojan\u010dius vietinius duomenis \u012f kit\u0105 viet\u0105"
+                        }
+                    },
+                    "mount_execute_remove": {
+                        "description": "Pasirinkite **Pateikti**, kad pa\u0161alintum\u0117te tinklo saugykl\u0105 ' {reference}` i\u0161 Home Assistant. \u012erenginyje saugomi duomenys nepaveikiami, ta\u010diau automatizavimas, atsargin\u0117s kopijos ar programos, kurios naudoja \u0161i\u0105 saugykl\u0105, nebetur\u0117s prieigos prie jos.\n\nTinklo saugykl\u0105 galite v\u0117l prid\u0117ti v\u0117liau i\u0161 [saugykla]({storage_url})."
+                    },
+                    "mount_move_local_data": {
+                        "description": "Pasirinkite **Pateikti**, kad perkeltum\u0117te vietin\u012f duomen\u0173 blokavim\u0105.{reference}\u012f a{reference}_local_recovery` aplank\u0105 ir v\u0117l nustatykite prijungimo viet\u0105.\n\nFailai nei\u0161trinami. Medijos ir bendrinam\u0173 prijungimo element\u0173 atk\u016brimo aplankas sukuriamas \u0161alia prijungimo elemento, kuriame galite j\u012f per\u017ei\u016br\u0117ti ir pa\u0161alinti. Atsargini\u0173 kopij\u0173 prijungimo elementai patalpinami vietin\u0117je atsargini\u0173 kopij\u0173 saugykloje."
+                    }
+                }
+            },
+            "title": "Sugedo tinklo saugojimo prietaisas"
+        },
+        "issue_system_disk_lifetime": {
+            "description": "Duomen\u0173 diskas vir\u0161ijo 90 % numatyto naudojimo laiko. Diskas netrukus gali sugesti ir prarasti duomenis. Tur\u0117tum\u0117te j\u012f netrukus pakeisti ir perkelti duomenis.",
+            "title": "Disko tarnavimo laikas vir\u0161ija 90 %"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Vienas ar daugiau pakartotini\u0173 paleidim\u0173 nepavyko. Nor\u0117dami gauti daugiau informacijos, patikrinkite vadovo \u017eurnalus."
+                },
+                "step": {
+                    "system_execute_rebuild": {
+                        "description": "Numatytoji program\u0117li\u0173 ir Home Assistant konfig\u016bracija pasikeit\u0117. Norint atnaujinti konfig\u016bracij\u0105 su naujomis numatytosiomis reik\u0161m\u0117mis, reikia paleisti i\u0161 naujo \u0161iuos \u012frenginius: \n \n - {components}"
+                    }
+                }
+            },
+            "title": "Reikia paleisti i\u0161 naujo"
+        },
+        "issue_system_free_space": {
+            "description": "Duomen\u0173 diske yra tik {free_space}Liko GB laisvos vietos. Tai gali sukelti sistemos stabilumo problem\u0173 ir trukdyti tokioms funkcijoms kaip atsargini\u0173 kopij\u0173 k\u016brimas ir atnaujinimai. Eikite \u012f [saugykla]({storage_url}), kad pamatytum\u0117te, kas u\u017eima viet\u0105, arba [i\u0161valyti saugykl\u0105]({more_info_free_space}) patarim\u0173, kaip atlaisvinti vietos.",
+            "title": "Duomen\u0173 diske tr\u016bksta laisvos vietos"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko pervardyti fail\u0173 sistemos. Nor\u0117dami gauti daugiau informacijos, patikrinkite vadovo \u017eurnalus."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "\u201e{reference}\u201c aptikome kit\u0105 aktyv\u0173 duomen\u0173 disk\u0105 (kuriame yra fail\u0173 sistema \u201ehassos-data\u201c i\u0161 kito \u201eHome Assistant\u201c diegimo). \n\n Turite nuspr\u0119sti, k\u0105 su juo daryti. Prie\u0161ingu atveju \u201eHome Assistant\u201c gali pasirinkti netinkam\u0105 duomen\u0173 disk\u0105, kai sistema perkraunama. \n\n Jei nenorite naudoti \u0161io duomen\u0173 disko, atjunkite j\u012f nuo sistemos. Jei paliksite j\u012f prijungt\u0105, pasirinkite vien\u0105 i\u0161 \u0161i\u0173 parink\u010di\u0173:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Vietoj dabartin\u0117s sistemos naudokite aptikt\u0105 duomen\u0173 disk\u0105",
+                            "system_rename_data_disk": "Pa\u017eym\u0117ti kaip neaktyv\u0173 duomen\u0173 disk\u0105 (pervardyti fail\u0173 sistem\u0105)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "Pasirinkite **Pateikti**, kad \u201e{reference}\u201c b\u016bt\u0173 aktyvus duomen\u0173 diskas. Vienintelis ir vienintelis. Nebetur\u0117site prieigos prie dabartini\u0173 \u201eHome Assistant\u201c duomen\u0173 (bus pa\u017eym\u0117tas kaip neaktyvus duomen\u0173 diskas). Paleidus i\u0161 naujo, j\u016bs\u0173 sistema bus \u201eHome Assistant\u201c duomen\u0173 b\u016bsenoje \u201e{reference}\u201c."
+                    }
+                }
+            },
+            "title": "Aptikti keli duomen\u0173 diskai"
+        },
+        "issue_system_ntp_sync_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko i\u0161 naujo \u012fjungti NTP. Daugiau informacijos rasite pri\u017ei\u016br\u0117tojo \u017eurnaluose."
+                },
+                "step": {
+                    "system_enable_ntp": {
+                        "description": "\u012erenginys negal\u0117jo susisiekti su sukonfig\u016bruotais laiko serveriais (NTP). Atlik\u0119 antrin\u012f laiko patikrinim\u0105 internete, aptikome, kad sistemos laikrodis buvo daugiau nei 1 valanda neteisingas. Laikas buvo pataisytas, o NTP paslauga buvo laikinai i\u0161jungta, kad b\u016bt\u0173 galima pritaikyti patais\u0105. Kad sistemos laikas b\u016bt\u0173 tikslus, rekomenduojame i\u0161spr\u0119sti problem\u0105, neleid\u017eian\u010di\u0105 pasiekti NTP serveri\u0173.\n\nPatikrinkite **pagrindinio kompiuterio \u017eurnalus**, kad i\u0161siai\u0161kintum\u0117te, kod\u0117l nepavyko pasiekti NTP serveri\u0173. I\u0161sprend\u0119 problem\u0105, pasirinkite **Pateikti**, kad v\u0117l \u012fjungtum\u0117te NTP paslaug\u0105."
+                    }
+                }
+            },
+            "title": "Aptikta laiko sinchronizavimo problema"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Nepavyko i\u0161 naujo paleisti sistemos. Nor\u0117dami gauti daugiau informacijos, patikrinkite vadovo \u017eurnalus."
+                }
+            },
+            "title": "Reikia paleisti i\u0161 naujo"
+        },
+        "legacy_homeassistant_folder": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Automatizavimas arba scenarijus, vadinamas veiksmu 'hassio.backup_partial' arba 'hassio.restore_partial', kurio 'aplankuose' nurodytas 'homeassistant'. Tai yra pasen\u0119s parinkties \u201ehomeassistant: true\u201c pseudonimas ir nebebus priimamas b\u016bsimose versijose.\n\nAtnaujinkite paveiktus automatizavimus ir scenarijus, kad b\u016bt\u0173 nustatyta 'homeassistant: true' ir pa\u0161alintas 'homeassistant' i\u0161 aplank\u0173 s\u0105ra\u0161o. Kai tai bus padaryta, pasirinkite **Pateikti**, kad pa\u017eym\u0117tum\u0117te \u0161i\u0105 problem\u0105 kaip i\u0161spr\u0119st\u0105.",
+                        "title": "Dalinio atsarginio kopijavimo / atk\u016brimo metu naudojamas senasis aplankas \u201ehomeassistant\u201c."
+                    }
+                }
+            },
+            "title": "Dalinio atsarginio kopijavimo/atk\u016brimo metu naudojamas senasis aplankas \"homeassistant\"."
+        },
+        "unhealthy": {
+            "description": "Sistema \u0161iuo metu neveikia d\u0117l {reason}. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 {reason}"
+        },
+        "unhealthy_data_filesystem_check_error": {
+            "description": "Sistema \u0161iuo metu yra netinkama, nes duomen\u0173 skaidinyje nepavyko atlikti fail\u0173 sistemos vientisumo patikros. Tai gali sukelti netik\u0117tas elektros energijos tiekimo sutrikimas arba saugyklos gedimas, ir tai gali paveikti konfig\u016bracij\u0105, programas arba atsargines kopijas. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 duomen\u0173 skaidinio fail\u0173 sistemos patikra nepavyko"
+        },
+        "unhealthy_docker": {
+            "description": "Sistema \u0161iuo metu neveikia tinkamai, nes Docker sukonfig\u016bruota neteisingai. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 Docker netinkamai sukonfig\u016bruotas"
+        },
+        "unhealthy_docker_gateway_unprotected": {
+            "description": "Sistema \u0161iuo metu yra netinkamos b\u016bkl\u0117s, nes pri\u017ei\u016br\u0117tojui nepavyko pritaikyti u\u017ekardos apsaugos Docker \u0161liuzo IP adresui. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 neapsaugotas Docker \u0161liuzas"
+        },
+        "unhealthy_duplicate_os_installation": {
+            "description": "Sistema \u0161iuo metu neveikia tinkamai, nes aptiko kelias Home Assistant OS instaliacijas. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 pasikartojantis Home Assistant OS diegimas"
+        },
+        "unhealthy_os_filesystem_check_error": {
+            "description": "Sistema \u0161iuo metu yra netinkama, nes operacin\u0117s sistemos skaidinyje nepavyko atlikti fail\u0173 sistemos vientisumo patikros. Tai gal\u0117jo sukelti netik\u0117tas elektros energijos tiekimo sutrikimas arba atminties gedimas. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 nepavyko patikrinti OS skaidinio fail\u0173 sistemos"
+        },
+        "unhealthy_oserror_bad_message": {
+            "description": "Sistema \u0161iuo metu yra netinkamos b\u016bkl\u0117s, nes operacin\u0117 sistema prane\u0161\u0117 apie OS klaid\u0105: blogas prane\u0161imas. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 operacin\u0117s sistemos klaida: blogas prane\u0161imas"
+        },
+        "unhealthy_privileged": {
+            "description": "Sistema \u0161iuo metu yra netinkamos b\u016bkl\u0117s, nes neturi privilegijuotos prieigos prie Docker vykdymo aplinkos. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 Neprivilegijuota"
+        },
+        "unhealthy_setup": {
+            "description": "Sistema \u0161iuo metu neveikia, nes nepavyko u\u017ebaigti s\u0105rankos. Tam gali b\u016bti kelios prie\u017eastys. Trik\u010di\u0173 \u0161alinimo informacijos ie\u0161kokite skiltyje Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 nepavyko nustatyti"
+        },
+        "unhealthy_supervisor": {
+            "description": "Sistema \u0161iuo metu neveikia tinkamai, nes nepavyko atnaujinti Supervisor \u012f naujausi\u0105 versij\u0105. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Neveikianti sistema - nepavyko atnaujinti \"Supervisor"
+        },
+        "unhealthy_untrusted": {
+            "description": "Sistema \u0161iuo metu neveikia tinkamai, nes aptiko nepatikim\u0105 kod\u0105 arba naudojamus atvaizdus. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nesveika sistema \u2013 nepatikimas kodas"
+        },
+        "unsupported": {
+            "description": "Sistema nepalaikoma d\u0117l {reason}. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 {reason}"
+        },
+        "unsupported_apparmor": {
+            "description": "Sistema nepalaikoma, nes AppArmor veikia netinkamai, o programos veikia neapsaugotai ir nesaugiai. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 \u201eAppArmor\u201c problemos"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Sistema nepalaikoma, nes naudojama netinkama Docker CGroup versija. Naudokite nuorod\u0105, kad su\u017einotum\u0117te tinkam\u0105 versij\u0105 ir kaip j\u0105 i\u0161spr\u0119sti.",
+            "title": "Nepalaikoma sistema \u2013 CGroup versija"
+        },
+        "unsupported_connectivity_check": {
+            "description": "Sistema nepalaikoma, nes Home Assistant negali nustatyti, kada yra interneto ry\u0161ys. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 ry\u0161io tikrinimas i\u0161jungtas"
+        },
+        "unsupported_dbus": {
+            "description": "Sistema nepalaikoma, nes D-Bus veikia netinkamai. Be \u0161ios funkcijos daugelis dalyk\u0173 neveikia, nes pri\u017ei\u016br\u0117tojas negali bendrauti su pagrindiniu kompiuteriu. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 D-Bus problemos"
+        },
+        "unsupported_dns_server": {
+            "description": "Sistema nepalaikoma, nes pateiktas DNS serveris neveikia tinkamai, o atsarginio DNS parinktis buvo i\u0161jungta. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 DNS serverio problemos"
+        },
+        "unsupported_docker_configuration": {
+            "description": "Sistema nepalaikoma, nes Docker demonas veikia netik\u0117tu b\u016bdu. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 \u201eDocker\u201c netinkamai sukonfig\u016bruotas"
+        },
+        "unsupported_docker_version": {
+            "description": "Sistema nepalaikoma, nes Docker versija pasenusi. Informacijos apie reikiam\u0105 versij\u0105 ir kaip tai i\u0161taisyti, ie\u0161kokite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 Docker versija"
+        },
+        "unsupported_home_assistant_core_version": {
+            "description": "Sistema nepalaikoma, nes naudojama Home Assistant Core versija nepalaikoma. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 Home Assistant Core versija"
+        },
+        "unsupported_job_conditions": {
+            "description": "Sistema nepalaikoma, nes i\u0161jungta viena ar kelios darbo s\u0105lygos, kurios apsaugo nuo netik\u0117t\u0173 gedim\u0173 ir gedim\u0173. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 apsauga i\u0161jungta"
+        },
+        "unsupported_lxc": {
+            "description": "Sistema nepalaikoma, nes ji vykdoma LXC virtualioje ma\u0161inoje. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 aptiktas LXC"
+        },
+        "unsupported_network_manager": {
+            "description": "Sistema nepalaikoma, nes tr\u016bksta tinklo tvarkykl\u0117s, ji neaktyvi arba netinkamai sukonfig\u016bruota. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 tinklo tvarkykl\u0117s problemos"
+        },
+        "unsupported_os": {
+            "description": "Sistema nepalaikoma, nes naudojama operacin\u0117 sistema n\u0117ra i\u0161bandyta arba pri\u017ei\u016brima darbui su Supervisor. Informacijos apie palaikomas operacines sistemas ir kaip tai i\u0161taisyti, rasite pasirink\u0119 Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema - Operacin\u0117 sistema"
+        },
+        "unsupported_os_agent": {
+            "description": "Sistema nepalaikoma, nes n\u0117ra OS agento, jis neaktyvus arba neteisingai sukonfig\u016bruotas. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einoti daugiau.",
+            "title": "Nepalaikoma sistema \u2013 OS agento problemos"
+        },
+        "unsupported_os_version": {
+            "description": "Sistema nepalaikoma, nes naudojama Home Assistant OS versija nepalaikoma. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 Home Assistant OS versija"
+        },
+        "unsupported_restart_policy": {
+            "description": "Sistema nepalaikoma, nes Docker konteineryje nustatyta paleidimo i\u0161 naujo politika, kuri gali sukelti problem\u0173 paleid\u017eiant. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema - konteinerio paleidimo i\u0161 naujo politika"
+        },
+        "unsupported_software": {
+            "description": "Sistema nepalaikoma, nes aptikta papildomos programin\u0117s \u012frangos, nepriklausan\u010dios Home Assistant ekosistemai. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 nepalaikoma programin\u0117 \u012franga"
+        },
+        "unsupported_supervisor_version": {
+            "description": "Sistema nepalaikoma, nes naudojama pasenusi Supervisor versija ir i\u0161jungtas automatinis atnaujinimas. Informacijos apie trik\u010di\u0173 \u0161alinim\u0105 ie\u0161kokite skiltyje Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema - \"Supervisor\" versija"
+        },
+        "unsupported_systemd": {
+            "description": "Sistema nepalaikoma, nes Systemd tr\u016bksta, yra neaktyvi arba netinkamai sukonfig\u016bruota. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 sistemos problemos"
+        },
+        "unsupported_systemd_journal": {
+            "description": "Sistema nepalaikoma, nes tr\u016bksta Systemd Journal ir (arba) \u0161liuzo paslaugos, jie neaktyv\u016bs arba netinkamai sukonfig\u016bruoti. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Unsupported system - Systemd Journal issues"
+        },
+        "unsupported_systemd_resolved": {
+            "description": "Sistema nepalaikoma, nes Systemd Resolved n\u0117ra, yra neaktyvus arba netinkamai sukonfig\u016bruotas. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 sistemos i\u0161spr\u0119stos problemos"
+        },
+        "unsupported_virtualization_image": {
+            "description": "Sistema nepalaikoma, nes naudojamas Home Assistant OS atvaizdas n\u0117ra skirtas naudoti virtualizuotoje aplinkoje. Nor\u0117dami gauti informacijos apie trik\u010di\u0173 \u0161alinim\u0105, pasirinkite Su\u017einokite daugiau.",
+            "title": "Nepalaikoma sistema \u2013 netinkamas virtualizavimo OS vaizdas"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "I\u0161 naujo paleid\u017eia pried\u0105.",
+            "fields": {
+                "addon": {
+                    "description": "Priedas, skirtas paleisti i\u0161 naujo.",
+                    "name": "Priedas"
+                }
+            },
+            "name": "I\u0161 naujo paleiskite pried\u0105"
+        },
+        "addon_start": {
+            "description": "Paleid\u017eia pried\u0105.",
+            "fields": {
+                "addon": {
+                    "description": "Priedas, skirtas prad\u0117ti.",
+                    "name": "Priedas"
+                }
+            },
+            "name": "Prad\u0117ti pried\u0105"
+        },
+        "addon_stdin": {
+            "description": "\u012era\u0161o duomenis \u012f standartin\u0119 priedo \u012fvest\u012f.",
+            "fields": {
+                "addon": {
+                    "description": "Priedas, \u012f kur\u012f reikia ra\u0161yti.",
+                    "name": "Priedas"
+                }
+            },
+            "name": "\u012era\u0161ykite duomenis \u012f pried\u0105 stdin"
+        },
+        "addon_stop": {
+            "description": "Sustabdo pried\u0105.",
+            "fields": {
+                "addon": {
+                    "description": "Sustabdymo priedas.",
+                    "name": "Priedas"
+                }
+            },
+            "name": "Sustabdyti pried\u0105"
+        },
+        "app_restart": {
+            "description": "I\u0161 naujo paleid\u017eia Home Assistant program\u0117l\u0119.",
+            "fields": {
+                "app": {
+                    "description": "Programa, skirta paleisti i\u0161 naujo.",
+                    "name": "Program\u0117l\u0117"
+                }
+            },
+            "name": "Paleisti program\u0117l\u0119 i\u0161 naujo"
+        },
+        "app_start": {
+            "description": "Paleid\u017eia program\u0117l\u0119 Home Assistant.",
+            "fields": {
+                "app": {
+                    "description": "Program\u0117l\u0117, kuri\u0105 reikia paleisti.",
+                    "name": "Program\u0117l\u0117"
+                }
+            },
+            "name": "Paleisti program\u0117l\u0119"
+        },
+        "app_stdin": {
+            "description": "\u012era\u0161o duomenis \u012f standartin\u0119 Home Assistant program\u0117l\u0117s \u012fvest\u012f.",
+            "fields": {
+                "app": {
+                    "description": "Program\u0117l\u0117, \u012f kuri\u0105 galima ra\u0161yti.",
+                    "name": "Program\u0117l\u0117"
+                },
+                "input": {
+                    "description": "Duomenys, kuriuos reikia \u012fra\u0161yti.",
+                    "name": "\u012evestis"
+                }
+            },
+            "name": "Duomen\u0173 \u012fra\u0161ymas \u012f programos stdin"
+        },
+        "app_stop": {
+            "description": "Sustabdo Home Assistant program\u0117l\u0119.",
+            "fields": {
+                "app": {
+                    "description": "Program\u0117l\u0117, skirta sustabdyti.",
+                    "name": "Program\u0117l\u0117"
+                }
+            },
+            "name": "Sustabdyti program\u0105"
+        },
+        "backup_full": {
+            "description": "Sukuria vis\u0105 atsargin\u0119 kopij\u0105.",
+            "fields": {
+                "compressed": {
+                    "description": "Suglaudina atsargines kopijas.",
+                    "name": "Suspaustas"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "I\u0161skirkite Home Assistant duomen\u0173 baz\u0117s fail\u0105 i\u0161 atsargin\u0117s kopijos.",
+                    "name": "Home Assistant ne\u012ftraukti duomen\u0173 baz\u0117s"
+                },
+                "location": {
+                    "description": "Atsargin\u0117s tinklo saugyklos, kurioje bus saugomos atsargin\u0117s kopijos, pavadinimas.",
+                    "name": "Vieta"
+                },
+                "name": {
+                    "description": "Neprivaloma (numatytasis = dabartin\u0117 data ir laikas).",
+                    "name": "Vardas"
+                },
+                "password": {
+                    "description": "Slapta\u017eodis apsaugoti atsargin\u0119 kopij\u0105.",
+                    "name": "Slapta\u017eodis"
+                }
+            },
+            "name": "Sukurkite vis\u0105 atsargin\u0119 kopij\u0105"
+        },
+        "backup_partial": {
+            "description": "Sukuria dalin\u0119 atsargin\u0119 kopij\u0105.",
+            "fields": {
+                "addons": {
+                    "description": "\u012e atsargin\u0119 kopij\u0105 \u012ftrauktin\u0173 program\u0173 (anks\u010diau vadint\u0173 priedais) s\u0105ra\u0161as. Naudokite kiekvienos programos kod\u0105. Senesn\u0117 versija \u2013 vietoj jos naudokite programas.",
+                    "name": "Priedai (senieji)"
+                },
+                "apps": {
+                    "description": "\u012e atsargin\u0119 kopij\u0105 \u012ftraukiam\u0173 program\u0173 s\u0105ra\u0161as. Naudokite kiekvienos programos \u0161rift\u0105.",
+                    "name": "Program\u0117l\u0117s"
+                },
+                "compressed": {
+                    "description": "Suglaudina atsargines kopijas.",
+                    "name": "Suspaustas"
+                },
+                "folders": {
+                    "description": "Katalog\u0173, kuriuos reikia \u012ftraukti \u012f atsargin\u0119 kopij\u0105, s\u0105ra\u0161as.",
+                    "name": "Aplankai"
+                },
+                "homeassistant": {
+                    "description": "\u012e atsargin\u0119 kopij\u0105 \u012ftraukiami Home Assistant nustatymai.",
+                    "name": "Home Assistant nustatymai"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "I\u0161skirkite Home Assistant duomen\u0173 baz\u0117s fail\u0105 i\u0161 atsargin\u0117s kopijos.",
+                    "name": "Home Assistant ne\u012ftraukti duomen\u0173 baz\u0117s"
+                },
+                "location": {
+                    "description": "Atsargin\u0117s tinklo saugyklos, kurioje bus saugomos atsargin\u0117s kopijos, pavadinimas.",
+                    "name": "Vieta"
+                },
+                "name": {
+                    "description": "Neprivaloma (numatytasis = dabartin\u0117 data ir laikas).",
+                    "name": "Vardas"
+                },
+                "password": {
+                    "description": "Slapta\u017eodis apsaugoti atsargin\u0119 kopij\u0105.",
+                    "name": "Slapta\u017eodis"
+                }
+            },
+            "name": "Sukurkite dalin\u0119 atsargin\u0119 kopij\u0105"
+        },
+        "host_reboot": {
+            "description": "Perkrauna pagrindin\u0119 sistem\u0105.",
+            "name": "I\u0161 naujo paleiskite pagrindin\u0119 sistem\u0105"
+        },
+        "host_shutdown": {
+            "description": "I\u0161jungia pagrindin\u0119 sistem\u0105.",
+            "name": "I\u0161junkite pagrindin\u0119 sistem\u0105"
+        },
+        "mount_reload": {
+            "description": "Perkrauna tinklo saugyklos prijungimo \u012frengin\u012f.",
+            "fields": {
+                "device_id": {
+                    "description": "Tinklo saugyklos prijungimo \u012frenginio ID, kur\u012f reikia \u012fkelti i\u0161 naujo.",
+                    "name": "\u012erenginio ID"
+                }
+            },
+            "name": "I\u0161 naujo \u012fkelti tinklo saugyklos prijungimo viet\u0105"
+        },
+        "restore_full": {
+            "description": "Atkuriama i\u0161 visos atsargin\u0117s kopijos.",
+            "fields": {
+                "password": {
+                    "description": "Neprivalomas slapta\u017eodis.",
+                    "name": "Slapta\u017eodis"
+                },
+                "slug": {
+                    "description": "Atsargin\u0117s kopijos, i\u0161 kurios reikia atkurti.",
+                    "name": "\u0160liu\u017eas"
+                }
+            },
+            "name": "Atkurti i\u0161 visos atsargin\u0117s kopijos"
+        },
+        "restore_partial": {
+            "description": "Atkuriama i\u0161 dalin\u0117s atsargin\u0117s kopijos.",
+            "fields": {
+                "addons": {
+                    "description": "Program\u0117li\u0173 (anks\u010diau vadint\u0173 priedais), kurias galima atkurti i\u0161 atsargin\u0117s kopijos, s\u0105ra\u0161as. Naudokite kiekvienos programos kod\u0105. Pasenusios versijos parinktis \u2013 vietoj jos naudokite programas.",
+                    "name": "Priedai (senieji)"
+                },
+                "apps": {
+                    "description": "Program\u0117li\u0173, kurias galima atkurti i\u0161 atsargin\u0117s kopijos, s\u0105ra\u0161as. Naudokite kiekvienos program\u0117l\u0117s \u0161rift\u0105.",
+                    "name": "Program\u0117l\u0117s"
+                },
+                "folders": {
+                    "description": "Katalog\u0173, kuriuos reikia atkurti i\u0161 atsargin\u0117s kopijos, s\u0105ra\u0161as.",
+                    "name": "Aplankai"
+                },
+                "homeassistant": {
+                    "description": "Atkuria Home Assistant.",
+                    "name": "Home Assistant nustatymai"
+                },
+                "password": {
+                    "description": "Neprivalomas slapta\u017eodis.",
+                    "name": "Slapta\u017eodis"
+                },
+                "slug": {
+                    "description": "Atsargin\u0117s kopijos, i\u0161 kurios reikia atkurti.",
+                    "name": "\u0160liu\u017eas"
+                }
+            },
+            "name": "Atkurti i\u0161 dalin\u0117s atsargin\u0117s kopijos"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Agento versija",
+            "board": "Lenta",
+            "disk_life_time": "Disko naudojimo laikas",
+            "disk_total": "I\u0161 viso disko",
+            "disk_used": "Naudotas diskas",
+            "docker_version": "Docker versija",
+            "healthy": "Sveikata",
+            "host_os": "Pagrindinio kompiuterio operacin\u0117 sistema",
+            "installed_addons": "\u012ediegtos programos",
+            "nameservers": "Vard\u0173 serveriai",
+            "supervisor_api": "Supervisor API",
+            "supervisor_version": "Pri\u017ei\u016br\u0117tojo versija",
+            "supported": "Palaikoma",
+            "update_channel": "Atnaujinti kanal\u0105",
+            "version_api": "Versija API"
+        }
+    }
+}

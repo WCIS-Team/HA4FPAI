@@ -1,0 +1,77 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Telecamera",
+            "state": {
+                "idle": "Inattivo",
+                "recording": "In registrazione",
+                "streaming": "In trasmissione"
+            },
+            "state_attributes": {
+                "access_token": {
+                    "name": "Token di accesso"
+                },
+                "brand": {
+                    "name": "Marca"
+                },
+                "frontend_stream_type": {
+                    "name": "Tipo di flusso",
+                    "state": {
+                        "hls": "HLS",
+                        "webrtc": "WebRTC"
+                    }
+                },
+                "model_name": {
+                    "name": "Modello"
+                },
+                "motion_detection": {
+                    "name": "Rilevamento del movimento",
+                    "state": {
+                        "false": "Disabilitato/a",
+                        "true": "Abilitato/a"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "play_stream": {
+            "fields": {
+                "format": {
+                    "description": "Formato di streaming supportato dal lettore multimediale.",
+                    "name": "Formato"
+                },
+                "media_player": {
+                    "name": "Lettore multimediale"
+                }
+            }
+        },
+        "record": {
+            "description": "Registra un feed video in diretta.",
+            "fields": {
+                "duration": {
+                    "description": "Durata pianificata della registrazione. La durata effettiva pu\u00f2 variare.",
+                    "name": "Durata"
+                },
+                "filename": {
+                    "description": "Percorso completo del nome file. Deve essere mp4.",
+                    "name": "Nome del file"
+                },
+                "lookback": {
+                    "description": "Periodo di ricerca pianificato da includere nella registrazione (oltre alla durata). Disponibile solo se al momento \u00e8 presente un flusso HLS attivo. La durata effettiva del periodo di ricerca pu\u00f2 variare.",
+                    "name": "Retrospettiva"
+                }
+            }
+        },
+        "snapshot": {
+            "description": "Scatta un'istantanea da una fotocamera.",
+            "fields": {
+                "filename": {
+                    "description": "Percorso completo del nome file.",
+                    "name": "Nome del file"
+                }
+            }
+        }
+    },
+    "title": "Telecamera"
+}

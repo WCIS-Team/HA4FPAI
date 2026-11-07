@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Proverava dostupnost jednog ili vi\u0161e a\u017euriranja.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Nova verzija dostupna"
+        },
+        "is_not_available": {
+            "description": "Proverava da li su dostupna nova a\u017euriranja.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Nova verzija nedostupna"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Trajanje"
+        },
+        "trigger_type": {
+            "changed_states": "Dostupnost a\u017euriranja za {entity_name} je promenjena",
+            "turned_off": "{entity_name} je a\u017euran",
+            "turned_on": "{entity_name} ima dostupno a\u017euriranje"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "A\u017euriranje",
+            "state": {
+                "off": "A\u017eurirano",
+                "on": "Dostupno a\u017euriranje"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Automatsko a\u017euriranje",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "in_progress": {
+                    "name": "U toku",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "installed_version": {
+                    "name": "Trenutna verzija"
+                },
+                "latest_version": {
+                    "name": "Dostupna verzija"
+                },
+                "release_summary": {
+                    "name": "Sa\u017eetak izdanja"
+                },
+                "release_url": {
+                    "name": "URL adresa izdanja"
+                },
+                "skipped_version": {
+                    "name": "Presko\u010dena verzija"
+                },
+                "title": {
+                    "name": "Naslov"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmver"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "Pravljenje rezervne kopije (backup) nije podr\u017eano za {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "Poni\u0161tavanje presko\u010denog a\u017euriranja nije podr\u017eano za {entity_id}."
+        },
+        "no_update_available": {
+            "message": "Nema dostupnih a\u017euriranja za {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "Nema dostupnog a\u017euriranja koje bi se moglo presko\u010diti za {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "Preskakanje a\u017euriranja nije podr\u017eano za {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "Instalacija odre\u0111ene verzije nije podr\u017eana za {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "Nije mogu\u0107e presko\u010diti nepoznatu verziju za {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "Instalacija a\u017euriranja je ve\u0107 u toku za {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Vra\u0107a prethodno presko\u010denu verziju me\u0111u dostupna a\u017euriranja.",
+            "name": "Ukloni presko\u010deno a\u017euriranje"
+        },
+        "install": {
+            "description": "Pokre\u0107e a\u017euriranje izabranog entiteta.",
+            "fields": {
+                "backup": {
+                    "description": "Ako integracija podr\u017eava, ovo kreira rezervnu kopiju (backup) pre po\u010detka a\u017euriranja.",
+                    "name": "Rezervna kopija"
+                },
+                "version": {
+                    "description": "Specifi\u010dna verzija za instalaciju. Ukoliko se polje isprazni, instalira se najnovija dostupna verzija.",
+                    "name": "Verzija"
+                }
+            },
+            "name": "Instaliraj a\u017euriranje"
+        },
+        "skip": {
+            "description": "Ozna\u010dava trenutno dostupno a\u017euriranje kao presko\u010deno.",
+            "name": "Presko\u010di a\u017euriranje"
+        }
+    },
+    "title": "A\u017euriranje",
+    "triggers": {
+        "became_available": {
+            "description": "Pokre\u0107e se kada postane dostupno jedno ili vi\u0161e a\u017euriranja.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "A\u017euriranje postalo dostupno"
+        }
+    }
+}

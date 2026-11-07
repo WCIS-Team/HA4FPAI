@@ -1,0 +1,125 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Vremenska prognoza",
+            "state": {
+                "clear-night": "Vedro, no\u0107",
+                "cloudy": "Obla\u010dno",
+                "exceptional": "Izuzetno",
+                "fog": "Magla",
+                "hail": "Grad",
+                "lightning": "Grmljavina",
+                "lightning-rainy": "Grmljavina sa ki\u0161om",
+                "partlycloudy": "Delimi\u010dno obla\u010dno",
+                "pouring": "Pljusak",
+                "rainy": "Ki\u0161ovito",
+                "snowy": "Sne\u017eno",
+                "snowy-rainy": "Sne\u017eno, ki\u0161ovito",
+                "sunny": "Sun\u010dano",
+                "windy": "Vetrovito",
+                "windy-variant": "Vetrovito, obla\u010dno"
+            },
+            "state_attributes": {
+                "apparent_temperature": {
+                    "name": "Prividna temperatura"
+                },
+                "cloud_coverage": {
+                    "name": "Obla\u010dnost"
+                },
+                "dew_point": {
+                    "name": "Temperatura ta\u010dke rose"
+                },
+                "forecast": {
+                    "name": "Prognoza"
+                },
+                "humidity": {
+                    "name": "Vla\u017enost"
+                },
+                "ozone": {
+                    "name": "Ozon"
+                },
+                "precipitation_unit": {
+                    "name": "Jedinica za padavine"
+                },
+                "pressure": {
+                    "name": "Vazdu\u0161ni pritisak"
+                },
+                "pressure_unit": {
+                    "name": "Jedinica za pritisak"
+                },
+                "temperature": {
+                    "name": "Temperatura"
+                },
+                "temperature_unit": {
+                    "name": "Jedinica za temperaturu"
+                },
+                "uv_index": {
+                    "name": "UV indeks"
+                },
+                "visibility": {
+                    "name": "Vidljivost"
+                },
+                "visibility_unit": {
+                    "name": "Jedinica za vidljivost"
+                },
+                "wind_bearing": {
+                    "name": "Pravac vetra"
+                },
+                "wind_gust_speed": {
+                    "name": "Brzina udara vetra"
+                },
+                "wind_speed": {
+                    "name": "Brzina vetra"
+                },
+                "wind_speed_unit": {
+                    "name": "Jedinica za brzinu vetra"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_weather_get_forecast": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Koristite `weather.get_forecasts` umesto toga, jer podr\u017eava vi\u0161e entiteta.\n\nMolimo zamenite ovu akciju i prilagodite va\u0161e automatizacije i skripte, zatim izaberite **Potvrdi** da zatvorite ovaj problem.",
+                        "title": "Prona\u0111ena upotreba zastarele radnje weather.get_forecast"
+                    }
+                }
+            },
+            "title": "Prona\u0111ena upotreba zastarele radnje weather.get_forecast"
+        }
+    },
+    "selector": {
+        "forecast_type": {
+            "options": {
+                "daily": "Dnevna",
+                "hourly": "Satna",
+                "twice_daily": "Poludnevna"
+            }
+        }
+    },
+    "services": {
+        "get_forecast": {
+            "description": "Preuzima prognozu od servisa za vremensku prognozu.",
+            "fields": {
+                "type": {
+                    "description": "Vrsta vremenske prognoze (dnevna, po satima ili poludnevna).",
+                    "name": "Vrsta prognoze"
+                }
+            },
+            "name": "Preuzmi vremensku prognozu"
+        },
+        "get_forecasts": {
+            "description": "Preuzima prognoze sa jednog ili vi\u0161e meteorolo\u0161kih servisa.",
+            "fields": {
+                "type": {
+                    "description": "Vrsta vremenske prognoze (dnevna, po satima ili poludnevna).",
+                    "name": "Vrsta prognoze"
+                }
+            },
+            "name": "Preuzmi vremensku prognozu"
+        }
+    },
+    "title": "Vremenska prognoza"
+}

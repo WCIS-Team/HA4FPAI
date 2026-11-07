@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "{start_time} tarihinde belirtilen veritaban\u0131 yedeklemesi, kaynak yetersizli\u011finden dolay\u0131 ba\u015far\u0131s\u0131z oldu. Yedeklemeye g\u00fcvenilemez ve yeniden ba\u015flat\u0131lmas\u0131 gerekir. Veritaban\u0131 \u00e7ok b\u00fcy\u00fckse veya sistem a\u011f\u0131r y\u00fck alt\u0131ndaysa bu durum meydana gelebilir. Saklanacak ge\u00e7mi\u015f g\u00fcnlerin say\u0131s\u0131n\u0131 azaltarak veya bir filtre olu\u015fturarak sistem donan\u0131m\u0131n\u0131 y\u00fckseltmeyi veya veritaban\u0131n\u0131n boyutunu azaltmay\u0131 d\u00fc\u015f\u00fcn\u00fcn.",
+            "title": "Kaynak eksikli\u011fi nedeniyle veritaban\u0131 yedeklemesi ba\u015far\u0131s\u0131z oldu"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "{database_engine} '\u0131n {server_version} s\u00fcr\u00fcm\u00fc, desteklenen uzun vadeli destek (LTS) s\u00fcr\u00fcm\u00fc de\u011fildir. K\u0131sa vadeli s\u00fcr\u00fcmler ve kullan\u0131m \u00f6mr\u00fc sona ermi\u015f LTS s\u00fcr\u00fcmleri i\u00e7in destek kald\u0131r\u0131lacakt\u0131r; kay\u0131t cihaz\u0131n\u0131 kullanmaya devam etmek i\u00e7in l\u00fctfen desteklenen LTS s\u00fcr\u00fcmlerinden birine ({lts_versions}) y\u00fckseltin ve Home Assistant'\u0131 yeniden ba\u015flat\u0131n.",
+            "title": "Kaydediciyi kullanmaya devam etmek i\u00e7in {database_engine} dosyas\u0131n\u0131 desteklenen bir LTS s\u00fcr\u00fcm\u00fcne g\u00fcncelleyin"
+        },
+        "database_engine_too_old": {
+            "description": "{database_engine} '\u0131n {server_version} s\u00fcr\u00fcm\u00fcne y\u00f6nelik destek sona eriyor; desteklenen en d\u00fc\u015f\u00fck s\u00fcr\u00fcm {min_version}olacakt\u0131r. L\u00fctfen veritaban\u0131 yaz\u0131l\u0131m\u0131n\u0131z\u0131 g\u00fcncelleyin ve Home Assistant'\u0131 yeniden ba\u015flat\u0131n.",
+            "title": "Kaydediciyi kullanmaya devam etmek i\u00e7in {database_engine} s\u00fcr\u00fcm\u00fcn\u00fc {min_version} veya daha yeni bir s\u00fcr\u00fcme g\u00fcncelleyin"
+        },
+        "maria_db_range_index_regression": {
+            "description": "MariaDB'nin eski s\u00fcr\u00fcmleri, ge\u00e7mi\u015f verilerini alma veya veritaban\u0131n\u0131 temizleme i\u015flemlerinde \u00f6nemli bir performans d\u00fc\u015f\u00fc\u015f\u00fc ya\u015far. MariaDB s\u00fcr\u00fcm\u00fcn\u00fc g\u00fcncelleyin. {min_version} veya daha sonra Home Assistant'\u0131 yeniden ba\u015flat\u0131n. MariaDB Core uygulamas\u0131n\u0131 kullan\u0131yorsan\u0131z, en son s\u00fcr\u00fcme g\u00fcncelledi\u011finizden emin olun.",
+            "title": "\u00d6nemli bir performans sorununu \u00e7\u00f6zmek i\u00e7in MariaDB'yi {min_version} veya sonraki bir s\u00fcr\u00fcme g\u00fcncelleyin"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Olaylar\u0131n ve durum de\u011fi\u015fikliklerinin kayd\u0131n\u0131 durdurur.",
+            "name": "Kaydediciyi Devre D\u0131\u015f\u0131 B\u0131rak"
+        },
+        "enable": {
+            "description": "Olaylar\u0131n ve durum de\u011fi\u015fikliklerinin kayd\u0131n\u0131 ba\u015flat\u0131r.",
+            "name": "Kaydediciyi Etkinle\u015ftir"
+        },
+        "get_statistics": {
+            "description": "Belirli bir zaman dilimindeki varl\u0131klara ait istatistik verilerini al\u0131r.",
+            "fields": {
+                "end_time": {
+                    "description": "\u0130statistik sorgusunun biti\u015f zaman\u0131. Atlan\u0131rsa, ba\u015flang\u0131\u00e7 zaman\u0131ndan itibaren t\u00fcm istatistikleri d\u00f6nd\u00fcr\u00fcr.",
+                    "name": "Biti\u015f zaman\u0131"
+                },
+                "period": {
+                    "description": "\u0130statistiklerin grupland\u0131r\u0131laca\u011f\u0131 zaman aral\u0131\u011f\u0131.",
+                    "name": "D\u00f6nem"
+                },
+                "start_time": {
+                    "description": "\u0130statistik sorgusunun ba\u015flang\u0131\u00e7 saati.",
+                    "name": "Ba\u015flang\u0131\u00e7 zaman\u0131"
+                },
+                "statistic_ids": {
+                    "description": "\u0130statistiklerinin d\u00f6nd\u00fcr\u00fclece\u011fi varl\u0131k kimlikleri veya istatistik kimlikleri.",
+                    "name": "\u0130statistik Kimlikleri"
+                },
+                "types": {
+                    "description": "D\u00f6nd\u00fcr\u00fclecek istatistik de\u011ferlerinin t\u00fcrleri.",
+                    "name": "Tipler"
+                },
+                "units": {
+                    "description": "\u0130ste\u011fe ba\u011fl\u0131 birim d\u00f6n\u00fc\u015ft\u00fcrme e\u015flemesi.",
+                    "name": "Birimler"
+                }
+            },
+            "name": "Kaydedici istatistiklerini al\u0131n"
+        },
+        "purge": {
+            "description": "Temizleme g\u00f6revini ba\u015flat\u0131r - veritaban\u0131n\u0131zdaki eski verileri temizlemek i\u00e7in.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Zamana dayal\u0131 temizlemeye ek olarak \"varl\u0131k_id\" ve \"olay_tipi\" filtrelerini uygulay\u0131n.",
+                    "name": "Filtre uygula"
+                },
+                "keep_days": {
+                    "description": "Verilerin veritaban\u0131nda tutulaca\u011f\u0131 g\u00fcn say\u0131s\u0131. Bug\u00fcnden itibaren geriye do\u011fru say\u0131yorum. \"7\" de\u011feri, bir haftadan eski olan her \u015feyin silinece\u011fi anlam\u0131na gelir.",
+                    "name": "Saklanacak g\u00fcn"
+                },
+                "repack": {
+                    "description": "Veritaban\u0131 dosyas\u0131n\u0131n tamam\u0131n\u0131 yeniden yazarak disk alan\u0131ndan tasarruf etmeye \u00e7al\u0131\u015f\u0131n.",
+                    "name": "Yeniden Paketle"
+                }
+            },
+            "name": "Kay\u0131t Cihaz\u0131 veritaban\u0131n\u0131 temizle"
+        },
+        "purge_entities": {
+            "description": "Belirli varl\u0131klarla ilgili verileri veritaban\u0131n\u0131zdan kald\u0131rmak i\u00e7in bir temizleme g\u00f6revi ba\u015flat\u0131r.",
+            "fields": {
+                "domains": {
+                    "description": "Kay\u0131t veritaban\u0131ndan verilerinin silinmesi gereken alan adlar\u0131n\u0131n listesi.",
+                    "name": "Kald\u0131r\u0131lacak alanlar"
+                },
+                "entity_globs": {
+                    "description": "Kaydedici veritaban\u0131ndan verilerinin silinece\u011fi varl\u0131klar\u0131 se\u00e7mek i\u00e7in kullan\u0131lan glob desenlerinin listesi.",
+                    "name": "Kald\u0131r\u0131lacak varl\u0131k k\u00fcreleri"
+                },
+                "entity_id": {
+                    "description": "Kay\u0131t veritaban\u0131ndan verilerinin silinece\u011fi varl\u0131klar\u0131n listesi.",
+                    "name": "Kald\u0131r\u0131lacak varl\u0131klar"
+                },
+                "keep_days": {
+                    "description": "Filtreyle e\u015fle\u015fen sat\u0131rlar i\u00e7in verilerin saklanaca\u011f\u0131 g\u00fcn say\u0131s\u0131. Bug\u00fcnden itibaren geriye do\u011fru say\u0131yorum. \"7\" de\u011feri, bir haftadan eski olan her \u015feyin silinece\u011fi anlam\u0131na gelir. Varsay\u0131lan 0 g\u00fcn, e\u015fle\u015fen t\u00fcm sat\u0131rlar\u0131 hemen kald\u0131racakt\u0131r.",
+                    "name": "Saklanacak g\u00fcn"
+                }
+            },
+            "name": "Kaydedici varl\u0131klar\u0131n\u0131 temizle"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Mevcut \u00e7al\u0131\u015fma ba\u015flang\u0131\u00e7 saati",
+            "database_engine": "Veritaban\u0131 motoru",
+            "database_version": "Veritaban\u0131 s\u00fcr\u00fcm\u00fc",
+            "estimated_db_size": "Tahmini veritaban\u0131 boyutu (MiB)",
+            "oldest_recorder_run": "En eski ko\u015fu ba\u015flang\u0131\u00e7 saati"
+        }
+    }
+}

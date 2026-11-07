@@ -1,0 +1,95 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Pencadangan database yang dimulai pada {start_time}, gagal karena kurangnya sumber daya. Cadangan tidak dapat dipercaya dan harus dimulai ulang. Hal ini dapat terjadi jika basis data terlalu besar atau jika sistem memiliki beban yang berat. Pertimbangkan untuk meningkatkan perangkat keras sistem atau mengurangi ukuran database dengan mengurangi jumlah hari riwayat yang harus disimpan atau membuat filter.",
+            "title": "Pencadangan database gagal karena kurangnya sumber daya"
+        },
+        "maria_db_range_index_regression": {
+            "title": "Perbarui MariaDB ke {min_version} atau yang lebih baru untuk menyelesaikan masalah kinerja yang signifikan"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Menghentikan perekaman peristiwa dan perubahan status."
+        },
+        "enable": {
+            "description": "Memulai perekaman peristiwa dan perubahan status."
+        },
+        "get_statistics": {
+            "description": "Mengambil data statistik untuk entitas dalam periode waktu tertentu.",
+            "fields": {
+                "end_time": {
+                    "description": "Waktu akhir untuk kueri statistik. Jika dihilangkan, mengembalikan semua statistik dari waktu mulai dan seterusnya.",
+                    "name": "Waktu berakhir"
+                },
+                "period": {
+                    "description": "Periode waktu untuk mengelompokkan statistik.",
+                    "name": "Periode"
+                },
+                "start_time": {
+                    "description": "Waktu mulai untuk kueri statistik.",
+                    "name": "Waktu mulai"
+                },
+                "statistic_ids": {
+                    "description": "ID entitas atau ID statistik yang akan dikembalikan statistiknya.",
+                    "name": "ID Statistik"
+                },
+                "types": {
+                    "description": "Jenis nilai statistik yang akan dikembalikan.",
+                    "name": "Jenis"
+                },
+                "units": {
+                    "description": "Pemetaan konversi unit opsional.",
+                    "name": "Satuan"
+                }
+            }
+        },
+        "purge": {
+            "description": "Memulai tugas pembersihan - untuk membersihkan data lama dari basis data Anda.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Menerapkan filter `entity_id` dan `event_type` sebagai tambahan dari pembersihan berbasis waktu.",
+                    "name": "Terapkan filter"
+                },
+                "keep_days": {
+                    "description": "Jumlah hari untuk menyimpan data dalam database. Mulai hari ini, dihitung mundur. Nilai `7` berarti semua data yang lebih tua dari seminggu akan dihapus.",
+                    "name": "Hari untuk disimpan"
+                },
+                "repack": {
+                    "description": "Mencoba menghemat ruang disk dengan menulis ulang seluruh file database.",
+                    "name": "Kemas ulang"
+                }
+            }
+        },
+        "purge_entities": {
+            "description": "Memulai tugas pembersihan untuk menghapus data yang terkait dengan entitas tertentu dari basis data Anda.",
+            "fields": {
+                "domains": {
+                    "description": "Daftar domain yang datanya perlu dihapus dari database Perekam.",
+                    "name": "Domain yang akan dihapus"
+                },
+                "entity_globs": {
+                    "description": "Daftar pola glob yang digunakan untuk memilih entitas yang datanya akan dihapus dari database Perekam.",
+                    "name": "Glob entitas untuk dihapus"
+                },
+                "entity_id": {
+                    "description": "Daftar entitas yang datanya akan dihapus dari database Perekam.",
+                    "name": "Entitas yang akan dihapus"
+                },
+                "keep_days": {
+                    "description": "Jumlah hari untuk menyimpan data untuk baris yang cocok dengan filter. Mulai hari ini, dihitung mundur. Nilai `7` berarti semua yang lebih tua dari seminggu akan dihapus. Nilai default 0 hari akan menghapus semua baris yang cocok dengan segera.",
+                    "name": "Hari untuk disimpan"
+                }
+            }
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Waktu mulai berjalan saat Ini",
+            "database_engine": "Mesin basis data",
+            "database_version": "Versi basis data",
+            "estimated_db_size": "Perkiraan ukuran basis data (MiB)",
+            "oldest_recorder_run": "Waktu mulai berjalan terlama"
+        }
+    }
+}

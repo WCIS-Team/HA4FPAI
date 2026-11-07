@@ -1,0 +1,187 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer",
+        "trigger_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_off": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Zet {entity_name} aan/uit",
+            "turn_off": "{entity_name} uitzetten",
+            "turn_on": "{entity_name} aanzetten"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} is uitgeschakeld",
+            "is_on": "{entity_name} is ingeschakeld"
+        },
+        "extra_fields": {
+            "for": "Duur"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} aan- of uitgezet",
+            "turned_off": "{entity_name} uitgezet",
+            "turned_on": "{entity_name} aangezet"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventilator",
+            "state": {
+                "off": "Uit",
+                "on": "Aan"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Richting",
+                    "state": {
+                        "forward": "Vooruit",
+                        "reverse": "Achteruit"
+                    }
+                },
+                "oscillating": {
+                    "name": "Oscillerend",
+                    "state": {
+                        "false": "Nee",
+                        "true": "Ja"
+                    }
+                },
+                "percentage": {
+                    "name": "Snelheid"
+                },
+                "percentage_step": {
+                    "name": "Snelheid stap"
+                },
+                "preset_mode": {
+                    "name": "Vooringestelde modus"
+                },
+                "preset_modes": {
+                    "name": "Beschikbare modes"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "Presetmode {preset_mode} is ongeldig, geldige modes zijn: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Vooruit",
+                "reverse": "Omkeren"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "fields": {
+                "percentage_step": {
+                    "name": "Verlagen"
+                }
+            }
+        },
+        "increase_speed": {
+            "fields": {
+                "percentage_step": {
+                    "name": "Verhoging"
+                }
+            }
+        },
+        "oscillate": {
+            "fields": {
+                "oscillating": {
+                    "name": "Oscillerend"
+                }
+            }
+        },
+        "set_direction": {
+            "fields": {
+                "direction": {
+                    "name": "Richting"
+                }
+            }
+        },
+        "set_percentage": {
+            "fields": {
+                "percentage": {
+                    "description": "Snelheid van de ventilator.",
+                    "name": "Percentage"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "name": "Vooraf ingestelde modus"
+                }
+            }
+        },
+        "toggle": {
+            "name": "Ventilator omschakelen"
+        },
+        "turn_off": {
+            "name": "Ventilator uitzetten"
+        },
+        "turn_on": {
+            "fields": {
+                "percentage": {
+                    "description": "Snelheid van de ventilator.",
+                    "name": "Percentage"
+                },
+                "preset_mode": {
+                    "name": "Vooraf ingestelde modus"
+                }
+            },
+            "name": "Ventilator aanzetten"
+        }
+    },
+    "title": "Ventilator",
+    "triggers": {
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Ventilator uitgeschakeld"
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Ventilator aangezet"
+        }
+    }
+}

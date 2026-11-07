@@ -1,0 +1,98 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "C\u00e2mara",
+            "state": {
+                "idle": "Inativo",
+                "recording": "A gravar",
+                "streaming": "Transmiss\u00e3o em fluxo cont\u00ednuo"
+            },
+            "state_attributes": {
+                "access_token": {
+                    "name": "Token de acesso"
+                },
+                "brand": {
+                    "name": "Marca"
+                },
+                "frontend_stream_type": {
+                    "name": "Tipo de transmiss\u00e3o",
+                    "state": {
+                        "hls": "HLS",
+                        "webrtc": "WebRTC"
+                    }
+                },
+                "model_name": {
+                    "name": "Modelo"
+                },
+                "motion_detection": {
+                    "name": "Dete\u00e7\u00e3o de movimento",
+                    "state": {
+                        "false": "Desativado",
+                        "true": "Ativo"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "disable_motion_detection": {
+            "description": "Desativa a dete\u00e7\u00e3o de movimento de uma c\u00e2mara.",
+            "name": "Desativar a dete\u00e7\u00e3o de movimento da c\u00e2mara"
+        },
+        "enable_motion_detection": {
+            "description": "Ativa a dete\u00e7\u00e3o de movimento de uma c\u00e2mara.",
+            "name": "Ativar a dete\u00e7\u00e3o de movimento da c\u00e2mara"
+        },
+        "play_stream": {
+            "description": "Reproduz um fluxo de c\u00e2mara num leitor multim\u00e9dia suportado.",
+            "fields": {
+                "format": {
+                    "description": "Formato de fluxo suportado pelo leitor multim\u00e9dia.",
+                    "name": "Formato"
+                },
+                "media_player": {
+                    "description": "Leitor multim\u00e9dia para onde transmitir.",
+                    "name": "Leitor multim\u00e9dia"
+                }
+            },
+            "name": "Reproduzir o stream da c\u00e2mara"
+        },
+        "record": {
+            "description": "Cria uma grava\u00e7\u00e3o de um fluxo de c\u00e2mara em direto.",
+            "fields": {
+                "duration": {
+                    "description": "Dura\u00e7\u00e3o prevista do registo. A dura\u00e7\u00e3o efetiva pode variar.",
+                    "name": "Dura\u00e7\u00e3o"
+                },
+                "filename": {
+                    "description": "Caminho completo para o ficheiro. Tem de ser mp4.",
+                    "name": "Nome de ficheiro"
+                },
+                "lookback": {
+                    "description": "Per\u00edodo de retrospetiva planeado para incluir na grava\u00e7\u00e3o (al\u00e9m da dura\u00e7\u00e3o). Dispon\u00edvel apenas se houver atualmente um fluxo HLS ativo. A dura\u00e7\u00e3o real do per\u00edodo de retrospetiva pode variar.",
+                    "name": "Retrospetiva"
+                }
+            },
+            "name": "Gravar o feed da c\u00e2mara"
+        },
+        "snapshot": {
+            "description": "Tira uma fotografia a partir de uma c\u00e2mara.",
+            "fields": {
+                "filename": {
+                    "description": "Caminho completo para o ficheiro.",
+                    "name": "Nome de ficheiro"
+                }
+            },
+            "name": "Tirar uma fotografia com a c\u00e2mara"
+        },
+        "turn_off": {
+            "description": "Desliga uma c\u00e2mara.",
+            "name": "Desligar c\u00e2mara"
+        },
+        "turn_on": {
+            "description": "Liga uma c\u00e2mara.",
+            "name": "Ligar c\u00e2mara"
+        }
+    },
+    "title": "C\u00e2mara"
+}

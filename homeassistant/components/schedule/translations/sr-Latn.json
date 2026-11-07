@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Proverava da li jedan ili vi\u0161e blokova rasporeda trenutno nisu aktivni.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Raspored isklju\u010den"
+        },
+        "is_on": {
+            "description": "Proverava da li su jedan ili vi\u0161e blokova rasporeda trenutno aktivni.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Raspored uklju\u010den"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Raspored",
+            "state": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "Upravljanje putem korisni\u010dkog interfejsa",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "next_event": {
+                    "name": "Slede\u0107i doga\u0111aj"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "Preuzima konfigurisane vremenske opsege jednog ili vi\u0161e rasporeda.",
+            "name": "Preuzmi raspored"
+        },
+        "reload": {
+            "description": "Ponovo u\u010ditava rasporede iz YAML konfiguracije.",
+            "name": "Ponovo u\u010ditaj rasporede"
+        }
+    },
+    "title": "Raspored",
+    "triggers": {
+        "block_ended": {
+            "description": "Pokre\u0107e se kada se zavr\u0161i jedan ili vi\u0161e blokova rasporeda.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Blok rasporeda zavr\u0161en"
+        },
+        "block_started": {
+            "description": "Pokre\u0107e se kada po\u010dne jedan ili vi\u0161e blokova rasporeda.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Blok rasporeda zapo\u010det"
+        }
+    }
+}

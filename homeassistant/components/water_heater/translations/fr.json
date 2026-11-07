@@ -1,0 +1,245 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "condition_threshold_name": "Type de seuil",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins",
+        "trigger_threshold_name": "Type de seuil"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "V\u00e9rifie si un ou plusieurs chauffe-eaux sont \u00e9teints.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le chauffe-eau est \u00e9teint"
+        },
+        "is_on": {
+            "description": "V\u00e9rifie si un ou plusieurs chauffe-eaux sont allum\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le chauffe-eau est allum\u00e9"
+        },
+        "is_operation_mode": {
+            "description": "V\u00e9rifie si un ou plusieurs chauffe-eaux sont r\u00e9gl\u00e9s sur un mode de fonctionnement sp\u00e9cifique.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "operation_mode": {
+                    "description": "Le mode de fonctionnement \u00e0 v\u00e9rifier.",
+                    "name": "Mode de fonctionnement"
+                }
+            },
+            "name": "Mode de fonctionnement du chauffe-eau"
+        },
+        "is_target_temperature": {
+            "description": "V\u00e9rifie la consigne de temp\u00e9rature d'un ou plusieurs chauffe-eaux.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "Temp\u00e9rature cible du chauffe-eau"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "D\u00e9sactiver {entity_name}",
+            "turn_on": "Activer {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Chauffe-eau",
+            "state": {
+                "eco": "\u00c9co",
+                "electric": "\u00c9lectrique",
+                "gas": "Gaz",
+                "heat_pump": "Pompe \u00e0 chaleur",
+                "high_demand": "Demande \u00e9lev\u00e9e",
+                "off": "\u00c9teint",
+                "performance": "Performance"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Mode absent",
+                    "state": {
+                        "off": "D\u00e9sactiv\u00e9",
+                        "on": "Activ\u00e9"
+                    }
+                },
+                "current_operation": {
+                    "name": "Mode actuel"
+                },
+                "current_temperature": {
+                    "name": "Temp\u00e9rature actuelle"
+                },
+                "max_temp": {
+                    "name": "Temp\u00e9rature cible maximale"
+                },
+                "min_temp": {
+                    "name": "Temp\u00e9rature cible minimale"
+                },
+                "operation_mode": {
+                    "name": "Mode de fonctionnement",
+                    "state": {
+                        "eco": "\u00c9co",
+                        "electric": "\u00c9lectrique",
+                        "gas": "Gaz",
+                        "heat_pump": "Pompe \u00e0 chaleur",
+                        "high_demand": "Demande \u00e9lev\u00e9e",
+                        "off": "Arr\u00eat",
+                        "performance": "Performance"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "Temp\u00e9rature cible sup\u00e9rieure"
+                },
+                "target_temp_low": {
+                    "name": "Temp\u00e9rature cible inf\u00e9rieure"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "Le mode de fonctionnement {operation_mode} n'est pas valide pour {entity_id}. Les modes de fonctionnement valides sont\u00a0: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "Le mode de fonctionnement {operation_mode} n'est pas valide pour {entity_id}. La liste des op\u00e9rations n'est pas d\u00e9finie."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "description": "D\u00e9finit le mode absence d'un chauffe-eau.",
+            "fields": {
+                "away_mode": {
+                    "description": "Nouvelle valeur du mode absence.",
+                    "name": "Mode absence"
+                }
+            },
+            "name": "D\u00e9finir le mode absence du chauffe-eau"
+        },
+        "set_operation_mode": {
+            "description": "D\u00e9finit le mode de fonctionnement d'un chauffe-eau.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nouvelle valeur du mode de fonctionnement. Pour une liste des modes possibles, reportez-vous \u00e0 la documentation de l'int\u00e9gration.",
+                    "name": "Mode de fonctionnement"
+                }
+            },
+            "name": "R\u00e9gler le mode de fonctionnement du chauffe-eau"
+        },
+        "set_temperature": {
+            "description": "D\u00e9finit la temp\u00e9rature cible d'un chauffe-eau.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nouvelle valeur du mode de fonctionnement. Pour une liste des modes possibles, reportez-vous \u00e0 la documentation de l'int\u00e9gration.",
+                    "name": "Mode de fonctionnement"
+                },
+                "temperature": {
+                    "description": "Nouvelle temp\u00e9rature cible pour le chauffe-eau.",
+                    "name": "Temp\u00e9rature"
+                }
+            },
+            "name": "R\u00e9gler la temp\u00e9rature cible du chauffe-eau"
+        },
+        "turn_off": {
+            "description": "\u00c9teint un chauffe-eau.",
+            "name": "\u00c9teindre le chauffe-eau"
+        },
+        "turn_on": {
+            "description": "Allume un chauffe-eau.",
+            "name": "Allumer le chauffe-eau"
+        }
+    },
+    "title": "Chauffe-eau",
+    "triggers": {
+        "operation_mode_changed": {
+            "description": "Se d\u00e9clenche quand le mode de fonctionnement d'un ou plusieurs chauffe-eaux passe \u00e0 un mode sp\u00e9cifique.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "operation_mode": {
+                    "description": "Les modes de fonctionnement sur lesquels d\u00e9clencher.",
+                    "name": "Mode de fonctionnement"
+                }
+            },
+            "name": "Le mode de fonctionnement du chauffe-eau a chang\u00e9"
+        },
+        "target_temperature_changed": {
+            "description": "Se d\u00e9clenche quand la temp\u00e9rature de consigne d'un ou plusieurs chauffe-eaux change.",
+            "fields": {
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "La temp\u00e9rature cible du chauffe-eau a chang\u00e9"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Se d\u00e9clenche quand la temp\u00e9rature de consigne d'un ou plusieurs chauffe-eaux franchit un seuil.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "La temp\u00e9rature cible du chauffe-eau a franchi un seuil"
+        },
+        "turned_off": {
+            "description": "Se d\u00e9clenche quand un ou plusieurs chauffe-eaux s'\u00e9teignent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le chauffe-eau s'est \u00e9teint"
+        },
+        "turned_on": {
+            "description": "Se d\u00e9clenche quand un ou plusieurs chauffe-eaux s'allument, quel que soit le mode de fonctionnement.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le chauffe-eau s'est allum\u00e9"
+        }
+    }
+}

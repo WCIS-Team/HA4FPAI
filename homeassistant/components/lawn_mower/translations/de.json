@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Rasenm\u00e4her angedockt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her angedockt"
+        },
+        "is_encountering_an_error": {
+            "description": "Pr\u00fcft, ob bei einem oder mehreren Rasenm\u00e4hern ein Fehler auftritt.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Fehlermeldung durch Rasenm\u00e4her"
+        },
+        "is_idle": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Rasenm\u00e4her im Leerlauf sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her im Leerlauf"
+        },
+        "is_mowing": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Rasenm\u00e4her in Betrieb sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her in Betrieb"
+        },
+        "is_paused": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Rasenm\u00e4her angehalten sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her angehalten"
+        },
+        "is_returning": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Rasenm\u00e4her zur Ladestation zur\u00fcckkehren.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her auf R\u00fcckkehr"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Rasenm\u00e4her",
+            "state": {
+                "docked": "Angedockt",
+                "error": "Fehler",
+                "idle": "Leerlauf",
+                "mowing": "M\u00e4hen",
+                "paused": "Pausiert",
+                "returning": "R\u00fcckkehr"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Schickt einen Rasenm\u00e4her zur\u00fcck zu seiner Ladestation.",
+            "name": "Rasenm\u00e4her zur Ladestation zur\u00fccksenden"
+        },
+        "pause": {
+            "description": "Unterbricht den aktuellen Vorgang eines Rasenm\u00e4hers.",
+            "name": "Rasenm\u00e4her anhalten"
+        },
+        "start_mowing": {
+            "description": "Startet den M\u00e4hvorgang eines Rasenm\u00e4hers.",
+            "name": "Rasenm\u00e4her starten"
+        },
+        "stop": {
+            "description": "Stoppt den aktuellen Arbeitsvorgang eines Rasenm\u00e4hers.",
+            "name": "Rasenm\u00e4her stoppen"
+        }
+    },
+    "title": "Rasenm\u00e4her",
+    "triggers": {
+        "became_idle": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Rasenm\u00e4her im Leerlauf sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her im Leerlauf"
+        },
+        "errored": {
+            "description": "Wird ausgel\u00f6st, sobald bei einem oder mehreren Rasenm\u00e4hern ein Fehler auftritt.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Fehlermeldung durch Rasenm\u00e4her"
+        },
+        "paused_mowing": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Rasenm\u00e4her den M\u00e4hvorgang unterbrechen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "M\u00e4hvorgang durch Rasenm\u00e4her unterbrochen"
+        },
+        "returned_to_dock": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Rasenm\u00e4her zur Ladestation zur\u00fcckgekehrt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her zur Ladestation zur\u00fcckgekehrt"
+        },
+        "started_mowing": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Rasenm\u00e4her mit dem M\u00e4hvorgang beginnen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "M\u00e4hvorgang durch Rasenm\u00e4her begonnen"
+        },
+        "started_returning": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Rasenm\u00e4her beginnen zur Ladestation zur\u00fcckkehren.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Rasenm\u00e4her-R\u00fcckkehr zur Ladestation gestartet"
+        }
+    }
+}

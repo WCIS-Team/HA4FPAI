@@ -1,0 +1,96 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Seznam opravil"
+        }
+    },
+    "exceptions": {
+        "item_not_found": {
+            "message": "Ni mogo\u010de najti elementa seznama opravil: {item}"
+        },
+        "update_field_not_supported": {
+            "message": "Entiteta ne podpira nastavljanja polja: {service_field}"
+        }
+    },
+    "selector": {
+        "status": {
+            "options": {
+                "completed": "Dokon\u010dano",
+                "needs_action": "Ni dokon\u010dano"
+            }
+        }
+    },
+    "services": {
+        "add_item": {
+            "description": "Doda nov element v seznam opravil",
+            "fields": {
+                "description": {
+                    "description": "Popolnej\u0161i opis elementa v seznamu opravil, kot ga ponuja naziv predmeta.",
+                    "name": "Opis"
+                },
+                "due_date": {
+                    "description": "Datum, do katerega se pri\u010dakuje, da bo opravilo dokon\u010dano.",
+                    "name": "Datum zapadlosti"
+                },
+                "due_datetime": {
+                    "description": "Datum, do katerega se pri\u010dakuje, da bo opravilo dokon\u010dano.",
+                    "name": "Datum in \u010das zapadlosti"
+                },
+                "item": {
+                    "description": "Naziv, ki predstavlja element v seznamu opravil",
+                    "name": "Naziv elementa"
+                }
+            }
+        },
+        "get_items": {
+            "description": "Pridobi elemente na seznamu opravil.",
+            "fields": {
+                "status": {
+                    "description": "Vrne samo elemente opravil z navedenimi statusi. Privzeto vrne nedokon\u010dane akcije.",
+                    "name": "Stanje"
+                }
+            }
+        },
+        "remove_completed_items": {
+            "description": "Odstrani vse dokon\u010dane elemente iz seznama opravil."
+        },
+        "remove_item": {
+            "description": "Odstrani obstoje\u010di element seznama opravil po njegovem imenu ali UID-ju.",
+            "fields": {
+                "item": {
+                    "description": "Ime/povzetek opravila. \u010ce imate elemente s podvojenimi imeni, se lahko na dolo\u010dene sklicujete z njihovim UID-jem.",
+                    "name": "Naziv elementa ali UID"
+                }
+            }
+        },
+        "update_item": {
+            "description": "Posodobi obstoje\u010di element seznama opravil glede na njegovo ime ali UID.",
+            "fields": {
+                "description": {
+                    "description": "Popolnej\u0161i opis elementa v seznamu opravil, kot ga ponuja naziv predmeta.",
+                    "name": "Opis"
+                },
+                "due_date": {
+                    "description": "Datum, do katerega se pri\u010dakuje, da bo opravilo dokon\u010dano.",
+                    "name": "Datum zapadlosti"
+                },
+                "due_datetime": {
+                    "description": "Datum, do katerega se pri\u010dakuje, da bo opravilo dokon\u010dano.",
+                    "name": "Datum in \u010das zapadlosti"
+                },
+                "item": {
+                    "description": "Ime/povzetek opravila. \u010ce imate elemente s podvojenimi imeni, se lahko na dolo\u010dene sklicujete z njihovim UID-jem.",
+                    "name": "Naziv elementa ali UID"
+                },
+                "rename": {
+                    "description": "Nov naziv za element v seznamu opravil",
+                    "name": "Preimenuj element"
+                },
+                "status": {
+                    "name": "Nastavi status"
+                }
+            }
+        }
+    },
+    "title": "Seznam opravil"
+}

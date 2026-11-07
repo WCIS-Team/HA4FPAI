@@ -1,0 +1,89 @@
+{
+    "config": {
+        "abort": {
+            "all_configured": "Visi susieti serveriai jau sukonfig\u016bruoti",
+            "already_configured": "\u0160is \u201ePlex\u201c serveris jau sukonfig\u016bruotas",
+            "reauth_successful": "Pakartotinis autentifikavimas buvo s\u0117kmingas",
+            "token_request_timeout": "Baig\u0117si skirtasis prieigos rakto gavimo laikas",
+            "unknown": "Netik\u0117ta klaida"
+        },
+        "error": {
+            "faulty_credentials": "Autorizacija nepavyko, patikrinkite prieigos rakt\u0105",
+            "host_or_token": "Turi b\u016bti pateiktas bent vienas i\u0161 pagrindinio kompiuterio arba prieigos rakto",
+            "no_servers": "N\u0117ra serveri\u0173, susiet\u0173 su \u201ePlex\u201c paskyra",
+            "not_found": "Plex serveris nerastas",
+            "ssl_error": "SSL sertifikato i\u0161davimas"
+        },
+        "flow_title": "{name} ({host})",
+        "step": {
+            "manual_setup": {
+                "data": {
+                    "host": "Host",
+                    "port": "Prievadas",
+                    "ssl": "Naudoja SSL sertifikat\u0105",
+                    "token": "\u017detonas (neprivaloma)",
+                    "verify_ssl": "Patikrinkite SSL sertifikat\u0105"
+                },
+                "title": "Rankin\u0117 Plex konfig\u016bracija"
+            },
+            "select_server": {
+                "data": {
+                    "server_id": "Serveris"
+                },
+                "description": "Galimi keli serveriai, pasirinkite vien\u0105:",
+                "title": "Pasirinkite Plex server\u012f"
+            },
+            "user": {
+                "description": "Plex server\u012f Home Assistant programoje galima nustatyti dviem skirtingais b\u016bdais.\n\nPlex paskyr\u0105 galite susieti prisijungdami per plex.tv, kuri automati\u0161kai aptiks ir prijungs j\u016bs\u0173 serverius, arba galite rankiniu b\u016bdu \u012fvesti serverio adres\u0105 ir prieigos rakt\u0105.",
+                "menu_options": {
+                    "manual_setup": "\u012eveskite rankiniu b\u016bdu",
+                    "website_auth": "Susieti Plex paskyr\u0105 (rekomenduojama)"
+                }
+            },
+            "website_auth": {
+                "description": "Jungiantis prie Plex \u012fvyko klaida. Bandykite dar kart\u0105."
+            }
+        }
+    },
+    "entity": {
+        "button": {
+            "scan_clients": {
+                "name": "Nuskaitykite klientus"
+            }
+        },
+        "update": {
+            "server_update": {
+                "name": "Atnaujinimas"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "plex_mp_settings": {
+                "data": {
+                    "ignore_new_shared_users": "Ignoruoti naujus valdomus / bendrinamus naudotojus",
+                    "ignore_plex_web_clients": "Ignoruokite Plex \u017einiatinklio klientus",
+                    "monitored_users": "Stebimi vartotojai",
+                    "use_episode_art": "Naudokite epizodo men\u0105"
+                },
+                "description": "Plex medijos grotuv\u0173 parinktys"
+            }
+        }
+    },
+    "services": {
+        "refresh_library": {
+            "description": "Atnaujina \u201ePlex\u201c bibliotek\u0105, kad b\u016bt\u0173 galima ie\u0161koti nauj\u0173 ir atnaujint\u0173 laikmen\u0173.",
+            "fields": {
+                "library_name": {
+                    "description": "Atnaujintinos Plex bibliotekos pavadinimas.",
+                    "name": "Bibliotekos pavadinimas"
+                },
+                "server_name": {
+                    "description": "Plex serverio pavadinimas, jei sukonfig\u016bruoti keli Plex serveriai.",
+                    "name": "Serverio pavadinimas"
+                }
+            },
+            "name": "Atnaujinti bibliotek\u0105"
+        }
+    }
+}

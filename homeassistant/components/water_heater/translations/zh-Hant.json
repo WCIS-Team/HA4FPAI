@@ -1,0 +1,245 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "condition_threshold_name": "\u81e8\u754c\u503c\u985e\u578b",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c",
+        "trigger_threshold_name": "\u81e8\u754c\u503c\u985e\u578b"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u95dc\u9589\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u5df2\u95dc\u9589"
+        },
+        "is_on": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u958b\u555f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u5df2\u958b\u555f"
+        },
+        "is_operation_mode": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u8a2d\u5b9a\u70ba\u7279\u5b9a\u64cd\u4f5c\u6a21\u5f0f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                },
+                "operation_mode": {
+                    "description": "\u8981\u6aa2\u67e5\u7684\u64cd\u4f5c\u6a21\u5f0f\u3002",
+                    "name": "\u64cd\u4f5c\u6a21\u5f0f"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u64cd\u4f5c\u6a21\u5f0f"
+        },
+        "is_target_temperature": {
+            "description": "\u6e2c\u8a66\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u6eab\u5ea6\u8a2d\u5b9a\u9ede\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                },
+                "threshold": {
+                    "name": "\u81e8\u754c\u503c\u985e\u578b"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u76ee\u6a19\u6eab\u5ea6"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "\u95dc\u9589{entity_name}",
+            "turn_on": "\u958b\u555f{entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u71b1\u6c34\u5668",
+            "state": {
+                "eco": "\u7bc0\u80fd",
+                "electric": "\u96fb\u529b",
+                "gas": "\u74e6\u65af",
+                "heat_pump": "\u71b1\u6cf5",
+                "high_demand": "\u9ad8\u9700\u6c42",
+                "off": "\u95dc\u9589",
+                "performance": "\u6548\u80fd"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "\u5916\u51fa\u6a21\u5f0f",
+                    "state": {
+                        "off": "\u95dc\u9589",
+                        "on": "\u958b\u555f"
+                    }
+                },
+                "current_operation": {
+                    "name": "\u76ee\u524d\u64cd\u4f5c"
+                },
+                "current_temperature": {
+                    "name": "\u76ee\u524d\u6eab\u5ea6"
+                },
+                "max_temp": {
+                    "name": "\u6700\u9ad8\u8a2d\u5b9a\u6eab\u5ea6"
+                },
+                "min_temp": {
+                    "name": "\u6700\u4f4e\u8a2d\u5b9a\u6eab\u5ea6"
+                },
+                "operation_mode": {
+                    "name": "\u64cd\u4f5c\u6a21\u5f0f",
+                    "state": {
+                        "eco": "\u7bc0\u80fd",
+                        "electric": "\u96fb\u529b",
+                        "gas": "\u74e6\u65af",
+                        "heat_pump": "\u71b1\u6cf5",
+                        "high_demand": "\u9ad8\u9700\u6c42",
+                        "off": "\u95dc\u9589",
+                        "performance": "\u6548\u80fd"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "\u8f03\u9ad8\u8a2d\u5b9a\u6eab\u5ea6"
+                },
+                "target_temp_low": {
+                    "name": "\u8f03\u4f4e\u8a2d\u5b9a\u6eab\u5ea6"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "{entity_id} \u7684\u64cd\u4f5c\u6a21\u5f0f {operation_mode} \u7121\u6548\u3002\u6709\u6548\u7684\u64cd\u4f5c\u6a21\u5f0f\u70ba\uff1a{operation_list}\u3002"
+        },
+        "operation_list_not_defined": {
+            "message": "{entity_id} \u7684\u64cd\u4f5c\u6a21\u5f0f {operation_mode} \u7121\u6548\u3002\u64cd\u4f5c\u6a21\u5f0f\u5217\u8868\u672a\u5b9a\u7fa9\u3002"
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "description": "\u8a2d\u5b9a\u71b1\u6c34\u5668\u96e2\u5bb6\u6a21\u5f0f\u958b\u555f/\u95dc\u9589\u3002",
+            "fields": {
+                "away_mode": {
+                    "description": "\u96e2\u5bb6\u6a21\u5f0f\u65b0\u6578\u503c\u3002",
+                    "name": "\u96e2\u5bb6\u6a21\u5f0f"
+                }
+            },
+            "name": "\u8a2d\u5b9a\u71b1\u6c34\u5668\u96e2\u5bb6\u6a21\u5f0f"
+        },
+        "set_operation_mode": {
+            "description": "\u8a2d\u5b9a\u71b1\u6c34\u5668\u64cd\u4f5c\u6a21\u5f0f\u3002",
+            "fields": {
+                "operation_mode": {
+                    "description": "\u64cd\u4f5c\u6a21\u5f0f\u65b0\u6578\u503c\u3002\u53ef\u80fd\u7684\u6a21\u5f0f\u5217\u8868\u3001\u8acb\u53c3\u95b1\u6574\u5408\u6587\u4ef6\u3002",
+                    "name": "\u64cd\u4f5c\u6a21\u5f0f"
+                }
+            },
+            "name": "\u8a2d\u5b9a\u71b1\u6c34\u5668\u64cd\u4f5c\u6a21\u5f0f"
+        },
+        "set_temperature": {
+            "description": "\u8a2d\u5b9a\u71b1\u6c34\u5668\u76ee\u6a19\u6eab\u5ea6\u3002",
+            "fields": {
+                "operation_mode": {
+                    "description": "\u64cd\u4f5c\u6a21\u5f0f\u65b0\u6578\u503c\u3002\u53ef\u80fd\u7684\u6a21\u5f0f\u5217\u8868\u3001\u8acb\u53c3\u95b1\u6574\u5408\u6587\u4ef6\u3002",
+                    "name": "\u64cd\u4f5c\u6a21\u5f0f"
+                },
+                "temperature": {
+                    "description": "\u71b1\u6c34\u5668\u65b0\u76ee\u6a19\u6eab\u5ea6\u3002",
+                    "name": "\u6eab\u5ea6"
+                }
+            },
+            "name": "\u8a2d\u5b9a\u71b1\u6c34\u5668\u76ee\u6a19\u6eab\u5ea6"
+        },
+        "turn_off": {
+            "description": "\u95dc\u9589\u71b1\u6c34\u5668\u3002",
+            "name": "\u95dc\u9589\u71b1\u6c34\u5668"
+        },
+        "turn_on": {
+            "description": "\u958b\u555f\u71b1\u6c34\u5668\u3002",
+            "name": "\u958b\u555f\u71b1\u6c34\u5668"
+        }
+    },
+    "title": "\u71b1\u6c34\u5668",
+    "triggers": {
+        "operation_mode_changed": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u7684\u64cd\u4f5c\u6a21\u5f0f\u8b8a\u66f4\u70ba\u7279\u5b9a\u6a21\u5f0f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                },
+                "operation_mode": {
+                    "description": "\u89f8\u767c\u7684\u64cd\u4f5c\u6a21\u5f0f\u3002",
+                    "name": "\u64cd\u4f5c\u6a21\u5f0f"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u64cd\u4f5c\u6a21\u5f0f\u5df2\u8b8a\u66f4"
+        },
+        "target_temperature_changed": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u7684\u6eab\u5ea6\u8a2d\u5b9a\u9ede\u8b8a\u66f4\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "threshold": {
+                    "name": "\u81e8\u754c\u503c\u985e\u578b"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u76ee\u6a19\u6eab\u5ea6\u5df2\u8b8a\u66f4"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u7684\u6eab\u5ea6\u8a2d\u5b9a\u9ede\u8d85\u904e\u81e8\u754c\u503c\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                },
+                "threshold": {
+                    "name": "\u81e8\u754c\u503c\u985e\u578b"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u76ee\u6a19\u6eab\u5ea6\u8d85\u904e\u81e8\u754c\u503c"
+        },
+        "turned_off": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u95dc\u9589\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u5df2\u95dc\u9589"
+        },
+        "turned_on": {
+            "description": "\u4e0d\u7ba1\u64cd\u4f5c\u6a21\u5f0f\u5982\u4f55\uff0c\u7576\u4e00\u500b\u6216\u591a\u500b\u71b1\u6c34\u5668\u958b\u555f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u71b1\u6c34\u5668\u5df2\u958b\u555f"
+        }
+    }
+}

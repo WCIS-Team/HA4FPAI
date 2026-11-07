@@ -1,0 +1,30 @@
+{
+    "exceptions": {
+        "failed_to_reload": {
+            "message": "Det gick inte att ladda om kontrollpanelens resurser. Kontrollera din konfiguration och f\u00f6rs\u00f6k igen."
+        },
+        "url_already_exists": {
+            "message": "URL:en \"{url}\" anv\u00e4nds redan. V\u00e4lj en annan."
+        }
+    },
+    "issues": {
+        "yaml_mode_deprecated": {
+            "description": "YAML-konfigurationen f\u00f6r din instrumentpanel anv\u00e4nder det \u00e4ldre alternativet `mode: yaml`, som tas bort i Home Assistant 2026.8. Dina YAML-instrumentpaneler forts\u00e4tter att fungera, men du m\u00e5ste uppdatera hur de definieras.\n\nS\u00e5 h\u00e4r uppdaterar du konfigurationen:\n\n1. Ta bort `mode: yaml` fr\u00e5n `lovelace:` i `configuration.yaml`\n2. L\u00e4gg i st\u00e4llet till en instrumentpanelspost:\n\n   ```yaml\n   lovelace:\n     resource_mode: yaml\n     dashboards:\n       lovelace:\n         mode: yaml\n         filename: {config_file}\n         title: Overview\n         icon: mdi:view-dashboard\n         show_in_sidebar: true\n   ```\n\n3. Starta om Home Assistant\n\nObs: `resource_mode: yaml` g\u00f6r att resurser forts\u00e4tter att l\u00e4sas in fr\u00e5n YAML. Om du i st\u00e4llet vill hantera resurser i anv\u00e4ndargr\u00e4nssnittet kan du ta bort raden och flytta resurserna till Inst\u00e4llningar > Instrumentpaneler > Resurser.",
+            "title": "Lovelace YAML-konfigurationen beh\u00f6ver uppdateras"
+        }
+    },
+    "services": {
+        "reload_resources": {
+            "description": "Laddar om kontrollpanelsresurser fr\u00e5n YAML-konfigurationen.",
+            "name": "Ladda om resurser"
+        }
+    },
+    "system_health": {
+        "info": {
+            "dashboards": "Kontrollpaneler",
+            "mode": "L\u00e4ge",
+            "resources": "Resurser",
+            "views": "Vyer"
+        }
+    }
+}

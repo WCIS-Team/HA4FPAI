@@ -1,0 +1,56 @@
+{
+    "device_automation": {
+        "action_type": {
+            "clean": "Permitir que {entity_name} limpe",
+            "dock": "Permitir que {entity_name} volte \u00e0 base"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} est\u00e1 limpando",
+            "is_docked": "{entity_name} est\u00e1 na base"
+        },
+        "extra_fields": {
+            "for": "Dura\u00e7\u00e3o"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} iniciou a limpeza",
+            "docked": "{entity_name} voltou \u00e0 base"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Aspirador",
+            "state": {
+                "cleaning": "Limpando",
+                "docked": "Na base",
+                "idle": "Ocioso",
+                "off": "Desligado",
+                "on": "Ligado",
+                "paused": "Pausado",
+                "returning": "Retornando para base"
+            }
+        }
+    },
+    "services": {
+        "send_command": {
+            "fields": {
+                "command": {
+                    "description": "Comando para executar. Os comandos s\u00e3o espec\u00edficos da integra\u00e7\u00e3o.",
+                    "name": "Comando"
+                },
+                "params": {
+                    "description": "Par\u00e2metros para o comando. Os par\u00e2metros s\u00e3o espec\u00edficos da integra\u00e7\u00e3o.",
+                    "name": "Par\u00e2metros"
+                }
+            }
+        },
+        "set_fan_speed": {
+            "fields": {
+                "fan_speed": {
+                    "description": "Velocidade do ventilador. O valor depende da integra\u00e7\u00e3o. Algumas integra\u00e7\u00f5es t\u00eam etapas de velocidade, como 'm\u00e9dio'. Algumas usam uma porcentagem, entre 0 e 100.",
+                    "name": "Velocidade do ventilador"
+                }
+            }
+        }
+    },
+    "title": "Aspirador"
+}

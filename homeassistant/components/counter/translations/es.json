@@ -1,0 +1,121 @@
+{
+    "common": {
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_value": {
+            "description": "Comprueba el valor de uno o m\u00e1s contadores.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "Valor del contador"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Contador",
+            "state_attributes": {
+                "editable": {
+                    "name": "Gestionado a trav\u00e9s de la IU",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ed"
+                    }
+                },
+                "initial": {
+                    "name": "Valor inicial"
+                },
+                "maximum": {
+                    "name": "M\u00e1ximo"
+                },
+                "minimum": {
+                    "name": "M\u00ednimo"
+                },
+                "step": {
+                    "name": "Paso"
+                }
+            }
+        }
+    },
+    "services": {
+        "decrement": {
+            "description": "Disminuye un contador por su tama\u00f1o de paso.",
+            "name": "Decrementar contador"
+        },
+        "increment": {
+            "description": "Incrementa un contador por su tama\u00f1o de paso.",
+            "name": "Incrementar contador"
+        },
+        "reset": {
+            "description": "Restablece un contador a su valor inicial.",
+            "name": "Restablecer contador"
+        },
+        "set_value": {
+            "description": "Establece un contador a un valor espec\u00edfico.",
+            "fields": {
+                "value": {
+                    "description": "El nuevo valor del contador al que debe ajustarse la entidad.",
+                    "name": "Valor"
+                }
+            },
+            "name": "Establecer el valor del contador"
+        }
+    },
+    "title": "Contador",
+    "triggers": {
+        "decremented": {
+            "description": "Se dispara cuando uno o m\u00e1s contadores se decrementan.",
+            "name": "Contador decrementado"
+        },
+        "incremented": {
+            "description": "Se dispara cuando uno o m\u00e1s contadores se incrementan.",
+            "name": "Contador incrementado"
+        },
+        "maximum_reached": {
+            "description": "Se dispara cuando uno o m\u00e1s contadores alcanzan su valor m\u00e1ximo.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El contador alcanz\u00f3 el m\u00e1ximo"
+        },
+        "minimum_reached": {
+            "description": "Se dispara cuando uno o m\u00e1s contadores alcanzan su valor m\u00ednimo.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El contador alcanz\u00f3 el m\u00ednimo"
+        },
+        "reset": {
+            "description": "Se dispara cuando uno o m\u00e1s contadores se reinician.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Reinicio del contador"
+        }
+    }
+}

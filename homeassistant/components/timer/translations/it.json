@@ -1,0 +1,139 @@
+{
+    "common": {
+        "trigger_behavior_name": "Attiva quando",
+        "trigger_for_name": "Per almeno"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Verifica se uno o pi\u00f9 timer sono attivi.",
+            "name": "Timer attivo"
+        },
+        "is_paused": {
+            "description": "Verifica se uno o pi\u00f9 timer sono in pausa.",
+            "name": "Timer in pausa"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Temporizzatore",
+            "state": {
+                "active": "Attivo",
+                "idle": "Inattivo",
+                "paused": "In pausa"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Durata"
+                },
+                "editable": {
+                    "name": "Gestito tramite interfaccia utente",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ec"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Finisce alle"
+                },
+                "last_transition": {
+                    "name": "Ultima transizione",
+                    "state": {
+                        "cancelled": "Annullato",
+                        "finished": "Finito",
+                        "paused": "In pausa",
+                        "restarted": "Riavviato",
+                        "started": "Avviato"
+                    }
+                },
+                "remaining": {
+                    "name": "Rimanente"
+                },
+                "restore": {
+                    "name": "Ripristina"
+                }
+            }
+        }
+    },
+    "services": {
+        "change": {
+            "fields": {
+                "duration": {
+                    "name": "Durata"
+                }
+            }
+        },
+        "reload": {
+            "description": "Ricarica i timer dalla configurazione YAML."
+        },
+        "start": {
+            "fields": {
+                "duration": {
+                    "name": "Durata"
+                }
+            }
+        }
+    },
+    "title": "Timer",
+    "triggers": {
+        "cancelled": {
+            "description": "Si attiva quando uno o pi\u00f9 timer vengono annullati.",
+            "fields": {
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "Timer cancellato"
+        },
+        "finished": {
+            "description": "Si attiva quando uno o pi\u00f9 timer terminano.",
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "Fine del timer"
+        },
+        "paused": {
+            "description": "Si attiva quando uno o pi\u00f9 timer sono in pausa.",
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "Timer in pausa"
+        },
+        "remaining_time_reached": {
+            "description": "Si attiva quando uno o pi\u00f9 timer raggiungono un tempo specifico"
+        },
+        "restarted": {
+            "description": "Si attiva quando uno o pi\u00f9 timer vengono riavviati.",
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "Timer riavviato"
+        },
+        "started": {
+            "description": "Si attiva quando uno o pi\u00f9 timer vengono avviati.",
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "Timer avviato"
+        }
+    }
+}

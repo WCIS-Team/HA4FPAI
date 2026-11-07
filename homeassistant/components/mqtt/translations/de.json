@@ -1,0 +1,1428 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Verbindung zur {addon}-App konnte nicht hergestellt werden. \u00dcberpr\u00fcfe den Status der App und versuche es sp\u00e4ter erneut.",
+            "addon_info_failed": "Informationen zur {addon}-App konnten nicht abgerufen werden.",
+            "addon_install_failed": "Die {addon}-App konnte nicht installiert werden.",
+            "addon_start_failed": "Die {addon}-App konnte nicht gestartet werden.",
+            "already_configured": "Dienst ist bereits konfiguriert"
+        },
+        "error": {
+            "bad_birth": "Ung\u00fcltiges `birth`-Topic",
+            "bad_certificate": "Das CA-Zertifikat ist ung\u00fcltig",
+            "bad_client_cert": "Ung\u00fcltiges Client-Zertifikat. Stelle sicher, dass eine g\u00fcltige Datei bereitgestellt wird",
+            "bad_client_cert_key": "Client-Zertifikat und privater Schl\u00fcssel sind kein g\u00fcltiges Paar",
+            "bad_discovery_prefix": "Ung\u00fcltiges Discovery-Pr\u00e4fix",
+            "bad_will": "Ung\u00fcltiges `will`-Topic",
+            "bad_ws_headers": "Bereitstellung g\u00fcltiger HTTP-Header als JSON-Objekt",
+            "cannot_connect": "Verbindung fehlgeschlagen",
+            "client_key_error": "Ung\u00fcltige Datei mit privatem Schl\u00fcssel oder ung\u00fcltiges Passwort angegeben",
+            "invalid_auth": "Ung\u00fcltige Authentifizierung",
+            "invalid_inclusion": "Das Client-Zertifikat und der private Schl\u00fcssel m\u00fcssen gemeinsam konfiguriert werden"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Server",
+                    "password": "Passwort",
+                    "port": "Port",
+                    "protocol": "MQTT-Protokoll",
+                    "username": "Benutzername"
+                },
+                "data_description": {
+                    "broker": "Der Hostname oder die IP-Adresse deines MQTT-Brokers.",
+                    "password": "Das Passwort zur Anmeldung bei deinem MQTT-Broker.",
+                    "port": "Der Port, den dein MQTT-Broker \u00fcberwacht. Zum Beispiel 1883.",
+                    "protocol": "Die verwendete MQTT-Protokollversion. Beachte, dass Home Assistant automatisch auf Version 5 umstellt, sofern dein Broker diese unterst\u00fctzt.",
+                    "username": "Der Benutzername zur Anmeldung bei deinem MQTT-Broker."
+                },
+                "description": "Bitte gib die Verbindungsinformationen deines MQTT-Brokers ein.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "Hochladen einer benutzerdefinierten CA-Zertifikatsdatei",
+                            "client_cert": "Client-Zertifikatsdatei hochladen",
+                            "client_id": "Client-ID (f\u00fcr eine zuf\u00e4llig generierte Client-ID leer lassen)",
+                            "client_key": "Datei mit privatem Schl\u00fcssel hochladen",
+                            "client_key_password": "Passwort",
+                            "keepalive": "Die Zeit zwischen dem Senden von Keep-Alive-Nachrichten",
+                            "set_ca_cert": "Validierung des Broker-Zertifikats",
+                            "set_client_cert": "Ein Client-Zertifikat verwenden",
+                            "tls_insecure": "Validierung des Broker-Zertifikats ignorieren",
+                            "transport": "MQTT-Transport",
+                            "ws_headers": "WebSocket-Header im JSON-Format",
+                            "ws_path": "WebSocket-Pfad"
+                        },
+                        "data_description": {
+                            "certificate": "Die benutzerdefinierte CA-Zertifikatsdatei zur Validierung des Zertifikats deines MQTT-Brokers.",
+                            "client_cert": "Das Client-Zertifikat zur Authentifizierung gegen\u00fcber deinem MQTT-Broker.",
+                            "client_id": "Die eindeutige ID zur Identifizierung der Home Assistant MQTT-API als MQTT-Client. Es wird empfohlen, diese Option leer zu lassen.",
+                            "client_key": "Die Datei des privaten Schl\u00fcssels, der zu deinem Client-Zertifikat geh\u00f6rt.",
+                            "client_key_password": "Das Passwort f\u00fcr die Datei mit privatem Schl\u00fcssel (falls festgelegt).",
+                            "keepalive": "Ein Wert unter 90 Sekunden wird empfohlen. Standardwert: 60 Sekunden.",
+                            "set_ca_cert": "Wenn die Option bereits auf **Benutzerdefiniert** eingestellt ist, wird ein benutzerdefiniertes CA-Validierungszertifikat konfiguriert. W\u00e4hle **Automatisch** f\u00fcr die automatische CA-Validierung oder lade ein benutzerdefiniertes CA-Zertifikat hoch, um die Validierung des Zertifikats deines MQTT-Brokers zu erm\u00f6glichen.",
+                            "set_client_cert": "Wenn die Clientzertifikatsauthentifizierung bereits ausgew\u00e4hlt ist, ist sie aktiviert. Lade ein Clientzertifikat und einen Schl\u00fcssel hoch, um die Authentifizierung zu aktivieren.",
+                            "tls_insecure": "Option zum Ignorieren der Validierung des Zertifikats deines MQTT-Brokers.",
+                            "transport": "Das Transportprotokoll, das f\u00fcr die Verbindung zu deinem MQTT-Broker verwendet werden soll.",
+                            "ws_headers": "Die WebSocket-Header, die \u00fcber die WebSocket-basierte Verbindung an deinen MQTT-Broker weitergeleitet werden.",
+                            "ws_path": "Der WebSocket-Pfad, der f\u00fcr die Verbindung zu deinem MQTT-Broker verwendet werden soll."
+                        },
+                        "name": "Weitere Einstellungen"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "M\u00f6chtest du Home Assistant so konfigurieren, dass er eine Verbindung mit dem MQTT-Broker herstellt, der von der {addon}-App bereitgestellt wird?",
+                "title": "MQTT-Broker \u00fcber Home-Assistant-App"
+            },
+            "install_addon": {
+                "title": "App wird installiert"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Passwort",
+                    "username": "Benutzername"
+                },
+                "data_description": {
+                    "password": "Das Passwort zur Anmeldung bei deinem MQTT-Broker.",
+                    "username": "Der Benutzername zur Anmeldung bei deinem MQTT-Broker."
+                },
+                "description": "Der MQTT-Broker meldete einen Authentifizierungsfehler. Bitte \u00fcberpr\u00fcfe den korrekten Benutzernamen und das Passwort des Brokers.",
+                "title": "Erneute Authentifizierung beim MQTT-Broker erforderlich"
+            },
+            "start_addon": {
+                "title": "App wird gestartet"
+            },
+            "user": {
+                "description": "Bitte w\u00e4hle, wie du dich mit dem MQTT-Broker verbinden m\u00f6chtest:",
+                "menu_options": {
+                    "addon": "Die offizielle {addon}-App verwenden.",
+                    "broker": "Die MQTT-Broker-Verbindungsdetails manuell eingeben"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "MQTT-Ger\u00e4t mit {platform}-Entit\u00e4t \u201e{entity}\u201c wurde erfolgreich eingerichtet. \n \nBeachte, dass du das MQTT-Ger\u00e4t jederzeit neu konfigurieren kannst, z.B. um weitere Entit\u00e4ten hinzuzuf\u00fcgen."
+            },
+            "entry_type": "MQTT-Ger\u00e4t",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "Die Topic-Optionen \u201ePosition abrufen\u201c und \u201ePosition einstellen\u201c m\u00fcssen zusammen festgelegt werden.",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "Das Template f\u00fcr den Positionswert muss zusammen mit dem Topic f\u00fcr den Positionszustand verwendet werden",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "Das Positions-Template muss mit dem Positions-Topic verwendet werden",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "Das Template f\u00fcr den Kippbefehl muss mit dem Topic f\u00fcr den Kippbefehl verwendet werden",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "Das Template f\u00fcr den Kippstellungswert muss mit dem Topic f\u00fcr den Kippstellungszustand verwendet werden",
+                "cover_value_template_must_be_used_with_state_topic": "Das Wert-Template muss mit der Option \u201eZustands-Topic\u201c verwendet werden.",
+                "empty_list_not_allowed": "Eine leere Liste ist nicht zul\u00e4ssig. Mindestens ein Element hinzuf\u00fcgen",
+                "fan_preset_mode_reset_in_preset_modes_list": "Payload \"Voreinstellung zur\u00fccksetzen\" ist als Voreinstellung nicht erlaubt",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "Das Drehzahlbereich-Maximum muss gr\u00f6\u00dfer sein als das Drehzahlbereich-Minimum",
+                "invalid_input": "Ung\u00fcltiger Wert",
+                "invalid_regular_expression": "Muss ein g\u00fcltiger regul\u00e4rer Ausdruck sein",
+                "invalid_subscribe_topic": "Ung\u00fcltiges Abonnements-Topic",
+                "invalid_supported_color_modes": "Ung\u00fcltige Auswahl der unterst\u00fctzten Farbmodi",
+                "invalid_template": "Ung\u00fcltiges Template",
+                "invalid_uom": "Die Ma\u00dfeinheit \u201e{unit_of_measurement}\u201c wird von der ausgew\u00e4hlten Ger\u00e4teklasse nicht unterst\u00fctzt. Bitte entferne entweder die Ger\u00e4teklasse, w\u00e4hle eine Ger\u00e4teklasse, die \u201e{unit_of_measurement}\u201c unterst\u00fctzt, oder w\u00e4hle eine unterst\u00fctzte Ma\u00dfeinheit aus der Liste.",
+                "invalid_uom_for_state_class": "Die Ma\u00dfeinheit \u201e{unit_of_measurement}\u201c wird von der ausgew\u00e4hlten Zustandsklasse nicht unterst\u00fctzt. Entferne entweder die Zustandsklasse, w\u00e4hle eine Zustandsklasse aus, die \u201e{unit_of_measurement}\u201c unterst\u00fctzt, oder w\u00e4hle eine unterst\u00fctzte Ma\u00dfeinheit aus der Liste aus.",
+                "invalid_url": "Ung\u00fcltige URL",
+                "last_reset_not_with_state_class_total": "Die Template-Option f\u00fcr letzten R\u00fccksetzwert sollte nur mit der Zustandsklasse \u201eGesamt\u201c verwendet werden",
+                "max_below_min": "Der Maximalwert sollte gr\u00f6\u00dfer oder gleich dem Minimalwert sein",
+                "max_below_min_humidity": "Die Wert f\u00fcr die maximale Luftfeuchtigkeit sollte gr\u00f6\u00dfer sein als f\u00fcr die minimale Luftfeuchtigkeit",
+                "max_below_min_kelvin": "Der maximale Kelvin-Wert sollte gr\u00f6\u00dfer sein als der minimale Kelvin-Wert",
+                "max_below_min_temperature": "Die Wert f\u00fcr die maximale Temperatur sollte gr\u00f6\u00dfer sein als f\u00fcr die minimale Temperatur",
+                "options_device_class_enum": "Die Einstellung \u201eOptionen\u201c muss mit der Ger\u00e4teklasse \u201eEnumeration\u201c verwendet werden. Wenn du fortf\u00e4hrst, werden die vorhandenen Optionen zur\u00fcckgesetzt.",
+                "options_not_allowed_with_state_class_or_uom": "Die Einstellung \u201eOptionen\u201c ist nicht zul\u00e4ssig, wenn Zustandsklasse oder Ma\u00dfeinheit verwendet werden",
+                "options_with_enum_device_class": "Optionen f\u00fcr den Enumeration-Sensor konfigurieren",
+                "preset_mode_none_not_allowed": "Voreinstellung \u201enone\u201c ist kein g\u00fcltiger Voreinstellungsmodus",
+                "uom_required_for_device_class": "Die ausgew\u00e4hlte Ger\u00e4teklasse erfordert eine Ma\u00dfeinheit"
+            },
+            "initiate_flow": {
+                "reconfigure": "MQTT-Ger\u00e4t neu konfigurieren",
+                "user": "MQTT-Ger\u00e4t hinzuf\u00fcgen"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "Verf\u00fcgbarkeits-Template",
+                        "availability_topic": "Verf\u00fcgbarkeits-Topic",
+                        "payload_available": "\u201eVerf\u00fcgbar\u201c-Payload",
+                        "payload_not_available": "\u201eNicht verf\u00fcgbar\u201c-Payload"
+                    },
+                    "data_description": {
+                        "availability_template": "Ein [Template]({value_templating_url}) zum Rendern der Verf\u00fcgbarkeits-Payload, die im Verf\u00fcgbarkeits-Topic empfangen wurde",
+                        "availability_topic": "Topic zum Empfang der Verf\u00fcgbarkeits-Payload",
+                        "payload_available": "Die Payload, die angibt, dass das Ger\u00e4t verf\u00fcgbar ist (Standard ist \u201eonline\u201c)",
+                        "payload_not_available": "Die Payload, die angibt, dass das Ger\u00e4t nicht verf\u00fcgbar ist (Standard ist \u201eoffline\u201c)"
+                    },
+                    "description": "Mit der Verf\u00fcgbarkeitsfunktion kann ein Ger\u00e4t seine Verf\u00fcgbarkeit melden.",
+                    "title": "Verf\u00fcgbarkeitsoptionen"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Entit\u00e4t"
+                    },
+                    "data_description": {
+                        "component": "W\u00e4hle die Entit\u00e4t aus, die du l\u00f6schen m\u00f6chtest. Mindestens eine Entit\u00e4t ist erforderlich."
+                    },
+                    "description": "L\u00f6scht eine Entit\u00e4t. Die Entit\u00e4t wird vom Ger\u00e4t entfernt. Durch das Entfernen einer Entit\u00e4t werden alle davon abh\u00e4ngigen Automationen oder Skripte besch\u00e4digt.",
+                    "title": "Entit\u00e4t l\u00f6schen"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "Konfigurations-URL",
+                        "manufacturer": "Hersteller",
+                        "model": "Modell",
+                        "model_id": "Modell-ID",
+                        "name": "Name"
+                    },
+                    "data_description": {
+                        "configuration_url": "Ein Link zur Webseite, auf der die Konfiguration dieses Ger\u00e4ts verwaltet werden kann. Kann entweder eine \u201ehttp://\u201c, \u201ehttps://\u201c oder eine interne \u201ehomeassistant://\u201c-URL sein.",
+                        "manufacturer": "Z.B. Cleanmaster Ltd.",
+                        "model": "Z.B. \u201eCleanmaster Pro\u201c.",
+                        "model_id": "Z.B. \u201e123NK2PRO\u201c.",
+                        "name": "Der Name des manuell hinzugef\u00fcgten MQTT-Ger\u00e4ts."
+                    },
+                    "description": "Gib die MQTT-Ger\u00e4tedetails ein:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "Message Expiry Interval",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "Aufbewahrungsdauer f\u00fcr eine ver\u00f6ffentlichte Nachricht.",
+                                "qos": "Der Wert f\u00fcr die Quality of Service, den die Entit\u00e4ten des Ger\u00e4ts verwenden sollen."
+                            },
+                            "name": "MQTT-Einstellungen"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "Hardware-Version",
+                                "sw_version": "Software-Version"
+                            },
+                            "data_description": {
+                                "hw_version": "Die Hardware-Version des Ger\u00e4ts, z.B. \u201ev1.0 rev a\u201c.",
+                                "sw_version": "Die Software-Version des Ger\u00e4ts, z.B. \u201e2025.1.0\u201c."
+                            },
+                            "name": "Weitere Ger\u00e4teeinstellungen"
+                        }
+                    },
+                    "title": "MQTT-Ger\u00e4tedetails konfigurieren"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Entit\u00e4tsbild",
+                        "name": "Entit\u00e4tsname",
+                        "platform": "Art der Entit\u00e4t"
+                    },
+                    "data_description": {
+                        "entity_picture": "Eine URL zu einem Bild, das zugewiesen werden soll.",
+                        "name": "Der Name der Entit\u00e4t. Lasse das Feld leer, um es auf \u201eKein\u201c zu setzen und [es als Hauptfunktion des MQTT-Ger\u00e4ts zu markieren]({naming_entities_url}).",
+                        "platform": "Der Typ der zu konfigurierenden Entit\u00e4t."
+                    },
+                    "description": "Konfiguriere die grundlegenden Einstellungen der {platform_label}Entit\u00e4t{entity_name_label}",
+                    "title": "Das MQTT-Ger\u00e4t \u201e{mqtt_device}\u201c konfigurieren"
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Alarmcode-Validierungsmodus",
+                        "climate_feature_action": "Unterst\u00fctzung f\u00fcr aktuelle Aktion",
+                        "climate_feature_current_humidity": "Unterst\u00fctzung f\u00fcr Ist-Luftfeuchtigkeit",
+                        "climate_feature_current_temperature": "Unterst\u00fctzung f\u00fcr Ist-Temperatur",
+                        "climate_feature_fan_modes": "Unterst\u00fctzung f\u00fcr L\u00fcftermodus",
+                        "climate_feature_power": "Unterst\u00fctzung f\u00fcr Ein- und Ausschalten",
+                        "climate_feature_preset_modes": "Unterst\u00fctzung von Voreinstellungen",
+                        "climate_feature_swing_horizontal_modes": "Unterst\u00fctzung f\u00fcr horizontale Oszillationsart",
+                        "climate_feature_swing_modes": "Unterst\u00fctzung f\u00fcr Oszillationsart",
+                        "climate_feature_target_humidity": "Unterst\u00fctzung f\u00fcr Soll-Luftfeuchtigkeit",
+                        "climate_feature_target_temperature": "Unterst\u00fctzung f\u00fcr Soll-Temperatur",
+                        "device_class": "Ger\u00e4teklasse",
+                        "entity_category": "Entit\u00e4tskategorie",
+                        "fan_feature_direction": "Unterst\u00fctzung der Drehrichtung",
+                        "fan_feature_oscillation": "Unterst\u00fctzung der Oszillation",
+                        "fan_feature_preset_modes": "Unterst\u00fctzung von Voreinstellungen",
+                        "fan_feature_speed": "Drehzahl-Unterst\u00fctzung",
+                        "image_processing_mode": "Bildverarbeitungsmodus",
+                        "options": "Option hinzuf\u00fcgen",
+                        "reports_position": "Meldet Stellung",
+                        "schema": "Schema",
+                        "state_class": "Zustandsklasse",
+                        "suggested_display_precision": "Empfohlene Anzeigegenauigkeit",
+                        "supported_features": "Unterst\u00fctzte Funktionen",
+                        "temperature_unit": "Temperatureinheit",
+                        "unit_of_measurement": "Ma\u00dfeinheit",
+                        "water_heater_feature_current_temperature": "Unterst\u00fctzung f\u00fcr Ist-Temperatur",
+                        "water_heater_feature_power": "Unterst\u00fctzung f\u00fcr Ein- und Ausschalten"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Konfiguriert, wie die Alarmzentrale den Code validiert. Ein lokaler Code wird mit der Entit\u00e4t konfiguriert und von Home Assistant validiert. Ein Remote-Code wird an das Ger\u00e4t gesendet und remote validiert. [Weitere Informationen]({url}#code)",
+                        "climate_feature_action": "Das Klimager\u00e4t unterst\u00fctzt die Meldung der aktuellen Aktion.",
+                        "climate_feature_current_humidity": "Das Klimager\u00e4t unterst\u00fctzt die Meldung der aktuellen Luftfeuchtigkeit.",
+                        "climate_feature_current_temperature": "Das Klimager\u00e4t unterst\u00fctzt die Meldung der aktuellen Temperatur.",
+                        "climate_feature_fan_modes": "Das Klimager\u00e4t unterst\u00fctzt L\u00fcftermodi.",
+                        "climate_feature_power": "Das Klimager\u00e4t unterst\u00fctzt Ein- und Ausschaltbefehle.",
+                        "climate_feature_preset_modes": "Das Klimager\u00e4t unterst\u00fctzt Voreinstellungen.",
+                        "climate_feature_swing_horizontal_modes": "Das Klimager\u00e4t unterst\u00fctzt horizontale Oszillationsarten.",
+                        "climate_feature_swing_modes": "Das Klimager\u00e4t unterst\u00fctzt Oszillationsarten.",
+                        "climate_feature_target_humidity": "Das Klimager\u00e4t unterst\u00fctzt die Einstellung des Luftfeuchtigkeit-Sollwerts.",
+                        "climate_feature_target_temperature": "Das Klimager\u00e4t unterst\u00fctzt die Einstellung des Temperatur-Sollwerts.",
+                        "device_class": "Die Ger\u00e4teklasse der \u201e{platform}\u201c-Entit\u00e4t. [Weitere Informationen]({url}#device_class)",
+                        "entity_category": "Erlaubt die Markierung einer Entit\u00e4t als Ger\u00e4te-Konfiguration oder -Diagnose. Eine Entit\u00e4t mit einer Kategorie wird weder f\u00fcr Cloud-, Alexa- oder Google-Assistant-Komponenten verf\u00fcgbar gemacht noch in indirekte Aktionsaufrufe an Ger\u00e4te oder Bereiche einbezogen. Sensor-Entit\u00e4ten kann keine Ger\u00e4tekonfigurationsklasse zugewiesen werden. [Weitere Informationen]({registry_properties_url})",
+                        "fan_feature_direction": "Der Ventilator unterst\u00fctzt die Drehrichtung.",
+                        "fan_feature_oscillation": "Der Ventilator unterst\u00fctzt die Oszillation.",
+                        "fan_feature_preset_modes": "Der Ventilator unterst\u00fctzt voreingestellte Betriebsarten.",
+                        "fan_feature_speed": "Der Ventilator unterst\u00fctzt mehrere Drehzahlen.",
+                        "image_processing_mode": "W\u00e4hle aus, wie die Bilddaten empfangen werden.",
+                        "options": "Optionen f\u00fcr zul\u00e4ssige Werte des Sensorzustands. Die Ger\u00e4teklasse des Sensors muss auf \u201eEnumeration\u201c eingestellt sein. Die Einstellung \u201eOptionen\u201c kann nicht zusammen mit \u201eZustandsklasse\u201c oder \u201eMa\u00dfeinheit\u201c verwendet werden.",
+                        "reports_position": "Aktiviere diese Option, wenn das Ventil seine Stellung meldet oder deren Einstellung unterst\u00fctzt. Durch Aktivieren dieser Option wird anstelle einer durch die \u201e\u00d6ffnen\u201c-, \u201eSchlie\u00dfen\u201c- oder \u201eStopp\u201c-Payload definierten Payload die Stellung ver\u00f6ffentlicht. Beim Empfang von Nachrichten akzeptiert das Zustands-Topic numerische Payloads oder eine der konfigurierten Zustandsmeldungen.",
+                        "schema": "Das zu verwendende Schema. [Weitere Informationen]({url}#comparison-of-light-mqtt-schemas)",
+                        "state_class": "Die [Zustandsklasse]({available_state_classes_url}) des Sensors. [Weitere Informationen]({url}#state_class)",
+                        "suggested_display_precision": "Die Anzahl der Dezimalstellen, die nach dem Runden im Zustand der {platform}-Entit\u00e4t verwendet werden sollen. [Weitere Informationen]({url}#suggested_display_precision)",
+                        "supported_features": "Die Funktionen, die die Entit\u00e4t unterst\u00fctzt.",
+                        "temperature_unit": "Dies bestimmt die native Ma\u00dfeinheit, mit der das MQTT-Ger\u00e4t arbeitet.",
+                        "unit_of_measurement": "Definiert die Ma\u00dfeinheit, sofern vorhanden.",
+                        "water_heater_feature_current_temperature": "Der Warmwasserbereiter unterst\u00fctzt die Meldung der Ist-Temperatur.",
+                        "water_heater_feature_power": "Der Warmwasserbereiter unterst\u00fctzt Ein- und Ausschaltbefehle."
+                    },
+                    "description": "Bitte konfiguriere spezifische Details f\u00fcr die \u201e{platform}\u201c-Entit\u00e4t \u201e{entity}\u201c:",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "Empfohlene Anzeigegenauigkeit"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "Die Anzahl der Dezimalstellen, die nach dem Runden im Zustand der {platform}-Entit\u00e4t verwendet werden sollen. [Weitere Informationen]({url}#suggested_display_precision)"
+                            },
+                            "name": "Weitere Einstellungen"
+                        }
+                    },
+                    "title": "MQTT-Ger\u00e4t \u201e{mqtt_device}\u201c konfigurieren"
+                },
+                "export": {
+                    "description": "Ein Export erm\u00f6glicht dir die Migration der MQTT-Ger\u00e4tekonfiguration in eine YAML-basierte Konfiguration oder MQTT-Erkennung. Der Konfigurationsexport kann auch bei der Fehlerbehebung hilfreich sein.",
+                    "menu_options": {
+                        "export_discovery": "Daten zur MQTT-Erkennung exportieren",
+                        "export_yaml": "In YAML-Konfiguration exportieren"
+                    },
+                    "title": "MQTT-Ger\u00e4tekonfiguration exportieren"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Payload zur Erkennung:",
+                        "discovery_topic": "Topic zur Erkennung"
+                    },
+                    "data_description": {
+                        "discovery_payload": "Die JSON [Payload zur Erkennung]({url}#device-discovery-payload), die Informationen \u00fcber das MQTT-Ger\u00e4t enth\u00e4lt.",
+                        "discovery_topic": "Das [Topic zur Erkennung]({url}#discovery-topic) zum Ver\u00f6ffentlichen der Payload zur Erkennung, die zum Ausl\u00f6sen der MQTT-Erkennung verwendet wird. Eine in diesem Topic ver\u00f6ffentlichte leere Payload entfernt das Ger\u00e4t und die erkannten Entit\u00e4ten."
+                    },
+                    "description": "Um die Einrichtung per MQTT-[Erkennung]({url}#device-discovery-payload) zu erm\u00f6glichen, muss die Payload zur Erkennung im Topic zur Erkennung ver\u00f6ffentlicht werden. Kopiere die Informationen aus den folgenden Feldern. Home Assistant merkt, ob die Einrichtung des MQTT-Ger\u00e4ts stattdessen per MQTT-Erkennung versucht wurde, und bietet einen Reparaturablauf zur Bereinigung des redundanten Untereintrags an. Du kannst die IDs auch \u00e4ndern, wenn du den Untereintrag nicht entfernen m\u00f6chtest.",
+                    "title": "MQTT-Ger\u00e4tekonfiguration exportieren"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "Kopiere die folgende YAML-Konfiguration:"
+                    },
+                    "data_description": {
+                        "yaml": "Platziere die YAML-Konfiguration in deiner [configuration.yaml]({url}#yaml-configuration-listed-per-item)."
+                    },
+                    "description": "Du kannst die unten stehende Konfiguration kopieren und in deine configuration.yaml-Datei einf\u00fcgen. Home Assistant merkt, ob die Einrichtung des MQTT-Ger\u00e4ts stattdessen \u00fcber YAML versucht wurde, und bietet einen Reparaturablauf an, um den redundanten Untereintrag zu bereinigen. Du kannst auch die IDs \u00e4ndern, wenn du den Untereintrag nicht entfernen m\u00f6chtest.",
+                    "title": "MQTT-Ger\u00e4tekonfiguration exportieren"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "Verf\u00fcgbare T\u00f6ne",
+                        "blue_template": "Blau-Template",
+                        "brightness_template": "Helligkeits-Template",
+                        "code": "Alarmcode",
+                        "code_arm_required": "Code f\u00fcr Aktivierung erforderlich",
+                        "code_disarm_required": "Code f\u00fcr Deaktivierung erforderlich",
+                        "code_format": "Code-Format",
+                        "code_trigger_required": "Code f\u00fcr Ausl\u00f6sung erforderlich",
+                        "color_temp_template": "Farbtemperatur-Template",
+                        "command_off_template": "Template f\u00fcr \u201eAus\u201c-Befehl",
+                        "command_on_template": "Template f\u00fcr \u201eEin\u201c-Befehl",
+                        "command_template": "Befehls-Template",
+                        "command_topic": "Befehls-Topic",
+                        "content_type": "Inhaltstyp",
+                        "force_update": "Aktualisierung erzwingen",
+                        "green_template": "Gr\u00fcn-Template",
+                        "image_encoding": "Bildcodierung",
+                        "image_topic": "Bild-Topic",
+                        "last_reset_value_template": "Template des letzten R\u00fccksetzwertes",
+                        "max": "Maximum",
+                        "min": "Minimum",
+                        "mode": "Modus",
+                        "mode_command_template": "Template f\u00fcr Betriebsart-Befehl",
+                        "mode_command_topic": "Topic f\u00fcr Betriebsart-Befehl",
+                        "mode_state_template": "Template f\u00fcr Betriebsart-Wert",
+                        "mode_state_topic": "Topic f\u00fcr Betriebsart-Zustand",
+                        "modes": "Unterst\u00fctzte Betriebsarten",
+                        "on_command_type": "EIN-Befehlstyp",
+                        "optimistic": "Optimistisch",
+                        "options": "Optionen festlegen",
+                        "payload_off": "Payload \u201eaus\u201c",
+                        "payload_on": "Payload \u201eein\u201c",
+                        "payload_press": "Payload \u201edr\u00fccken\u201c",
+                        "payload_reset": "Payload \u201ezur\u00fccksetzen\u201c",
+                        "position_closed": "Stellung \u201egeschlossen\u201c",
+                        "position_open": "Stellung \u201ege\u00f6ffnet\u201c",
+                        "qos": "QoS",
+                        "red_template": "Rot-Template",
+                        "retain": "Retain",
+                        "state_off": "Zustand \u201eaus\u201c",
+                        "state_on": "Zustand \u201eein\u201c",
+                        "state_template": "Zustandstemplate",
+                        "state_topic": "Zustands-Topic",
+                        "state_value_template": "Zustandswert-Template",
+                        "step": "Schritt",
+                        "support_duration": "Unterst\u00fctzung f\u00fcr Dauer",
+                        "support_volume_set": "Unterst\u00fctzung f\u00fcr Lautst\u00e4rkeeinstellung",
+                        "supported_color_modes": "Unterst\u00fctzte Farbmodi",
+                        "timezone": "Zeitzone",
+                        "url_template": "URL-Template",
+                        "url_topic": "URL-Topic",
+                        "value_template": "Wert-Template"
+                    },
+                    "data_description": {
+                        "available_tones": "Die Sirene unterst\u00fctzt T\u00f6ne. Die Variable `tone` wird zur Verwendung in der \u201eBefehls-Template\u201c-Einstellung verf\u00fcgbar. [Weitere Informationen]({url}#available_tones)",
+                        "blue_template": "[Template]({value_templating_url}) zum Extrahieren der blauen Farbe aus dem Payloadwert f\u00fcr den Zustand. Das erwartete Ergebnis des Templates ist eine Ganzzahl im Bereich von 0 bis 255.",
+                        "brightness_template": "[Template]({value_templating_url}) zum Extrahieren der Helligkeit aus dem Payloadwert f\u00fcr den Zustand. Das erwartete Ergebnis des Templates ist eine Ganzzahl im Bereich von 0 bis 255.",
+                        "code": "Gibt einen Code zum Aktivieren oder Deaktivieren der Alarmzentrale im Frontend an. Beachte, dass das Senden von MQTT-Nachrichtenbefehlen an das Remote-Ger\u00e4t blockiert wird, wenn die Codevalidierung fehlschl\u00e4gt. [Weitere Informationen]({url}#code)",
+                        "code_arm_required": "Wenn gesetzt, ist der Code erforderlich, um die Alarmzentrale zu aktivieren. Wenn nicht festgelegt, wird der Code nicht \u00fcberpr\u00fcft.",
+                        "code_disarm_required": "Wenn gesetzt, ist der Code erforderlich, um die Alarmzentrale zu deaktivieren. Wenn nicht festgelegt, wird der Code nicht \u00fcberpr\u00fcft.",
+                        "code_format": "Ein regul\u00e4rer Ausdruck zur Validierung eines angegebenen Codes, wenn dieser w\u00e4hrend der Aktion zum \u00d6ffnen, Verriegeln oder Entriegeln des MQTT-Schlosses festgelegt wird. [Weitere Informationen]({url}#code_format)",
+                        "code_trigger_required": "Wenn gesetzt, ist der Code erforderlich, um den Alarm manuell auszul\u00f6sen. Wenn nicht festgelegt, wird der Code nicht \u00fcberpr\u00fcft.",
+                        "color_temp_template": "[Template]({value_templating_url}) zum Extrahieren der Farbtemperatur aus dem Payloadwert f\u00fcr den Zustand. Das erwartete Ergebnis des Templates ist eine Ganzzahl.",
+                        "command_off_template": "Das [Template]({command_templating_url}) f\u00fcr Zustands\u00e4nderungen zu \u201eAus\u201c. Verf\u00fcgbare Variablen sind: `state` und `transition`.",
+                        "command_on_template": "Das [Template]({command_templating_url}) f\u00fcr Zustands\u00e4nderungen zu \u201eEin\u201c. Verf\u00fcgbare Variablen: `state`, `brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`, `flash`, `transition` und `effect`. Die Werte `red`, `green`, `blue` und `brightness` werden als Ganzzahlen im Bereich 0\u2013255 angegeben. Der Wert von `hue` wird als Flie\u00dfkommazahl im Bereich 0\u2013360 angegeben. Der Wert von `sat` wird als Flie\u00dfkommazahl im Bereich 0\u2013100 angegeben. Der Wert von `color_temp` wird als Ganzzahl in Kelvin-Einheiten angegeben.",
+                        "command_template": "Ein [Template]({command_templating_url}) zum Rendern der Payload, die im Befehls-Topic ver\u00f6ffentlicht werden soll. [Weitere Informationen]({url}#command_template)",
+                        "command_topic": "Das Ver\u00f6ffentlichungs-Topic, das zur Steuerung der {platform}-Entit\u00e4t verwendet wird. [Weitere Informationen]({url}#command_topic)",
+                        "content_type": "Der Inhaltstyp oder die Bilddaten, die im Bild-Topic empfangen werden.",
+                        "force_update": "Sendet Aktualisierungsereignisse, auch wenn sich der Wert nicht ge\u00e4ndert hat. N\u00fctzlich, wenn du aussagekr\u00e4ftige Wertediagramme im Verlauf haben m\u00f6chtest. [Weitere Informationen]({url}#force_update)",
+                        "green_template": "[Template]({value_templating_url}) zum Extrahieren der gr\u00fcnen Farbe aus dem Payloadwert f\u00fcr den Zustand. Das erwartete Ergebnis des Templates ist eine Ganzzahl im Bereich von 0 bis 255.",
+                        "image_encoding": "W\u00e4hle die Codierung der empfangenen Bilddaten",
+                        "image_topic": "Das abonnierte MQTT-Topic zum Empfang der Nachrichten mit den enthaltenen Bilddaten. [Weitere Informationen]({url}#image_topic)",
+                        "last_reset_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren der letzten R\u00fcckstellung. Wenn das Template zur letzten R\u00fcckstellung gesetzt ist, muss die Zustandsklasse-Option \u201eGesamt\u201c sein. [Weitere Informationen]({url}#last_reset_value_template)",
+                        "max": "Maximalwert. [Weitere Informationen]({url}#max)",
+                        "min": "Minimalwert. [Weitere Informationen]({url}#min)",
+                        "mode": "Steuert, wie die Zahl in der Benutzeroberfl\u00e4che angezeigt werden soll. [Weitere Informationen]({url}#mode)",
+                        "mode_command_template": "[Template]({command_templating_url}) zur Definition der Betriebsart, die an das Topic f\u00fcr den Betriebsart-Befehl gesendet werden soll. [Weitere Informationen]({url}#mode_command_template)",
+                        "mode_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der Betriebsart. [Weitere Informationen]({url}#mode_command_topic)",
+                        "mode_state_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Zustands der Betriebsart. [Weitere Informationen]({url}#mode_state_template)",
+                        "mode_state_topic": "Das abonnierte MQTT-Topic zum Empfang der Meldungen zum Zustand der Betriebsart. [Weitere Informationen]({url}#mode_state_topic)",
+                        "modes": "Eine Liste der unterst\u00fctzten Betriebsarten. [Weitere Informationen]({url}#modes)",
+                        "on_command_type": "Definiert, wann die Payload \u201eein\u201c gesendet wird. Bei Verwendung von \u201eZuletzt\u201c (Standard) werden zuerst alle Stil-Topics (Helligkeit, Farbe usw.) und anschlie\u00dfend eine Payload \u201eein\u201c an das Befehls-Topic gesendet. Bei Verwendung von \u201eZuerst\u201c wird die Payload \u201eein\u201c und anschlie\u00dfend alle Stil-Topics gesendet. Bei Verwendung von \u201eHelligkeit\u201c werden anstelle der Payload \u201eein\u201c zum Einschalten der Leuchte nur Helligkeitsbefehle gesendet.",
+                        "optimistic": "Flag, das definiert, ob die \u201e{platform}\u201c-Entit\u00e4t im optimistischen Modus arbeitet. [Weitere Informationen]({url}#optimistic)",
+                        "options": "Liste der Optionen, die ausgew\u00e4hlt werden k\u00f6nnen.",
+                        "payload_off": "Die Payload, die den \u201eaus\u201c-Zustand darstellt.",
+                        "payload_on": "Die Payload, die den \u201eein\u201c-Zustand darstellt.",
+                        "payload_press": "Die Payload, die gesendet werden soll, wenn die Taste gedr\u00fcckt wird.",
+                        "payload_reset": "Die im Zustands-Topic empfangene Payload, die die Entit\u00e4t auf einen unbekannten Zustand zur\u00fccksetzt.",
+                        "position_closed": "Zahl, die der geschlossenen Stellung entspricht. Bei Ausf\u00fchrung einer Aktion wird die Ventilstellung auf den Bereich von geschlossen bis ge\u00f6ffnet skaliert sowie zur\u00fcckskaliert, wenn ein Wert empfangen wird.",
+                        "position_open": "Zahl, die der ge\u00f6ffneten Stellung entspricht. Bei Ausf\u00fchrung einer Aktion wird die Ventilstellung auf den Bereich von geschlossen bis ge\u00f6ffnet skaliert sowie zur\u00fcckskaliert, wenn ein Wert empfangen wird.",
+                        "qos": "Der QoS-Wert, den eine {platform}-Entit\u00e4t verwenden soll.",
+                        "red_template": "[Template]({value_templating_url}) zum Extrahieren der roten Farbe aus dem Payloadwert f\u00fcr den Zustand. Das erwartete Ergebnis des Templates ist eine Ganzzahl im Bereich von 0 bis 255.",
+                        "retain": "W\u00e4hle aus, ob von der {platform}-Entit\u00e4t ver\u00f6ffentlichte Werte beim MQTT-Broker beibehalten werden sollen.",
+                        "state_off": "Die eingehende Payload, die den Zustand \u201eaus\u201c darstellt. Verwende diese Option nur, wenn der Wert, der den Zustand \u201eaus\u201c im Zustandstopic darstellt, sich von dem Wert unterscheidet, der an das Befehlstopic zum Ausschalten des Ger\u00e4ts gesendet werden soll.",
+                        "state_on": "Die eingehende Payload, die den Zustand \u201eein\u201c darstellt. Verwende diese Option nur, wenn der Wert, der den Zustand \u201eein\u201c im Zustandstopic darstellt, sich von dem Wert unterscheidet, der an das Befehlstopic zum Einschalten des Ger\u00e4ts gesendet werden soll.",
+                        "state_template": "[Template]({value_templating_url}) zum Extrahieren des Zustands aus dem Payloadwert f\u00fcr den Zustand.",
+                        "state_topic": "Das MQTT-Topic, das abonniert ist, um \u201e{platform}\u201c-Zustandswerte zu empfangen. [Weitere Informationen]({url}#state_topic)",
+                        "step": "Schrittweite. Kleinster Wert 0,001.",
+                        "support_duration": "Die Sirene unterst\u00fctzt das Einstellen einer Dauer in Sekunden. Die Variable `duration` wird zur Verwendung in der \u201eBefehls-Template\u201c-Einstellung verf\u00fcgbar. [Weitere Informationen]({url}#support_duration)",
+                        "support_volume_set": "Die Sirene unterst\u00fctzt das Einstellen einer Lautst\u00e4rke. Die Variable `volume_level` wird zur Verwendung in der \u201eBefehls-Template\u201c-Einstellung verf\u00fcgbar. [Weitere Informationen]({url}#support_volume_set)",
+                        "supported_color_modes": "Eine Liste der von der Leuchte unterst\u00fctzten Farbmodi. M\u00f6gliche Farbmodi sind Ein/Aus, Helligkeit, Farbtemperatur, HS, XY, RGB, RGBW, RGBWW und Wei\u00df. Beachte, dass bei Verwendung von Ein/Aus oder Helligkeit dies der einzige Wert in der Liste sein muss. [Weitere Informationen]({url}#supported_color_modes)",
+                        "timezone": "Auf eine g\u00fcltige [IANA-Zeitzonenkennung]({tz_abbr_url}) einstellen. Setze diese Option nicht, wenn die Datums-/Zeitstruktur Zeitzoneninformationen \u00fcber die Statusaktualisierung bereitstellt.",
+                        "url_template": "[Template]({value_templating_url}) zum Extrahieren einer URL aus dem empfangenen Payloadwert f\u00fcr das URL-Topic. [Weitere Informationen]({url}#url_template)",
+                        "url_topic": "Das abonnierte MQTT-Topic zum Empfang der Nachrichten mit der enthaltenen Bild-URL. [Weitere Informationen]({url}#url_topic)",
+                        "value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des \u201e{platform}\u201c-Entit\u00e4tswerts. [Weitere Informationen]({url}#value_template)"
+                    },
+                    "description": "Bitte konfiguriere MQTT-spezifische Details f\u00fcr die {platform}-Entit\u00e4t \u201e{entity}\u201c:",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Payload \u201eAktivieren (Abwesend)\u201c",
+                                "payload_arm_custom_bypass": "Payload \u201eAktivieren (Mit Bypass)\u201c",
+                                "payload_arm_disarm": "Payload \u201eDeaktivieren\u201c",
+                                "payload_arm_home": "Payload \u201eAktivieren (Zuhause)\u201c",
+                                "payload_arm_night": "Payload \u201eAktivieren (Nacht)\u201c",
+                                "payload_arm_vacation": "Payload \u201eAktivieren (Urlaub)\u201c",
+                                "payload_trigger": "Payload \u201eAlarm ausl\u00f6sen\u201c"
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Die gesendete Payload, wenn der Befehl \u201eAktivieren (Abwesend)\u201c ausgegeben wird.",
+                                "payload_arm_custom_bypass": "Die gesendete Payload, wenn der Befehl \u201eAktivieren (Mit Bypass)\u201c ausgegeben wird.",
+                                "payload_arm_disarm": "Die gesendete Payload, wenn der Befehl \u201eDeaktivieren\u201c ausgegeben wird.",
+                                "payload_arm_home": "Die gesendete Payload, wenn der Befehl \u201eAktivieren (Zuhause)\u201c ausgegeben wird.",
+                                "payload_arm_night": "Die gesendete Payload, wenn der Befehl \u201eAktivieren (Nacht)\u201c ausgegeben wird.",
+                                "payload_arm_vacation": "Die gesendete Payload, wenn der Befehl \u201eAktivieren (Urlaub)\u201c ausgegeben wird.",
+                                "payload_trigger": "Die gesendete Payload, wenn der Befehl \u201eAlarm ausl\u00f6sen\u201c ausgegeben wird."
+                            },
+                            "name": "Payload-Einstellungen f\u00fcr eine Alarmzentrale"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "Template f\u00fcr Aktionen",
+                                "action_topic": "Topic f\u00fcr Aktionen"
+                            },
+                            "data_description": {
+                                "action_template": "Ein [Template]({value_templating_url}) zum Rendern der Payload, die im Topic f\u00fcr Aktionen empfangen wird.",
+                                "action_topic": "Das f\u00fcr \u00c4nderungen der aktuellen Aktion abonnierte MQTT-Topic. Ist dieses eingestellt, verwendet das Klimadiagramm den empfangenen Wert als Datenquelle. Eine Payload \u201eNone\u201c setzt den Zustand der aktuellen Aktion zur\u00fcck. Eine leere Payload wird ignoriert. G\u00fcltige Aktionswerte sind: \u201eoff\u201c, \u201eheating\u201c, \u201ecooling\u201c, \u201edrying\u201c, \u201eidle\u201c und \u201efan\u201c. [Weitere Informationen]({url}#action_topic)"
+                            },
+                            "name": "Aktuelle Aktionseinstellungen"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "Template f\u00fcr L\u00fcftermodus-Befehl",
+                                "fan_mode_command_topic": "Topic f\u00fcr L\u00fcftermodus-Befehl",
+                                "fan_mode_state_template": "Template f\u00fcr L\u00fcftermodus-Zustand",
+                                "fan_mode_state_topic": "Topic f\u00fcr L\u00fcftermodus-Zustand",
+                                "fan_modes": "L\u00fcftermodi"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den L\u00fcftermodus-Befehl ver\u00f6ffentlicht werden soll.",
+                                "fan_mode_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des L\u00fcftermodus des Klimager\u00e4ts. [Weitere Informationen]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des L\u00fcftermodus-Werts des Klimager\u00e4ts.",
+                                "fan_mode_state_topic": "Das abonnierte MQTT-Topic zum Empfang des L\u00fcftermodus des Klimager\u00e4ts. [Weitere Informationen]({url}#fan_mode_state_topic)",
+                                "fan_modes": "Liste der L\u00fcftermodi, die dieses Klimager\u00e4t unterst\u00fctzt. G\u00e4ngige L\u00fcftermodi, die \u00dcbersetzungen anbieten, sind `off`, `on`, `auto`, `low`, `medium`, `high`, `middle`, `focus` und `diffuse`."
+                            },
+                            "name": "L\u00fcftermodus-Einstellungen"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "Payload \u201eaus\u201c",
+                                "payload_on": "Payload \u201eein\u201c",
+                                "power_command_template": "Template f\u00fcr Ein-/Ausschaltbefehl",
+                                "power_command_topic": "Topic f\u00fcr Ein-/Ausschaltbefehl"
+                            },
+                            "data_description": {
+                                "payload_off": "Die Payload, die den \u201eaus\u201c-Zustand darstellt.",
+                                "payload_on": "Die Payload, die den \u201eein\u201c-Zustand darstellt.",
+                                "power_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Ein-/Ausschaltbefehl ver\u00f6ffentlicht werden soll. Der Parameter `value` ist die f\u00fcr Payload \u201eein\u201c oder Payload \u201eaus\u201c eingestellte Payload.",
+                                "power_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des Betriebszustands des Klimager\u00e4ts. Sendet die f\u00fcr die Payload \u201eein\u201c oder Payload \u201eaus\u201c konfigurierte Payload. [Weitere Informationen]({url}#power_command_topic)"
+                            },
+                            "name": "Ein/Aus-Einstellungen"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "Template f\u00fcr Voreinstellungsbefehl",
+                                "preset_mode_command_topic": "Topic f\u00fcr Voreinstellungsbefehl",
+                                "preset_mode_state_topic": "Topic f\u00fcr Voreinstellungszustand",
+                                "preset_mode_value_template": "Template f\u00fcr Voreinstellungswert",
+                                "preset_modes": "Voreinstellungsmodi"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Voreinstellungsbefehl ver\u00f6ffentlicht werden soll.",
+                                "preset_mode_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der Voreinstellung des Klimager\u00e4ts. [Weitere Informationen]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Das abonnierte MQTT-Topic zum Empfang der Ventilatorvoreinstellung. [Weitere Informationen]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Werts der Ventilatorvoreinstellung.",
+                                "preset_modes": "Liste der Voreinstellungen, die dieses Klimager\u00e4t unterst\u00fctzt. G\u00e4ngige Voreinstellungen, die \u00dcbersetzungen anbieten, sind `none`, `away`, `eco`, `boost`, `comfort`, `home`, `sleep` und `activity`."
+                            },
+                            "name": "Einstellungen der Voreinstellungen"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "Template f\u00fcr Befehl zur horizontalen Oszillationsart",
+                                "swing_horizontal_mode_command_topic": "Topic f\u00fcr Befehl zur horizontalen Oszillationsart",
+                                "swing_horizontal_mode_state_template": "Template f\u00fcr Zustand der horizontalen Oszillationsart",
+                                "swing_horizontal_mode_state_topic": "Topic f\u00fcr Zustand der horizontalen Oszillationsart",
+                                "swing_horizontal_modes": "Horizontale Oszillationsarten"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr Befehl zur horizontalen Oszillationsart ver\u00f6ffentlicht werden soll.",
+                                "swing_horizontal_mode_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der horizontalen Oszillationsart des Klimager\u00e4ts. [Weitere Informationen]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Wert der horizontalen Oszillationsart des Klimager\u00e4ts.",
+                                "swing_horizontal_mode_state_topic": "Das abonnierte MQTT-Topic zum Empfang der horizontalen Oszillationsart des Klimager\u00e4ts. [Weitere Informationen]({url}#swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "Liste der horizontalen Oszillationsarten, die dieses Klimager\u00e4t unterst\u00fctzt. G\u00e4ngige horizontale Oszillationsarten, die \u00dcbersetzungen anbieten, sind `off` und `on`."
+                            },
+                            "name": "Einstellungen f\u00fcr horizontale Oszillationsart"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "Template f\u00fcr Oszillationsart-Befehl",
+                                "swing_mode_command_topic": "Topic f\u00fcr Oszillationsart-Befehl",
+                                "swing_mode_state_template": "Template f\u00fcr Oszillationsart-Zustand",
+                                "swing_mode_state_topic": "Topic f\u00fcr Oszillationsart-Zustand",
+                                "swing_modes": "Oszillationsarten"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Oszillationsart-Befehl ver\u00f6ffentlicht werden soll.",
+                                "swing_mode_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der Oszillationsart des Klimager\u00e4ts. [Weitere Informationen]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Werts der Oszillationsart des Klimager\u00e4ts.",
+                                "swing_mode_state_topic": "Das abonnierte MQTT-Topic zum Empfang der Oszillationsart des Klimager\u00e4ts. [Weitere Informationen]({url}#swing_mode_state_topic)",
+                                "swing_modes": "Liste der Oszillationsarten, die dieses Klimager\u00e4t unterst\u00fctzt. G\u00e4ngige Oszillationsarten, die \u00dcbersetzungen anbieten, sind `off`, `on`, `vertical`, `horizontal` und `both`."
+                            },
+                            "name": "Einstellungen f\u00fcr Oszillationsart"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Payload \u201eschlie\u00dfen\u201c",
+                                "payload_open": "Payload \u201e\u00f6ffnen\u201c",
+                                "payload_stop": "Payload \u201estoppen\u201c",
+                                "payload_stop_tilt": "Payload \u201eKippen stoppen\u201c",
+                                "state_closed": "Zustand \"geschlossen\"",
+                                "state_closing": "Zustand \u201ewird geschlossen\u201c",
+                                "state_open": "Zustand \u201ege\u00f6ffnet\u201c",
+                                "state_opening": "Zustand \u201ewird ge\u00f6ffnet\u201c",
+                                "state_stopped": "Zustand \u201egestoppt\u201c"
+                            },
+                            "data_description": {
+                                "payload_close": "Die Payload, die bei einem \u201eschlie\u00dfen\u201c-Befehl gesendet wird.",
+                                "payload_open": "Die Payload, die bei einem \u201e\u00f6ffnen\u201c-Befehl gesendet wird.",
+                                "payload_stop": "Die Payload, die bei einem \u201estoppen\u201c-Befehl gesendet wird. Leer lassen, um die \u201estoppen\u201c-Funktion zu deaktivieren.",
+                                "payload_stop_tilt": "Die Payload, die bei einem \u201eKippen stoppen\u201c-Befehl gesendet wird.",
+                                "state_closed": "Die im Zustands-Topic empfangene Payload, die den \u201egeschlossen\u201c-Zustand darstellt.",
+                                "state_closing": "Die im Zustands-Topic empfangene Payload, die den \u201ewird geschlossen\u201c-Zustand darstellt.",
+                                "state_open": "Die im Zustands-Topic empfangene Payload, die den \u201ege\u00f6ffnet\u201c-Zustand darstellt.",
+                                "state_opening": "Die im Zustands-Topic empfangene Payload, die den \u201ewird ge\u00f6ffnet\u201c-Zustand darstellt.",
+                                "state_stopped": "Die im Zustands-Topic empfangene Payload, die den \u201egestoppt\u201c-Zustand darstellt (f\u00fcr Abdeckungen, die keinen \u201ege\u00f6ffnet\u201c-/\u201egeschlossen\u201c-Zustand melden)."
+                            },
+                            "name": "Payload-Einstellungen"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "Wert f\u00fcr \u201egeschlossen\u201c-Position",
+                                "position_open": "Wert f\u00fcr \u201ege\u00f6ffnet\u201c-Position",
+                                "position_template": "Template f\u00fcr Positionswert",
+                                "position_topic": "Topic f\u00fcr Positionszustand",
+                                "set_position_template": "Positionseinstellung-Template",
+                                "set_position_topic": "Positionseinstellung-Topic"
+                            },
+                            "data_description": {
+                                "position_closed": "Zahl, die die Position \u201egeschlossen\u201c darstellt.",
+                                "position_open": "Zahl, die die Position \u201ege\u00f6ffnet\u201c darstellt.",
+                                "position_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren der Payload f\u00fcr das Positions-Topic. Innerhalb des Template stehen au\u00dferdem folgende Variablen zur Verf\u00fcgung: `entity_id`, `position_open`, `position_closed`, `tilt_min` und `tilt_max`. [Weitere Informationen]({url}#position_template)",
+                                "position_topic": "Das abonnierte MQTT-Topic zum Empfang der Meldungen zum Zustand der Abdeckungsposition. [Weitere Informationen]({url}#position_topic)",
+                                "set_position_template": "[Template]({command_templating_url}) zur Definition der Position, die an das Positionseinstellung-Topic gesendet werden soll. Innerhalb des Template stehen folgende Variablen zur Verf\u00fcgung: `value` (die skalierte Sollposition), `entity_id`, `position` (die Sollposition in Prozent), `position_open`, `position_closed`, `tilt_min` und `tilt_max`. [Weitere Informationen]({url}#set_position_template)",
+                                "set_position_topic": "Das MQTT-Topic, in dem Positionsbefehle ver\u00f6ffentlicht werden. Du musst auch das Positionseinstellung-Topic verwenden, wenn du das Positions-Topic verwenden m\u00f6chtest. Verwende ein Template, wenn das Positions-Topic andere Werte als den Bereich von \u201ePosition geschlossen\u201c bis \u201ePosition ge\u00f6ffnet\u201c ben\u00f6tigt. Wenn kein Template definiert ist und die Position \u201egeschlossen\u201c != 100 und die Position \u201ege\u00f6ffnet\u201c != 0 ist, wird der korrekte Positionswert aus der prozentualen Position berechnet. [Weitere Informationen]({url}#set_position_topic)"
+                            },
+                            "name": "Positionseinstellungen"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "Kippstellungswert \u201egeschlossen\u201c",
+                                "tilt_command_template": "Template f\u00fcr den Kippbefehl",
+                                "tilt_command_topic": "Topic f\u00fcr den Kippbefehl",
+                                "tilt_max": "Kippstellung-Maximum",
+                                "tilt_min": "Kippstellung-Minimum",
+                                "tilt_opened_value": "Kippstellungswert \u201ege\u00f6ffnet\u201c",
+                                "tilt_optimistic": "Kippstellung optimistisch",
+                                "tilt_status_template": "Template f\u00fcr Kippstellungswert",
+                                "tilt_status_topic": "Kippstellungszustand-Topic"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "Der Wert, der an das Topic f\u00fcr den Kippbefehl gesendet wird, wenn die Kippstellung der Abdeckung geschlossen wird.",
+                                "tilt_command_template": "[Template]({command_templating_url}) zum Definieren der Position, die an das Topic f\u00fcr den Kippbefehl gesendet werden soll. Innerhalb des Template stehen folgende Variablen zur Verf\u00fcgung: `entity_id`, `tilt_position` (die gew\u00fcnschte Kippstellung in Prozent), `position_open`, `position_closed`, `tilt_min` und `tilt_max`\u201c. [Weitere Informationen]({url}#tilt_command_template)",
+                                "tilt_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zur Steuerung der Kippstellung der Abdeckung. [Weitere Informationen]({url}#tilt_command_topic)",
+                                "tilt_max": "Der maximale Wert der Kippstellung.",
+                                "tilt_min": "Der minimale Wert der Kippstellung.",
+                                "tilt_opened_value": "Der Wert, der an das Topic f\u00fcr den Kippbefehl gesendet wird, wenn die Kippstellung der Abdeckung ge\u00f6ffnet wird.",
+                                "tilt_optimistic": "Flag, das definiert, ob die Kippstellung im optimistischen Modus arbeitet. Wenn das Topic f\u00fcr den Kippstellungszustand nicht definiert ist, arbeitet die Kippstellung standardm\u00e4\u00dfig im optimistischen Modus. [Weitere Informationen]({url}#tilt_optimistic)",
+                                "tilt_status_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren der Payload f\u00fcr das Kippstellungszustand-Topic. Innerhalb des Template stehen folgende Variablen zur Verf\u00fcgung: `entity_id`, `position_open`, `position_closed`, `tilt_min` und `tilt_max`. [Weitere Informationen]({url}#tilt_status_template)",
+                                "tilt_status_topic": "Das abonnierte MQTT-Topic zum Empfangen von Aktualisierungswerten f\u00fcr den Kippstellungszustand. [Weitere Informationen]({url}#tilt_status_topic)"
+                            },
+                            "name": "Einstellungen zur Kippstellung"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "Template f\u00fcr Ist-Luftfeuchtigkeit",
+                                "current_humidity_topic": "Topic f\u00fcr Ist-Luftfeuchtigkeit"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Wertes f\u00fcr die Ist-Luftfeuchtigkeit. [Weitere Informationen]({url}#current_humidity_template)",
+                                "current_humidity_topic": "Das abonnierte MQTT-Topic zum Empfangen von Aktualisierungswerten f\u00fcr die Ist-Luftfeuchtigkeit. [Weitere Informationen]({url}#current_humidity_topic)"
+                            },
+                            "name": "Einstellungen zur Ist-Luftfeuchtigkeit"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "Template f\u00fcr Ist-Temperatur",
+                                "current_temperature_topic": "Topic f\u00fcr Ist-Temperatur"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Wertes f\u00fcr die Ist-Temperatur. [Weitere Informationen]({url}#current_temperature_template)",
+                                "current_temperature_topic": "Das abonnierte MQTT-Topic zum Empfangen von Aktualisierungswerten f\u00fcr die Ist-Temperatur. [Weitere Informationen]({url}#current_temperature_topic)"
+                            },
+                            "name": "Einstellungen f\u00fcr Ist-Temperatur"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "Template f\u00fcr Drehrichtungsbefehl",
+                                "direction_command_topic": "Topic f\u00fcr Drehrichtungsbefehl",
+                                "direction_state_topic": "Topic f\u00fcr Drehrichtungszustand",
+                                "direction_value_template": "Template f\u00fcr Drehrichtungswert"
+                            },
+                            "data_description": {
+                                "direction_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Drehrichtungsbefehl ver\u00f6ffentlicht werden soll. Die Template-Variable `value` wird entweder `forward` oder `reverse` sein.",
+                                "direction_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der Ventilator-Drehrichtung. Die Payload ist entweder `forward` oder `reverse` und kann mit dem Template f\u00fcr den Drehrichtungsbefehl angepasst werden. [Weitere Informationen]({url}#direction_command_topic)",
+                                "direction_state_topic": "Das abonnierte MQTT-Topic zum Empfang des Zustands der Ventilator-Drehrichtung. Akzeptierte Zustands-Payloads sind `forward` oder `reverse`. [Weitere Informationen]({url}#direction_state_topic)",
+                                "direction_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Zustandswerts der Ventilator-Drehrichtung. Das Template sollte entweder `forward` oder `reverse` zur\u00fcckgeben. Wenn das Template eine leere Zeichenfolge zur\u00fcckgibt, wird die Richtung ignoriert."
+                            },
+                            "name": "Drehrichtungseinstellungen"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "Template f\u00fcr Oszillationsbefehl",
+                                "oscillation_command_topic": "Topic f\u00fcr Oszillationsbefehl",
+                                "oscillation_state_topic": "Topic f\u00fcr Oszillationszustand",
+                                "oscillation_value_template": "Template f\u00fcr Oszillationswert",
+                                "payload_oscillation_off": "Payload \u201eOszillation aus\u201c",
+                                "payload_oscillation_on": "Payload \u201eOszillation ein\u201c"
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Oszillationsbefehl ver\u00f6ffentlicht werden soll.",
+                                "oscillation_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des Ventilatoroszillationszustands. [Weitere Informationen]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "Das abonnierte MQTT-Topic zum Empfang des Ventilatoroszillationsszustands. [Weitere Informationen]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Zustandswerts der Ventilatoroszillation.",
+                                "payload_oscillation_off": "Die Payload, die den \u201eaus\u201c-Zustand der Oszillation darstellt.",
+                                "payload_oscillation_on": "Die Payload, die den \u201eein\u201c-Zustand der Oszillation darstellt."
+                            },
+                            "name": "Oszillationseinstellungen"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Payload \u201eVoreinstellung zur\u00fccksetzen\u201c",
+                                "preset_mode_command_template": "Template f\u00fcr Voreinstellungsbefehl",
+                                "preset_mode_command_topic": "Topic f\u00fcr Voreinstellungsbefehl",
+                                "preset_mode_state_topic": "Topic f\u00fcr Voreinstellungszustand",
+                                "preset_mode_value_template": "Template f\u00fcr Voreinstellungswert",
+                                "preset_modes": "Voreinstellungsmodi"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Eine spezielle Payload, die das Zustandsattribut der Ventilatorvoreinstellung auf \u201eunbekannt\u201c zur\u00fccksetzt, wenn sie im Topic f\u00fcr den Voreinstellungszustand empfangen wird.",
+                                "preset_mode_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Voreinstellungsbefehl ver\u00f6ffentlicht werden soll.",
+                                "preset_mode_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der Ventilatorvoreinstellung. [Weitere Informationen]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Das abonnierte MQTT-Topic zum Empfang der Ventilatorvoreinstellung. [Weitere Informationen]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Werts der Ventilatorvoreinstellung.",
+                                "preset_modes": "Liste der Voreinstellungen, mit denen dieser Ventilator betrieben werden kann. \u00dcbliche Beispiele sind Auto, Smart, Whoosh, Eco und Breeze."
+                            },
+                            "name": "Einstellungen der Voreinstellungen"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Payload \u201eProzentwert zur\u00fccksetzen\u201c",
+                                "percentage_command_template": "Template f\u00fcr Prozentbefehl",
+                                "percentage_command_topic": "Topic f\u00fcr Prozentbefehl",
+                                "percentage_state_topic": "Topic f\u00fcr Prozentzustand",
+                                "percentage_value_template": "Template f\u00fcr Prozentwert",
+                                "speed_range_max": "Drehzahlbereich-Maximum",
+                                "speed_range_min": "Drehzahlbereich-Minimum"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Eine spezielle Payload, die das Zustandsattribut der prozentualen Ventilatordrehzahl auf \u201eunbekannt\u201c zur\u00fccksetzt, wenn sie im Topic f\u00fcr den Prozentzustand empfangen wird.",
+                                "percentage_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Prozentbefehl ver\u00f6ffentlicht werden soll.",
+                                "percentage_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zur \u00c4nderung der Ventilatordrehzahl basierend auf einer prozentualen Einstellung. Der Wert muss im Bereich von \u201eDrehzahlbereich-Minimum\u201c bis \u201eDrehzahlbereich-Maximum\u201c liegen. [Weitere Informationen]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "Das abonnierte MQTT-Topic zum Empfang der prozentualen Ventilatordrehzahl. Dies ist ein Wert im Bereich von \u201eDrehzahlbereich-Minimum\u201c bis \u201eDrehzahlbereich-Maximum\u201c. [Weitere Informationen]({url}#percentage_state_topic)",
+                                "percentage_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Werts der prozentualen Ventilatordrehzahl.",
+                                "speed_range_max": "Das Maximum des numerischen Ausgabebereichs (entspricht 100 %). Der Prozentschritt betr\u00e4gt 100 / die Anzahl der Drehzahlen innerhalb des \u201eDrehzahlbereichs\u201c.",
+                                "speed_range_min": "Das Minimum des numerischen Ausgangsbereichs (\u201eaus\u201c nicht eingeschlossen, also speed_range_min - 1 entspricht 0 %). Der Prozentschritt betr\u00e4gt 100 / die Anzahl der Drehzahlen innerhalb des \u201eDrehzahlbereichs\u201c."
+                            },
+                            "name": "Drehzahl-Einstellungen"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "Separate Helligkeit",
+                                "brightness_command_template": "Template f\u00fcr Helligkeitsbefehl",
+                                "brightness_command_topic": "Topic f\u00fcr Helligkeitsbefehl",
+                                "brightness_scale": "Helligkeitsskala",
+                                "brightness_state_topic": "Topic f\u00fcr Helligkeitszustand",
+                                "brightness_value_template": "Template f\u00fcr Helligkeitswert"
+                            },
+                            "data_description": {
+                                "brightness": "Flag, das definiert, ob eine Leuchte Helligkeit unterst\u00fctzt, wenn der Farbmodus RGB, RGBW oder RGBWW unterst\u00fctzt wird.",
+                                "brightness_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Helligkeitsbefehl ver\u00f6ffentlicht werden soll.",
+                                "brightness_command_topic": "Das Ver\u00f6ffentlichungs-Topic, das zur Steuerung der Helligkeit verwendet wird. [Weitere Informationen]({url}#brightness_command_topic)",
+                                "brightness_scale": "Definiert den maximalen Helligkeitswert (also 100 %) der maximalen Helligkeit.",
+                                "brightness_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Zustandswerten zur Helligkeit. [Weitere Informationen]({url}#brightness_state_topic)",
+                                "brightness_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Helligkeitswerts."
+                            },
+                            "name": "Helligkeitseinstellungen"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "Topic f\u00fcr Farbmoduszustand",
+                                "color_mode_value_template": "Template f\u00fcr Farbmoduswert"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des Farbmodus. Ist dies nicht konfiguriert, wird der Farbmodus automatisch entsprechend der zuletzt empfangenen g\u00fcltigen Farbe oder Farbtemperatur eingestellt.",
+                                "color_mode_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Farbmoduswerts."
+                            },
+                            "name": "Farbmodus-Einstellungen"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "Template f\u00fcr Farbtemperaturbefehl",
+                                "color_temp_command_topic": "Topic f\u00fcr Farbtemperaturbefehl",
+                                "color_temp_state_topic": "Topic f\u00fcr Farbtemperaturzustand",
+                                "color_temp_value_template": "Template f\u00fcr Farbtemperaturwert"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Farbtemperaturbefehl ver\u00f6ffentlicht werden soll.",
+                                "color_temp_command_topic": "Das Ver\u00f6ffentlichungs-Topic, das zur Steuerung der Farbtemperatur verwendet wird. [Weitere Informationen]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des Farbtemperatur-Zustands. [Weitere Informationen]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des Farbtemperaturwerts."
+                            },
+                            "name": "Farbtemperatur-Einstellungen"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Effekt",
+                                "effect_command_template": "Template f\u00fcr Effektbefehl",
+                                "effect_command_topic": "Topic f\u00fcr Effektbefehl",
+                                "effect_list": "Effekt-Liste",
+                                "effect_state_topic": "Topic f\u00fcr Effekt-Zustand",
+                                "effect_template": "Effekt-Template",
+                                "effect_value_template": "Effektwert-Template"
+                            },
+                            "data_description": {
+                                "effect": "Flag, das definiert, ob die Leuchte Effekte unterst\u00fctzt.",
+                                "effect_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Effektbefehl ver\u00f6ffentlicht werden soll.",
+                                "effect_command_topic": "Das Ver\u00f6ffentlichungs-Topic, das zur Steuerung des Effekt-Zustands der Leuchte verwendet wird. [Weitere Informationen]({url}#effect_command_topic)",
+                                "effect_list": "Die Liste der Effekte, die die Leuchte unterst\u00fctzt.",
+                                "effect_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des Effekt-Zustands. [Weitere Informationen]({url}#effect_state_topic)"
+                            },
+                            "name": "Effekt-Einstellungen"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "Template f\u00fcr HS-Befehl",
+                                "hs_command_topic": "Topic f\u00fcr HS-Befehl",
+                                "hs_state_topic": "Topic f\u00fcr HS-Zustand",
+                                "hs_value_template": "Template f\u00fcr HS-Wert"
+                            },
+                            "data_description": {
+                                "hs_command_template": "Definiert ein [Template]({command_templating_url}) zum Erstellen der Nachricht, die an das Topic f\u00fcr den HS-Befehl gesendet wird. Verf\u00fcgbare Variablen: `hue` und `sat`.",
+                                "hs_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zur \u00c4nderung des Farbzustands der Leuchte im HS-Format (Farbton/S\u00e4ttigung). Bereich f\u00fcr Farbton 0\u00b0 .. 360\u00b0, Bereich f\u00fcr S\u00e4ttigung 0..100. Hinweis: Die Helligkeit wird separat im Topic f\u00fcr den Helligkeitsbefehl gesendet. [Weitere Informationen]({url}#hs_command_topic)",
+                                "hs_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des Farbzustands im HS-Format. Die erwartete Payload sind die durch Kommas getrennten Farbton- und S\u00e4ttigungswerte, z. B. `359,5,100,0`. Hinweis: Die Helligkeit wird separat im Topic f\u00fcr den Helligkeitsstatus empfangen. [Weitere Informationen]({url}#hs_state_topic)",
+                                "hs_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des HS-Werts."
+                            },
+                            "name": "HS-Farbmodus-Einstellungen"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "Template f\u00fcr RGB-Befehl",
+                                "rgb_command_topic": "Topic f\u00fcr RGB-Befehl",
+                                "rgb_state_topic": "Topic f\u00fcr RGB-Zustand",
+                                "rgb_value_template": "Template f\u00fcr RGB-Wert"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "Definiert ein [Template]({command_templating_url}) zum Erstellen der Nachricht, die an das Topic f\u00fcr den RGB-Befehl gesendet wird. Verf\u00fcgbare Variablen: `red`, `green` und `blue`.",
+                                "rgb_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des RGB-Zustands der Leuchte. [Weitere Informationen]({url}#rgb_command_topic)",
+                                "rgb_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des RGB-Zustands. Die erwartete Payload sind die durch Kommas getrennten RGB-Werte, z. B. `255,0,127`. [Weitere Informationen]({url}#rgb_state_topic)",
+                                "rgb_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des RGB-Werts."
+                            },
+                            "name": "RGB-Farbmodus-Einstellungen"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "Template f\u00fcr RGBW-Befehl",
+                                "rgbw_command_topic": "Topic f\u00fcr RGBW-Befehl",
+                                "rgbw_state_topic": "Topic f\u00fcr RGBW-Zustand",
+                                "rgbw_value_template": "Template f\u00fcr RGBW-Wert"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "Definiert ein [Template]({command_templating_url}) zum Erstellen der Nachricht, die an das Topic f\u00fcr den RGBW-Befehl gesendet wird. Verf\u00fcgbare Variablen: `red`, `green`, `blue` und `white`.",
+                                "rgbw_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des RGBW-Zustands der Leuchte. [Weitere Informationen]({url}#rgbw_command_topic)",
+                                "rgbw_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des RGBW-Zustands. Die erwartete Payload sind die durch Kommas getrennten RGBW-Werte, z. B. `255,0,127,64`. [Weitere Informationen]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des RGBW-Werts."
+                            },
+                            "name": "RGBW-Farbmodus-Einstellungen"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "Template f\u00fcr RGBWW-Befehl",
+                                "rgbww_command_topic": "Topic f\u00fcr RGBWW-Befehl",
+                                "rgbww_state_topic": "Topic f\u00fcr RGBWW-Zustand",
+                                "rgbww_value_template": "Template f\u00fcr RGBWW-Wert"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "Definiert ein [Template]({command_templating_url}) zum Erstellen der Nachricht, die an das Topic f\u00fcr den RGBWW-Befehl gesendet wird. Verf\u00fcgbare Variablen: `red`, `green`, `blue`, `cold_white` und `warm_white`.",
+                                "rgbww_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des RGBWW-Zustands der Leuchte. [Weitere Informationen]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des RGBWW-Zustands. Die erwartete Payload sind die durch Kommas getrennten RGBWW-Werte, z. B. `255,0,127,64,32`. [Weitere Informationen]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des RGBWW-Werts."
+                            },
+                            "name": "RGBWW-Farbmodus-Einstellungen"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "Template f\u00fcr Wei\u00df-Befehl",
+                                "white_scale": "Wei\u00df-Skala"
+                            },
+                            "data_description": {
+                                "white_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum Umschalten der Leuchte in den Wei\u00df-Modus mit einer bestimmten Helligkeit. [Weitere Informationen]({url}#white_command_topic)",
+                                "white_scale": "Definiert den maximalen Wei\u00dfpegel (d. h. 100 %) des Maximums."
+                            },
+                            "name": "Wei\u00df-Farbmodus-Einstellungen"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "Template f\u00fcr XY-Befehl",
+                                "xy_command_topic": "Topic f\u00fcr XY-Befehl",
+                                "xy_state_topic": "Topic f\u00fcr XY-Zustand",
+                                "xy_value_template": "Template f\u00fcr XY-Wert"
+                            },
+                            "data_description": {
+                                "xy_command_template": "Definiert ein [Template]({command_templating_url}) zum Erstellen der Nachricht, die an das Topic f\u00fcr den XY-Befehl gesendet wird. Verf\u00fcgbare Variablen: `x` und `y`.",
+                                "xy_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des XY-Zustands der Leuchte. [Weitere Informationen]({url}#xy_command_topic)",
+                                "xy_state_topic": "Das abonnierte MQTT-Topic zum Empfang von Aktualisierungen des XY-Zustands. Die erwartete Payload sind die durch Kommas getrennten X- und Y-Werte, z. B. `0.675,0.322`. [Weitere Informationen]({url}#xy_state_topic)",
+                                "xy_value_template": "Definiert ein [Template]({value_templating_url}) zum Extrahieren des XY-Werts."
+                            },
+                            "name": "XY-Farbmodus-Einstellungen"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Payload \u201everriegeln\u201c",
+                                "payload_open": "Payload \u201e\u00f6ffnen\u201c",
+                                "payload_reset": "Payload \u201ezur\u00fccksetzen\u201c",
+                                "payload_unlock": "Payload \u201eentriegeln\u201c",
+                                "state_jammed": "Zustand \u201eblockiert\u201c",
+                                "state_locked": "Zustand \u201everriegelt\u201c",
+                                "state_locking": "Zustand \u201ewird verriegelt\u201c",
+                                "state_unlocked": "Zustand \u201eentriegelt\u201c",
+                                "state_unlocking": "Zustand \u201ewird entriegelt\u201c"
+                            },
+                            "data_description": {
+                                "payload_lock": "Die Payload, die gesendet wird, wenn ein \u201everriegeln\u201c-Befehl ausgegeben wird.",
+                                "payload_open": "Die Payload, die gesendet wird, wenn ein \u201e\u00f6ffnen\u201c-Befehl ausgegeben wird. Lege diese Payload fest, wenn dein Schloss die \u201e\u00f6ffnen\u201c-Aktion unterst\u00fctzt.",
+                                "payload_reset": "Die im Zustands-Topic empfangene Payload, die das Schloss auf einen unbekannten Zustand zur\u00fccksetzt.",
+                                "payload_unlock": "Die Payload, die gesendet wird, wenn ein \u201eentriegeln\u201c-Befehl ausgegeben wird.",
+                                "state_jammed": "Die im Zustands-Topic empfangene Payload, die den Zustand \u201eblockiert\u201c darstellt.",
+                                "state_locked": "Die im Zustands-Topic empfangene Payload, die den Zustand \u201everriegelt\u201c darstellt.",
+                                "state_locking": "Die im Zustands-Topic empfangene Payload, die den Zustand \u201ewird verriegelt\u201c darstellt.",
+                                "state_unlocked": "Die im Zustands-Topic empfangene Payload, die den Zustand \u201eentriegelt\u201c darstellt.",
+                                "state_unlocking": "Die im Zustands-Topic empfangene Payload, die den Zustand \u201ewird entriegelt\u201c darstellt."
+                            },
+                            "name": "Payload-Einstellungen f\u00fcr ein Schloss"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Ablauf nach",
+                                "flash": "Blink-Unterst\u00fctzung",
+                                "flash_time_long": "Blinkzeit lang",
+                                "flash_time_short": "Blinkzeit kurz",
+                                "max_kelvin": "Max Kelvin",
+                                "min_kelvin": "Min Kelvin",
+                                "off_delay": "AUS-Verz\u00f6gerung",
+                                "transition": "\u00dcbergangsunterst\u00fctzung"
+                            },
+                            "data_description": {
+                                "expire_after": "Wenn diese Option gesetzt ist, legt sie die Anzahl der Sekunden fest, nach denen der Sensorzustand abl\u00e4uft, wenn er nicht aktualisiert wird. Nach Ablauf wird der Zustand des Sensors \u201enicht verf\u00fcgbar\u201c. Wenn sie nicht gesetzt ist, l\u00e4uft der Zustand des Sensors nie ab. [Weitere Informationen.]({url}#expire_after)",
+                                "flash": "Blinkfunktion f\u00fcr diese Leuchte aktivieren",
+                                "flash_time_long": "Die Dauer eines \u201elangen\u201c Blinkens in Sekunden.",
+                                "flash_time_short": "Die Dauer eines \u201ekurzen\u201c Blinkens in Sekunden.",
+                                "max_kelvin": "Die maximale Farbtemperatur in Kelvin.",
+                                "min_kelvin": "Die minimale Farbtemperatur in Kelvin.",
+                                "off_delay": "Bei Sensoren, die nur \u201eEin\u201c-Aktualisierungen ihres Zustands senden (wie PIRs), legt diese Variable eine Verz\u00f6gerung in Sekunden fest, nach der der Status des Sensors wieder auf \u201eAus\u201c aktualisiert wird.",
+                                "transition": "\u00dcbergangsfunktion f\u00fcr diese Leuchte aktivieren"
+                            },
+                            "name": "Weitere Einstellungen"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "Template f\u00fcr \u201eAus\u201c-Befehl"
+                            },
+                            "data_description": {
+                                "command_off_template": "Das [Template]({command_templating_url}) f\u00fcr Zustands\u00e4nderungen zu \u201eAus\u201c. Standardm\u00e4\u00dfig wird das \u201e[Befehls-Template]({url}#command_template)\u201c verwendet. [Weitere Informationen]({url}#command_off_template)"
+                            },
+                            "name": "Weitere Sireneneinstellungen"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "Maximale Luftfeuchtigkeit",
+                                "min_humidity": "Minimale Luftfeuchtigkeit",
+                                "target_humidity_command_template": "Template f\u00fcr Soll-Luftfeuchtigkeit-Befehl",
+                                "target_humidity_command_topic": "Topic f\u00fcr Soll-Luftfeuchtigkeit-Befehl",
+                                "target_humidity_state_template": "Template f\u00fcr Soll-Luftfeuchtigkeit-Zustand",
+                                "target_humidity_state_topic": "Topic f\u00fcr Soll-Luftfeuchtigkeit-Zustand"
+                            },
+                            "data_description": {
+                                "max_humidity": "Der Sollwert, der f\u00fcr die maximale Luftfeuchtigkeit eingestellt werden kann.",
+                                "min_humidity": "Der Sollwert, der f\u00fcr die minimale Luftfeuchtigkeit eingestellt werden kann.",
+                                "target_humidity_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Soll-Luftfeuchtigkeit-Befehl ver\u00f6ffentlicht wird.",
+                                "target_humidity_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der Soll-Luftfeuchtigkeit des Klimager\u00e4ts. [Weitere Informationen]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "Ein [Template]({value_templating_url}) zum Rendern der Payload, die im Topic f\u00fcr Zustand der Soll-Luftfeuchtigkeit empfangen wird.",
+                                "target_humidity_state_topic": "Das abonnierte MQTT-Topic zum Empfang von \u00c4nderungen der Soll-Luftfeuchtigkeit des Klimager\u00e4ts. [Weitere Informationen]({url}#humidity_state_topic)"
+                            },
+                            "name": "Einstellungen der Soll-Luftfeuchtigkeit"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Ausgangstemperatur",
+                                "max_temp": "Maximale Temperatur",
+                                "min_temp": "Minimale Temperatur",
+                                "precision": "Genauigkeit",
+                                "temp_step": "Temperatur-Schrittweite",
+                                "temperature_command_template": "Template f\u00fcr den Temperatur-Befehl",
+                                "temperature_command_topic": "Topic f\u00fcr den Temperatur-Befehl",
+                                "temperature_high_command_template": "Template f\u00fcr den H\u00f6chsttemperatur-Befehl",
+                                "temperature_high_command_topic": "Template f\u00fcr den H\u00f6chsttemperatur-Befehl",
+                                "temperature_high_state_template": "Template f\u00fcr den H\u00f6chsttemperatur-Zustand",
+                                "temperature_high_state_topic": "Topic f\u00fcr den H\u00f6chsttemperatur-Zustand",
+                                "temperature_low_command_template": "Template f\u00fcr den Tiefsttemperatur-Befehl",
+                                "temperature_low_command_topic": "Topic f\u00fcr den Tiefsttemperatur-Befehl",
+                                "temperature_low_state_template": "Template f\u00fcr den Tiefsttemperatur-Zustand",
+                                "temperature_low_state_topic": "Topic f\u00fcr den Tiefsttemperatur-Zustand",
+                                "temperature_state_template": "Template f\u00fcr den Temperatur-Zustand",
+                                "temperature_state_topic": "Topic f\u00fcr den Temperatur-Zustand"
+                            },
+                            "data_description": {
+                                "initial": "Mit dieser Soll-Temperatur startet das Ger\u00e4t seinen Betrieb.",
+                                "max_temp": "Die maximale Soll-Temperatur, die eingestellt werden kann.",
+                                "min_temp": "Die minimale Soll-Temperatur, die eingestellt werden kann.",
+                                "precision": "Die Genauigkeit in Grad, mit der das Thermostat arbeitet.",
+                                "temp_step": "Die Schrittweite der Soll-Temperatur in Grad Celsius oder Fahrenheit.",
+                                "temperature_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Temperatur-Befehl ver\u00f6ffentlicht werden soll.",
+                                "temperature_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der Soll-Temperatur. [Weitere Informationen]({url}#temperature_command_topic)",
+                                "temperature_high_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den H\u00f6chsttemperatur-Befehl ver\u00f6ffentlicht werden soll.",
+                                "temperature_high_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der oberen Soll-Temperatur des Klimager\u00e4ts. [Weitere Informationen]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "Ein [Template]({value_templating_url}) zum Rendern der Payload, die im Topic f\u00fcr den H\u00f6chsttemperatur-Zustand empfangen wird.",
+                                "temperature_high_state_topic": "Das abonnierte MQTT-Topic zum Empfang von \u00c4nderungen der oberen Soll-Temperatur des Klimager\u00e4ts. [Weitere Informationen]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Tiefsttemperatur-Befehl ver\u00f6ffentlicht werden soll.",
+                                "temperature_low_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern der unteren Soll-Temperatur des Klimager\u00e4ts. [Weitere Informationen]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "Ein [Template]({value_templating_url}) zum Rendern der Payload, die im Topic f\u00fcr den Tiefsttemperatur-Zustand empfangen wird.",
+                                "temperature_low_state_topic": "Das abonnierte MQTT-Topic zum Empfang von \u00c4nderungen der unteren Soll-Temperatur des Klimager\u00e4ts. [Weitere Informationen]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "Ein [Template]({value_templating_url}) zum Rendern der Payload, die im Topic f\u00fcr den Temperatur-Zustand empfangen wird.",
+                                "temperature_state_topic": "Das abonnierte MQTT-Topic zum Empfang von \u00c4nderungen der Soll-Temperatur des Klimager\u00e4ts. [Weitere Informationen]({url}#temperature_state_topic)"
+                            },
+                            "name": "Einstellungen der Soll-Temperatur"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maximall\u00e4nge",
+                                "min": "Mindestl\u00e4nge",
+                                "mode": "Modus",
+                                "pattern": "Muster"
+                            },
+                            "data_description": {
+                                "max": "Maximale L\u00e4nge der Texteingabe",
+                                "min": "Mindestl\u00e4nge der Texteingabe",
+                                "mode": "Modus der Texteingabe",
+                                "pattern": "Ein g\u00fcltiges Regex-Muster"
+                            },
+                            "name": "Weitere Einstellungen f\u00fcr Text-Entit\u00e4ten"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Payload \u201eschlie\u00dfen\u201c",
+                                "payload_open": "Payload \u201e\u00f6ffnen\u201c",
+                                "payload_stop": "Payload \u201estopp\u201c",
+                                "state_closed": "Payload \u201egeschlossen\u201c",
+                                "state_closing": "Payload \u201ewird geschlossen\u201c",
+                                "state_open": "Payload \u201ege\u00f6ffnet\u201c",
+                                "state_opening": "Payload \u201ewird ge\u00f6ffnet\u201c"
+                            },
+                            "data_description": {
+                                "payload_close": "Die Payload, die beim Ausl\u00f6sen eines \u201eschlie\u00dfen\u201c-Befehls gesendet werden.",
+                                "payload_open": "Die Payload, die beim Ausl\u00f6sen eines \u201e\u00f6ffnen\u201c-Befehls gesendet werden.",
+                                "payload_stop": "Die Payload, die beim Ausl\u00f6sen eines \u201estopp\u201c-Befehls gesendet werden. Lege diese Payload nur fest, wenn dein Ventil die \u201estopp\u201c-Aktion unterst\u00fctzt.",
+                                "state_closed": "Die im Zustands-Topic empfangene Payload, die den \u201egeschlossen\u201c-Zustand darstellt.",
+                                "state_closing": "Die im Zustands-Topic empfangene Payload, die den \u201ewird geschlossen\u201c-Zustand darstellt.",
+                                "state_open": "Die im Zustands-Topic empfangene Payload, die den \u201ege\u00f6ffnet\u201c-Zustand darstellt.",
+                                "state_opening": "Die im Zustands-Topic empfangene Payload, die den \u201ewird ge\u00f6ffnet\u201c-Zustand darstellt."
+                            },
+                            "name": "Payload-Einstellungen f\u00fcr ein Ventil"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "Payload \u201eaus\u201c",
+                                "payload_on": "Payload \u201eein\u201c",
+                                "power_command_template": "Template f\u00fcr Ein-/Ausschaltbefehl",
+                                "power_command_topic": "Topic f\u00fcr Ein-/Ausschaltbefehl"
+                            },
+                            "data_description": {
+                                "payload_off": "Die Payload, die den \u201eaus\u201c-Zustand darstellt.",
+                                "payload_on": "Die Payload, die den \u201eein\u201c-Zustand darstellt.",
+                                "power_command_template": "Ein [Template]({command_templating_url}) zum Erstellen der Payload, die im Topic f\u00fcr den Ein-/Ausschaltbefehl ver\u00f6ffentlicht werden soll. Der Parameter `value` ist die f\u00fcr Payload \u201eein\u201c oder Payload \u201eaus\u201c eingestellte Payload.",
+                                "power_command_topic": "Das MQTT-Topic zum Ver\u00f6ffentlichen von Befehlen zum \u00c4ndern des Betriebszustands des Warmwasserbereiters. Sendet die f\u00fcr die Payload \u201eein\u201c oder Payload \u201eaus\u201c konfigurierte Payload. [Weitere Informationen]({url}#power_command_topic)"
+                            },
+                            "name": "Ein/Aus-Einstellungen"
+                        }
+                    },
+                    "title": "Das MQTT-Ger\u00e4t \u201e{mqtt_device}\u201c konfigurieren"
+                },
+                "summary_menu": {
+                    "description": "Eingerichtete Entit\u00e4ten: \n{mqtt_items} \n\nEntscheide, was als N\u00e4chstes zu tun ist:",
+                    "menu_options": {
+                        "availability": "Verf\u00fcgbarkeit konfigurieren",
+                        "delete_entity": "Eine Entit\u00e4t l\u00f6schen",
+                        "device": "Ger\u00e4teeigenschaften aktualisieren",
+                        "entity": "Eine weitere Entit\u00e4t zu \u201e{mqtt_device}\u201c hinzuf\u00fcgen",
+                        "export": "MQTT-Ger\u00e4tekonfiguration exportieren",
+                        "save_changes": "\u00c4nderungen speichern",
+                        "update_entity": "Entit\u00e4tseigenschaften aktualisieren"
+                    },
+                    "title": "\u201e{mqtt_device}\u201c neu konfigurieren"
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Entit\u00e4t"
+                    },
+                    "data_description": {
+                        "component": "W\u00e4hle die Entit\u00e4t aus, die du aktualisieren m\u00f6chtest."
+                    },
+                    "description": "W\u00e4hle die Entit\u00e4t aus, die du aktualisieren m\u00f6chtest",
+                    "title": "Entit\u00e4t ausw\u00e4hlen"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Erste Taste",
+            "button_2": "Zweite Taste",
+            "button_3": "Dritte Taste",
+            "button_4": "Vierte Taste",
+            "button_5": "F\u00fcnfte Taste",
+            "button_6": "Sechste Taste",
+            "turn_off": "Ausschalten",
+            "turn_on": "Einschalten"
+        },
+        "trigger_type": {
+            "button_double_press": "Sobald \u201e{subtype}\u201c doppelt gedr\u00fcckt wird",
+            "button_long_press": "Sobald \u201e{subtype}\u201c kontinuierlich gedr\u00fcckt wird",
+            "button_long_release": "Sobald \u201e{subtype}\u201c nach langem Dr\u00fccken losgelassen wird",
+            "button_quadruple_press": "Sobald \u201e{subtype}\u201c vierfach gedr\u00fcckt wird",
+            "button_quintuple_press": "Sobald \u201e{subtype}\u201c f\u00fcnffach gedr\u00fcckt wird",
+            "button_short_press": "Sobald \u201e{subtype}\u201c gedr\u00fcckt wird",
+            "button_short_release": "Sobald \u201e{subtype}\u201c losgelassen wird",
+            "button_triple_press": "Sobald \u201e{subtype}\u201c dreifach gedr\u00fcckt wird"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "Korrekter Start der {addon}-App fehlgeschlagen."
+        },
+        "command_template_error": {
+            "message": "Das Parsen des Template `{command_template}` f\u00fcr die Entit\u00e4t `{entity_id}` ist mit dem Fehler {error} fehlgeschlagen."
+        },
+        "invalid_platform_config_message": {
+            "message": "Das Neuladen der YAML-Konfiguration f\u00fcr das manuell konfigurierte MQTT `{domain}`-Element ist fehlgeschlagen. Meldung: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "Ver\u00f6ffentlichung nicht m\u00f6glich: Topic-Template `{topic_template}` hat nach dem Rendern ein ung\u00fcltiges Topic `{topic}` erzeugt ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "Fehler bei der Kommunikation mit MQTT: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "Limit f\u00fcr MQTT-Abonnement-IDs erreicht. Es k\u00f6nnen keine weiteren IDs zum Abonnieren generiert werden."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "Das Ver\u00f6ffentlichen im Topic {topic} mit einem Message Expiry Interval wird in Protokollversion {protocol} nicht unterst\u00fctzt."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Das Topic \u201e{topic}\u201c kann nicht abonniert werden, da MQTT nicht aktiviert ist. Stelle sicher, dass MQTT korrekt eingerichtet ist."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Die Ver\u00f6ffentlichung im Topic \u201e{topic}\u201c ist nicht m\u00f6glich. Stelle sicher, dass MQTT ordnungsgem\u00e4\u00df eingerichtet ist."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Das Topic \u201e{topic}\u201c kann nicht abonniert werden. Stelle sicher, dass MQTT ordnungsgem\u00e4\u00df eingerichtet ist."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Das Topic \u201e{topic}\u201c kann nicht zweimal deabonniert werden."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "Das Topic muss ein String sein! Erhalten: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Ausl\u00f6ser kann nicht zweimal entfernt werden."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "Home Assistant hat eine ung\u00fcltige Konfiguration f\u00fcr ein manuell konfiguriertes Element erkannt.\n\nPlattform-Dom\u00e4ne: **{domain}**\nKonfigurationsdatei: **{config_file}**\nBetroffene Zeile: **{line}**\nGefundene Konfiguration:\n```yaml\n{config}\n```\nFehler: **{error}**.\n\nStelle sicher, dass die Konfiguration g\u00fcltig ist, und f\u00fchre einen [Neuladevorgang](/config/tools/yaml) der manuell konfigurierten MQTT-Elemente durch oder starte Home Assistant neu, um dieses Problem zu beheben.",
+            "title": "Ung\u00fcltige Konfiguration f\u00fcr MQTT-{domain}-Element gefunden"
+        },
+        "protocol_5_migration": {
+            "description": "Die automatische Migration auf MQTT-Protokollversion 5 ist fehlgeschlagen. Die derzeit konfigurierte Protokollversion f\u00fcr den MQTT-Broker {broker} ist {protocol}, aber diese Protokollversion ist veraltet und wird nicht mehr unterst\u00fctzt.\n\nStelle sicher, dass dein Broker die Protokollversion 5 unterst\u00fctzt. Aktualisiere die Verbindungseinstellungen deines MQTT-Brokers und starte Home Assistant neu, um dieses Problem zu beheben.",
+            "title": "MQTT-Protokoll-Migration fehlgeschlagen"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Exportiertes MQTT-Ger\u00e4t \u201e{name}\u201c wurde durch MQTT-Erkennung identifiziert. W\u00e4hle **OK**, um zu best\u00e4tigen, dass das MQTT-Ger\u00e4t in die MQTT-Hauptkonfiguration migriert werden soll, und um den vorhandenen MQTT-Ger\u00e4teuntereintrag zu entfernen. Stelle sicher, dass die Erkennung beim MQTT-Broker beibehalten (Retain) oder nach dem Entfernen des Untereintrags erneut gesendet wird, damit das MQTT-Ger\u00e4t korrekt eingerichtet wird. Alternativ kannst du die Ger\u00e4te-IDs und eindeutigen Entit\u00e4ts-IDs in der Payload deiner MQTT-Erkennungskonfiguration \u00e4ndern und diese Reparatur abbrechen, wenn du den MQTT-Ger\u00e4teuntereintrag behalten m\u00f6chtest.",
+                        "title": "Migration des Untereintrags des MQTT-Ger\u00e4ts \u201e{name}\u201c zur MQTT-Erkennung"
+                    }
+                }
+            },
+            "title": "Migration des Untereintrags des MQTT-Ger\u00e4ts \u201e{name}\u201c zur MQTT-Erkennung"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Exportiertes MQTT-Ger\u00e4t \u201e{name}\u201c wurde in der YAML-Konfiguration identifiziert. W\u00e4hle **OK**, um zu best\u00e4tigen, dass das MQTT-Ger\u00e4t in den MQTT-Hauptkonfigurationseintrag migriert werden soll, und um den vorhandenen MQTT-Ger\u00e4teuntereintrag zu entfernen. Alternativ kannst du die Ger\u00e4te-IDs und eindeutigen Entit\u00e4ts-IDs in deiner Datei configuration.yaml \u00e4ndern und die Reparatur abbrechen, wenn du den MQTT-Ger\u00e4teuntereintrag beibehalten m\u00f6chtest.",
+                        "title": "Migration des Untereintrags des MQTT-Ger\u00e4ts \u201e{name}\u201c nach YAML"
+                    }
+                }
+            },
+            "title": "Migration des Untereintrags des MQTT-Ger\u00e4ts \u201e{name}\u201c nach YAML"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant hat manuell konfigurierte MQTT-Elemente erkannt, diese k\u00f6nnen jedoch nicht geladen werden, da MQTT nicht korrekt eingerichtet ist. Stelle sicher, dass der MQTT-Broker korrekt konfiguriert ist, oder entferne die MQTT-Konfiguration aus deiner `configuration.yaml`-Datei und starte Home Assistant neu, um das Problem zu beheben.",
+            "title": "MQTT ist nicht korrekt eingerichtet."
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Ung\u00fcltiges `birth`-Topic",
+            "bad_certificate": "Das CA-Zertifikat ist ung\u00fcltig",
+            "bad_client_cert": "Ung\u00fcltiges Client-Zertifikat. Stelle sicher, dass eine g\u00fcltige Datei bereitgestellt wird",
+            "bad_client_cert_key": "Client-Zertifikat und privater Schl\u00fcssel sind kein g\u00fcltiges Paar",
+            "bad_discovery_prefix": "Ung\u00fcltiges Discovery-Pr\u00e4fix",
+            "bad_will": "Ung\u00fcltiges `will`-Topic",
+            "bad_ws_headers": "Bereitstellung g\u00fcltiger HTTP-Header als JSON-Objekt",
+            "cannot_connect": "Verbindung fehlgeschlagen",
+            "client_key_error": "Ung\u00fcltige Datei mit privatem Schl\u00fcssel oder ung\u00fcltiges Passwort angegeben",
+            "invalid_inclusion": "Das Client-Zertifikat und der private Schl\u00fcssel m\u00fcssen gemeinsam konfiguriert werden"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "\u201ebirth\u201c-Nachricht aktivieren",
+                    "birth_payload": "Payload der \u201ebirth\u201c-Nachricht",
+                    "birth_qos": "QoS der \u201ebirth\u201c-Nachricht",
+                    "birth_retain": "Retain f\u00fcr \u201ebirth\u201c-Nachricht aktivieren",
+                    "birth_topic": "Topic der \u201ebirth\u201c-Nachricht",
+                    "discovery": "Suche aktivieren",
+                    "discovery_prefix": "Discovery-Pr\u00e4fix",
+                    "discovery_qos": "Discovery QoS",
+                    "will_enable": "\u201ewill\u201c-Nachricht aktivieren",
+                    "will_payload": "Payload der \u201ewill\u201c-Nachricht",
+                    "will_qos": "QoS der \u201ewill\u201c-Nachricht",
+                    "will_retain": "Retain f\u00fcr \u201ewill\u201c-Nachricht aktivieren",
+                    "will_topic": "Topic der \u201ewill\u201c-Nachricht"
+                },
+                "data_description": {
+                    "birth_enable": "Wenn diese Einstellung aktiviert ist, ver\u00f6ffentlicht Home Assistant eine Online-Nachricht an deinen MQTT-Broker, wenn MQTT bereit ist.",
+                    "birth_payload": "Die \u201ebirth\u201c-Nachricht, die ver\u00f6ffentlicht wird, wenn MQTT bereit und verbunden ist.",
+                    "birth_qos": "Die Quality of Service der \u201ebirth\u201c-Nachricht, die ver\u00f6ffentlicht wird, wenn MQTT bereit und verbunden ist",
+                    "birth_retain": "Wenn dies festgelegt ist, beh\u00e4lt Home Assistant die an deinen MQTT-Broker ver\u00f6ffentlichte \u201ebirth\u201c-Nachricht bei.",
+                    "birth_topic": "Das MQTT-Topic, in dem Home Assistant eine \u201ebirth\u201c-Nachricht ver\u00f6ffentlicht.",
+                    "discovery": "Option zum Aktivieren der automatischen MQTT-Erkennung.",
+                    "discovery_prefix": "Das Pr\u00e4fix der Konfigurations-Topics, die von der MQTT-Integration abonniert werden.",
+                    "discovery_qos": "Die Servicequalit\u00e4t f\u00fcr Discovery-Abonnements bei deinem MQTT-Broker.",
+                    "will_enable": "Wenn diese Einstellung aktiviert ist, fordert Home Assistant deinen Broker auf, eine \u201ewill\u201c-Nachricht zu ver\u00f6ffentlichen, wenn MQTT gestoppt oder die Verbindung zu deinem Broker unterbrochen wird.",
+                    "will_payload": "Die \u201ewill\u201c-Nachricht, die dein MQTT-Broker ver\u00f6ffentlicht, wenn die MQTT-Integration gestoppt oder die Verbindung unterbrochen wird.",
+                    "will_qos": "Die Quality of Service der \u201ewill\u201c-Nachricht, die von deinem MQTT-Broker ver\u00f6ffentlicht wird.",
+                    "will_retain": "Wenn dies festgelegt ist, beh\u00e4lt dein MQTT-Broker die \u201ewill\u201c-Nachricht bei.",
+                    "will_topic": "Das MQTT-Topic, in dem dein MQTT-Broker eine \u201ewill\u201c-Nachricht ver\u00f6ffentlichen wird."
+                },
+                "description": "Erkennung - Wenn die Erkennung aktiviert ist (empfohlen), erkennt Home Assistant automatisch Ger\u00e4te und Entit\u00e4ten, die ihre Konfiguration auf dem MQTT-Broker ver\u00f6ffentlichen. Wenn die Erkennung deaktiviert ist, muss die gesamte Konfiguration manuell vorgenommen werden.\nErkennungspr\u00e4fix - Das Pr\u00e4fix, mit dem ein Konfigurations-Topic f\u00fcr die automatische Erkennung beginnen muss.\nBirth-Nachricht - Die Birth-Nachricht wird jedes Mal gesendet, wenn sich Home Assistant (erneut) mit dem MQTT-Broker verbindet.\nWill-Nachricht - Die Will-Nachricht wird jedes Mal gesendet, wenn Home Assistant die Verbindung zum Broker verliert, sowohl im Falle einer sauberen (z. B. Home Assistant wird heruntergefahren) als auch im Falle einer unsauberen (z. B. Home Assistant st\u00fcrzt ab oder verliert die Netzwerkverbindung) Trennung der Verbindung.",
+                "title": "MQTT-Optionen"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Lokale Codevalidierung",
+                "remote_code": "Numerische Remote-Codevalidierung",
+                "remote_code_text": "Textliche Remote-Codevalidierung"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "Alarmzentrale aktivieren (Abwesend)",
+                "arm_custom_bypass": "Alarmzentrale aktivieren (Mit Bypass)",
+                "arm_home": "Alarmzentrale aktivieren (Zuhause)",
+                "arm_night": "Alarmzentrale aktivieren (Nacht)",
+                "arm_vacation": "Alarmzentrale aktivieren (Urlaub)",
+                "trigger": "Alarmzentrale ausl\u00f6sen"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Auto",
+                "cool": "K\u00fchlbetrieb",
+                "dry": "Entfeuchtung",
+                "fan_only": "Nur L\u00fcftung",
+                "heat": "Heizbetrieb",
+                "heat_cool": "Heizen/K\u00fchlen",
+                "off": "Aus"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Konfiguration",
+                "diagnostic": "Diagnose"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64-Codierung",
+                "raw": "Rohdaten"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "Bilddaten werden empfangen",
+                "image_url": "Bild-URL wird empfangen"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "Standardschema",
+                "json": "JSON",
+                "template": "Template"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automatisch",
+                "box": "Eingabefeld",
+                "slider": "Schieberegler"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Helligkeit",
+                "first": "Zuerst",
+                "last": "Zuletzt"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Alarmzentrale",
+                "binary_sensor": "Bin\u00e4rsensor",
+                "button": "Taste",
+                "climate": "Klima",
+                "cover": "Abdeckung",
+                "date": "Datum",
+                "datetime": "Datum/Uhrzeit",
+                "fan": "Ventilator",
+                "image": "Bild",
+                "light": "Leuchte",
+                "lock": "Schloss",
+                "notify": "Benachrichtigungen",
+                "number": "Zahl",
+                "select": "Auswahl",
+                "sensor": "Sensor",
+                "siren": "Sirene",
+                "switch": "Schalter",
+                "text": "Text",
+                "time": "Uhrzeit",
+                "valve": "Ventil",
+                "water_heater": "Warmwasserbereiter"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Auto",
+                "custom": "Benutzerdefiniert",
+                "off": "Aus"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Nur Helligkeit",
+                "color_temp": "Farbtemperatur",
+                "hs": "HS",
+                "onoff": "Ein/Aus",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Wei\u00df",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "Obere/untere Soll-Temperatur",
+                "none": "Keine Soll-Temperatur",
+                "single": "Einzelne Soll-Temperatur"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Passwort",
+                "text": "Text"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Auto",
+                "eco": "Eco",
+                "electric": "Elektrisch",
+                "gas": "Gas",
+                "heat_pump": "W\u00e4rmepumpe",
+                "high_demand": "Hoher Bedarf",
+                "off": "Aus",
+                "performance": "Hochleistung"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Schreibt alle Nachrichten zu einem bestimmten Topic in die Datei `mqtt_dump.txt` in deinem Konfigurationsordner.",
+            "fields": {
+                "duration": {
+                    "description": "Wie lange wir auf Nachrichten warten sollen in Sekunden.",
+                    "name": "Dauer"
+                },
+                "topic": {
+                    "description": "Zu abonnierendes Topic.",
+                    "name": "Topic"
+                }
+            },
+            "name": "Exportieren"
+        },
+        "publish": {
+            "description": "Ver\u00f6ffentlicht eine Nachricht in einem MQTT-Topic.",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Wenn 'Payload' ein Python-Byte-Literal ist, das Byte-Literal auswerten und die Rohdaten ver\u00f6ffentlichen.",
+                    "name": "Payload auswerten"
+                },
+                "message_expiry_interval": {
+                    "description": "L\u00e4sst eine Ver\u00f6ffentlichungsnachricht nach dem Intervall auslaufen, wenn der Ger\u00e4teabonnent vor\u00fcbergehend offline war oder die Nachricht als Retained festgelegt wurde. Wird nur in MQTT-Protokollversion 5.0 unterst\u00fctzt.",
+                    "name": "Message Expiry Interval"
+                },
+                "payload": {
+                    "description": "Die zu ver\u00f6ffentlichende Payload. Ver\u00f6ffentlicht eine leere Nachricht, wenn nicht angegeben.",
+                    "name": "Payload"
+                },
+                "qos": {
+                    "description": "Zu verwendende Quality of Service. 0: H\u00f6chstens einmal. 1: Mindestens einmal. 2: Genau einmal.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Ob die Nachricht das Retain-Flag gesetzt haben soll. Wenn gesetzt, speichert der Broker die letzte Nachricht zu einem Topic.",
+                    "name": "Retain"
+                },
+                "topic": {
+                    "description": "Topic, in dem ver\u00f6ffentlicht werden soll.",
+                    "name": "Topic"
+                }
+            },
+            "name": "Ver\u00f6ffentlichen",
+            "sections": {
+                "publish_options": {
+                    "name": "Ver\u00f6ffentlichungsoptionen"
+                }
+            }
+        },
+        "reload": {
+            "description": "L\u00e4dt MQTT-Entit\u00e4ten aus der YAML-Konfiguration neu.",
+            "name": "Neu laden"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "Wird ausgel\u00f6st, sobald eine bestimmte Nachricht auf einem vorgegebenen MQTT-Topic empfangen wird.",
+            "fields": {
+                "payload": {
+                    "description": "Die Payload, bei der ausgel\u00f6st werden soll.",
+                    "name": "Payload"
+                },
+                "topic": {
+                    "description": "MQTT-Topic, das abonniert werden soll.",
+                    "name": "Topic"
+                }
+            },
+            "name": "MQTT-Nachricht empfangen"
+        }
+    }
+}

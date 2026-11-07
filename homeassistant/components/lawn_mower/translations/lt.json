@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Patikrina, ar prijungta viena ar kelios vejapjov\u0117s.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 prijungta prie doko"
+        },
+        "is_encountering_an_error": {
+            "description": "Tikrina, ar viena ar kelios vejapjov\u0117s susiduria su klaida.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 aptiko klaid\u0105"
+        },
+        "is_idle": {
+            "description": "Patikrina, ar viena ar kelios vejapjov\u0117s neveikia.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 neveikia"
+        },
+        "is_mowing": {
+            "description": "Patikrina, ar pjauna viena ar kelios vejapjov\u0117s.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 pjauna"
+        },
+        "is_paused": {
+            "description": "Patikrina, ar viena ar kelios vejapjov\u0117s yra pristabdytos.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 pristabdyta"
+        },
+        "is_returning": {
+            "description": "Patikrina, ar viena ar kelios vejapjov\u0117s gr\u012f\u017eta \u012f stotel\u0119.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejos pjovimo ma\u0161ina gr\u012f\u017eta"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u017doliapjov\u0117",
+            "state": {
+                "docked": "Stovi prie stotel\u0117s",
+                "error": "Klaida",
+                "idle": "Nedaroma nieko",
+                "mowing": "Pjovimas",
+                "paused": "Pristabdyta",
+                "returning": "Sugr\u012f\u017eimas"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Gr\u0105\u017eina vejapjov\u0119 \u012f jos stotel\u0119.",
+            "name": "Gr\u0105\u017einkite vejapjov\u0119 \u012f stotel\u0119"
+        },
+        "pause": {
+            "description": "Pristabdo dabartin\u0119 vejapjov\u0117s u\u017eduot\u012f.",
+            "name": "Vejos pjovimo pristabdymas"
+        },
+        "start_mowing": {
+            "description": "Pradeda vejapjov\u0117s pjovimo u\u017eduot\u012f.",
+            "name": "Vejos pjovimo \u012fjungimas"
+        },
+        "stop": {
+            "description": "Sustabdo vejapjov\u0117s dabartin\u0119 u\u017eduot\u012f.",
+            "name": "Sustabdykite vejapjov\u0119"
+        }
+    },
+    "title": "\u017doliapjov\u0117",
+    "triggers": {
+        "became_idle": {
+            "description": "Suveikia, kai viena ar kelios vejapjov\u0117s nustoja veikti.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 nustojo veikti"
+        },
+        "errored": {
+            "description": "Suveikia, kai viena ar kelios vejapjov\u0117s aptinka klaid\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 aptiko klaid\u0105"
+        },
+        "paused_mowing": {
+            "description": "Suveikia, kai viena ar kelios vejapjov\u0117s sustabdo pjovim\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 pristabd\u0117 pjovim\u0105"
+        },
+        "returned_to_dock": {
+            "description": "Suveikia, kai viena ar kelios vejapjov\u0117s gr\u012f\u017eta \u012f dok\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 gr\u0105\u017einta \u012f dok\u0105"
+        },
+        "started_mowing": {
+            "description": "Suveikia, kai viena ar kelios vejapjov\u0117s pradeda pjauti \u017eol\u0119.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vejapjov\u0117 prad\u0117jo pjauti"
+        },
+        "started_returning": {
+            "description": "Suveikia, kai viena ar kelios vejapjov\u0117s pradeda gr\u012f\u017eti \u012f dok\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "\u017doliapjov\u0117 prad\u0117jo gr\u012f\u017eti \u012f dok\u0105"
+        }
+    }
+}

@@ -1,0 +1,133 @@
+{
+    "common": {
+        "condition_behavior_name": "Betingelsen opfyldes, hvis",
+        "condition_for_name": "I mindst",
+        "condition_threshold_name": "T\u00e6rskeltype",
+        "trigger_for_name": "I mindst",
+        "trigger_threshold_name": "T\u00e6rskeltype"
+    },
+    "conditions": {
+        "is_off": {
+            "name": "Vandvarmer er slukket"
+        },
+        "is_on": {
+            "name": "Vandvarmer er t\u00e6ndt"
+        },
+        "is_operation_mode": {
+            "fields": {
+                "operation_mode": {
+                    "name": "Driftstilstand"
+                }
+            },
+            "name": "Driftstilstand for vandvarmer"
+        },
+        "is_target_temperature": {
+            "name": "M\u00e5ltemperatur for vandvarmer"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "Sluk {entity_name}",
+            "turn_on": "T\u00e6nd for {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vandvarmer",
+            "state": {
+                "eco": "\u00d8ko",
+                "electric": "Elektrisk",
+                "gas": "Gas",
+                "heat_pump": "Varmepumpe",
+                "high_demand": "H\u00f8j eftersp\u00f8rgsel",
+                "off": "Fra",
+                "performance": "Ydeevne"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Ude-tilstand",
+                    "state": {
+                        "off": "Fra",
+                        "on": "Til"
+                    }
+                },
+                "current_temperature": {
+                    "name": "Aktuel temperatur"
+                },
+                "max_temp": {
+                    "name": "Maksimal m\u00e5ltemperatur"
+                },
+                "min_temp": {
+                    "name": "Minimum m\u00e5ltemperatur"
+                },
+                "operation_mode": {
+                    "name": "Driftstilstand",
+                    "state": {
+                        "eco": "\u00d8ko",
+                        "electric": "Elektrisk",
+                        "gas": "Gas",
+                        "heat_pump": "Varmepumpe",
+                        "high_demand": "H\u00f8j eftersp\u00f8rgsel",
+                        "off": "Fra",
+                        "performance": "Ydeevne"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "\u00d8vre m\u00e5ltemperatur"
+                },
+                "target_temp_low": {
+                    "name": "Nedre m\u00e5ltemperatur"
+                }
+            }
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "fields": {
+                "away_mode": {
+                    "name": "Ude-tilstand"
+                }
+            }
+        },
+        "set_operation_mode": {
+            "fields": {
+                "operation_mode": {
+                    "name": "Driftstilstand"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "operation_mode": {
+                    "name": "Driftstilstand"
+                },
+                "temperature": {
+                    "name": "Temperatur"
+                }
+            },
+            "name": "Indstil m\u00e5ltemperatur for vandvarmer"
+        },
+        "turn_off": {
+            "name": "Sluk vandvarmer"
+        },
+        "turn_on": {
+            "name": "T\u00e6nd vandvarmer"
+        }
+    },
+    "title": "Vandvarmer",
+    "triggers": {
+        "operation_mode_changed": {
+            "fields": {
+                "operation_mode": {
+                    "name": "Driftstilstand"
+                }
+            }
+        },
+        "turned_off": {
+            "name": "Vandvarmer slukkede"
+        },
+        "turned_on": {
+            "name": "Vandvarmer t\u00e6ndte"
+        }
+    }
+}

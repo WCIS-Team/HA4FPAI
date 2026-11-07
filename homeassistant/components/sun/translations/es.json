@@ -1,0 +1,414 @@
+{
+    "common": {
+        "condition_threshold_name": "Tipo de umbral",
+        "period_description": "La hora del d\u00eda a considerar: la ma\u00f1ana, la tarde o cualquiera de las dos.",
+        "period_name": "Per\u00edodo",
+        "trigger_for_name": "Durante al menos",
+        "trigger_offset_description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+        "trigger_offset_name": "Desfase",
+        "trigger_offset_type_description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+        "trigger_offset_type_name": "Tipo de desfase",
+        "trigger_threshold_name": "Tipo de umbral",
+        "twilight_type_description": "La fase crepuscular.",
+        "twilight_type_name": "Tipo de crep\u00fasculo"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Comprueba la elevaci\u00f3n del sol en relaci\u00f3n con un umbral que t\u00fa mismo establezcas.",
+            "fields": {
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "Elevaci\u00f3n del sol"
+        },
+        "is_ascending": {
+            "description": "Comprueba si el sol est\u00e1 saliendo.",
+            "name": "El sol est\u00e1 saliendo"
+        },
+        "is_blue_hour": {
+            "description": "Comprueba si es la hora azul, opcionalmente durante un per\u00edodo espec\u00edfico.",
+            "fields": {
+                "period": {
+                    "description": "La hora del d\u00eda a considerar: la ma\u00f1ana, la tarde o cualquiera de las dos.",
+                    "name": "Per\u00edodo"
+                }
+            },
+            "name": "Es la hora azul"
+        },
+        "is_descending": {
+            "description": "Comprueba si el sol se est\u00e1 poniendo.",
+            "name": "El sol se est\u00e1 poniendo"
+        },
+        "is_evening_twilight": {
+            "description": "Comprueba si es crep\u00fasculo vespertino, opcionalmente de un tipo espec\u00edfico.",
+            "fields": {
+                "type": {
+                    "description": "La fase crepuscular.",
+                    "name": "Tipo de crep\u00fasculo"
+                }
+            },
+            "name": "Es el crep\u00fasculo vespertino."
+        },
+        "is_golden_hour": {
+            "description": "Comprueba si es la hora dorada, opcionalmente durante un per\u00edodo espec\u00edfico.",
+            "fields": {
+                "period": {
+                    "description": "La hora del d\u00eda a considerar: la ma\u00f1ana, la tarde o cualquiera de las dos.",
+                    "name": "Per\u00edodo"
+                }
+            },
+            "name": "Es la hora dorada."
+        },
+        "is_midnight_sun": {
+            "description": "Comprueba si es sol de medianoche.",
+            "name": "Es sol de medianoche"
+        },
+        "is_morning_twilight": {
+            "description": "Comprueba si se trata del crep\u00fasculo matutino, opcionalmente de un tipo espec\u00edfico.",
+            "fields": {
+                "type": {
+                    "description": "La fase crepuscular.",
+                    "name": "Tipo de crep\u00fasculo"
+                }
+            },
+            "name": "Es el crep\u00fasculo matutino."
+        },
+        "is_night": {
+            "description": "Comprueba si es de noche.",
+            "name": "Es de noche."
+        },
+        "is_polar_night": {
+            "description": "Comprueba si es noche polar.",
+            "name": "Es noche polar"
+        },
+        "is_set": {
+            "description": "Comprueba si el sol se ha puesto.",
+            "name": "El sol se ha puesto."
+        },
+        "is_up": {
+            "description": "Comprueba si ha salido el sol.",
+            "name": "El sol ya sali\u00f3."
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "\u00bfQuieres iniciar la configuraci\u00f3n?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Salida del sol",
+                "state": {
+                    "off": "Puesta de sol",
+                    "on": "Salida del sol"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "Pr\u00f3ximo amanecer"
+            },
+            "next_dusk": {
+                "name": "Pr\u00f3ximo anochecer"
+            },
+            "next_midnight": {
+                "name": "Pr\u00f3xima medianoche"
+            },
+            "next_noon": {
+                "name": "Pr\u00f3ximo mediod\u00eda"
+            },
+            "next_rising": {
+                "name": "Pr\u00f3xima salida del sol"
+            },
+            "next_setting": {
+                "name": "Pr\u00f3xima puesta de sol"
+            },
+            "solar_azimuth": {
+                "name": "Acimut solar"
+            },
+            "solar_elevation": {
+                "name": "Elevaci\u00f3n solar"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sol",
+            "state": {
+                "above_horizon": "Sobre el horizonte",
+                "below_horizon": "Bajo el horizonte"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Cualquiera",
+                "evening": "Noche",
+                "morning": "Ma\u00f1ana"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Despu\u00e9s de",
+                "before": "Antes de"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Cualquiera",
+                "astronomical": "Astron\u00f3mico",
+                "civil": "Civil",
+                "nautical": "N\u00e1utico"
+            }
+        }
+    },
+    "title": "Sol",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Se dispara cuando la hora azul termina, ya sea por la ma\u00f1ana, por la tarde o en cualquiera de los dos momentos.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                },
+                "period": {
+                    "description": "La hora del d\u00eda a considerar: la ma\u00f1ana, la tarde o cualquiera de las dos.",
+                    "name": "Per\u00edodo"
+                }
+            },
+            "name": "La hora azul termin\u00f3"
+        },
+        "blue_hour_started": {
+            "description": "Se dispara cuando la hora azul comienza, ya sea por la ma\u00f1ana, por la tarde o en cualquiera de los dos momentos.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                },
+                "period": {
+                    "description": "La hora del d\u00eda a considerar: la ma\u00f1ana, la tarde o cualquiera de las dos.",
+                    "name": "Per\u00edodo"
+                }
+            },
+            "name": "La hora azul comenz\u00f3"
+        },
+        "dawn": {
+            "description": "Se dispara al amanecer, cuando comienza el crep\u00fasculo civil, n\u00e1utico o astron\u00f3mico.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                },
+                "type": {
+                    "description": "La fase crepuscular.",
+                    "name": "Tipo de crep\u00fasculo"
+                }
+            },
+            "name": "Amanecer"
+        },
+        "dusk": {
+            "description": "Se dispara al anochecer, cuando finaliza el crep\u00fasculo civil, n\u00e1utico o astron\u00f3mico.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                },
+                "type": {
+                    "description": "La fase crepuscular.",
+                    "name": "Tipo de crep\u00fasculo"
+                }
+            },
+            "name": "Anochecer"
+        },
+        "elevation_changed": {
+            "description": "Se dispara cada vez que cambia la elevaci\u00f3n del sol; opcionalmente, se puede limitar a un umbral o rango que t\u00fa mismo establezcas.",
+            "fields": {
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "La elevaci\u00f3n del sol cambi\u00f3"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Se dispara cuando la elevaci\u00f3n del sol cruza un umbral que t\u00fa establezcas.",
+            "fields": {
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "La elevaci\u00f3n del sol cruz\u00f3 el umbral"
+        },
+        "golden_hour_ended": {
+            "description": "Se dispara cuando la hora dorada termina, ya sea por la ma\u00f1ana, por la tarde o en cualquiera de los dos momentos.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                },
+                "period": {
+                    "description": "La hora del d\u00eda a considerar: la ma\u00f1ana, la tarde o cualquiera de las dos.",
+                    "name": "Per\u00edodo"
+                }
+            },
+            "name": "La hora dorada termin\u00f3"
+        },
+        "golden_hour_started": {
+            "description": "Se dispara cuando la hora dorada comienza, ya sea por la ma\u00f1ana, por la tarde o en cualquiera de los dos momentos.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                },
+                "period": {
+                    "description": "La hora del d\u00eda a considerar: la ma\u00f1ana, la tarde o cualquiera de las dos.",
+                    "name": "Per\u00edodo"
+                }
+            },
+            "name": "La hora dorada comenz\u00f3"
+        },
+        "midnight_sun_ended": {
+            "description": "Se dispara cuando el per\u00edodo del sol de medianoche termina y el sol se pone de nuevo.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "El sol de medianoche termin\u00f3"
+        },
+        "midnight_sun_started": {
+            "description": "Se dispara cuando el per\u00edodo del sol de medianoche comienza y el sol deja de ponerse.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "El sol de medianoche comenz\u00f3"
+        },
+        "polar_night_ended": {
+            "description": "Se dispara cuando el per\u00edodo de noche polar termina y el sol vuelve a salir.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "La noche polar termin\u00f3"
+        },
+        "polar_night_started": {
+            "description": "Se dispara cuando el per\u00edodo de la noche polar comienza y el sol deja de salir.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "La noche polar comenz\u00f3"
+        },
+        "solar_midnight": {
+            "description": "Se dispara cuando el sol alcanza su punto m\u00e1s bajo.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "Medianoche solar"
+        },
+        "solar_noon": {
+            "description": "Se dispara cuando el sol alcanza su punto m\u00e1s alto.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "Mediod\u00eda solar"
+        },
+        "sunrise": {
+            "description": "Se dispara cuando sale el sol.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "Amanecer"
+        },
+        "sunset": {
+            "description": "Se dispara al atardecer.",
+            "fields": {
+                "offset": {
+                    "description": "Tiempo de activaci\u00f3n antes o despu\u00e9s del evento solar.",
+                    "name": "Desfase"
+                },
+                "offset_type": {
+                    "description": "Indica si se debe activar antes o despu\u00e9s del evento solar.",
+                    "name": "Tipo de desfase"
+                }
+            },
+            "name": "Puesta de sol"
+        }
+    }
+}

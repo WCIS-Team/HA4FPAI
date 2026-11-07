@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "condition_threshold_name": "Slenks\u010dio tipas",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "Patikrina, ar vienas ar keli dr\u0117kintuvai d\u017eiovina or\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas d\u017eiovina"
+        },
+        "is_humidifying": {
+            "description": "Patikrina, ar vienas ar keli dr\u0117kintuvai dr\u0117kina or\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas dr\u0117kina or\u0105"
+        },
+        "is_mode": {
+            "description": "Patikrina, ar vienas ar keli dr\u0117kintuvai nustatyti konkre\u010diam re\u017eimui.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "mode": {
+                    "description": "Veikimo re\u017eimai, kuriuos reikia patikrinti.",
+                    "name": "Re\u017eimas"
+                }
+            },
+            "name": "Dr\u0117kintuvas veikia re\u017eimu"
+        },
+        "is_off": {
+            "description": "Patikrina, ar i\u0161jungtas vienas ar keli dr\u0117kintuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas i\u0161jungtas"
+        },
+        "is_on": {
+            "description": "Patikrina, ar \u012fjungtas vienas ar keli dr\u0117kintuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas \u012fjungtas"
+        },
+        "is_target_humidity": {
+            "description": "I\u0161bando vieno ar keli\u0173 dr\u0117kintuv\u0173 tikslin\u0119 dr\u0117gm\u0119.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "threshold": {
+                    "name": "Slenks\u010dio tipas"
+                }
+            },
+            "name": "Dr\u0117kintuvo tikslin\u0117 dr\u0117gm\u0117"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "Nustatyti {entity_name} dr\u0117gm\u0119",
+            "set_mode": "Keisti re\u017eim\u0105 {entity_name}",
+            "toggle": "Perjungti {entity_name}",
+            "turn_off": "I\u0161jungti {entity_name}",
+            "turn_on": "\u012ejungti {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} nustatytas \u012f konkret\u0173 re\u017eim\u0105",
+            "is_off": "{entity_name} i\u0161jungtas",
+            "is_on": "{entity_name} yra \u012fjungtas"
+        },
+        "extra_fields": {
+            "above": "Auk\u0161\u010diau",
+            "below": "\u017demiau",
+            "for": "Trukm\u0117",
+            "humidity": "Oro dr\u0117gm\u0117",
+            "mode": "Re\u017eimas"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} \u012fjungtas arba i\u0161jungtas",
+            "target_humidity_changed": "{entity_name} tikslin\u0117 oro dr\u0117gm\u0117 pakeista",
+            "turned_off": "{entity_name} i\u0161jungtas",
+            "turned_on": "{entity_name} \u012fjungtas"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Dr\u0117kintuvas",
+            "state": {
+                "off": "I\u0161jungta",
+                "on": "\u012ejungta"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Veiksmas",
+                    "state": {
+                        "drying": "D\u017eiovinimas",
+                        "humidifying": "Dr\u0117kinantis",
+                        "idle": "Nedaroma nieko",
+                        "off": "I\u0161jungta"
+                    }
+                },
+                "available_modes": {
+                    "name": "Galimi i\u0161 anksto nustatyti re\u017eimai"
+                },
+                "current_humidity": {
+                    "name": "Dabartin\u0117 oro dr\u0117gm\u0117"
+                },
+                "humidity": {
+                    "name": "Tikslin\u0117 oro dr\u0117gm\u0117"
+                },
+                "max_humidity": {
+                    "name": "Maksimali tikslin\u0117 oro dr\u0117gm\u0117"
+                },
+                "min_humidity": {
+                    "name": "Minimali tikslin\u0117 oro dr\u0117gm\u0117"
+                },
+                "mode": {
+                    "name": "Re\u017eimas",
+                    "state": {
+                        "auto": "Automatinis",
+                        "away": "I\u0161vyk\u0119s",
+                        "baby": "K\u016bdikis",
+                        "boost": "Padidinti",
+                        "comfort": "Komfortas",
+                        "eco": "Eco",
+                        "home": "Namai",
+                        "normal": "Normalus",
+                        "sleep": "Miegas"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Sausintuvas"
+        },
+        "humidifier": {
+            "name": "Dr\u0117kintuvas"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Pateikta oro dr\u0117gm\u0117 {humidity} negalioja. Priimtas diapazonas yra {min_humidity} iki {max_humidity} ."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "Nustato tikslin\u012f dr\u0117kintuvo dr\u0117gm\u0117s lyg\u012f.",
+            "fields": {
+                "humidity": {
+                    "description": "Tikslin\u0117 oro dr\u0117gm\u0117.",
+                    "name": "Oro dr\u0117gm\u0117"
+                }
+            },
+            "name": "Nustatykite dr\u0117kintuvo tikslin\u0119 dr\u0117gm\u0119"
+        },
+        "set_mode": {
+            "description": "Nustato dr\u0117kintuvo re\u017eim\u0105.",
+            "fields": {
+                "mode": {
+                    "description": "Veikimo re\u017eimas. Pavyzd\u017eiui, 'normalus', 'ekologi\u0161kas' arba 'i\u0161vyk\u0119s'. Galim\u0173 ver\u010di\u0173 s\u0105ra\u0161\u0105 rasite integravimo dokumentacijoje.",
+                    "name": "Re\u017eimas"
+                }
+            },
+            "name": "Nustatykite dr\u0117kintuvo re\u017eim\u0105"
+        },
+        "toggle": {
+            "description": "\u012ejungia / i\u0161jungia dr\u0117kintuv\u0105.",
+            "name": "Perjungti dr\u0117kintuv\u0105"
+        },
+        "turn_off": {
+            "description": "I\u0161jungia dr\u0117kintuv\u0105.",
+            "name": "I\u0161junkite dr\u0117kintuv\u0105"
+        },
+        "turn_on": {
+            "description": "\u012ejungia dr\u0117kintuv\u0105.",
+            "name": "\u012ejunkite dr\u0117kintuv\u0105"
+        }
+    },
+    "title": "Dr\u0117kintuvas",
+    "triggers": {
+        "mode_changed": {
+            "description": "Suveikia, kai pasikei\u010dia vieno ar keli\u0173 dr\u0117kintuv\u0173 veikimo re\u017eimas.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "mode": {
+                    "description": "\u012ejungiami veikimo re\u017eimai.",
+                    "name": "Re\u017eimas"
+                }
+            },
+            "name": "Pakeistas oro dr\u0117kintuvo re\u017eimas"
+        },
+        "started_drying": {
+            "description": "Suveikia, kai vienas ar keli dr\u0117kintuvai pradeda d\u017eiovinti.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas prad\u0117jo d\u017eiovinti"
+        },
+        "started_humidifying": {
+            "description": "Suveikia, kai vienas ar keli dr\u0117kintuvai pradeda dr\u0117kinti.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas prad\u0117jo dr\u0117kinti"
+        },
+        "turned_off": {
+            "description": "Suveikia, kai i\u0161sijungia vienas ar keli dr\u0117kintuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas i\u0161jungtas"
+        },
+        "turned_on": {
+            "description": "Suveikia, kai \u012fsijungia vienas ar keli dr\u0117kintuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dr\u0117kintuvas \u012fjungtas"
+        }
+    }
+}

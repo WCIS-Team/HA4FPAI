@@ -1,0 +1,175 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Proverava da li je jedan ili vi\u0161e daljinskih upravlja\u010da isklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Daljinski upravlja\u010d isklju\u010den"
+        },
+        "is_on": {
+            "description": "Proverava da li je jedan ili vi\u0161e daljinskih upravlja\u010da uklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Daljinski upravlja\u010d uklju\u010den"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Uklju\u010di/isklju\u010di {entity_name}",
+            "turn_off": "Isklju\u010di {entity_name}",
+            "turn_on": "Uklju\u010di {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} je isklju\u010deno",
+            "is_on": "{entity_name} je uklju\u010deno"
+        },
+        "extra_fields": {
+            "for": "Trajanje"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} je uklju\u010den ili isklju\u010den",
+            "turned_off": "{entity_name} je isklju\u010den",
+            "turned_on": "{entity_name} je uklju\u010den"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Daljinski",
+            "state": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            }
+        }
+    },
+    "services": {
+        "delete_command": {
+            "description": "Bri\u0161e komandu ili listu komandi iz baze podataka daljinskog upravlja\u010da.",
+            "fields": {
+                "command": {
+                    "description": "Naziv specifi\u010dne komande ili spisak komandi predvi\u0111enih za trajno uklanjanje.",
+                    "name": "Naziv komande"
+                },
+                "device": {
+                    "description": "Identifikator ure\u0111aja \u010dije je memorisane signale potrebno ukloniti.",
+                    "name": "Identifikator ure\u0111aja"
+                }
+            },
+            "name": "Obri\u0161i komandu daljinskog upravlja\u010da"
+        },
+        "learn_command": {
+            "description": "Pokre\u0107e u\u010denje komande ili liste komandi sa ure\u0111aja.",
+            "fields": {
+                "alternative": {
+                    "description": "Koristi se za diskretne kodove (npr. samo \u201eUklju\u010di\u201c umesto \u201eToggle\u201c).",
+                    "name": "Diskretni kodovi (Alternativa)"
+                },
+                "command": {
+                    "description": "Pojedina\u010dna komanda ili lista komandi za u\u010denje.",
+                    "name": "Komanda"
+                },
+                "command_type": {
+                    "description": "Tip komande koji se u\u010di.",
+                    "name": "Vrsta komande"
+                },
+                "device": {
+                    "description": "ID ure\u0111aja sa kojeg se u\u010di komanda.",
+                    "name": "Identifikator ure\u0111aja"
+                },
+                "timeout": {
+                    "description": "Koliko sekundi sistem \u010deka da pritisnete dugme na daljinskom.",
+                    "name": "Period \u010dekanja (Timeout)"
+                }
+            },
+            "name": "Snimi komandu daljinskog upravlja\u010da"
+        },
+        "send_command": {
+            "description": "\u0160alje komandu ili listu komandi ure\u0111aju.",
+            "fields": {
+                "command": {
+                    "description": "Pojedina\u010dna komanda ili lista komandi za slanje.",
+                    "name": "Naziv komande"
+                },
+                "delay_secs": {
+                    "description": "Vremenski interval \u010dekanja izme\u0111u dve uzastopne emisije signala.",
+                    "name": "Interval izme\u0111u komandi"
+                },
+                "device": {
+                    "description": "ID ure\u0111aja za slanje komande.",
+                    "name": "Ure\u0111aj"
+                },
+                "hold_secs": {
+                    "description": "Trajanje simulacije pritisnutog dugmeta pre pu\u0161tanja.",
+                    "name": "Pauza izme\u0111u slanja"
+                },
+                "num_repeats": {
+                    "description": "Defini\u0161e ukupan broj emisija izabrane komande.",
+                    "name": "U\u010destalost ponavljanja"
+                }
+            },
+            "name": "Po\u0161alji komandu daljinskog upravlja\u010da"
+        },
+        "toggle": {
+            "description": "Uklju\u010duje ili isklju\u010duje daljinski upravlja\u010d.",
+            "name": "Prebaci stanje daljinskog upravlja\u010da"
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje daljinski upravlja\u010d.",
+            "name": "Isklju\u010di daljinski upravlja\u010d"
+        },
+        "turn_on": {
+            "description": "Uklju\u010duje daljinski upravlja\u010d.",
+            "fields": {
+                "activity": {
+                    "description": "ID aktivnosti ili naziv aktivnosti koju treba pokrenuti.",
+                    "name": "Aktivnost"
+                }
+            },
+            "name": "Uklju\u010di daljinski upravlja\u010d"
+        }
+    },
+    "title": "Daljinski",
+    "triggers": {
+        "turned_off": {
+            "description": "Pokre\u0107e se kada se isklju\u010di jedan ili vi\u0161e daljinskih upravlja\u010da.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Daljinski upravlja\u010d isklju\u010den"
+        },
+        "turned_on": {
+            "description": "Pokre\u0107e se kada se uklju\u010di jedan ili vi\u0161e daljinskih upravlja\u010da.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Daljinski upravlja\u010d uklju\u010den"
+        }
+    }
+}

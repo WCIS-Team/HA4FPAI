@@ -1,0 +1,69 @@
+{
+    "exceptions": {
+        "entity_not_dynamically_created": {
+            "message": "Scena {entity_id} nije kreirana pomo\u0107u radnje `scene.create`."
+        },
+        "entity_not_scene": {
+            "message": "{entity_id} nije va\u017ee\u0107i ID entiteta scene."
+        }
+    },
+    "services": {
+        "apply": {
+            "description": "Aktivira scenu sa konfiguracijom.",
+            "fields": {
+                "entities": {
+                    "description": "Lista entiteta i njihovih \u017eeljenih stanja.",
+                    "name": "Konfiguracija stanja"
+                },
+                "transition": {
+                    "description": "Vreme (u sekundama) za postepeni prelazak ure\u0111aja u nova stanja.",
+                    "name": "Trajanje tranzicije"
+                }
+            },
+            "name": "Primeni scenu"
+        },
+        "create": {
+            "description": "Kreira novu scenu.",
+            "fields": {
+                "entities": {
+                    "description": "Lista entiteta i njihova \u017eeljena stanja. Ako su tvoji entiteti ve\u0107 u \u017eeljenom stanju, koristi 'Snimak entiteta'.",
+                    "name": "Konfiguracija stanja"
+                },
+                "scene_id": {
+                    "description": "ID nove scene.",
+                    "name": "Identifikator scene (ID)"
+                },
+                "snapshot_entities": {
+                    "description": "Lista entiteta za snimak. Ovim bele\u017ei\u0161 trenutno stanje izabranih entiteta.",
+                    "name": "Trenutni snimak stanja (Snapshot)"
+                }
+            },
+            "name": "Kreiraj scenu"
+        },
+        "delete": {
+            "description": "Bri\u0161e dinami\u010dki kreiranu scenu.",
+            "name": "Obri\u0161i scenu"
+        },
+        "reload": {
+            "description": "Ponovo u\u010ditava scene iz YAML konfiguracije.",
+            "name": "Ponovo u\u010ditaj scene"
+        },
+        "turn_on": {
+            "description": "Aktivira scenu.",
+            "fields": {
+                "transition": {
+                    "description": "Vremenski interval (u sekundama) za postepeni prelazak ure\u0111aja u definisana stanja.",
+                    "name": "Trajanje tranzicije"
+                }
+            },
+            "name": "Aktiviraj scenu"
+        }
+    },
+    "title": "Scena",
+    "triggers": {
+        "activated": {
+            "description": "Pokre\u0107e se kada se aktivira jedna ili vi\u0161e scena.",
+            "name": "Scena aktivirana"
+        }
+    }
+}

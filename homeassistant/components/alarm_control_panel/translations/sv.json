@@ -1,0 +1,325 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_armed": {
+            "description": "Testar om ett eller flera larm \u00e4r aktiverade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm \u00e4r aktiverat"
+        },
+        "is_armed_away": {
+            "description": "Testar om ett eller flera larm \u00e4r aktiverade i bortal\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm \u00e4r aktiverat i bortal\u00e4ge"
+        },
+        "is_armed_home": {
+            "description": "Testar om ett eller flera larm \u00e4r aktiverade i heml\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm \u00e4r aktiverat i heml\u00e4ge"
+        },
+        "is_armed_night": {
+            "description": "Testar om ett eller flera larm \u00e4r aktiverade i nattl\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm \u00e4r aktiverat i nattl\u00e4ge"
+        },
+        "is_armed_vacation": {
+            "description": "Testar om ett eller flera larm \u00e4r aktiverade i semesterl\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm \u00e4r aktiverat i semesterl\u00e4ge"
+        },
+        "is_disarmed": {
+            "description": "Testar om ett eller flera larm \u00e4r avaktiverade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm \u00e4r avaktiverat"
+        },
+        "is_triggered": {
+            "description": "Testar om ett eller flera larm har utl\u00f6sts.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm \u00e4r utl\u00f6st"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "arm_away": "Larma p\u00e5 {entity_name} bortal\u00e4ge",
+            "arm_home": "Larma p\u00e5 {entity_name} hemmal\u00e4ge",
+            "arm_night": "Larma p\u00e5 {entity_name} nattl\u00e4ge",
+            "arm_vacation": "Larma p\u00e5 {entity_name} semesterl\u00e4ge",
+            "disarm": "Larma av {entity_name}",
+            "trigger": "Utl\u00f6s {entity_name}"
+        },
+        "condition_type": {
+            "is_armed_away": "{entity_name} \u00e4r p\u00e5larmat i bortal\u00e4ge",
+            "is_armed_home": "{entity_name} \u00e4r p\u00e5larmat i hemmal\u00e4ge",
+            "is_armed_night": "{entity_name} \u00e4r p\u00e5larmat i nattl\u00e4ge",
+            "is_armed_vacation": "{entity_name} \u00e4r p\u00e5larmat i semesterl\u00e4ge",
+            "is_disarmed": "{entity_name} \u00e4r avlarmat",
+            "is_triggered": "{entity_name} har utl\u00f6sts"
+        },
+        "extra_fields": {
+            "code": "Kod",
+            "for": "Varaktighet"
+        },
+        "trigger_type": {
+            "armed_away": "{entity_name} p\u00e5larmat i bortal\u00e4ge",
+            "armed_home": "{entity_name} p\u00e5larmat i hemmal\u00e4ge",
+            "armed_night": "{entity_name} p\u00e5larmat i nattl\u00e4ge",
+            "armed_vacation": "{entity_name} p\u00e5larmat i semesterl\u00e4ge",
+            "disarmed": "{entity_name} avlarmat",
+            "triggered": "{entity_name} utl\u00f6st"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Larmkontrollpanel",
+            "state": {
+                "armed": "P\u00e5larmat",
+                "armed_away": "P\u00e5larmat i bortal\u00e4ge",
+                "armed_custom_bypass": "P\u00e5larmat i anpassat f\u00f6rbikopplingsl\u00e4ge",
+                "armed_home": "P\u00e5larmat i hemmal\u00e4ge",
+                "armed_night": "P\u00e5larmat i nattl\u00e4ge",
+                "armed_vacation": "P\u00e5larmat i semesterl\u00e4ge",
+                "arming": "Larmar p\u00e5",
+                "disarmed": "Avlarmat",
+                "disarming": "Larmar av",
+                "pending": "V\u00e4ntar",
+                "triggered": "Utl\u00f6st"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "\u00c4ndrat av"
+                },
+                "code_arm_required": {
+                    "name": "Kod f\u00f6r p\u00e5larmning",
+                    "state": {
+                        "false": "Kr\u00e4vs ej",
+                        "true": "Kr\u00e4vs"
+                    }
+                },
+                "code_format": {
+                    "name": "Kodformat",
+                    "state": {
+                        "number": "Nummer",
+                        "text": "Text"
+                    }
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "code_arm_required": {
+            "message": "P\u00e5larmning kr\u00e4ver en kod men ingen angavs f\u00f6r {entity_id}."
+        }
+    },
+    "services": {
+        "alarm_arm_away": {
+            "description": "Aktiverar ett larm i bortal\u00e4ge.",
+            "fields": {
+                "code": {
+                    "description": "Kod f\u00f6r att larma p\u00e5 larmet.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Larma p\u00e5 bortal\u00e4ge"
+        },
+        "alarm_arm_custom_bypass": {
+            "description": "Aktiverar ett larm samtidigt som det g\u00e5r att f\u00f6rbikoppla ett anpassat omr\u00e5de.",
+            "fields": {
+                "code": {
+                    "description": "Kod f\u00f6r att larma p\u00e5 larmet.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Larma p\u00e5 anpassat f\u00f6rbikopplingsl\u00e4ge"
+        },
+        "alarm_arm_home": {
+            "description": "Aktiverar ett larms hemmal\u00e4ge.",
+            "fields": {
+                "code": {
+                    "description": "Kod f\u00f6r att larma p\u00e5 larmet.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Larma p\u00e5 hemmal\u00e4ge"
+        },
+        "alarm_arm_night": {
+            "description": "Aktiverar ett larms nattl\u00e4ge.",
+            "fields": {
+                "code": {
+                    "description": "Kod f\u00f6r att larma p\u00e5 larmet.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Larma p\u00e5 nattl\u00e4ge"
+        },
+        "alarm_arm_vacation": {
+            "description": "Aktiverar ett larms semesterl\u00e4ge.",
+            "fields": {
+                "code": {
+                    "description": "Kod f\u00f6r att larma p\u00e5 larmet.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Larma p\u00e5 semesterl\u00e4ge"
+        },
+        "alarm_disarm": {
+            "description": "Avaktiverar ett larm.",
+            "fields": {
+                "code": {
+                    "description": "Kod f\u00f6r att larma av larmet.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Larma av"
+        },
+        "alarm_trigger": {
+            "description": "Utl\u00f6ser ett larm manuellt.",
+            "fields": {
+                "code": {
+                    "description": "Kod f\u00f6r att larma p\u00e5 larmet.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Utl\u00f6s larm"
+        }
+    },
+    "title": "Larmkontrollpanel",
+    "triggers": {
+        "armed": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera larm aktiveras, oavsett l\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larmet aktiverat"
+        },
+        "armed_away": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera larm aktiveras i bortal\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm bortal\u00e4ge aktiverat"
+        },
+        "armed_home": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera larm aktiveras i heml\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm hemmal\u00e4ge aktiverat"
+        },
+        "armed_night": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera larm aktiveras i nattl\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm nattl\u00e4ge aktiverat"
+        },
+        "armed_vacation": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera larm aktiveras i semesterl\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm semesterl\u00e4ge aktiverat"
+        },
+        "disarmed": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera larm avaktiveras.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Larm avaktiverat"
+        },
+        "triggered": {
+            "description": "Utl\u00f6ses n\u00e4r ett eller flera larm utl\u00f6ses.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Alarm utl\u00f6st"
+        }
+    }
+}

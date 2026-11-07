@@ -1,0 +1,1412 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Het is niet gelukt om met de {addon} add-on te verbinden. Controleer de add-on status en probeer het later opnieuw.",
+            "addon_info_failed": "Opvragen informatie van {addon} add-on is mislukt.",
+            "addon_install_failed": "Het is niet gelukt om de app {addon} te installeren.",
+            "addon_start_failed": "Het is niet gelukt om de app {addon} te starten.",
+            "already_configured": "Dienst is al geconfigureerd"
+        },
+        "error": {
+            "bad_birth": "Ongeldig `birth` topic",
+            "bad_certificate": "Het CA certificaat bestand is ongeldig",
+            "bad_client_cert": "Ongeldig client-certificaat, zorg voor een geldig bestand",
+            "bad_client_cert_key": "Client certificaat en priv\u00e9sleutel zijn geen geldig paar",
+            "bad_discovery_prefix": "Ongeldig discovery voorvoegsel",
+            "bad_will": "Ongeldig `will` topic",
+            "bad_ws_headers": "Geef geldige HTTP-headers op als een JSON-object",
+            "cannot_connect": "Kan geen verbinding maken",
+            "client_key_error": "Ongeldig priv\u00e9sleutelbestand of ongeldig wachtwoord opgegeven",
+            "invalid_auth": "Ongeldige authenticatie",
+            "invalid_inclusion": "Het client-certificaat en priv\u00e9sleutel moeten samen worden geconfigureerd"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Broker",
+                    "password": "Wachtwoord",
+                    "port": "Poort",
+                    "protocol": "MQTT protocol",
+                    "username": "Gebruikersnaam"
+                },
+                "data_description": {
+                    "broker": "De hostnaam of IP-adres van je MQTT broker.",
+                    "password": "Het wachtwoord om in te loggen bij je MQTT broker.",
+                    "port": "De poort waarnaar je MQTT broker luistert. Bijvoorbeeld 1883.",
+                    "protocol": "De gebruikte MQTT-protocolversie. Houd er rekening mee dat Home Assistant automatisch overschakelt naar versie 5 als de broker dit ondersteunt.",
+                    "username": "De gebruikersnaam om in te loggen bij je MQTT broker."
+                },
+                "description": "Voer de verbindingsgegevens van je MQTT-broker in.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "Upload aangepast CA-certificaat bestand",
+                            "client_cert": "Upload client certificaatbestand",
+                            "client_id": "Client ID (laat leeg om een random ID te genereren)",
+                            "client_key": "Uploaden van je priv\u00e9sleutelbestand",
+                            "client_key_password": "Wachtwoord",
+                            "keepalive": "De tijd tussen het versturen van keep-alive berichten",
+                            "set_ca_cert": "Broker certificaatvalidatie",
+                            "set_client_cert": "Een clientcertificaat gebruiken",
+                            "tls_insecure": "De broker certificaatvalidatie negeren",
+                            "transport": "MQTT-transport",
+                            "ws_headers": "WebSocket-headers in JSON-formaat",
+                            "ws_path": "WebSocket-pad"
+                        },
+                        "data_description": {
+                            "certificate": "Het aangepaste CA-certificaat om het certificaat van je MQTT broker te valideren.",
+                            "client_cert": "Het clientcertificaat om mee te authenticeren tegen je MQTT broker.",
+                            "client_id": "Het unieke ID om de Home Assistant MQTT API te identificeren als MQTT client. Het wordt aanbevolen deze optie leeg te laten.",
+                            "client_key": "Het priv\u00e9sleutelbestand dat hoort bij je clientcertificaat.",
+                            "client_key_password": "Het wachtwoord voor het priv\u00e9sleutelbestand (als deze is ingesteld).",
+                            "keepalive": "Een waarde minder dan 90 seconden wordt geadviseerd. Standaardwaarde is 60 seconden.",
+                            "set_ca_cert": "Als deze optie al op **Aangepast** staat, is er een aangepast CA-certificaat voor validatie geconfigureerd. Selecteer **Auto** voor automatische CA validatie, of upload een aangepast CA-certificaat om validatie van je MQTT broker certificaat toe te staan.",
+                            "set_client_cert": "Als deze optie al is geselecteerd, is client certificaat authenticatie ingeschakeld. Upload een client en sleutel om in te schakelen.",
+                            "tls_insecure": "Optie om de validatie van je MQTT broker certificaat te negeren.",
+                            "transport": "Het transport om te gebruiken voor de connectie naar je MQTT broker.",
+                            "ws_headers": "De WebSocket-headers die moeten worden doorgegeven via de WebSocket-verbinding naar je MQTT-broker.",
+                            "ws_path": "Het WebSocket-pad dat moet worden gebruikt voor de verbinding met je MQTT-broker."
+                        },
+                        "name": "Overige instellingen"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "Wil je Home Assistant configureren om verbinding te maken met de MQTT-broker die wordt aangeboden door de add-on {addon}?",
+                "title": "MQTT-broker via de Home Assistant-app"
+            },
+            "install_addon": {
+                "title": "App installeren"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Wachtwoord",
+                    "username": "Gebruikersnaam"
+                },
+                "data_description": {
+                    "password": "Het wachtwoord om in te loggen bij je MQTT broker.",
+                    "username": "De gebruikersnaam om in te loggen bij je MQTT broker."
+                },
+                "description": "De MQTT-broker heeft een authenticatiefout gemeld. Controleer of de gebruikersnaam en het wachtwoord van de broker correct zijn.",
+                "title": "Herauthenticatie is nodig met de MQTT broker"
+            },
+            "start_addon": {
+                "title": "App starten"
+            },
+            "user": {
+                "description": "Kies hoe je verbinding wilt maken met de MQTT-broker:",
+                "menu_options": {
+                    "addon": "De offici\u00eble {addon} app gebruiken.",
+                    "broker": "De verbindingsgegevens van de MQTT-broker handmatig invoeren"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "MQTT apparaat met {platform} entiteit\"{entity}\" is succesvol ingesteld.\n\nWeet dat je het het MQTT apparaat kunt herconfigureren, b.v. om meer entiteiten toe te voegen.\nNote that you can reconfigure the MQTT device at any time, e.g. to add more entities."
+            },
+            "entry_type": "MQTT apparaat",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "De haal positie en positie instellen opties, moeten samen worden gebruik.",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "De positie waarde template moet samen worden gebruikt met het positie status template",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "De positie instellen template, moet samen worden gebruikt met zet positie topic.",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "De kanteling commando template met samen worden gebruikt met het tilt commando topic",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "De kanteling waarde template moet samen worden gebruikt met het kanteling status topic",
+                "cover_value_template_must_be_used_with_state_topic": "De waarde template moet samen met de status topic optie worden gebruikt",
+                "empty_list_not_allowed": "Lege lijst is niet toegestaan. Voeg minimaal \u00e9\u00e9n item toe",
+                "fan_preset_mode_reset_in_preset_modes_list": "Bericht \"reset preset mode\" is niet geldig als preset mode",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "Snelheidsbereik max moet groter zijn dan snelheidsbereik min",
+                "invalid_input": "Ongeldige waarde",
+                "invalid_regular_expression": "Moet een geldige reguliere expressie zijn",
+                "invalid_subscribe_topic": "Ongeldige topic om op te abonneren",
+                "invalid_supported_color_modes": "Ongeldige ondersteunde kleurmodi selectie",
+                "invalid_template": "Ongeldige template",
+                "invalid_uom": "De meeteenheid \"{unit_of_measurement}\" wordt niet ondersteund met de geselecteerde apparaatklasse. Verwijder de apparaatklasse instelling, selecteer een apparaatklasse die de eenheid \"{unit_of_measurement}\" ondersteund of selecteer een ondersteunde meeteenheid uit de lijst",
+                "invalid_uom_for_state_class": "De meeteenheid \"{unit_of_measurement}\" wordt niet ondersteund door de geselecteerde statusklasse, verwijder de statusklasse, selecteer een statusklasse die de eenheid \"{unit_of_measurement}\" ondersteund, of selecteer een ondersteunde meeteenheid uit de lijst.",
+                "invalid_url": "Ongeldige URL",
+                "last_reset_not_with_state_class_total": "Het laatste reset waarde template moet alleen worden gebruikt in combinatie met statusklasse \"Totaal\"",
+                "max_below_min": "Max waarde moet groter of gelijk zijn aan min waarde",
+                "max_below_min_humidity": "Max luchtvochtigheid waarde moet groter zijn dan max luchtvochtigheid waarde",
+                "max_below_min_kelvin": "Max Kelvin waarde moet groter zijn dan min Kelvin waarde",
+                "max_below_min_temperature": "Max temperatuurwaarde moet groter zijn dan min temperatuurwaarde",
+                "options_device_class_enum": "De 'Opties' instelling moet worden gebruikt met de apparaatklasse Opsomming. Als je doorgaat, dan worden de bestaande opties gereset",
+                "options_not_allowed_with_state_class_or_uom": "De 'Opties' instelling is niet toegestaan wanneer apparaatklasse of meeteenheid worden gebruikt",
+                "options_with_enum_device_class": "Configureer de opties voor de opsommings-sensor",
+                "preset_mode_none_not_allowed": "Preset \"none\" is geen geldige preset mode.",
+                "uom_required_for_device_class": "De geselecteerde apparaatklasse vereist een meeteenheid"
+            },
+            "initiate_flow": {
+                "reconfigure": "Herconfigureer MQTT apparaat",
+                "user": "MQTT apparaat toevoegen"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "Beschikbaarheid template",
+                        "availability_topic": "Beschikbaarheid topic",
+                        "payload_available": "Payload beschikbaar",
+                        "payload_not_available": "Payload niet beschikbaar"
+                    },
+                    "data_description": {
+                        "availability_template": "Een [template]({value_templating_url}) om de beschikbaarheid payload te extraheren ontvangen op de beschikbaarheid topic",
+                        "availability_topic": "Topic om het beschikbaarheid status bericht op te ontvangen",
+                        "payload_available": "De payload die aangeeft dat het apparaat beschikbaar is (standaardwaarde 'online')",
+                        "payload_not_available": "De payload die aangeeft dat het apparaat niet beschikbaar is (standaard ingesteld op 'offline')"
+                    },
+                    "description": "Met de beschikbaarheidsfunctie kan een apparaat zijn beschikbaarheid melden.",
+                    "title": "Beschikbaarheidsopties"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Entiteit"
+                    },
+                    "data_description": {
+                        "component": "Selecteer de entiteit die je wilt verwijderen. Er moet ten minste \u00e9\u00e9n entiteit worden geselecteerd."
+                    },
+                    "description": "Verwijder een entiteit. De entiteit zal worden verwijderd van het apparaat. Het verwijderen van een entiteit zal automatiseringen of scripts breken die van de entiteit afhankelijk zijn,",
+                    "title": "Verwijderen entiteit"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "Configuratie URL",
+                        "manufacturer": "Fabrikant",
+                        "model": "Model",
+                        "model_id": "Model ID",
+                        "name": "Naam"
+                    },
+                    "data_description": {
+                        "configuration_url": "Een link naar een webpagina waarmee de configuratie van dit apparaat beheerd kan worden. Kan een 'http://', 'https://' of interne 'homeassistant://' URL zijn.",
+                        "manufacturer": "B.v. Cleanmaster Ltd.",
+                        "model": "B.v. 'Cleanmaster Pro'.",
+                        "model_id": "B.v. '123NK2PRO'.",
+                        "name": "De naam van het handmatig toegevoegde MQTT apparaat."
+                    },
+                    "description": "Voer de MQTT apparaatdetails in:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "Message Expiry Interval",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "Retentie tijdinterval voor gepubliceerde berichten.",
+                                "qos": "De Quality of Service waarde die de entiteiten op apparaat moeten gebruiken."
+                            },
+                            "name": "MQTT Instellingen"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "Hardwareversie",
+                                "sw_version": "Softwareversie"
+                            },
+                            "data_description": {
+                                "hw_version": "De hardwareversie van het apparaat. B.v. 'v1.0 rev a'.",
+                                "sw_version": "De softwareversie van het apparaat. B.v. '2025.1.0'"
+                            },
+                            "name": "Overige apparaatinstellingen"
+                        }
+                    },
+                    "title": "Configureer MQTT apparaatdetails"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Entiteit afbeelding",
+                        "name": "Entiteitsnaam",
+                        "platform": "Type van entiteit"
+                    },
+                    "data_description": {
+                        "entity_picture": "Een URL naar een afbeelding om toe te wijzen.",
+                        "name": "Naam van de entiteit. Laat deze leeg om `None` in te stellen om deze te [markeren als hoofdfunctie functie van het MQTT device]({naming_entities_url}).",
+                        "platform": "Het type van de entiteit om te configureren."
+                    },
+                    "description": "Configureer de basis {platform_label}entiteit instellingen{entity_name_label}",
+                    "title": "Configureer MQTT apparaat \"{mqtt_device}\""
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Alarmcode validatie mode",
+                        "climate_feature_action": "Huidige actie ondersteuning",
+                        "climate_feature_current_humidity": "Huidige luchtvochtigheid ondersteuning",
+                        "climate_feature_current_temperature": "Huidige temperatuur ondersteuning",
+                        "climate_feature_fan_modes": "Ventilator mode ondersteuning",
+                        "climate_feature_power": "Inschakeling aan/uit ondersteuning",
+                        "climate_feature_preset_modes": "Preset mode ondersteuning",
+                        "climate_feature_swing_horizontal_modes": "Horizontale zwaai-mode ondersteuning",
+                        "climate_feature_swing_modes": "Zwaai-mode ondersteuning",
+                        "climate_feature_target_humidity": "Doelluchtvochtigheid ondersteuning",
+                        "climate_feature_target_temperature": "Doeltemperatuur ondersteuning",
+                        "device_class": "Apparaatklasse",
+                        "entity_category": "Entiteitscategorie",
+                        "fan_feature_direction": "Draairichting ondersteuning",
+                        "fan_feature_oscillation": "Oscillatie ondersteuning",
+                        "fan_feature_preset_modes": "Preset mode ondersteuning",
+                        "fan_feature_speed": "Snelheidsondersteuning",
+                        "image_processing_mode": "Afbeelding verwerking mode",
+                        "options": "Optie toevoegen",
+                        "reports_position": "Rapporteert de positie",
+                        "schema": "Schema",
+                        "state_class": "Statusklasse",
+                        "suggested_display_precision": "Voorgestelde weergaveprecisie",
+                        "supported_features": "Ondersteunde functies",
+                        "temperature_unit": "Temperatuureenheid",
+                        "unit_of_measurement": "Meeteenheid",
+                        "water_heater_feature_current_temperature": "Huidige temperatuur ondersteuning",
+                        "water_heater_feature_power": "Inschakeling aan/uit ondersteuning"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Configureert hoe het alarmbedieningspaneel de code valideert. Een lokale code wordt geconfigureerd samen met de entiteit en wordt gevalideerd door Home Assistant. Een code op afstand wordt naar het apparaat verstuurd en wordt door het apparaat gevalideerd op afstand. [Leer meer.]({url}#code)",
+                        "climate_feature_action": "De klimaatregeling ondersteunt het rapporteren van de huidige actie.",
+                        "climate_feature_current_humidity": "De klimaatregeling ondersteunt het rapporteren van de huidige luchtvochtigheid.",
+                        "climate_feature_current_temperature": "De klimaatregeling ondersteunt het rapporteren van de huidige temperatuur.",
+                        "climate_feature_fan_modes": "De klimaatregeling ondersteunt ventilator modi.",
+                        "climate_feature_power": "De klimaatregeling ondersteunt inschakeling via \"aan\" en \"uit\"commando's.",
+                        "climate_feature_preset_modes": "De klimaatregeling ondersteunt preset modi.",
+                        "climate_feature_swing_horizontal_modes": "De klimaatregeling ondersteunt horizontale zwaai-modi.",
+                        "climate_feature_swing_modes": "De klimaatregeling ondersteunt zwaai-modi.",
+                        "climate_feature_target_humidity": "De klimaatregeling ondersteunt het instellen van de doelluchtvochtigheid.",
+                        "climate_feature_target_temperature": "De klimaatregeling ondersteunt het instellen van de doeltemperatuur.",
+                        "device_class": "De apparaatklasse van de {platform} entiteit. [Leer meer.]({url}#device_class)",
+                        "entity_category": "Maakt mogelijk om een entiteit voor apparaatconfiguratie or diagnostiek doeleinden te markeren. Een entiteit met entiteitscategorie zal niet worden blootgesteld naar de cloud, Alexa of Google Assistant componenten. Sensor-entiteiten kunnen niet worden gemarkeerd voor apparaatconfiguratie doeleinden. [Leer meer.]({registry_properties_url})",
+                        "fan_feature_direction": "De ventilator ondersteunt draairichting.",
+                        "fan_feature_oscillation": "De ventilator ondersteunt oscillatie.",
+                        "fan_feature_preset_modes": "De ventilator ondersteunt preset modi.",
+                        "fan_feature_speed": "De ventilator ondersteunt meerdere snelheden.",
+                        "image_processing_mode": "Selecteer hoe de afbeelding data wordt ontvangen.",
+                        "options": "Opties voor toegestane sensor statuswaarden. De apparaatklasse van de sensor moet zijn ingesteld op Opsomming. De opties optie kan niet samen met statusklasse of meeteenheid worden gebruikt.",
+                        "reports_position": "Stel deze optie in als de klep de positie rapporteert of de klep op een positie kan instellen. Het inschakelen van deze optie zorgt er voor dat de positie wordt gepubliceerd in plaats van het bericht voor \"open\", \"close\" of \"stop\". Wanneer een bericht wordt ontvangen zal het status topic numerieke waarden accepteren of een van de geconfigureerde status berichten.",
+                        "schema": "Het te gebruiken schema. [Leer meer.]({url}#comparison-of-light-mqtt-schemas)",
+                        "state_class": "De [statusklasse]({available_state_classes_url}) van de sensor. [Leer meer.]({url}#state_class)",
+                        "suggested_display_precision": "Het aantal decimalen dat gebruikt moet worden voor de \"{platform}\" entiteit status na afronding. [Leer meer.]({url}#suggested_display_precision)",
+                        "supported_features": "De functies die de entiteit ondersteunt",
+                        "temperature_unit": "Dit bepaald de eigen meeteenheid waar het MQTT klimaatapparaat mee werkt.",
+                        "unit_of_measurement": "Definieert de meeteenheid van de sensor, al die er is.",
+                        "water_heater_feature_current_temperature": "De boiler ondersteunt het rapporteren van de huidige temperatuur.",
+                        "water_heater_feature_power": "De boiler ondersteunt inschakeling via \"aan\" en \"uit\" commando's."
+                    },
+                    "description": "Configureer de specifieke details voor {platform} entiteit \"{entity}\":",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "Voorgestelde weergaveprecisie"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "Het aantal decimalen die moeten worden aangehouden voor de {platform} entiteit status na afronding. [Leer meer.]({url}#suggested_display_precision)"
+                            },
+                            "name": "Overige instellingen"
+                        }
+                    },
+                    "title": "Configureer MQTT apparaat \"{mqtt_device}\""
+                },
+                "export": {
+                    "description": "Een export maakt het mogelijk im een MQTT device configuratie te migreren naar een YAML gebaseerde configuratie of MQTT discovery. De configuratie export kan ook van pas komen bij het troubleshooten.",
+                    "menu_options": {
+                        "export_discovery": "Exporteren naar MQTT discovery informatie",
+                        "export_yaml": "Exporteren naar YAML configuratie"
+                    },
+                    "title": "Exporteer MQTT apparaat configuratie"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Discovery bericht:",
+                        "discovery_topic": "Discovery topic"
+                    },
+                    "data_description": {
+                        "discovery_payload": "Het JSON [discovery bericht]({url}#device-discovery-payload) wat de informatie bevat over het MQTT apparaat.",
+                        "discovery_topic": "Het [discovery topic]({url}#discovery-topic) om het discovery bericht naar toe te publiceren, wat wordt gebruikt om MQTT discovery te triggeren. Een leeg bericht wat wordt gepubliceerd naar dit topic zal het apparaat en de ontdente entiteiten verwijderen."
+                    },
+                    "description": "Om de installatie uit te voeren via MQTT [discovery]({url}#device-discovery-payload), moet het discovery bericht worden gepubliceerd op het discovery topic. Kopieer de informatie van de velden hieronder. Home Assistant zal detecteren dat nu de installatie van het MQTT apparaat was geprobeerd via MQTT discovery, en zal een reparatie aanbieden om het redundante sub-item te verwijderen. Je kunt er ook voor kiezen om de identifiers te wijzigen als je jet sub-item niet wilt verwijderen.",
+                    "title": "Exporteer MQTT apparaat configuratie"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "Kopieer de YAML configuratie hieronder:"
+                    },
+                    "data_description": {
+                        "yaml": "Plaats YAML configuratie in je [configuration.yaml]({url}#yaml-configuration-listed-per-item) bestand."
+                    },
+                    "description": "Je kunt de configuratie hieronder kopi\u00ebren en deze in je configuration.yaml bestand plaatsen. Home Assistant zal detecteren als de setup van je MQTT apparaat was geprobeerd via YAML, en een reparatie aanbieden om het redundante sub-item te verwijderen. Je kun ook kiezen om de identifiers te veranderen als je het sub-item niet wilt verwijderen.",
+                    "title": "Exporteer MQTT apparaat configuratie"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "Beschikbare tonen",
+                        "blue_template": "Blauw template",
+                        "brightness_template": "Helderheid template",
+                        "code": "Alarmcode",
+                        "code_arm_required": "Code beveiliging uitschakelen vereist",
+                        "code_disarm_required": "Code beveiliging uitschakelen vereist",
+                        "code_format": "Code formaat",
+                        "code_trigger_required": "Code trigger vereist",
+                        "color_temp_template": "Kleurtemperatuur template",
+                        "command_off_template": "Commando \"uit\" template",
+                        "command_on_template": "Commando \"aan\" template",
+                        "command_template": "Commando template",
+                        "command_topic": "Commando topic",
+                        "content_type": "Content type",
+                        "force_update": "Forceer update",
+                        "green_template": "Groen template",
+                        "image_encoding": "Afbeelding codering",
+                        "image_topic": "Afbeelding topic",
+                        "last_reset_value_template": "Laatste reset template",
+                        "max": "Maximum",
+                        "min": "Minimum",
+                        "mode": "Mode",
+                        "mode_command_template": "Operatie mode commando template",
+                        "mode_command_topic": "Operatie mode commando topic",
+                        "mode_state_template": "Operatie mode waarde template",
+                        "mode_state_topic": "Operatie mode status topic",
+                        "modes": "Ondersteunde operatie modi",
+                        "on_command_type": "AAN commando type",
+                        "optimistic": "Optimistisch",
+                        "options": "Opties instellen",
+                        "payload_off": "Bericht \"uit\"",
+                        "payload_on": "Bericht \"aan\"",
+                        "payload_press": "Bericht \"druk\"",
+                        "payload_reset": "Bericht \"reset\"",
+                        "position_closed": "Positie \"gesloten\"",
+                        "position_open": "Positie \"open\"",
+                        "qos": "QoS",
+                        "red_template": "Rood template",
+                        "retain": "Behouden",
+                        "state_off": "Status \"uit\"",
+                        "state_on": "Status \"aan\"",
+                        "state_template": "Status template",
+                        "state_topic": "Status topic",
+                        "state_value_template": "Status waarde template",
+                        "step": "Stap",
+                        "support_duration": "Ondersteuning om de duur in te stellen",
+                        "support_volume_set": "Ondersteuning om volume in te stellen",
+                        "supported_color_modes": "Ondersteunde kleurmodi",
+                        "timezone": "Tijdzone",
+                        "url_template": "URL template",
+                        "url_topic": "URL topic",
+                        "value_template": "Waarde template"
+                    },
+                    "data_description": {
+                        "available_tones": "De sirene ondersteunt het instellen van tonen. De `tone`variabele zal beschikbaar zijn voor gebruik binnen de \"Commando template\" instelling. [Meer informatie.]({url}#available_tones)",
+                        "blue_template": "[Template]({value_templating_url}) om de kleur blauw te extraheren van het status bericht. Verwacht resultaat van de template is een integer binnen het bereik 0-255.",
+                        "brightness_template": "[Remplate]({value_templating_url}) om de helderheid te extraheren van het staus bericht. Verwachte resultaat van de template in een integer binnen het bereik 0-255.",
+                        "code": "Specificeert een code om het alarm in of uit te schakelen in de frontend. Let er op dat dit het versturen van MQTT berichten naar het apparaat op afstand blokkeert als de codevalidatie mislukt. [Leer meer.]({url}#code)",
+                        "code_arm_required": "Een code is verplicht wanneer om het alarm in te schakelen, wanneer dit is ingesteld, anders wordt de code niet gecontroleerd.",
+                        "code_disarm_required": "Een code is verplicht wanneer om het alarm uit te schakelen, wanneer dit is ingesteld, anders wordt de code niet gecontroleerd.",
+                        "code_format": "Een reguliere expressie om de slotcode te valideren wanneer deze wordt ingesteld bij het de actie om het MQTT slot te openen, te vergrendelen of te ontgrendelen. [Leer meer.]({url}#code_format)",
+                        "code_trigger_required": "Een code is verplicht wanneer om het alarm te triggeren, wanneer dit is ingesteld, anders wordt de code niet gecontroleerd.",
+                        "color_temp_template": "[template]({value_templating_url}) om de kleurtemperatuur waarde te extraheren van het status bericht. De verwachte waarde van de template is een integer.",
+                        "command_off_template": "Het [template]({command_templating_url}) voor de \"uit\" statuswijzigingen. Beschikbare variabelen zijn: `state` en `transition`.",
+                        "command_on_template": "De [template]({command_templating_url}) voor de \"aan\" statuswijzigingen. Beschikbare variabelen zijn: `state`, `brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`, `flash`, `transition` en `effect`. Waarden van `red`, `green`, `blue` en `brightness` zijn beschikbaar als integers in het bereik 0-255. De waarde van `hue` is is een floating point getal in het bereik 0-360. De waarde van `sat` is een floating point getal in het bereik 0-100. Waarde van `color_temp` is is een integer in Kelvin.",
+                        "command_template": "Een [template]({command_templating_url}) om een payload te renderen om te publiceren via het commando topic. [Meer informatie]({url}#command_template).",
+                        "command_topic": "Topic om de {platform} entiteit te besturen via publicatie. [Leer meer.]({url}#command_topic)",
+                        "content_type": "Het content type van de afbeelding data die wordt ontvangen op het afbeelding topic.",
+                        "force_update": "Stuur update gebeurtenissen, ook als een ontvangen waarde niet is veranderd. Handig als je zinvolle grafieken in de geschiedenis wilt hebben. [Leer meer.]({url}#force_update)",
+                        "green_template": "[Template]({value_templating_url}) om de kleur groen te extraheren van het status bericht. Verwacht resultaat van de template is een integer binnen het bereik 0-255.",
+                        "image_encoding": "Selecteer de codering van de te ontvangen afbeelding data",
+                        "image_topic": "Het MQTT topic om te abonneren om afbeelding data updates te ontvangen. [Leer meer.]({url}#image_topic)",
+                        "last_reset_value_template": "Definieert een [template]({value_templating_url}) om de laatste reset waarde te extraheren. Wanneer het Laatste reset template template is ingesteld moet de statusklasse Totaal zijn. [Meer informatie.]({url}#last_reset_value_template)",
+                        "max": "Maximumwaarde. [Leer meer.]({url}#max)",
+                        "min": "Minimumwaarde. [Leer meer.]({url}#min)",
+                        "mode": "Bepaal hoe getal instelling moet worden weergegeven in de UI. [Leer meer.]({url}#mode)",
+                        "mode_command_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het operatie mode commando topic wordt gepubliceerd. [Meer informatie.]({url}#mode_command_template)",
+                        "mode_command_topic": "Het MQTT topic om commando's te publiceren om de bedrijfsmodus te wijzigen. [Meer informatie.]({url}#mode_command_topic)",
+                        "mode_state_template": "Definieert een [template]({value_templating_url}) om de operatie mode waarde te extraheren. [Meer informatie.]({url}#mode_state_template)",
+                        "mode_state_topic": "Het MQTT topic om te abonneren om de operatie-mode updates te ontvangen. [Leer meer.]({url}#mode_state_topic)",
+                        "modes": "Een lijst van ondersteunde operatie modi. [Leer meer.]({url}#modes)",
+                        "on_command_type": "Bepaald wanneer bericht \"aan\" wordt verstuurd. Met \"Laatste\" (standaard), worden helderheid, kleurwaarden etc. eerst verstuurd naar het commando topic en daarna pas bericht \"aan\". Met \"Eerste\" wordt eerst bericht \"aan\" verstuurd en daarna de andere instellingen. Met \"Helderheid\" zal alleen het helderheid commando worden verstuurd om het licht in schakelen, in plaats van bericht \"aan\".",
+                        "optimistic": "Vlag die definieert dat {platform} entiteit in optimistische modus werkt. [Leer meer.]({url}#optimistic)",
+                        "options": "Een lijst van opties die geselecteerd kunnen worden.",
+                        "payload_off": "Het bericht dat de \"uit\" status representeert.",
+                        "payload_on": "Het bericht dat de \"aan\" status representeert.",
+                        "payload_press": "Het bericht om te verzenden wanneer de knop wordt geactiveerd.",
+                        "payload_reset": "Het bericht ontvangen op status topic dat de entiteit reset naar een onbekende staat.",
+                        "position_closed": "Getal wat de gesloten positie aangeeft. De positie van de klep zal worden geschaald naar het (positie \"gesloten\" ...positie \"open\") bereik wanneer een actie wordt uitgevoerd en teruggeschaald wanneer een waarde is ontvangen.",
+                        "position_open": "Getal wat de open positie aangeeft. De positie van de klep zal worden geschaald naar het (positie \"gesloten\" ...positie \"open\") bereik wanneer een actie wordt uitgevoerd en teruggeschaald wanneer een waarde is ontvangen.",
+                        "qos": "De QoS waarde een {platform} entiteit moet gebruiken.",
+                        "red_template": "[Template]({value_templating_url}) om de kleur rood te extraheren van het status bericht. Verwachte resultaat van de template is een integer binnen het bereik 0-255.",
+                        "retain": "Selecteer of waarden die worden gepubliceerd door de {platform} entiteit bewaard (retained) moeten worden op de MQTT broker.",
+                        "state_off": "Het binnenkomende bericht die de \"uit\" status representeert. Gebruik dit alleen de waarde die de \"uit\" status representeert anders is als de waarde die moet worden verstuurd via het commando topic om het apparaat uit te schakelen.",
+                        "state_on": "Het binnenkomende bericht die de \"aan\" status representeert. Gebruik dit alleen de waarde die de \"aan\" status representeert anders is als de waarde die moet worden verstuurd via het commando topic om het apparaat in te schakelen.",
+                        "state_template": "[Template]({value_templating_url}) om de status te extraheren van het status bericht.",
+                        "state_topic": "De MQTT topic waarop wordt geabonneerd om {platform} statuswaarden te ontvangen. [Leer meer.]({url}#state_topic)",
+                        "step": "Stapgrootte. Kleinste waarde 0,001.",
+                        "support_duration": "De sirene ondersteunt het instellen van de duur. De `duration`variabele zal beschikbaar zijn voor gebruik binnen de \"Commando template\" instelling. [Meer informatie.]({url}#support_duration)",
+                        "support_volume_set": "De sirene ondersteunt het instellen van een volume. De `volume_level`variabele zal beschikbaar zijn voor gebruik binnen de \"Commando template\" instelling. [Meer informatie.]({url}#support_volume_set)",
+                        "supported_color_modes": "Een lijst van kleurmodi die worden ondersteund in de lijst. Mogelijke kleurmodi zijn Aan/Uit, Helderheid, Kleurtemperatuur, HS, XY, RGB, RGBW, RGBWW, Wit. Weet dat wanneer Aan/Uit of Helderheid zijn gebruikt, dat de enige waarde in de lijst moet zijn. [Leer meer.]({url}#supported_color_modes)",
+                        "timezone": "Stel dit in op een geldige [IANA-tijdzone-identificatie]({tz_abbr_url}). Stel deze optie niet in als de datum-/tijdstructuur tijdzone-informatie verstrekt via de statusupdate.",
+                        "url_template": "[Template]({value_templating_url}) om een URL te extraheren uit de ontvangen URL topic payload waarde. [Meer informatie.]({url}#url_template)",
+                        "url_topic": "Het MQTT topic om te abonneren om afbeelding URL updates te ontvangen. [Leer meer.]({url}#url_topic)",
+                        "value_template": "Definieert een [template]({value_templating_url}) om de waarde voor de {platform} entiteit uit te extraheren. [Meer informatie.]({url}#value_template)"
+                    },
+                    "description": "Configureer de MQTT specifieke details voor {platform} entiteit \"{entity}\":",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Bericht \"beveiligen niet thuis\"",
+                                "payload_arm_custom_bypass": "Bericht \"beveiligen aangepaste bypass\"",
+                                "payload_arm_disarm": "Bericht \"beveiliging uitgeschakeld\"",
+                                "payload_arm_home": "Bericht \"beveiligen huis\"",
+                                "payload_arm_night": "Bericht \"beveiligen nacht\"",
+                                "payload_arm_vacation": "Bericht \"beveiligen vakantie\"",
+                                "payload_trigger": "Bericht \"trigger alarm\""
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Het bericht dat wordt verstuurd wanneer een \"beveiligen niet thuis\" commando is gegeven.",
+                                "payload_arm_custom_bypass": "Het bericht dat wordt verstuurd wanneer een \"beveiligen met aangepaste bypass\" commando is gegeven.",
+                                "payload_arm_disarm": "Het bericht dat wordt verstuurd wanneer een \"beveiliging uitschakelen\" commando is gegeven.",
+                                "payload_arm_home": "Het bericht dat wordt verstuurd wanneer een \"beveiligen huis\" commando is gegeven.",
+                                "payload_arm_night": "Het bericht dat wordt verstuurd wanneer een \"beveiligen nacht\" commando is gegeven.",
+                                "payload_arm_vacation": "Het bericht dat wordt verstuurd wanneer een \"beveiligen vakantie\" commando is gegeven.",
+                                "payload_trigger": "Het bericht dat wordt verstuurd wanneer een \"trigger alarm\" commando is gegeven."
+                            },
+                            "name": "Alarmbedieningspaneel berichtinstellingen"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "Actie template",
+                                "action_topic": "Actie topic"
+                            },
+                            "data_description": {
+                                "action_template": "Een [template]({value_templating_url}) om de waarde mee te renderen ontvangen op actie topic."
+                            },
+                            "name": "Huidige actie instellingen"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "Ventilatormodus commando template",
+                                "fan_mode_command_topic": "Ventilator mode commando topic",
+                                "fan_mode_state_template": "Ventilatormodus status template",
+                                "fan_mode_state_topic": "Ventilator mode status topic",
+                                "fan_modes": "Ventilator modi"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het ventilator-mode commando topic.",
+                                "fan_mode_command_topic": "Het MQTT topic om commando's te publiceren om de ventilatormode van de klimaatregeling te wijzigen. [Leer meer.]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "Definieert een [template]({value_templating_url}) om de ventilator-mode waarde van de klimaatregeling te extraheren.",
+                                "fan_mode_state_topic": "Het MQTT topic om te abonneren om de ventilator-mode updates te ontvangen van de klimaatregeling. [Leer meer.]({url}#fan_mode_state_topic)",
+                                "fan_modes": "Lijst met ventilator-modi die deze klimaatregeling kan uitvoeren. Algemene ventilator-modi met vertalingen zijn `off`, `on`, `auto`, `low`, `medium`, `high`, `middle`, `focus` en `diffuse`."
+                            },
+                            "name": "Ventilator mode instellingen"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "Bericht \"uit\"",
+                                "payload_on": "Bericht \"aan\"",
+                                "power_command_template": "Inschakeling commando template",
+                                "power_command_topic": "Inschakeling commando topic"
+                            },
+                            "data_description": {
+                                "payload_off": "Het bericht dat de \"uit\" status representeert.",
+                                "payload_on": "Het bericht dat de \"aan\" status representeert.",
+                                "power_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het inschakeling commando topic.",
+                                "power_command_topic": "Het MQTT topic om commando's te publiceren om de inschakeling van de klimaatregeling te wijzigen. [Leer meer.]({url}#power_command_topic)"
+                            },
+                            "name": "Inschakel instellingen"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "Preset mode commando template",
+                                "preset_mode_command_topic": "Preset mode commando topic",
+                                "preset_mode_state_topic": "Preset mode status topic",
+                                "preset_mode_value_template": "Preset mode waarde template",
+                                "preset_modes": "Preset modi"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het preset mode commando topic wordt gepubliceerd.",
+                                "preset_mode_command_topic": "Het MQTT topic om commando's te publiceren om de preset mode van de klimaatregeling te wijzigen. [Leer meer.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Het MQTT topic om te abonneren om de ventilator preset mode te ontvangen. [Leer meer.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definieert een [template]({value_templating_url}) om de preset mode waarde te extraheren.",
+                                "preset_modes": "Lijst met preset modi die deze klimaatregeling kan uitvoeren. Algemene preset-modi met vertalingen zijn `none`, `away`, `eco`, `boost`, `comfort`, `home`, `sleep` en `activity`."
+                            },
+                            "name": "Preset mode instellingen"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "Horizontale zwaai-modus commando template",
+                                "swing_horizontal_mode_command_topic": "Horizontale zwaai-mode commando topic",
+                                "swing_horizontal_mode_state_template": "Horizontale zwaai-modus status template",
+                                "swing_horizontal_mode_state_topic": "Horizontale zwaai-mode status topic",
+                                "swing_horizontal_modes": "Horizontale zwaai-modi"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het horizontale zwaai-modus commando topic.",
+                                "swing_horizontal_mode_command_topic": "Het MQTT topic om commando's te publiceren om de horizontale zwaai-mode van de klimaatregeling te wijzigen. [Leer meer.]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "Definieert een [template]({value_templating_url}) om de horizontale zwaai-modus waarde van de klimaatregeling te extraheren.",
+                                "swing_horizontal_mode_state_topic": "Het MQTT topic om te abonneren om de huidige horizontale zwaai-mode updates te ontvangen van de klimaatregeling. [Leer meer.]({url}#swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "Lijst met horizontale zwaai-modi die deze klimaatregeling kan uitvoeren. Algemene horizontale zwaai-modi met vertalingen zijn `off` en `on`."
+                            },
+                            "name": "Horizontale zwaai-mode instellingen"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "Zwaai-modus commando template",
+                                "swing_mode_command_topic": "Zwaai-mode commando topic",
+                                "swing_mode_state_template": "Zwaai-modus status template",
+                                "swing_mode_state_topic": "Zwaai-mode status topic",
+                                "swing_modes": "Zwaai-modi"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het zwaai-mode commando topic.",
+                                "swing_mode_command_topic": "Het MQTT topic om commando's te publiceren om de zwaai-mode van de klimaatregeling te wijzigen. [Leer meer.]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "Definieert een [template]({value_templating_url}) om de zwaai-mode waarde van de klimaatregeling te extraheren.",
+                                "swing_mode_state_topic": "Het MQTT topic om te abonneren om de huidige zwaai-mode updates te ontvangen van de klimaatregeling. [Leer meer.]({url}#swing_mode_state_topic)",
+                                "swing_modes": "Lijst met zwaai-modi die deze klimaatregeling kan uitvoeren. Algemene zwaai-modi met vertalingen zijn `off`, `on`, `vertical`, `horizontal` en `both`,"
+                            },
+                            "name": "Zwaai mode instellingen"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Bericht \"sluit\"",
+                                "payload_open": "Bericht \"open\"",
+                                "payload_stop": "Bericht \"stop\"",
+                                "payload_stop_tilt": "Bericht \"stop kantelen\"",
+                                "state_closed": "Status \"gesloten\"",
+                                "state_closing": "Status \"sluiten\"",
+                                "state_open": "Status \"open\"",
+                                "state_opening": "Status \"openen\"",
+                                "state_stopped": "Status \"gestopt\""
+                            },
+                            "data_description": {
+                                "payload_close": "Het bericht wat wordt verstuurd wanneer een \"sluit\" commando is gegeven.",
+                                "payload_open": "Het bericht wat wordt verstuurd wanneer een \"open\" commando is gegeven.",
+                                "payload_stop": "Het bericht wat wordt verstuurd wanneer een \"stop\" command is gegeven. Laat leeg om de \"stop\" functie uit te schakelen.",
+                                "payload_stop_tilt": "Bericht wat wordt verstuurd wanneer een \"stop kanteling\" commando is gegeven.",
+                                "state_closed": "Het bericht ontvangen op status topic dat de \"gesloten\" status vertegenwoordigt.",
+                                "state_closing": "Het bericht ontvangen op status topic dat de \"sluiten\" status vertegenwoordigt.",
+                                "state_open": "Het bericht ontvangen op status topic dat de \"open\" status vertegenwoordigt.",
+                                "state_opening": "Het bericht ontvangen op status topic dat de \"openen\" status vertegenwoordigt.",
+                                "state_stopped": "Het bericht ontvangen op status topic dat de \"gestopt\" status vertegenwoordigt (voor apparaten die geen \"open\"/\"gesloten\" status rapporteren:"
+                            },
+                            "name": "Berichtinstellingen"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "Positie \"gesloten\" waarde",
+                                "position_open": "Positie \"open\" waarde",
+                                "position_template": "Positie waarde template",
+                                "position_topic": "Positie status topic",
+                                "set_position_template": "Instel positie template",
+                                "set_position_topic": "Instel positie topic"
+                            },
+                            "data_description": {
+                                "position_closed": "Getal wat de \"gesloten\" positie representeerd.",
+                                "position_open": "Getal wat de \"open\" positie representeerd.",
+                                "position_template": "Definieert een [template]({value_templating_url}) om het bericht voor het \"positie topic\" te extraheren. Binnen de template zijn ook de volgende variabelen beschikbaar: `entity_id`, `position_open`, `position_closed`, `tilt_min` en `tilt_max`. [Leer meer.]({url}#position_template)",
+                                "position_topic": "Het MQTT topic om te abonneren om raambedekking status berichten te ontvangen. [Leer meer.]({url}#position_topic)",
+                                "set_position_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het zet positie topic wordt gepubliceerd. Binnen de template zijn de volgende variabelen beschikbaar: `value` ( de geschaalde doelpositie), `position_open`, `position_closed`, `tilt_min` en `tilt_max`. [Leer meer.]({url}#set_position_template)",
+                                "set_position_topic": "Het MQTT topic om commando's te publiceren om de positie te wijzigen. Gebruik set positie template als postitie topic andere waarden verwacht dan binnen het bereik \"positie gesloten\" - \"positie open\". Als een template niet is gedefinieerd en positie \"gesloten\" != 100 en positie \"open\" != 0, zorg dan dat de juiste waarde wordt berekend van het percentage van de positie. [Leer meer.]({url}#set_position_topic)"
+                            },
+                            "name": "Positie instellingen"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "Kanteling \"gesloten\" waarde",
+                                "tilt_command_template": "Kanteling commando template",
+                                "tilt_command_topic": "Kanteling commando topic",
+                                "tilt_max": "Kanteling max",
+                                "tilt_min": "Kanteling min",
+                                "tilt_opened_value": "Kanteling \"geopend\" waarde",
+                                "tilt_optimistic": "Kanteling optimistisch",
+                                "tilt_status_template": "Kanteling waarde template",
+                                "tilt_status_topic": "Kanteling status topic"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "De waarde die wordt gestuurd naar het \"kanteling commando topic\" wanneer de raambedekking wordt gesloten.",
+                                "tilt_command_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het kanteling commando topic wordt gepubliceerd. Binnen het template zijn de volgende variabelen beschikbaar: `entity_id`, `tilt_position` (het grootste the doel kanteling positie percentage), `position_open`, `position_closed`, `tilt_min` and `tilt_max`. [Leer meer.]({url}#tilt_command_template)",
+                                "tilt_command_topic": "Het MQTT topic om commando's te publiceren om de kanteling te wijzigen. [Leer meer.]({url}#tilt_command_topic)",
+                                "tilt_max": "De maximale kantelwaarde.",
+                                "tilt_min": "De minimale kantelwaarde.",
+                                "tilt_opened_value": "De waarde die naar het \"kantel commando topic\" wordt verstuurd wanneer de raambedekking wordt geopend.",
+                                "tilt_optimistic": "Vlag om aan te geven of het kantelen in optimistische modus plaats vindt. Als kantel status topic niet is gedefinieerd, werkt het kantelen standaard in optimistische modus. [Leer meer.]({url}#tilt_optimistic)",
+                                "tilt_status_template": "Definieert een [template]({value_templating_url}) om de kantel status te extraheren van het bericht voor het kantel status topic. In de template zijn de volgende variabelen beschikbaar: `entity_id`, `position_open`, `position_closed`, `tilt_min` en `tilt_max`. [Leer meer.]({url}#tilt_status_template)",
+                                "tilt_status_topic": "Het MQTT topic om te abonneren om kantel status waarden te ontvangen. [Leer meer.]({url}#tilt_status_topic)"
+                            },
+                            "name": "Kantelinstellingen"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "Huidige luchtvochtigheid template",
+                                "current_humidity_topic": "Huidige luchtvochtigheid topic"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "Definieert een [template]({value_templating_url}) om de huidige luchtvochtigheid waarde te extraheren. [Leer meer.]({url}#current_humidity_template)",
+                                "current_humidity_topic": "Het MQTT topic om te abonneren om de huidige luchtvochtigheid updates te ontvangen. [Leer meer.]({url}#current_humidity_topic)"
+                            },
+                            "name": "Huidige luchtvochtigheid instellingen"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "Huidige temperatuur template",
+                                "current_temperature_topic": "Huidige temperatuur topic"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "Definieert een [template]({value_templating_url}) om de huidige temperatuur waarde te extraheren. [Leer meer.]({url}#current_temperature_template)",
+                                "current_temperature_topic": "Het MQTT topic om te abonneren om de huidige temperatuur updates te ontvangen. [Leer meer.]({url}#current_temperature_topic)"
+                            },
+                            "name": "Huidige temperatuur instellingen"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "Draairiching commando template",
+                                "direction_command_topic": "Draairiching commando topic",
+                                "direction_state_topic": "Draairichting status topic",
+                                "direction_value_template": "Draairichting waarde template"
+                            },
+                            "data_description": {
+                                "direction_command_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het draairichting commando topic wordt gepubliceerd. De waarde van de template  moet `forward` of `reverse` zijn.",
+                                "direction_command_topic": "Het MQTT topic om commando's te publiceren (`forward` of `reverse`) om de ventilator draairichting status te wijzigen. [Leer meer.]({url}#direction_command_topic)",
+                                "direction_state_topic": "Het MQTT topic om te abonneren om de ventilator draairichting status te ontvangen. Geaccepteerde status berichten zijn `forward` of `reverse`. [Leer meer.]({url}#direction_state_topic)",
+                                "direction_value_template": "Definieert een [template]({value_templating_url}) om de draairichting waarde te extraheren. Wanneer de template een lege string retourneert, zal de draairichting worden genegeerd worden."
+                            },
+                            "name": "Draairichting instellingen"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "Oscillatie commando template",
+                                "oscillation_command_topic": "Oscillatie commando topic",
+                                "oscillation_state_topic": "Oscillatie status topic",
+                                "oscillation_value_template": "Oscillatie waarde template",
+                                "payload_oscillation_off": "Bericht \"oscillatie uit\"",
+                                "payload_oscillation_on": "Bericht \"oscillatie aan\""
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het oscillatie commando topic wordt gepubliceerd.",
+                                "oscillation_command_topic": "Het MQTT topic om commando's te publiceren om de ventilator oscillatie status te wijzigen. [Leer meer.]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "Het MQTT topic om te abonneren om de ventilator oscillatie status te ontvangen. [Leer meer.]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "Definieert een [template]({value_templating_url}) om de oscillatie status waarde te extraheren.",
+                                "payload_oscillation_off": "Bericht dat de oscillatie \"uit\" status vertegenwoordigt.",
+                                "payload_oscillation_on": "Bericht dat de oscillatie \"aan\" status vertegenwoordigt."
+                            },
+                            "name": "Oscillatie instellingen"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Bericht \"reset preset mode\"",
+                                "preset_mode_command_template": "Preset mode commando template",
+                                "preset_mode_command_topic": "Preset mode commando topic",
+                                "preset_mode_state_topic": "Preset mode status topic",
+                                "preset_mode_value_template": "Preset mode waarde template",
+                                "preset_modes": "Preset modi"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Een speciaal bericht om de ventilatorsnelheid preset mode waarde in te stellen op een onbekende status wanneer dit wordt ontvangen op het preset mode status topic.",
+                                "preset_mode_command_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het preset mode commando topic wordt gepubliceerd.",
+                                "preset_mode_command_topic": "Het MQTT topic om commando's te publiceren om de ventilator preset mode te wijzigen. [Leer meer.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Het MQTT topic om te abonneren om de ventilator preset mode te ontvangen. [Leer meer.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definieert een [template]({value_templating_url}) om de preset mode waarde te extraheren.",
+                                "preset_modes": "Lijst met preset modi die de ventilator ondersteund. Gebruikelijke voorbeelden zijn auto, smart, whoosh, eco en breeze."
+                            },
+                            "name": "Preset mode instellingen"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Bericht \"reset percentage\"",
+                                "percentage_command_template": "Percentage commando template",
+                                "percentage_command_topic": "Percentage commando topic",
+                                "percentage_state_topic": "Percentage status topic",
+                                "percentage_value_template": "Percentage waarde template",
+                                "speed_range_max": "Snelheidsbereik max",
+                                "speed_range_min": "Snelheidsbereik min"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Een speciaal bericht om de ventilatorsnelheid percentage waarde in te stellen op een onbekende status wanneer dit wordt ontvangen op het percentage status topic.",
+                                "percentage_command_template": "Een [template]({command_templating_url}) om een bericht te componeren wat naar het percentage commando topic wordt gepubliceerd.",
+                                "percentage_command_topic": "Het MQTT topic om commando's te publiceren om de ventilatorsnelheid te wijzigen gebaseerd op het percentage. De waarde moet liggen tussen \"minimale snelheid\" en \"maximale snelheid\". [Meer informatie.]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "Het MQTT topic om te abonneren om de statis van de ventilatorsnelheid te ontvangen. Dit is een waarde die ligt tussen \"min. snelheidsbereik\" en \"max. snelheidsbereik\". [Meer informatie.]({url}#percentage_state_topic)",
+                                "percentage_value_template": "Definieert een [template]({value_templating_url}) om de snelheid percentage waarde te extraheren.",
+                                "speed_range_max": "Het maximum van het numerieke uitvoerbereik (wat 100 % vertegenwoordigt). De percentage stap is 100 / het aantal snelheden binnen het snelheidsbereik.",
+                                "speed_range_min": "Het minimum van het numerieke uitvoerbereik (uit niet inbegrepen, dus speed_range_min -1 vertegenwoordigt 0 %). De percentage stap is 100 / het aantal snelheden binnen het snelheidsbereik."
+                            },
+                            "name": "Snelheidsinstellingen"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "Gescheiden helderheid",
+                                "brightness_command_template": "Helderheid commando template",
+                                "brightness_command_topic": "Helderheid commando topic",
+                                "brightness_scale": "Helderheid schaal",
+                                "brightness_state_topic": "Helderheid status topic",
+                                "brightness_value_template": "Helderheid waarde template"
+                            },
+                            "data_description": {
+                                "brightness": "Vlag die definieert of het licht helderheid ondersteunt wanneer de RGB, RGBW of RGBWW kleurmodus wordt ondersteunt.",
+                                "brightness_command_template": "Een [template]({command_templating_url}) om het te publiceren bericht te componeren naar het helderheid commando topic.",
+                                "brightness_command_topic": "Het topic wat wordt gebruikt om de helderheid in te stellen. [Leer meer.]({url}#brightness_command_topic)",
+                                "brightness_scale": "Definieert de maximale helderheidswaarde (d.w.z. 100%).",
+                                "brightness_state_topic": "Het MQTT topic om op te abonneren om helderheid statusupdates te ontvangen. [Leer meer.]({url}#brightness_state_topic)",
+                                "brightness_value_template": "Definieert een [template]({value_templating_url}) om de helderheid waarde te extraheren."
+                            },
+                            "name": "Helderheid instellingen"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "Kleurmodus status topic",
+                                "color_mode_value_template": "Kleurmodus waarde template"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "Het MQTT topic om op te abonneren om kleurmodus statusupdates te ontvangen. Als dit niet is ingesteld, dan zal de kleurmodus automatisch worden ingesteld op de laatst ontvangen kleur of kleurtemperatuur.",
+                                "color_mode_value_template": "Definieert een [template]({value_templating_url} om de kleurmodus waarde te extraheren."
+                            },
+                            "name": "Kleurmodus instellingen"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "Kleurtemperatuur commando template",
+                                "color_temp_command_topic": "Kleurtemperatuur commando topic",
+                                "color_temp_state_topic": "Kleurtemperatuur status topic",
+                                "color_temp_value_template": "Kleurtemperatuur waarde template"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "Een [template]({command_templating_url}) om het te publiceren bericht te componeren naar het kleurtemperatuur commando topic.",
+                                "color_temp_command_topic": "Het topic wat wordt gebruikt om de kleurtemperatuur van het licht in te stellen. [Leer meer.]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "Het MQTT topic om op te abonneren om kleurtemperatuur statusupdates te ontvangen. [Leer meer.]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "Definieert een [template]({value_templating_url}) om de kleurtemperatuur waarde te extraheren."
+                            },
+                            "name": "Kleurtemperatuur instellingen"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Effect",
+                                "effect_command_template": "Effect commando template",
+                                "effect_command_topic": "Effect commando topic",
+                                "effect_list": "Effectenlijst",
+                                "effect_state_topic": "Effect status template",
+                                "effect_template": "Effect template",
+                                "effect_value_template": "Effect waarde template"
+                            },
+                            "data_description": {
+                                "effect": "Vlag om aan te geven of het licht effecten ondersteunt.",
+                                "effect_command_template": "Een [template]({command_templating_url}) om het te publiceren bericht te componeren naar het effect commando topic.",
+                                "effect_command_topic": "Het topic wat wordt gebruikt om het effect van het licht in te stellen. [Leer meer.]({url}#effect_command_topic)",
+                                "effect_list": "De lijst met effecten die het licht ondersteunt.",
+                                "effect_state_topic": "Het MQTT topic om op te abonneren om effect statusupdates te ontvangen. [Leer meer.]({url}#effect_state_topic)"
+                            },
+                            "name": "Effect instellingen"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "HS commando template",
+                                "hs_command_topic": "HS commando topic",
+                                "hs_state_topic": "HS status topic",
+                                "hs_value_template": "HS waarde template"
+                            },
+                            "data_description": {
+                                "hs_command_template": "Definieert een [template]({command_templating_url}) om een bericht te componeren want zal worden verstuurd naar het HS commando topic. Beschikbare variabelen zijn: `hue` en `sat`.",
+                                "hs_command_topic": "Het MQTT-onderwerp voor het verzenden van commando\u2019s om de kleurstatus van de lamp te wijzigen in HS-formaat (Hue Saturation). Bereik voor tint (Hue): 0\u00b0 .. 360\u00b0, bereik voor verzadiging (Saturation): 0..100. Opmerking: De helderheid wordt apart verzonden in het topic voor helderheidscommando\u2019s. [Meer informatie.]({url}#hs_command_topic)",
+                                "hs_state_topic": "Het MQTT-onderwerp waarop je je hebt geabonneerd om updates over de kleurstatus in HS-formaat te ontvangen. De verwachte payload bestaat uit de waarden voor tint en verzadiging, gescheiden door komma\u2019s, bijvoorbeeld `359.5,100.0`. Opmerking: De helderheid wordt apart ontvangen in het onderwerp voor de helderheidsstatus. [Meer informatie.]({url}#hs_state_topic)",
+                                "hs_value_template": "Definieert een [template]({value_templating_url}) om de HS waarde te extraheren."
+                            },
+                            "name": "HS kleurmodus instellingen"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "RGB commando template",
+                                "rgb_command_topic": "RGB commando topic",
+                                "rgb_state_topic": "RGB status topic",
+                                "rgb_value_template": "RGB waarde template"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "Definieert een [template]({command_templating_url}) om een bericht te componeren want zal worden verstuurd naar het RGB commando topic. Beschikbare variabelen zijn: `red`, `green` en `blue.",
+                                "rgb_command_topic": "Het MQTT topic om om commando's te publiceren die de RGB status van het licht wijzigen. [Leer meer.]({url}#rgb_command_topic)",
+                                "rgb_state_topic": "Het MQTT topic om op te abonneren om RGB statusupdates te ontvangen. De verwachte data bevat de RGB waardes, gescheiden door komma's, b.v. `225,0,127`. [Leer meer.]({url}#rgbww_state_topic)",
+                                "rgb_value_template": "Definieert een [template]({value_templating_url}) om de RGB waarde te extraheren."
+                            },
+                            "name": "RGB kleurmodus instellingen"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "RGBW commando template",
+                                "rgbw_command_topic": "RGBW commando topic",
+                                "rgbw_state_topic": "RGBW status topic",
+                                "rgbw_value_template": "RGBW waarde template"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "Definieert een [template]({command_templating_url}) om een bericht te componeren want zal worden verstuurd naar het RGBW commando topic. Beschikbare variabelen zijn: `red`, `green`, `blue` en `white`.",
+                                "rgbw_command_topic": "Het MQTT topic om om commando's te publiceren die de RGBW status van het licht wijzigen. [Leer meer.]({url}#rgbw_command_topic)",
+                                "rgbw_state_topic": "Het MQTT topic om op te abonneren om RGBW statusupdates te ontvangen. De verwachte data bevat de RGBW waardes, gescheiden door komma's, b.v. `225,0,127,64`. [Leer meer.]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "Definieert een [template]({value_templating_url}) om de RGBW waarde te extraheren."
+                            },
+                            "name": "RGBW kleurmodus instellingen"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "RGBWW commando template",
+                                "rgbww_command_topic": "RGBWW commando topic",
+                                "rgbww_state_topic": "RGBWW status topic",
+                                "rgbww_value_template": "RGBWW waarde template"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "Definieert een [template]({command_templating_url}) om een bericht te componeren want zal worden verstuurd naar het RGBWW commando topic. Beschikbare variabelen zijn: `red`, `green`, `blue`, `cold_white` en `warm_white`.",
+                                "rgbww_command_topic": "Het MQTT topic om om commando's te publiceren die de RGBWW status van het licht wijzigen. [Leer meer.]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "Het MQTT topic om op te abonneren om RGBWW statusupdates te ontvangen. De verwachte data bevat de RGBWW waardes, gescheiden door komma's, b.v. `225,0,127,64,32`. [Leer meer.]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "Definieert een [template]({value_templating_url}) om de RGBWW waarde te extraheren."
+                            },
+                            "name": "RBGWW kleurmodus instellingen"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "Wit commando topic",
+                                "white_scale": "Wit schaal"
+                            },
+                            "data_description": {
+                                "white_command_topic": "Het MQTT topic om commando's te publiceren om het licht naar wit modus te schakelen bij een gegeven helderheid. [Leer meer.]({url}#white_command_topic)",
+                                "white_scale": "Definieert de maximale wit waarde (d.i. 100%) van het maximum."
+                            },
+                            "name": "Wit kleurmodus instellingen"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "XY commando template",
+                                "xy_command_topic": "XY commando topic",
+                                "xy_state_topic": "XY status topic",
+                                "xy_value_template": "XY waarde template"
+                            },
+                            "data_description": {
+                                "xy_command_template": "Definieert een [template]({command_templating_url}) om een bericht te componeren want zal worden verstuurd naar het XY commando topic. Beschikbare variabelen zijn: `x` and `y`.",
+                                "xy_command_topic": "Het MQTT topic om commando's te publiceren om de XY status van het licht te wijzigen. [Leer meer.]({url}#xy_command_topic)",
+                                "xy_state_topic": "Het MQTT topic om op te abonneren om XY statusupdates te ontvangen. De verwachte data bevat de X en X kleurwaarden, gescheiden door een komma, b.v. `0.675,0.322`. [Leer meer.]({url}#xy_state_topic)",
+                                "xy_value_template": "Definieert een [template]({value_templating_url}) om de XY waarde te extraheren."
+                            },
+                            "name": "XY kleurmodus instellingen"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Bericht \"vergrendelen\"",
+                                "payload_open": "Bericht \"openen\"",
+                                "payload_reset": "Bericht \"resetten\"",
+                                "payload_unlock": "Bericht \"ontgrendelen\"",
+                                "state_jammed": "Status \"vastgelopen\"",
+                                "state_locked": "Status \"vergrendeld\"",
+                                "state_locking": "Status \"vergrendelen\"",
+                                "state_unlocked": "Status \"ontgrendeld\"",
+                                "state_unlocking": "Status \"ontgrendelen\""
+                            },
+                            "data_description": {
+                                "payload_lock": "Het bericht dat wordt verstuurd wanneer een \"vergrendelen\" commando is gegeven.",
+                                "payload_open": "Het bericht dat wordt verstuurd wanneer een \"open\" commando is gegeven.",
+                                "payload_reset": "Het bericht ontvangen op status topic dat het slot reset naar een onbekende status.",
+                                "payload_unlock": "Het bericht dat wordt verstuurd wanneer een \"ontgrendelen\" commando is gegeven.",
+                                "state_jammed": "Het bericht ontvangen op status topic dat de \"vastgelopen\" status vertegenwoordigt.",
+                                "state_locked": "Het bericht ontvangen op status topic dat de \"vergrendeld\" status vertegenwoordigt.",
+                                "state_locking": "Het bericht ontvangen op status topic dat de \"vergrendelen\" status vertegenwoordigt.",
+                                "state_unlocked": "Het bericht ontvangen op status topic dat de \"ontgrendeld\" status vertegenwoordigt.",
+                                "state_unlocking": "Het bericht ontvangen op status topic dat de \"ontgrendelen\" status vertegenwoordigt."
+                            },
+                            "name": "Slot berichtinstellingen"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Verloop na",
+                                "flash": "Flitsfunctie",
+                                "flash_time_long": "Flitsduur \"lang\"",
+                                "flash_time_short": "Flitsduur \"kort\"",
+                                "max_kelvin": "Max Kelvin",
+                                "min_kelvin": "Min Kelvin",
+                                "off_delay": "Uitschakelvertraging",
+                                "transition": "Transitie ondersteuning"
+                            },
+                            "data_description": {
+                                "expire_after": "Wanneer ingesteld, bepaalt dit het aantal seconden waarna de waarde van de sensor verloopt, als deze niet wordt bijgewerkt. Na het verloop zal de sensor status \"niet beschikbaar\" worden. Wordt deze waarde niet ingesteld, dan zal de sensor status nooit verlopen. [Leer meer.]({url}#expire_after)",
+                                "flash": "Schakel de flitsfunctie in voor deze lichtbron",
+                                "flash_time_long": "De duur, in seconden, van een \"lange\" flits.",
+                                "flash_time_short": "De duur, in seconden, van een \"korte\" flits.",
+                                "max_kelvin": "De maximale kleurtemperatuur in Kelvin.",
+                                "min_kelvin": "De minimale kleurtemperatuur in Kelvin.",
+                                "off_delay": "Voor sensors die alleen \"aan\" statusupdates sturen (zoals bewegingsdetectors), stelt deze variabele een vertraging in waarna de status van de sensor weer naar \"uit\" zal worden bijgewerkt.",
+                                "transition": "Schakel de transitiefunctie in voor deze lichtbron"
+                            },
+                            "name": "Overige instellingen"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "Template voor het commando 'uit'"
+                            },
+                            "name": "Overige sirene instellingen"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "Maximale luchtvochtigheid",
+                                "min_humidity": "Minimale luchtvochtigheid",
+                                "target_humidity_command_template": "Doelluchtvochtigheid commando template",
+                                "target_humidity_command_topic": "Doelluchtvochtigheid commando topic",
+                                "target_humidity_state_template": "Doelluchtvochtigheid status template",
+                                "target_humidity_state_topic": "Doelluchtvochtigheid status topic"
+                            },
+                            "data_description": {
+                                "max_humidity": "De maximale doelluchtvochtigheid die kan worden ingesteld.",
+                                "min_humidity": "De minimale doelluchtvochtigheid die kan worden ingesteld.",
+                                "target_humidity_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het luchtvochtigheid commando topic.",
+                                "target_humidity_command_topic": "Het MQTT topic om commando's te publiceren om de doelluchtvochtigheid van de klimaatregeling te wijzigen. [Leer meer.]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "Een [template]({value_templating_url}) om de waarde mee te renderen ontvangen op het luchtvochtigheid status topic.",
+                                "target_humidity_state_topic": "Het MQTT topic om op te abonneren voor de wijzigingen van de luchtvochtigheid. [Leer meer.]({url}#humidity_state_topic)"
+                            },
+                            "name": "Doelluchtvochtigheid instellingen"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Initi\u00eble temperatuur",
+                                "max_temp": "Maximumtemperatuur",
+                                "min_temp": "Minimumtemperatuur",
+                                "precision": "Precisie",
+                                "temp_step": "Temperatuur stap",
+                                "temperature_command_template": "Temperatuur commando template",
+                                "temperature_command_topic": "Temperatuur commando topic",
+                                "temperature_high_command_template": "Temperatuur bovengrens commando template",
+                                "temperature_high_command_topic": "Temperatuur bovengrens commando topic",
+                                "temperature_high_state_template": "Temperatuur bovengrens status template",
+                                "temperature_high_state_topic": "Temperatuur bovengrens status topic",
+                                "temperature_low_command_template": "Temperatuur ondergrens commando template",
+                                "temperature_low_command_topic": "Temperatuur ondergrens commando topic",
+                                "temperature_low_state_template": "Temperatuur ondergrens status template",
+                                "temperature_low_state_topic": "Temperatuur ondergrens status topic",
+                                "temperature_state_template": "Temperatuur status template",
+                                "temperature_state_topic": "Temperatuur status topic"
+                            },
+                            "data_description": {
+                                "initial": "Het apparaat wordt ge\u00efnitialiseerd met deze doeltemperatuur.",
+                                "max_temp": "De maximale doeltemperatuur die kan worden ingesteld.",
+                                "min_temp": "De minimale doeltemperatuur die kan worden ingesteld.",
+                                "precision": "De precisie in graden waarmee de thermostaat werkt.",
+                                "temp_step": "De doeltemperatuur stap in graden Celsius of Fahrenheit.",
+                                "temperature_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het temperatuur commando topic.",
+                                "temperature_command_topic": "Het MQTT topic om commando's te publiceren om de doeltemperatuur te wijzigen. [Meer informatie.]({url}#temperature_command_topic)",
+                                "temperature_high_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het temperatuur bovengrens commando topic.",
+                                "temperature_high_command_topic": "Het MQTT topic om commando's te publiceren om de doeltemperatuur bovengrens van de klimaatregeling te wijzigen. [Leer meer.]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "Een [template]({value_templating_url}) om de waarde mee te renderen ontvangen op het temperatuur bovengrens status topic.",
+                                "temperature_high_state_topic": "Het MQTT topic om op te abonneren voor de wijzigingen van de doeltemperatuur bovengrens. [Leer meer.]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het temperatuur ondergrens commando topic.",
+                                "temperature_low_command_topic": "Het MQTT topic om commando's te publiceren om de doeltemperatuur ondergrens van de klimaatregeling te wijzigen. [Leer meer.]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "Een [template]({value_templating_url}) om de waarde mee te renderen ontvangen op het temperatuur ondergrens status topic.",
+                                "temperature_low_state_topic": "Het MQTT topic om op te abonneren voor de wijzigingen van de onder doeltemperatuur. [Leer meer.]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "Een [template]({value_templating_url}) om de waarde mee te renderen ontvangen op het temperatuur status topic.",
+                                "temperature_state_topic": "Het MQTT topic om op te abonneren voor de wijzigingen van de doeltemperatuur. [Leer meer.]({url}#temperature_state_topic)"
+                            },
+                            "name": "Doeltemperatuur instellingen"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maximumlengte",
+                                "min": "Minimumlengte",
+                                "mode": "Modus",
+                                "pattern": "Patroon"
+                            },
+                            "data_description": {
+                                "max": "Maximumlengte van de tekstinvoer",
+                                "min": "Minimale lengte van de tekstinvoer",
+                                "mode": "Modus van de tekstinvoer",
+                                "pattern": "Een geldig regex patroon"
+                            },
+                            "name": "Andere tekst entiteitsinstellingen"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Bericht \"sluit\"",
+                                "payload_open": "Bericht \"open\"",
+                                "payload_stop": "Bericht \"stop\"",
+                                "state_closed": "Status \"gesloten\"",
+                                "state_closing": "Status \"sluiten\"",
+                                "state_open": "Status \"open\"",
+                                "state_opening": "Status \"openen\""
+                            },
+                            "data_description": {
+                                "payload_close": "Het bericht dat wordt verstuurd wanneer het \"sluit\" commando is gegeven.",
+                                "payload_open": "Het bericht dat wordt verstuurd wanneer het \"open\" commando is gegeven.",
+                                "payload_stop": "Het bericht dat wordt verstuurd wanneer het \"stop\" commando is gegeven. Stel dit bericht alleen in als jouw klep de \"stop\" actie ondersteunt.",
+                                "state_closed": "Het bericht, ontvangen via de status topic, wat de \"gesloten\" status representeert.",
+                                "state_closing": "Het bericht, ontvangen via de status topic, wat de \"sluiten\" status representeert.",
+                                "state_open": "Het bericht, ontvangen via de status topic, wat de \"open\" status representeert.",
+                                "state_opening": "Het bericht, ontvangen via de status topic, wat de \"openen\" status representeert."
+                            },
+                            "name": "Klep bericht instellingen"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "Bericht \"uit\"",
+                                "payload_on": "Bericht \"aan\"",
+                                "power_command_template": "Inschakeling commando template",
+                                "power_command_topic": "Inschakeling commando topic"
+                            },
+                            "data_description": {
+                                "payload_off": "Het bericht dat de \"uit\" status representeert.",
+                                "payload_on": "Het bericht dat de \"aan\" status representeert.",
+                                "power_command_template": "Een [template]({command_templating_url}) om het bericht te componeren om te publiceren op het inschakeling commando topic.",
+                                "power_command_topic": "Het MQTT topic om de commando's te publiceren om de inschakeling van de boiler te wijzigen. Stuur een bericht \"ON| of \"OFF\". [Leer meer.]({url}#power_command_topic)"
+                            },
+                            "name": "Inschakelinstellingen"
+                        }
+                    },
+                    "title": "Configureer MQTT apparaat \"{mqtt_device}\""
+                },
+                "summary_menu": {
+                    "description": "Ingestelde entiteiten:\n{mqtt_items}\n\nMaak een keuze:",
+                    "menu_options": {
+                        "availability": "Beschikbaarheid configureren",
+                        "delete_entity": "Een entiteit verwijderen",
+                        "device": "Bijwerken apparaat opties",
+                        "entity": "Nog een entiteit toevoegen aan \"{mqtt_device}\"",
+                        "export": "Export MQTT apparaat configuratie",
+                        "save_changes": "Opslaan wijzigingen",
+                        "update_entity": "Eigenschappen entiteit bijwerken"
+                    },
+                    "title": "Herconfigureren \"{mqtt_device}\""
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Entiteit"
+                    },
+                    "data_description": {
+                        "component": "Selecteer de entiteit om bij te werken"
+                    },
+                    "description": "Selecteer de entiteit om bij te werken",
+                    "title": "Selecteer entiteit"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Eerste knop",
+            "button_2": "Tweede knop",
+            "button_3": "Derde knop",
+            "button_4": "Vierde knop",
+            "button_5": "Vijfde knop",
+            "button_6": "Zesde knop",
+            "turn_off": "Uitzetten",
+            "turn_on": "Aanzetten"
+        },
+        "trigger_type": {
+            "button_double_press": "\"{subtype}\" dubbel geklikt",
+            "button_long_press": "\"{subtype}\" continu ingedrukt",
+            "button_long_release": "\"{subtype}\" losgelaten na lang indrukken",
+            "button_quadruple_press": "\"{subtype}\" viermaal geklikt",
+            "button_quintuple_press": "\"{subtype}\" vijfmaal geklikt",
+            "button_short_press": "\" {subtype} \" ingedrukt",
+            "button_short_release": "\"{subtype}\" losgelaten",
+            "button_triple_press": "\" {subtype} \" driemaal geklikt"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "De app {addon} is niet goed opgestart."
+        },
+        "command_template_error": {
+            "message": "Het renderen van template `{command_template}` voor entiteit `{entity_id}`is mislukt met fout:{error}."
+        },
+        "invalid_platform_config_message": {
+            "message": "Het herladen van de YAML configuratie voor handmatig ingesteld MQTT `{domain}` onderdeel is mislukt. Melding: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "Kan niet publiceren: topic-template `{topic_template}` produceerde een ongeldig topic `{topic}` na renderen ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "Fout in communicatie met MQTT broker: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "MQTT Subscriptie ID limiet bereikt. Kan geen nieuwe ID's aanmaken om te abonneren."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "Publiceren naar topic {topic} met een Message Expiry Interval wordt niet ondersteund voor protocolversie {protocol}."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Kan niet abonneren op topic \"{topic}\" want MQTT is niet ingeschakeld. Controleer of MQTT goed is ingesteld."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Kan niet publiceren naar `topic` \"{topic}\", zorg dat MQTT correct is ge\u00efnstalleerd."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Kan niet abonneren op `topic` \"{topic}\", zorg dat MQTT correct is ge\u00efnstalleerd."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Kan onderwerp \"{topic}\" niet twee keer afmelden."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "Onderwerp moet een string zijn! Kreeg: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Kan de trigger niet twee keer verwijderen."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "title": "Ongeldige configuratie gevonden voor MQTT {domain} element"
+        },
+        "protocol_5_migration": {
+            "description": "De automatische migratie naar MQTT protocol versie 5 is mislukt. De huidige geconfigureerde protocolversie voor MQTT broker {broker} is {protocol}, maar deze protocolversie is verouderd, en ondersteuning hiervoor zal worden verwijderd. \n\nZorg ervoor dat je broker protocolversie 5 ondersteunt. Update de verbindingsinstellingen van je MQTT broker en herstart Home Assistant om dit probleem op te lossen.",
+            "title": "MQTT-protocolmigratie mislukt"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Ge\u00ebxporteerd MQTT apparaat \"{name}\" ge\u00efdentificeerd via MQTT discovery. Selecteer **Verzenden** om te bevestigen dat het MQTT apparaat moet worden gemigreerd naar de hoofdconfiguratie, en om het bestaande MQTT apparaat sub-item te verwijderen. Zorg er voor dat het discovery bericht 'retained' is op de MQTT broker, of opnieuw wordt verstuurd nadat het sub-item is verwijderd, zodat het MQTT apparaat correct wordt ingesteld. Als een alternatief kun je het apparaat ID en de entiteit unieke ID's aanpassen in het MQTT discovery bericht, en deze reparatie annuleren als je het MQTT apparaat sub-item wilt houden.",
+                        "title": "MQTT apparaat \"{name}\" sub-item migratie naar MQTT discovery"
+                    }
+                }
+            },
+            "title": "MQTT apparaat \"{name}\" sub-item migratie naar MQTT discovery"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Ge\u00ebxporteerd MQTT apparaat \"{name}\" ge\u00efdentificeerd in YAML configuratie. Selecteer **Verzenden** om te bevestigen dat het MQTT apparaat gemigreerd moet worden naar de hoofdconfiguratie, en om het bestaande MQTT apparaat sub-item te verwijderen. Als een alternatief kun je het apparaat ID en entiteit unieke ID's aanpassen in je configuration.yaml bestand, en annuleer deze reparatie om het MQTT apparaat sub-item te houden.",
+                        "title": "MQTT apparaat \"{name}\" sub-item migratie naar YAML"
+                    }
+                }
+            },
+            "title": "MQTT apparaat \"{name}\" sub-item migratie naar YAML"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant detecteert handmatig geconfigureerde MQTT items, maar deze items kunnen niet worden geladen omdat MQTT niet correct is ingesteld. Zorg er voor dat de MQTT broker juist is ingesteld, of verwijder de MQTT configuratie van je `configuration.yaml` bestand en herstart Home Assistant om dit probleem op te lossen.",
+            "title": "MQTT is niet correct ingesteld"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Ongeldig `birth` topic",
+            "bad_certificate": "Het CA certificaat bestand is ongeldig",
+            "bad_client_cert": "Ongeldig client-certificaat, zorg voor een geldig bestand",
+            "bad_client_cert_key": "Client certificaat en priv\u00e9sleutel zijn geen geldig paar",
+            "bad_discovery_prefix": "Ongeldig discovery voorvoegsel",
+            "bad_will": "Ongeldig `will` topic",
+            "bad_ws_headers": "Geef geldige HTTP-headers op als een JSON-object",
+            "cannot_connect": "Kan geen verbinding maken",
+            "client_key_error": "Ongeldig priv\u00e9sleutelbestand of ongeldig wachtwoord opgegeven",
+            "invalid_inclusion": "Het client-certificaat en priv\u00e9sleutel moeten samen worden geconfigureerd"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Birth bericht inschakelen",
+                    "birth_payload": "Birth bericht inhoud",
+                    "birth_qos": "Birth bericht QoS",
+                    "birth_retain": "Birth bericht vasthouden",
+                    "birth_topic": "Birth bericht topic",
+                    "discovery": "Discovery inschakelen",
+                    "discovery_prefix": "Discovery-voorvoegsel",
+                    "discovery_qos": "Discovery QoS",
+                    "will_enable": "Will bericht inschakelen",
+                    "will_payload": "Will bericht inhoud",
+                    "will_qos": "Will bericht QoS",
+                    "will_retain": "Will bericht vasthouden",
+                    "will_topic": "Will bericht topic"
+                },
+                "data_description": {
+                    "birth_enable": "Geselecteerd zal Home Assistant een `online` bericht naar je MQTT broker sturen zoda MQTT klaar is met opstarten.",
+                    "birth_payload": "Het \"birth\" bericht dat is gepubliceerd wanneer MQTT klaar is opgestart en verbonden.",
+                    "birth_qos": "De \"quality of service\" van het \"birth\" bericht dat wordt gepubliceerd wanneer MQTT klaar is en verbonden.",
+                    "birth_retain": "Geselecteerd zal Home Assistant de \"retain\" vlag aanzetten op het \"birth\" bericht naar je MQTT broker.",
+                    "birth_topic": "Het MQTT topic waarop Home Assistant een \"birth\" bericht zal publiceren.",
+                    "discovery": "Optie om de automatische ontdekking MQTT apparaten in te schakelen.",
+                    "discovery_prefix": "De prefix van de configuratie topics waarop de MQTT integratie zich zal abonneren.",
+                    "discovery_qos": "De \"quality of service\" voor automatische discovery abonnementen op je MQTT broker.",
+                    "will_enable": "Wanner dit is geselecteerd zal Home Assistant je broker vragen om een \"will\" bericht te publiceren wanneer MQTT is gestopt of de verbinding met je MQTT broker is verloren.",
+                    "will_payload": "Het bericht dat je MQTT broker zal publiceren wanneer de verbinding is verbroken.",
+                    "will_qos": "De \"quality of service\" van het \"will\" bericht dat is gepubliceerd door je MQTT broker.",
+                    "will_retain": "Geselecteerd zal je MQTT broker de \"retain\" vlag zetten op het \"will\" bericht.",
+                    "will_topic": "Het MQTT topic waar je MQTT broker een \"will\" bericht naar publiceert."
+                },
+                "description": "Discovery - Als discovery is ingeschakeld (aan te raden), zal Home Assistant automatisch apparaten en entiteiten ontdekken die hun configuratie op de MQTT-broker publiceren. Als discovery is uitgeschakeld, moet alle configuratie handmatig worden gedaan.\nDiscovery prefix - De prefix waarmee een configuratie topic voor automatische discovery moet beginnen.\nBirth message - Het geboortebericht wordt elke keer verzonden als Home Assistant (opnieuw) verbinding maakt met de MQTT-broker.\nWill message - Het testamentbericht wordt elke keer verzonden als Home Assistant de verbinding met de broker verliest, zowel in het geval van een schone (bijvoorbeeld Home Assistant wordt afgesloten) als in het geval van een onreine (bijvoorbeeld Home Assistant crasht of verliest zijn netwerkverbinding) verbreking.",
+                "title": "MQTT-opties"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Lokale code validatie",
+                "remote_code": "Numerieke validatie op afstand",
+                "remote_code_text": "Tekstcode validatie op afstand"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Automatisch",
+                "cool": "Koelen",
+                "dry": "Droog",
+                "fan_only": "Alleen ventilator",
+                "heat": "Verwarmen",
+                "heat_cool": "Verwarmen/koelen",
+                "off": "Uit"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Configuratie",
+                "diagnostic": "Diagnostisch"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64 codering",
+                "raw": "Ruwe data"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "Afbeelding data wordt ontvangen",
+                "image_url": "Een afbeelding URL wordt ontvangen"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "Standaard schema",
+                "json": "JSON",
+                "template": "Template"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automatisch",
+                "box": "Invoerveld",
+                "slider": "Schuifregelaar"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Helderheid",
+                "first": "Eerste",
+                "last": "Laatste"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Alarmbedieningspaneel",
+                "binary_sensor": "Binaire sensor",
+                "button": "Knop",
+                "climate": "Klimaat",
+                "cover": "Bedekking",
+                "date": "Datum",
+                "datetime": "Datum/Tijd",
+                "fan": "Ventilator",
+                "image": "Afbeelding",
+                "light": "Licht",
+                "lock": "Slot",
+                "notify": "Notificaties",
+                "number": "Nummer",
+                "select": "Selectie",
+                "sensor": "Sensor",
+                "siren": "Sirene",
+                "switch": "Schakelaar",
+                "text": "Tekst",
+                "time": "Tijd",
+                "valve": "Klep",
+                "water_heater": "Boiler"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automatisch",
+                "custom": "Handmatig",
+                "off": "Uit"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Alleen helderheid",
+                "color_temp": "Kleurtemperatuur",
+                "hs": "HS",
+                "onoff": "Aan/uit",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Wit",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "Doeltemperatuur met boven- en ondergrens",
+                "none": "Geen doeltemperatuur",
+                "single": "Enkelvoudige doeltemperatuur"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Wachtwoord",
+                "text": "Tekst"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Automatisch",
+                "eco": "Eco",
+                "electric": "Elektrisch",
+                "gas": "Gas",
+                "heat_pump": "Warmtepomp",
+                "off": "Uit",
+                "performance": "Prestatie"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Schrijft alle berichten over een specifiek topic in het `mqtt_dump.txt` bestand in je configuratiemap.",
+            "fields": {
+                "duration": {
+                    "description": "Hoe lang te wachten met het luisteren naar berichten in seconden.",
+                    "name": "Duur"
+                },
+                "topic": {
+                    "description": "Topic om naar te luisteren.",
+                    "name": "Topic"
+                }
+            },
+            "name": "Exporteren"
+        },
+        "publish": {
+            "description": "Publiceert een bericht naar een MQTT-topic.",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Als 'Payload' een Python bytes literal is, evalueer dan de bytes 'literal' en publiceer de ruwe data.",
+                    "name": "Evalueer payload"
+                },
+                "message_expiry_interval": {
+                    "description": "Laat een gepubliceerd bericht vervallen na de opgegeven interval in het geval de abonnee op de apparaat topics tijdelijk offline was, of wanneer het bericht was gestuurd met een ingeschakelde \"retained\" optie.",
+                    "name": "Message Expiry Interval"
+                },
+                "payload": {
+                    "description": "Het bericht om te publiceren. Publiceert een leeg bericht als deze waarde niet is opgegeven.",
+                    "name": "Bericht"
+                },
+                "qos": {
+                    "description": "Quality of Service te gebruiken. 0. Ten hoogste \u00e9\u00e9n keer. 1: Minstens \u00e9\u00e9n keer. 2: Precies \u00e9\u00e9n keer.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Als het bericht de retain-vlag ingesteld moet hebben. Als dit het geval is, slaat de broker het meest recente bericht op een topic op.",
+                    "name": "Vasthouden"
+                },
+                "topic": {
+                    "description": "Topic om naar te publiceren.",
+                    "name": "Topic"
+                }
+            },
+            "name": "Publiceer",
+            "sections": {
+                "publish_options": {
+                    "name": "Publicatieopties"
+                }
+            }
+        },
+        "reload": {
+            "description": "Herlaadt MQTT-entiteiten uit de YAML-configuratie.",
+            "name": "Herladen"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "Wordt geactiveerd nadat een specifiek bericht is ontvangen op een bepaald MQTT topic.",
+            "fields": {
+                "payload": {
+                    "description": "De payload waarop getriggerd moet worden.",
+                    "name": "Payload"
+                },
+                "topic": {
+                    "description": "MQTT-topic om naar te luisteren.",
+                    "name": "Topic"
+                }
+            },
+            "name": "MQTT-bericht ontvangen"
+        }
+    }
+}

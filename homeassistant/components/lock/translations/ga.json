@@ -1,0 +1,159 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil glas amh\u00e1in n\u00f3 n\u00edos m\u00f3 s\u00e1innithe.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an glas s\u00e1ite"
+        },
+        "is_locked": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil glas amh\u00e1in n\u00f3 n\u00edos m\u00f3 faoi ghlas.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an glas faoi ghlas"
+        },
+        "is_open": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil glas amh\u00e1in n\u00f3 n\u00edos m\u00f3 oscailte.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an glas oscailte"
+        },
+        "is_unlocked": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil glas amh\u00e1in n\u00f3 n\u00edos m\u00f3 d\u00edghlas\u00e1ilte.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an glas d\u00edghlas\u00e1ilte"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "Glas\u00e1il {entity_name}",
+            "open": "Oscail {entity_name}",
+            "unlock": "D\u00edghlas\u00e1il {entity_name}"
+        },
+        "condition_type": {
+            "is_jammed": "T\u00e1 bac ar {entity_name}",
+            "is_locked": "T\u00e1 {entity_name} faoi ghlas",
+            "is_locking": "T\u00e1 {entity_name} ag glas\u00e1il",
+            "is_open": "T\u00e1 {entity_name} oscailte",
+            "is_opening": "T\u00e1 {entity_name} ag oscailt",
+            "is_unlocked": "T\u00e1 {entity_name} d\u00edghlas\u00e1ilte",
+            "is_unlocking": "T\u00e1 {entity_name} ag d\u00edghlas\u00e1il"
+        },
+        "extra_fields": {
+            "for": "Fad"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} faoi ghlas",
+            "open": "D\u2019oscail {entity_name}",
+            "unlocked": "D\u00edghlas\u00e1ilte {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Glas\u00e1il",
+            "state": {
+                "jammed": "Stamp\u00e1ilte",
+                "locked": "Faoi ghlas",
+                "locking": "Glas\u00e1il",
+                "open": "Oscail",
+                "opening": "Ag oscailt",
+                "unlocked": "D\u00edghlas\u00e1ilte",
+                "unlocking": "Ag d\u00edghlas\u00e1il"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Athraithe ag"
+                },
+                "code_format": {
+                    "name": "Form\u00e1id an ch\u00f3id"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "N\u00ed hionann an c\u00f3d do {entity_id} agus an patr\u00fan {code_format}."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "Glas\u00e1lann glas.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3d a \u00fas\u00e1idtear chun an glas a ghlas\u00e1il.",
+                    "name": "C\u00f3d"
+                }
+            }
+        },
+        "open": {
+            "description": "Oscla\u00edonn glas.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3d a \u00fas\u00e1idtear chun an glas a oscailt.",
+                    "name": "C\u00f3d"
+                }
+            }
+        },
+        "unlock": {
+            "description": "D\u00edghlas\u00e1lann s\u00e9 glas.",
+            "fields": {
+                "code": {
+                    "description": "C\u00f3d a \u00fas\u00e1idtear chun an glas a dh\u00edghlas\u00e1il.",
+                    "name": "C\u00f3d"
+                }
+            }
+        }
+    },
+    "title": "Glas\u00e1il",
+    "triggers": {
+        "jammed": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Glas s\u00e1ite"
+        },
+        "locked": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Glas faoi ghlas"
+        },
+        "opened": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Glas oscailte"
+        },
+        "unlocked": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Glas d\u00edghlas\u00e1ilte"
+        }
+    }
+}

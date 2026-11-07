@@ -1,0 +1,175 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie si",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "V\u00e9rifie si une ou plusieurs t\u00e9l\u00e9commandes sont \u00e9teintes.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La t\u00e9l\u00e9commande est \u00e9teinte"
+        },
+        "is_on": {
+            "description": "V\u00e9rifie si une ou plusieurs t\u00e9l\u00e9commandes sont allum\u00e9es.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La t\u00e9l\u00e9commande est allum\u00e9e"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Basculer {entity_name}",
+            "turn_off": "D\u00e9sactiver {entity_name}",
+            "turn_on": "Activer {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} est d\u00e9sactiv\u00e9",
+            "is_on": "{entity_name} est activ\u00e9"
+        },
+        "extra_fields": {
+            "for": "Dur\u00e9e"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} a \u00e9t\u00e9 activ\u00e9 ou d\u00e9sactiv\u00e9",
+            "turned_off": "{entity_name} a \u00e9t\u00e9 d\u00e9sactiv\u00e9",
+            "turned_on": "{entity_name} a \u00e9t\u00e9 activ\u00e9"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "T\u00e9l\u00e9commande",
+            "state": {
+                "off": "D\u00e9sactiv\u00e9",
+                "on": "Activ\u00e9"
+            }
+        }
+    },
+    "services": {
+        "delete_command": {
+            "description": "Supprime une commande ou une liste de commandes de la base de donn\u00e9es d'une t\u00e9l\u00e9commande.",
+            "fields": {
+                "command": {
+                    "description": "La commande unique ou la liste de commandes \u00e0 supprimer.",
+                    "name": "Commande"
+                },
+                "device": {
+                    "description": "Appareil \u00e0 partir duquel les commandes seront supprim\u00e9es.",
+                    "name": "Appareil"
+                }
+            },
+            "name": "Supprimer une commande de t\u00e9l\u00e9commande"
+        },
+        "learn_command": {
+            "description": "Apprend \u00e0 une t\u00e9l\u00e9commande une commande ou une liste de commandes provenant d'un appareil.",
+            "fields": {
+                "alternative": {
+                    "description": "Indique si le code doit \u00eatre stock\u00e9 comme alternative. Cela est utile pour les codes discrets. Les codes discrets sont utilis\u00e9s pour les bascules qui ne remplissent qu'une seule fonction. Par exemple, un code servant uniquement \u00e0 allumer un appareil. S'il est d\u00e9j\u00e0 allum\u00e9, l'envoi du code ne changera pas l'\u00e9tat.",
+                    "name": "Alternative"
+                },
+                "command": {
+                    "description": "Une commande unique ou une liste de commandes \u00e0 apprendre.",
+                    "name": "Commande"
+                },
+                "command_type": {
+                    "description": "Le type de commande \u00e0 apprendre.",
+                    "name": "Type de commande"
+                },
+                "device": {
+                    "description": "Identifiant de l'appareil dont la commande doit \u00eatre apprise.",
+                    "name": "Appareil"
+                },
+                "timeout": {
+                    "description": "D\u00e9lai d'expiration pour la commande \u00e0 apprendre.",
+                    "name": "D\u00e9lai d'expiration"
+                }
+            },
+            "name": "Apprendre une commande de t\u00e9l\u00e9commande"
+        },
+        "send_command": {
+            "description": "Envoie une commande ou une liste de commandes \u00e0 un appareil.",
+            "fields": {
+                "command": {
+                    "description": "Une commande unique ou une liste de commandes \u00e0 envoyer.",
+                    "name": "Commande"
+                },
+                "delay_secs": {
+                    "description": "Le temps d'attente souhait\u00e9 entre les commandes r\u00e9p\u00e9t\u00e9es.",
+                    "name": "Secondes de d\u00e9lai"
+                },
+                "device": {
+                    "description": "Identifiant de l'appareil auquel envoyer la commande.",
+                    "name": "Appareil"
+                },
+                "hold_secs": {
+                    "description": "Le temps de maintien souhait\u00e9 avant l'envoi du rel\u00e2chement.",
+                    "name": "Secondes de maintien"
+                },
+                "num_repeats": {
+                    "description": "Le nombre de fois o\u00f9 vous souhaitez r\u00e9p\u00e9ter les commandes.",
+                    "name": "R\u00e9p\u00e9titions"
+                }
+            },
+            "name": "Envoyer une commande de t\u00e9l\u00e9commande"
+        },
+        "toggle": {
+            "description": "Envoie la commande de basculement.",
+            "name": "Basculer via la t\u00e9l\u00e9commande"
+        },
+        "turn_off": {
+            "description": "Envoie la commande d'arr\u00eat.",
+            "name": "\u00c9teindre via la t\u00e9l\u00e9commande"
+        },
+        "turn_on": {
+            "description": "Envoie la commande d'allumage.",
+            "fields": {
+                "activity": {
+                    "description": "Identifiant ou nom de l'activit\u00e9 \u00e0 d\u00e9marrer.",
+                    "name": "Activit\u00e9"
+                }
+            },
+            "name": "Allumer via la t\u00e9l\u00e9commande"
+        }
+    },
+    "title": "T\u00e9l\u00e9commande",
+    "triggers": {
+        "turned_off": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs t\u00e9l\u00e9commandes s'\u00e9teignent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La t\u00e9l\u00e9commande s'est \u00e9teinte"
+        },
+        "turned_on": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs t\u00e9l\u00e9commandes s'allument.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La t\u00e9l\u00e9commande s'est allum\u00e9e"
+        }
+    }
+}

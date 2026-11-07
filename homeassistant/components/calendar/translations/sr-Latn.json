@@ -1,0 +1,163 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_event_active": {
+            "description": "Proverava da li jedan ili vi\u0161e kalendara imaju aktivan doga\u0111aj.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Doga\u0111aj u kalendaru aktivan"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Kalendar",
+            "state": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            },
+            "state_attributes": {
+                "all_day": {
+                    "name": "Ceo dan",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "description": {
+                    "name": "Opis"
+                },
+                "end_time": {
+                    "name": "Vreme zavr\u0161etka"
+                },
+                "location": {
+                    "name": "Lokacija"
+                },
+                "message": {
+                    "name": "Poruka"
+                },
+                "start_time": {
+                    "name": "Vreme po\u010detka"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_calendar_list_events": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Koristite  `calendar.get_events` umesto toga, jer podr\u017eava vi\u0161e entiteta. \n\nMolimo vas da zamenite ovu akciju, prilagodite va\u0161e automatizacije i skripte i izaberete **Potvrdi** da zatvorite ovaj problem.",
+                        "title": "Prona\u0111ena upotreba zastarele radnje calendar.list_events"
+                    }
+                }
+            },
+            "title": "Prona\u0111ena upotreba zastarele radnje calendar.list_events"
+        }
+    },
+    "selector": {
+        "trigger_offset_type": {
+            "options": {
+                "after": "Posle",
+                "before": "Pre"
+            }
+        }
+    },
+    "services": {
+        "create_event": {
+            "description": "Dodaje novi doga\u0111aj u kalendar.",
+            "fields": {
+                "description": {
+                    "description": "Dodatne informacije i detaljan sadr\u017eaj vezan za planirani doga\u0111aj.",
+                    "name": "Opis"
+                },
+                "end_date": {
+                    "description": "Datum zavr\u0161etka (doga\u0111aj traje do ovog datuma).",
+                    "name": "Datum zavr\u0161etka"
+                },
+                "end_date_time": {
+                    "description": "Krajnji datumski parametar za vi\u0161ednevne ili celodnevne doga\u0111aje.",
+                    "name": "Vreme zavr\u0161etka"
+                },
+                "in": {
+                    "description": "Dani ili nedelje u kojima \u017eelite da kreirate doga\u0111aj.",
+                    "name": "U"
+                },
+                "location": {
+                    "description": "Lokacija doga\u0111aja.",
+                    "name": "Geografska odrednica ili naziv mesta odr\u017eavanja doga\u0111aja."
+                },
+                "start_date": {
+                    "description": "Datum po\u010detka celodnevnog doga\u0111aja.",
+                    "name": "Datum po\u010detka"
+                },
+                "start_date_time": {
+                    "description": "Precizno definisani vremenski parametri za po\u010detak doga\u0111aja.",
+                    "name": "Vreme po\u010detka"
+                },
+                "summary": {
+                    "description": "Sa\u017eeti naslov namenjen za identifikaciju doga\u0111aja u kalendaru.",
+                    "name": "Naziv doga\u0111aja"
+                }
+            },
+            "name": "Kreiraj kalendarski doga\u0111aj"
+        },
+        "get_events": {
+            "description": "Preuzima doga\u0111aje iz kalendara za odre\u0111eni vremenski period.",
+            "fields": {
+                "duration": {
+                    "description": "Defini\u0161e du\u017einu vremenskog perioda za o\u010ditavanje podataka u odnosu na zadati po\u010detak.",
+                    "name": "Vremensko trajanje (Interval)"
+                },
+                "end_date_time": {
+                    "description": "Defini\u0161e gornju granicu vremenskog opsega. Isklju\u010duje istovremenu upotrebu sa parametrom trajanja.",
+                    "name": "Vreme zavr\u0161etka"
+                },
+                "start_date_time": {
+                    "description": "Defini\u0161e donju granicu vremenskog opsega za prikaz doga\u0111aja. Podrazumeva se trenutno sistemsko vreme.",
+                    "name": "Vreme po\u010detka"
+                }
+            },
+            "name": "Preuzmi kalendarske doga\u0111aje"
+        }
+    },
+    "title": "Kalendar",
+    "triggers": {
+        "event_ended": {
+            "description": "Pokre\u0107e se kada se zavr\u0161i jedan ili vi\u0161e doga\u0111aja u kalendaru.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon zavr\u0161etka doga\u0111aja.",
+                    "name": "Pomeraj"
+                },
+                "offset_type": {
+                    "description": "Da li pokreta\u010d treba da se izvr\u0161i pre ili posle zavr\u0161etka doga\u0111aja, ako je definisan pomeraj.",
+                    "name": "Tip pomeraja"
+                }
+            },
+            "name": "Doga\u0111aj u kalendaru zavr\u0161en"
+        },
+        "event_started": {
+            "description": "Pokre\u0107e se kada po\u010dne jedan ili vi\u0161e doga\u0111aja u kalendaru.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon po\u010detka doga\u0111aja.",
+                    "name": "Pomeraj"
+                },
+                "offset_type": {
+                    "description": "Da li pokreta\u010d treba da se izvr\u0161i pre ili posle po\u010detka doga\u0111aja, ako je definisan pomeraj.",
+                    "name": "Tip pomeraja"
+                }
+            },
+            "name": "Doga\u0111aj u kalendaru zapo\u010det"
+        }
+    }
+}

@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Proverava da li jedan ili vi\u0161e Assist satelita miruju.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit u stanju mirovanja"
+        },
+        "is_listening": {
+            "description": "Testira da li jedan ili vi\u0161e Assist satelita prate.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit po\u010deo da slu\u0161a"
+        },
+        "is_processing": {
+            "description": "Proverava da li jedan ili vi\u0161e Assist satelita obra\u0111uju podatke.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit po\u010deo da obra\u0111uje"
+        },
+        "is_responding": {
+            "description": "Proverava da li jedan ili vi\u0161e Assist satelita odgovaraju.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit po\u010deo da odgovara"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Satelit za asistenciju",
+            "state": {
+                "idle": "Mirovanje",
+                "listening": "Pra\u0107enje",
+                "processing": "Obra\u0111uje",
+                "responding": "Odgovara"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "ID odgovora",
+                "sentences": "Re\u010denice"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "Omogu\u0107ava Assist satelitu da objavi poruku.",
+            "fields": {
+                "media_id": {
+                    "description": "Jedinstveni identifikator audio datoteke namenjene za reprodukciju umesto generisanog govora.",
+                    "name": "Identifikator zvu\u010dnog zapisa"
+                },
+                "message": {
+                    "description": "Tekstualni sadr\u017eaj predvi\u0111en za glasovnu objavu putem ure\u0111aja.",
+                    "name": "Sadr\u017eaj obave\u0161tenja"
+                },
+                "preannounce": {
+                    "description": "Aktiviranje diskretnog zvu\u010dnog signala (Chime) pre inicijalizacije obave\u0161tenja.",
+                    "name": "Najava"
+                },
+                "preannounce_media_id": {
+                    "description": "ID prilago\u0111enog zvuka za najavu.",
+                    "name": "Identifikator signala najave"
+                }
+            },
+            "name": "Emituj obave\u0161tenje preko satelita"
+        },
+        "ask_question": {
+            "description": "Postavlja pitanje preko Assist satelita i \u010deka odgovor.",
+            "fields": {
+                "answers": {
+                    "description": "Spisak definisanih vrednosti (odgovora) predvi\u0111enih za automatsku validaciju.",
+                    "name": "Parametri prepoznavanja odgovora"
+                },
+                "entity_id": {
+                    "description": "Assist satelit entitet na kojem se postavlja pitanje.",
+                    "name": "Identifikator satelitske jedinice"
+                },
+                "preannounce": {
+                    "description": "Aktiviranje diskretnog zvu\u010dnog signala (Chime) pre inicijalizacije upita.",
+                    "name": "Najava"
+                },
+                "preannounce_media_id": {
+                    "description": "ID prilago\u0111enog medija koji se reprodukuje pre po\u010detne poruke ili medija.",
+                    "name": "ID medija za najavu"
+                },
+                "question": {
+                    "description": "Tekstualni sadr\u017eaj koji asistent izgovara korisniku radi dobijanja povratne informacije.",
+                    "name": "Sadr\u017eaj upita"
+                },
+                "question_media_id": {
+                    "description": "ID audio snimka pitanja koji se koristi umesto generisanog govora.",
+                    "name": "Identifikator zvu\u010dnog zapisa upita"
+                }
+            },
+            "name": "Postavi pitanje preko satelita"
+        },
+        "start_conversation": {
+            "description": "Pokre\u0107e razgovor preko Assist satelita.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Specifi\u010dni parametri i kontekstualne smernice za rad modela ve\u0161ta\u010dke inteligencije.",
+                    "name": "Dodatne sistemske instrukcije"
+                },
+                "preannounce": {
+                    "description": "Aktiviranje diskretnog zvu\u010dnog signala pre inicijalizacije razgovora.",
+                    "name": "Zvu\u010dna signalizacija (Chime)"
+                },
+                "preannounce_media_id": {
+                    "description": "ID prilago\u0111enog medija koji se reprodukuje pre po\u010detne poruke ili medija.",
+                    "name": "Identifikator zvu\u010dnog signala"
+                },
+                "start_media_id": {
+                    "description": "ID prilago\u0111enog zvuka koji se \u010duje pre po\u010detka.",
+                    "name": "Identifikator medijskog sadr\u017eaja"
+                },
+                "start_message": {
+                    "description": "Tekstualni sadr\u017eaj koji asistent izgovara na po\u010detku sesije.",
+                    "name": "Uvodna poruka"
+                }
+            },
+            "name": "Pokreni razgovor preko satelita"
+        }
+    },
+    "title": "Pomo\u0107ni satelit",
+    "triggers": {
+        "idle": {
+            "description": "Pokre\u0107e se nakon \u0161to jedan ili vi\u0161e glasovnih asistenata pre\u0111u u mirovanje nakon obra\u0111ene komande.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit postao neaktivan"
+        },
+        "listening": {
+            "description": "Pokre\u0107e se nakon \u0161to jedan ili vi\u0161e glasovnih asistenata po\u010dnu da slu\u0161aju komandu.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit po\u010deo da slu\u0161a"
+        },
+        "processing": {
+            "description": "Pokre\u0107e se nakon \u0161to jedan ili vi\u0161e glasovnih asistenata po\u010dnu sa obradom saslu\u0161ane komande.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit po\u010deo da obra\u0111uje"
+        },
+        "responding": {
+            "description": "Pokre\u0107e se nakon \u0161to jedan ili vi\u0161e glasovnih asistenata po\u010dnu da odgovaraju na komandu ili po\u010dnu sa objavom.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Satelit po\u010deo da odgovara"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "assist_in_progress": {
+                "name": "Pagalba vykstant"
+            }
+        },
+        "select": {
+            "pipeline": {
+                "name": "Asistentas",
+                "state": {
+                    "preferred": "Pageidautina"
+                }
+            },
+            "pipeline_n": {
+                "name": "Asistentas {index}",
+                "state": {
+                    "preferred": "Pageidautina"
+                }
+            },
+            "vad_sensitivity": {
+                "name": "Baigtas kalb\u0117jimo aptikimas",
+                "state": {
+                    "aggressive": "Agresyvus",
+                    "default": "Numatytas",
+                    "relaxed": "Atsipalaidav\u0119s"
+                }
+            }
+        }
+    },
+    "issues": {
+        "assist_in_progress_deprecated": {
+            "fix_flow": {
+                "step": {
+                    "confirm_disable_entity": {
+                        "description": "The {integration_name} dvejetainis jutiklis veikia ' {entity_id} ` yra nebenaudojamas.\n\nPerkelkite konfig\u016bracij\u0105, kad naudotum\u0117te atitinkam\u0105 `{assist_satellite_domain} ', tada pasirinkite **Pateikti**, kad i\u0161jungtum\u0117te vykdom\u0105 dvejetain\u012f jutikl\u012f ir i\u0161spr\u0119stum\u0117te \u0161i\u0105 problem\u0105."
+                    }
+                }
+            },
+            "title": "Vykdomi dvejetainiai jutikliai {integration_name} yra nebenaudojami"
+        }
+    }
+}

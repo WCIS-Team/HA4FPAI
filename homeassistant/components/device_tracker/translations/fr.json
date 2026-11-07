@@ -1,0 +1,108 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} est \u00e0 la maison",
+            "is_not_home": "{entity_name} n'est pas \u00e0 la maison"
+        },
+        "extra_fields": {
+            "zone": "Zone"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} entre dans une zone",
+            "leaves": "{entity_name} quitte une zone"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Suivi d'appareil",
+            "state": {
+                "home": "Maison",
+                "not_home": "Absent"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Batterie"
+                },
+                "gps_accuracy": {
+                    "name": "Pr\u00e9cision du GPS"
+                },
+                "latitude": {
+                    "name": "Latitude"
+                },
+                "longitude": {
+                    "name": "Longitude"
+                },
+                "source_type": {
+                    "name": "Source",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "Routeur"
+                    }
+                },
+                "tracking_type": {
+                    "name": "Type de suivi",
+                    "state": {
+                        "connection": "Connexion",
+                        "position": "Position"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "associated_zone_missing": {
+            "description": "L'entit\u00e9 scanner `{entity_id}` est associ\u00e9e \u00e0 la zone `{zone}`, mais cette zone a \u00e9t\u00e9 supprim\u00e9e.\n\nPour r\u00e9soudre ce probl\u00e8me, reconfigurez le scanner pour qu'il utilise une zone diff\u00e9rente ou recr\u00e9ez la zone manquante.",
+            "title": "Le scanner est associ\u00e9 \u00e0 une zone supprim\u00e9e"
+        },
+        "deprecated_see_action": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "L'action `device_tracker.see` est obsol\u00e8te et sera supprim\u00e9e dans Home Assistant Core 2027.5.\n\nUtilisez plut\u00f4t un [traceur d'appareil de type mod\u00e8le]({docs_url}), puis supprimez toute utilisation de cette action dans vos automatisations et scripts et s\u00e9lectionnez **Valider** pour fermer ce probl\u00e8me.",
+                        "title": "Utilisation d\u00e9tect\u00e9e de l'action obsol\u00e8te device_tracker.see"
+                    }
+                }
+            },
+            "title": "Utilisation d\u00e9tect\u00e9e de l'action obsol\u00e8te device_tracker.see"
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Met \u00e0 jour manuellement les enregistrements d'un dispositif de suivi d'appareil h\u00e9rit\u00e9 vu dans le fichier known_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "Niveau de batterie de l'appareil.",
+                    "name": "Niveau de la batterie"
+                },
+                "dev_id": {
+                    "description": "ID de l'appareil (recherchez l'ID dans `known_devices.yaml`).",
+                    "name": "ID de l'appareil"
+                },
+                "gps": {
+                    "description": "Coordonn\u00e9es GPS o\u00f9 se trouve l'appareil, sp\u00e9cifi\u00e9es par la latitude et la longitude (par exemple\u00a0: [51.513845, -0.100539]).",
+                    "name": "Coordonn\u00e9es GPS"
+                },
+                "gps_accuracy": {
+                    "description": "Pr\u00e9cision des coordonn\u00e9es GPS.",
+                    "name": "Pr\u00e9cision du GPS"
+                },
+                "host_name": {
+                    "description": "Nom d'h\u00f4te de l'appareil.",
+                    "name": "Nom d'h\u00f4te"
+                },
+                "location_name": {
+                    "description": "Nom de l'emplacement o\u00f9 se trouve l'appareil. Les options sont\u00a0: `home`, `not_home` ou le nom de la zone.",
+                    "name": "Emplacement"
+                },
+                "mac": {
+                    "description": "Adresse MAC de l'appareil.",
+                    "name": "Adresse MAC"
+                }
+            },
+            "name": "Voir le traqueur d'appareil"
+        }
+    },
+    "title": "Suivi d'appareil"
+}

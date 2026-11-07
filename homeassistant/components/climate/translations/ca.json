@@ -1,0 +1,392 @@
+{
+    "common": {
+        "condition_behavior_name": "Es continua si",
+        "condition_for_name": "Durant almenys",
+        "condition_threshold_name": "Tipus de llindar",
+        "trigger_behavior_name": "Dispara quan",
+        "trigger_for_name": "Durant almenys",
+        "trigger_threshold_name": "Tipus de llindar"
+    },
+    "conditions": {
+        "is_cooling": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "is_drying": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "is_heating": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "is_hvac_mode": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "is_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "is_target_humidity": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                },
+                "threshold": {
+                    "name": "Tipus de llindar"
+                }
+            }
+        },
+        "is_target_temperature": {
+            "fields": {
+                "behavior": {
+                    "name": "Es continua si"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                },
+                "threshold": {
+                    "name": "Tipus de llindar"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Canvia el mode HVAC de {entity_name}",
+            "set_preset_mode": "Canvia la preconfiguraci\u00f3 de {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} est\u00e0 configurat/ada en un mode HVAC espec\u00edfic",
+            "is_preset_mode": "{entity_name} est\u00e0 configurat/ada en un mode preconfigurat espec\u00edfic"
+        },
+        "extra_fields": {
+            "above": "Per sobre",
+            "below": "Per sota",
+            "for": "Durada",
+            "hvac_mode": "Mode HVAC",
+            "preset_mode": "Mode preconfiguraci\u00f3",
+            "to": "A"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "Ha canviat la humitat mesurada per {entity_name}",
+            "current_temperature_changed": "Ha canviat la temperatura mesurada per {entity_name}",
+            "hvac_mode_changed": "El mode HVAC de {entity_name} ha canviat"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Term\u00f2stat",
+            "state": {
+                "auto": "Auto",
+                "cool": "Refreda",
+                "dry": "Asseca",
+                "fan_only": "Nom\u00e9s ventilador",
+                "heat": "Escalfa",
+                "heat_cool": "Escalfa/Refreda",
+                "off": "OFF"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Humitat actual"
+                },
+                "current_temperature": {
+                    "name": "Temperatura actual"
+                },
+                "fan_mode": {
+                    "name": "Mode ventilador",
+                    "state": {
+                        "auto": "Auto",
+                        "diffuse": "Dif\u00fas",
+                        "focus": "Concentrat",
+                        "high": "Alt/a",
+                        "low": "Baix/a",
+                        "medium": "Mitj\u00e0/na",
+                        "middle": "Moderat",
+                        "off": "OFF",
+                        "on": "ON",
+                        "top": "Superior"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Modes del ventilador"
+                },
+                "humidity": {
+                    "name": "Humitat objectiu"
+                },
+                "hvac_action": {
+                    "name": "Acci\u00f3 actual",
+                    "state": {
+                        "cooling": "Refredant",
+                        "defrosting": "Descongelant",
+                        "drying": "Assecant",
+                        "fan": "Ventilaci\u00f3",
+                        "heating": "Escalfant",
+                        "idle": "Inactiu",
+                        "off": "OFF",
+                        "preheating": "Preescalfant"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "Modes HVAC"
+                },
+                "max_humidity": {
+                    "name": "Humitat objectiu m\u00e0xima"
+                },
+                "max_temp": {
+                    "name": "Temperatura objectiu m\u00e0xima"
+                },
+                "min_humidity": {
+                    "name": "Humitat objectiu m\u00ednima"
+                },
+                "min_temp": {
+                    "name": "Temperatura objectiu m\u00ednima"
+                },
+                "preset_mode": {
+                    "name": "Preconfiguraci\u00f3",
+                    "state": {
+                        "activity": "Activitat",
+                        "away": "Fora",
+                        "boost": "Impuls",
+                        "comfort": "Confort",
+                        "eco": "Econ\u00f2mic",
+                        "home": "A casa",
+                        "none": "Cap",
+                        "sleep": "Dormir"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Preconfiguracions"
+                },
+                "swing_horizontal_mode": {
+                    "state": {
+                        "off": "OFF",
+                        "on": "ON"
+                    }
+                },
+                "swing_mode": {
+                    "name": "Mode d'oscil\u00b7laci\u00f3",
+                    "state": {
+                        "both": "Ambd\u00f3s",
+                        "horizontal": "Horitzontal",
+                        "off": "OFF",
+                        "on": "ON",
+                        "vertical": "Vertical"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Modes d'oscil\u00b7laci\u00f3"
+                },
+                "target_temp_high": {
+                    "name": "Temperatura objectiu superior"
+                },
+                "target_temp_low": {
+                    "name": "Temperatura objectiu inferior"
+                },
+                "target_temp_step": {
+                    "name": "Pas de la temperatura objectiu"
+                },
+                "temperature": {
+                    "name": "Temperatura objectiu"
+                }
+            }
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "fields": {
+                "fan_mode": {
+                    "description": "Mode de funcionament del ventilador.",
+                    "name": "Mode del ventilador"
+                }
+            }
+        },
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "Humitat objectiu.",
+                    "name": "Humitat"
+                }
+            }
+        },
+        "set_hvac_mode": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "Mode de funcionament HVAC.",
+                    "name": "Mode HVAC"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "Mode preconfiguraci\u00f3.",
+                    "name": "Mode preconfiguraci\u00f3"
+                }
+            }
+        },
+        "set_swing_mode": {
+            "fields": {
+                "swing_mode": {
+                    "description": "Mode de funcionament d'oscil\u00b7laci\u00f3.",
+                    "name": "Mode oscil\u00b7laci\u00f3"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "Mode de funcionament HVAC.",
+                    "name": "Mode HVAC"
+                }
+            }
+        }
+    },
+    "title": "Climatitzaci\u00f3",
+    "triggers": {
+        "hvac_mode_changed": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "started_cooling": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "started_drying": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "started_heating": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "target_humidity_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Tipus de llindar"
+                }
+            }
+        },
+        "target_humidity_crossed_threshold": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                },
+                "threshold": {
+                    "name": "Tipus de llindar"
+                }
+            }
+        },
+        "target_temperature_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Tipus de llindar"
+                }
+            }
+        },
+        "target_temperature_crossed_threshold": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                },
+                "threshold": {
+                    "name": "Tipus de llindar"
+                }
+            }
+        },
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Dispara quan"
+                },
+                "for": {
+                    "name": "Durant almenys"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Otomatik yedekleme",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Yedekleme a\u015famas\u0131"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Ba\u015far\u0131yla tamamland\u0131",
+                            "failed": "Ba\u015far\u0131s\u0131z",
+                            "in_progress": "Devam ediyor"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Ba\u015far\u0131s\u0131zl\u0131k nedeni",
+                        "state": {
+                            "backup_agent_error": "Yedekleme arac\u0131s\u0131 hatas\u0131",
+                            "backup_agent_unreachable": "Yedekleme arac\u0131s\u0131na ula\u015f\u0131lam\u0131yor",
+                            "backup_manager_error": "Yedekleme y\u00f6neticisi hatas\u0131",
+                            "backup_not_found": "Yedekleme bulunamad\u0131",
+                            "backup_reader_writer_error": "Yedekleme okuyucu/yaz\u0131c\u0131 hatas\u0131",
+                            "decrypt_on_download_not_supported": "\u0130ndirme s\u0131ras\u0131nda \u015fifre \u00e7\u00f6zme desteklenmiyor",
+                            "invalid_backup_filename": "Ge\u00e7ersiz yedekleme dosya ad\u0131",
+                            "multiple_errors": "Birden fazla hata",
+                            "password_incorrect": "\u015eifre yanl\u0131\u015f",
+                            "unknown_error": "Bilinmeyen hata",
+                            "upload_failed": "Y\u00fckleme ba\u015far\u0131s\u0131z oldu"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Yedekleme Y\u00f6neticisi durumu",
+                "state": {
+                    "blocked": "Engellendi",
+                    "create_backup": "Yedekleme olu\u015fturma",
+                    "idle": "Bo\u015fta",
+                    "receive_backup": "Yedekleme al\u0131n\u0131yor",
+                    "restore_backup": "Bir yede\u011fi geri y\u00fckleme"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Son otomatik yedekleme giri\u015fimi"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Son ba\u015far\u0131l\u0131 otomatik yedekleme"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Sonraki planlanm\u0131\u015f otomatik yedekleme"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Yedekleme konumu ` {agent_id} ` kullan\u0131lam\u0131yor ancak yine de otomatik yedeklemeler i\u00e7in yap\u0131land\u0131r\u0131lm\u0131\u015f. \n \n L\u00fctfen yedekleme konumlar\u0131n\u0131z\u0131 g\u00f6zden ge\u00e7irmek ve g\u00fcncellemek i\u00e7in [otomatik yedekleme yap\u0131land\u0131rma sayfas\u0131n\u0131]( {backup_settings} ) ziyaret edin. Yedeklemeler kullan\u0131lamayan se\u00e7ili konumlara y\u00fcklenmeyecektir.",
+            "title": "Yedekleme konumu {agent_id} kullan\u0131lam\u0131yor"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Uygulamalar {failed_addons} Otomatik yedeklemeye dahil edilemedi. Daha fazla bilgi i\u00e7in l\u00fctfen Denetleyici g\u00fcnl\u00fcklerini kontrol edin. Yedekleme plan\u0131 yap\u0131land\u0131r\u0131lm\u0131\u015fsa, bir sonraki planl\u0131 zamanda ba\u015fka bir deneme yap\u0131lacakt\u0131r.",
+            "title": "Otomatik yedeklemeye t\u00fcm uygulamalar dahil edilemeyebilir"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Otomatik yedekleme \u015fu hatalarla olu\u015fturuldu: \n * Yedeklemenin y\u00fcklenemedi\u011fi konumlar: {failed_agents}\n* Yedeklenemeyen uygulamalar: {failed_addons}\n* Yedeklenemeyen klas\u00f6rler: {failed_folders}\n\ndaha \n bilgi i\u00e7in \u00c7ekirdek ve Denetleyici g\u00fcnl\u00fcklerini kontrol edin. Yedekleme plan\u0131 yap\u0131land\u0131r\u0131lm\u0131\u015fsa, bir sonraki planl\u0131 zamanda ba\u015fka bir deneme yap\u0131lacakt\u0131r.",
+            "title": "Otomatik yedekleme hatalarla olu\u015fturuldu"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Otomatik yedekleme olu\u015fturulamad\u0131. Daha fazla bilgi i\u00e7in l\u00fctfen g\u00fcnl\u00fckleri kontrol edin. Bir yedekleme zamanlamas\u0131 yap\u0131land\u0131r\u0131lm\u0131\u015fsa, bir sonraki zamanlanm\u0131\u015f zamanda ba\u015fka bir deneme yap\u0131lacakt\u0131r.",
+            "title": "Otomatik yedekleme olu\u015fturulamad\u0131"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Klas\u00f6rler {failed_folders} Otomatik yedeklemeye dahil edilemedi. Daha fazla bilgi i\u00e7in l\u00fctfen Denetleyici g\u00fcnl\u00fcklerini kontrol edin. Yedekleme plan\u0131 yap\u0131land\u0131r\u0131lm\u0131\u015fsa, bir sonraki planl\u0131 zamanda ba\u015fka bir deneme yap\u0131lacakt\u0131r.",
+            "title": "T\u00fcm klas\u00f6rler otomatik yedeklemeye dahil edilemedi"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Otomatik yedekleme, yap\u0131land\u0131r\u0131lan konumlara {failed_agents} y\u00fcklenemedi. Daha fazla bilgi i\u00e7in l\u00fctfen g\u00fcnl\u00fckleri kontrol edin. Bir yedekleme zamanlamas\u0131 yap\u0131land\u0131r\u0131l\u0131rsa, bir sonraki zamanlanm\u0131\u015f zamanda ba\u015fka bir deneme yap\u0131lacakt\u0131r.",
+            "title": "Otomatik yedekleme yap\u0131land\u0131r\u0131lan konumlara y\u00fcklenemedi"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Yeni bir yedek olu\u015fturur.",
+            "name": "Yedekleme olu\u015ftur"
+        },
+        "create_automatic": {
+            "description": "Otomatik yedekleme ayarlar\u0131yla yeni bir yedekleme olu\u015fturur.",
+            "name": "Otomatik yedekleme olu\u015ftur"
+        }
+    }
+}

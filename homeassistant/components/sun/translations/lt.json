@@ -1,0 +1,399 @@
+{
+    "common": {
+        "condition_threshold_name": "Slenks\u010dio tipas",
+        "period_description": "Paros laikas, \u012f kur\u012f reikia atsi\u017evelgti: rytas, vakaras arba bet kuris i\u0161 j\u0173.",
+        "period_name": "Laikotarpis",
+        "trigger_for_name": "Bent jau",
+        "trigger_offset_name": "Poslinkis",
+        "trigger_offset_type_description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+        "trigger_offset_type_name": "Poslinkio tipas",
+        "trigger_threshold_name": "Slenks\u010dio tipas",
+        "twilight_type_description": "Prieblandos faz\u0117.",
+        "twilight_type_name": "Prieblandos tipas"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Patikrina saul\u0117s auk\u0161t\u012f pagal j\u016bs\u0173 nustatyt\u0105 rib\u0105.",
+            "fields": {
+                "threshold": {
+                    "name": "Slenks\u010dio tipas"
+                }
+            },
+            "name": "Saul\u0117s auk\u0161tis"
+        },
+        "is_ascending": {
+            "description": "Patikrina, ar saul\u0117 kyla.",
+            "name": "Saul\u0117 kyla auk\u0161tyn"
+        },
+        "is_blue_hour": {
+            "description": "Tikrina, ar yra m\u0117lynoji valanda, pasirinktinai tam tikru laikotarpiu.",
+            "fields": {
+                "period": {
+                    "description": "Paros laikas, \u012f kur\u012f reikia atsi\u017evelgti: rytas, vakaras arba bet kuris i\u0161 j\u0173.",
+                    "name": "Laikotarpis"
+                }
+            },
+            "name": "Tai m\u0117lynoji valanda"
+        },
+        "is_descending": {
+            "description": "Patikrina, ar saul\u0117 leid\u017eiasi.",
+            "name": "Saul\u0117 leid\u017eiasi"
+        },
+        "is_evening_twilight": {
+            "description": "Tikrina, ar yra vakaro prieblanda, pasirinktinai konkretaus tipo.",
+            "fields": {
+                "type": {
+                    "description": "Prieblandos faz\u0117.",
+                    "name": "Prieblandos tipas"
+                }
+            },
+            "name": "Vakaro prieblanda"
+        },
+        "is_golden_hour": {
+            "description": "Tikrina, ar yra aukso valanda, pasirinktinai tam tikru laikotarpiu.",
+            "fields": {
+                "period": {
+                    "description": "Paros laikas, \u012f kur\u012f reikia atsi\u017evelgti: rytas, vakaras arba bet kuris i\u0161 j\u0173.",
+                    "name": "Laikotarpis"
+                }
+            },
+            "name": "Tai auksin\u0117 valanda"
+        },
+        "is_midnight_sun": {
+            "description": "Patikrina, ar yra vidurnak\u010dio saul\u0117.",
+            "name": "Vidurnak\u010dio saul\u0117"
+        },
+        "is_morning_twilight": {
+            "description": "Tikrina, ar yra rytin\u0117 prieblanda, pasirinktinai konkretaus tipo.",
+            "fields": {
+                "type": {
+                    "description": "Prieblandos faz\u0117.",
+                    "name": "Prieblandos tipas"
+                }
+            },
+            "name": "Rytin\u0117 prieblanda"
+        },
+        "is_night": {
+            "description": "Patikrina, ar yra naktis.",
+            "name": "Naktis"
+        },
+        "is_polar_night": {
+            "description": "Patikrina, ar yra poliarin\u0117 naktis.",
+            "name": "Tai poliarin\u0117 naktis"
+        },
+        "is_set": {
+            "description": "Patikrina, ar saul\u0117 jau nusileidusi.",
+            "name": "Saul\u0117 nusileido"
+        },
+        "is_up": {
+            "description": "Patikrina, ar saul\u0117 \u0161vie\u010dia.",
+            "name": "Saul\u0117 patek\u0117jo"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Ar norite prad\u0117ti s\u0105rank\u0105?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Kylanti saul\u0117s energija",
+                "state": {
+                    "off": "Nustatymas",
+                    "on": "Kylantis"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "Kita au\u0161ra"
+            },
+            "next_dusk": {
+                "name": "Kitas saul\u0117lydis"
+            },
+            "next_midnight": {
+                "name": "Kitas vidurnaktis"
+            },
+            "next_noon": {
+                "name": "Kitas vidurdienis"
+            },
+            "next_rising": {
+                "name": "Kitas kilimas"
+            },
+            "next_setting": {
+                "name": "Kitas nustatymas"
+            },
+            "solar_azimuth": {
+                "name": "Saul\u0117s azimutas"
+            },
+            "solar_elevation": {
+                "name": "Saul\u0117s auk\u0161tis"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Saul\u0117",
+            "state": {
+                "above_horizon": "Vir\u0161 horizonto",
+                "below_horizon": "\u017demiau horizonto"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Bet koks",
+                "evening": "Vakaras",
+                "morning": "Rytas"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Po",
+                "before": "Prie\u0161"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Bet koks",
+                "astronomical": "Astronominis",
+                "civil": "Civilinis",
+                "nautical": "J\u016brinis"
+            }
+        }
+    },
+    "title": "Saul\u0117",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Suveikia pasibaigus m\u0117lynajai valandai \u2013 ryte, vakare arba bet kuriuo kitu metu.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                },
+                "period": {
+                    "description": "Paros laikas, \u012f kur\u012f reikia atsi\u017evelgti: rytas, vakaras arba bet kuris i\u0161 j\u0173.",
+                    "name": "Laikotarpis"
+                }
+            },
+            "name": "M\u0117lynoji valanda baig\u0117si"
+        },
+        "blue_hour_started": {
+            "description": "Suveikia, kai prasideda m\u0117lynoji valanda \u2013 ryte, vakare arba bet kuriuo kitu metu.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                },
+                "period": {
+                    "description": "Paros laikas, \u012f kur\u012f reikia atsi\u017evelgti: rytas, vakaras arba bet kuris i\u0161 j\u0173.",
+                    "name": "Laikotarpis"
+                }
+            },
+            "name": "M\u0117lynoji valanda prasid\u0117jo"
+        },
+        "dawn": {
+            "description": "Suveikia au\u0161tant, kai prasideda civilin\u0117, j\u016brin\u0117 ar astronomin\u0117 prieblanda.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                },
+                "type": {
+                    "description": "Prieblandos faz\u0117.",
+                    "name": "Prieblandos tipas"
+                }
+            },
+            "name": "Au\u0161ra"
+        },
+        "dusk": {
+            "description": "Suveikia sutemus, kai baigiasi civilin\u0117, j\u016brin\u0117 arba astronomin\u0117 prieblanda.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                },
+                "type": {
+                    "description": "Prieblandos faz\u0117.",
+                    "name": "Prieblandos tipas"
+                }
+            },
+            "name": "Sutemos"
+        },
+        "elevation_changed": {
+            "description": "Suveikia kaskart, kai pasikei\u010dia saul\u0117s auk\u0161tis, pasirinktinai apribotas iki j\u016bs\u0173 nustatytos ribos arba diapazono.",
+            "fields": {
+                "threshold": {
+                    "name": "Slenks\u010dio tipas"
+                }
+            },
+            "name": "Saul\u0117s auk\u0161tis pasikeit\u0117"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Suveikia, kai saul\u0117s auk\u0161tis vir\u0161ija j\u016bs\u0173 nustatyt\u0105 rib\u0105.",
+            "fields": {
+                "for": {
+                    "name": "Bent jau"
+                },
+                "threshold": {
+                    "name": "Slenks\u010dio tipas"
+                }
+            },
+            "name": "Saul\u0117s auk\u0161\u010dio vir\u0161ijimas"
+        },
+        "golden_hour_ended": {
+            "description": "Suveikia, kai baigiasi auksin\u0117 valanda \u2013 ryte, vakare arba bet kuriuo kitu metu.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                },
+                "period": {
+                    "description": "Paros laikas, \u012f kur\u012f reikia atsi\u017evelgti: rytas, vakaras arba bet kuris i\u0161 j\u0173.",
+                    "name": "Laikotarpis"
+                }
+            },
+            "name": "Auksin\u0117 valanda baig\u0117si"
+        },
+        "golden_hour_started": {
+            "description": "Suveikia, kai prasideda auksin\u0117 valanda \u2013 ryte, vakare arba bet kuriuo kitu metu.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                },
+                "period": {
+                    "description": "Paros laikas, \u012f kur\u012f reikia atsi\u017evelgti: rytas, vakaras arba bet kuris i\u0161 j\u0173.",
+                    "name": "Laikotarpis"
+                }
+            },
+            "name": "Prasid\u0117jo auksin\u0117 valanda"
+        },
+        "midnight_sun_ended": {
+            "description": "Suveikia, kai baigiasi vidurnak\u010dio saul\u0117s periodas ir saul\u0117 v\u0117l nusileid\u017eia.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Vidurnak\u010dio saul\u0117 baig\u0117si"
+        },
+        "midnight_sun_started": {
+            "description": "Suveikia, kai prasideda vidurnak\u010dio saul\u0117s periodas ir saul\u0117 nustoja leistis.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Vidurnak\u010dio saul\u0117 prasid\u0117jo"
+        },
+        "polar_night_ended": {
+            "description": "Suveikia, kai baigiasi poliarin\u0117 naktis ir v\u0117l pateka saul\u0117.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Poliarin\u0117 naktis baig\u0117si"
+        },
+        "polar_night_started": {
+            "description": "Suveikia, kai prasideda poliarin\u0117 naktis ir nustoja tek\u0117t saul\u0117.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Prasid\u0117jo poliarin\u0117 naktis"
+        },
+        "solar_midnight": {
+            "description": "Suveikia, kai saul\u0117 pasiekia \u017eemiausi\u0105 ta\u0161k\u0105.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Saul\u0117s vidurnaktis"
+        },
+        "solar_noon": {
+            "description": "Suveikia, kai saul\u0117 pasiekia auk\u0161\u010diausi\u0105 ta\u0161k\u0105.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Saul\u0117s vidurdienis"
+        },
+        "sunrise": {
+            "description": "Suveikia, kai kyla saul\u0117.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Saul\u0117tekis"
+        },
+        "sunset": {
+            "description": "Suveikia saulei leid\u017eiantis.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar aktyvuoti prie\u0161 saul\u0117s rei\u0161kin\u012f, ar po jo.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Saul\u0117lydis"
+        }
+    }
+}

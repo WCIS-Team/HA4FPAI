@@ -1,0 +1,290 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "state": {
+                "name": "Em execu\u00e7\u00e3o"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "Vers\u00e3o do OS Agent"
+            },
+            "cpu_percent": {
+                "name": "Porcentagem de CPU"
+            },
+            "disk_free": {
+                "name": "Disco livre"
+            },
+            "disk_total": {
+                "name": "Total do disco"
+            },
+            "disk_used": {
+                "name": "Disco usado"
+            },
+            "memory_percent": {
+                "name": "Porcentagem de mem\u00f3ria"
+            },
+            "version": {
+                "name": "Vers\u00e3o"
+            },
+            "version_latest": {
+                "name": "Vers\u00e3o mais recente"
+            }
+        }
+    },
+    "issues": {
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "N\u00e3o foi poss\u00edvel aplicar a corre\u00e7\u00e3o. Verifique os logs do Supervisor para obter mais detalhes."
+                }
+            }
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "N\u00e3o foi poss\u00edvel aplicar a corre\u00e7\u00e3o. Verifique os logs do Supervisor para obter mais detalhes."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "mount_execute_reload": "Recarregar",
+                            "mount_execute_remove": "Remover"
+                        }
+                    }
+                }
+            },
+            "title": "Falha no dispositivo de armazenamento de rede"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Uma ou mais reinicializa\u00e7\u00f5es falharam. Verifique os logs do Supervisor para obter mais detalhes."
+                }
+            },
+            "title": "Rein\u00edcio(s) necess\u00e1rio(s)"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "N\u00e3o foi poss\u00edvel renomear o sistema de arquivos. Verifique os logs do Supervisor para obter mais detalhes."
+                }
+            },
+            "title": "V\u00e1rios discos de dados detectados"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "N\u00e3o foi poss\u00edvel reiniciar o sistema. Verifique os logs do Supervisor para obter mais detalhes."
+                }
+            },
+            "title": "Reinicializa\u00e7\u00e3o necess\u00e1ria"
+        },
+        "unhealthy": {
+            "title": "Sistema n\u00e3o saud\u00e1vel - {reason}"
+        },
+        "unhealthy_docker": {
+            "title": "Sistema n\u00e3o saud\u00e1vel - Docker mal configurado"
+        },
+        "unhealthy_privileged": {
+            "title": "Sistema n\u00e3o saud\u00e1vel - N\u00e3o privilegiado"
+        },
+        "unhealthy_setup": {
+            "title": "Sistema n\u00e3o saud\u00e1vel - Falha na configura\u00e7\u00e3o"
+        },
+        "unhealthy_supervisor": {
+            "title": "Sistema n\u00e3o saud\u00e1vel - Falha na atualiza\u00e7\u00e3o do Supervisor"
+        },
+        "unhealthy_untrusted": {
+            "title": "Sistema n\u00e3o saud\u00e1vel - C\u00f3digo n\u00e3o confi\u00e1vel"
+        },
+        "unsupported": {
+            "title": "Sistema n\u00e3o suportado - {reason}"
+        },
+        "unsupported_apparmor": {
+            "title": "Sistema n\u00e3o suportado - Problemas no AppArmor"
+        },
+        "unsupported_cgroup_version": {
+            "description": "O sistema n\u00e3o \u00e9 compat\u00edvel porque a vers\u00e3o errada do Docker CGroup est\u00e1 em uso. Use o link para saber a vers\u00e3o correta e como corrigir isso.",
+            "title": "Sistema n\u00e3o suportado - Vers\u00e3o do CGroup"
+        },
+        "unsupported_connectivity_check": {
+            "title": "Sistema n\u00e3o compat\u00edvel - Verifica\u00e7\u00e3o de conectividade desabilitada"
+        },
+        "unsupported_dbus": {
+            "title": "Sistema n\u00e3o suportado - Problemas de D-Bus"
+        },
+        "unsupported_dns_server": {
+            "title": "Sistema n\u00e3o suportado - Problemas no servidor DNS"
+        },
+        "unsupported_docker_configuration": {
+            "title": "Sistema n\u00e3o suportado - Docker configurado incorretamente"
+        },
+        "unsupported_docker_version": {
+            "title": "Sistema n\u00e3o suportado - Vers\u00e3o do Docker"
+        },
+        "unsupported_job_conditions": {
+            "title": "Sistema n\u00e3o compat\u00edvel - Prote\u00e7\u00f5es desabilitadas"
+        },
+        "unsupported_lxc": {
+            "title": "Sistema n\u00e3o compat\u00edvel - LXC detectado"
+        },
+        "unsupported_network_manager": {
+            "title": "Sistema n\u00e3o suportado - Problemas no Network Manager"
+        },
+        "unsupported_os": {
+            "title": "Sistema n\u00e3o suportado - Sistema operacional"
+        },
+        "unsupported_os_agent": {
+            "title": "Sistema n\u00e3o suportado - Problemas com o OS Agent"
+        },
+        "unsupported_restart_policy": {
+            "title": "Sistema n\u00e3o compat\u00edvel - Pol\u00edtica de reinicializa\u00e7\u00e3o de cont\u00eainer"
+        },
+        "unsupported_software": {
+            "title": "Sistema n\u00e3o suportado - Software n\u00e3o suportado"
+        },
+        "unsupported_supervisor_version": {
+            "title": "Sistema n\u00e3o suportado - Vers\u00e3o do Supervisor"
+        },
+        "unsupported_systemd": {
+            "title": "Sistema n\u00e3o suportado - Problemas no Systemd"
+        },
+        "unsupported_systemd_journal": {
+            "title": "Sistema n\u00e3o suportado - Problemas do Systemd Journal"
+        },
+        "unsupported_systemd_resolved": {
+            "title": "Sistema n\u00e3o suportado - Problemas no Systemd-Resolved"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Reinicia um add-on.",
+            "fields": {
+                "addon": {
+                    "name": "Add-on"
+                }
+            }
+        },
+        "addon_start": {
+            "description": "Inicia um add-on.",
+            "fields": {
+                "addon": {
+                    "name": "Add-on"
+                }
+            },
+            "name": "Iniciar add-on"
+        },
+        "addon_stdin": {
+            "fields": {
+                "addon": {
+                    "name": "Add-on"
+                }
+            }
+        },
+        "addon_stop": {
+            "description": "Interrompe um add-on.",
+            "fields": {
+                "addon": {
+                    "name": "Add-on"
+                }
+            }
+        },
+        "backup_full": {
+            "description": "Cria um backup completo.",
+            "fields": {
+                "compressed": {
+                    "description": "Compacta os arquivos de backup.",
+                    "name": "Comprimido"
+                },
+                "location": {
+                    "description": "Nome de um armazenamento de rede de backup para hospedar backups.",
+                    "name": "Localiza\u00e7\u00e3o"
+                },
+                "name": {
+                    "description": "Opcional (padr\u00e3o = data e hora atuais).",
+                    "name": "Nome"
+                },
+                "password": {
+                    "description": "Senha para proteger o backup.",
+                    "name": "Senha"
+                }
+            }
+        },
+        "backup_partial": {
+            "description": "Cria um backup parcial.",
+            "fields": {
+                "compressed": {
+                    "description": "Compacta os arquivos de backup.",
+                    "name": "Comprimido"
+                },
+                "folders": {
+                    "description": "Lista de diret\u00f3rios a serem inclu\u00eddos no backup.",
+                    "name": "Pastas"
+                },
+                "homeassistant": {
+                    "description": "Inclui as configura\u00e7\u00f5es do Home Assistant no backup.",
+                    "name": "Configura\u00e7\u00f5es do Home Assistant"
+                },
+                "location": {
+                    "description": "Nome de um armazenamento de rede de backup para hospedar backups."
+                },
+                "name": {
+                    "description": "Opcional (padr\u00e3o = data e hora atuais)."
+                },
+                "password": {
+                    "description": "Senha para proteger o backup."
+                }
+            }
+        },
+        "host_reboot": {
+            "description": "Reinicia o sistema host."
+        },
+        "host_shutdown": {
+            "description": "Desliga o sistema host."
+        },
+        "restore_full": {
+            "description": "Restaura a partir de backup completo.",
+            "fields": {
+                "password": {
+                    "description": "Senha opcional."
+                },
+                "slug": {
+                    "description": "Slug do backup a ser restaurado.",
+                    "name": "Slug"
+                }
+            }
+        },
+        "restore_partial": {
+            "description": "Restaura a partir de um backup parcial.",
+            "fields": {
+                "addons": {
+                    "name": "Add-ons (legado)"
+                },
+                "folders": {
+                    "name": "Pastas"
+                },
+                "homeassistant": {
+                    "description": "Restaura o Home Assistant.",
+                    "name": "Configura\u00e7\u00f5es do Home Assistant"
+                },
+                "password": {
+                    "description": "Senha opcional."
+                },
+                "slug": {
+                    "description": "Slug do backup a ser restaurado.",
+                    "name": "Slug"
+                }
+            }
+        }
+    },
+    "system_health": {
+        "info": {
+            "board": "Placa",
+            "healthy": "Saud\u00e1vel",
+            "supervisor_api": "API do Supervisor",
+            "supported": "Compat\u00edvel",
+            "version_api": "API de vers\u00e3o"
+        }
+    }
+}

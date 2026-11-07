@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu tolmuimejat puhastavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja puhastab"
+        },
+        "is_docked": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu tolmuimejat on dokitud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja on dokitud"
+        },
+        "is_encountering_an_error": {
+            "description": "Kontrollib kas \u00fchel v\u00f5i mitmel tolmuimejal esineb t\u00f5rge.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimejal ilmneb t\u00f5rge"
+        },
+        "is_paused": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu tolmuimejat on peatatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja on peatatud"
+        },
+        "is_returning": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu tolmuimejat naasevad dokki.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja naaseb dokki"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "{entity_name} puhastamise lubamine",
+            "dock": "Laske {entity_name} dokki naasta"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} puhastab",
+            "is_docked": "{entity_name} on emajaamas"
+        },
+        "extra_fields": {
+            "for": "Kestus"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} alustas puhastamist",
+            "docked": "{entity_name} on emajaamas"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Tolmuimeja",
+            "state": {
+                "cleaning": "Puhastamine",
+                "docked": "Dokitud",
+                "error": "Viga",
+                "idle": "Ootel",
+                "off": "V\u00e4ljas",
+                "on": "Sees",
+                "paused": "Peatatud",
+                "returning": "P\u00f6\u00f6rdun tagasi laadimisjaama"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "Ala kaardistamine pole `{entity_id}` jaoks tehtud. Enne selle toimingu kasutamist teosta segmendi ja piirkonna vaheline kaardistus."
+        },
+        "areas_not_mapped": {
+            "message": "J\u00e4rgmised piirkonnad ei ole kaardistatud \u00fchegi sihtotstarbelise tolmuimeja segmendi alla: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Tolmuimeja puhastussegmendid on muutunud {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Annab tolmuimejale k\u00e4su puhastada \u00fcks v\u00f5i mitu ala.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Puhastatavad alad.",
+                    "name": "Alad"
+                }
+            },
+            "name": "Puhasta ala tolmuimejaga"
+        },
+        "clean_spot": {
+            "description": "K\u00e4sib tolmuimejal teha kohapealne puhastus.",
+            "name": "Puhasta koht tolmuimejaga"
+        },
+        "locate": {
+            "description": "Leiab tolmuimeja.",
+            "name": "Leia tolmuimeja"
+        },
+        "pause": {
+            "description": "Peatab tolmuimeja praeguse \u00fclesande.",
+            "name": "Tolmuimeja peatamine"
+        },
+        "return_to_base": {
+            "description": "Saadab tolmuimeja tagasi oma dokki.",
+            "name": "Tolmuimeja tagasip\u00f6\u00f6ramine dokki"
+        },
+        "send_command": {
+            "description": "Saadab tolmuimejale k\u00e4su.",
+            "fields": {
+                "command": {
+                    "description": "K\u00e4sk t\u00e4itmiseks. K\u00e4sud on sidumisep\u00f5hised.",
+                    "name": "K\u00e4sk"
+                },
+                "params": {
+                    "description": "K\u00e4su parameetrid. Parameetrid on integratsioonispetsiifilised.",
+                    "name": "Parameetrid"
+                }
+            },
+            "name": "K\u00e4su saatmine tolmuimejale"
+        },
+        "set_fan_speed": {
+            "description": "M\u00e4\u00e4rab tolmuimeja ventilaatori kiiruse.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Ventilaatori kiirus. V\u00e4\u00e4rtus s\u00f5ltub sidumisest. M\u00f5nel sidumisel on kiiruse astmed, n\u00e4iteks \"medium\". M\u00f5ned kasutavad protsendim\u00e4\u00e4rasid vahemikus 0 ja 100.",
+                    "name": "Ventilaatori kiirus"
+                }
+            },
+            "name": "M\u00e4\u00e4ra tolmuimeja ventilaatori kiirus"
+        },
+        "start": {
+            "description": "K\u00e4ivitab v\u00f5i j\u00e4tkab tolmuimeja puhastus\u00fclesannet.",
+            "name": "K\u00e4ivita tolmuimeja"
+        },
+        "start_pause": {
+            "description": "K\u00e4ivitab, peatab v\u00f5i j\u00e4tkab tolmuimeja puhastus\u00fclesannet.",
+            "name": "Tolmuimeja k\u00e4ivitamine/peatamine"
+        },
+        "stop": {
+            "description": "Peatab tolmuimeja praeguse \u00fclesande.",
+            "name": "Tolmuimeja peatamine"
+        },
+        "toggle": {
+            "description": "L\u00fclitab tolmuimeja sisse/v\u00e4lja.",
+            "name": "L\u00fclita tolmuimeja sisse/v\u00e4lja"
+        },
+        "turn_off": {
+            "description": "L\u00fclitab tolmuimeja v\u00e4lja.",
+            "name": "L\u00fclita tolmuimeja v\u00e4lja"
+        },
+        "turn_on": {
+            "description": "L\u00fclitab tolmuimeja sisse.",
+            "name": "L\u00fclita tolmuimeja sisse"
+        }
+    },
+    "title": "Tolmuimeja",
+    "triggers": {
+        "errored": {
+            "description": "K\u00e4ivitub kui \u00fchel v\u00f5i mitmel tolmuimejal tekib t\u00f5rge.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimejal tekkis t\u00f5rge"
+        },
+        "paused_cleaning": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu tolmuimejat puhastamise katkestavad.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja puhastamise paus"
+        },
+        "returned_to_dock": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu tolmuimejat on naasnud laadimisjaama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja naases dokki"
+        },
+        "started_cleaning": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu tolmuimejat hakkavad puhastama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja alustas puhastamist"
+        },
+        "started_returning": {
+            "description": "L\u00fclitub sisse kui \u00fcks v\u00f5i mitu tolmuimejat hakkavad laadimisjaama tagasi p\u00f6\u00f6rduma.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Tolmuimeja hakkas dokki tagasi p\u00f6\u00f6rduma"
+        }
+    }
+}

@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Assist-Satelliten im Leerlauf sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Satellit im Leerlauf"
+        },
+        "is_listening": {
+            "description": "Pr\u00fcft, ob auf einem oder mehreren Assist-Satelliten die Spracheingabe aktiv ist.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Spracheingabe auf Satellit aktiv"
+        },
+        "is_processing": {
+            "description": "Pr\u00fcft, ob auf einem oder mehreren Assist-Satelliten die Verarbeitung aktiv ist.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Verarbeitung auf Satellit aktiv"
+        },
+        "is_responding": {
+            "description": "Pr\u00fcft, ob auf einem oder mehreren Assist-Satelliten die Sprachausgabe aktiv ist.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Sprachausgabe auf Satellit aktiv"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Assist-Satellit",
+            "state": {
+                "idle": "Leerlauf",
+                "listening": "Spracheingabe aktiv",
+                "processing": "Verarbeitung",
+                "responding": "Sprachausgabe aktiv"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "Antwort-ID",
+                "sentences": "S\u00e4tze"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "L\u00e4sst einen Assist-Satelliten eine Nachricht durchsagen.",
+            "fields": {
+                "media_id": {
+                    "description": "Die Medien-ID, die als Durchsage wiedergegeben werden soll, anstatt Text-zu-Sprache zu nutzen.",
+                    "name": "Medien-ID"
+                },
+                "message": {
+                    "description": "Die Nachricht, die als Durchsage wiedergegeben werden soll.",
+                    "name": "Nachricht"
+                },
+                "preannounce": {
+                    "description": "Vor der Durchsage einen Ton abspielen.",
+                    "name": "Ank\u00fcndigen"
+                },
+                "preannounce_media_id": {
+                    "description": "Benutzerdefinierte Medien-ID, die vor der Durchsage abgespielt werden soll.",
+                    "name": "Ank\u00fcndigungston-Medien-ID"
+                }
+            },
+            "name": "Auf Satellit durchsagen"
+        },
+        "ask_question": {
+            "description": "L\u00e4sst einen Assist-Satelliten eine Frage stellen und die Antwort des Benutzers abfragen.",
+            "fields": {
+                "answers": {
+                    "description": "M\u00f6gliche Antworten auf die Frage.",
+                    "name": "Antworten"
+                },
+                "entity_id": {
+                    "description": "Assist-Satellit, auf dem die Frage gestellt werden soll.",
+                    "name": "Entit\u00e4t"
+                },
+                "preannounce": {
+                    "description": "Vor Einstiegsnachricht oder -medium einen Ton abspielen.",
+                    "name": "Ank\u00fcndigen"
+                },
+                "preannounce_media_id": {
+                    "description": "Benutzerdefinierte Medien-ID, die vor Einstiegsnachricht oder -medium abgespielt werden soll.",
+                    "name": "Ank\u00fcndigungston-Medien-ID"
+                },
+                "question": {
+                    "description": "Die zu stellende Frage.",
+                    "name": "Frage"
+                },
+                "question_media_id": {
+                    "description": "Die Medien-ID der Frage, die anstelle von Text-zu-Sprache verwendet werden soll.",
+                    "name": "Frage-Medien-ID"
+                }
+            },
+            "name": "Frage auf Satellit stellen"
+        },
+        "start_conversation": {
+            "description": "Startet eine Konversation von einem Assist-Satelliten aus.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Gibt der KI Informationen zum Hintergrund der Anfrage.",
+                    "name": "Zus\u00e4tzlicher System-Prompt"
+                },
+                "preannounce": {
+                    "description": "Vor Einstiegsnachricht oder -medium einen Ton abspielen.",
+                    "name": "Ank\u00fcndigen"
+                },
+                "preannounce_media_id": {
+                    "description": "Benutzerdefinierte Medien-ID, die vor Einstiegsnachricht oder -medium abgespielt werden soll.",
+                    "name": "Ank\u00fcndigungston-Medien-ID"
+                },
+                "start_media_id": {
+                    "description": "Die Medien-ID zum Einstieg anstatt Text-zu-Sprache zu nutzen.",
+                    "name": "Medien-ID"
+                },
+                "start_message": {
+                    "description": "Die Nachricht zum Einstieg.",
+                    "name": "Nachricht"
+                }
+            },
+            "name": "Konversation auf Satellit beginnen"
+        }
+    },
+    "title": "Assist-Satellit",
+    "triggers": {
+        "idle": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Assist-Satelliten nach der Verarbeitung eines Befehls in den Leerlauf gehen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Satellit im Leerlauf"
+        },
+        "listening": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Assist-Satelliten auf einen Befehl von einer Person warten.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Spracheingabe auf Satellit aktiviert"
+        },
+        "processing": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Assist-Satelliten mit der Verarbeitung eines Befehls beginnen, nachdem sie ihn geh\u00f6rt haben.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Verarbeitung auf Satellit gestartet"
+        },
+        "responding": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Assist-Satelliten auf einen Befehl reagieren, nachdem sie diesen verarbeitet haben, oder wenn sie eine Durchsage machen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Sprachausgabe auf Satellit aktiviert"
+        }
+    }
+}

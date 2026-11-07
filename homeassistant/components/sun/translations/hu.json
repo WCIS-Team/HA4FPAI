@@ -1,0 +1,414 @@
+{
+    "common": {
+        "condition_threshold_name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa",
+        "period_description": "A figyelembe veend\u0151 napszak: reggel, este vagy b\u00e1rmelyik.",
+        "period_name": "Id\u0151szak",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig",
+        "trigger_offset_description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+        "trigger_offset_name": "Eltol\u00e1s",
+        "trigger_offset_type_description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+        "trigger_offset_type_name": "Eltol\u00e1s t\u00edpusa",
+        "trigger_threshold_name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa",
+        "twilight_type_description": "A sz\u00fcrk\u00fclet f\u00e1zisa.",
+        "twilight_type_name": "Sz\u00fcrk\u00fclet t\u00edpusa"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Ellen\u0151rzi a nap magass\u00e1g\u00e1t egy be\u00e1ll\u00edtott k\u00fcsz\u00f6b\u00e9rt\u00e9khez k\u00e9pest.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Nap magass\u00e1ga"
+        },
+        "is_ascending": {
+            "description": "Ellen\u0151rzi, hogy a nap emelked\u0151ben van-e.",
+            "name": "A nap emelked\u0151ben van"
+        },
+        "is_blue_hour": {
+            "description": "Ellen\u0151rzi, hogy k\u00e9k \u00f3ra van-e, opcion\u00e1lisan egy adott id\u0151szakra.",
+            "fields": {
+                "period": {
+                    "description": "A figyelembe veend\u0151 napszak: reggel, este vagy b\u00e1rmelyik.",
+                    "name": "Id\u0151szak"
+                }
+            },
+            "name": "K\u00e9k \u00f3ra van"
+        },
+        "is_descending": {
+            "description": "Ellen\u0151rzi, hogy a nap ereszked\u0151ben van-e.",
+            "name": "A nap ereszked\u0151ben van"
+        },
+        "is_evening_twilight": {
+            "description": "Ellen\u0151rzi, hogy esti sz\u00fcrk\u00fclet van-e, opcion\u00e1lisan egy adott t\u00edpus\u00fa.",
+            "fields": {
+                "type": {
+                    "description": "A sz\u00fcrk\u00fclet f\u00e1zisa.",
+                    "name": "Sz\u00fcrk\u00fclet t\u00edpusa"
+                }
+            },
+            "name": "Esti sz\u00fcrk\u00fclet van"
+        },
+        "is_golden_hour": {
+            "description": "Ellen\u0151rzi, hogy arany\u00f3ra van-e, opcion\u00e1lisan egy adott id\u0151szakra.",
+            "fields": {
+                "period": {
+                    "description": "A figyelembe veend\u0151 napszak: reggel, este vagy b\u00e1rmelyik.",
+                    "name": "Id\u0151szak"
+                }
+            },
+            "name": "Arany\u00f3ra van"
+        },
+        "is_midnight_sun": {
+            "description": "Ellen\u0151rzi, hogy \u00e9jf\u00e9li nap van-e.",
+            "name": "\u00c9jf\u00e9li nap van"
+        },
+        "is_morning_twilight": {
+            "description": "Ellen\u0151rzi, hogy reggeli sz\u00fcrk\u00fclet van-e, opcion\u00e1lisan egy adott t\u00edpus\u00fa.",
+            "fields": {
+                "type": {
+                    "description": "A sz\u00fcrk\u00fclet f\u00e1zisa.",
+                    "name": "Sz\u00fcrk\u00fclet t\u00edpusa"
+                }
+            },
+            "name": "Reggeli sz\u00fcrk\u00fclet van"
+        },
+        "is_night": {
+            "description": "Ellen\u0151rzi, hogy \u00e9jszaka van-e.",
+            "name": "\u00c9jszaka van"
+        },
+        "is_polar_night": {
+            "description": "Ellen\u0151rzi, hogy sarki \u00e9jszaka van-e.",
+            "name": "Sarki \u00e9jszaka van"
+        },
+        "is_set": {
+            "description": "Ellen\u0151rzi, hogy a nap lenyugodott-e.",
+            "name": "A nap lenyugodott"
+        },
+        "is_up": {
+            "description": "Ellen\u0151rzi, hogy a nap felkelt-e.",
+            "name": "A nap felkelt"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Elkezdi a be\u00e1ll\u00edt\u00e1st?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Napkelte \u00e9rz\u00e9kel\u0151",
+                "state": {
+                    "off": "Nyugv\u00e1s",
+                    "on": "Kel\u00e9s"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "K\u00f6vetkez\u0151 hajnal"
+            },
+            "next_dusk": {
+                "name": "K\u00f6vetkez\u0151 alkonyat"
+            },
+            "next_midnight": {
+                "name": "K\u00f6vetkez\u0151 \u00e9jf\u00e9l"
+            },
+            "next_noon": {
+                "name": "K\u00f6vetkez\u0151 d\u00e9l"
+            },
+            "next_rising": {
+                "name": "K\u00f6vetkez\u0151 napfelkelte"
+            },
+            "next_setting": {
+                "name": "K\u00f6vetkez\u0151 naplemente"
+            },
+            "solar_azimuth": {
+                "name": "Nap azimut"
+            },
+            "solar_elevation": {
+                "name": "Nap elev\u00e1ci\u00f3"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Nap",
+            "state": {
+                "above_horizon": "L\u00e1t\u00f3hat\u00e1r felett",
+                "below_horizon": "L\u00e1t\u00f3hat\u00e1r alatt"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "B\u00e1rmelyik",
+                "evening": "Este",
+                "morning": "Reggel"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Ut\u00e1n",
+                "before": "El\u0151tt"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "B\u00e1rmely",
+                "astronomical": "Csillag\u00e1szati",
+                "civil": "Polg\u00e1ri",
+                "nautical": "Tenger\u00e9szeti"
+            }
+        }
+    },
+    "title": "Nap",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor a k\u00e9k \u00f3ra v\u00e9get \u00e9r reggel, este vagy b\u00e1rmelyik id\u0151szakban.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                },
+                "period": {
+                    "description": "A figyelembe veend\u0151 napszak: reggel, este vagy b\u00e1rmelyik.",
+                    "name": "Id\u0151szak"
+                }
+            },
+            "name": "K\u00e9k \u00f3ra v\u00e9get \u00e9rt"
+        },
+        "blue_hour_started": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor a k\u00e9k \u00f3ra elkezd\u0151dik reggel, este vagy b\u00e1rmelyik id\u0151szakban.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                },
+                "period": {
+                    "description": "A figyelembe veend\u0151 napszak: reggel, este vagy b\u00e1rmelyik.",
+                    "name": "Id\u0151szak"
+                }
+            },
+            "name": "K\u00e9k \u00f3ra elkezd\u0151d\u00f6tt"
+        },
+        "dawn": {
+            "description": "Aktiv\u00e1l\u00f3dik hajnalkor, amikor a polg\u00e1ri, tenger\u00e9szeti vagy csillag\u00e1szati sz\u00fcrk\u00fclet kezd\u0151dik.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                },
+                "type": {
+                    "description": "A sz\u00fcrk\u00fclet f\u00e1zisa.",
+                    "name": "Sz\u00fcrk\u00fclet t\u00edpusa"
+                }
+            },
+            "name": "Hajnal"
+        },
+        "dusk": {
+            "description": "Aktiv\u00e1l\u00f3dik alkonyatkor, amikor a polg\u00e1ri, tenger\u00e9szeti vagy csillag\u00e1szati sz\u00fcrk\u00fclet v\u00e9get \u00e9r.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                },
+                "type": {
+                    "description": "A sz\u00fcrk\u00fclet f\u00e1zisa.",
+                    "name": "Sz\u00fcrk\u00fclet t\u00edpusa"
+                }
+            },
+            "name": "Alkonyat"
+        },
+        "elevation_changed": {
+            "description": "Aktiv\u00e1l\u00f3dik, amikor a nap magass\u00e1ga megv\u00e1ltozik, opcion\u00e1lisan egy be\u00e1ll\u00edtott k\u00fcsz\u00f6b\u00e9rt\u00e9kre vagy tartom\u00e1nyra korl\u00e1tozva.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Nap magass\u00e1ga megv\u00e1ltozott"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Aktiv\u00e1l\u00f3dik, amikor a nap magass\u00e1ga \u00e1tl\u00e9p egy be\u00e1ll\u00edtott k\u00fcsz\u00f6b\u00e9rt\u00e9ken.",
+            "fields": {
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Nap magass\u00e1ga \u00e1tl\u00e9pte a k\u00fcsz\u00f6b\u00e9rt\u00e9ket"
+        },
+        "golden_hour_ended": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor az arany\u00f3ra v\u00e9get \u00e9r reggel, este vagy b\u00e1rmelyik id\u0151szakban.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                },
+                "period": {
+                    "description": "A figyelembe veend\u0151 napszak: reggel, este vagy b\u00e1rmelyik.",
+                    "name": "Id\u0151szak"
+                }
+            },
+            "name": "Arany\u00f3ra v\u00e9get \u00e9rt"
+        },
+        "golden_hour_started": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor az arany\u00f3ra elkezd\u0151dik reggel, este vagy b\u00e1rmelyik id\u0151szakban.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                },
+                "period": {
+                    "description": "A figyelembe veend\u0151 napszak: reggel, este vagy b\u00e1rmelyik.",
+                    "name": "Id\u0151szak"
+                }
+            },
+            "name": "Arany\u00f3ra elkezd\u0151d\u00f6tt"
+        },
+        "midnight_sun_ended": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor az \u00e9jf\u00e9li nap id\u0151szaka v\u00e9get \u00e9r, \u00e9s a nap \u00fajra lenyugszik.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "\u00c9jf\u00e9li nap v\u00e9get \u00e9rt"
+        },
+        "midnight_sun_started": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor az \u00e9jf\u00e9li nap id\u0151szaka elkezd\u0151dik, \u00e9s a nap nem nyugszik le.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "\u00c9jf\u00e9li nap kezdete"
+        },
+        "polar_night_ended": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor a sarki \u00e9jszaka id\u0151szaka v\u00e9get \u00e9r, \u00e9s a nap \u00fajra felkel.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "Sarki \u00e9jszaka v\u00e9ge"
+        },
+        "polar_night_started": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor a sarki \u00e9jszaka id\u0151szaka elkezd\u0151dik, \u00e9s a nap nem kel fel t\u00f6bb\u00e9.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "Sarki \u00e9jszaka kezdete"
+        },
+        "solar_midnight": {
+            "description": "Aktiv\u00e1l\u00f3dik, amikor a nap el\u00e9ri a legalacsonyabb pontj\u00e1t.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "Nap k\u00f6zepe (\u00e9jjel)"
+        },
+        "solar_noon": {
+            "description": "Aktiv\u00e1l\u00f3dik, amikor a nap el\u00e9ri a legmagasabb pontj\u00e1t.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "Nap k\u00f6zepe (nappal)"
+        },
+        "sunrise": {
+            "description": "Aktiv\u00e1l\u00f3dik napkeltekor.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "Napkelte"
+        },
+        "sunset": {
+            "description": "Aktiv\u00e1l\u00f3dik napnyugtakor.",
+            "fields": {
+                "offset": {
+                    "description": "A napesem\u00e9ny el\u0151tti vagy ut\u00e1ni id\u0151eltol\u00e1s az aktiv\u00e1l\u00e1shoz.",
+                    "name": "Eltol\u00e1s"
+                },
+                "offset_type": {
+                    "description": "Az esem\u00e9nyind\u00edt\u00f3 a napesem\u00e9ny el\u0151tt vagy ut\u00e1n aktiv\u00e1l\u00f3djon-e.",
+                    "name": "Eltol\u00e1s t\u00edpusa"
+                }
+            },
+            "name": "Napnyugta"
+        }
+    }
+}

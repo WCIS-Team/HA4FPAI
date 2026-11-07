@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "En az\u0131ndan"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Bir veya daha fazla sirenin kapal\u0131 olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Siren kapal\u0131"
+        },
+        "is_on": {
+            "description": "Bir veya daha fazla sirenin a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Siren a\u00e7\u0131k"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Siren",
+            "state": {
+                "off": "Kapal\u0131",
+                "on": "A\u00e7\u0131k"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "Mevcut tonlar"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Siren sesini a\u00e7ar/kapat\u0131r.",
+            "name": "Siren sesini a\u00e7/kapat"
+        },
+        "turn_off": {
+            "description": "Siren sesini kapat\u0131r.",
+            "name": "Siren sesini kapat\u0131n."
+        },
+        "turn_on": {
+            "description": "Siren sesini a\u00e7ar.",
+            "fields": {
+                "duration": {
+                    "description": "Sesin \u00e7al\u0131nd\u0131\u011f\u0131 saniye say\u0131s\u0131. Entegrasyon taraf\u0131ndan desteklenmelidir.",
+                    "name": "S\u00fcre"
+                },
+                "tone": {
+                    "description": "Yay\u0131lacak ton. `available_tones` \u00f6zelli\u011fi bir harita oldu\u011funda, anahtar veya de\u011fer kullan\u0131labilir. Entegrasyon taraf\u0131ndan desteklenmelidir.",
+                    "name": "Ton"
+                },
+                "volume_level": {
+                    "description": "Ses seviyesi. 0 duyulamaz, 1 maksimum ses seviyesidir. Entegrasyon taraf\u0131ndan desteklenmelidir.",
+                    "name": "Ses"
+                }
+            },
+            "name": "Sirenleri a\u00e7\u0131n"
+        }
+    },
+    "title": "Siren",
+    "triggers": {
+        "turned_off": {
+            "description": "Bir veya daha fazla siren kapand\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Siren kapat\u0131ld\u0131"
+        },
+        "turned_on": {
+            "description": "Bir veya daha fazla siren a\u00e7\u0131ld\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Siren a\u00e7\u0131ld\u0131"
+        }
+    }
+}

@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Comprueba si uno o m\u00e1s sat\u00e9lites Assist est\u00e1n inactivos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite est\u00e1 inactivo"
+        },
+        "is_listening": {
+            "description": "Comprueba si uno o m\u00e1s sat\u00e9lites Assist est\u00e1n escuchando.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite est\u00e1 escuchando"
+        },
+        "is_processing": {
+            "description": "Comprueba si uno o m\u00e1s sat\u00e9lites Assist est\u00e1n procesando.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite est\u00e1 procesando"
+        },
+        "is_responding": {
+            "description": "Comprueba si uno o m\u00e1s sat\u00e9lites Assist est\u00e1n respondiendo.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite est\u00e1 respondiendo"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sat\u00e9lite Assist",
+            "state": {
+                "idle": "Inactivo",
+                "listening": "Escuchando",
+                "processing": "Procesando",
+                "responding": "Respondiendo"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "ID de respuesta",
+                "sentences": "Frases"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "Permite que un sat\u00e9lite Assist anuncie un mensaje.",
+            "fields": {
+                "media_id": {
+                    "description": "El ID del medio que se debe anunciar en lugar de utilizar texto a voz.",
+                    "name": "ID de medios"
+                },
+                "message": {
+                    "description": "El mensaje a anunciar.",
+                    "name": "Mensaje"
+                },
+                "preannounce": {
+                    "description": "Reproducir un sonido antes del anuncio.",
+                    "name": "Preaviso"
+                },
+                "preannounce_media_id": {
+                    "description": "El ID del medio que se reproducir\u00e1 antes del anuncio.",
+                    "name": "Preaviso de ID de medios"
+                }
+            },
+            "name": "Anunciar por sat\u00e9lite"
+        },
+        "ask_question": {
+            "description": "Permite que un sat\u00e9lite Assist formule una pregunta y obtenga la respuesta del usuario.",
+            "fields": {
+                "answers": {
+                    "description": "Posibles respuestas a la pregunta.",
+                    "name": "Respuestas"
+                },
+                "entity_id": {
+                    "description": "La entidad Assist sat\u00e9lite en la que realizar la pregunta",
+                    "name": "Entidad"
+                },
+                "preannounce": {
+                    "description": "Reproducir un sonido antes del mensaje de inicio o multimedia.",
+                    "name": "Preaviso"
+                },
+                "preannounce_media_id": {
+                    "description": "ID de medio personalizado para reproducir antes del mensaje o medio de inicio.",
+                    "name": "ID de medio del preaviso"
+                },
+                "question": {
+                    "description": "La pregunta a hacer.",
+                    "name": "Pregunta"
+                },
+                "question_media_id": {
+                    "description": "El ID del medio de la pregunta que se utilizar\u00e1 en lugar de texto a voz.",
+                    "name": "ID del medio de la pregunta"
+                }
+            },
+            "name": "Hacer una pregunta a un sat\u00e9lite"
+        },
+        "start_conversation": {
+            "description": "Inicia una conversaci\u00f3n desde un sat\u00e9lite Assist.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Proporcionar informaci\u00f3n de fondo a la IA sobre la solicitud.",
+                    "name": "Indicaci\u00f3n adicional del sistema"
+                },
+                "preannounce": {
+                    "description": "Reproducir un sonido antes del mensaje de inicio o multimedia.",
+                    "name": "Preaviso"
+                },
+                "preannounce_media_id": {
+                    "description": "ID de medio personalizado para reproducir antes del mensaje o medio de inicio.",
+                    "name": "ID de medio del preaviso"
+                },
+                "start_media_id": {
+                    "description": "El ID del medio con el que empezar en lugar de utilizar texto a voz.",
+                    "name": "ID de medios"
+                },
+                "start_message": {
+                    "description": "El mensaje para comenzar.",
+                    "name": "Mensaje"
+                }
+            },
+            "name": "Iniciar conversaci\u00f3n v\u00eda sat\u00e9lite"
+        }
+    },
+    "title": "Sat\u00e9lite Assist",
+    "triggers": {
+        "idle": {
+            "description": "Se dispara cuando uno o m\u00e1s sat\u00e9lites Assist quedan inactivos tras haber procesado un comando.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite Assist queda inactivo"
+        },
+        "listening": {
+            "description": "Se dispara cuando uno o m\u00e1s sat\u00e9lites Assist comienzan a escuchar una orden de alguien.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite Assist comenz\u00f3 a escuchar"
+        },
+        "processing": {
+            "description": "Se dispara cuando uno o m\u00e1s sat\u00e9lites Assist comienzan a procesar un comando tras haberlo recibido.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite Assist comenz\u00f3 a procesar"
+        },
+        "responding": {
+            "description": "Se dispara cuando uno o m\u00e1s sat\u00e9lites Assist comienzan a responder a una orden despu\u00e9s de haberla procesado, o comienzan a anunciar algo.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sat\u00e9lite Assist comenz\u00f3 a responder"
+        }
+    }
+}

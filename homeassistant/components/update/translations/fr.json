@@ -1,0 +1,129 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie si",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "V\u00e9rifie si une ou plusieurs mises \u00e0 jour sont disponibles.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Une mise \u00e0 jour est disponible"
+        },
+        "is_not_available": {
+            "description": "V\u00e9rifie si une ou plusieurs mises \u00e0 jour ne sont pas disponibles.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Aucune mise \u00e0 jour n'est disponible"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Dur\u00e9e"
+        },
+        "trigger_type": {
+            "changed_states": "La disponibilit\u00e9 d'une mise \u00e0 jour pour {entity_name} a chang\u00e9",
+            "turned_off": "{entity_name} a \u00e9t\u00e9 mis \u00e0 jour",
+            "turned_on": "Une mise \u00e0 jour est disponible pour {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Mise \u00e0 jour",
+            "state": {
+                "off": "\u00c0 jour",
+                "on": "Mise \u00e0 jour disponible"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Mise \u00e0 jour automatique",
+                    "state": {
+                        "false": "Non",
+                        "true": "Oui"
+                    }
+                },
+                "in_progress": {
+                    "name": "En cours",
+                    "state": {
+                        "false": "Non",
+                        "true": "Oui"
+                    }
+                },
+                "installed_version": {
+                    "name": "Version install\u00e9e"
+                },
+                "latest_version": {
+                    "name": "Derni\u00e8re version"
+                },
+                "release_summary": {
+                    "name": "R\u00e9sum\u00e9 de la publication"
+                },
+                "release_url": {
+                    "name": "URL de publication"
+                },
+                "skipped_version": {
+                    "name": "Version ignor\u00e9e"
+                },
+                "title": {
+                    "name": "Titre"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Micrologiciel"
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Supprime le marqueur de version ignor\u00e9e d'une mise \u00e0 jour.",
+            "name": "Ne plus ignorer la mise \u00e0 jour"
+        },
+        "install": {
+            "description": "Installe une mise \u00e0 jour pour un appareil ou un service.",
+            "fields": {
+                "backup": {
+                    "description": "Si pris en charge par l'int\u00e9gration, cr\u00e9e une sauvegarde avant de d\u00e9marrer la mise \u00e0 jour.",
+                    "name": "Sauvegarde"
+                },
+                "version": {
+                    "description": "La version \u00e0 installer. Si omis, la derni\u00e8re version sera install\u00e9e.",
+                    "name": "Version"
+                }
+            },
+            "name": "Installer la mise \u00e0 jour"
+        },
+        "skip": {
+            "description": "Marque la mise \u00e0 jour actuellement disponible comme ignor\u00e9e.",
+            "name": "Ignorer la mise \u00e0 jour"
+        }
+    },
+    "title": "Mise \u00e0 jour",
+    "triggers": {
+        "became_available": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs mises \u00e0 jour deviennent disponibles.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Une mise \u00e0 jour est devenue disponible"
+        }
+    }
+}

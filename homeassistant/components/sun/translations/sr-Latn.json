@@ -1,0 +1,414 @@
+{
+    "common": {
+        "condition_threshold_name": "Tip grani\u010dne vrednosti",
+        "period_description": "Doba dana koje se uzima u obzir: jutro, ve\u010de ili bilo koje.",
+        "period_name": "Period",
+        "trigger_for_name": "U trajanju od najmanje",
+        "trigger_offset_description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+        "trigger_offset_name": "Vremensko odstupanje",
+        "trigger_offset_type_description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+        "trigger_offset_type_name": "Tip odstupanja",
+        "trigger_threshold_name": "Tip grani\u010dne vrednosti",
+        "twilight_type_description": "Faza sumraka.",
+        "twilight_type_name": "Tip sumraka"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Proverava visinu sunca u odnosu na pode\u0161enu grani\u010dnu vrednost.",
+            "fields": {
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Visina sunca"
+        },
+        "is_ascending": {
+            "description": "Proverava da li sunce izlazi.",
+            "name": "Sunce u usponu"
+        },
+        "is_blue_hour": {
+            "description": "Proverava da li je plavi sat, opciono za odre\u0111eni vremenski okvir.",
+            "fields": {
+                "period": {
+                    "description": "Doba dana koje se uzima u obzir: jutro, ve\u010de ili bilo koje.",
+                    "name": "Period"
+                }
+            },
+            "name": "Plavi sat"
+        },
+        "is_descending": {
+            "description": "Proverava da li sunce zalazi.",
+            "name": "Sunce u padu"
+        },
+        "is_evening_twilight": {
+            "description": "Proverava da li je sumrak, opciono odre\u0111enog tipa.",
+            "fields": {
+                "type": {
+                    "description": "Faza sumraka.",
+                    "name": "Tip sumraka"
+                }
+            },
+            "name": "Sumrak"
+        },
+        "is_golden_hour": {
+            "description": "Proverava da li je zlatni sat, opciono za odre\u0111eni vremenski okvir.",
+            "fields": {
+                "period": {
+                    "description": "Doba dana koje se uzima u obzir: jutro, ve\u010de ili bilo koje.",
+                    "name": "Period"
+                }
+            },
+            "name": "Zlatni sat"
+        },
+        "is_midnight_sun": {
+            "description": "Proverava da li je pono\u0107no sunce.",
+            "name": "Pono\u0107no sunce"
+        },
+        "is_morning_twilight": {
+            "description": "Proverava da li je svitanje, opciono odre\u0111enog tipa.",
+            "fields": {
+                "type": {
+                    "description": "Faza sumraka.",
+                    "name": "Tip sumraka"
+                }
+            },
+            "name": "Svitanje"
+        },
+        "is_night": {
+            "description": "Proverava da li je no\u0107.",
+            "name": "No\u0107"
+        },
+        "is_polar_night": {
+            "description": "Proverava da li je polarna no\u0107.",
+            "name": "Polarna no\u0107"
+        },
+        "is_set": {
+            "description": "Proverava da li je sunce za\u0161lo.",
+            "name": "Sunce za\u0161lo"
+        },
+        "is_up": {
+            "description": "Proverava da li je sunce iza\u0161lo.",
+            "name": "Sunce iza\u0161lo"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Pokretanje pode\u0161avanja?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Sunce izlazi",
+                "state": {
+                    "off": "Zalazak",
+                    "on": "Izlazak"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "Slede\u0107a zora"
+            },
+            "next_dusk": {
+                "name": "Slede\u0107i sumrak"
+            },
+            "next_midnight": {
+                "name": "Slede\u0107a solarna pono\u0107"
+            },
+            "next_noon": {
+                "name": "Slede\u0107e solarno podne"
+            },
+            "next_rising": {
+                "name": "Slede\u0107i izlazak"
+            },
+            "next_setting": {
+                "name": "Slede\u0107i zalazak"
+            },
+            "solar_azimuth": {
+                "name": "Solarni azimut"
+            },
+            "solar_elevation": {
+                "name": "Solarna elevacija"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sunce",
+            "state": {
+                "above_horizon": "Iznad horizonta",
+                "below_horizon": "Ispod horizonta"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Bilo koji",
+                "evening": "Ve\u010de",
+                "morning": "Jutro"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Posle",
+                "before": "Pre"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Bilo koji",
+                "astronomical": "Astronomski",
+                "civil": "Civilni",
+                "nautical": "Nauti\u010dki"
+            }
+        }
+    },
+    "title": "Sunce",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Pokre\u0107e se kada se zavr\u0161i plavi sat \u2013 ujutru, uve\u010de ili u oba slu\u010daja.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                },
+                "period": {
+                    "description": "Doba dana koje se uzima u obzir: jutro, ve\u010de ili bilo koje.",
+                    "name": "Period"
+                }
+            },
+            "name": "Plavi sat zavr\u0161en"
+        },
+        "blue_hour_started": {
+            "description": "Pokre\u0107e se kada po\u010dne plavi sat \u2013 ujutru, uve\u010de ili u oba slu\u010daja.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                },
+                "period": {
+                    "description": "Doba dana koje se uzima u obzir: jutro, ve\u010de ili bilo koje.",
+                    "name": "Period"
+                }
+            },
+            "name": "Plavi sat po\u010deo"
+        },
+        "dawn": {
+            "description": "Pokre\u0107e se kada po\u010dne gra\u0111ansko, nauti\u010dko ili astronomsko svitanje.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                },
+                "type": {
+                    "description": "Faza sumraka.",
+                    "name": "Tip sumraka"
+                }
+            },
+            "name": "Svitanje"
+        },
+        "dusk": {
+            "description": "Pokre\u0107e se kada po\u010dne gra\u0111ansko, nauti\u010dko ili astronomsko svitanje.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                },
+                "type": {
+                    "description": "Faza sumraka.",
+                    "name": "Tip sumraka"
+                }
+            },
+            "name": "Sumrak"
+        },
+        "elevation_changed": {
+            "description": "Pokre\u0107e se pri svakoj promeni visine Sunca, uz opciono ograni\u010denje na pode\u0161enu grani\u010dnu vrednost.",
+            "fields": {
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ugao Sunca promenjen"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Pokre\u0107e se kada visina Sunca pre\u0111e pode\u0161enu grani\u010dnu vrednost.",
+            "fields": {
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ugao Sunca pre\u0161ao granicu"
+        },
+        "golden_hour_ended": {
+            "description": "Pokre\u0107e se kada se zavr\u0161i zlatni sat \u2013 ujutru, uve\u010de ili u oba slu\u010daja.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                },
+                "period": {
+                    "description": "Doba dana koje se uzima u obzir: jutro, ve\u010de ili bilo koje.",
+                    "name": "Period"
+                }
+            },
+            "name": "Zlatni sat zavr\u0161en"
+        },
+        "golden_hour_started": {
+            "description": "Pokre\u0107e se kada po\u010dne zlatni sat \u2013 ujutru, uve\u010de ili u oba slu\u010daja.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                },
+                "period": {
+                    "description": "Doba dana koje se uzima u obzir: jutro, ve\u010de ili bilo koje.",
+                    "name": "Period"
+                }
+            },
+            "name": "Zlatni sat po\u010deo"
+        },
+        "midnight_sun_ended": {
+            "description": "Pokre\u0107e se kada se period pono\u0107nog sunca zavr\u0161i i Sunce ponovo za\u0111e.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Pono\u0107no sunce zavr\u0161eno"
+        },
+        "midnight_sun_started": {
+            "description": "Pokre\u0107e se kada po\u010dne period pono\u0107nog sunca i Sunce prestane da zalazi.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Pono\u0107no sunce po\u010delo"
+        },
+        "polar_night_ended": {
+            "description": "Pokre\u0107e se kada se period polarne no\u0107i zavr\u0161i i Sunce ponovo iza\u0111e.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Polarna no\u0107 zavr\u0161ena"
+        },
+        "polar_night_started": {
+            "description": "Pokre\u0107e se kada po\u010dne period polarne no\u0107i i Sunce prestane da izlazi.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Polarna no\u0107 po\u010dela"
+        },
+        "solar_midnight": {
+            "description": "Pokre\u0107e se kada Sunce dostigne najni\u017eu ta\u010dku.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Solarna pono\u0107"
+        },
+        "solar_noon": {
+            "description": "Pokre\u0107e se kada Sunce dostigne najvi\u0161u ta\u010dku.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Solarno podne"
+        },
+        "sunrise": {
+            "description": "Pokre\u0107e se kada Sunce iza\u0111e.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Sunce iza\u0161lo"
+        },
+        "sunset": {
+            "description": "Pokre\u0107e se kada Sunce za\u0111e.",
+            "fields": {
+                "offset": {
+                    "description": "Vreme za pokretanje pre ili nakon solarnog doga\u0111aja.",
+                    "name": "Vremensko odstupanje"
+                },
+                "offset_type": {
+                    "description": "Odre\u0111uje da li se pokretanje vr\u0161i pre ili posle solarnog doga\u0111aja.",
+                    "name": "Tip odstupanja"
+                }
+            },
+            "name": "Sunce za\u0161lo"
+        }
+    }
+}

@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher lorsque",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "V\u00e9rifie si un ou plusieurs satellites Assist sont inactifs.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite est inactif"
+        },
+        "is_listening": {
+            "description": "V\u00e9rifie si un ou plusieurs satellites Assist sont \u00e0 l'\u00e9coute.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite est \u00e0 l'\u00e9coute"
+        },
+        "is_processing": {
+            "description": "V\u00e9rifie si un ou plusieurs satellites Assist sont en cours de traitement.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite est en cours de traitement"
+        },
+        "is_responding": {
+            "description": "V\u00e9rifie si un ou plusieurs satellites Assist r\u00e9pondent.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite est en train de r\u00e9pondre"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Satellite Assist",
+            "state": {
+                "idle": "Inactif",
+                "listening": "En \u00e9coute",
+                "processing": "En traitement",
+                "responding": "En r\u00e9ponse"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "ID de r\u00e9ponse",
+                "sentences": "Phrases"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "Permet \u00e0 un satellite Assist d'annoncer un message.",
+            "fields": {
+                "media_id": {
+                    "description": "L'ID du m\u00e9dia \u00e0 annoncer au lieu d'utiliser la synth\u00e8se vocale.",
+                    "name": "ID du m\u00e9dia"
+                },
+                "message": {
+                    "description": "Le message \u00e0 annoncer.",
+                    "name": "Message"
+                },
+                "preannounce": {
+                    "description": "Jouer un son avant l'annonce.",
+                    "name": "Pr\u00e9-annoncer"
+                },
+                "preannounce_media_id": {
+                    "description": "ID du m\u00e9dia \u00e0 lire avant l'annonce.",
+                    "name": "ID du m\u00e9dia de pr\u00e9-annonce"
+                }
+            },
+            "name": "Annoncer sur le satellite"
+        },
+        "ask_question": {
+            "description": "Permet \u00e0 un satellite Assist de poser une question et d'obtenir la r\u00e9ponse de l'utilisateur.",
+            "fields": {
+                "answers": {
+                    "description": "R\u00e9ponses possibles \u00e0 la question.",
+                    "name": "R\u00e9ponses"
+                },
+                "entity_id": {
+                    "description": "Entit\u00e9 du satellite Assist auquel poser la question.",
+                    "name": "Entit\u00e9"
+                },
+                "preannounce": {
+                    "description": "Joue un son avant le d\u00e9but du message ou du m\u00e9dia.",
+                    "name": "Pr\u00e9-annonce"
+                },
+                "preannounce_media_id": {
+                    "description": "ID du m\u00e9dia \u00e0 lire avant le message de d\u00e9marrage ou le m\u00e9dia.",
+                    "name": "ID du m\u00e9dia de pr\u00e9-annonce"
+                },
+                "question": {
+                    "description": "La question \u00e0 poser.",
+                    "name": "Question"
+                },
+                "question_media_id": {
+                    "description": "L'ID multim\u00e9dia de la question \u00e0 utiliser \u00e0 la place de la synth\u00e8se vocale.",
+                    "name": "ID du m\u00e9dia de question"
+                }
+            },
+            "name": "Poser une question depuis le satellite"
+        },
+        "start_conversation": {
+            "description": "D\u00e9marre une conversation sur un satellite Assist.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Fournissez des informations g\u00e9n\u00e9rales \u00e0 l'IA sur la demande.",
+                    "name": "Prompt syst\u00e8me suppl\u00e9mentaire"
+                },
+                "preannounce": {
+                    "description": "Joue un son avant le message de d\u00e9marrage ou le m\u00e9dia.",
+                    "name": "Pr\u00e9-annoncer"
+                },
+                "preannounce_media_id": {
+                    "description": "ID du m\u00e9dia \u00e0 lire avant le message de d\u00e9marrage ou le m\u00e9dia.",
+                    "name": "ID du m\u00e9dia de pr\u00e9-annonce"
+                },
+                "start_media_id": {
+                    "description": "L'identifiant multim\u00e9dia avec lequel commencer au lieu d'utiliser la synth\u00e8se vocale.",
+                    "name": "ID du m\u00e9dia"
+                },
+                "start_message": {
+                    "description": "Le message pour commencer.",
+                    "name": "Message"
+                }
+            },
+            "name": "D\u00e9marrer une conversation sur le satellite"
+        }
+    },
+    "title": "Satellite Assist",
+    "triggers": {
+        "idle": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs satellites Assist deviennent inactifs apr\u00e8s avoir trait\u00e9 une commande.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher lorsque"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite est devenu inactif"
+        },
+        "listening": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs satellites Assist commencent \u00e0 \u00e9couter une commande de quelqu'un.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher lorsque"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite a commenc\u00e9 \u00e0 \u00e9couter"
+        },
+        "processing": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs satellites Assist commencent \u00e0 traiter une commande apr\u00e8s l'avoir entendue.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher lorsque"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite a commenc\u00e9 le traitement"
+        },
+        "responding": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs satellites Assist commencent \u00e0 r\u00e9pondre \u00e0 une commande apr\u00e8s l'avoir trait\u00e9e, ou commencent \u00e0 annoncer quelque chose.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher lorsque"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le satellite a commenc\u00e9 \u00e0 r\u00e9pondre"
+        }
+    }
+}

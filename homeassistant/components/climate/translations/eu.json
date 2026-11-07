@@ -1,0 +1,159 @@
+{
+    "common": {
+        "condition_threshold_name": "Atalase mota",
+        "trigger_threshold_name": "Atalase mota"
+    },
+    "conditions": {
+        "is_hvac_mode": {
+            "fields": {
+                "hvac_mode": {
+                    "name": "Moduak"
+                }
+            }
+        },
+        "is_target_humidity": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "is_target_temperature": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "HVAC modua {entity_name}-n aldatu"
+        },
+        "extra_fields": {
+            "above": "Goian",
+            "below": "Behean",
+            "for": "Iraupena"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "state": {
+                "auto": "Automatikoa",
+                "dry": "Lehorra",
+                "heat": "Beroa",
+                "off": "Itzalita"
+            },
+            "state_attributes": {
+                "current_temperature": {
+                    "name": "Uneko tenperatura"
+                },
+                "fan_mode": {
+                    "state": {
+                        "auto": "Automatikoa",
+                        "high": "Altua",
+                        "low": "Baxua",
+                        "medium": "Ertaina",
+                        "off": "Itzalita",
+                        "on": "Piztuta"
+                    }
+                },
+                "hvac_action": {
+                    "state": {
+                        "fan": "Haizagailua",
+                        "idle": "Inaktiboa",
+                        "off": "Itzalita",
+                        "preheating": "Aurre-berotzen"
+                    }
+                },
+                "preset_mode": {
+                    "state": {
+                        "activity": "Jarduera",
+                        "away": "Kanpoan",
+                        "home": "Etxean",
+                        "none": "Bat ere ez"
+                    }
+                },
+                "swing_horizontal_mode": {
+                    "state": {
+                        "off": "Itzalita",
+                        "on": "Piztuta"
+                    }
+                },
+                "swing_mode": {
+                    "state": {
+                        "both": "Biak",
+                        "horizontal": "Horizontala",
+                        "off": "Itzalita",
+                        "on": "Piztuta",
+                        "vertical": "Bertikala"
+                    }
+                },
+                "target_temp_step": {
+                    "name": "Helburu-tenperaturaren urratsa"
+                },
+                "temperature": {
+                    "name": "Helburu-tenperatura"
+                }
+            }
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "name": "Hezetasuna"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "temperature": {
+                    "name": "Helburu-tenperatura"
+                }
+            },
+            "sections": {
+                "temperature_range": {
+                    "name": "Tenperatura tartea"
+                }
+            }
+        }
+    },
+    "triggers": {
+        "hvac_mode_changed": {
+            "fields": {
+                "hvac_mode": {
+                    "name": "Moduak"
+                }
+            }
+        },
+        "target_humidity_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "target_humidity_crossed_threshold": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "target_temperature_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "target_temperature_crossed_threshold": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        }
+    }
+}

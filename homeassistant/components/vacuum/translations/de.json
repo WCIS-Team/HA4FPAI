@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Staubsauger reinigen.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Staubsauger in Betrieb"
+        },
+        "is_docked": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Staubsauger angedockt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Staubsauger angedockt"
+        },
+        "is_encountering_an_error": {
+            "description": "Pr\u00fcft, ob bei einem oder mehreren Staubsaugern ein Fehler auftritt.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Fehlermeldung durch Staubsauger"
+        },
+        "is_paused": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Staubsauger angehalten sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Staubsauger angehalten"
+        },
+        "is_returning": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Staubsauger zur Ladestation zur\u00fcckkehren",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Staubsauger auf R\u00fcckkehr"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "{entity_name} reinigen lassen",
+            "dock": "{entity_name} zur Ladestation zur\u00fccksenden"
+        },
+        "condition_type": {
+            "is_cleaning": "Wenn {entity_name} reinigt",
+            "is_docked": "Wenn {entity_name} angedockt ist"
+        },
+        "extra_fields": {
+            "for": "Dauer"
+        },
+        "trigger_type": {
+            "cleaning": "Sobald {entity_name} mit der Reinigung begonnen hat",
+            "docked": "Sobald {entity_name} angedockt hat"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Staubsauger",
+            "state": {
+                "cleaning": "Reinigt",
+                "docked": "Angedockt",
+                "error": "Fehler",
+                "idle": "Leerlauf",
+                "off": "Aus",
+                "on": "Ein",
+                "paused": "Pausiert",
+                "returning": "R\u00fcckkehr zur Ladestation"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "Die Bereichszuordnung ist f\u00fcr `{entity_id}` nicht konfiguriert. Konfiguriere die Abschnitt-zu-Bereich-Zuordnung, bevor du diese Aktion verwendest."
+        },
+        "areas_not_mapped": {
+            "message": "Die folgenden Bereiche sind keinem Abschnitt der ausgew\u00e4hlten Staubsauger zugeordnet: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Staubsauger-Abschnitte f\u00fcr {entity_id} haben sich ver\u00e4ndert"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Weist einen Staubsauger an, einen oder mehrere Bereiche zu reinigen.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Zu reinigende Bereiche.",
+                    "name": "Bereiche"
+                }
+            },
+            "name": "Bereich mit Staubsauger reinigen"
+        },
+        "clean_spot": {
+            "description": "Weist einen Staubsauger an, eine Fleckentfernung durchzuf\u00fchren.",
+            "name": "Fleck mit Staubsauger reinigen"
+        },
+        "locate": {
+            "description": "Ortet einen Staubsauger.",
+            "name": "Staubsauger orten"
+        },
+        "pause": {
+            "description": "Unterbricht den aktuellen Vorgang eines Staubsaugers.",
+            "name": "Staubsauger anhalten"
+        },
+        "return_to_base": {
+            "description": "Schickt einen Staubsauger zur\u00fcck zu seiner Ladestation.",
+            "name": "Staubsauger zur Ladestation zur\u00fccksenden"
+        },
+        "send_command": {
+            "description": "Sendet einen Befehl an einen Staubsauger.",
+            "fields": {
+                "command": {
+                    "description": "Auszuf\u00fchrender Befehl. Die Befehle sind integrationsabh\u00e4ngig.",
+                    "name": "Befehl"
+                },
+                "params": {
+                    "description": "Parameter f\u00fcr den Befehl. Die Parameter sind integrationsabh\u00e4ngig.",
+                    "name": "Parameter"
+                }
+            },
+            "name": "Befehl an Staubsauger senden"
+        },
+        "set_fan_speed": {
+            "description": "Legt die Saugkraft eines Staubsaugers fest.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Saugkraft. Der Wert h\u00e4ngt von der Integration ab. Einige Integrationen haben Geschwindigkeitsstufen, wie z. B. \u201emittel\u201c. Einige verwenden einen Prozentsatz zwischen 0 und 100.",
+                    "name": "Saugkraft"
+                }
+            },
+            "name": "Saugkraft eines Staubsaugers einstellen"
+        },
+        "start": {
+            "description": "Startet oder setzt den Reinigungsvorgang eines Staubsaugers fort.",
+            "name": "Staubsauger starten"
+        },
+        "start_pause": {
+            "description": "Startet, pausiert oder setzt den Reinigungsvorgang eines Staubsaugers fort.",
+            "name": "Staubsauger starten/pausieren"
+        },
+        "stop": {
+            "description": "Stoppt den aktuellen Reinigungsvorgang eines Staubsaugers.",
+            "name": "Staubsauger stoppen"
+        },
+        "toggle": {
+            "description": "Schaltet einen Staubsauger zwischen ein und aus um.",
+            "name": "Staubsauger umschalten"
+        },
+        "turn_off": {
+            "description": "Schaltet einen Staubsauger aus.",
+            "name": "Staubsauger ausschalten"
+        },
+        "turn_on": {
+            "description": "Schaltet einen Staubsauger ein.",
+            "name": "Staubsauger einschalten"
+        }
+    },
+    "title": "Staubsauger",
+    "triggers": {
+        "errored": {
+            "description": "Wird ausgel\u00f6st, sobald bei einem oder mehreren Staubsaugern ein Fehler auftritt.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Fehlermeldung durch Staubsauger"
+        },
+        "paused_cleaning": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Staubsauger die Reinigung unterbrechen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Reinigung durch Staubsauger unterbrochen"
+        },
+        "returned_to_dock": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Staubsauger zur Ladestation zur\u00fcckgekehrt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Staubsauger zur Ladestation zur\u00fcckgekehrt"
+        },
+        "started_cleaning": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Staubsauger mit der Reinigung beginnen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Reinigung durch Staubsauger begonnen"
+        },
+        "started_returning": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Staubsauger beginnen zur Ladestation zur\u00fcckkehren.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Staubsauger-R\u00fcckkehr zur Ladestation gestartet"
+        }
+    }
+}

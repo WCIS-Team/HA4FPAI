@@ -1,0 +1,108 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} yra namuose",
+            "is_not_home": "{entity_name} n\u0117ra namuose"
+        },
+        "extra_fields": {
+            "zone": "Zona"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} patenka \u012f zon\u0105",
+            "leaves": "{entity_name} palieka zon\u0105"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Prietaiso sekimo priemon\u0117",
+            "state": {
+                "home": "Namai",
+                "not_home": "I\u0161vyk\u0119s"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Baterija"
+                },
+                "gps_accuracy": {
+                    "name": "GPS tikslumas"
+                },
+                "latitude": {
+                    "name": "Platuma"
+                },
+                "longitude": {
+                    "name": "Ilguma"
+                },
+                "source_type": {
+                    "name": "\u0160altinis",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "Mar\u0161rutizatorius"
+                    }
+                },
+                "tracking_type": {
+                    "name": "Steb\u0117jimo tipas",
+                    "state": {
+                        "connection": "Ry\u0161ys",
+                        "position": "Pozicija"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "associated_zone_missing": {
+            "description": "Skenerio subjektas `{entity_id}`susij\u0119s su zona`{zone}`, bet ta zona buvo pa\u0161alinta.\n\nNor\u0117dami tai i\u0161taisyti, perkonfig\u016bruokite skaitytuv\u0105, kad jis naudot\u0173 kit\u0105 zon\u0105, arba atkurkite tr\u016bkstam\u0105 zon\u0105.",
+            "title": "Skaitytuvas susietas su pa\u0161alinta zona"
+        },
+        "deprecated_see_action": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Veiksmas 'device_tracker.see' nebenaudojamas ir bus pa\u0161alintas i\u0161 'Home Assistant Core 2027.5.\n\nNaudokite [\u0161ablonin\u012f \u012frenginio sekikl\u012f]({docs_url}) vietoj to, tada pa\u0161alinkite bet kok\u012f \u0161io veiksmo naudojim\u0105 i\u0161 savo automatizavimo ir scenarij\u0173 ir pasirinkite **Pateikti**, kad u\u017edarytum\u0117te \u0161i\u0105 problem\u0105.",
+                        "title": "Aptiktas nebenaudojamo veiksmo device_tracker.see naudojimas"
+                    }
+                }
+            },
+            "title": "Aptiktas nebenaudojamo veiksmo device_tracker.see naudojimas"
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Rankiniu b\u016bdu atnaujinkite matyto pasenusio \u012frenginio steb\u0117jimo priemon\u0117s \u012fra\u0161us faileknown_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "Prietaiso baterijos lygis.",
+                    "name": "Baterijos lygis"
+                },
+                "dev_id": {
+                    "description": "Prietaiso ID (ID raskite `known_devices.yaml`).",
+                    "name": "Prietaiso ID"
+                },
+                "gps": {
+                    "description": "GPS koordinat\u0117s, kur yra prietaisas, nurodytos pagal platum\u0105 ir ilgum\u0105 (pvz.: [51.513845, -0.100539]).",
+                    "name": "GPS koordinat\u0117s"
+                },
+                "gps_accuracy": {
+                    "description": "GPS koordina\u010di\u0173 tikslumas.",
+                    "name": "GPS tikslumas"
+                },
+                "host_name": {
+                    "description": "Prietaiso pagrindinio kompiuterio pavadinimas.",
+                    "name": "Pagrindinio kompiuterio pavadinimas"
+                },
+                "location_name": {
+                    "description": "Vietos, kurioje yra prietaisas, pavadinimas. Galimos parinktys: \u201enamai\u201c, \u201ene_namai\u201c arba zonos pavadinimas.",
+                    "name": "Vieta"
+                },
+                "mac": {
+                    "description": "Prietaiso MAC adresas.",
+                    "name": "MAC adresas"
+                }
+            },
+            "name": "\u017dr. \u012frenginio sekikl\u012f"
+        }
+    },
+    "title": "Prietaiso sekimo priemon\u0117"
+}

@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb ennyi ideig",
+        "condition_threshold_name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa",
+        "trigger_behavior_name": "Aktiv\u00e1l\u00f3dik, amikor",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig",
+        "trigger_threshold_name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb termoszt\u00e1t h\u0171t-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t h\u0171t"
+        },
+        "is_drying": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb termoszt\u00e1t sz\u00e1r\u00edt-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t sz\u00e1r\u00edt"
+        },
+        "is_heating": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb termoszt\u00e1t f\u0171t-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t f\u0171t"
+        },
+        "is_hvac_mode": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb termoszt\u00e1t a megadott HVAC \u00fczemm\u00f3dra van-e \u00e1ll\u00edtva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "hvac_mode": {
+                    "description": "Az ellen\u0151rizend\u0151 HVAC \u00fczemm\u00f3dok.",
+                    "name": "\u00dczemm\u00f3dok"
+                }
+            },
+            "name": "Termoszt\u00e1t HVAC \u00fczemm\u00f3dja"
+        },
+        "is_off": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb termoszt\u00e1t ki van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t kikapcsolva"
+        },
+        "is_on": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb termoszt\u00e1t be van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t bekapcsolva"
+        },
+        "is_target_humidity": {
+            "description": "Ellen\u0151rzi egy vagy t\u00f6bb termoszt\u00e1t p\u00e1ratartalom-c\u00e9l\u00e9rt\u00e9k\u00e9t.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Termoszt\u00e1t p\u00e1ratartalom-c\u00e9l\u00e9rt\u00e9ke"
+        },
+        "is_target_temperature": {
+            "description": "Ellen\u0151rzi egy vagy t\u00f6bb termoszt\u00e1t h\u0151m\u00e9rs\u00e9klet-c\u00e9l\u00e9rt\u00e9k\u00e9t.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Termoszt\u00e1t h\u0151m\u00e9rs\u00e9klet-c\u00e9l\u00e9rt\u00e9ke"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "HVAC \u00fczemm\u00f3d m\u00f3dos\u00edt\u00e1sa a k\u00f6vetkez\u0151n: {entity_name}",
+            "set_preset_mode": "{entity_name} \u00fczemm\u00f3dj\u00e1nak v\u00e1lt\u00e1sa"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} egy adott HVAC m\u00f3dra van \u00e1ll\u00edtva",
+            "is_preset_mode": "{entity_name} profil van kiv\u00e1lasztva"
+        },
+        "extra_fields": {
+            "above": "Felett",
+            "below": "Alatt",
+            "for": "Id\u0151tartam",
+            "hvac_mode": "HVAC m\u00f3d",
+            "preset_mode": "El\u0151re be\u00e1ll\u00edtott m\u00f3d",
+            "to": "Eddig"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} m\u00e9rt p\u00e1ratartalma megv\u00e1ltozott",
+            "current_temperature_changed": "{entity_name} m\u00e9rt h\u0151m\u00e9rs\u00e9klete megv\u00e1ltozott",
+            "hvac_mode_changed": "{entity_name} HVAC \u00fczemm\u00f3dja megv\u00e1ltozott"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termoszt\u00e1t",
+            "state": {
+                "auto": "Automatikus",
+                "cool": "H\u0171t\u00e9s",
+                "dry": "P\u00e1r\u00e1tlan\u00edt\u00e1s",
+                "fan_only": "Csak ventil\u00e1tor",
+                "heat": "F\u0171t\u00e9s",
+                "heat_cool": "F\u0171t\u00e9s/H\u0171t\u00e9s",
+                "off": "Ki"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Aktu\u00e1lis p\u00e1ratartalom"
+                },
+                "current_temperature": {
+                    "name": "Aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet"
+                },
+                "fan_mode": {
+                    "name": "Ventil\u00e1tor m\u00f3d",
+                    "state": {
+                        "auto": "Automatikus",
+                        "diffuse": "Diff\u00faz",
+                        "focus": "F\u00f3kusz",
+                        "high": "Magas",
+                        "low": "Alacsony",
+                        "medium": "K\u00f6zepes",
+                        "middle": "K\u00f6z\u00e9ps\u0151",
+                        "off": "Ki",
+                        "on": "Be",
+                        "top": "Fels\u0151"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Ventil\u00e1tor m\u00f3dok"
+                },
+                "humidity": {
+                    "name": "K\u00edv\u00e1nt p\u00e1ratartalom"
+                },
+                "hvac_action": {
+                    "name": "Aktu\u00e1lis m\u0171velet",
+                    "state": {
+                        "cooling": "H\u0171t\u00e9s",
+                        "defrosting": "Leolvaszt\u00e1s",
+                        "drying": "P\u00e1r\u00e1tlan\u00edt\u00e1s",
+                        "fan": "Ventil\u00e1tor",
+                        "heating": "F\u0171t\u00e9s",
+                        "idle": "T\u00e9tlen",
+                        "off": "Ki",
+                        "preheating": "El\u0151meleg\u00edt\u00e9s"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "M\u0171k\u00f6d\u00e9si m\u00f3dok"
+                },
+                "max_humidity": {
+                    "name": "Maxim\u00e1lis c\u00e9l p\u00e1ratartalom"
+                },
+                "max_temp": {
+                    "name": "Maxim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                },
+                "min_humidity": {
+                    "name": "Minim\u00e1lis c\u00e9l p\u00e1ratartalom"
+                },
+                "min_temp": {
+                    "name": "Minim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                },
+                "preset_mode": {
+                    "name": "Profil",
+                    "state": {
+                        "activity": "Tev\u00e9kenys\u00e9g",
+                        "away": "T\u00e1vol",
+                        "boost": "Turb\u00f3",
+                        "comfort": "Komfort",
+                        "eco": "Takar\u00e9kos",
+                        "home": "Otthon",
+                        "none": "Nincs",
+                        "sleep": "Alv\u00e1s"
+                    }
+                },
+                "preset_modes": {
+                    "name": "El\u0151be\u00e1ll\u00edt\u00e1sok"
+                },
+                "swing_horizontal_mode": {
+                    "name": "V\u00edzszintes legyez\u00e9si m\u00f3d",
+                    "state": {
+                        "off": "Ki",
+                        "on": "Be"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "V\u00edzszintes legyez\u00e9si m\u00f3dok"
+                },
+                "swing_mode": {
+                    "name": "Legyez\u00e9s m\u00f3d",
+                    "state": {
+                        "both": "Mindkett\u0151",
+                        "horizontal": "V\u00edzszintes",
+                        "off": "Ki",
+                        "on": "Be",
+                        "vertical": "F\u00fcgg\u0151leges"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Legyez\u00e9si m\u00f3dok"
+                },
+                "target_temp_high": {
+                    "name": "Fels\u0151 c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                },
+                "target_temp_low": {
+                    "name": "Als\u00f3 c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                },
+                "target_temp_step": {
+                    "name": "C\u00e9lh\u0151m\u00e9rs\u00e9klet l\u00e9pt\u00e9k"
+                },
+                "temperature": {
+                    "name": "K\u00edv\u00e1nt h\u0151m\u00e9rs\u00e9klet"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "A megadott p\u00e1ratartalom {humidity} \u00e9rv\u00e9nytelen. Az elfogadott tartom\u00e1ny {min_humidity} \u00e9s {max_humidity} k\u00f6z\u00f6tt van."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "Az als\u00f3 c\u00e9lh\u0151m\u00e9rs\u00e9klet nem lehet magasabb a fels\u0151 c\u00e9lh\u0151m\u00e9rs\u00e9kletn\u00e9l."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "A h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1s m\u0171veletet c\u00e9lh\u0151m\u00e9rs\u00e9klet param\u00e9terrel haszn\u00e1lt\u00e1k, de az entit\u00e1s nem t\u00e1mogatja ezt."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "A h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1s m\u0171veletet als\u00f3/fels\u0151 c\u00e9lh\u0151m\u00e9rs\u00e9klet param\u00e9terrel haszn\u00e1lt\u00e1k, de az entit\u00e1s nem t\u00e1mogatja ezt."
+        },
+        "not_valid_fan_mode": {
+            "message": "A ventil\u00e1tor \u00fczemm\u00f3d {mode} nem \u00e9rv\u00e9nyes. Az \u00e9rv\u00e9nyes ventil\u00e1tor \u00fczemm\u00f3dok a k\u00f6vetkez\u0151k: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "A(z) {mode} v\u00edzszintes legyez\u00e9si m\u00f3d \u00e9rv\u00e9nytelen. Az \u00e9rv\u00e9nyes v\u00edzszintes legyez\u00e9si m\u00f3dok: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "A(z) {mode} HVAC \u00fczemm\u00f3d \u00e9rv\u00e9nytelen. \u00c9rv\u00e9nyes HVAC \u00fczemm\u00f3dok: {modes}"
+        },
+        "not_valid_preset_mode": {
+            "message": "Az el\u0151re be\u00e1ll\u00edtott \u00fczemm\u00f3d {mode} nem \u00e9rv\u00e9nyes. Az \u00e9rv\u00e9nyes el\u0151re be\u00e1ll\u00edtott \u00fczemm\u00f3dok a k\u00f6vetkez\u0151k: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "A(z) {mode} legyez\u00e9si m\u00f3d \u00e9rv\u00e9nytelen. \u00c9rv\u00e9nyes legyez\u00e9si m\u00f3dok: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "A megadott {check_temp} h\u0151m\u00e9rs\u00e9klet nem \u00e9rv\u00e9nyes. Az elfogadott tartom\u00e1ny {min_temp} \u00e9s {max_temp} k\u00f6z\u00f6tt van."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "Be\u00e1ll\u00edtja a termoszt\u00e1t ventil\u00e1tor m\u00f3dj\u00e1t.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Ventil\u00e1tor \u00fczemm\u00f3d.",
+                    "name": "Ventil\u00e1tor m\u00f3d"
+                }
+            },
+            "name": "Termoszt\u00e1t ventil\u00e1tor m\u00f3dj\u00e1nak be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_humidity": {
+            "description": "Be\u00e1ll\u00edtja a termoszt\u00e1t c\u00e9l p\u00e1ratartalm\u00e1t.",
+            "fields": {
+                "humidity": {
+                    "description": "C\u00e9l p\u00e1ratartalom.",
+                    "name": "P\u00e1ratartalom"
+                }
+            },
+            "name": "Termoszt\u00e1t c\u00e9l p\u00e1ratartalm\u00e1nak be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_hvac_mode": {
+            "description": "Be\u00e1ll\u00edtja a termoszt\u00e1t HVAC \u00fczemm\u00f3dj\u00e1t.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "HVAC (f\u0171t\u00e9s, szell\u0151z\u00e9s \u00e9s l\u00e9gkondicion\u00e1l\u00e1s) \u00fczemm\u00f3d.",
+                    "name": "HVAC m\u00f3d"
+                }
+            },
+            "name": "Termoszt\u00e1t HVAC \u00fczemm\u00f3dj\u00e1nak be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_preset_mode": {
+            "description": "Be\u00e1ll\u00edtja a termoszt\u00e1t el\u0151re be\u00e1ll\u00edtott m\u00f3dj\u00e1t.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Gy\u00e1ri profil.",
+                    "name": "Profil"
+                }
+            },
+            "name": "Termoszt\u00e1t el\u0151re be\u00e1ll\u00edtott m\u00f3dj\u00e1nak be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "Be\u00e1ll\u00edtja a termoszt\u00e1t v\u00edzszintes lenget\u0151 m\u00f3dj\u00e1t.",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "V\u00edzszintes leng\u00e9si \u00fczemm\u00f3d.",
+                    "name": "V\u00edzszintes legyez\u00e9si m\u00f3d"
+                }
+            },
+            "name": "Termoszt\u00e1t v\u00edzszintes lenget\u0151 m\u00f3dj\u00e1nak be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_swing_mode": {
+            "description": "Be\u00e1ll\u00edtja a termoszt\u00e1t lenget\u0151 m\u00f3dj\u00e1t.",
+            "fields": {
+                "swing_mode": {
+                    "description": "Legyez\u00e9s \u00fczemm\u00f3d.",
+                    "name": "Legyez\u00e9s m\u00f3d"
+                }
+            },
+            "name": "Termoszt\u00e1t lenget\u0151 m\u00f3dj\u00e1nak be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_temperature": {
+            "description": "Be\u00e1ll\u00edtja a termoszt\u00e1t c\u00e9lh\u0151m\u00e9rs\u00e9klet\u00e9t.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "HVAC (f\u0171t\u00e9s, szell\u0151z\u00e9s \u00e9s l\u00e9gkondicion\u00e1l\u00e1s) \u00fczemm\u00f3d.",
+                    "name": "HVAC m\u00f3d"
+                },
+                "target_temp_high": {
+                    "description": "A maxim\u00e1lis h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1s.",
+                    "name": "Fels\u0151 c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                },
+                "target_temp_low": {
+                    "description": "A minim\u00e1lis h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1s.",
+                    "name": "Als\u00f3 c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                },
+                "temperature": {
+                    "description": "A be\u00e1ll\u00edtott h\u0151m\u00e9rs\u00e9klet.",
+                    "name": "C\u00e9lh\u0151m\u00e9rs\u00e9klet"
+                }
+            },
+            "name": "Termoszt\u00e1t c\u00e9lh\u0151m\u00e9rs\u00e9klet\u00e9nek be\u00e1ll\u00edt\u00e1sa",
+            "sections": {
+                "temperature_range": {
+                    "name": "H\u0151m\u00e9rs\u00e9kleti tartom\u00e1ny"
+                }
+            }
+        },
+        "toggle": {
+            "description": "\u00c1tkapcsolja a termoszt\u00e1tot be- \u00e9s kikapcsolt \u00e1llapot k\u00f6z\u00f6tt.",
+            "name": "Termoszt\u00e1t \u00e1tkapcsol\u00e1sa"
+        },
+        "turn_off": {
+            "description": "Kikapcsolja a termoszt\u00e1tot.",
+            "name": "Termoszt\u00e1t kikapcsol\u00e1sa"
+        },
+        "turn_on": {
+            "description": "Bekapcsolja a termoszt\u00e1tot.",
+            "name": "Termoszt\u00e1t bekapcsol\u00e1sa"
+        }
+    },
+    "title": "Kl\u00edma",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t \u00fczemm\u00f3dja megv\u00e1ltozik.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "hvac_mode": {
+                    "description": "A HVAC \u00fczemm\u00f3dok, amelyekre az esem\u00e9nyind\u00edt\u00f3 reag\u00e1ljon.",
+                    "name": "\u00dczemm\u00f3dok"
+                }
+            },
+            "name": "Termoszt\u00e1t \u00fczemm\u00f3dja megv\u00e1ltozott"
+        },
+        "started_cooling": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t elkezdi a h\u0171t\u00e9st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t elkezdte a h\u0171t\u00e9st"
+        },
+        "started_drying": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t elkezdi a sz\u00e1r\u00edt\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t elkezdte a sz\u00e1r\u00edt\u00e1st"
+        },
+        "started_heating": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t elkezdi a f\u0171t\u00e9st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t elkezdte a f\u0171t\u00e9st"
+        },
+        "target_humidity_changed": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t p\u00e1ratartalom-c\u00e9l\u00e9rt\u00e9ke megv\u00e1ltozik.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Termoszt\u00e1t c\u00e9lp\u00e1ratartalma megv\u00e1ltozott"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t p\u00e1ratartalom-c\u00e9l\u00e9rt\u00e9ke \u00e1tl\u00e9p egy k\u00fcsz\u00f6b\u00e9rt\u00e9ket.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Termoszt\u00e1t c\u00e9lp\u00e1ratartalma \u00e1tl\u00e9pte a k\u00fcsz\u00f6b\u00e9rt\u00e9ket"
+        },
+        "target_temperature_changed": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t h\u0151m\u00e9rs\u00e9klet-c\u00e9l\u00e9rt\u00e9ke megv\u00e1ltozik.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Termoszt\u00e1t c\u00e9lh\u0151m\u00e9rs\u00e9klete megv\u00e1ltozott"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t h\u0151m\u00e9rs\u00e9klet-c\u00e9l\u00e9rt\u00e9ke \u00e1tl\u00e9p egy k\u00fcsz\u00f6b\u00e9rt\u00e9ket.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "Termoszt\u00e1t c\u00e9lh\u0151m\u00e9rs\u00e9klete \u00e1tl\u00e9pte a k\u00fcsz\u00f6b\u00e9rt\u00e9ket"
+        },
+        "turned_off": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t kikapcsol.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t kikapcsolt"
+        },
+        "turned_on": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb termoszt\u00e1t bekapcsol, \u00fczemm\u00f3dt\u00f3l f\u00fcggetlen\u00fcl.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Termoszt\u00e1t bekapcsolt"
+        }
+    }
+}

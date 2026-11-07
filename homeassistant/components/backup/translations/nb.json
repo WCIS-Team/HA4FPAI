@@ -1,0 +1,39 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "state_attributes": {
+                    "failed_reason": {
+                        "state": {
+                            "backup_agent_error": "Feil med sikkerhetskopieringsagent",
+                            "backup_agent_unreachable": "Sikkerhetskopieringsagenten er ikke tilgjengelig",
+                            "backup_manager_error": "Feil med sikkerhetskopieringsadministrator",
+                            "backup_not_found": "Sikkerhetskopien ble ikke funnet",
+                            "backup_reader_writer_error": "Feil med sikkerhetskopileser/skriver",
+                            "decrypt_on_download_not_supported": "Dekryptering ved nedlasting st\u00f8ttes ikke",
+                            "invalid_backup_filename": "Ugyldig filnavn p\u00e5 sikkerhetskopi",
+                            "multiple_errors": "Flere feil",
+                            "password_incorrect": "Feil passord",
+                            "unknown_error": "Ukjent feil",
+                            "upload_failed": "Opplastingen mislyktes"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Sikkerhetskopieringsplasseringen `{agent_id}` er ikke tilgjengelig, men er fortsatt konfigurert for automatiske sikkerhetskopier.\n\nG\u00e5 til [konfigurasjonssiden for automatisk sikkerhetskopiering]({backup_settings}) for \u00e5 se gjennom og oppdatere sikkerhetskopieringsstedene dine. Sikkerhetskopier lastes ikke opp til valgte steder som ikke er tilgjengelige.",
+            "title": "Sikkerhetskopieringsplasseringen {agent_id} er ikke tilgjengelig"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Den automatiske sikkerhetskopien ble opprettet med feil:\n* Steder som sikkerhetskopien ikke kunne lastes opp til: {failed_agents}\n* Apper som ikke kunne sikkerhetskopieres: {failed_addons}\n* Mapper som ikke kunne sikkerhetskopieres: {failed_folders}\n\nSjekk kjerne- og supervisor-loggene for mer informasjon. Det vil bli gjort et nytt fors\u00f8k ved neste planlagte tidspunkt hvis en sikkerhetskopieringsplan er konfigurert.",
+            "title": "Automatisk sikkerhetskopiering ble opprettet med feil"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Den automatiske sikkerhetskopien kunne ikke lastes opp til de konfigurerte stedene {failed_agents}. Sjekk loggene for mer informasjon. Det vil bli gjort et nytt fors\u00f8k p\u00e5 neste planlagte tidspunkt hvis en sikkerhetskopieringsplan er konfigurert.\n\n",
+            "title": "Kunne ikke laste opp automatisk sikkerhetskopiering til de konfigurerte stedene"
+        }
+    }
+}

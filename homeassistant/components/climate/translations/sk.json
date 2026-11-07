@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "condition_threshold_name": "Typ prahovej hodnoty",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148",
+        "trigger_threshold_name": "Typ prahovej hodnoty"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Testuje, \u010di jeden alebo viac termostatov chlad\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat chlad\u00ed"
+        },
+        "is_drying": {
+            "description": "Testuje, \u010di jeden alebo viac termostatov vysych\u00e1.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat vysych\u00e1"
+        },
+        "is_heating": {
+            "description": "Testuje, \u010di jeden alebo viacero termostatov ohrieva.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat sa ohrieva"
+        },
+        "is_hvac_mode": {
+            "description": "Testuje, \u010di je jeden alebo viac termostatov nastaven\u00fdch na konkr\u00e9tny re\u017eim HVAC.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                },
+                "hvac_mode": {
+                    "description": "Re\u017eimy HVAC na testovanie.",
+                    "name": "Re\u017eimy"
+                }
+            },
+            "name": "Re\u017eim termostatu HVAC"
+        },
+        "is_off": {
+            "description": "Testuje, \u010di je jeden alebo viac termostatov vypnut\u00fdch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat je vypnut\u00fd"
+        },
+        "is_on": {
+            "description": "Testuje, \u010di je zapnut\u00fd jeden alebo viac termostatov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat je zapnut\u00fd"
+        },
+        "is_target_humidity": {
+            "description": "Testuje nastaven\u00fa hodnotu vlhkosti jedn\u00e9ho alebo viacer\u00fdch termostatov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                },
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "Cie\u013eov\u00e1 vlhkos\u0165 termostatu"
+        },
+        "is_target_temperature": {
+            "description": "Testuje nastaven\u00fa hodnotu teploty jedn\u00e9ho alebo viacer\u00fdch termostatov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                },
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "Cie\u013eov\u00e1 teplota termostatu"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Zmeni\u0165 re\u017eim HVAC na {entity_name}",
+            "set_preset_mode": "Zmeni\u0165 prednastaven\u00fd re\u017eim na {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} je nastaven\u00e9 na ur\u010dit\u00fd re\u017eim HVAC",
+            "is_preset_mode": "{entity_name} je nastaven\u00e9 na prednastaven\u00fd re\u017eim"
+        },
+        "extra_fields": {
+            "above": "Nad",
+            "below": "Pod",
+            "for": "Trvanie",
+            "hvac_mode": "HVAC re\u017eim",
+            "preset_mode": "Prednastaven\u00fd re\u017eim",
+            "to": "Komu"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} sa zmenila nameran\u00e1 vlhkos\u0165",
+            "current_temperature_changed": "{entity_name} sa zmenila nameran\u00e1 teplota",
+            "hvac_mode_changed": "Re\u017eim HVAC na {entity_name} zmenen\u00fd"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostat",
+            "state": {
+                "auto": "Auto",
+                "cool": "Chladenie",
+                "dry": "Su\u0161enie",
+                "fan_only": "Iba ventil\u00e1tor",
+                "heat": "K\u00farenie",
+                "heat_cool": "Vykurovanie / Chladenie",
+                "off": "Neakt\u00edvny"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Aktu\u00e1lna vlhkos\u0165"
+                },
+                "current_temperature": {
+                    "name": "Aktu\u00e1lna teplota"
+                },
+                "fan_mode": {
+                    "name": "Re\u017eim ventil\u00e1tora",
+                    "state": {
+                        "auto": "Auto",
+                        "diffuse": "Dif\u00fazny",
+                        "focus": "Zameran\u00fd",
+                        "high": "Vysok\u00e1",
+                        "low": "N\u00edzka",
+                        "medium": "Stredn\u00e1",
+                        "middle": "Stredn\u00fd",
+                        "off": "Neakt\u00edvny",
+                        "on": "Akt\u00edvny",
+                        "top": "Hore"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Re\u017eimy ventil\u00e1tora"
+                },
+                "humidity": {
+                    "name": "Cie\u013eov\u00e1 vlhkos\u0165"
+                },
+                "hvac_action": {
+                    "name": "Aktu\u00e1lna akcia",
+                    "state": {
+                        "cooling": "Chladenie",
+                        "defrosting": "Rozmrazovanie",
+                        "drying": "Su\u0161enie",
+                        "fan": "Ventil\u00e1tor",
+                        "heating": "Vykurovanie",
+                        "idle": "Ne\u010dinn\u00fd",
+                        "off": "Neakt\u00edvny",
+                        "preheating": "Predohrev"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "Re\u017eimy HVAC"
+                },
+                "max_humidity": {
+                    "name": "Maxim\u00e1lna cie\u013eov\u00e1 vlhkos\u0165"
+                },
+                "max_temp": {
+                    "name": "Maxim\u00e1lna cie\u013eov\u00e1 teplota"
+                },
+                "min_humidity": {
+                    "name": "Minim\u00e1lna cie\u013eov\u00e1 vlhkos\u0165"
+                },
+                "min_temp": {
+                    "name": "Minim\u00e1lna cie\u013eov\u00e1 teplota"
+                },
+                "preset_mode": {
+                    "name": "Predvo\u013eba",
+                    "state": {
+                        "activity": "Aktivita",
+                        "away": "Nepr\u00edtomnos\u0165",
+                        "boost": "Turbo",
+                        "comfort": "Komfort",
+                        "eco": "Eco",
+                        "home": "Doma",
+                        "none": "\u017diadna",
+                        "sleep": "Sp\u00e1nok"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Predvo\u013eby"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Re\u017eim horizont\u00e1lneho v\u00fdkyvu",
+                    "state": {
+                        "off": "Neakt\u00edvny",
+                        "on": "Akt\u00edvny"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Re\u017eimy horizont\u00e1lneho v\u00fdkyvu"
+                },
+                "swing_mode": {
+                    "name": "Re\u017eim hojdania",
+                    "state": {
+                        "both": "Obidva",
+                        "horizontal": "Horizont\u00e1lny",
+                        "off": "Neakt\u00edvny",
+                        "on": "Akt\u00edvny",
+                        "vertical": "Vertik\u00e1lny"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Re\u017eimy hojdania"
+                },
+                "target_temp_high": {
+                    "name": "Horn\u00e1 cie\u013eov\u00e1 teplota"
+                },
+                "target_temp_low": {
+                    "name": "Doln\u00e1 cie\u013eov\u00e1 teplota"
+                },
+                "target_temp_step": {
+                    "name": "Cie\u013eov\u00fd teplotn\u00fd krok"
+                },
+                "temperature": {
+                    "name": "Cie\u013eov\u00e1 teplota"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Zadan\u00e1 vlhkos\u0165 {humidity} nie je platn\u00e1. Akceptovan\u00fd rozsah je {min_humidity} a\u017e {max_humidity} ."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "'Doln\u00e1 cie\u013eov\u00e1 teplota' nem\u00f4\u017ee by\u0165 vy\u0161\u0161ia ako 'Horn\u00e1 cie\u013eov\u00e1 teplota'."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "Bola pou\u017eit\u00e1 akcia Nastavi\u0165 teplotu s parametrom 'Cie\u013eov\u00e1 teplota', ale entita ju nepodporuje."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "Bola pou\u017eit\u00e1 akcia Nastavi\u0165 teplotu s parametrom 'Ni\u017e\u0161ia/vy\u0161\u0161ia cie\u013eov\u00e1 teplota', ale entita ju nepodporuje."
+        },
+        "not_valid_fan_mode": {
+            "message": "Re\u017eim ventil\u00e1tora {mode} nie je platn\u00fd. Platn\u00e9 re\u017eimy ventil\u00e1tora s\u00fa: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "Re\u017eim horizont\u00e1lneho v\u00fdkyvu {mode} nie je platn\u00fd. Platn\u00e9 re\u017eimy horizont\u00e1lneho v\u00fdkyvu s\u00fa: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "Re\u017eim HVAC {mode} nie je platn\u00fd. Platn\u00e9 re\u017eimy HVAC s\u00fa: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "Prednastaven\u00fd re\u017eim {mode} nie je platn\u00fd. Platn\u00e9 prednastaven\u00e9 re\u017eimy s\u00fa: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "Swing mode {mode} nie je platn\u00fd. Platn\u00e9 re\u017eimy swingu s\u00fa: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "Uveden\u00e1 teplota {check_temp} nie je platn\u00e1. Akceptovan\u00fd rozsah je {min_temp} a\u017e {max_temp}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "Nastavuje re\u017eim ventil\u00e1tora termostatu.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Re\u017eim prev\u00e1dzky ventil\u00e1tora.",
+                    "name": "Re\u017eim ventil\u00e1tora"
+                }
+            },
+            "name": "Nastavenie re\u017eimu ventil\u00e1tora termostatu"
+        },
+        "set_humidity": {
+            "description": "Nastavuje cie\u013eov\u00fa vlhkos\u0165 termostatu.",
+            "fields": {
+                "humidity": {
+                    "description": "Cie\u013eov\u00e1 vlhkos\u0165.",
+                    "name": "Vlhkos\u0165"
+                }
+            },
+            "name": "Nastavenie cie\u013eovej vlhkosti termostatu"
+        },
+        "set_hvac_mode": {
+            "description": "Nastavuje re\u017eim HVAC termostatu.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Re\u017eim prev\u00e1dzky HVAC.",
+                    "name": "Re\u017eim HVAC"
+                }
+            },
+            "name": "Nastavenie re\u017eimu HVAC na termostate"
+        },
+        "set_preset_mode": {
+            "description": "Nastavuje prednastaven\u00fd re\u017eim termostatu.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Prednastaven\u00fd re\u017eim.",
+                    "name": "Prednastaven\u00fd re\u017eim"
+                }
+            },
+            "name": "Nastavenie prednastaven\u00e9ho re\u017eimu termostatu"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "Nastavuje re\u017eim horizont\u00e1lneho kol\u00edsania termostatu.",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Prev\u00e1dzkov\u00fd re\u017eim horizont\u00e1lneho v\u00fdkyvu.",
+                    "name": "Re\u017eim horizont\u00e1lneho v\u00fdkyvu"
+                }
+            },
+            "name": "Nastavenie re\u017eimu horizont\u00e1lneho kol\u00edsania termostatu"
+        },
+        "set_swing_mode": {
+            "description": "Nastavuje re\u017eim kol\u00edsania termostatu.",
+            "fields": {
+                "swing_mode": {
+                    "description": "Prev\u00e1dzkov\u00fd re\u017eim v\u00fdkyvu.",
+                    "name": "Re\u017eim v\u00fdkyvu"
+                }
+            },
+            "name": "Nastavenie re\u017eimu kol\u00edsania termostatu"
+        },
+        "set_temperature": {
+            "description": "Nastavuje cie\u013eov\u00fa teplotu termostatu.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Re\u017eim prev\u00e1dzky HVAC.",
+                    "name": "Re\u017eim HVAC"
+                },
+                "target_temp_high": {
+                    "description": "Maxim\u00e1lna po\u017eadovan\u00e1 hodnota teploty.",
+                    "name": "Horn\u00e1 cie\u013eov\u00e1 teplota"
+                },
+                "target_temp_low": {
+                    "description": "Minim\u00e1lna po\u017eadovan\u00e1 hodnota teploty.",
+                    "name": "Doln\u00e1 cie\u013eov\u00e1 teplota"
+                },
+                "temperature": {
+                    "description": "Nastaven\u00e1 hodnota teploty.",
+                    "name": "Cie\u013eov\u00e1 teplota"
+                }
+            },
+            "name": "Nastavenie cie\u013eovej teploty termostatu",
+            "sections": {
+                "temperature_range": {
+                    "name": "Teplotn\u00fd rozsah"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Zap\u00edna/vyp\u00edna termostat.",
+            "name": "Prep\u00ednanie termostatu"
+        },
+        "turn_off": {
+            "description": "Vypne termostat.",
+            "name": "Vypnutie termostatu"
+        },
+        "turn_on": {
+            "description": "Zapne termostat.",
+            "name": "Zapnutie termostatu"
+        }
+    },
+    "title": "Klimatiz\u00e1cia",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Spust\u00ed sa, ke\u010f sa zmen\u00ed re\u017eim jedn\u00e9ho alebo viacer\u00fdch termostatov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                },
+                "hvac_mode": {
+                    "description": "Re\u017eimy HVAC, ktor\u00e9 sa maj\u00fa spusti\u0165.",
+                    "name": "Re\u017eimy"
+                }
+            },
+            "name": "Re\u017eim termostatu sa zmenil"
+        },
+        "started_cooling": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viacero termostatov za\u010dne chladi\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat za\u010dal chladi\u0165"
+        },
+        "started_drying": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viacero termostatov za\u010dne su\u0161i\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat za\u010dal schn\u00fa\u0165"
+        },
+        "started_heating": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viac termostatov za\u010dne vykurova\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat spustil vykurovanie"
+        },
+        "target_humidity_changed": {
+            "description": "Spust\u00ed sa, ke\u010f sa zmen\u00ed nastaven\u00e1 hodnota vlhkosti na jednom alebo viacer\u00fdch termostatoch.",
+            "fields": {
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "Cie\u013eov\u00e1 vlhkos\u0165 termostatu sa zmenila"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Spust\u00ed sa, ke\u010f nastaven\u00e1 hodnota vlhkosti jedn\u00e9ho alebo viacer\u00fdch termostatov prekro\u010d\u00ed prahov\u00fa hodnotu.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                },
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "Cie\u013eov\u00e1 vlhkos\u0165 termostatu prekro\u010dila prahov\u00fa hodnotu"
+        },
+        "target_temperature_changed": {
+            "description": "Spust\u00ed sa, ke\u010f sa zmen\u00ed nastaven\u00e1 teplota jedn\u00e9ho alebo viacer\u00fdch termostatov.",
+            "fields": {
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "Cie\u013eov\u00e1 teplota termostatu sa zmenila"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Spust\u00ed sa, ke\u010f nastaven\u00e1 teplota jedn\u00e9ho alebo viacer\u00fdch termostatov prekro\u010d\u00ed prahov\u00fa hodnotu.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                },
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "Cie\u013eov\u00e1 teplota termostatu prekro\u010dila prahov\u00fa hodnotu"
+        },
+        "turned_off": {
+            "description": "Spust\u00ed sa, ke\u010f sa vypne jeden alebo viacero termostatov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat vypnut\u00fd"
+        },
+        "turned_on": {
+            "description": "Spust\u00ed sa, ke\u010f sa zapne jeden alebo viac termostatov, bez oh\u013eadu na re\u017eim.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Termostat zapnut\u00fd"
+        }
+    }
+}

@@ -1,0 +1,81 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Camera",
+            "state": {
+                "idle": "Inactief",
+                "recording": "Opnemen",
+                "streaming": "Streamen"
+            },
+            "state_attributes": {
+                "access_token": {
+                    "name": "Toegangstoken"
+                },
+                "brand": {
+                    "name": "Merk"
+                },
+                "frontend_stream_type": {
+                    "name": "Streamtype",
+                    "state": {
+                        "hls": "HLS",
+                        "webrtc": "WebRTC"
+                    }
+                },
+                "model_name": {
+                    "name": "Model"
+                },
+                "motion_detection": {
+                    "name": "Bewegingsdetectie",
+                    "state": {
+                        "false": "Uitgeschakeld",
+                        "true": "Ingeschakeld"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "play_stream": {
+            "fields": {
+                "format": {
+                    "description": "Streamformaat ondersteund door de mediaspeler.",
+                    "name": "Formaat"
+                },
+                "media_player": {
+                    "name": "Mediaspeler"
+                }
+            }
+        },
+        "record": {
+            "description": "Maakt een opname van een live camerafeed.",
+            "fields": {
+                "duration": {
+                    "description": "Geplande duur van de opname. De werkelijke duur kan vari\u00ebren.",
+                    "name": "Duur"
+                },
+                "filename": {
+                    "name": "Bestandsnaam"
+                },
+                "lookback": {
+                    "description": "Geplande terugkijkperiode om op te nemen in de opname (ook naast de duur). Alleen beschikbaar als er momenteel een actieve HLS-stream is. De werkelijke lengte van de terugkijkperiode kan vari\u00ebren.",
+                    "name": "Terugblik"
+                }
+            }
+        },
+        "snapshot": {
+            "description": "Maakt een momentopname van een camera.",
+            "fields": {
+                "filename": {
+                    "name": "Bestandsnaam"
+                }
+            }
+        },
+        "turn_off": {
+            "name": "Camera uitzetten"
+        },
+        "turn_on": {
+            "name": "Camera aanzetten"
+        }
+    },
+    "title": "Camera"
+}

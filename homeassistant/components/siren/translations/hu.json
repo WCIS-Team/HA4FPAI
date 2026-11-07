@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb",
+        "trigger_behavior_name": "Aktiv\u00e1l\u00f3dik, amikor",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb szir\u00e9na ki van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "Szir\u00e9na ki van kapcsolva"
+        },
+        "is_on": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb szir\u00e9na be van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "Szir\u00e9na be van kapcsolva"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Szir\u00e9na",
+            "state": {
+                "off": "Ki",
+                "on": "Be"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "El\u00e9rhet\u0151 hangok"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Ki/be kapcsolja a szir\u00e9n\u00e1t.",
+            "name": "Szir\u00e9na \u00e1tkapcsol\u00e1sa"
+        },
+        "turn_off": {
+            "description": "Kikapcsolja a szir\u00e9n\u00e1t.",
+            "name": "Szir\u00e9na kikapcsol\u00e1sa"
+        },
+        "turn_on": {
+            "description": "Bekapcsolja a szir\u00e9n\u00e1t.",
+            "fields": {
+                "duration": {
+                    "description": "A hang lej\u00e1tsz\u00e1s\u00e1nak m\u00e1sodperceinek sz\u00e1ma. Az integr\u00e1ci\u00f3nak t\u00e1mogatnia kell.",
+                    "name": "Id\u0151tartam"
+                },
+                "tone": {
+                    "description": "A kibocs\u00e1tand\u00f3 hang. Ha az \"available_tones\" tulajdons\u00e1g egy lista, akkor a kulcs vagy az \u00e9rt\u00e9k haszn\u00e1lhat\u00f3. Az integr\u00e1ci\u00f3nak t\u00e1mogatnia kell.",
+                    "name": "Hang"
+                },
+                "volume_level": {
+                    "description": "A hanger\u0151. A 0 nem hallhat\u00f3, az 1 a maxim\u00e1lis hanger\u0151. Az integr\u00e1ci\u00f3nak t\u00e1mogatnia kell.",
+                    "name": "Hanger\u0151"
+                }
+            },
+            "name": "Szir\u00e9na bekapcsol\u00e1sa"
+        }
+    },
+    "title": "Szir\u00e9na",
+    "triggers": {
+        "turned_off": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb szir\u00e9na kikapcsol.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Szir\u00e9na kikapcsolva"
+        },
+        "turned_on": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb szir\u00e9na bekapcsol.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Szir\u00e9na bekapcsolva"
+        }
+    }
+}

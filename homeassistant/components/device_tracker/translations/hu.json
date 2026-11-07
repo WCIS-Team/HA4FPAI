@@ -1,0 +1,108 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} otthon van",
+            "is_not_home": "{entity_name} nincs otthon"
+        },
+        "extra_fields": {
+            "zone": "Z\u00f3na"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} bel\u00e9pett a z\u00f3n\u00e1ba",
+            "leaves": "{entity_name} elhagyta a z\u00f3n\u00e1t"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Eszk\u00f6z nyomk\u00f6vet\u0151",
+            "state": {
+                "home": "Otthon",
+                "not_home": "T\u00e1vol"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Elem/Akku"
+                },
+                "gps_accuracy": {
+                    "name": "GPS pontoss\u00e1g"
+                },
+                "latitude": {
+                    "name": "Sz\u00e9less\u00e9g"
+                },
+                "longitude": {
+                    "name": "Hossz\u00fas\u00e1g"
+                },
+                "source_type": {
+                    "name": "Forr\u00e1s",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "\u00datv\u00e1laszt\u00f3"
+                    }
+                },
+                "tracking_type": {
+                    "name": "K\u00f6vet\u00e9s t\u00edpusa",
+                    "state": {
+                        "connection": "Kapcsolat",
+                        "position": "Poz\u00edci\u00f3"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "associated_zone_missing": {
+            "description": "A(z) `{entity_id}` szkenner entit\u00e1s a(z) `{zone}` z\u00f3n\u00e1hoz van rendelve, de ez a z\u00f3na el lett t\u00e1vol\u00edtva.\n\nA jav\u00edt\u00e1shoz rendelje hozz\u00e1 a szkennert egy m\u00e1sik z\u00f3n\u00e1hoz, vagy hozza l\u00e9tre \u00fajra a hi\u00e1nyz\u00f3 z\u00f3n\u00e1t.",
+            "title": "A szkenner egy elt\u00e1vol\u00edtott z\u00f3n\u00e1hoz van rendelve"
+        },
+        "deprecated_see_action": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "A `device_tracker.see` m\u0171velet elavult, \u00e9s a Home Assistant Core 2027.5-\u00f6s verzi\u00f3j\u00e1ban el lesz t\u00e1vol\u00edtva.\n\nHaszn\u00e1ljon helyette [sablon eszk\u00f6zk\u00f6vet\u0151t]({docs_url}), majd t\u00e1vol\u00edtsa el ennek a m\u0171veletnek a haszn\u00e1lat\u00e1t az automatizmusokb\u00f3l \u00e9s szkriptekb\u0151l, v\u00e9g\u00fcl a probl\u00e9ma lez\u00e1r\u00e1s\u00e1hoz v\u00e1lassza a **Mehet** gombot.",
+                        "title": "Elavult device_tracker.see m\u0171velet haszn\u00e1lata \u00e9szlelve"
+                    }
+                }
+            },
+            "title": "Elavult device_tracker.see m\u0171velet haszn\u00e1lata \u00e9szlelve"
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Manu\u00e1lisan friss\u00edtheti egy megl\u00e9v\u0151, r\u00e9gebbi eszk\u00f6zk\u00f6vet\u0151 adatait a known_devices.yaml f\u00e1jlban.",
+            "fields": {
+                "battery": {
+                    "description": "Az eszk\u00f6z akkumul\u00e1tor t\u00f6lt\u00f6tts\u00e9gi szintje.",
+                    "name": "Akkumul\u00e1tor t\u00f6lt\u00f6tts\u00e9gi szint"
+                },
+                "dev_id": {
+                    "description": "Az eszk\u00f6z azonos\u00edt\u00f3ja (keresse meg az azonos\u00edt\u00f3t a 'known_devices.yaml' f\u00e1jlban).",
+                    "name": "Eszk\u00f6z azonos\u00edt\u00f3"
+                },
+                "gps": {
+                    "description": "Az eszk\u00f6z hely\u00e9t meghat\u00e1roz\u00f3 GPS koordin\u00e1t\u00e1k, sz\u00e9less\u00e9gi \u00e9s hossz\u00fas\u00e1gi fokban megadva (p\u00e9ld\u00e1ul: [51.513845, -0.100539]).",
+                    "name": "GPS koordin\u00e1t\u00e1k"
+                },
+                "gps_accuracy": {
+                    "description": "A GPS koordin\u00e1t\u00e1k pontoss\u00e1ga.",
+                    "name": "GPS pontoss\u00e1g"
+                },
+                "host_name": {
+                    "description": "Az eszk\u00f6z g\u00e9pneve.",
+                    "name": "G\u00e9pn\u00e9v"
+                },
+                "location_name": {
+                    "description": "Annak a helysz\u00ednnek a neve, ahol az eszk\u00f6z tal\u00e1lhat\u00f3. Az el\u00e9rhet\u0151 lehet\u0151s\u00e9gek: `Otthon`, `T\u00e1vol` vagy a z\u00f3na neve.",
+                    "name": "Helysz\u00edn"
+                },
+                "mac": {
+                    "description": "Az eszk\u00f6z MAC-c\u00edme.",
+                    "name": "MAC c\u00edm"
+                }
+            },
+            "name": "Eszk\u00f6zk\u00f6vet\u00e9s megtekint\u00e9se"
+        }
+    },
+    "title": "Eszk\u00f6z nyomk\u00f6vet\u0151"
+}

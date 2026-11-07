@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Comprueba si uno o m\u00e1s men\u00fas desplegables tienen seleccionada una opci\u00f3n espec\u00edfica.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "option": {
+                    "description": "Las opciones que hay que comprobar.",
+                    "name": "Opci\u00f3n"
+                }
+            },
+            "name": "Se ha seleccionado la opci\u00f3n del desplegable."
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "Cambiar {entity_name} a la primera opci\u00f3n",
+            "select_last": "Cambiar {entity_name} a la \u00faltima opci\u00f3n",
+            "select_next": "Cambiar {entity_name} a la siguiente opci\u00f3n",
+            "select_option": "Cambiar opci\u00f3n de {entity_name}",
+            "select_previous": "Cambiar {entity_name} a la opci\u00f3n anterior"
+        },
+        "condition_type": {
+            "selected_option": "Opci\u00f3n de {entity_name} seleccionada actualmente"
+        },
+        "extra_fields": {
+            "cycle": "Ciclo",
+            "for": "Duraci\u00f3n",
+            "from": "De",
+            "option": "Opci\u00f3n",
+            "to": "A"
+        },
+        "trigger_type": {
+            "current_option_changed": "Una opci\u00f3n de {entity_name} cambi\u00f3"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Seleccionar",
+            "state_attributes": {
+                "options": {
+                    "name": "Opciones"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "La entidad {entity_id} no tiene opciones entre las que elegir."
+        },
+        "not_valid_option": {
+            "message": "La opci\u00f3n {option} no es v\u00e1lida para la entidad {entity_id}, las opciones v\u00e1lidas son: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "Selecciona la primera opci\u00f3n de una selecci\u00f3n.",
+            "name": "Seleccionar primera opci\u00f3n"
+        },
+        "select_last": {
+            "description": "Selecciona la \u00faltima opci\u00f3n de una selecci\u00f3n.",
+            "name": "Seleccionar \u00faltima opci\u00f3n"
+        },
+        "select_next": {
+            "description": "Selecciona la opci\u00f3n siguiente de una selecci\u00f3n.",
+            "fields": {
+                "cycle": {
+                    "description": "Si la opci\u00f3n debe pasar de la \u00faltima a la primera.",
+                    "name": "Ciclo"
+                }
+            },
+            "name": "Seleccionar opci\u00f3n siguiente"
+        },
+        "select_option": {
+            "description": "Selecciona una opci\u00f3n de una selecci\u00f3n.",
+            "fields": {
+                "option": {
+                    "description": "Opci\u00f3n a seleccionar.",
+                    "name": "Opci\u00f3n"
+                }
+            },
+            "name": "Seleccionar opci\u00f3n"
+        },
+        "select_previous": {
+            "description": "Selecciona la opci\u00f3n anterior de una selecci\u00f3n.",
+            "fields": {
+                "cycle": {
+                    "description": "Si la opci\u00f3n debe pasar de la primera a la \u00faltima.",
+                    "name": "Ciclo"
+                }
+            },
+            "name": "Seleccionar opci\u00f3n anterior"
+        }
+    },
+    "title": "Seleccionar",
+    "triggers": {
+        "selection_changed": {
+            "description": "Se dispara cuando la opci\u00f3n seleccionada en uno o m\u00e1s men\u00fas desplegables cambien.",
+            "name": "Se ha modificado la selecci\u00f3n del desplegable"
+        }
+    }
+}

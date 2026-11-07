@@ -1,0 +1,593 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "condition_threshold_name": "Grani\u010dna vrednost",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje",
+        "trigger_threshold_name": "Grani\u010dna vrednost"
+    },
+    "conditions": {
+        "is_muted": {
+            "description": "Proverava da li je jedan ili vi\u0161e medija plejera uti\u0161ano.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medija plejer uti\u0161an"
+        },
+        "is_not_playing": {
+            "description": "Proverava da li jedan ili vi\u0161e medija plejera ne reprodukuju sadr\u017eaj.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medija plejer zaustavljen"
+        },
+        "is_off": {
+            "description": "Proverava da li je jedan ili vi\u0161e medija plejera isklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medija plejer isklju\u010den"
+        },
+        "is_on": {
+            "description": "Proverava da li je jedan ili vi\u0161e medija plejera uklju\u010den.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medija plejer uklju\u010den"
+        },
+        "is_paused": {
+            "description": "Proverava da li je jedan ili vi\u0161e medija plejera pauzirano.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medija plejer pauziran"
+        },
+        "is_playing": {
+            "description": "Proverava da li jedan ili vi\u0161e medija plejera reprodukuje.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medija plejer u radu"
+        },
+        "is_unmuted": {
+            "description": "Proverava da li jedan ili vi\u0161e medija plejera nisu uti\u0161ani.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medija plejer neuti\u0161an"
+        },
+        "is_volume": {
+            "description": "Proverava ja\u010dinu zvuka jednog ili vi\u0161e medija plejera.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Grani\u010dna vrednost"
+                }
+            },
+            "name": "Ja\u010dina zvuka medija plejera"
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "{entity_name} se u\u010ditava",
+            "is_idle": "{entity_name} miruje",
+            "is_off": "{entity_name} je isklju\u010deno",
+            "is_on": "{entity_name} je uklju\u010deno",
+            "is_paused": "{entity_name} je pauziran",
+            "is_playing": "{entity_name} se reprodukuje"
+        },
+        "extra_fields": {
+            "for": "Trajanje"
+        },
+        "trigger_type": {
+            "buffering": "{entity_name} zapo\u010dinje u\u010ditavanje",
+            "changed_states": "{entity_name} je uklju\u010den ili isklju\u010den",
+            "idle": "{entity_name} je u stanju mirovanja",
+            "paused": "{entity_name} je pauziran",
+            "playing": "{entity_name} po\u010dinje da se reprodukuje",
+            "turned_off": "{entity_name} je isklju\u010den",
+            "turned_on": "{entity_name} je uklju\u010den"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Medija plejer",
+            "state": {
+                "buffering": "U\u010ditavanje",
+                "idle": "Mirovanje",
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno",
+                "paused": "Pauzirano",
+                "playing": "Reprodukcija",
+                "standby": "Pripravnost"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "App ID"
+                },
+                "app_name": {
+                    "name": "Aplikacija"
+                },
+                "entity_picture_local": {
+                    "name": "Lokalno dostupan entitet slike"
+                },
+                "groups_members": {
+                    "name": "\u010clanovi grupe"
+                },
+                "is_volume_muted": {
+                    "name": "Bez zvuka",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Album izvo\u0111a\u010da"
+                },
+                "media_album_name": {
+                    "name": "Album"
+                },
+                "media_artist": {
+                    "name": "Izvo\u0111a\u010d"
+                },
+                "media_channel": {
+                    "name": "Kanal"
+                },
+                "media_content_id": {
+                    "name": "ID sadr\u017eaja"
+                },
+                "media_content_type": {
+                    "name": "Tip sadr\u017eaja",
+                    "state": {
+                        "album": "Album",
+                        "app": "Aplikacija",
+                        "artist": "Izvo\u0111a\u010d",
+                        "channel": "Kanal",
+                        "channels": "Kanali",
+                        "composer": "Kompozitor",
+                        "contributing_artist": "Gostuju\u0107i izvo\u0111a\u010d",
+                        "episode": "Epizoda",
+                        "game": "Igra",
+                        "genre": "\u017danr",
+                        "image": "Slika",
+                        "movie": "Film",
+                        "music": "Muzika",
+                        "playlist": "Plejlista",
+                        "podcast": "Podkast",
+                        "season": "Sezona",
+                        "track": "Numera",
+                        "tvshow": "TV emisija",
+                        "url": "URL",
+                        "video": "Video"
+                    }
+                },
+                "media_duration": {
+                    "name": "Trajanje"
+                },
+                "media_episode": {
+                    "name": "Epizoda"
+                },
+                "media_playlist": {
+                    "name": "Plejlista"
+                },
+                "media_position": {
+                    "name": "Polo\u017eaj"
+                },
+                "media_position_updated_at": {
+                    "name": "Pozicija a\u017eurirana"
+                },
+                "media_season": {
+                    "name": "Sezona"
+                },
+                "media_series_title": {
+                    "name": "Serija"
+                },
+                "media_title": {
+                    "name": "Naslov"
+                },
+                "media_track": {
+                    "name": "Numera"
+                },
+                "repeat": {
+                    "name": "Ponavljaj",
+                    "state": {
+                        "all": "Sve",
+                        "off": "Isklju\u010deno",
+                        "one": "Jedan"
+                    }
+                },
+                "shuffle": {
+                    "name": "Nasumi\u010dno",
+                    "state": {
+                        "false": "Isklju\u010deno",
+                        "true": "Uklju\u010deno"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Zvu\u010dni re\u017eim"
+                },
+                "sound_mode_list": {
+                    "name": "Dostupni zvu\u010dni re\u017eimi"
+                },
+                "source": {
+                    "name": "Izvor"
+                },
+                "source_list": {
+                    "name": "Dostupni izvori"
+                },
+                "volume_level": {
+                    "name": "Ja\u010dina zvuka"
+                }
+            }
+        },
+        "projector": {
+            "name": "Projektor"
+        },
+        "receiver": {
+            "name": "Risiver"
+        },
+        "speaker": {
+            "name": "Zvu\u010dnik"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Dodajte u listu \u010dekanja",
+                "next": "Pusti slede\u0107e",
+                "play": "Reprodukuj",
+                "replace": "Pusti odmah i obri\u0161i listu \u010dekanja"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "Ponovi sve",
+                "off": "Isklju\u010deno",
+                "one": "Ponovi trenutnu"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Pregleda dostupni medijski sadr\u017eaj.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Specifi\u010dni identifikator medijskog elementa unutar odabrane integracije.",
+                    "name": "Identifikator sadr\u017eaja (ID)"
+                },
+                "media_content_type": {
+                    "description": "Defini\u0161e tip medija (npr. fotografije, muzika, serije, video zapisi, liste reprodukcije).",
+                    "name": "Kategorija sadr\u017eaja"
+                }
+            },
+            "name": "Pregledaj sadr\u017eaj"
+        },
+        "clear_playlist": {
+            "description": "Prazni listu reprodukcije.",
+            "name": "Isprazni listu reprodukcije"
+        },
+        "join": {
+            "description": "Grupi\u0161e medijske plejere radi sinhronizovane reprodukcije. Radi samo na podr\u017eanim multi-room audio sistemima.",
+            "fields": {
+                "group_members": {
+                    "description": "Spisak dodatnih medijskih plejera koji \u0107e pratiti reprodukciju glavnog ure\u0111aja.",
+                    "name": "Plejeri za grupisanje"
+                }
+            },
+            "name": "Pridru\u017ei grupi zvu\u010dnika"
+        },
+        "media_next_track": {
+            "description": "Bira slede\u0107u numeru na medijskom plejeru.",
+            "name": "Slede\u0107a numera"
+        },
+        "media_pause": {
+            "description": "Pauzira reprodukciju.",
+            "name": "Pauziraj reprodukciju"
+        },
+        "media_play": {
+            "description": "Pokre\u0107e reprodukciju na medijskom plejeru.",
+            "name": "Pokreni reprodukciju"
+        },
+        "media_play_pause": {
+            "description": "Prebacuje izme\u0111u reprodukcije i pauze na medijskom plejeru.",
+            "name": "Pusti/pauziraj"
+        },
+        "media_previous_track": {
+            "description": "Bira prethodnu numeru na medijskom plejeru.",
+            "name": "Prethodna numera"
+        },
+        "media_seek": {
+            "description": "Omogu\u0107ava prelazak na drugi deo medijskog sadr\u017eaja koji se trenutno reprodukuje na medijskom plejeru.",
+            "fields": {
+                "seek_position": {
+                    "description": "Vremenska odrednica (sekunde ili procenat) za pozicioniranje unutar numere.",
+                    "name": "Ciljna pozicija"
+                }
+            },
+            "name": "Premotaj sadr\u017eaj"
+        },
+        "media_stop": {
+            "description": "Zaustavlja reprodukciju na medijskom plejeru.",
+            "name": "Zaustavi reprodukciju"
+        },
+        "play_media": {
+            "description": "Pokre\u0107e reprodukciju odre\u0111enog medijskog sadr\u017eaja na medijskom plejeru.",
+            "fields": {
+                "announce": {
+                    "description": "Da li medij treba da se pusti kao obave\u0161tenje.",
+                    "name": "Obave\u0161tenje"
+                },
+                "enqueue": {
+                    "description": "Da li sadr\u017eaj treba odmah pustiti ili dodati u red- (listu \u010dekanja.",
+                    "name": "Dodajte u red"
+                },
+                "media": {
+                    "description": "Identifikator datoteke ili mre\u017enog protoka (strima) za reprodukciju.",
+                    "name": "Medijski sadr\u017eaj"
+                }
+            },
+            "name": "Pusti navedeni sadr\u017eaj"
+        },
+        "repeat_set": {
+            "description": "Pode\u0161ava re\u017eim ponavljanja.",
+            "fields": {
+                "repeat": {
+                    "description": "Odre\u0111uje da li se cikli\u010dno ponavlja trenutna numera ili celokupna lista reprodukcije.",
+                    "name": "Re\u017eim ponavljanja"
+                }
+            },
+            "name": "Podesi re\u017eim ponavljanja"
+        },
+        "search_media": {
+            "description": "Pretra\u017euje dostupni medijski sadr\u017eaj.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Specifi\u010dni identifikator medijskog elementa unutar odabrane integracije.",
+                    "name": "Identifikator sadr\u017eaja (ID)"
+                },
+                "media_content_type": {
+                    "description": "Defini\u0161e tip medija (npr. fotografije, muzika, serije, video zapisi, liste reprodukcije).",
+                    "name": "Kategorija sadr\u017eaja"
+                },
+                "media_filter_classes": {
+                    "description": "Lista klasa medija za filtriranje rezultata pretrage.",
+                    "name": "Klasifikacija medija"
+                },
+                "search_query": {
+                    "description": "Pojam za pretragu.",
+                    "name": "Kriterijum pretrage"
+                }
+            },
+            "name": "Pretra\u017ei sadr\u017eaj"
+        },
+        "select_sound_mode": {
+            "description": "Bira re\u017eim zvuka.",
+            "fields": {
+                "sound_mode": {
+                    "description": "Naziv zvu\u010dnog re\u017eima koji \u017eelite da aktivirate.",
+                    "name": "Re\u017eim zvuka"
+                }
+            },
+            "name": "Izaberi re\u017eim zvuka"
+        },
+        "select_source": {
+            "description": "\u0160alje komandu medijskom plejeru da promeni ulazni izvor.",
+            "fields": {
+                "source": {
+                    "description": "Naziv specifi\u010dnog ulaza za aktivaciju (npr. HDMI 1 ili TV).",
+                    "name": "Naziv izvora"
+                }
+            },
+            "name": "Izaberi izvor plejera"
+        },
+        "shuffle_set": {
+            "description": "Uklju\u010duje ili isklju\u010duje nasumi\u010dnu reprodukciju.",
+            "fields": {
+                "shuffle": {
+                    "description": "Defini\u0161e da li \u0107e se medijski sadr\u017eaj emitovati nasumi\u010dnim redosledom.",
+                    "name": "Status nasumi\u010dnog redosleda"
+                }
+            },
+            "name": "Podesi nasumi\u010dnu reprodukciju"
+        },
+        "toggle": {
+            "description": "Uklju\u010duje ili isklju\u010duje medijski plejer.",
+            "name": "Prebaci stanje medija plejera"
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje medijski plejer.",
+            "name": "Isklju\u010di medija plejer"
+        },
+        "turn_on": {
+            "description": "Uklju\u010duje medijski plejer.",
+            "name": "Uklju\u010di medija plejer"
+        },
+        "unjoin": {
+            "description": "Uklanja medijski plejer iz grupe. Radi samo na platformama koje podr\u017eavaju grupe plejera.",
+            "name": "Izdvoji iz grupe zvu\u010dnika"
+        },
+        "volume_down": {
+            "description": "Smanjuje ja\u010dinu zvuka.",
+            "name": "Smanji ja\u010dinu zvuka"
+        },
+        "volume_mute": {
+            "description": "Isklju\u010duje ili uklju\u010duje zvuk na medijskom plejeru.",
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Odre\u0111uje da li je zvuk na izabranom ure\u0111aju potpuno uti\u0161an.",
+                    "name": "Isklju\u010divanje tona"
+                }
+            },
+            "name": "Uklju\u010di/isklju\u010di zvuk"
+        },
+        "volume_set": {
+            "description": "Pode\u0161ava ja\u010dinu zvuka.",
+            "fields": {
+                "volume_level": {
+                    "description": "\u017deljeni nivo ja\u010dine zvuka (skala od 0 do 1). Vrednost 0 ozna\u010dava ne\u010dujno, a 1 maksimalnu ja\u010dinu.",
+                    "name": "Nivo ja\u010dine"
+                }
+            },
+            "name": "Podesi ja\u010dinu zvuka"
+        },
+        "volume_up": {
+            "description": "Pove\u0107ava ja\u010dinu zvuka.",
+            "name": "Pove\u0107aj ja\u010dinu zvuka"
+        }
+    },
+    "title": "Medija plejer",
+    "triggers": {
+        "muted": {
+            "description": "Pokre\u0107e se kada se uti\u0161a zvuk na jednom ili vi\u0161e medijskih plejera.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Zvuk plejera uti\u0161an"
+        },
+        "paused_playing": {
+            "description": "Pokre\u0107e se kada jedan ili vi\u0161e medijskih plejera pauziraju reprodukciju.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Reprodukcija pauzirana"
+        },
+        "started_playing": {
+            "description": "Pokre\u0107e se kada jedan ili vi\u0161e medijskih plejera po\u010dnu sa reprodukcijom.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Reprodukcija zapo\u010deta"
+        },
+        "stopped_playing": {
+            "description": "Pokre\u0107e se kada jedan ili vi\u0161e medijskih plejera prestanu sa reprodukcijom.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Reprodukcija zaustavljena"
+        },
+        "turned_off": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e medijskih plejera isklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medijski plejer isklju\u010den"
+        },
+        "turned_on": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e medijskih plejera uklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Medijski plejer uklju\u010den"
+        },
+        "unmuted": {
+            "description": "Pokre\u0107e se kada se ponovo uklju\u010di zvuk na jednom ili vi\u0161e medijskih plejera.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Zvuk plejera ponovo uklju\u010den"
+        },
+        "volume_changed": {
+            "description": "Pokre\u0107e se kada se promeni ja\u010dina zvuka na jednom ili vi\u0161e medijskih plejera.",
+            "fields": {
+                "threshold": {
+                    "name": "Grani\u010dna vrednost"
+                }
+            },
+            "name": "Ja\u010dina zvuka plejera promenjena"
+        },
+        "volume_crossed_threshold": {
+            "description": "Pokre\u0107e se kada ja\u010dina zvuka jednog ili vi\u0161e medijskih plejera pre\u0111e grani\u010dnu vrednost.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Grani\u010dna vrednost"
+                }
+            },
+            "name": "Ja\u010dina zvuka plejera pre\u0161la granicu"
+        }
+    }
+}

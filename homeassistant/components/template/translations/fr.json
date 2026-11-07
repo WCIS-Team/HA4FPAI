@@ -1,0 +1,1055 @@
+{
+    "common": {
+        "additional_options": "Options suppl\u00e9mentaires",
+        "availability_description": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s.",
+        "code_format": "Format du code",
+        "device_class": "Classe d'appareil",
+        "device_id_description": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+        "state": "\u00c9tat",
+        "turn_off": "Actions lors de la d\u00e9sactivation",
+        "turn_on": "Actions lors de l'activation",
+        "unit_of_measurement": "Unit\u00e9 de mesure"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Action lors de l'armement en mode absence",
+                    "arm_custom_bypass": "Action lors de l'armement en mode bypass personnalis\u00e9",
+                    "arm_home": "Action lors de l'armement en mode maison",
+                    "arm_night": "Action lors de l'armement en mode nuit",
+                    "arm_vacation": "Action lors de l'armement en mode vacances",
+                    "code_arm_required": "Code requis pour armer",
+                    "code_format": "Format du code",
+                    "device_id": "Appareil",
+                    "disarm": "Action lors du d\u00e9sarmement",
+                    "name": "Nom",
+                    "trigger": "Action lors du d\u00e9clenchement",
+                    "value_template": "\u00c9tat"
+                },
+                "data_description": {
+                    "arm_away": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e en `arm_away`. Re\u00e7oit la variable `code`.",
+                    "arm_custom_bypass": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e en `arm_custom_bypass`. Re\u00e7oit la variable `code`.",
+                    "arm_home": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e sur `arm_home`. Re\u00e7oit la variable `code`.",
+                    "arm_night": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e en `arm_night`. Re\u00e7oit la variable `code`.",
+                    "arm_vacation": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e sur `arm_vacation`. Re\u00e7oit la variable `code`.",
+                    "code_arm_required": "Si vrai, le code est requis pour armer l'alarme.",
+                    "code_format": "Un des formats suivants\u00a0: `number`, `text` ou `no_code`. Format du code utilis\u00e9 pour armer/d\u00e9sarmer l'alarme.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "disarm": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est d\u00e9sarm\u00e9e. Re\u00e7oit la variable `code`.",
+                    "trigger": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est d\u00e9clench\u00e9e. Re\u00e7oit la variable `code`.",
+                    "value_template": "D\u00e9finit un mod\u00e8le pour d\u00e9finir l'\u00e9tat de la centrale d'alarme. Les valeurs de sortie valides du mod\u00e8le sont `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` et `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Alarme bas\u00e9e sur un mod\u00e8le"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "state": "\u00c9tat"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "state": "Le capteur est `on` si le mod\u00e8le est \u00e9valu\u00e9 \u00e0 `True`, `yes`, `on`, `enable` ou un nombre positif. Toute autre valeur le rendra `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de capteur binaire"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "press": "Actions au clic"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "press": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le bouton est press\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Bouton bas\u00e9 sur un mod\u00e8le"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Actions lors de la fermeture",
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "open_cover": "Actions lors de l'ouverture",
+                    "position": "Position",
+                    "set_cover_position": "Actions lors du r\u00e9glage de la position",
+                    "state": "\u00c9tat",
+                    "stop_cover": "Actions lors de l'arr\u00eat"
+                },
+                "data_description": {
+                    "close_cover": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant est ferm\u00e9.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "open_cover": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant est ouvert.",
+                    "position": "D\u00e9finit un mod\u00e8le pour obtenir la position de l'ouvrant. Les valeurs sont des nombres compris entre `0` (`closed`) et `100` (`open`).",
+                    "set_cover_position": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant re\u00e7oit une commande `set_cover_position`. Re\u00e7oit la variable `position`.",
+                    "stop_cover": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant est arr\u00eat\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le d'ouvrant"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Appareil",
+                    "in_zones": "Zones",
+                    "latitude": "Latitude",
+                    "longitude": "Longitude",
+                    "name": "Nom"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "in_zones": "D\u00e9finit un mod\u00e8le qui renvoie la liste des zones dans lesquelles se trouve actuellement le dispositif de suivi. Le mod\u00e8le doit renvoyer une liste d'ID d'entit\u00e9s de zone. Si le dispositif de suivi ne se trouve dans aucune zone, le mod\u00e8le doit renvoyer une liste vide.",
+                    "latitude": "D\u00e9finit un mod\u00e8le pour obtenir la latitude du dispositif de suivi. Les valeurs valides sont des nombres entre `-90` et `90`.",
+                    "longitude": "D\u00e9finit un mod\u00e8le pour obtenir la longitude du dispositif de suivi. Les valeurs valides sont des nombres entre `-180` et `180`.",
+                    "name": "Nom"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Pr\u00e9cision de la localisation"
+                        },
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s.",
+                            "location_accuracy": "D\u00e9finit un mod\u00e8le pour obtenir la pr\u00e9cision de la position du dispositif de suivi en m\u00e8tres. Les valeurs valides sont des nombres sup\u00e9rieurs ou \u00e9gaux \u00e0 `0`."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de dispositif de suivi"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "event_type": "Dernier type d'\u00e9v\u00e9nement d\u00e9clench\u00e9",
+                    "event_types": "Types d'\u00e9v\u00e9nements",
+                    "name": "Nom"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "event_type": "D\u00e9finit un mod\u00e8le pour le type d'\u00e9v\u00e9nement.",
+                    "event_types": "D\u00e9finit un mod\u00e8le pour une liste de types d'\u00e9v\u00e9nements disponibles."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le d'\u00e9v\u00e9nement"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "percentage": "Pourcentage",
+                    "set_percentage": "Actions lors du r\u00e9glage du pourcentage",
+                    "speed_count": "Nombre de vitesses",
+                    "state": "\u00c9tat",
+                    "turn_off": "Actions lors de la d\u00e9sactivation",
+                    "turn_on": "Actions lors de l'activation"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "percentage": "D\u00e9finit un mod\u00e8le pour obtenir le pourcentage de vitesse du ventilateur.",
+                    "speed_count": "Nombre de vitesses prises en charge par le ventilateur. Utilis\u00e9 pour calculer le pourcentage d'incr\u00e9mentation des actions `fan.increase_speed` et `fan.decrease_speed`.",
+                    "state": "Le ventilateur est `on` si le mod\u00e8le est \u00e9valu\u00e9 \u00e0 `True`, `yes`, `on`, `enable` ou un nombre positif. Toute autre valeur le rendra `off`.",
+                    "turn_off": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le ventilateur est \u00e9teint.",
+                    "turn_on": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le ventilateur est allum\u00e9. Re\u00e7oit les variables `percentage` et/ou `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de ventilateur"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "url": "URL",
+                    "verify_ssl": "V\u00e9rifier le certificat SSL"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "url": "D\u00e9finit un mod\u00e8le pour obtenir l'URL sur laquelle l'image est servie.",
+                    "verify_ssl": "Activer ou d\u00e9sactiver la v\u00e9rification du certificat SSL. D\u00e9sactiver pour utiliser une URL http, ou si vous avez un certificat SSL auto-sign\u00e9 et que vous n'avez pas install\u00e9 le certificat CA pour activer la v\u00e9rification."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Image bas\u00e9e sur un mod\u00e8le"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Appareil",
+                    "hs": "Couleur HS",
+                    "level": "Niveau de luminosit\u00e9",
+                    "name": "Nom",
+                    "set_hs": "Actions lors du r\u00e9glage de la couleur HS",
+                    "set_level": "Actions lors du r\u00e9glage du niveau",
+                    "set_temperature": "Actions lors du r\u00e9glage de la temp\u00e9rature de couleur",
+                    "state": "\u00c9tat",
+                    "temperature": "Temp\u00e9rature de couleur",
+                    "turn_off": "Actions lors de l'extinction",
+                    "turn_on": "Actions lors de l'activation"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "hs": "D\u00e9finit un mod\u00e8le pour obtenir la couleur HS de la lumi\u00e8re. Doit renvoyer un tuple (teinte, saturation).",
+                    "level": "D\u00e9finit un mod\u00e8le pour obtenir la luminosit\u00e9 de la lumi\u00e8re. Les valeurs valides sont comprises entre 0 et 255.",
+                    "set_hs": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re re\u00e7oit une commande de couleur HS. Variables disponibles\u00a0: `hs` en tant que tuple, `h` et `s`.",
+                    "set_level": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re re\u00e7oit une commande de luminosit\u00e9. Le script ne sera appel\u00e9 que si l'appel `turn_on` n'a que `brightness` et optionnellement `transition`. Re\u00e7oit les variables `brightness` et optionnellement `transition`.",
+                    "set_temperature": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re re\u00e7oit une commande de temp\u00e9rature de couleur. Re\u00e7oit la variable `color_temp_kelvin`. Peut aussi recevoir les variables `brightness` ou `transition`.",
+                    "state": "La lumi\u00e8re est `on` si le mod\u00e8le est \u00e9valu\u00e9 \u00e0 `True`, `yes`, `on`, `enable` ou un nombre positif. Toute autre valeur la rendra `off`.",
+                    "temperature": "D\u00e9finit un mod\u00e8le pour obtenir la temp\u00e9rature de couleur de la lumi\u00e8re.",
+                    "turn_off": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re est \u00e9teinte.",
+                    "turn_on": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re est allum\u00e9e."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de lumi\u00e8re"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Format du code",
+                    "device_id": "Appareil",
+                    "lock": "Actions lors du verrouillage",
+                    "name": "Nom",
+                    "open": "Actions lors de l'ouverture",
+                    "state": "\u00c9tat",
+                    "unlock": "Actions lors du d\u00e9verrouillage"
+                },
+                "data_description": {
+                    "code_format": "D\u00e9finit un mod\u00e8le pour obtenir l'attribut `code_format` du verrou.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "lock": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le verrou est verrouill\u00e9.",
+                    "open": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le verrou est ouvert.",
+                    "unlock": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le verrou est d\u00e9verrouill\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de verrou"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "max": "Valeur maximale",
+                    "min": "Valeur minimale",
+                    "name": "Nom",
+                    "set_value": "Actions lors de la d\u00e9finition d'une valeur",
+                    "state": "\u00c9tat",
+                    "step": "Taille du pas",
+                    "unit_of_measurement": "Unit\u00e9 de mesure"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "max": "D\u00e9finit la valeur maximale du nombre.",
+                    "min": "D\u00e9finit la valeur minimale du nombre.",
+                    "set_value": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le nombre est fix\u00e9 \u00e0 une valeur. Re\u00e7oit la variable `value`.",
+                    "state": "Mod\u00e8le pour la valeur actuelle du nombre.",
+                    "step": "D\u00e9finit le pas d'incr\u00e9mentation/d\u00e9cr\u00e9mentation du nombre.",
+                    "unit_of_measurement": "D\u00e9finit l'unit\u00e9 de mesure du nombre, le cas \u00e9ch\u00e9ant."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Nombre bas\u00e9 sur un mod\u00e8le"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "options": "Options disponibles",
+                    "select_option": "Actions lors de la s\u00e9lection",
+                    "state": "\u00c9tat"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "options": "Mod\u00e8le pour les options disponibles du s\u00e9lecteur.",
+                    "select_option": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsqu'une `option` de la liste `options` est s\u00e9lectionn\u00e9e. Re\u00e7oit la variable `option`.",
+                    "state": "Mod\u00e8le pour la valeur actuelle du s\u00e9lecteur."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "S\u00e9lecteur bas\u00e9 sur un mod\u00e8le"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "state": "\u00c9tat",
+                    "state_class": "Classe d'\u00e9tat",
+                    "unit_of_measurement": "Unit\u00e9 de mesure"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "state": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat du capteur. Si le capteur est num\u00e9rique, c'est-\u00e0-dire qu'il a une `state_class` ou une `unit_of_measurement`, le mod\u00e8le de l'\u00e9tat doit renvoyer un nombre ou `none`. Le mod\u00e8le de l'\u00e9tat ne doit pas renvoyer une cha\u00eene de caract\u00e8res, comme `unknown` ou `unavailable`. Un mod\u00e8le `availability` peut \u00eatre d\u00e9fini pour supprimer le rendu du mod\u00e8le de l'\u00e9tat.",
+                    "unit_of_measurement": "D\u00e9finit l'unit\u00e9 de mesure du capteur, le cas \u00e9ch\u00e9ant. Cela permet \u00e9galement d'afficher la valeur en fonction du r\u00e9glage du format des nombres dans le profil de l'utilisateur et d'influencer la pr\u00e9sentation graphique dans la visualisation de l'historique sous la forme d'une valeur continue."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Capteur de mod\u00e8le"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "turn_off": "Actions lors de la d\u00e9sactivation",
+                    "turn_on": "Actions lors de l'activation",
+                    "value_template": "\u00c9tat"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "turn_off": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'interrupteur est \u00e9teint.",
+                    "turn_on": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'interrupteur est activ\u00e9.",
+                    "value_template": "D\u00e9finit un mod\u00e8le pour l'\u00e9tat de l'interrupteur. S'il n'est pas d\u00e9fini, l'interrupteur supposera avec optimisme que toutes les commandes ont r\u00e9ussi."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Interrupteur bas\u00e9 sur un mod\u00e8le"
+            },
+            "update": {
+                "data": {
+                    "backup": "Sauvegarde",
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "in_progress": "En cours",
+                    "install": "Actions lors de l'installation",
+                    "installed_version": "Version install\u00e9e",
+                    "latest_version": "Derni\u00e8re version",
+                    "name": "Nom",
+                    "release_summary": "R\u00e9sum\u00e9 de la publication",
+                    "release_url": "URL de publication",
+                    "specific_version": "Version sp\u00e9cifique",
+                    "title": "Titre",
+                    "update_percentage": "Pourcentage de mise \u00e0 jour"
+                },
+                "data_description": {
+                    "backup": "Active ou d\u00e9sactive l'option `sauvegarde automatique avant la mise \u00e0 jour` dans la r\u00e9paration de la mise \u00e0 jour. Lorsqu'elle est d\u00e9sactiv\u00e9e, la variable `backup` fournira toujours `False` lors de l'action `install` et n'acceptera pas l'option `backup`.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "in_progress": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat en cours.",
+                    "install": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la mise \u00e0 jour est install\u00e9e. Re\u00e7oit les variables `specific_version` et `backup` lorsqu'elles sont activ\u00e9es.",
+                    "installed_version": "D\u00e9finit un mod\u00e8le pour obtenir la version install\u00e9e.",
+                    "latest_version": "D\u00e9finit un mod\u00e8le pour obtenir la derni\u00e8re version.",
+                    "release_summary": "D\u00e9finit un mod\u00e8le pour obtenir le r\u00e9sum\u00e9 de la mise \u00e0 jour.",
+                    "release_url": "D\u00e9finit un mod\u00e8le pour obtenir l'URL de publication.",
+                    "specific_version": "Active ou d\u00e9sactive l'utilisation de la variable `version` avec l'action `install`. Lorsqu'elle est d\u00e9sactiv\u00e9e, la variable `specific_version` fournira toujours `None` dans les actions `install`",
+                    "title": "D\u00e9finit un mod\u00e8le pour obtenir le titre de la mise \u00e0 jour.",
+                    "update_percentage": "D\u00e9finit un mod\u00e8le pour obtenir le pourcentage d'ach\u00e8vement de la mise \u00e0 jour."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de mise \u00e0 jour"
+            },
+            "user": {
+                "description": "Cet assistant vous permet de cr\u00e9er des entit\u00e9s d'entr\u00e9e dont l'\u00e9tat est d\u00e9fini \u00e0 l'aide d'un mod\u00e8le. Quel type de mod\u00e8le souhaitez-vous cr\u00e9er\u00a0?",
+                "menu_options": {
+                    "alarm_control_panel": "Centrale d'alarme",
+                    "binary_sensor": "Capteur binaire",
+                    "button": "Bouton",
+                    "cover": "Ouverture",
+                    "device_tracker": "Suivi d'appareil",
+                    "event": "\u00c9v\u00e9nement",
+                    "fan": "Ventilateur",
+                    "image": "Image",
+                    "light": "Lumi\u00e8re",
+                    "lock": "Verrou",
+                    "number": "Nombre",
+                    "select": "S\u00e9lecteur",
+                    "sensor": "Capteur",
+                    "switch": "Interrupteur",
+                    "update": "Mise \u00e0 jour",
+                    "vacuum": "Aspirateur",
+                    "weather": "M\u00e9t\u00e9o"
+                },
+                "title": "Assistant de mod\u00e8le"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Actions lors d'un nettoyage localis\u00e9",
+                    "device_id": "Appareil",
+                    "fan_speed": "Puissance d'aspiration",
+                    "fan_speeds": "Puissances d'aspiration",
+                    "locate": "Actions lors de la localisation",
+                    "name": "Nom",
+                    "pause": "Actions lors de la mise en pause",
+                    "return_to_base": "Actions lors du retour \u00e0 la base",
+                    "set_fan_speed": "Actions lors du r\u00e9glage de la puissance d'aspiration",
+                    "start": "Actions lors du d\u00e9marrage",
+                    "state": "\u00c9tat",
+                    "stop": "Actions lors de l'arr\u00eat"
+                },
+                "data_description": {
+                    "clean_spot": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande \u00ab\u00a0Nettoyer la zone\u00a0\u00bb.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "fan_speed": "D\u00e9finit un mod\u00e8le pour obtenir la puissance d'aspiration de l'aspirateur.",
+                    "fan_speeds": "Liste des puissances d'aspiration prises en charge par l'aspirateur.",
+                    "locate": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande \u00ab\u00a0Localiser\u00a0\u00bb.",
+                    "pause": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur est en pause.",
+                    "return_to_base": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande \u00ab\u00a0Retour \u00e0 la base\u00a0\u00bb.",
+                    "set_fan_speed": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande pour r\u00e9gler la puissance d'aspiration. Re\u00e7oit la variable `fan_speed`.",
+                    "start": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur est d\u00e9marr\u00e9.",
+                    "state": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat de l'aspirateur. Les valeurs valides sont `cleaning`, `docked`, `idle`, `paused`, `returning` et `error`.",
+                    "stop": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur est arr\u00eat\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le d'aspirateur"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Condition",
+                    "device_id": "Appareil",
+                    "forecast_daily": "Pr\u00e9visions quotidiennes",
+                    "forecast_hourly": "Pr\u00e9visions horaires",
+                    "humidity": "Humidit\u00e9",
+                    "name": "Nom",
+                    "temperature": "Temp\u00e9rature"
+                },
+                "data_description": {
+                    "condition": "D\u00e9finit un mod\u00e8le pour obtenir la condition m\u00e9t\u00e9o actuelle",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "forecast_daily": "D\u00e9finit un mod\u00e8le pour obtenir les [donn\u00e9es de pr\u00e9visions quotidiennes]({daily_link})",
+                    "forecast_hourly": "D\u00e9finit un mod\u00e8le pour obtenir les [donn\u00e9es de pr\u00e9visions horaires]({hourly_link})",
+                    "humidity": "D\u00e9finit un mod\u00e8le pour obtenir l'humidit\u00e9 actuelle",
+                    "temperature": "D\u00e9finit un mod\u00e8le pour obtenir la temp\u00e9rature actuelle"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de m\u00e9t\u00e9o"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Erreur lors de l'\u00e9valuation du mod\u00e8le de format de code \u00ab\u00a0{code_format_template}\u00a0\u00bb pour {entity_id}\u00a0: {cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "Erreur lors du rechargement des entit\u00e9s mod\u00e8les\u00a0: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "L'entr\u00e9e template a \u00e9t\u00e9 supprim\u00e9"
+                },
+                "error": {
+                    "invalid_device": "L'appareil s\u00e9lectionn\u00e9 n'existe plus."
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Appareil"
+                        },
+                        "data_description": {
+                            "device_id": "Le p\u00e9riph\u00e9rique auquel ce template doit \u00eatre li\u00e9."
+                        },
+                        "description": "L'entr\u00e9e template {name} \u00e9tait li\u00e9 \u00e0 un appareil qui a \u00e9t\u00e9 divis\u00e9 en plusieurs appareils. Tant qu'un appareil n'est pas s\u00e9lectionn\u00e9, l'assistant n'est li\u00e9 \u00e0 aucun appareil.\n\nS\u00e9lectionnez le p\u00e9riph\u00e9rique auquel cette entr\u00e9e doit \u00eatre li\u00e9e, ou laissez ce champ vide pour ne pas le lier \u00e0 un p\u00e9riph\u00e9rique.",
+                        "title": "S\u00e9lectionnez un appareil pour {name}"
+                    }
+                }
+            },
+            "title": "L'appareil auquel le template {name} doit \u00eatre li\u00e9."
+        },
+        "config_format_actions": {
+            "title": "L'option d'actions du mod\u00e8le n\u00e9cessite un d\u00e9clencheur"
+        },
+        "config_format_triggers": {
+            "title": "Configuration du mod\u00e8le incompl\u00e8te"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Action lors de l'armement en mode absence",
+                    "arm_custom_bypass": "Action lors de l'armement en mode bypass personnalis\u00e9",
+                    "arm_home": "Action lors de l'armement en mode maison",
+                    "arm_night": "Action lors de l'armement en mode nuit",
+                    "arm_vacation": "Action lors de l'armement en mode vacances",
+                    "code_arm_required": "Code requis pour armer",
+                    "code_format": "Format du code",
+                    "device_id": "Appareil",
+                    "disarm": "Action lors du d\u00e9sarmement",
+                    "trigger": "Action lors du d\u00e9clenchement",
+                    "value_template": "\u00c9tat"
+                },
+                "data_description": {
+                    "arm_away": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e en `arm_away`. Re\u00e7oit la variable `code`.",
+                    "arm_custom_bypass": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e en `arm_custom_bypass`. Re\u00e7oit la variable `code`.",
+                    "arm_home": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e sur `arm_home`. Re\u00e7oit la variable `code`.",
+                    "arm_night": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e en `arm_night`. Re\u00e7oit la variable `code`.",
+                    "arm_vacation": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est arm\u00e9e sur `arm_vacation`. Re\u00e7oit la variable `code`.",
+                    "code_arm_required": "Si vrai, le code est requis pour armer l'alarme.",
+                    "code_format": "Un des formats suivants\u00a0: `number`, `text` ou `no_code`. Format du code utilis\u00e9 pour armer/d\u00e9sarmer l'alarme.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "disarm": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est d\u00e9sarm\u00e9e. Re\u00e7oit la variable `code`.",
+                    "trigger": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la centrale d'alarme est d\u00e9clench\u00e9e. Re\u00e7oit la variable `code`.",
+                    "value_template": "D\u00e9finit un mod\u00e8le pour d\u00e9finir l'\u00e9tat de la centrale d'alarme. Les valeurs de sortie valides du mod\u00e8le sont `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` et `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Alarme bas\u00e9e sur un mod\u00e8le"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "state": "\u00c9tat"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "state": "Le capteur est `on` si le mod\u00e8le est \u00e9valu\u00e9 \u00e0 `True`, `yes`, `on`, `enable` ou un nombre positif. Toute autre valeur le rendra `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de capteur binaire"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Appareil",
+                    "press": "Actions au clic"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "press": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le bouton est press\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Bouton bas\u00e9 sur un mod\u00e8le"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Actions lors de la fermeture",
+                    "device_id": "Appareil",
+                    "open_cover": "Actions lors de l'ouverture",
+                    "position": "Position",
+                    "set_cover_position": "Actions lors du r\u00e9glage de la position",
+                    "state": "\u00c9tat",
+                    "stop_cover": "Actions lors de l'arr\u00eat"
+                },
+                "data_description": {
+                    "close_cover": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant est ferm\u00e9.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "open_cover": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant est ouvert.",
+                    "position": "D\u00e9finit un mod\u00e8le pour obtenir la position de l'ouvrant. Les valeurs sont des nombres compris entre `0` (`closed`) et `100` (`open`).",
+                    "set_cover_position": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant re\u00e7oit une commande `set_cover_position`. Re\u00e7oit la variable `position`.",
+                    "stop_cover": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'ouvrant est arr\u00eat\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le d'ouvrant"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Appareil",
+                    "in_zones": "Zones",
+                    "latitude": "Latitude",
+                    "longitude": "Longitude"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "in_zones": "D\u00e9finit un mod\u00e8le qui renvoie la liste des zones dans lesquelles se trouve actuellement le dispositif de suivi. Le mod\u00e8le doit renvoyer une liste d'ID d'entit\u00e9s de zone. Si le dispositif de suivi ne se trouve dans aucune zone, le mod\u00e8le doit renvoyer une liste vide.",
+                    "latitude": "D\u00e9finit un mod\u00e8le pour obtenir la latitude du dispositif de suivi. Les valeurs valides sont des nombres entre `-90` et `90`.",
+                    "longitude": "D\u00e9finit un mod\u00e8le pour obtenir la longitude du dispositif de suivi. Les valeurs valides sont des nombres entre `-180` et `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Pr\u00e9cision de la localisation"
+                        },
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s.",
+                            "location_accuracy": "D\u00e9finit un mod\u00e8le pour obtenir la pr\u00e9cision de la position du dispositif de suivi en m\u00e8tres. Les valeurs valides sont des nombres sup\u00e9rieurs ou \u00e9gaux \u00e0 `0`."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de dispositif de suivi"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Appareil",
+                    "event_type": "Dernier type d'\u00e9v\u00e9nement d\u00e9clench\u00e9",
+                    "event_types": "Types d'\u00e9v\u00e9nements",
+                    "name": "Nom"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "event_type": "D\u00e9finit un mod\u00e8le pour le type d'\u00e9v\u00e9nement.",
+                    "event_types": "D\u00e9finit un mod\u00e8le pour une liste de types d'\u00e9v\u00e9nements disponibles."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le d'\u00e9v\u00e9nement"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Appareil",
+                    "percentage": "Pourcentage",
+                    "set_percentage": "Actions lors du r\u00e9glage du pourcentage",
+                    "speed_count": "Nombre de vitesses",
+                    "state": "\u00c9tat",
+                    "turn_off": "Actions lors de la d\u00e9sactivation",
+                    "turn_on": "Actions lors de l'activation"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "percentage": "D\u00e9finit un mod\u00e8le pour obtenir le pourcentage de vitesse du ventilateur.",
+                    "speed_count": "Nombre de vitesses prises en charge par le ventilateur. Utilis\u00e9 pour calculer le pourcentage d'incr\u00e9mentation des actions `fan.increase_speed` et `fan.decrease_speed`.",
+                    "state": "Le ventilateur est `on` si le mod\u00e8le est \u00e9valu\u00e9 \u00e0 `True`, `yes`, `on`, `enable` ou un nombre positif. Toute autre valeur le rendra `off`.",
+                    "turn_off": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le ventilateur est \u00e9teint.",
+                    "turn_on": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le ventilateur est allum\u00e9. Re\u00e7oit les variables `percentage` et/ou `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de ventilateur"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Appareil",
+                    "url": "URL",
+                    "verify_ssl": "V\u00e9rifier le certificat SSL"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "url": "D\u00e9finit un mod\u00e8le pour obtenir l'URL sur laquelle l'image est servie.",
+                    "verify_ssl": "Activer ou d\u00e9sactiver la v\u00e9rification du certificat SSL. D\u00e9sactiver pour utiliser une URL http, ou si vous avez un certificat SSL auto-sign\u00e9 et que vous n'avez pas install\u00e9 le certificat CA pour activer la v\u00e9rification."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Image bas\u00e9e sur un mod\u00e8le"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Appareil",
+                    "hs": "Couleur HS",
+                    "level": "Niveau de luminosit\u00e9",
+                    "name": "Nom",
+                    "set_hs": "Actions lors du r\u00e9glage de la couleur HS",
+                    "set_level": "Actions lors du r\u00e9glage du niveau",
+                    "set_temperature": "Actions lors du r\u00e9glage de la temp\u00e9rature de couleur",
+                    "state": "\u00c9tat",
+                    "temperature": "Temp\u00e9rature de couleur",
+                    "turn_off": "Actions lors de la d\u00e9sactivation",
+                    "turn_on": "Actions lors de l'activation"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "hs": "D\u00e9finit un mod\u00e8le pour obtenir la couleur HS de la lumi\u00e8re. Doit renvoyer un tuple (teinte, saturation).",
+                    "level": "D\u00e9finit un mod\u00e8le pour obtenir la luminosit\u00e9 de la lumi\u00e8re. Les valeurs valides sont comprises entre 0 et 255.",
+                    "set_hs": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re re\u00e7oit une commande de couleur HS. Variables disponibles\u00a0: `hs` en tant que tuple, `h` et `s`.",
+                    "set_level": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re re\u00e7oit une commande de luminosit\u00e9. Le script ne sera appel\u00e9 que si l'appel `turn_on` n'a que `brightness` et optionnellement `transition`. Re\u00e7oit les variables `brightness` et optionnellement `transition`.",
+                    "set_temperature": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re re\u00e7oit une commande de temp\u00e9rature de couleur. Re\u00e7oit la variable `color_temp_kelvin`. Peut aussi recevoir les variables `brightness` ou `transition`.",
+                    "state": "La lumi\u00e8re est `on` si le mod\u00e8le est \u00e9valu\u00e9 \u00e0 `True`, `yes`, `on`, `enable` ou un nombre positif. Toute autre valeur la rendra `off`.",
+                    "temperature": "D\u00e9finit un mod\u00e8le pour obtenir la temp\u00e9rature de couleur de la lumi\u00e8re.",
+                    "turn_off": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re est \u00e9teinte.",
+                    "turn_on": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la lumi\u00e8re est allum\u00e9e."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de lumi\u00e8re"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Format du code",
+                    "device_id": "Appareil",
+                    "lock": "Actions lors du verrouillage",
+                    "open": "Actions lors de l'ouverture",
+                    "state": "\u00c9tat",
+                    "unlock": "Actions lors du d\u00e9verrouillage"
+                },
+                "data_description": {
+                    "code_format": "D\u00e9finit un mod\u00e8le pour obtenir l'attribut `code_format` du verrou.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "lock": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le verrou est verrouill\u00e9.",
+                    "open": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le verrou est ouvert.",
+                    "unlock": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le verrou est d\u00e9verrouill\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de verrou"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "max": "Valeur maximale",
+                    "min": "Valeur minimale",
+                    "name": "Nom",
+                    "set_value": "Actions lors de la d\u00e9finition d'une valeur",
+                    "state": "\u00c9tat",
+                    "step": "Taille du pas"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "max": "D\u00e9finit la valeur maximale du nombre.",
+                    "min": "D\u00e9finit la valeur minimale du nombre.",
+                    "set_value": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque le nombre est fix\u00e9 \u00e0 une valeur. Re\u00e7oit la variable `value`.",
+                    "state": "Mod\u00e8le pour la valeur actuelle du nombre.",
+                    "step": "D\u00e9finit le pas d'incr\u00e9mentation/d\u00e9cr\u00e9mentation du nombre."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Nombre bas\u00e9 sur un mod\u00e8le"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "options": "Options disponibles",
+                    "select_option": "Actions lors de la s\u00e9lection",
+                    "state": "\u00c9tat"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "options": "Mod\u00e8le pour les options disponibles du s\u00e9lecteur.",
+                    "select_option": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsqu'une `option` de la liste `options` est s\u00e9lectionn\u00e9e. Re\u00e7oit la variable `option`.",
+                    "state": "Mod\u00e8le pour la valeur actuelle du s\u00e9lecteur."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "S\u00e9lecteur bas\u00e9 sur un mod\u00e8le"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "state": "\u00c9tat",
+                    "state_class": "Classe d'\u00e9tat",
+                    "unit_of_measurement": "Unit\u00e9 de mesure"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "state": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat du capteur. Si le capteur est num\u00e9rique, c'est-\u00e0-dire qu'il a une `state_class` ou une `unit_of_measurement`, le mod\u00e8le de l'\u00e9tat doit renvoyer un nombre ou `none`. Le mod\u00e8le de l'\u00e9tat ne doit pas renvoyer une cha\u00eene de caract\u00e8res, comme `unknown` ou `unavailable`. Un mod\u00e8le `availability` peut \u00eatre d\u00e9fini pour supprimer le rendu du mod\u00e8le de l'\u00e9tat.",
+                    "unit_of_measurement": "D\u00e9finit l'unit\u00e9 de mesure du capteur, le cas \u00e9ch\u00e9ant. Cela permet \u00e9galement d'afficher la valeur en fonction du r\u00e9glage du format des nombres dans le profil de l'utilisateur et d'influencer la pr\u00e9sentation graphique dans la visualisation de l'historique sous la forme d'une valeur continue."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Capteur de mod\u00e8le"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Appareil",
+                    "name": "Nom",
+                    "turn_off": "Actions lors de la d\u00e9sactivation",
+                    "turn_on": "Actions lors de l'activation",
+                    "value_template": "\u00c9tat"
+                },
+                "data_description": {
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "turn_off": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'interrupteur est \u00e9teint.",
+                    "turn_on": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'interrupteur est activ\u00e9.",
+                    "value_template": "D\u00e9finit un mod\u00e8le pour l'\u00e9tat de l'interrupteur. S'il n'est pas d\u00e9fini, l'interrupteur supposera avec optimisme que toutes les commandes ont r\u00e9ussi."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Interrupteur bas\u00e9 sur un mod\u00e8le"
+            },
+            "update": {
+                "data": {
+                    "backup": "Sauvegarde",
+                    "device_class": "Classe d'appareil",
+                    "device_id": "Appareil",
+                    "in_progress": "En cours",
+                    "install": "Actions lors de l'installation",
+                    "installed_version": "Version install\u00e9e",
+                    "latest_version": "Derni\u00e8re version",
+                    "name": "Nom",
+                    "release_summary": "R\u00e9sum\u00e9 de la publication",
+                    "release_url": "URL de publication",
+                    "specific_version": "Version sp\u00e9cifique",
+                    "title": "Titre",
+                    "update_percentage": "Pourcentage de mise \u00e0 jour"
+                },
+                "data_description": {
+                    "backup": "Active ou d\u00e9sactive l'option `sauvegarde automatique avant la mise \u00e0 jour` dans la r\u00e9paration de la mise \u00e0 jour. Lorsqu'elle est d\u00e9sactiv\u00e9e, la variable `backup` fournira toujours `False` lors de l'action `install` et n'acceptera pas l'option `backup`.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "in_progress": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat en cours.",
+                    "install": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque la mise \u00e0 jour est install\u00e9e. Re\u00e7oit les variables `specific_version` et `backup` lorsqu'elles sont activ\u00e9es.",
+                    "installed_version": "D\u00e9finit un mod\u00e8le pour obtenir la version install\u00e9e.",
+                    "latest_version": "D\u00e9finit un mod\u00e8le pour obtenir la derni\u00e8re version.",
+                    "release_summary": "D\u00e9finit un mod\u00e8le pour obtenir le r\u00e9sum\u00e9 de la mise \u00e0 jour.",
+                    "release_url": "D\u00e9finit un mod\u00e8le pour obtenir l'URL de publication.",
+                    "specific_version": "Active ou d\u00e9sactive l'utilisation de la variable `version` avec l'action `install`. Lorsqu'elle est d\u00e9sactiv\u00e9e, la variable `specific_version` fournira toujours `None` dans les actions `install`",
+                    "title": "D\u00e9finit un mod\u00e8le pour obtenir le titre de la mise \u00e0 jour.",
+                    "update_percentage": "D\u00e9finit un mod\u00e8le pour obtenir le pourcentage d'ach\u00e8vement de la mise \u00e0 jour."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de mise \u00e0 jour"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Actions lors d'un nettoyage localis\u00e9",
+                    "device_id": "Appareil",
+                    "fan_speed": "Puissance d'aspiration",
+                    "fan_speeds": "Puissances d'aspiration",
+                    "locate": "Actions lors de la localisation",
+                    "name": "Nom",
+                    "pause": "Actions lors de la mise en pause",
+                    "return_to_base": "Actions lors du retour \u00e0 la base",
+                    "set_fan_speed": "Actions lors du r\u00e9glage de la puissance d'aspiration",
+                    "start": "Actions lors du d\u00e9marrage",
+                    "state": "\u00c9tat",
+                    "stop": "Actions lors de l'arr\u00eat"
+                },
+                "data_description": {
+                    "clean_spot": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande \u00ab\u00a0Nettoyer la zone\u00a0\u00bb.",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "fan_speed": "D\u00e9finit un mod\u00e8le pour obtenir la puissance d'aspiration de l'aspirateur.",
+                    "fan_speeds": "Liste des puissances d'aspiration prises en charge par l'aspirateur.",
+                    "locate": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande \u00ab\u00a0Localiser\u00a0\u00bb.",
+                    "pause": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur est en pause.",
+                    "return_to_base": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande \u00ab\u00a0Retour \u00e0 la base\u00a0\u00bb.",
+                    "set_fan_speed": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur re\u00e7oit une commande pour r\u00e9gler la puissance d'aspiration. Re\u00e7oit la variable `fan_speed`.",
+                    "start": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur est d\u00e9marr\u00e9.",
+                    "state": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat de l'aspirateur. Les valeurs valides sont `cleaning`, `docked`, `idle`, `paused`, `returning` et `error`.",
+                    "stop": "D\u00e9finit les actions \u00e0 ex\u00e9cuter lorsque l'aspirateur est arr\u00eat\u00e9."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "D\u00e9finit un mod\u00e8le pour obtenir l'\u00e9tat `available` de l'entit\u00e9. Si le mod\u00e8le \u00e9choue \u00e0 s'\u00e9valuer ou retourne `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"`, ou un nombre non nul, l'entit\u00e9 sera `available`. Si le mod\u00e8le retourne une autre valeur, l'entit\u00e9 sera `unavailable`. S'il n'est pas configur\u00e9, l'entit\u00e9 sera toujours `available`. Notez que la comparaison des cha\u00eenes n'est pas sensible \u00e0 la casse ; `\"TrUe\"` et `\"yEs\"` sont autoris\u00e9s."
+                        },
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le d'aspirateur"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Condition",
+                    "device_id": "Appareil",
+                    "forecast_daily": "Pr\u00e9visions quotidiennes",
+                    "forecast_hourly": "Pr\u00e9visions horaires",
+                    "humidity": "Humidit\u00e9",
+                    "name": "Nom",
+                    "temperature": "Temp\u00e9rature"
+                },
+                "data_description": {
+                    "condition": "D\u00e9finit un mod\u00e8le pour obtenir la condition m\u00e9t\u00e9o actuelle",
+                    "device_id": "S\u00e9lectionnez un appareil \u00e0 lier \u00e0 cette entit\u00e9.",
+                    "forecast_daily": "D\u00e9finit un mod\u00e8le pour obtenir les [donn\u00e9es de pr\u00e9visions quotidiennes]({daily_link})",
+                    "forecast_hourly": "D\u00e9finit un mod\u00e8le pour obtenir les [donn\u00e9es de pr\u00e9visions horaires]({hourly_link})",
+                    "humidity": "D\u00e9finit un mod\u00e8le pour obtenir l'humidit\u00e9 actuelle",
+                    "temperature": "D\u00e9finit un mod\u00e8le pour obtenir la temp\u00e9rature actuelle"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Options suppl\u00e9mentaires"
+                    }
+                },
+                "title": "Mod\u00e8le de m\u00e9t\u00e9o"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Aucun format de code",
+                "number": "Nombre",
+                "text": "Texte"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Aucune unit\u00e9 de mesure"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Micrologiciel"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Recharge les entit\u00e9s de mod\u00e8le \u00e0 partir de la configuration YAML.",
+            "name": "Recharger les entit\u00e9s mod\u00e8les"
+        }
+    }
+}

@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "For at least",
+        "condition_threshold_name": "K\u00fcnnise t\u00fc\u00fcp",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt",
+        "trigger_threshold_name": "K\u00fcnnise t\u00fc\u00fcp"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu termostaati jahutavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostaat jahutab"
+        },
+        "is_drying": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu termostaati kuivatavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostaat kuivatab"
+        },
+        "is_heating": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu termostaati k\u00fctavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostaat k\u00fctab"
+        },
+        "is_hvac_mode": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu termostaati on seatud kindlale HVAC-re\u017eiimile.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                },
+                "hvac_mode": {
+                    "description": "Testitavad HVAC-re\u017eiimid.",
+                    "name": "Re\u017eiimid"
+                }
+            },
+            "name": "Termostaadi HVAC-re\u017eiim"
+        },
+        "is_off": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu termostaati on v\u00e4lja l\u00fclitatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostaat on v\u00e4lja l\u00fclitatud"
+        },
+        "is_on": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu termostaati on sisse l\u00fclitatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostaat on sisse l\u00fclitatud"
+        },
+        "is_target_humidity": {
+            "description": "Testib \u00fche v\u00f5i mitme termostaadi niiskuse seadepunkti.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                },
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "Termostaadi sihtniiskus"
+        },
+        "is_target_temperature": {
+            "description": "Testib \u00fche v\u00f5i mitme termostaadi temperatuuri seadepunkti.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "For at least"
+                },
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "Termostaadi sihttemperatuur"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Kliimaseadme {entity_name} re\u017eiimi muutmine",
+            "set_preset_mode": "Olemi {entity_name} eelseadistuse muutmine"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} on seatud kindlale kliimaseadme re\u017eiimile",
+            "is_preset_mode": "{entity_name} on seatud kindlale eelseadistatud re\u017eiimile"
+        },
+        "extra_fields": {
+            "above": "\u00dcle",
+            "below": "Alla",
+            "for": "Kestus",
+            "hvac_mode": "Kliimaseadme re\u017eiim",
+            "preset_mode": "Eelseadistatud re\u017eiim",
+            "to": "V\u00e4\u00e4rtuseni"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} m\u00f5\u00f5detud niiskus muutus",
+            "current_temperature_changed": "{entity_name} m\u00f5\u00f5detud temperatuur muutus",
+            "hvac_mode_changed": "{entity_name} kliimasedame re\u017eiim on muudetud"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostaat",
+            "state": {
+                "auto": "Automaatne",
+                "cool": "Jahuta",
+                "dry": "Kuivata",
+                "fan_only": "Ventileeri",
+                "heat": "K\u00fcta",
+                "heat_cool": "K\u00fcte/jahutus",
+                "off": "V\u00e4ljas"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Praegune niiskus"
+                },
+                "current_temperature": {
+                    "name": "Praegune temperatuur"
+                },
+                "fan_mode": {
+                    "name": "Ventilaatori re\u017eiim",
+                    "state": {
+                        "auto": "Automaatne",
+                        "diffuse": "Hajuta",
+                        "focus": "Suuna",
+                        "high": "K\u00f5rge",
+                        "low": "Madal",
+                        "medium": "Keskmine",
+                        "middle": "Kiire",
+                        "off": "V\u00e4ljas",
+                        "on": "Sees",
+                        "top": "Suurim"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Ventilaatori re\u017eiimid"
+                },
+                "humidity": {
+                    "name": "Soovitud niiskusem\u00e4\u00e4r"
+                },
+                "hvac_action": {
+                    "name": "Praegune tegevus",
+                    "state": {
+                        "cooling": "Jahutus",
+                        "defrosting": "Sulatamine",
+                        "drying": "Kuivatus",
+                        "fan": "Vent",
+                        "heating": "K\u00fcte",
+                        "idle": "Ootel",
+                        "off": "V\u00e4ljas",
+                        "preheating": "Eelsoojendus"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "HVAC re\u017eiimid"
+                },
+                "max_humidity": {
+                    "name": "Max sihtniiskus"
+                },
+                "max_temp": {
+                    "name": "Max sihttemperatuur"
+                },
+                "min_humidity": {
+                    "name": "Min sihtniiskus"
+                },
+                "min_temp": {
+                    "name": "Min sihttemperatuur"
+                },
+                "preset_mode": {
+                    "name": "Eelseade",
+                    "state": {
+                        "activity": "Tegevus",
+                        "away": "Eemal",
+                        "boost": "Turbo",
+                        "comfort": "Mugav",
+                        "eco": "\u00d6ko",
+                        "home": "Kodus",
+                        "none": "Puudub",
+                        "sleep": "Uneaeg"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Eelseaded"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Horisontaalne \u00f5\u00f5tsumisre\u017eiim",
+                    "state": {
+                        "off": "V\u00e4ljas",
+                        "on": "Sees"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Horisontaalsed \u00f5\u00f5tsumisre\u017eiimid"
+                },
+                "swing_mode": {
+                    "name": "\u00d5\u00f5tsumise re\u017eiim",
+                    "state": {
+                        "both": "M\u00f5lemad",
+                        "horizontal": "Horisontaalne",
+                        "off": "V\u00e4ljas",
+                        "on": "Sees",
+                        "vertical": "Vertikaalne"
+                    }
+                },
+                "swing_modes": {
+                    "name": "\u00d5\u00f5tsumise re\u017eiimid"
+                },
+                "target_temp_high": {
+                    "name": "K\u00f5rgeim sihttemperatuur"
+                },
+                "target_temp_low": {
+                    "name": "Madalaim sihttemperatuur"
+                },
+                "target_temp_step": {
+                    "name": "Sihttemperatuuri samm"
+                },
+                "temperature": {
+                    "name": "Soovitud temperatuur"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Soovitav niiskus {humidity} ei p\u00e4de. Lubatud vahemik on {min_humidity} kuni {max_humidity}."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "Alumine sihttemperatuur ei saa olla k\u00f5rgem kui \u00fclemine sihttemperatuur."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "M\u00e4\u00e4ratud temperatuuri toimingut kasutati koos sihttemperatuuri parameetriga kuid olem seda ei toeta."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "M\u00e4\u00e4ratud temperatuuri toimingut kasutati sihttemperatuuri madala/k\u00f5rge parameetriga kuid olem seda ei toeta."
+        },
+        "not_valid_fan_mode": {
+            "message": "Ventilaatorire\u017eiim {mode} ei sobi. Kehtivad ventilaatorire\u017eiimid on: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "Horisontaalne kiikumisre\u017eiim {mode} ei kehti. Kehtivad horisontaalsed kiigere\u017eiimid on j\u00e4rgmised: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "Kliimaseadme re\u017eiim {mode} ei ole kehtiv. Kehtivad re\u017eiimid on: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "Eelseadistatud re\u017eiim {mode} ei sobi. Kehtivad eelseadistatud re\u017eiimid on: {modes} ."
+        },
+        "not_valid_swing_mode": {
+            "message": "Kiigere\u017eiim {mode} ei sobi. Kehtivad kiigere\u017eiimid on: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "Esitatud temperatuur {check_temp} ei kehti. Aktsepteeritud vahemik on {min_temp} kuni {max_temp}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "M\u00e4\u00e4rab termostaadi ventilaatori re\u017eiimi.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Ventilaatori t\u00f6\u00f6re\u017eiim.",
+                    "name": "Ventilaatori re\u017eiim"
+                }
+            },
+            "name": "Termostaadi ventilaatori re\u017eiimi seadistamine"
+        },
+        "set_humidity": {
+            "description": "M\u00e4\u00e4rab termostaadi sihtniiskuse.",
+            "fields": {
+                "humidity": {
+                    "description": "Soovitud niiskusem\u00e4\u00e4r.",
+                    "name": "Niiskus"
+                }
+            },
+            "name": "Termostaadi sihtniiskuse m\u00e4\u00e4ramine"
+        },
+        "set_hvac_mode": {
+            "description": "M\u00e4\u00e4rab termostaadi HVAC-re\u017eiimi.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Kliimaseadme t\u00f6\u00f6re\u017eiim.",
+                    "name": "Kliimaseadme re\u017eiim"
+                }
+            },
+            "name": "Termostaadi HVAC-re\u017eiimi seadistamine"
+        },
+        "set_preset_mode": {
+            "description": "M\u00e4\u00e4rab termostaadi eelseadistatud re\u017eiimi.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Eelseadistatud re\u017eiim.",
+                    "name": "Eelseadistatud re\u017eiim"
+                }
+            },
+            "name": "Termostaadi eelseadistatud re\u017eiimi seadistamine"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "M\u00e4\u00e4rab termostaadi horisontaalse kiikumise re\u017eiimi.",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Horisontaalne kiikumise t\u00f6\u00f6re\u017eiim.",
+                    "name": "Horisontaalne \u00f5\u00f5tsumisre\u017eiim"
+                }
+            },
+            "name": "Termostaadi horisontaalse kiikumise re\u017eiimi seadistamine"
+        },
+        "set_swing_mode": {
+            "description": "M\u00e4\u00e4rab termostaadi kiikumisre\u017eiimi.",
+            "fields": {
+                "swing_mode": {
+                    "description": "\u00d5\u00f5tsumisre\u017eiim.",
+                    "name": "\u00d5\u00f5tsumise re\u017eiim"
+                }
+            },
+            "name": "Termostaadi kiikumisre\u017eiimi m\u00e4\u00e4ramine"
+        },
+        "set_temperature": {
+            "description": "M\u00e4\u00e4rab termostaadi sihttemperatuuri.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Kliimaseadme t\u00f6\u00f6re\u017eiim.",
+                    "name": "Kliimaseadme re\u017eiim"
+                },
+                "target_temp_high": {
+                    "description": "Maksimaalne temperatuuri seadepunkt.",
+                    "name": "K\u00f5rgeim sihttemperatuur"
+                },
+                "target_temp_low": {
+                    "description": "Minimaalne temperatuuri seadepunkt.",
+                    "name": "Madalaim sihttemperatuur"
+                },
+                "temperature": {
+                    "description": "Temperatuuri seadepunkt.",
+                    "name": "Soovitud temperatuur"
+                }
+            },
+            "name": "Termostaadi sihttemperatuuri m\u00e4\u00e4ramine",
+            "sections": {
+                "temperature_range": {
+                    "name": "Temperatuurivahemik"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Muudab termostaadi l\u00fclituse olekut.",
+            "name": "Termostaadi sisse/v\u00e4lja l\u00fclitamine"
+        },
+        "turn_off": {
+            "description": "L\u00fclitab termostaadi v\u00e4lja.",
+            "name": "L\u00fclita termostaat v\u00e4lja"
+        },
+        "turn_on": {
+            "description": "L\u00fclitab termostaadi sisse.",
+            "name": "L\u00fclita termostaat sisse"
+        }
+    },
+    "title": "Kliimaseade",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme termostaadi re\u017eiimi muutumisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "hvac_mode": {
+                    "description": "K\u00e4ivitatavad HVAC-re\u017eiimid.",
+                    "name": "Re\u017eiimid"
+                }
+            },
+            "name": "Termostaadi re\u017eiim on muutunud"
+        },
+        "started_cooling": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu termostaati hakkavad jahutama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Termostaat alustas jahutamist"
+        },
+        "started_drying": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu termostaati hakkavad kuivatama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Termostaat hakkas kuivatama"
+        },
+        "started_heating": {
+            "description": "L\u00fclitub sisse kui \u00fcks v\u00f5i mitu termostaati hakkab k\u00fctma.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Termostaat alustas k\u00fctmist"
+        },
+        "target_humidity_changed": {
+            "description": "K\u00e4ivitub kui \u00fche v\u00f5i mitme termostaadi niiskuse seadev\u00e4\u00e4rtus muutub.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "Termostaadi sihtniiskuse tase on muutunud"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "K\u00e4ivitub kui \u00fche v\u00f5i mitme termostaadi niiskuse s\u00e4ttepunkt \u00fcletab l\u00e4ve.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "Termostaadi sihtniiskus \u00fcletas l\u00e4vendi"
+        },
+        "target_temperature_changed": {
+            "description": "K\u00e4ivitub kui \u00fche v\u00f5i mitme termostaadi temperatuuri seadev\u00e4\u00e4rtus muutub.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "Termostaadi sihttemperatuur on muutunud"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "K\u00e4ivitub kui \u00fche v\u00f5i mitme termostaadi temperatuuri s\u00e4ttepunkt \u00fcletab l\u00e4ve.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "Termostaadi sihttemperatuur \u00fcletas k\u00fcnnise"
+        },
+        "turned_off": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme termostaadi v\u00e4ljal\u00fclitumisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Termostaat on v\u00e4lja l\u00fclitatud"
+        },
+        "turned_on": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme termostaadi sissel\u00fclitamisel, olenemata re\u017eiimist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Termostaat on sisse l\u00fclitatud"
+        }
+    }
+}

@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Testuje, \u010di jeden alebo viacero vys\u00e1va\u010dov upratuje.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d \u010dist\u00ed"
+        },
+        "is_docked": {
+            "description": "Testuje, \u010di je v doku pripojen\u00fd jeden alebo viac vys\u00e1va\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d je v dokovacej stanici"
+        },
+        "is_encountering_an_error": {
+            "description": "Testuje, \u010di sa u jedn\u00e9ho alebo viacer\u00fdch vys\u00e1va\u010dov vyskytla chyba.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d m\u00e1 chybu"
+        },
+        "is_paused": {
+            "description": "Testuje, \u010di je pozastaven\u00fd jeden alebo viac vys\u00e1va\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d je pozastaven\u00fd"
+        },
+        "is_returning": {
+            "description": "Testuje, \u010di sa jeden alebo viac vys\u00e1va\u010dov vracia do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d sa vracia"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Nechajte {entity_name} uprata\u0165",
+            "dock": "Nechajte {entity_name} vr\u00e1ti\u0165 sa do doku"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} upratuje",
+            "is_docked": "{entity_name} je v doku"
+        },
+        "extra_fields": {
+            "for": "Trvanie"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} za\u010dala upratova\u0165",
+            "docked": "{entity_name} v doku"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vys\u00e1va\u010d",
+            "state": {
+                "cleaning": "\u010cist\u00ed",
+                "docked": "V doku",
+                "error": "Chyba",
+                "idle": "Ne\u010dinn\u00fd",
+                "off": "Neakt\u00edvny",
+                "on": "Akt\u00edvny",
+                "paused": "Pozastaven\u00fd",
+                "returning": "N\u00e1vrat do doku"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "Mapovanie oblasti nie je nakonfigurovan\u00e9 pre `{entity_id}`. Pred pou\u017eit\u00edm tejto akcie nakonfigurujte mapovanie segmentu na oblas\u0165."
+        },
+        "areas_not_mapped": {
+            "message": "Nasleduj\u00face oblasti nie s\u00fa namapovan\u00e9 na \u017eiadne segmenty cielen\u00fdch vys\u00e1va\u010dov: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Vys\u00e1van\u00e9 segmenty sa zmenili pre {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Povie vys\u00e1va\u010du, aby vy\u010distil jednu alebo viacero oblast\u00ed.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Oblasti na \u010distenie.",
+                    "name": "Oblasti"
+                }
+            },
+            "name": "\u010cistenie priestoru pomocou vys\u00e1va\u010da"
+        },
+        "clean_spot": {
+            "description": "Prik\u00e1\u017ee vys\u00e1va\u010du, aby vykonal \u010distenie miesta.",
+            "name": "\u010cistenie miesta vys\u00e1va\u010dom"
+        },
+        "locate": {
+            "description": "Vyh\u013ead\u00e1 vys\u00e1va\u010d.",
+            "name": "Vyh\u013eadajte vys\u00e1va\u010d"
+        },
+        "pause": {
+            "description": "Pozastav\u00ed aktu\u00e1lnu \u00falohu vys\u00e1va\u010da.",
+            "name": "Pozastavenie vys\u00e1va\u010da"
+        },
+        "return_to_base": {
+            "description": "Odo\u0161le vys\u00e1va\u010d sp\u00e4\u0165 do doku.",
+            "name": "Vr\u00e1tenie vys\u00e1va\u010da do doku"
+        },
+        "send_command": {
+            "description": "Odo\u0161le pr\u00edkaz vys\u00e1va\u010du.",
+            "fields": {
+                "command": {
+                    "description": "Pr\u00edkaz na vykonanie. Pr\u00edkazy s\u00fa \u0161pecifick\u00e9 pre integr\u00e1ciu.",
+                    "name": "Pr\u00edkaz"
+                },
+                "params": {
+                    "description": "Parametre pr\u00edkazu. Parametre s\u00fa \u0161pecifick\u00e9 pre integr\u00e1ciu.",
+                    "name": "Parametre"
+                }
+            },
+            "name": "Odoslanie pr\u00edkazu do vys\u00e1va\u010da"
+        },
+        "set_fan_speed": {
+            "description": "Nastavuje r\u00fdchlos\u0165 ventil\u00e1tora vys\u00e1va\u010da.",
+            "fields": {
+                "fan_speed": {
+                    "description": "R\u00fdchlos\u0165 ventil\u00e1tora. Hodnota z\u00e1vis\u00ed od integr\u00e1cie. Niektor\u00e9 integr\u00e1cie maj\u00fa stupne r\u00fdchlosti, napr\u00edklad 'stredn\u00fd'. Niektor\u00e9 pou\u017e\u00edvaj\u00fa percentu\u00e1lnu hodnotu od 0 do 100.",
+                    "name": "R\u00fdchlos\u0165 ventil\u00e1tora"
+                }
+            },
+            "name": "Nastavenie r\u00fdchlosti ventil\u00e1tora vys\u00e1va\u010da"
+        },
+        "start": {
+            "description": "Spust\u00ed alebo obnov\u00ed \u010distiacu \u00falohu vys\u00e1va\u010da.",
+            "name": "Spustenie vys\u00e1va\u010da"
+        },
+        "start_pause": {
+            "description": "Spust\u00ed, pozastav\u00ed alebo obnov\u00ed \u010distenie vys\u00e1va\u010da.",
+            "name": "Spustenie/pozastavenie vys\u00e1va\u010da"
+        },
+        "stop": {
+            "description": "Zastav\u00ed aktu\u00e1lnu \u00falohu vys\u00e1va\u010da.",
+            "name": "Zastavenie vys\u00e1va\u010da"
+        },
+        "toggle": {
+            "description": "Zap\u00edna/vyp\u00edna vys\u00e1va\u010d.",
+            "name": "Prep\u00edna\u010d vys\u00e1va\u010da"
+        },
+        "turn_off": {
+            "description": "Vypne vys\u00e1va\u010d.",
+            "name": "Vypnutie vys\u00e1va\u010da"
+        },
+        "turn_on": {
+            "description": "Zapne vys\u00e1va\u010d.",
+            "name": "Zapnutie vys\u00e1va\u010da"
+        }
+    },
+    "title": "Vys\u00e1va\u010d",
+    "triggers": {
+        "errored": {
+            "description": "Spust\u00ed sa, ke\u010f sa vyskytne chyba v jednom alebo viacer\u00fdch vys\u00e1va\u010doch.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d zaznamenal chybu"
+        },
+        "paused_cleaning": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viacero vys\u00e1va\u010dov pozastav\u00ed upratovanie.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d pozastavil upratovanie"
+        },
+        "returned_to_dock": {
+            "description": "Spust\u00ed sa, ke\u010f sa jeden alebo viac vys\u00e1va\u010dov vr\u00e1ti do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d sa vr\u00e1til do dokovacej stanice"
+        },
+        "started_cleaning": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viacero vys\u00e1va\u010dov za\u010dne upratova\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d za\u010dal upratova\u0165"
+        },
+        "started_returning": {
+            "description": "Spust\u00ed sa, ke\u010f sa jeden alebo viac vys\u00e1va\u010dov za\u010dne vraca\u0165 do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Vys\u00e1va\u010d sa za\u010dal vraca\u0165 do doku"
+        }
+    }
+}

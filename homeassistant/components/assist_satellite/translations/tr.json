@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "For at least"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Bir veya daha fazla Assist uydusunun bo\u015fta olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Uydu bo\u015fta"
+        },
+        "is_listening": {
+            "description": "Bir veya daha fazla Assist uydusunun dinleme yap\u0131p yapmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Uydu dinliyor"
+        },
+        "is_processing": {
+            "description": "Bir veya daha fazla Assist uydusunun i\u015flenip i\u015flenmedi\u011fini test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Uydu i\u015flem yap\u0131yor"
+        },
+        "is_responding": {
+            "description": "Bir veya daha fazla Assist uydusunun yan\u0131t verip vermedi\u011fini test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Uydu yan\u0131t veriyor"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Yard\u0131mc\u0131 uydu",
+            "state": {
+                "idle": "Bo\u015fta",
+                "listening": "Dinleniyor",
+                "processing": "\u0130\u015fleniyor",
+                "responding": "Cevaplama"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "Cevap Kimli\u011fi",
+                "sentences": "C\u00fcmleler"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "Assist uydusunun bir mesaj iletmesine izin verin.",
+            "fields": {
+                "media_id": {
+                    "description": "Metinden sese ge\u00e7i\u015f yerine duyurulacak medya kimli\u011fi.",
+                    "name": "Medya Kimli\u011fi"
+                },
+                "message": {
+                    "description": "Duyurulacak mesaj.",
+                    "name": "Mesaj"
+                },
+                "preannounce": {
+                    "description": "Duyurudan \u00f6nce bir ses \u00e7al\u0131n.",
+                    "name": "\u00d6nceden duyurmak"
+                },
+                "preannounce_media_id": {
+                    "description": "Duyurudan \u00f6nce oynat\u0131lacak \u00f6zel medya kimli\u011fi.",
+                    "name": "Medya kimli\u011fini \u00f6nceden duyurun"
+                }
+            },
+            "name": "Uydu \u00fczerinden duyuru"
+        },
+        "ask_question": {
+            "description": "Bir Assist uydusunun bir soru sormas\u0131n\u0131 ve kullan\u0131c\u0131n\u0131n yan\u0131t\u0131n\u0131 almas\u0131n\u0131 sa\u011flar.",
+            "fields": {
+                "answers": {
+                    "description": "Soruya verilebilecek olas\u0131 cevaplar.",
+                    "name": "Cevaplar"
+                },
+                "entity_id": {
+                    "description": "Uydu varl\u0131\u011f\u0131na soruyu sormas\u0131 i\u00e7in yard\u0131m edin.",
+                    "name": "Varl\u0131k"
+                },
+                "preannounce": {
+                    "description": "Ba\u015flang\u0131\u00e7 mesaj\u0131 veya medyas\u0131ndan \u00f6nce bir ses \u00e7al\u0131n.",
+                    "name": "\u00d6nceden duyurmak"
+                },
+                "preannounce_media_id": {
+                    "description": "Ba\u015flatma mesaj\u0131ndan veya medyadan \u00f6nce oynat\u0131lacak \u00f6zel medya kimli\u011fi.",
+                    "name": "Medya kimli\u011fini \u00f6nceden duyurun"
+                },
+                "question": {
+                    "description": "Sorulmas\u0131 gereken soru.",
+                    "name": "Soru"
+                },
+                "question_media_id": {
+                    "description": "Metinden sese d\u00f6n\u00fc\u015ft\u00fcrme yerine kullan\u0131lacak sorunun medya kimli\u011fi.",
+                    "name": "Soru medya kimli\u011fi"
+                }
+            },
+            "name": "Uydu hakk\u0131nda soru sorunuz"
+        },
+        "start_conversation": {
+            "description": "Assist uydusundan bir konu\u015fma ba\u015flat\u0131r.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Yapay zekaya talep hakk\u0131nda arka plan bilgisi sa\u011flay\u0131n.",
+                    "name": "Ek sistem istemi"
+                },
+                "preannounce": {
+                    "description": "Ba\u015flang\u0131\u00e7 mesaj\u0131 veya medyas\u0131ndan \u00f6nce bir ses \u00e7al\u0131n.",
+                    "name": "\u00d6nceden duyurmak"
+                },
+                "preannounce_media_id": {
+                    "description": "Ba\u015flang\u0131\u00e7 mesaj\u0131 veya medyadan \u00f6nce oynat\u0131lacak \u00f6zel medya kimli\u011fi.",
+                    "name": "Medya kimli\u011fini \u00f6nceden duyurun"
+                },
+                "start_media_id": {
+                    "description": "Metinden sese d\u00f6n\u00fc\u015ft\u00fcrme yerine ba\u015flang\u0131\u00e7 olarak kullan\u0131lacak medya kimli\u011fi.",
+                    "name": "Medya Kimli\u011fi"
+                },
+                "start_message": {
+                    "description": "Ba\u015flamak i\u00e7in mesaj.",
+                    "name": "Mesaj"
+                }
+            },
+            "name": "Uydu \u00fczerinde g\u00f6r\u00fc\u015fmeyi ba\u015flat\u0131n"
+        }
+    },
+    "title": "Uydu yard\u0131mc\u0131s\u0131",
+    "triggers": {
+        "idle": {
+            "description": "Bir veya daha fazla Assist uydusu bir komutu i\u015fledikten sonra bo\u015fta kald\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Uydu devre d\u0131\u015f\u0131 kald\u0131."
+        },
+        "listening": {
+            "description": "Bir veya daha fazla Assist uydusu birinden komut beklemeye ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Uydu dinlemeye ba\u015flad\u0131."
+        },
+        "processing": {
+            "description": "Bir veya daha fazla yard\u0131mc\u0131 uydu, komutu duyduktan sonra i\u015flemeye ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Uydu i\u015flemeye ba\u015flad\u0131."
+        },
+        "responding": {
+            "description": "Bir veya daha fazla Assist uydusunun bir komutu i\u015fledikten sonra yan\u0131t vermeye ba\u015flamas\u0131 veya bir \u015fey duyurmaya ba\u015flamas\u0131 durumunda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Uydu yan\u0131t vermeye ba\u015flad\u0131."
+        }
+    }
+}

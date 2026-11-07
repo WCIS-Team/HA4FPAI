@@ -1,0 +1,245 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "condition_threshold_name": "Tipo de umbral",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos",
+        "trigger_threshold_name": "Tipo de umbral"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Comprueba si uno o m\u00e1s calentadores de agua est\u00e1n apagados.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El calentador de agua est\u00e1 apagado."
+        },
+        "is_on": {
+            "description": "Comprueba si uno o m\u00e1s calentadores de agua est\u00e1n encendidos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El calentador de agua est\u00e1 encendido."
+        },
+        "is_operation_mode": {
+            "description": "Comprueba si uno o m\u00e1s calentadores de agua est\u00e1n configurados en un modo de funcionamiento espec\u00edfico.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "operation_mode": {
+                    "description": "El modo de funcionamiento que se debe comprobar.",
+                    "name": "Modo de funcionamiento"
+                }
+            },
+            "name": "Modo de funcionamiento en calentador de agua"
+        },
+        "is_target_temperature": {
+            "description": "Comprueba la temperatura de consigna de uno o m\u00e1s calentadores de agua.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "Temperatura deseada del calentador de agua"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "Apagar {entity_name}",
+            "turn_on": "Encender {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Calentador de agua",
+            "state": {
+                "eco": "Eco",
+                "electric": "El\u00e9ctrico",
+                "gas": "Gas",
+                "heat_pump": "Bomba de calor",
+                "high_demand": "Alta demanda",
+                "off": "Apagado",
+                "performance": "Rendimiento"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Modo ausente",
+                    "state": {
+                        "off": "Apagado",
+                        "on": "Encendido"
+                    }
+                },
+                "current_operation": {
+                    "name": "Funcionamiento actual"
+                },
+                "current_temperature": {
+                    "name": "Temperatura actual"
+                },
+                "max_temp": {
+                    "name": "Temperatura deseada m\u00e1xima"
+                },
+                "min_temp": {
+                    "name": "Temperatura deseada m\u00ednima"
+                },
+                "operation_mode": {
+                    "name": "Modo de funcionamiento",
+                    "state": {
+                        "eco": "Eco",
+                        "electric": "El\u00e9ctrico",
+                        "gas": "Gas",
+                        "heat_pump": "Bomba de calor",
+                        "high_demand": "Alta demanda",
+                        "off": "Apagado",
+                        "performance": "Rendimiento"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "Temperatura deseada superior"
+                },
+                "target_temp_low": {
+                    "name": "Temperatura deseada m\u00e1s baja"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "El modo de funcionamiento {operation_mode} no es v\u00e1lido para {entity_id}. Los modos de funcionamiento v\u00e1lidos son: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "El modo de funcionamiento {operation_mode} no es v\u00e1lido para {entity_id}. La lista de operaciones no est\u00e1 definida."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "description": "Establece el modo ausente en un calentador de agua.",
+            "fields": {
+                "away_mode": {
+                    "description": "Nuevo valor del modo ausente.",
+                    "name": "Modo Ausente"
+                }
+            },
+            "name": "Establecer modo ausente en calentador de agua"
+        },
+        "set_operation_mode": {
+            "description": "Establece el modo de funcionamiento en un calentador de agua.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nuevo valor del modo de funcionamiento. Para obtener una lista de los modos posibles, consulta la documentaci\u00f3n de integraci\u00f3n.",
+                    "name": "Modo de operaci\u00f3n"
+                }
+            },
+            "name": "Establecer modo de funcionamiento en calentador de agua"
+        },
+        "set_temperature": {
+            "description": "Establece la temperatura deseada de un calentador de agua.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nuevo valor del modo de funcionamiento. Para obtener una lista de los modos posibles, consulta la documentaci\u00f3n de integraci\u00f3n.",
+                    "name": "Modo de operaci\u00f3n"
+                },
+                "temperature": {
+                    "description": "Nueva temperatura deseada para el calentador de agua.",
+                    "name": "Temperatura"
+                }
+            },
+            "name": "Establecer temperatura deseada en calentador de agua"
+        },
+        "turn_off": {
+            "description": "Apaga un calentador de agua.",
+            "name": "Apagar calentador de agua"
+        },
+        "turn_on": {
+            "description": "Enciende un calentador de agua.",
+            "name": "Encender calentador de agua"
+        }
+    },
+    "title": "Calentador de agua",
+    "triggers": {
+        "operation_mode_changed": {
+            "description": "Se dispara cuando el modo de funcionamiento de uno o m\u00e1s calentadores de agua cambia a un modo espec\u00edfico.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "operation_mode": {
+                    "description": "Los modos de funcionamiento para que se dispare.",
+                    "name": "Modo de funcionamiento"
+                }
+            },
+            "name": "Se ha cambiado el modo de funcionamiento del calentador de agua."
+        },
+        "target_temperature_changed": {
+            "description": "Se dispara cuando la consigna de temperatura de uno o m\u00e1s calentadores de agua cambia.",
+            "fields": {
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "La temperatura deseada del calentador de agua cambi\u00f3"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Se dispara cuando la consigna de temperatura de uno o m\u00e1s calentadores de agua cruza un umbral.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "La temperatura deseada del calentador de agua super\u00f3 el umbral."
+        },
+        "turned_off": {
+            "description": "Se activa cuando uno o m\u00e1s calentadores de agua se apagan.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Calentador de agua apagado"
+        },
+        "turned_on": {
+            "description": "Se dispara cuando uno o m\u00e1s calentadores de agua se enciendan, independientemente del modo de funcionamiento.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Calentador de agua encendido"
+        }
+    }
+}

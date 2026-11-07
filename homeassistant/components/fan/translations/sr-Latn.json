@@ -1,0 +1,225 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "section_additional_fields_name": "Dodatne opcije",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Proverava da li je jedan ili vi\u0161e ventilatora isklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventilator isklju\u010den"
+        },
+        "is_on": {
+            "description": "Proverava da li je jedan ili vi\u0161e ventilatora uklju\u010den.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventilator uklju\u010den"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Uklju\u010di/isklju\u010di {entity_name}",
+            "turn_off": "Isklju\u010di {entity_name}",
+            "turn_on": "Uklju\u010di {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} je isklju\u010deno",
+            "is_on": "{entity_name} je uklju\u010deno"
+        },
+        "extra_fields": {
+            "for": "Trajanje"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} je uklju\u010den ili isklju\u010den",
+            "turned_off": "{entity_name} je isklju\u010den",
+            "turned_on": "{entity_name} je uklju\u010den"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventilator",
+            "state": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Smer",
+                    "state": {
+                        "forward": "Napred",
+                        "reverse": "Obrnuto"
+                    }
+                },
+                "oscillating": {
+                    "name": "Okretanje",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "percentage": {
+                    "name": "Brzina"
+                },
+                "percentage_step": {
+                    "name": "Korak brzine"
+                },
+                "preset_mode": {
+                    "name": "Unapred pode\u0161eni re\u017eim"
+                },
+                "preset_modes": {
+                    "name": "Dostupni unapred pode\u0161eni re\u017eimi"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "Re\u017eim {preset_mode} nije ispravan. Podr\u017eani re\u017eimi su: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Unapred",
+                "reverse": "Unazad"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "Smanjuje brzinu ventilatora.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Procenat za koji se smanjuje brzina.",
+                    "name": "Vrednost umanjenja (%)"
+                }
+            },
+            "name": "Smanji brzinu ventilatora",
+            "sections": {
+                "additional_fields": {
+                    "name": "Dodatne opcije"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "Pove\u0107ava brzinu ventilatora.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Procenat za koji se pove\u0107ava brzina.",
+                    "name": "Vrednost uve\u0107anja (%)"
+                }
+            },
+            "name": "Pove\u0107aj brzinu ventilatora",
+            "sections": {
+                "additional_fields": {
+                    "name": "Dodatne opcije"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "Kontroli\u0161e da li ventilator osciluje.",
+            "fields": {
+                "oscillating": {
+                    "description": "Defini\u0161e aktivno ili neaktivno stanje funkcije horizontalnog zakretanja.",
+                    "name": "Okretanje"
+                }
+            },
+            "name": "Uklju\u010di/isklju\u010di okretanje ventilatora"
+        },
+        "set_direction": {
+            "description": "Postavlja smer rotacije ventilatora.",
+            "fields": {
+                "direction": {
+                    "description": "\u017deljeni pravac okretanja elise (npr. napred ili obrnuto).",
+                    "name": "Smer rotacije"
+                }
+            },
+            "name": "Podesi smer rotacije"
+        },
+        "set_percentage": {
+            "description": "Postavlja brzinu ventilatora.",
+            "fields": {
+                "percentage": {
+                    "description": "\u017deljeni nivo snage rada motora na skali od 0 do 100%.",
+                    "name": "Intenzitet rada (%)"
+                }
+            },
+            "name": "Podesi brzinu ventilatora"
+        },
+        "set_preset_mode": {
+            "description": "Postavlja predefinisani re\u017eim ventilatora.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Naziv specifi\u010dnog re\u017eima rada predvi\u0111enog za aktivaciju.",
+                    "name": "Re\u017eim rada"
+                }
+            },
+            "name": "Podesi re\u017eim rada ventilatora"
+        },
+        "toggle": {
+            "description": "Uklju\u010duje ili isklju\u010duje ventilator.",
+            "name": "Prebaci stanje ventilatora"
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje ventilator.",
+            "name": "Isklju\u010di ventilator"
+        },
+        "turn_on": {
+            "description": "Inicira radni ciklus i aktivira funkciju izabranog ventilatora.",
+            "fields": {
+                "percentage": {
+                    "description": "\u017deljeni nivo snage rada motora na skali od 0 do 100%.",
+                    "name": "Intenzitet rada (%)"
+                },
+                "preset_mode": {
+                    "description": "Naziv specifi\u010dnog re\u017eima rada predvi\u0111enog za aktivaciju.",
+                    "name": "Re\u017eim rada"
+                }
+            },
+            "name": "Uklju\u010di ventilator"
+        }
+    },
+    "title": "Ventilator",
+    "triggers": {
+        "turned_off": {
+            "description": "Pokre\u0107e se nakon \u0161to se jedan ili vi\u0161e ventilatora isklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventilator isklju\u010den"
+        },
+        "turned_on": {
+            "description": "Pokre\u0107e se nakon \u0161to se jedan ili vi\u0161e ventilatora uklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventilator uklju\u010den"
+        }
+    }
+}

@@ -1,0 +1,1250 @@
+{
+    "common": {
+        "additional_options": "Ytterligare alternativ",
+        "availability": "Tillg\u00e4nglighet",
+        "availability_description": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna.",
+        "code_format": "Kodformat",
+        "device_class": "Enhetsklass",
+        "device_id_description": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+        "state": "Tillst\u00e5nd",
+        "temperature_unit": "Temperaturenhet",
+        "temperature_unit_description": "Enheten f\u00f6r utdata fr\u00e5n temperaturmallar. Ett av `\u00b0C`, `\u00b0F` eller `K`.",
+        "turn_off": "\u00c5tg\u00e4rder vid avslagning",
+        "turn_on": "\u00c5tg\u00e4rder vid p\u00e5slagning",
+        "unit_of_measurement": "M\u00e5ttenhet"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "\u00c5tg\u00e4rder vid p\u00e5larmning av bortal\u00e4ge",
+                    "arm_custom_bypass": "\u00c5tg\u00e4rder vid p\u00e5larmning med anpassad f\u00f6rbikoppling",
+                    "arm_home": "\u00c5tg\u00e4rder vid p\u00e5larmning av hemmal\u00e4ge",
+                    "arm_night": "\u00c5tg\u00e4rder vid p\u00e5larmning av nattl\u00e4ge",
+                    "arm_vacation": "\u00c5tg\u00e4rder vid p\u00e5larmning av semesterl\u00e4ge",
+                    "code_arm_required": "Kod kr\u00e4vs f\u00f6r p\u00e5larmning",
+                    "code_format": "Kodformat",
+                    "device_id": "Enhet",
+                    "disarm": "\u00c5tg\u00e4rd vid avlarmning",
+                    "name": "Namn",
+                    "trigger": "\u00c5tg\u00e4rder vid utl\u00f6st larm",
+                    "value_template": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "arm_away": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_away`. Tar emot variabeln `kod`.",
+                    "arm_custom_bypass": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_custom_bypass`. Tar emot variabeln `kod`.",
+                    "arm_home": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_home`. Tar emot variabeln `kod`.",
+                    "arm_night": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_night`. Tar emot variabeln `kod`.",
+                    "arm_vacation": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_vacation`. Tar emot variabeln `kod`.",
+                    "code_arm_required": "Om det \u00e4r sant kr\u00e4vs koden f\u00f6r att aktivera larmet.",
+                    "code_format": "Antingen `nummer`, `text` eller `no_code`. Format f\u00f6r koden som anv\u00e4nds f\u00f6r att aktivera/avaktivera larmet.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "disarm": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r avaktiverad. Tar emot variabeln `kod`.",
+                    "trigger": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmkontrollpanelen utl\u00f6ses. Mottar variabeln `code`.",
+                    "value_template": "Definierar en mall f\u00f6r att st\u00e4lla in larmcentralens status. Giltiga utg\u00e5ngsv\u00e4rden fr\u00e5n mallen \u00e4r `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` och `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r larmkontrollpanel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "state": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "state": "Sensorn \u00e4r `p\u00e5` om mallen utv\u00e4rderas till `True`, `yes`, `on`, `enable` eller ett positivt tal. Alla andra v\u00e4rden g\u00f6r att den blir `av`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet",
+                            "delay_off": "F\u00f6rdr\u00f6jning f\u00f6r av",
+                            "delay_on": "F\u00f6rdr\u00f6jning f\u00f6r p\u00e5"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna.",
+                            "delay_off": "Tiden som malltillst\u00e5ndet m\u00e5ste vara ouppfyllt innan sensorn v\u00e4xlar till `off`.",
+                            "delay_on": "Tiden som malltillst\u00e5ndet m\u00e5ste vara uppfyllt innan sensorn v\u00e4xlar till `on`."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r bin\u00e4r sensor"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "press": "\u00c5tg\u00e4rder vid tryckning"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "press": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r knappen trycks."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r knapp"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Aktuell temperatur",
+                    "device_id": "Enhet",
+                    "hvac_action": "Aktuell \u00e5tg\u00e4rd",
+                    "hvac_mode": "HVAC-l\u00e4ge",
+                    "hvac_modes": "HVAC-l\u00e4gen",
+                    "name": "Namn",
+                    "set_hvac_mode": "\u00c5tg\u00e4rder vid inst\u00e4llning av HVAC-l\u00e4ge",
+                    "set_temperature": "\u00c5tg\u00e4rder vid inst\u00e4llning av temperatur",
+                    "target_temperature": "M\u00e5ltemperatur",
+                    "temperature_unit": "Temperaturenhet"
+                },
+                "data_description": {
+                    "current_temperature": "Definierar en mall f\u00f6r aktuell temperatur.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "hvac_action": "Definierar en mall f\u00f6r aktuell HVAC-\u00e5tg\u00e4rd. Giltiga HVAC-\u00e5tg\u00e4rder \u00e4r `cooling`, `defrosting`, `drying`, `fan`, `heating`, `idle`, `off` och `preheating`.",
+                    "hvac_mode": "Definierar en mall f\u00f6r aktuellt HVAC-l\u00e4ge. Giltiga HVAC-l\u00e4gen \u00e4r `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` och `off`.",
+                    "hvac_modes": "Definierar en mall f\u00f6r en lista med tillg\u00e4ngliga HVAC-l\u00e4gen. Giltiga HVAC-l\u00e4gen i listan \u00e4r `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` och `off`.",
+                    "set_hvac_mode": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r klimatstyrningen f\u00e5r kommandot `set_hvac_mode`. Tar emot variabeln `hvac_mode`.",
+                    "set_temperature": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r klimatstyrningen f\u00e5r kommandot `set_temperature`. Tar emot variablerna `hvac_mode`, `temperature`, `target_temp_high` och `target_temp_low`. Om `hvac_mode` tas emot utf\u00f6rs \u00e5tg\u00e4rderna i `set_hvac_mode` f\u00f6re \u00e5tg\u00e4rderna i `set_temperature`.",
+                    "target_temperature": "Definierar en mall f\u00f6r m\u00e5ltemperaturen.",
+                    "temperature_unit": "Enheten f\u00f6r utdata fr\u00e5n temperaturmallar. Ett av `\u00b0C`, `\u00b0F` eller `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet",
+                            "max_temperature": "H\u00f6gsta m\u00e5ltemperatur",
+                            "min_temperature": "L\u00e4gsta m\u00e5ltemperatur"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Malltermostat"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "\u00c5tg\u00e4rder vid st\u00e4ngning",
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "open_cover": "\u00c5tg\u00e4rder vid \u00f6ppning",
+                    "position": "Position",
+                    "set_cover_position": "\u00c5tg\u00e4rder n\u00e4r position s\u00e4tts",
+                    "state": "Tillst\u00e5nd",
+                    "stop_cover": "\u00c5tg\u00e4rder vid stopp"
+                },
+                "data_description": {
+                    "close_cover": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r enheten har st\u00e4ngts.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "open_cover": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r enheten har \u00f6ppnats.",
+                    "position": "Definierar en mall f\u00f6r att h\u00e4mta \u00f6ppningsgraden. V\u00e4rdet \u00e4r ett tal mellan 0 (st\u00e4ngd) och 100 (\u00f6ppen).",
+                    "set_cover_position": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r enheten f\u00e5r kommandot `set_cover_position`. Tar emot variabeln `position`.",
+                    "stop_cover": "Anger vilka \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r enheten stoppas."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r ett skydd"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Enhet",
+                    "in_zones": "Zoner",
+                    "latitude": "Latitud",
+                    "longitude": "Longitud",
+                    "name": "Namn"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "in_zones": "Definierar en mall som returnerar en lista \u00f6ver zoner som enhetssp\u00e5raren f\u00f6r n\u00e4rvarande befinner sig i. Mallen ska returnera en lista \u00f6ver zonens enhets-ID:n. Om enhetssp\u00e5raren inte finns i n\u00e5gon zon ska mallen returnera en tom lista.",
+                    "latitude": "Definierar en mall f\u00f6r att h\u00e4mta latituden f\u00f6r enhetens sp\u00e5rare. Giltiga v\u00e4rden \u00e4r siffror mellan `-90` och `90`.",
+                    "longitude": "Definierar en mall f\u00f6r att h\u00e4mta longitud f\u00f6r enhetens tracker. Giltiga v\u00e4rden \u00e4r siffror mellan `-180` och `180`.",
+                    "name": "Namn"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet",
+                            "location_accuracy": "Platsens noggrannhet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna.",
+                            "location_accuracy": "Definierar en mall f\u00f6r att f\u00e5 noggrannheten f\u00f6r enhetens trackerposition i meter. Giltiga v\u00e4rden \u00e4r tal som \u00e4r st\u00f6rre \u00e4n eller lika med `0`."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r enhetssp\u00e5rning"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "event_type": "Senast utl\u00f6sta h\u00e4ndelsetyp",
+                    "event_types": "H\u00e4ndelsetyper",
+                    "name": "Namn"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "event_type": "Definierar en mall f\u00f6r h\u00e4ndelsetypen.",
+                    "event_types": "Definierar en mall f\u00f6r en lista \u00f6ver tillg\u00e4ngliga h\u00e4ndelsetyper."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r en h\u00e4ndelse"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "percentage": "Procent",
+                    "set_percentage": "\u00c5tg\u00e4rder vid inst\u00e4lld procentandel",
+                    "speed_count": "Antal hastigheter",
+                    "state": "Tillst\u00e5nd",
+                    "turn_off": "\u00c5tg\u00e4rder vid avslagning",
+                    "turn_on": "\u00c5tg\u00e4rder vid p\u00e5slagning"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "percentage": "Definierar en mall f\u00f6r att h\u00e4mta fl\u00e4ktens hastighet i procent.",
+                    "set_percentage": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r fl\u00e4kten f\u00e5r ett kommando om varvtal i procent. Tar emot variabeln `percentage`.",
+                    "speed_count": "Antalet hastighetssteg som fl\u00e4kten st\u00f6der. Anv\u00e4nds f\u00f6r att ber\u00e4kna stegstorleken i procent f\u00f6r \u00e5tg\u00e4rderna `fan.increase_speed` och `fan.decrease_speed`.",
+                    "state": "Fl\u00e4kten \u00e4r `p\u00e5` om mallen ger resultatet `Sant`, `ja`, `p\u00e5`, `aktiv` eller ett positivt tal. Alla andra v\u00e4rden g\u00f6r att den visas som `av`.",
+                    "turn_off": "Anger vilka \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r fl\u00e4kten st\u00e4ngs av.",
+                    "turn_on": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r fl\u00e4kten sl\u00e5s p\u00e5. Tar emot variablerna `procent` och/eller `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r fl\u00e4kt"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "url": "URL",
+                    "verify_ssl": "Verifiera SSL-certifikat"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "url": "Definierar en mall f\u00f6r att h\u00e4mta URL:en som bilden visas p\u00e5.",
+                    "verify_ssl": "Aktivera eller inaktivera verifiering av SSL-certifikat. Avaktivera om du vill anv\u00e4nda en http-URL eller om du har ett sj\u00e4lvsignerat SSL-certifikat och inte har installerat CA-certifikatet f\u00f6r att aktivera verifiering."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r bild"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Enhet",
+                    "hs": "HS-f\u00e4rg",
+                    "level": "Ljusstyrka",
+                    "name": "Namn",
+                    "set_hs": "\u00c5tg\u00e4rder vid inst\u00e4llning av HS-f\u00e4rg",
+                    "set_level": "\u00c5tg\u00e4rder vid inst\u00e4llning av niv\u00e5",
+                    "set_temperature": "\u00c5tg\u00e4rder vid inst\u00e4llning av f\u00e4rgtemperatur",
+                    "state": "Tillst\u00e5nd",
+                    "temperature": "F\u00e4rgtemperatur",
+                    "turn_off": "\u00c5tg\u00e4rder vid avslagning",
+                    "turn_on": "\u00c5tg\u00e4rder vid p\u00e5slagning"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "hs": "Definierar en mall f\u00f6r att f\u00e5 fram ljusets HS-f\u00e4rg. M\u00e5ste rendera en tupel (nyans, m\u00e4ttnad).",
+                    "level": "Definierar en mall f\u00f6r att f\u00e5 ljusstyrkan p\u00e5 ljuset. Giltiga v\u00e4rden \u00e4r 0 till 255.",
+                    "set_hs": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r ljuset f\u00e5r ett HS-f\u00e4rgkommando. Tillg\u00e4ngliga variabler: `hs` som en tupel, `h` och `s`.",
+                    "set_level": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r lampan f\u00e5r ett ljusstyrkekommando. Skriptet kommer endast att anropas om `turn_on`-anropet endast har `brightness` och eventuellt `transition`. Tar emot variablerna `brightness` och, eventuellt, `transition`.",
+                    "set_temperature": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r ljuset f\u00e5r ett f\u00e4rgtemperaturkommando. Mottar variabeln `color_temp_kelvin`. Kan ocks\u00e5 ta emot variablerna `brightness` och/eller `transition`.",
+                    "state": "Ljuset \u00e4r `p\u00e5` om mallen utv\u00e4rderas som `Sant`, `ja`, `p\u00e5`, `aktivera` eller ett positivt tal. Alla andra v\u00e4rden g\u00f6r att den blir `av`.",
+                    "temperature": "Definierar en mall f\u00f6r att f\u00e5 fram ljusets f\u00e4rgtemperatur.",
+                    "turn_off": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r lampan sl\u00e4cks.",
+                    "turn_on": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r lampan t\u00e4nds."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r lampa"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Kodformat",
+                    "device_id": "Enhet",
+                    "lock": "\u00c5tg\u00e4rder vid l\u00e5sning",
+                    "name": "Namn",
+                    "open": "\u00c5tg\u00e4rder vid \u00f6ppning",
+                    "state": "Tillst\u00e5nd",
+                    "unlock": "\u00c5tg\u00e4rder vid uppl\u00e5sning"
+                },
+                "data_description": {
+                    "code_format": "Definierar en mall f\u00f6r att h\u00e4mta l\u00e5sets `code_format`-attribut.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "lock": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r l\u00e5set l\u00e5ses.",
+                    "open": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r l\u00e5set \u00f6ppnas.",
+                    "state": "Definierar en mall som anger l\u00e5sets tillst\u00e5nd. L\u00e5set \u00e4r l\u00e5st om mallen utv\u00e4rderas till `True`, `true`, `on` eller `locked`. L\u00e5set \u00e4r uppl\u00e5st om mallen utv\u00e4rderas till `False`, `false`, `off` eller `unlocked`. Andra giltiga tillst\u00e5nd \u00e4r `jammed`, `opening`, `locking`, `open` och `unlocking`.",
+                    "unlock": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r l\u00e5set l\u00e5ses upp."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r l\u00e5s"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "max": "H\u00f6gsta v\u00e4rde",
+                    "min": "Minsta v\u00e4rde",
+                    "name": "Namn",
+                    "set_value": "\u00c5tg\u00e4rder vid inst\u00e4llning av v\u00e4rde",
+                    "state": "Tillst\u00e5nd",
+                    "step": "Stegv\u00e4rde",
+                    "unit_of_measurement": "M\u00e5ttenhet"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "max": "Definierar talets maximala v\u00e4rde.",
+                    "min": "Definierar talets minimiv\u00e4rde.",
+                    "set_value": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r talet s\u00e4tts till ett v\u00e4rde. Tar emot variabeln `v\u00e4rde`.",
+                    "state": "Mall f\u00f6r talets aktuella v\u00e4rde.",
+                    "step": "Definierar talets \u00f6knings-/minskningssteg.",
+                    "unit_of_measurement": "Definierar eventuell m\u00e5ttenhet f\u00f6r talet."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r nummer"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "options": "Tillg\u00e4ngliga alternativ",
+                    "select_option": "\u00c5tg\u00e4rder vid val",
+                    "state": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "options": "Mall f\u00f6r de tillg\u00e4ngliga alternativen i rullgardinsmenyn.",
+                    "select_option": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r ett `alternativ` fr\u00e5n listan `alternativ` v\u00e4ljs. Mottar variabeln `alternativ`.",
+                    "state": "Mall f\u00f6r det aktuella v\u00e4rdet i rullgardinsmenyn."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r val"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "state": "Tillst\u00e5nd",
+                    "state_class": "Tillst\u00e5ndsklass",
+                    "unit_of_measurement": "M\u00e5ttenhet"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "state": "Definierar en mall f\u00f6r att h\u00e4mta sensorns tillst\u00e5nd. Om sensorn \u00e4r numerisk, dvs. den har en `state_class` eller en `unit_of_measurement`, m\u00e5ste state-mallen \u00e5terges som ett tal eller `none`. Tillst\u00e5ndsmallen f\u00e5r inte \u00e5terges som en str\u00e4ng, inklusive `unknown` eller `unavailable`. En `availability`-mall kan definieras f\u00f6r att undertrycka rendering av tillst\u00e5ndsmallen.",
+                    "unit_of_measurement": "Definierar m\u00e5ttenheten f\u00f6r sensorn, om s\u00e5dan finns. Detta kommer ocks\u00e5 att visa v\u00e4rdet baserat p\u00e5 inst\u00e4llningen f\u00f6r talformat i anv\u00e4ndarprofilen och p\u00e5verka den grafiska presentationen i historikvisualiseringen som ett kontinuerligt v\u00e4rde."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r sensor"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "turn_off": "\u00c5tg\u00e4rder vid avslagning",
+                    "turn_on": "\u00c5tg\u00e4rder vid p\u00e5slagning",
+                    "value_template": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "turn_off": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r brytaren sl\u00e5s av.",
+                    "turn_on": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r brytaren sl\u00e5s p\u00e5.",
+                    "value_template": "Definierar en mall f\u00f6r att st\u00e4lla in brytarens tillst\u00e5nd. Om den inte definieras kommer brytaren optimistiskt anta att alla kommandon lyckas."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r brytare"
+            },
+            "update": {
+                "data": {
+                    "backup": "S\u00e4kerhetskopia",
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "in_progress": "P\u00e5g\u00e5ende",
+                    "install": "\u00c5tg\u00e4rder vid installation",
+                    "installed_version": "Installerad version",
+                    "latest_version": "Senaste version",
+                    "name": "Namn",
+                    "release_summary": "Versionssammanfattning",
+                    "release_url": "Version URL",
+                    "specific_version": "Specifik version",
+                    "title": "Titel",
+                    "update_percentage": "Uppdateringsprocent"
+                },
+                "data_description": {
+                    "backup": "Aktivera eller inaktivera alternativet `automatisk s\u00e4kerhetskopiering f\u00f6re uppdatering` i uppdateringsreparationen. N\u00e4r den \u00e4r inaktiverad kommer variabeln `backup` alltid att ge `False` under \u00e5tg\u00e4rden `install` och den kommer inte att acceptera alternativet `backup`.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "in_progress": "Definierar en mall f\u00f6r att h\u00e4mta p\u00e5g\u00e5ende tillst\u00e5nd.",
+                    "install": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r uppdateringen installeras. Tar emot variablerna `specific_version` och `backup` n\u00e4r de \u00e4r aktiverade.",
+                    "installed_version": "Definierar en mall f\u00f6r att h\u00e4mta den installerade versionen.",
+                    "latest_version": "Definierar en mall f\u00f6r att h\u00e4mta den senaste versionen.",
+                    "release_summary": "Definierar en mall f\u00f6r att f\u00e5 en sammanfattning av utg\u00e5van.",
+                    "release_url": "Definierar en mall f\u00f6r att h\u00e4mta URL:en f\u00f6r releasen.",
+                    "specific_version": "Aktivera eller inaktivera med variabeln \"version\" med \u00e5tg\u00e4rden \"installera\". N\u00e4r den \u00e4r inaktiverad kommer variabeln \"specific_version\" alltid att ge \"Ingen\" i \"installations\"-\u00e5tg\u00e4rderna",
+                    "title": "Definierar en mall f\u00f6r att h\u00e4mta uppdateringens titel.",
+                    "update_percentage": "Definierar en mall f\u00f6r att h\u00e4mta uppdateringens slutf\u00f6randeprocent."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Malluppdatering"
+            },
+            "user": {
+                "description": "Den h\u00e4r hj\u00e4lparen l\u00e5ter dig skapa hj\u00e4lpentiteter som best\u00e4mmer sitt tillst\u00e5nd genom en mall.",
+                "menu_options": {
+                    "alarm_control_panel": "Larmkontrollpanel",
+                    "binary_sensor": "Bin\u00e4r sensor",
+                    "button": "Knapp",
+                    "climate": "Klimat",
+                    "cover": "Skydd",
+                    "device_tracker": "Enhetssp\u00e5rare",
+                    "event": "H\u00e4ndelse",
+                    "fan": "Fl\u00e4kt",
+                    "image": "Bild",
+                    "light": "Lampa",
+                    "lock": "L\u00e5s",
+                    "number": "Nummer",
+                    "select": "Val",
+                    "sensor": "Sensor",
+                    "switch": "Brytare",
+                    "update": "Uppdatering",
+                    "vacuum": "Dammsugare",
+                    "weather": "V\u00e4der"
+                },
+                "title": "Mall-hj\u00e4lpare"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "\u00c5tg\u00e4rder vid st\u00e4da punkt",
+                    "device_id": "Enhet",
+                    "fan_speed": "Fl\u00e4kthastighet",
+                    "fan_speeds": "Fl\u00e4kthastigheter",
+                    "locate": "\u00c5tg\u00e4rder vid lokalisering",
+                    "name": "Namn",
+                    "pause": "\u00c5tg\u00e4rder vid paus",
+                    "return_to_base": "\u00c5tg\u00e4rder vid \u00e5terg\u00e5 till dockan",
+                    "set_fan_speed": "\u00c5tg\u00e4rder vid st\u00e4ll in fl\u00e4kthastighet",
+                    "start": "\u00c5tg\u00e4rder vid start",
+                    "state": "Tillst\u00e5nd",
+                    "stop": "\u00c5tg\u00e4rder vid stopp"
+                },
+                "data_description": {
+                    "clean_spot": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r kommandot \"Reng\u00f6r fl\u00e4ck\".",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "fan_speed": "Definierar en mall f\u00f6r att h\u00e4mta dammsugarens fl\u00e4kthastighet.",
+                    "fan_speeds": "Lista \u00f6ver fl\u00e4kthastigheter som st\u00f6ds av dammsugaren.",
+                    "locate": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r kommandot \"Lokalisera\".",
+                    "pause": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren pausas.",
+                    "return_to_base": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r kommandot \"\u00c5terg\u00e5 till docka\".",
+                    "set_fan_speed": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r ett kommando f\u00f6r att st\u00e4lla in fl\u00e4kthastigheten. Tar emot variabeln 'fan_speed'.",
+                    "start": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren startas.",
+                    "state": "Definierar en mall f\u00f6r att h\u00e4mta dammsugarens tillst\u00e5nd. Giltiga v\u00e4rden \u00e4r `cleaning`, `docked`, `idle`, `paused`, `returning` och `error`.",
+                    "stop": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren stoppas."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r dammsugare"
+            },
+            "weather": {
+                "data": {
+                    "condition": "F\u00f6rh\u00e5llande",
+                    "device_id": "Enhet",
+                    "forecast_daily": "Daglig prognos",
+                    "forecast_hourly": "Prognos per timme",
+                    "humidity": "Luftfuktighet",
+                    "name": "Namn",
+                    "temperature": "Temperatur",
+                    "temperature_unit": "Temperaturenhet"
+                },
+                "data_description": {
+                    "condition": "Definierar en mall f\u00f6r att f\u00e5 det aktuella v\u00e4derf\u00f6rh\u00e5llandet",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "forecast_daily": "Definierar en mall f\u00f6r att h\u00e4mta [daglig prognosdata]({daily_link})",
+                    "forecast_hourly": "Definierar en mall f\u00f6r att h\u00e4mta [timvisa prognosdata]({hourly_link})",
+                    "humidity": "Definierar en mall f\u00f6r att f\u00e5 den aktuella luftfuktigheten",
+                    "temperature": "Definierar en mall f\u00f6r att f\u00e5 den aktuella temperaturen",
+                    "temperature_unit": "Enheten f\u00f6r utdata fr\u00e5n temperaturmallar. Ett av `\u00b0C`, `\u00b0F` eller `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r v\u00e4der"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Fel vid utv\u00e4rdering av kodformatmall \"{code_format_template}\" f\u00f6r {entity_id}: {cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "Fel vid omladdning av mallenheter: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "Mallhj\u00e4lparen har tagits bort"
+                },
+                "error": {
+                    "invalid_device": "Den valda enheten finns inte l\u00e4ngre"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Enhet"
+                        },
+                        "data_description": {
+                            "device_id": "Den enhet som den h\u00e4r mallhj\u00e4lparen ska l\u00e4nkas till."
+                        },
+                        "description": "Mallhj\u00e4lparen {name} var kopplad till en enhet som har delats upp i flera enheter. S\u00e5 l\u00e4nge ingen enhet har valts \u00e4r hj\u00e4lparen inte kopplad till n\u00e5gon enhet.\n\nV\u00e4lj den enhet som denna hj\u00e4lpare ska kopplas till, eller l\u00e4mna f\u00e4ltet tomt om du inte vill koppla den till n\u00e5gon enhet.",
+                        "title": "V\u00e4lj enhet f\u00f6r {name}"
+                    }
+                }
+            },
+            "title": "Enheten f\u00f6r mallhj\u00e4lparen {name} m\u00e5ste v\u00e4ljas p\u00e5 nytt"
+        },
+        "config_format_actions": {
+            "description": "Det finns ett \u00e5tg\u00e4rdsalternativ i mallkonfigurationen som inte h\u00f6r ihop med n\u00e5got utl\u00f6saralternativ. Detta blir ett fel vid konfigurationsvalideringen i 2026.5.\n\nL\u00e4gg till en utl\u00f6sare i konfigurationen eller ta bort \u00e5tg\u00e4rdsalternativet fr\u00e5n den.\n\n```\n{config}\n```",
+            "title": "Alternativet f\u00f6r mall\u00e5tg\u00e4rder kr\u00e4ver en utl\u00f6sare"
+        },
+        "config_format_triggers": {
+            "title": "Ofullst\u00e4ndig mallkonfiguration"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "\u00c5tg\u00e4rder vid p\u00e5larmning av bortal\u00e4ge",
+                    "arm_custom_bypass": "\u00c5tg\u00e4rder vid p\u00e5larmning med anpassad f\u00f6rbikoppling",
+                    "arm_home": "\u00c5tg\u00e4rder vid p\u00e5larmning av hemmal\u00e4ge",
+                    "arm_night": "\u00c5tg\u00e4rder vid p\u00e5larmning av nattl\u00e4ge",
+                    "arm_vacation": "\u00c5tg\u00e4rder vid p\u00e5larmning av semesterl\u00e4ge",
+                    "code_arm_required": "Kod kr\u00e4vs f\u00f6r p\u00e5larmning",
+                    "code_format": "Kodformat",
+                    "device_id": "Enhet",
+                    "disarm": "\u00c5tg\u00e4rd vid avlarmning",
+                    "trigger": "\u00c5tg\u00e4rder vid utl\u00f6st larm",
+                    "value_template": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "arm_away": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_away`. Tar emot variabeln `kod`.",
+                    "arm_custom_bypass": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_custom_bypass`. Tar emot variabeln `kod`.",
+                    "arm_home": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_home`. Tar emot variabeln `kod`.",
+                    "arm_night": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_night`. Tar emot variabeln `kod`.",
+                    "arm_vacation": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r aktiverad i l\u00e4get `arm_vacation`. Tar emot variabeln `kod`.",
+                    "code_arm_required": "Om det \u00e4r sant kr\u00e4vs koden f\u00f6r att aktivera larmet.",
+                    "code_format": "Antingen `nummer`, `text` eller `no_code`. Format f\u00f6r koden som anv\u00e4nds f\u00f6r att aktivera/avaktivera larmet.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "disarm": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmcentralen \u00e4r avaktiverad. Tar emot variabeln `kod`.",
+                    "trigger": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r larmkontrollpanelen utl\u00f6ses. Mottar variabeln `code`.",
+                    "value_template": "Definierar en mall f\u00f6r att st\u00e4lla in larmcentralens status. Giltiga utg\u00e5ngsv\u00e4rden fr\u00e5n mallen \u00e4r `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` och `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r larmkontrollpanel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "state": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "state": "Sensorn \u00e4r `p\u00e5` om mallen utv\u00e4rderas till `True`, `yes`, `on`, `enable` eller ett positivt tal. Alla andra v\u00e4rden g\u00f6r att den blir `av`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet",
+                            "delay_off": "F\u00f6rdr\u00f6jning f\u00f6r av",
+                            "delay_on": "F\u00f6rdr\u00f6jning f\u00f6r p\u00e5"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna.",
+                            "delay_off": "Tiden som malltillst\u00e5ndet m\u00e5ste vara ouppfyllt innan sensorn v\u00e4xlar till `off`.",
+                            "delay_on": "Tiden som malltillst\u00e5ndet m\u00e5ste vara uppfyllt innan sensorn v\u00e4xlar till `on`."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r bin\u00e4r sensor"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Enhet",
+                    "press": "\u00c5tg\u00e4rder vid tryckning"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "press": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r knappen trycks."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r knapp"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Aktuell temperatur",
+                    "device_id": "Enhet",
+                    "hvac_action": "Aktuell \u00e5tg\u00e4rd",
+                    "hvac_mode": "HVAC-l\u00e4ge",
+                    "hvac_modes": "HVAC-l\u00e4gen",
+                    "name": "Namn",
+                    "set_hvac_mode": "\u00c5tg\u00e4rder vid inst\u00e4llning av HVAC-l\u00e4ge",
+                    "set_temperature": "\u00c5tg\u00e4rder vid inst\u00e4llning av temperatur",
+                    "target_temperature": "M\u00e5ltemperatur",
+                    "temperature_unit": "Temperaturenhet"
+                },
+                "data_description": {
+                    "current_temperature": "Definierar en mall f\u00f6r aktuell temperatur.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "hvac_action": "Definierar en mall f\u00f6r aktuell HVAC-\u00e5tg\u00e4rd. Giltiga HVAC-\u00e5tg\u00e4rder \u00e4r `cooling`, `defrosting`, `drying`, `fan`, `heating`, `idle`, `off` och `preheating`.",
+                    "hvac_mode": "Definierar en mall f\u00f6r aktuellt HVAC-l\u00e4ge. Giltiga HVAC-l\u00e4gen \u00e4r `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` och `off`.",
+                    "hvac_modes": "Definierar en mall f\u00f6r en lista med tillg\u00e4ngliga HVAC-l\u00e4gen. Giltiga HVAC-l\u00e4gen i listan \u00e4r `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` och `off`.",
+                    "set_hvac_mode": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r klimatstyrningen f\u00e5r kommandot `set_hvac_mode`. Tar emot variabeln `hvac_mode`.",
+                    "set_temperature": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r klimatstyrningen f\u00e5r kommandot `set_temperature`. Tar emot variablerna `hvac_mode`, `temperature`, `target_temp_high` och `target_temp_low`. Om `hvac_mode` tas emot utf\u00f6rs \u00e5tg\u00e4rderna i `set_hvac_mode` f\u00f6re \u00e5tg\u00e4rderna i `set_temperature`.",
+                    "target_temperature": "Definierar en mall f\u00f6r m\u00e5ltemperaturen.",
+                    "temperature_unit": "Enheten f\u00f6r utdata fr\u00e5n temperaturmallar. Ett av `\u00b0C`, `\u00b0F` eller `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet",
+                            "max_temperature": "H\u00f6gsta m\u00e5ltemperatur",
+                            "min_temperature": "L\u00e4gsta m\u00e5ltemperatur"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Malltermostat"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "\u00c5tg\u00e4rder vid st\u00e4ngning",
+                    "device_id": "Enhet",
+                    "open_cover": "\u00c5tg\u00e4rder vid \u00f6ppning",
+                    "position": "Position",
+                    "set_cover_position": "\u00c5tg\u00e4rder n\u00e4r position s\u00e4tts",
+                    "state": "Tillst\u00e5nd",
+                    "stop_cover": "\u00c5tg\u00e4rder vid stopp"
+                },
+                "data_description": {
+                    "close_cover": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r enheten har st\u00e4ngts.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "open_cover": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r enheten har \u00f6ppnats.",
+                    "position": "Definierar en mall f\u00f6r att h\u00e4mta \u00f6ppningsgraden. V\u00e4rdet \u00e4r ett tal mellan 0 (st\u00e4ngd) och 100 (\u00f6ppen).",
+                    "set_cover_position": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r enheten f\u00e5r kommandot `set_cover_position`. Tar emot variabeln `position`.",
+                    "stop_cover": "Anger vilka \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r enheten stoppas."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r ett skydd"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Enhet",
+                    "in_zones": "Zoner",
+                    "latitude": "Latitud",
+                    "longitude": "Longitud"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "in_zones": "Definierar en mall som returnerar en lista \u00f6ver zoner som enhetssp\u00e5raren f\u00f6r n\u00e4rvarande befinner sig i. Mallen ska returnera en lista \u00f6ver zonens enhets-ID:n. Om enhetssp\u00e5raren inte finns i n\u00e5gon zon ska mallen returnera en tom lista.",
+                    "latitude": "Definierar en mall f\u00f6r att h\u00e4mta latituden f\u00f6r enhetens sp\u00e5rare. Giltiga v\u00e4rden \u00e4r siffror mellan `-90` och `90`.",
+                    "longitude": "Definierar en mall f\u00f6r att h\u00e4mta longitud f\u00f6r enhetens tracker. Giltiga v\u00e4rden \u00e4r siffror mellan `-180` och `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet",
+                            "location_accuracy": "Platsens noggrannhet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna.",
+                            "location_accuracy": "Definierar en mall f\u00f6r att f\u00e5 noggrannheten f\u00f6r enhetens trackerposition i meter. Giltiga v\u00e4rden \u00e4r tal som \u00e4r st\u00f6rre \u00e4n eller lika med `0`."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r enhetssp\u00e5rning"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Enhet",
+                    "event_type": "Senast utl\u00f6sta h\u00e4ndelsetyp",
+                    "event_types": "H\u00e4ndelsetyper",
+                    "name": "Namn"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "event_type": "Definierar en mall f\u00f6r h\u00e4ndelsetypen.",
+                    "event_types": "Definierar en mall f\u00f6r en lista \u00f6ver tillg\u00e4ngliga h\u00e4ndelsetyper."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r en h\u00e4ndelse"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Enhet",
+                    "percentage": "Procent",
+                    "set_percentage": "\u00c5tg\u00e4rder vid inst\u00e4lld procentandel",
+                    "speed_count": "Antal hastigheter",
+                    "state": "Tillst\u00e5nd",
+                    "turn_off": "\u00c5tg\u00e4rder vid avslagning",
+                    "turn_on": "\u00c5tg\u00e4rder vid p\u00e5slagning"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "percentage": "Definierar en mall f\u00f6r att h\u00e4mta fl\u00e4ktens hastighet i procent.",
+                    "set_percentage": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r fl\u00e4kten f\u00e5r ett kommando om varvtal i procent. Tar emot variabeln `percentage`.",
+                    "speed_count": "Antalet hastighetssteg som fl\u00e4kten st\u00f6der. Anv\u00e4nds f\u00f6r att ber\u00e4kna stegstorleken i procent f\u00f6r \u00e5tg\u00e4rderna `fan.increase_speed` och `fan.decrease_speed`.",
+                    "state": "Fl\u00e4kten \u00e4r `p\u00e5` om mallen ger resultatet `Sant`, `ja`, `p\u00e5`, `aktiv` eller ett positivt tal. Alla andra v\u00e4rden g\u00f6r att den visas som `av`.",
+                    "turn_off": "Anger vilka \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r fl\u00e4kten st\u00e4ngs av.",
+                    "turn_on": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r fl\u00e4kten sl\u00e5s p\u00e5. Tar emot variablerna `procent` och/eller `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r fl\u00e4kt"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Enhet",
+                    "url": "URL",
+                    "verify_ssl": "Verifiera SSL-certifikat"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "url": "Definierar en mall f\u00f6r att h\u00e4mta URL:en som bilden visas p\u00e5.",
+                    "verify_ssl": "Aktivera eller inaktivera verifiering av SSL-certifikat. Avaktivera om du vill anv\u00e4nda en http-URL eller om du har ett sj\u00e4lvsignerat SSL-certifikat och inte har installerat CA-certifikatet f\u00f6r att aktivera verifiering."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r bild"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Enhet",
+                    "hs": "HS-f\u00e4rg",
+                    "level": "Ljusstyrka",
+                    "name": "Namn",
+                    "set_hs": "\u00c5tg\u00e4rder vid inst\u00e4llning av HS-f\u00e4rg",
+                    "set_level": "\u00c5tg\u00e4rder vid inst\u00e4llning av niv\u00e5",
+                    "set_temperature": "\u00c5tg\u00e4rder vid inst\u00e4llning av f\u00e4rgtemperatur",
+                    "state": "Tillst\u00e5nd",
+                    "temperature": "F\u00e4rgtemperatur",
+                    "turn_off": "\u00c5tg\u00e4rder vid avslagning",
+                    "turn_on": "\u00c5tg\u00e4rder vid p\u00e5slagning"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "hs": "Definierar en mall f\u00f6r att f\u00e5 fram ljusets HS-f\u00e4rg. M\u00e5ste rendera en tupel (nyans, m\u00e4ttnad).",
+                    "level": "Definierar en mall f\u00f6r att f\u00e5 ljusstyrkan p\u00e5 ljuset. Giltiga v\u00e4rden \u00e4r 0 till 255.",
+                    "set_hs": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r ljuset f\u00e5r ett HS-f\u00e4rgkommando. Tillg\u00e4ngliga variabler: `hs` som en tupel, `h` och `s`.",
+                    "set_level": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r lampan f\u00e5r ett ljusstyrkekommando. Skriptet kommer endast att anropas om `turn_on`-anropet endast har `brightness` och eventuellt `transition`. Tar emot variablerna `brightness` och, eventuellt, `transition`.",
+                    "set_temperature": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r ljuset f\u00e5r ett f\u00e4rgtemperaturkommando. Mottar variabeln `color_temp_kelvin`. Kan ocks\u00e5 ta emot variablerna `brightness` och/eller `transition`.",
+                    "state": "Ljuset \u00e4r `p\u00e5` om mallen utv\u00e4rderas som `Sant`, `ja`, `p\u00e5`, `aktivera` eller ett positivt tal. Alla andra v\u00e4rden g\u00f6r att den blir `av`.",
+                    "temperature": "Definierar en mall f\u00f6r att f\u00e5 fram ljusets f\u00e4rgtemperatur.",
+                    "turn_off": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r lampan sl\u00e4cks.",
+                    "turn_on": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r lampan t\u00e4nds."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r lampa"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Kodformat",
+                    "device_id": "Enhet",
+                    "lock": "\u00c5tg\u00e4rder vid l\u00e5sning",
+                    "open": "\u00c5tg\u00e4rder vid \u00f6ppning",
+                    "state": "Tillst\u00e5nd",
+                    "unlock": "\u00c5tg\u00e4rder vid uppl\u00e5sning"
+                },
+                "data_description": {
+                    "code_format": "Definierar en mall f\u00f6r att h\u00e4mta l\u00e5sets `code_format`-attribut.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "lock": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r l\u00e5set l\u00e5ses.",
+                    "open": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r l\u00e5set \u00f6ppnas.",
+                    "state": "Definierar en mall som anger l\u00e5sets tillst\u00e5nd. L\u00e5set \u00e4r l\u00e5st om mallen utv\u00e4rderas till `True`, `true`, `on` eller `locked`. L\u00e5set \u00e4r uppl\u00e5st om mallen utv\u00e4rderas till `False`, `false`, `off` eller `unlocked`. Andra giltiga tillst\u00e5nd \u00e4r `jammed`, `opening`, `locking`, `open` och `unlocking`.",
+                    "unlock": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r l\u00e5set l\u00e5ses upp."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r l\u00e5s"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "max": "H\u00f6gsta v\u00e4rde",
+                    "min": "Minsta v\u00e4rde",
+                    "name": "Namn",
+                    "set_value": "\u00c5tg\u00e4rder vid inst\u00e4llning av v\u00e4rde",
+                    "state": "Tillst\u00e5nd",
+                    "step": "Stegv\u00e4rde"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "max": "Definierar talets maximala v\u00e4rde.",
+                    "min": "Definierar talets minimiv\u00e4rde.",
+                    "set_value": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r talet s\u00e4tts till ett v\u00e4rde. Tar emot variabeln `v\u00e4rde`.",
+                    "state": "Mall f\u00f6r talets aktuella v\u00e4rde.",
+                    "step": "Definierar talets \u00f6knings-/minskningssteg."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r nummer"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "options": "Tillg\u00e4ngliga alternativ",
+                    "select_option": "\u00c5tg\u00e4rder vid val",
+                    "state": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "options": "Mall f\u00f6r de tillg\u00e4ngliga alternativen i rullgardinsmenyn.",
+                    "select_option": "Definierar \u00e5tg\u00e4rder som ska utf\u00f6ras n\u00e4r ett `alternativ` fr\u00e5n listan `alternativ` v\u00e4ljs. Mottar variabeln `alternativ`.",
+                    "state": "Mall f\u00f6r det aktuella v\u00e4rdet i rullgardinsmenyn."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r val"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "state": "Tillst\u00e5nd",
+                    "state_class": "Tillst\u00e5ndsklass",
+                    "unit_of_measurement": "M\u00e5ttenhet"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "state": "Definierar en mall f\u00f6r att h\u00e4mta sensorns tillst\u00e5nd. Om sensorn \u00e4r numerisk, dvs. den har en `state_class` eller en `unit_of_measurement`, m\u00e5ste state-mallen \u00e5terges som ett tal eller `none`. Tillst\u00e5ndsmallen f\u00e5r inte \u00e5terges som en str\u00e4ng, inklusive `unknown` eller `unavailable`. En `availability`-mall kan definieras f\u00f6r att undertrycka rendering av tillst\u00e5ndsmallen.",
+                    "unit_of_measurement": "Definierar en mall f\u00f6r att h\u00e4mta sensorns tillst\u00e5nd. Om sensorn \u00e4r numerisk, dvs. den har en `state_class` eller en `unit_of_measurement`, m\u00e5ste state-mallen \u00e5terges som ett tal eller `none`. Tillst\u00e5ndsmallen f\u00e5r inte \u00e5terges som en str\u00e4ng, inklusive `unknown` eller `unavailable`. En `availability`-mall kan definieras f\u00f6r att undertrycka rendering av tillst\u00e5ndsmallen."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r sensor"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Enhet",
+                    "name": "Namn",
+                    "turn_off": "\u00c5tg\u00e4rder vid avslagning",
+                    "turn_on": "\u00c5tg\u00e4rder vid p\u00e5slagning",
+                    "value_template": "Tillst\u00e5nd"
+                },
+                "data_description": {
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "turn_off": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r brytaren sl\u00e5s av.",
+                    "turn_on": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r brytaren sl\u00e5s p\u00e5.",
+                    "value_template": "Definierar en mall f\u00f6r att st\u00e4lla in brytarens tillst\u00e5nd. Om den inte definieras kommer brytaren optimistiskt anta att alla kommandon lyckas."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r brytare"
+            },
+            "update": {
+                "data": {
+                    "backup": "S\u00e4kerhetskopia",
+                    "device_class": "Enhetsklass",
+                    "device_id": "Enhet",
+                    "in_progress": "P\u00e5g\u00e5ende",
+                    "install": "\u00c5tg\u00e4rder vid installation",
+                    "installed_version": "Installerad version",
+                    "latest_version": "Senaste version",
+                    "name": "Namn",
+                    "release_summary": "Versionssammanfattning",
+                    "release_url": "Version URL",
+                    "specific_version": "Specifik version",
+                    "title": "Titel",
+                    "update_percentage": "Uppdateringsprocent"
+                },
+                "data_description": {
+                    "backup": "Aktivera eller inaktivera alternativet `automatisk s\u00e4kerhetskopiering f\u00f6re uppdatering` i uppdateringsreparationen. N\u00e4r den \u00e4r inaktiverad kommer variabeln `backup` alltid att ge `False` under \u00e5tg\u00e4rden `install` och den kommer inte att acceptera alternativet `backup`.",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "in_progress": "Definierar en mall f\u00f6r att h\u00e4mta p\u00e5g\u00e5ende tillst\u00e5nd.",
+                    "install": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r uppdateringen installeras. Tar emot variablerna `specific_version` och `backup` n\u00e4r de \u00e4r aktiverade.",
+                    "installed_version": "Definierar en mall f\u00f6r att h\u00e4mta den installerade versionen.",
+                    "latest_version": "Definierar en mall f\u00f6r att h\u00e4mta den senaste versionen.",
+                    "release_summary": "Definierar en mall f\u00f6r att f\u00e5 en sammanfattning av utg\u00e5van.",
+                    "release_url": "Definierar en mall f\u00f6r att h\u00e4mta URL:en f\u00f6r releasen.",
+                    "specific_version": "Aktivera eller inaktivera med variabeln \"version\" med \u00e5tg\u00e4rden \"installera\". N\u00e4r den \u00e4r inaktiverad kommer variabeln \"specific_version\" alltid att ge \"Ingen\" i \"installations\"-\u00e5tg\u00e4rderna",
+                    "title": "Definierar en mall f\u00f6r att h\u00e4mta uppdateringens titel.",
+                    "update_percentage": "definierar en mall f\u00f6r att h\u00e4mta uppdateringens slutf\u00f6randeprocent."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Malluppdatering"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "\u00c5tg\u00e4rder vid st\u00e4da punkt",
+                    "device_id": "Enhet",
+                    "fan_speed": "Fl\u00e4kthastighet",
+                    "fan_speeds": "Fl\u00e4kthastigheter",
+                    "locate": "\u00c5tg\u00e4rder vid lokalisering",
+                    "name": "Namn",
+                    "pause": "\u00c5tg\u00e4rder vid paus",
+                    "return_to_base": "\u00c5tg\u00e4rder vid \u00e5terg\u00e5 till dockan",
+                    "set_fan_speed": "\u00c5tg\u00e4rder vid st\u00e4ll in fl\u00e4kthastighet",
+                    "start": "\u00c5tg\u00e4rder vid start",
+                    "state": "Tillst\u00e5nd",
+                    "stop": "\u00c5tg\u00e4rder vid stopp"
+                },
+                "data_description": {
+                    "clean_spot": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r kommandot \"Reng\u00f6r fl\u00e4ck\".",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "fan_speed": "Definierar en mall f\u00f6r att h\u00e4mta dammsugarens fl\u00e4kthastighet.",
+                    "fan_speeds": "Lista \u00f6ver fl\u00e4kthastigheter som st\u00f6ds av dammsugaren.",
+                    "locate": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r kommandot \"Lokalisera\".",
+                    "pause": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren pausas.",
+                    "return_to_base": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r kommandot \"\u00c5terg\u00e5 till docka\".",
+                    "set_fan_speed": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren f\u00e5r ett kommando f\u00f6r att st\u00e4lla in fl\u00e4kthastigheten. Tar emot variabeln 'fan_speed'.",
+                    "start": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren startas.",
+                    "state": "Definierar en mall f\u00f6r att h\u00e4mta dammsugarens tillst\u00e5nd. Giltiga v\u00e4rden \u00e4r `cleaning`, `docked`, `idle`, `paused`, `returning` och `error`.",
+                    "stop": "Definierar \u00e5tg\u00e4rder som ska k\u00f6ras n\u00e4r dammsugaren stoppas."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "data_description": {
+                            "availability": "Definierar en mall f\u00f6r att h\u00e4mta entitetens `tillg\u00e4nglig`-status. Om mallen antingen misslyckas att rendera eller returnerar `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` eller ett tal som inte \u00e4r noll, kommer entiteten att vara `tillg\u00e4nglig`. Om mallen returnerar n\u00e5got annat v\u00e4rde kommer entiteten att vara `otillg\u00e4nglig`. Om ej konfigurerat s\u00e5 kommer entiteten alltid att vara `tillg\u00e4nglig`. Observera att str\u00e4ngj\u00e4mf\u00f6relsen inte \u00e4r skiftl\u00e4gesk\u00e4nslig; `\"TrUe\"` och `\"yEs\"` \u00e4r till\u00e5tna."
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r dammsugare"
+            },
+            "weather": {
+                "data": {
+                    "condition": "F\u00f6rh\u00e5llande",
+                    "device_id": "Enhet",
+                    "forecast_daily": "Daglig prognos",
+                    "forecast_hourly": "Prognos per timme",
+                    "humidity": "Luftfuktighet",
+                    "name": "Namn",
+                    "temperature": "Temperatur"
+                },
+                "data_description": {
+                    "condition": "Definierar en mall f\u00f6r att f\u00e5 det aktuella v\u00e4derf\u00f6rh\u00e5llandet",
+                    "device_id": "V\u00e4lj en enhet att l\u00e4nka till den h\u00e4r entiteten.",
+                    "forecast_daily": "Definierar en mall f\u00f6r att h\u00e4mta [daglig prognosdata]({daily_link})",
+                    "forecast_hourly": "Definierar en mall f\u00f6r att h\u00e4mta [timvisa prognosdata]({hourly_link})",
+                    "humidity": "Definierar en mall f\u00f6r att f\u00e5 den aktuella luftfuktigheten",
+                    "temperature": "Definierar en mall f\u00f6r att f\u00e5 den aktuella temperaturen"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Tillg\u00e4nglighet"
+                        },
+                        "name": "Ytterligare alternativ"
+                    }
+                },
+                "title": "Mall f\u00f6r v\u00e4der"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Inget kodformat",
+                "number": "Nummer",
+                "text": "Text"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Ingen m\u00e5ttenhet"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Firmware"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Laddar om mallentiteter fr\u00e5n YAML-konfigurationen.",
+            "name": "Ladda om mallentiteter"
+        }
+    }
+}

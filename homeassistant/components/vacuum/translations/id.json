@@ -1,0 +1,57 @@
+{
+    "device_automation": {
+        "action_type": {
+            "clean": "Perintahkan {entity_name} untuk bersih-bersih",
+            "dock": "Kembalikan {entity_name} ke dok"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} sedang membersihkan",
+            "is_docked": "{entity_name} berlabuh di dok"
+        },
+        "extra_fields": {
+            "for": "Durasi"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} mulai membersihkan",
+            "docked": "{entity_name} berlabuh"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vakum",
+            "state": {
+                "cleaning": "Membersihkan",
+                "docked": "Berlabuh",
+                "error": "Kesalahan",
+                "idle": "Siaga",
+                "off": "Mati",
+                "on": "Nyala",
+                "paused": "Dijeda",
+                "returning": "Kembali ke dok"
+            }
+        }
+    },
+    "services": {
+        "send_command": {
+            "fields": {
+                "command": {
+                    "description": "Perintah untuk dieksekusi. Perintah ini tergantung integrasi.",
+                    "name": "Perintah"
+                },
+                "params": {
+                    "description": "Parameter untuk perintah. Parameter ini tergantung integrasi.",
+                    "name": "Parameter"
+                }
+            }
+        },
+        "set_fan_speed": {
+            "fields": {
+                "fan_speed": {
+                    "description": "Kecepatan kipas. Nilainya tergantung pada integrasi. Beberapa integrasi memiliki langkah kecepatan, seperti 'sedang'. Beberapa menggunakan persentase, antara 0 dan 100.",
+                    "name": "Kecepatan kipas"
+                }
+            }
+        }
+    },
+    "title": "Vakum"
+}

@@ -1,0 +1,549 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "condition_threshold_name": "Tip grani\u010dne vrednosti",
+        "field_brightness_description": "Broj koji ozna\u010dava osvetljenost, gde 0 gasi svetlo, 1 je minimalna osvetljenost, a 255 je maksimalna osvetljenost.",
+        "field_brightness_name": "Vrednost osvetljenosti",
+        "field_brightness_pct_description": "Broj koji ozna\u010dava procenat pune osvetljenosti, gde 0 gasi svetlo, 1 je minimalna osvetljenost, a 100 je maksimalna osvetljenost.",
+        "field_brightness_pct_name": "Osvetljenost",
+        "field_brightness_step_description": "Promeni osvetljenost za odre\u0111eni iznos.",
+        "field_brightness_step_name": "Vrednost koraka osvetljenosti",
+        "field_brightness_step_pct_description": "Promeni osvetljenost za odre\u0111eni procenat.",
+        "field_brightness_step_pct_name": "Korak osvetljenosti",
+        "field_color_name_description": "Naziv boje prilago\u0111en korisniku.",
+        "field_color_name_name": "Naziv boje",
+        "field_color_temp_kelvin_description": "Temperatura boje u Kelvinima",
+        "field_color_temp_kelvin_name": "Temperatura boje",
+        "field_effect_description": "Svetlosni efekat.",
+        "field_effect_name": "Efekat",
+        "field_flash_description": "Pode\u0161avanje treperenje svetla; vrednost mo\u017ee biti \u201ekratko\u201c (short) ili \u201eduga\u010dko\u201c (long).",
+        "field_flash_name": "Treptaj",
+        "field_hs_color_description": "Boja u formatu nijansa/zasi\u0107enost. Lista od dva cela broja. Nijansa je 0\u2013360, a zasi\u0107enost 0\u2013100.",
+        "field_hs_color_name": "Nijansa/Zasi\u0107enost boje",
+        "field_profile_description": "Naziv profila osvetljenja koji se koristi.",
+        "field_profile_name": "Profil",
+        "field_rgb_color_description": "Boja u RGB formatu. Lista od tri cela broja izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene i plave.",
+        "field_rgb_color_name": "Boja",
+        "field_rgbw_color_description": "Boja u RGBW formatu. Lista od \u010detiri cela broja izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene, plave i bele.",
+        "field_rgbw_color_name": "RGBW-boja",
+        "field_rgbww_color_description": "Boja u RGBWW formatu. Lista od pet celih brojeva izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene, plave, hladno bele i toplo bele.",
+        "field_rgbww_color_name": "RGBWW-boja",
+        "field_transition_description": "Trajanje koje je potrebno da se pre\u0111e u slede\u0107e stanje.",
+        "field_transition_name": "Tranzicija",
+        "field_white_description": "Pode\u0161avanje osvetljenja na belu svetlost.",
+        "field_white_name": "Bela",
+        "field_xy_color_description": "Boja u XY formatu. Lista od dva decimalna broja izme\u0111u 0 i 1.",
+        "field_xy_color_name": "XY-boja",
+        "section_additional_fields_name": "Dodatne opcije",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje",
+        "trigger_threshold_name": "Tip grani\u010dne vrednosti"
+    },
+    "conditions": {
+        "is_brightness": {
+            "description": "Proverava osvetljenost jednog ili vi\u0161e svetala.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Intenzitet svetlosti"
+        },
+        "is_off": {
+            "description": "Proverava da li je jedan ili vi\u0161e svetala isklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Svetlo isklju\u010deno"
+        },
+        "is_on": {
+            "description": "Proverava da li je jedan ili vi\u0161e svetala uklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Svetlo uklju\u010deno"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "brightness_decrease": "Smanji osvetljenost {entity_name}",
+            "brightness_increase": "Pove\u0107aj osvetljenost {entity_name}",
+            "flash": "Bljesni {entity_name}",
+            "toggle": "Uklju\u010di/isklju\u010di {entity_name}",
+            "turn_off": "Isklju\u010di {entity_name}",
+            "turn_on": "Uklju\u010di {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} je isklju\u010deno",
+            "is_on": "{entity_name} je uklju\u010deno"
+        },
+        "extra_fields": {
+            "brightness_pct": "Osvetljenost",
+            "flash": "Bljesak",
+            "for": "Trajanje"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} je uklju\u010den ili isklju\u010den",
+            "turned_off": "{entity_name} je isklju\u010den",
+            "turned_on": "{entity_name} je uklju\u010den"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Svetlo",
+            "state": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            },
+            "state_attributes": {
+                "brightness": {
+                    "name": "Osvetljenost"
+                },
+                "color_mode": {
+                    "name": "Re\u017eim boje",
+                    "state": {
+                        "brightness": "Osvetljenost samo",
+                        "color_temp": "Temperatura boje",
+                        "hs": "HS",
+                        "onoff": "Uklju\u010deno/Isklju\u010deno",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Nepoznato",
+                        "white": "Bela",
+                        "xy": "XY"
+                    }
+                },
+                "color_temp_kelvin": {
+                    "name": "Temperatura boje (Kelvin)"
+                },
+                "effect": {
+                    "name": "Efekat",
+                    "state": {
+                        "off": "Isklju\u010deno"
+                    }
+                },
+                "effect_list": {
+                    "name": "Dostupni efekti"
+                },
+                "max_color_temp_kelvin": {
+                    "name": "Maksimalna temperatura boje (Kelvin)"
+                },
+                "min_color_temp_kelvin": {
+                    "name": "Minimalna temperatura boje (Kelvin)"
+                },
+                "supported_color_modes": {
+                    "name": "Dostupni re\u017eimi boja",
+                    "state": {
+                        "brightness": "Osvetljenost samo",
+                        "color_temp": "Temperatura boje",
+                        "hs": "HS",
+                        "onoff": "Uklju\u010deno/Isklju\u010deno",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Nepoznato",
+                        "white": "Bela",
+                        "xy": "XY"
+                    }
+                }
+            }
+        }
+    },
+    "selector": {
+        "color_name": {
+            "options": {
+                "aliceblue": "Svetloplava (nijansa Alis plava)",
+                "antiquewhite": "Bela (antikvitetna nijansa)",
+                "aqua": "Plavo\u2011zelena (aqua nijansa)",
+                "aquamarine": "Plavo\u2011zelena (akvamarin nijansa)",
+                "azure": "Plava (azurna nijansa)",
+                "beige": "Be\u017e (osnovna nijansa)",
+                "bisque": "Be\u017e (biskvitna nijansa)",
+                "blanchedalmond": "Be\u017e (nijansa izbeljenog badema)",
+                "blue": "Plava (osnovna nijansa)",
+                "blueviolet": "Ljubi\u010dasta (plava nijansa)",
+                "brown": "Braon (osnovna nijansa)",
+                "burlywood": "Braon (drvenasta nijansa)",
+                "cadetblue": "Plava (kadetska nijansa)",
+                "chartreuse": "\u017duto\u2011zelena (\u0161artr\u00ebz nijansa)",
+                "chocolate": "Braon (\u010dokoladna nijansa)",
+                "coral": "Koralna (nijansa korala)",
+                "cornflowerblue": "Plava (nijansa razvodnice)",
+                "cornsilk": "\u017duta (nijansa kukuruzne svile)",
+                "crimson": "Crvena (grimizna nijansa)",
+                "cyan": "Cijan (svetloplava nijansa)",
+                "darkblue": "Plava (tamna nijansa)",
+                "darkcyan": "Cijan (tamna nijansa)",
+                "darkgoldenrod": "Zlatnica (tamna nijansa)",
+                "darkgray": "Siva (tamna nijansa)",
+                "darkgreen": "Zelena (tamna nijansa)",
+                "darkgrey": "Siva (tamna nijansa)",
+                "darkkhaki": "Kaki (tamna nijansa)",
+                "darkmagenta": "Magenta (tamna nijansa)",
+                "darkolivegreen": "Zelena (tamna maslinasta nijansa)",
+                "darkorange": "Narand\u017easta (tamna nijansa)",
+                "darkorchid": "Orhideja (tamna nijansa)",
+                "darkred": "Crvena (tamna nijansa)",
+                "darksalmon": "Lososova (tamna nijansa)",
+                "darkseagreen": "Zelena (tamna morska nijansa)",
+                "darkslateblue": "Plava (tamna \u0161kriljasta nijansa)",
+                "darkslategray": "Siva (tamna \u0161kriljasta nijansa)",
+                "darkslategrey": "Siva (tamna \u0161kriljasta nijansa)",
+                "darkturquoise": "Tirkizna (tamna nijansa)",
+                "darkviolet": "Ljubi\u010dasta (tamna nijansa)",
+                "deeppink": "Ru\u017ei\u010dasta (intenzivna, duboka nijansa)",
+                "deepskyblue": "Plava (duboko nebeska nijansa)",
+                "dimgray": "Siva (zatamnjena nijansa)",
+                "dimgrey": "Siva (zatamnjena nijansa)",
+                "dodgerblue": "Plavo nebeska (Dod\u017eer plava)",
+                "firebrick": "Cigla (vatrena cigla)",
+                "floralwhite": "Bela (cvetna nijansa)",
+                "forestgreen": "Zelena (\u0161umska nijansa)",
+                "fuchsia": "Ru\u017ei\u010dasta (fuksija nijansa)",
+                "gainsboro": "Siva (gainsboro nijansa)",
+                "ghostwhite": "Bele\u017easto bela (duh-bela)",
+                "gold": "Zlatna (osnovna nijansa)",
+                "goldenrod": "\u017duta (zlatna nijansa)",
+                "gray": "Siva (osnovna nijansa)",
+                "green": "Zelena (osnovna nijansa)",
+                "greenyellow": "\u017duta (zelenkasta nijansa)",
+                "grey": "Siva (osnovna nijansa)",
+                "homeassistant": "Home Assistant",
+                "honeydew": "Zelena (medena rosa nijansa)",
+                "hotpink": "Ru\u017ei\u010dasta (intenzivna nijansa)",
+                "indianred": "Crvena (indijska nijansa)",
+                "indigo": "Plava (indigo nijansa)",
+                "ivory": "Bela (slonova\u010da nijansa)",
+                "khaki": "\u017duta (kaki nijansa)",
+                "lavender": "Ljubi\u010dasta (lavanda nijansa)",
+                "lavenderblush": "Lavanda (rumena nijansa)",
+                "lawngreen": "Zelena (boja trave)",
+                "lemonchiffon": "\u017duta (limun \u0161ifon nijansa)",
+                "lightblue": "Svetlo plava",
+                "lightcoral": "Koralna (svetla nijansa)",
+                "lightcyan": "Svetloplava (cijan nijansa)",
+                "lightgoldenrodyellow": "\u017duta (svetla nijansa zlatnice)",
+                "lightgray": "Svetlosiva (osnovna nijansa)",
+                "lightgreen": "Zelena (svetla nijansa)",
+                "lightgrey": "Svetlosiva (osnovna nijansa)",
+                "lightpink": "Ru\u017ei\u010dasta (svetla nijansa)",
+                "lightsalmon": "Lososova (svetla nijansa)",
+                "lightseagreen": "Morsko zelena (svetla nijansa)",
+                "lightskyblue": "Plava (svetlo nebeska nijansa)",
+                "lightslategray": "Siva (svetlo \u0161kriljasta nijansa)",
+                "lightslategrey": "Siva (svetlo \u0161kriljasta nijansa)",
+                "lightsteelblue": "Plava (svetlo \u010deli\u010dna nijansa)",
+                "lightyellow": "\u017duta (svetla nijansa)",
+                "lime": "Svetlozelena (limeta nijansa)",
+                "limegreen": "Zelena (limeta nijansa)",
+                "linen": "Be\u017e (lanena nijansa)",
+                "magenta": "Ru\u017ei\u010dasto\u2011ljubi\u010dasta (magenta nijansa)",
+                "maroon": "Tamnocrvena (kestenjasta)",
+                "mediumaquamarine": "Akvamarin (srednja nijansa)",
+                "mediumblue": "Plava (srednja nijansa)",
+                "mediumorchid": "Orhideja (srednja nijansa)",
+                "mediumpurple": "Ljubi\u010dasta (srednja nijansa)",
+                "mediumseagreen": "Morsko zelena (srednja nijansa)",
+                "mediumslateblue": "\u0160kriljasto plava (srednja nijansa)",
+                "mediumspringgreen": "Prole\u0107no zelena (srednja nijansa)",
+                "mediumturquoise": "Tirkizna (srednja nijansa)",
+                "mediumvioletred": "Ljubi\u010dasto\u2011crvena (srednja nijansa)",
+                "midnightblue": "Tamnoplava (pono\u0107na)",
+                "mintcream": "Bela (mentol nijansa)",
+                "mistyrose": "Ru\u017ei\u010dasta (maglovita nijansa)",
+                "moccasin": "Bela (mokasin nijansa)",
+                "navajowhite": "Bela (navajo nijansa)",
+                "navy": "Mornarska",
+                "navyblue": "Plava (mornarska nijansa)",
+                "oldlace": "Bela (\u010dipkana nijansa)",
+                "olive": "Maslinasta (osnovna nijansa)",
+                "olivedrab": "Maslinasta (mutna nijansa)",
+                "orange": "Narand\u017easta (osnovna nijansa)",
+                "orangered": "Crvena (narand\u017easta nijansa)",
+                "orchid": "Ljubi\u010dasta (orhideja nijansa)",
+                "palegoldenrod": "Zlatna (bleda nijansa)",
+                "palegreen": "Zelena (bleda nijansa)",
+                "paleturquoise": "Tirkizna (bleda nijansa)",
+                "palevioletred": "Crvena (bledo ljubi\u010dasta nijansa)",
+                "papayawhip": "Be\u017e (papaja nijansa)",
+                "peachpuff": "Be\u017e (breskvasta nijansa)",
+                "peru": "Braon (peru nijansa)",
+                "pink": "Ru\u017ei\u010dasta",
+                "plum": "Ljubi\u010dasta (\u0161ljiva nijansa)",
+                "powderblue": "Plava (puder nijansa)",
+                "purple": "Ljubi\u010dasta (osnovna nijansa)",
+                "red": "Crvena (osnovna nijansa)",
+                "rosybrown": "Braon (ru\u017ei\u010dasta nijansa)",
+                "royalblue": "Plava (kraljevska nijansa)",
+                "saddlebrown": "Braon (sedlasta nijansa)",
+                "salmon": "Ru\u017ei\u010dasto\u2011narand\u017easta (losos nijansa)",
+                "sandybrown": "Braon (peskovita nijansa)",
+                "seagreen": "Zelena (morska nijansa)",
+                "seashell": "Be\u017e (nijansa \u0161koljke)",
+                "sienna": "Braon (sijena nijansa)",
+                "silver": "Siva (srebrna nijansa)",
+                "skyblue": "Plava (nebeska nijansa)",
+                "slateblue": "Plava (\u0161kriljasta nijansa)",
+                "slategray": "\u0160kriljac siva",
+                "slategrey": "Sivkasto-siva (\u0161kriljac siva)",
+                "snow": "Sneg",
+                "springgreen": "Prole\u0107no zelena",
+                "steelblue": "Plava (\u010deli\u010dna nijansa)",
+                "tan": "Be\u017e (svetlosme\u0111a nijansa)",
+                "teal": "Plavozelena",
+                "thistle": "\u010ci\u010dak",
+                "tomato": "Paradajz",
+                "turquoise": "Tirkizna",
+                "violet": "Ljubi\u010dasta",
+                "wheat": "Be\u017e (nijansa p\u0161enice)",
+                "white": "Bela (osnovna nijansa)",
+                "whitesmoke": "Bela (dimna nijansa)",
+                "yellow": "\u017duta (osnovna nijansa)",
+                "yellowgreen": "Zelena (\u017euta nijansa)"
+            }
+        },
+        "flash": {
+            "options": {
+                "long": "Dugo",
+                "short": "Kratko"
+            }
+        },
+        "state": {
+            "options": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Uklju\u010duje ili isklju\u010duje jedno ili vi\u0161e svetala na osnovu njihovog trenutnog stanja.",
+            "fields": {
+                "brightness": {
+                    "description": "Broj koji ozna\u010dava osvetljenost, gde 0 gasi svetlo, 1 je minimalna osvetljenost, a 255 je maksimalna osvetljenost.",
+                    "name": "Vrednost osvetljenosti"
+                },
+                "brightness_pct": {
+                    "description": "Broj koji ozna\u010dava procenat pune osvetljenosti, gde 0 gasi svetlo, 1 je minimalna osvetljenost, a 100 je maksimalna osvetljenost.",
+                    "name": "Osvetljenost"
+                },
+                "color_name": {
+                    "description": "Naziv boje prilago\u0111en korisniku.",
+                    "name": "Naziv boje"
+                },
+                "color_temp_kelvin": {
+                    "description": "Temperatura boje u Kelvinima",
+                    "name": "Temperatura boje"
+                },
+                "effect": {
+                    "description": "Svetlosni efekat.",
+                    "name": "Efekat"
+                },
+                "flash": {
+                    "description": "Pode\u0161avanje treperenje svetla; vrednost mo\u017ee biti \u201ekratko\u201c (short) ili \u201eduga\u010dko\u201c (long).",
+                    "name": "Treptaj"
+                },
+                "hs_color": {
+                    "description": "Boja u formatu nijansa/zasi\u0107enost. Lista od dva cela broja. Nijansa je 0\u2013360, a zasi\u0107enost 0\u2013100.",
+                    "name": "Nijansa/Zasi\u0107enost boje"
+                },
+                "profile": {
+                    "description": "Naziv profila osvetljenja koji se koristi.",
+                    "name": "Profil"
+                },
+                "rgb_color": {
+                    "description": "Boja u RGB formatu. Lista od tri cela broja izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene i plave.",
+                    "name": "Boja"
+                },
+                "rgbw_color": {
+                    "description": "Boja u RGBW formatu. Lista od \u010detiri cela broja izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene, plave i bele.",
+                    "name": "RGBW-boja"
+                },
+                "rgbww_color": {
+                    "description": "Boja u RGBWW formatu. Lista od pet celih brojeva izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene, plave, hladno bele i toplo bele.",
+                    "name": "RGBWW-boja"
+                },
+                "transition": {
+                    "description": "Trajanje koje je potrebno da se pre\u0111e u slede\u0107e stanje.",
+                    "name": "Tranzicija"
+                },
+                "white": {
+                    "description": "Pode\u0161avanje osvetljenja na belu svetlost.",
+                    "name": "Bela"
+                },
+                "xy_color": {
+                    "description": "Boja u XY formatu. Lista od dva decimalna broja izme\u0111u 0 i 1.",
+                    "name": "XY-boja"
+                }
+            },
+            "name": "Promeni stanje svetla",
+            "sections": {
+                "additional_fields": {
+                    "name": "Dodatne opcije"
+                }
+            }
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje jedno ili vi\u0161e svetala.",
+            "fields": {
+                "flash": {
+                    "description": "Pode\u0161avanje treperenje svetla; vrednost mo\u017ee biti \u201ekratko\u201c (short) ili \u201eduga\u010dko\u201c (long).",
+                    "name": "Treptaj"
+                },
+                "transition": {
+                    "description": "Trajanje koje je potrebno da se pre\u0111e u slede\u0107e stanje.",
+                    "name": "Tranzicija"
+                }
+            },
+            "name": "Isklju\u010di svetlo",
+            "sections": {
+                "additional_fields": {
+                    "name": "Dodatne opcije"
+                }
+            }
+        },
+        "turn_on": {
+            "description": "Uklju\u010duje jedno ili vi\u0161e svetala i pode\u0161ava njihova svojstva, \u010dak i ako su ve\u0107 uklju\u010dena.",
+            "fields": {
+                "brightness": {
+                    "description": "Broj koji ozna\u010dava osvetljenost, gde 0 gasi svetlo, 1 je minimalna osvetljenost, a 255 je maksimalna osvetljenost.",
+                    "name": "Vrednost osvetljenosti"
+                },
+                "brightness_pct": {
+                    "description": "Broj koji ozna\u010dava procenat pune osvetljenosti, gde 0 gasi svetlo, 1 je minimalna osvetljenost, a 100 je maksimalna osvetljenost.",
+                    "name": "Osvetljenost"
+                },
+                "brightness_step": {
+                    "description": "Promeni osvetljenost za odre\u0111eni iznos.",
+                    "name": "Vrednost koraka osvetljenosti"
+                },
+                "brightness_step_pct": {
+                    "description": "Promeni osvetljenost za odre\u0111eni procenat.",
+                    "name": "Korak osvetljenosti"
+                },
+                "color_name": {
+                    "description": "Naziv boje prilago\u0111en korisniku.",
+                    "name": "Naziv boje"
+                },
+                "color_temp_kelvin": {
+                    "description": "Temperatura boje u Kelvinima",
+                    "name": "Temperatura boje"
+                },
+                "effect": {
+                    "description": "Svetlosni efekat.",
+                    "name": "Efekat"
+                },
+                "flash": {
+                    "description": "Pode\u0161avanje treperenje svetla; vrednost mo\u017ee biti \u201ekratko\u201c (short) ili \u201eduga\u010dko\u201c (long).",
+                    "name": "Treptaj"
+                },
+                "hs_color": {
+                    "description": "Boja u formatu nijansa/zasi\u0107enost. Lista od dva cela broja. Nijansa je 0\u2013360, a zasi\u0107enost 0\u2013100.",
+                    "name": "Nijansa/Zasi\u0107enost boje"
+                },
+                "profile": {
+                    "description": "Naziv profila osvetljenja koji se koristi.",
+                    "name": "Profil"
+                },
+                "rgb_color": {
+                    "description": "Boja u RGB formatu. Lista od tri cela broja izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene i plave.",
+                    "name": "Boja"
+                },
+                "rgbw_color": {
+                    "name": "RGBW-boja"
+                },
+                "rgbww_color": {
+                    "description": "Boja u RGBWW formatu. Lista od pet celih brojeva izme\u0111u 0 i 255 koji predstavljaju vrednosti crvene, zelene, plave, hladno bele i toplo bele.",
+                    "name": "RGBWW-boja"
+                },
+                "transition": {
+                    "description": "Trajanje koje je potrebno da se pre\u0111e u slede\u0107e stanje.",
+                    "name": "Tranzicija"
+                },
+                "white": {
+                    "description": "Pode\u0161avanje osvetljenja na belu svetlost.",
+                    "name": "Bela"
+                },
+                "xy_color": {
+                    "description": "Boja u XY formatu. Lista od dva decimalna broja izme\u0111u 0 i 1.",
+                    "name": "XY-boja"
+                }
+            },
+            "name": "Uklju\u010di svetlo",
+            "sections": {
+                "additional_fields": {
+                    "name": "Dodatne opcije"
+                }
+            }
+        }
+    },
+    "title": "Svetlo",
+    "triggers": {
+        "brightness_changed": {
+            "description": "Pokre\u0107e se kada se promeni nivo osvetljenja na jednom ili vi\u0161e senzora.",
+            "fields": {
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Nivo osvetljenja promenjen"
+        },
+        "brightness_crossed_threshold": {
+            "description": "Pokre\u0107e se kada nivo osvetljenja na jednom ili vi\u0161e senzora pre\u0111e zadatu granicu.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Nivo osvetljenja pre\u0161ao granicu"
+        },
+        "turned_off": {
+            "description": "Pokre\u0107e se kada se jedno ili vi\u0161e svetala isklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Svetlo isklju\u010deno"
+        },
+        "turned_on": {
+            "description": "Pokre\u0107e se kada se jedno ili vi\u0161e svetala uklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Svetlo uklju\u010deno"
+        }
+    }
+}

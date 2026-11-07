@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "Podm\u00ednka je spln\u011bna, kdy\u017e",
+        "condition_for_name": "Alespo\u0148 na",
+        "trigger_behavior_name": "Spustit, kdy\u017e",
+        "trigger_for_name": "Alespo\u0148 na"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Otestuje, zda je jedna nebo v\u00edce seka\u010dek na tr\u00e1vu v doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu je v doku"
+        },
+        "is_encountering_an_error": {
+            "description": "Otestuje, zda na jedn\u00e9 nebo v\u00edce seka\u010dk\u00e1ch doch\u00e1z\u00ed k chyb\u011b.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "U seka\u010dky na tr\u00e1vu doch\u00e1z\u00ed k chyb\u011b"
+        },
+        "is_idle": {
+            "description": "Otestuje, zda je jedna nebo v\u00edce seka\u010dek na tr\u00e1vu v ne\u010dinnosti.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu je ne\u010dinn\u00e1"
+        },
+        "is_mowing": {
+            "description": "Otestuje, zda je jedna nebo v\u00edce seka\u010dek sek\u00e1 tr\u00e1vu.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu sek\u00e1"
+        },
+        "is_paused": {
+            "description": "Otestuje, zda je jedna nebo v\u00edce seka\u010dek na tr\u00e1vu pozastaveno.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu je pozastavena"
+        },
+        "is_returning": {
+            "description": "Otestuje, zda se jedna nebo v\u00edce seka\u010dek vrac\u00ed do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu se vrac\u00ed"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Seka\u010dka na tr\u00e1vu",
+            "state": {
+                "docked": "V doku",
+                "error": "Chyba",
+                "idle": "Ne\u010dinn\u00e9",
+                "mowing": "Se\u010den\u00ed",
+                "paused": "Pozastaveno",
+                "returning": "Vracej\u00edc\u00ed se"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Vr\u00e1t\u00ed seka\u010dku na tr\u00e1vu do doku.",
+            "name": "Vr\u00e1tit seka\u010dku na tr\u00e1vu do doku"
+        },
+        "pause": {
+            "description": "Pozastav\u00ed aktu\u00e1ln\u00ed \u00fakol seka\u010dky na tr\u00e1vu.",
+            "name": "Pozastavit seka\u010dku na tr\u00e1vu"
+        },
+        "start_mowing": {
+            "description": "Spust\u00ed se\u010den\u00ed tr\u00e1vy seka\u010dkou.",
+            "name": "Spustit se\u010den\u00ed tr\u00e1vy"
+        },
+        "stop": {
+            "description": "Zastav\u00ed aktu\u00e1ln\u00ed \u00fakol seka\u010dky.",
+            "name": "Zastavit seka\u010dku na tr\u00e1vu"
+        }
+    },
+    "title": "Seka\u010dka na tr\u00e1vu",
+    "triggers": {
+        "became_idle": {
+            "description": "Spust\u00ed se, kdy\u017e je jedna nebo v\u00edce seka\u010dek na tr\u00e1vu ne\u010dinn\u00e1.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu se p\u0159estala h\u00fdbat"
+        },
+        "errored": {
+            "description": "Spust\u00ed se, ldy\u017e u jedn\u00e9 nebo v\u00edce seka\u010dek na tr\u00e1vu dojde k chyb\u011b.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "P\u0159i chyb\u011b seka\u010dky"
+        },
+        "paused_mowing": {
+            "description": "Spust\u00ed se, kdy\u017e jedna nebo v\u00edce seka\u010dek na tr\u00e1vu pozastav\u00ed sek\u00e1n\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu pozastavila sek\u00e1n\u00ed"
+        },
+        "returned_to_dock": {
+            "description": "Spust\u00ed se, kdy\u017e se jedna nebo v\u00edce seka\u010dek na tr\u00e1vu vr\u00e1t\u00ed do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu se vr\u00e1tila do doku"
+        },
+        "started_mowing": {
+            "description": "Spust\u00ed se, kdy\u017e jedna nebo v\u00edce seka\u010dek na tr\u00e1vu za\u010dne sekat.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu za\u010dala sekat"
+        },
+        "started_returning": {
+            "description": "Spust\u00ed se, kdy\u017e se jedna nebo v\u00edce seka\u010dek na tr\u00e1vu za\u010d\u00edn\u00e1 vracet do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Seka\u010dka na tr\u00e1vu se za\u010dala vracet do doku"
+        }
+    }
+}

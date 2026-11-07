@@ -1,0 +1,74 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatyczna kopia zapasowa",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Etap tworzenia kopii zapasowej"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Zako\u0144czono pomy\u015blnie",
+                            "failed": "Niepowodzenie",
+                            "in_progress": "W toku"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Przyczyna niepowodzenia"
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Stan mened\u017cera kopii zapasowych",
+                "state": {
+                    "create_backup": "tworzenie kopii zapasowej",
+                    "idle": "brak aktywno\u015bci",
+                    "receive_backup": "odbieranie kopii zapasowej",
+                    "restore_backup": "przywracanie kopii zapasowej"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Ostatnia pr\u00f3ba automatycznej kopii zapasowej"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Ostatnia udana automatyczna kopia zapasowa"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Nast\u0119pna zaplanowana automatyczna kopia zapasowa"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Lokalizacja kopii zapasowej `{agent_id}` jest niedost\u0119pna, ale nadal jest skonfigurowana do automatycznych kopii zapasowych.\n\nProsz\u0119 odwiedzi\u0107 [stron\u0119 konfiguracji automatycznych kopii zapasowych]({backup_settings}), aby przejrze\u0107 i zaktualizowa\u0107 lokalizacje kopii zapasowych. Kopie zapasowe nie b\u0119d\u0105 przesy\u0142ane do wybranych lokalizacji, kt\u00f3re s\u0105 niedost\u0119pne.",
+            "title": "Lokalizacja kopii zapasowej {agent_id} jest niedost\u0119pna"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "title": "Automatyczna kopia zapasowa zosta\u0142a utworzona z b\u0142\u0119dami"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Automatyczna kopia zapasowa nie mog\u0142a zosta\u0107 utworzona. Sprawd\u017a logi, aby uzyska\u0107 wi\u0119cej informacji. Kolejna pr\u00f3ba zostanie podj\u0119ta o nast\u0119pnej zaplanowanej porze, je\u015bli harmonogram kopii zapasowych jest skonfigurowany.",
+            "title": "Nie mo\u017cna utworzy\u0107 automatycznej kopii zapasowej"
+        },
+        "automatic_backup_failed_folders": {
+            "title": "Nie wszystkie foldery mog\u0142y zosta\u0107 uwzgl\u0119dnione w automatycznej kopii zapasowej"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Automatyczna kopia zapasowa nie mog\u0142a zosta\u0107 przes\u0142ana do skonfigurowanych lokalizacji {failed_agents}. Sprawd\u017a logi, aby uzyska\u0107 wi\u0119cej informacji. Kolejna pr\u00f3ba zostanie podj\u0119ta o nast\u0119pnej zaplanowanej porze, je\u015bli harmonogram kopii zapasowych jest skonfigurowany.",
+            "title": "Automatyczna kopia zapasowa nie mog\u0142a zosta\u0107 przes\u0142ana do skonfigurowanych lokalizacji"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Tworzy now\u0105 kopi\u0119 zapasow\u0105.",
+            "name": "Utw\u00f3rz kopi\u0119 zapasow\u0105"
+        },
+        "create_automatic": {
+            "description": "Tworzy now\u0105 kopi\u0119 zapasow\u0105 z automatycznymi ustawieniami kopii zapasowej.",
+            "name": "Utw\u00f3rz automatyczn\u0105 kopi\u0119 zapasow\u0105"
+        }
+    }
+}

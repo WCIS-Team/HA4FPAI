@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se",
+        "condition_for_name": "Durante pelo menos",
+        "trigger_behavior_name": "Disparar quando",
+        "trigger_for_name": "Durante pelo menos"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Testa se um ou mais aspiradores est\u00e3o a limpar.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador est\u00e1 a limpar"
+        },
+        "is_docked": {
+            "description": "Testa se um ou mais aspiradores est\u00e3o na doca.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador est\u00e1 na doca"
+        },
+        "is_encountering_an_error": {
+            "description": "Testa se um ou mais aspiradores est\u00e3o a ter um erro.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador est\u00e1 a ter um erro"
+        },
+        "is_paused": {
+            "description": "Testa se um ou mais aspiradores est\u00e3o em pausa.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador est\u00e1 em pausa"
+        },
+        "is_returning": {
+            "description": "Testa se um ou mais aspiradores est\u00e3o a regressar \u00e0 doca.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador est\u00e1 a regressar"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Mandar {entity_name} limpar",
+            "dock": "Enviar {entity_name} para a base"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} est\u00e1 a limpar",
+            "is_docked": "{entity_name} est\u00e1 na base"
+        },
+        "extra_fields": {
+            "for": "Dura\u00e7\u00e3o"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} come\u00e7ou a limpar",
+            "docked": "{entity_name} chegou \u00e0 base"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Aspirador",
+            "state": {
+                "cleaning": "A Limpar",
+                "docked": "Na Base",
+                "error": "Erro",
+                "idle": "Inativo",
+                "off": "Desligado",
+                "on": "Ligado",
+                "paused": "Em pausa",
+                "returning": "A regressar \u00e0 base"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "O mapeamento de \u00e1rea n\u00e3o est\u00e1 configurado para `{entity_id}`. Configure o mapeamento de segmento para \u00e1rea antes de utilizar esta a\u00e7\u00e3o."
+        },
+        "areas_not_mapped": {
+            "message": "As seguintes \u00e1reas n\u00e3o est\u00e3o mapeadas para nenhum segmento de v\u00e1cuos espec\u00edficos: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Os segmentos de v\u00e1cuo mudaram para {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Diz a um aspirador para limpar uma ou mais \u00e1reas.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "\u00c1reas a limpar.",
+                    "name": "\u00c1reas"
+                }
+            },
+            "name": "Limpar a \u00e1rea com um aspirador"
+        },
+        "clean_spot": {
+            "description": "Diz a um aspirador para fazer uma limpeza pontual.",
+            "name": "Limpar a mancha com um aspirador"
+        },
+        "locate": {
+            "description": "Localiza um aspirador.",
+            "name": "Localizar aspirador"
+        },
+        "pause": {
+            "description": "Pausa a tarefa atual de um aspirador.",
+            "name": "Pausa no aspirador"
+        },
+        "return_to_base": {
+            "description": "Faz um aspirador regressar \u00e0 sua doca",
+            "name": "Fazer o aspirador regressar \u00e0 doca"
+        },
+        "send_command": {
+            "description": "Envia um comando para um aspirador.",
+            "fields": {
+                "command": {
+                    "description": "Comando a executar. Os comandos s\u00e3o espec\u00edficos da integra\u00e7\u00e3o.",
+                    "name": "Comando"
+                },
+                "params": {
+                    "description": "Par\u00e2metros para o comando. Os par\u00e2metros s\u00e3o espec\u00edficos da integra\u00e7\u00e3o.",
+                    "name": "Par\u00e2metros"
+                }
+            },
+            "name": "Enviar comando para o aspirador"
+        },
+        "set_fan_speed": {
+            "description": "Define a velocidade da ventoinha de um aspirador.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Velocidade da ventoinha. O valor depende da integra\u00e7\u00e3o. Algumas integra\u00e7\u00f5es t\u00eam passos de velocidade, como \"m\u00e9dia\". Outras utilizam uma percentagem, entre 0 e 100.",
+                    "name": "Velocidade da ventoinha"
+                }
+            },
+            "name": "Definir a velocidade da ventoinha do aspirador"
+        },
+        "start": {
+            "description": "Inicia ou retoma a tarefa de limpeza de um aspirador.",
+            "name": "Ligar o aspirador"
+        },
+        "start_pause": {
+            "description": "Inicia, pausa ou retoma a tarefa de limpeza de um aspirador.",
+            "name": "Ligar/pausar o aspirador"
+        },
+        "stop": {
+            "description": "Interrompe a tarefa atual de um aspirador.",
+            "name": "Parar aspirador"
+        },
+        "toggle": {
+            "description": "Liga/desliga um aspirador.",
+            "name": "Alternar aspirador"
+        },
+        "turn_off": {
+            "description": "Desliga um aspirador.",
+            "name": "Desligar aspirador"
+        },
+        "turn_on": {
+            "description": "Liga um aspirador.",
+            "name": "Ligar aspirador"
+        }
+    },
+    "title": "Aspirador",
+    "triggers": {
+        "errored": {
+            "description": "Dispara quando um ou mais aspiradores apresentam um erro.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador registou um erro"
+        },
+        "paused_cleaning": {
+            "description": "Dispara quando um ou mais aspiradores interrompem a limpeza.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Aspirador pausou a limpeza"
+        },
+        "returned_to_dock": {
+            "description": "Dispara quando um ou mais aspiradores regressam \u00e0 base de recarga.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador regressou \u00e0 base"
+        },
+        "started_cleaning": {
+            "description": "Dispara quando um ou mais aspiradores come\u00e7am a limpar.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "Aspirador come\u00e7ou a limpar"
+        },
+        "started_returning": {
+            "description": "Dispara quando um ou mais aspiradores come\u00e7am a regressar \u00e0 base de recarga.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "O aspirador come\u00e7ou a regressar \u00e0 doca"
+        }
+    }
+}

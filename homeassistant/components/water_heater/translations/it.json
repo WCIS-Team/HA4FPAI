@@ -1,0 +1,92 @@
+{
+    "device_automation": {
+        "action_type": {
+            "turn_off": "Disattiva {entity_name}",
+            "turn_on": "Attiva {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "state": {
+                "eco": "Eco",
+                "electric": "Elettrico",
+                "gas": "Gas",
+                "off": "Spento",
+                "performance": "Prestazione"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Modalit\u00e0 fuori casa",
+                    "state": {
+                        "off": "Spento",
+                        "on": "Acceso"
+                    }
+                },
+                "operation_mode": {
+                    "name": "Modalit\u00e0 di funzionamento",
+                    "state": {
+                        "eco": "Eco",
+                        "electric": "Elettrico",
+                        "gas": "Gas",
+                        "off": "Spento",
+                        "performance": "Prestazione"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "fields": {
+                "away_mode": {
+                    "description": "Nuovo valore della modalit\u00e0 assente.",
+                    "name": "Modalit\u00e0 assente"
+                }
+            }
+        },
+        "set_operation_mode": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Nuovo valore della modalit\u00e0 operativa. Per un elenco delle modalit\u00e0 possibili, fare riferimento alla documentazione dell'integrazione.",
+                    "name": "Modalit\u00e0 operativa"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Nuovo valore della modalit\u00e0 operativa. Per un elenco delle modalit\u00e0 possibili, fare riferimento alla documentazione dell'integrazione.",
+                    "name": "Modalit\u00e0 operativa"
+                },
+                "temperature": {
+                    "description": "Nuova temperatura desiderata per lo scaldabagno.",
+                    "name": "Temperatura"
+                }
+            }
+        }
+    },
+    "triggers": {
+        "operation_mode_changed": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Le modalit\u00e0 di attivazione",
+                    "name": "Modalit\u00e0"
+                }
+            }
+        },
+        "target_temperature_changed": {
+            "description": "Si attiva quando l'impostazione di temperatura di uno o pi\u00f9 scaldabagno cambia"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Si attiva quando l'impostazione di temperatura di uno o pi\u00f9 scaldabagno supera una soglia"
+        },
+        "turned_off": {
+            "description": "Si attiva quando uno o pi\u00f9 scaldabagno si spengono",
+            "name": "Scaldabagno spento"
+        },
+        "turned_on": {
+            "description": "Si attiva quando uno o pi\u00f9 scaldabagno si attivano, a priori dalla modalit\u00e0",
+            "name": "Scaldabagno acceso"
+        }
+    }
+}

@@ -1,0 +1,245 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "condition_threshold_name": "Tr\u00f6skelv\u00e4rdestyp",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone",
+        "trigger_threshold_name": "Tr\u00f6skelv\u00e4rdestyp"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Testar om en eller flera varmvattenberedare \u00e4r avst\u00e4ngda.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Varmvattenberedaren \u00e4r avst\u00e4ngd"
+        },
+        "is_on": {
+            "description": "Testar om en eller flera varmvattenberedare \u00e4r p\u00e5slagna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Varmvattenberedaren \u00e4r p\u00e5slagen"
+        },
+        "is_operation_mode": {
+            "description": "Testar om en eller flera varmvattenberedare \u00e4r inst\u00e4llda p\u00e5 ett specifikt driftl\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "operation_mode": {
+                    "description": "Det driftl\u00e4ge som ska kontrolleras.",
+                    "name": "Driftl\u00e4ge"
+                }
+            },
+            "name": "Driftl\u00e4ge f\u00f6r varmvattenberedare"
+        },
+        "is_target_temperature": {
+            "description": "Testar temperaturinst\u00e4llningen f\u00f6r en eller flera varmvattenberedare.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "M\u00e5ltemperatur f\u00f6r varmvattenberedare"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "Sl\u00e5 av {entity_name}",
+            "turn_on": "Sl\u00e5 p\u00e5 {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Varmvattenberedare",
+            "state": {
+                "eco": "Eko",
+                "electric": "Elektrisk",
+                "gas": "Gas",
+                "heat_pump": "V\u00e4rmepump",
+                "high_demand": "H\u00f6g efterfr\u00e5gan",
+                "off": "Av",
+                "performance": "Prestanda"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Bortal\u00e4ge",
+                    "state": {
+                        "off": "Av",
+                        "on": "P\u00e5"
+                    }
+                },
+                "current_operation": {
+                    "name": "Nuvarande driftl\u00e4ge"
+                },
+                "current_temperature": {
+                    "name": "Aktuell temperatur"
+                },
+                "max_temp": {
+                    "name": "H\u00f6gsta m\u00e5ltemperatur"
+                },
+                "min_temp": {
+                    "name": "L\u00e4gsta m\u00e5ltemperatur"
+                },
+                "operation_mode": {
+                    "name": "Driftl\u00e4ge",
+                    "state": {
+                        "eco": "Eko",
+                        "electric": "Elektrisk",
+                        "gas": "Gas",
+                        "heat_pump": "V\u00e4rmepump",
+                        "high_demand": "H\u00f6g efterfr\u00e5gan",
+                        "off": "Av",
+                        "performance": "Prestanda"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "\u00d6vre m\u00e5ltemperatur"
+                },
+                "target_temp_low": {
+                    "name": "Undre m\u00e5ltemperatur"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "Driftl\u00e4ge {operation_mode} \u00e4r inte giltigt f\u00f6r {entity_id}. Giltiga driftl\u00e4gen \u00e4r: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "Driftl\u00e4ge {operation_mode} \u00e4r inte giltigt f\u00f6r {entity_id}. Operationslistan \u00e4r inte definierad."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "description": "St\u00e4ller in bortal\u00e4ge f\u00f6r en varmvattenberedare.",
+            "fields": {
+                "away_mode": {
+                    "description": "Nytt v\u00e4rde f\u00f6r bortal\u00e4ge.",
+                    "name": "Bortal\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in bortal\u00e4ge f\u00f6r varmvattenberedare"
+        },
+        "set_operation_mode": {
+            "description": "St\u00e4ller in driftl\u00e4get f\u00f6r en varmvattenberedare.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nytt v\u00e4rde f\u00f6r driftl\u00e4get. F\u00f6r en lista \u00f6ver m\u00f6jliga l\u00e4gen, se integrationsdokumentationen.",
+                    "name": "Driftl\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in driftl\u00e4ge f\u00f6r varmvattenberedare"
+        },
+        "set_temperature": {
+            "description": "St\u00e4ller in m\u00e5ltemperaturen f\u00f6r en varmvattenberedare.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nytt v\u00e4rde f\u00f6r driftl\u00e4get. F\u00f6r en lista \u00f6ver m\u00f6jliga l\u00e4gen, se integrationsdokumentationen.",
+                    "name": "Driftl\u00e4ge"
+                },
+                "temperature": {
+                    "description": "Ny m\u00e5ltemperatur f\u00f6r varmvattenberedaren.",
+                    "name": "Temperatur"
+                }
+            },
+            "name": "St\u00e4ll in m\u00e5ltemperaturen f\u00f6r varmvattenberedaren"
+        },
+        "turn_off": {
+            "description": "St\u00e4nger av varmvattenberedaren.",
+            "name": "St\u00e4ng av varmvattenberedare"
+        },
+        "turn_on": {
+            "description": "Sl\u00e5r p\u00e5 varmvattenberedaren.",
+            "name": "Sl\u00e5 p\u00e5 varmvattenberedare"
+        }
+    },
+    "title": "Varmvattenberedare",
+    "triggers": {
+        "operation_mode_changed": {
+            "description": "Utl\u00f6ses n\u00e4r driftl\u00e4get f\u00f6r en eller flera varmvattenberedare \u00e4ndras till ett specifikt l\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "operation_mode": {
+                    "description": "De driftl\u00e4gen att utl\u00f6sa p\u00e5.",
+                    "name": "Driftl\u00e4ge"
+                }
+            },
+            "name": "Driftl\u00e4ge f\u00f6r varmvattenberedare har \u00e4ndrats"
+        },
+        "target_temperature_changed": {
+            "description": "Utl\u00f6ses n\u00e4r temperaturb\u00f6rv\u00e4rdet f\u00f6r en eller flera varmvattenberedare f\u00f6r\u00e4ndras.",
+            "fields": {
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "M\u00e5ltemperaturen f\u00f6r varmvattenberedaren har \u00e4ndrats"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Utl\u00f6ses n\u00e4r temperaturb\u00f6rv\u00e4rdet f\u00f6r en eller flera varmvattenberedare passerar ett tr\u00f6skelv\u00e4rde.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Varmvattenberedarens m\u00e5ltemperatur har passerat tr\u00f6skelv\u00e4rdet"
+        },
+        "turned_off": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera varmvattenberedare st\u00e4ngs av.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Varmvattenberedaren avst\u00e4ngd"
+        },
+        "turned_on": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera varmvattenberedare sl\u00e5s p\u00e5, oavsett driftl\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Varmvattenberedaren p\u00e5slagen"
+        }
+    }
+}

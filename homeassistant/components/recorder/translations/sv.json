@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Databasbackupen som anges p\u00e5 {start_time} misslyckades p\u00e5 grund av resursbrist. S\u00e4kerhetskopian g\u00e5r inte att lita p\u00e5 och m\u00e5ste g\u00f6ras om. Detta kan h\u00e4nda om databasen \u00e4r f\u00f6r stor eller om systemet \u00e4r h\u00e5rt belastat. \u00d6verv\u00e4g att uppgradera systemets h\u00e5rdvara eller minska databasens storlek genom att minska antalet historikdagar som ska sparas eller genom att skapa ett filter.",
+            "title": "S\u00e4kerhetskopiering av databas misslyckades p\u00e5 grund av resursbrist"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "Version {server_version} av {database_engine} \u00e4r inte en version med l\u00e5ngsiktigt st\u00f6d (LTS). St\u00f6det f\u00f6r kortvariga versioner och LTS-versioner som inte l\u00e4ngre st\u00f6ds kommer att avslutas. Uppgradera till en av de LTS-versioner som st\u00f6ds ({lts_versions}) och starta om Home Assistant f\u00f6r att kunna forts\u00e4tta anv\u00e4nda inspelaren.",
+            "title": "Uppdatera {database_engine} till en LTS-version som st\u00f6ds f\u00f6r att kunna forts\u00e4tta anv\u00e4nda inspelaren"
+        },
+        "database_engine_too_old": {
+            "description": "St\u00f6det f\u00f6r version {server_version} av {database_engine} upph\u00f6r; den l\u00e4gsta version som st\u00f6ds kommer att vara {min_version}. Uppgradera din databasprogramvara och starta om Home Assistant.",
+            "title": "Uppdatera {database_engine} till {min_version} eller senare f\u00f6r att kunna forts\u00e4tta anv\u00e4nda inspelningsprogrammet"
+        },
+        "maria_db_range_index_regression": {
+            "description": "\u00c4ldre versioner av MariaDB har en betydande prestandaf\u00f6rlust vid h\u00e4mtning av historikdata eller rensning av databasen. Uppdatera till MariaDB version {min_version} eller senare och starta om Home Assistant. Om du anv\u00e4nder MariaDB core add-on, se till att uppdatera den till den senaste versionen.",
+            "title": "Uppdatera MariaDB till {min_version} eller senare f\u00f6r att l\u00f6sa ett viktigt prestandaproblem"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Stoppar inspelningen av h\u00e4ndelser och tillst\u00e5nds\u00e4ndringar.",
+            "name": "Inaktivera inspelaren"
+        },
+        "enable": {
+            "description": "Startar inspelningen av h\u00e4ndelser och tillst\u00e5nds\u00e4ndringar.",
+            "name": "Aktivera inspelaren"
+        },
+        "get_statistics": {
+            "description": "H\u00e4mtar statistikdata f\u00f6r entiteter inom en viss tidsperiod.",
+            "fields": {
+                "end_time": {
+                    "description": "Sluttiden f\u00f6r statistikf\u00f6rfr\u00e5gan. Om den utel\u00e4mnas returneras all statistik fr\u00e5n starttiden och fram\u00e5t.",
+                    "name": "Sluttid"
+                },
+                "period": {
+                    "description": "Tidsperioden som statistik ska grupperas efter.",
+                    "name": "Period"
+                },
+                "start_time": {
+                    "description": "Starttiden f\u00f6r statistikf\u00f6rfr\u00e5gan.",
+                    "name": "Starttid"
+                },
+                "statistic_ids": {
+                    "description": "De entitets-ID:n eller statistik-ID:n som statistik ska returneras f\u00f6r.",
+                    "name": "Statistik-ID:n"
+                },
+                "types": {
+                    "description": "Typerna av statistikv\u00e4rden som ska returneras.",
+                    "name": "Typer"
+                },
+                "units": {
+                    "description": "Valfri mappning f\u00f6r enhetsomvandling.",
+                    "name": "Enheter"
+                }
+            },
+            "name": "H\u00e4mta statistik fr\u00e5n Recorder"
+        },
+        "purge": {
+            "description": "Startar rensningsuppgift \u2013 f\u00f6r att rensa bort gammal data fr\u00e5n din databas.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Till\u00e4mpar 'entity_id'- och 'event_type'-filter ut\u00f6ver tidsbaserad rensning.",
+                    "name": "Till\u00e4mpa filter"
+                },
+                "keep_days": {
+                    "description": "Antal dagar som data ska sparas i databasen. B\u00f6rjar i dag och r\u00e4knas bak\u00e5t. Ett v\u00e4rde p\u00e5 '7' inneb\u00e4r att all data som \u00e4r \u00e4ldre \u00e4n en vecka kommer att rensas bort.",
+                    "name": "Dagar att beh\u00e5lla"
+                },
+                "repack": {
+                    "description": "F\u00f6rs\u00f6ker att spara diskutrymme genom att skriva om hela databasfilen.",
+                    "name": "Packa om"
+                }
+            },
+            "name": "Rensa inspelarens databas"
+        },
+        "purge_entities": {
+            "description": "Startar en rensningsuppgift f\u00f6r att rensa bort gammal data som \u00e4r relaterade till specifika entiteter fr\u00e5n databasen.",
+            "fields": {
+                "domains": {
+                    "description": "Lista \u00f6ver dom\u00e4ner f\u00f6r vilka data kommer att tas bort fr\u00e5n Recorderns databas.",
+                    "name": "Dom\u00e4ner att ta bort"
+                },
+                "entity_globs": {
+                    "description": "Lista \u00f6ver glob-m\u00f6nster som anv\u00e4nds f\u00f6r att v\u00e4lja de entiteter f\u00f6r vilka data kommer att tas bort fr\u00e5n Recorderns databas.",
+                    "name": "Entity-globs att ta bort"
+                },
+                "entity_id": {
+                    "description": "Lista \u00f6ver entiteter f\u00f6r vilka data kommer att tas bort fr\u00e5n Recorderns databas.",
+                    "name": "Entiteter som ska tas bort"
+                },
+                "keep_days": {
+                    "description": "Antal dagar som data sparas f\u00f6r rader som matchar filtret. B\u00f6rjar i dag och r\u00e4knas bak\u00e5t. Ett v\u00e4rde p\u00e5 '7' inneb\u00e4r att all data som \u00e4r \u00e4ldre \u00e4n en vecka kommer att rensas bort. Standardv\u00e4rdet 0 dagar inneb\u00e4r att all data tas bort omedelbart.",
+                    "name": "Dagar att beh\u00e5lla"
+                }
+            },
+            "name": "Rensa entiteter fr\u00e5n Recorder"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Aktuell starttid",
+            "database_engine": "Databasmotor",
+            "database_version": "Databasversion",
+            "estimated_db_size": "Ber\u00e4knad databasstorlek (MiB)",
+            "oldest_recorder_run": "\u00c4ldsta starttid"
+        }
+    }
+}

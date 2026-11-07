@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Pr\u00fcft, ob in einem oder mehreren Dropdown-Men\u00fcs eine bestimmte Option ausgew\u00e4hlt ist.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "option": {
+                    "description": "Die Optionen, auf die gepr\u00fcft werden soll.",
+                    "name": "Option"
+                }
+            },
+            "name": "Dropdown-Option ausgew\u00e4hlt"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "{entity_name} auf erste Option \u00e4ndern",
+            "select_last": "{entity_name} auf letzte Option \u00e4ndern",
+            "select_next": "{entity_name} auf n\u00e4chste Option \u00e4ndern",
+            "select_option": "Option von {entity_name} \u00e4ndern",
+            "select_previous": "{entity_name} auf vorherige Option \u00e4ndern"
+        },
+        "condition_type": {
+            "selected_option": "Aktuell ausgew\u00e4hlte Option von {entity_name}"
+        },
+        "extra_fields": {
+            "cycle": "Umlaufend",
+            "for": "Dauer",
+            "from": "Von",
+            "option": "Option",
+            "to": "Auf"
+        },
+        "trigger_type": {
+            "current_option_changed": "Sobald die Option von {entity_name} ge\u00e4ndert wird"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Auswahl",
+            "state_attributes": {
+                "options": {
+                    "name": "Optionen"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "Die Entit\u00e4t {entity_id} hat keine Optionen zur Auswahl."
+        },
+        "not_valid_option": {
+            "message": "Option {option} ist f\u00fcr die Entit\u00e4t {entity_id} nicht g\u00fcltig, g\u00fcltige Optionen sind: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "W\u00e4hlt die erste Option einer Auswahl aus.",
+            "name": "Erste Option ausw\u00e4hlen"
+        },
+        "select_last": {
+            "description": "W\u00e4hlt die letzte Option einer Auswahl aus.",
+            "name": "Letzte Option ausw\u00e4hlen"
+        },
+        "select_next": {
+            "description": "W\u00e4hlt die n\u00e4chste Option einer Auswahl aus.",
+            "fields": {
+                "cycle": {
+                    "description": "Ob die Option von der letzten zur ersten Option springen soll.",
+                    "name": "Umlaufend"
+                }
+            },
+            "name": "N\u00e4chste Option ausw\u00e4hlen"
+        },
+        "select_option": {
+            "description": "W\u00e4hlt eine Option einer Auswahl aus.",
+            "fields": {
+                "option": {
+                    "description": "Zu w\u00e4hlende Option.",
+                    "name": "Option"
+                }
+            },
+            "name": "Option ausw\u00e4hlen"
+        },
+        "select_previous": {
+            "description": "W\u00e4hlt die vorherige Option einer Auswahl aus.",
+            "fields": {
+                "cycle": {
+                    "description": "Ob die Option von der ersten zur letzten Option springen soll.",
+                    "name": "Umlaufend"
+                }
+            },
+            "name": "Vorherige Option ausw\u00e4hlen"
+        }
+    },
+    "title": "Auswahl",
+    "triggers": {
+        "selection_changed": {
+            "description": "Wird ausgel\u00f6st, sobald sich die ausgew\u00e4hlte Option in einem oder mehreren Dropdown-Men\u00fcs \u00e4ndert.",
+            "name": "Dropdown-Auswahl ge\u00e4ndert"
+        }
+    }
+}

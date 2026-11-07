@@ -1,0 +1,159 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu muruniidukit on dokitud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk on dokitud"
+        },
+        "is_encountering_an_error": {
+            "description": "Kontrollib kas \u00fchel v\u00f5i mitmel muruniidukil esineb t\u00f5rge.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniidukil ilmneb t\u00f5rge"
+        },
+        "is_mowing": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu muruniidukit niidavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk niidab"
+        },
+        "is_paused": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu muruniidukit on peatatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk on peatatud"
+        },
+        "is_returning": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu muruniidukit naasevad dokki.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk naaseb dokki"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Muruniiduk",
+            "state": {
+                "docked": "Laadimisjaamas",
+                "error": "Viga",
+                "mowing": "Niitmine",
+                "paused": "Peatatud",
+                "returning": "Tagasitulek"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Tagastab muruniiduki dokki.",
+            "name": "Muruniiduki tagastamine dokki"
+        },
+        "pause": {
+            "description": "Peatab muruniiduki jooksva \u00fclesande.",
+            "name": "Muruniiduki peatamine"
+        },
+        "start_mowing": {
+            "description": "Alustab niitmistegevust.",
+            "name": "K\u00e4ivita muruniiduk"
+        }
+    },
+    "title": "Muruniiduk",
+    "triggers": {
+        "errored": {
+            "description": "K\u00e4ivitub kui \u00fchel v\u00f5i mitmel muruniidukil tekib t\u00f5rge.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniidukil on t\u00f5rge"
+        },
+        "paused_mowing": {
+            "description": "L\u00fclitub sisse kui \u00fcks v\u00f5i mitu muruniidukit peatavad niitmise.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk on niitmise peatanud"
+        },
+        "returned_to_dock": {
+            "description": "K\u00e4ivitub, kui \u00fcks v\u00f5i mitu muruniidukit on naasnud laadimisjaama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk naasis dokki"
+        },
+        "started_mowing": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu muruniidukit niitma hakkavad.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk on alustanud niitmist"
+        },
+        "started_returning": {
+            "description": "L\u00fclitub sisse kui \u00fcks v\u00f5i mitu muruniidukit hakkavad laadimisjaama tagasi p\u00f6\u00f6rduma.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Muruniiduk hakkas dokki tagasi p\u00f6\u00f6rduma"
+        }
+    }
+}

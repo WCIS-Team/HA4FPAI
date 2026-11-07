@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb",
+        "trigger_behavior_name": "Aktiv\u00e1l\u00f3dik, amikor",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb friss\u00edt\u00e9s el\u00e9rhet\u0151-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "Friss\u00edt\u00e9s el\u00e9rhet\u0151"
+        },
+        "is_not_available": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb friss\u00edt\u00e9s nem el\u00e9rhet\u0151-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "Friss\u00edt\u00e9s nem el\u00e9rhet\u0151"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Id\u0151tartam"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} friss\u00edt\u00e9s el\u00e9rhet\u0151s\u00e9ge megv\u00e1ltozott",
+            "turned_off": "{entity_name} naprak\u00e9sz lett",
+            "turned_on": "{entity_name} kapott egy el\u00e9rhet\u0151 friss\u00edt\u00e9st"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Friss\u00edt\u00e9s",
+            "state": {
+                "off": "Naprak\u00e9sz",
+                "on": "Friss\u00edt\u00e9s el\u00e9rhet\u0151"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Automatikus friss\u00edt\u00e9s",
+                    "state": {
+                        "false": "Nem",
+                        "true": "Igen"
+                    }
+                },
+                "in_progress": {
+                    "name": "Folyamatban",
+                    "state": {
+                        "false": "Nem",
+                        "true": "Igen"
+                    }
+                },
+                "installed_version": {
+                    "name": "Telep\u00edtett verzi\u00f3"
+                },
+                "latest_version": {
+                    "name": "Leg\u00fajabb verzi\u00f3"
+                },
+                "release_summary": {
+                    "name": "Kiad\u00e1si \u00f6sszefoglal\u00f3"
+                },
+                "release_url": {
+                    "name": "Kiad\u00e1si URL"
+                },
+                "skipped_version": {
+                    "name": "Kihagyott verzi\u00f3"
+                },
+                "title": {
+                    "name": "Megnevez\u00e9s"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmware"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "A biztons\u00e1gi ment\u00e9s nem t\u00e1mogatott a(z) {entity_id} eset\u00e9ben."
+        },
+        "clear_skipped_not_supported": {
+            "message": "A kihagyott friss\u00edt\u00e9s t\u00f6rl\u00e9se nem t\u00e1mogatott a(z) {entity_id} eset\u00e9ben."
+        },
+        "no_update_available": {
+            "message": "Nem \u00e9rhet\u0151 el friss\u00edt\u00e9s a(z) {entity_id} eset\u00e9ben."
+        },
+        "no_update_available_to_skip": {
+            "message": "Nincs kihagyhat\u00f3 friss\u00edt\u00e9s a(z) {entity_id} eset\u00e9ben."
+        },
+        "skip_not_supported": {
+            "message": "A friss\u00edt\u00e9s kihagy\u00e1sa nem t\u00e1mogatott a(z) {entity_id} eset\u00e9ben."
+        },
+        "specific_version_not_supported": {
+            "message": "Meghat\u00e1rozott verzi\u00f3 telep\u00edt\u00e9se nem t\u00e1mogatott a(z) {entity_id} eset\u00e9ben."
+        },
+        "unknown_version_to_skip": {
+            "message": "Ismeretlen verzi\u00f3 nem hagyhat\u00f3 ki a(z) {entity_id} eset\u00e9ben."
+        },
+        "update_in_progress": {
+            "message": "A friss\u00edt\u00e9s telep\u00edt\u00e9se m\u00e1r folyamatban van a(z) {entity_id} eset\u00e9ben."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Elt\u00e1vol\u00edtja a kihagyott verzi\u00f3jelz\u0151t egy friss\u00edt\u00e9sr\u0151l.",
+            "name": "Kihagyott friss\u00edt\u00e9s t\u00f6rl\u00e9se"
+        },
+        "install": {
+            "description": "Friss\u00edt\u00e9st telep\u00edt az adott eszk\u00f6zh\u00f6z vagy szolg\u00e1ltat\u00e1shoz.",
+            "fields": {
+                "backup": {
+                    "description": "Ha az integr\u00e1ci\u00f3 t\u00e1mogatja, akkor a friss\u00edt\u00e9s megkezd\u00e9se el\u0151tt biztons\u00e1gi m\u00e1solatot k\u00e9sz\u00edt.",
+                    "name": "Biztons\u00e1gi ment\u00e9s"
+                },
+                "version": {
+                    "description": "A telep\u00edtend\u0151 verzi\u00f3. Ha nincs megadva, a rendszer a leg\u00fajabb verzi\u00f3t telep\u00edti.",
+                    "name": "Verzi\u00f3"
+                }
+            },
+            "name": "Friss\u00edt\u00e9s telep\u00edt\u00e9se"
+        },
+        "skip": {
+            "description": "A jelenleg el\u00e9rhet\u0151 friss\u00edt\u00e9st kihagyottnak jel\u00f6li.",
+            "name": "Friss\u00edt\u00e9s kihagy\u00e1sa"
+        }
+    },
+    "title": "Friss\u00edt\u00e9s",
+    "triggers": {
+        "became_available": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb friss\u00edt\u00e9s el\u00e9rhet\u0151v\u00e9 v\u00e1lik.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "Friss\u00edt\u00e9s el\u00e9rhet\u0151v\u00e9 v\u00e1lt"
+        }
+    }
+}

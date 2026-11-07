@@ -1,0 +1,325 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_armed": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Alarmzentralen aktiviert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale aktiviert"
+        },
+        "is_armed_away": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Alarmzentralen im Abwesendmodus aktiviert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Abwesendmodus aktiviert"
+        },
+        "is_armed_home": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Alarmzentralen im Zuhausemodus aktiviert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Zuhausemodus aktiviert"
+        },
+        "is_armed_night": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Alarmzentralen im Nachtmodus aktiviert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Nachtmodus aktiviert"
+        },
+        "is_armed_vacation": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Alarmzentralen im Urlaubsmodus aktiviert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Urlaubsmodus aktiviert"
+        },
+        "is_disarmed": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Alarmzentralen deaktiviert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale deaktiviert"
+        },
+        "is_triggered": {
+            "description": "Pr\u00fcft, ob bei einer oder mehreren Alarmzentralen ein Alarm ausgel\u00f6st ist.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarm ausgel\u00f6st"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "arm_away": "{entity_name} im Abwesendmodus aktivieren",
+            "arm_home": "{entity_name} im Zuhausemodus aktivieren",
+            "arm_night": "{entity_name} im Nachtmodus aktivieren",
+            "arm_vacation": "{entity_name} im Urlaubsmodus aktivieren",
+            "disarm": "{entity_name} deaktivieren",
+            "trigger": "{entity_name} ausl\u00f6sen"
+        },
+        "condition_type": {
+            "is_armed_away": "Wenn {entity_name} im Abwesendmodus aktiviert ist",
+            "is_armed_home": "Wenn {entity_name} im Zuhausemodus aktiviert ist",
+            "is_armed_night": "Wenn {entity_name} im Nachtmodus aktiviert ist",
+            "is_armed_vacation": "Wenn {entity_name} im Urlaubsmodus aktiviert ist",
+            "is_disarmed": "Wenn {entity_name} deaktiviert ist",
+            "is_triggered": "Wenn {entity_name} ausgel\u00f6st ist"
+        },
+        "extra_fields": {
+            "code": "Code",
+            "for": "Dauer"
+        },
+        "trigger_type": {
+            "armed_away": "Sobald {entity_name} im Abwesendmodus aktiviert wird",
+            "armed_home": "Sobald {entity_name} im Zuhausemodus aktiviert wird",
+            "armed_night": "Sobald {entity_name} im Nachtmodus aktiviert wird",
+            "armed_vacation": "Sobald {entity_name} im Urlaubsmodus aktiviert wird",
+            "disarmed": "Sobald {entity_name} deaktiviert wird",
+            "triggered": "Sobald {entity_name} ausgel\u00f6st wird"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Alarmzentrale",
+            "state": {
+                "armed": "Aktiviert",
+                "armed_away": "Aktiviert (Abwesend)",
+                "armed_custom_bypass": "Aktiviert (Mit Bypass)",
+                "armed_home": "Aktiviert (Zuhause)",
+                "armed_night": "Aktiviert (Nacht)",
+                "armed_vacation": "Aktiviert (Urlaub)",
+                "arming": "Wird aktiviert",
+                "disarmed": "Deaktiviert",
+                "disarming": "Wird deaktiviert",
+                "pending": "Anstehend",
+                "triggered": "Ausgel\u00f6st"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Ge\u00e4ndert durch"
+                },
+                "code_arm_required": {
+                    "name": "Code zum Aktivieren",
+                    "state": {
+                        "false": "Nicht erforderlich",
+                        "true": "Erforderlich"
+                    }
+                },
+                "code_format": {
+                    "name": "Codeformat",
+                    "state": {
+                        "number": "Nummer",
+                        "text": "Text"
+                    }
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "code_arm_required": {
+            "message": "Zum Aktivieren ist ein Code erforderlich, f\u00fcr {entity_id} wurde jedoch keiner angegeben."
+        }
+    },
+    "services": {
+        "alarm_arm_away": {
+            "description": "Aktiviert eine Alarmzentrale im Abwesendmodus.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Aktivieren der Alarmzentrale.",
+                    "name": "Code"
+                }
+            },
+            "name": "Alarmzentrale aktivieren (Abwesend)"
+        },
+        "alarm_arm_custom_bypass": {
+            "description": "Aktiviert eine Alarmzentrale und erm\u00f6glicht den Bypass eines benutzerdefinierten Bereichs.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Aktivieren der Alarmzentrale.",
+                    "name": "Code"
+                }
+            },
+            "name": "Alarmzentrale aktivieren (Mit Bypass)"
+        },
+        "alarm_arm_home": {
+            "description": "Aktiviert eine Alarmzentrale im Zuhausemodus.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Aktivieren der Alarmzentrale.",
+                    "name": "Code"
+                }
+            },
+            "name": "Alarmzentrale aktivieren (Zuhause)"
+        },
+        "alarm_arm_night": {
+            "description": "Aktiviert eine Alarmzentrale im Nachtmodus.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Aktivieren der Alarmzentrale.",
+                    "name": "Code"
+                }
+            },
+            "name": "Alarmzentrale aktivieren (Nacht)"
+        },
+        "alarm_arm_vacation": {
+            "description": "Aktiviert eine Alarmzentrale im Urlaubsmodus.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Aktivieren der Alarmzentrale.",
+                    "name": "Code"
+                }
+            },
+            "name": "Alarmzentrale aktivieren (Urlaub)"
+        },
+        "alarm_disarm": {
+            "description": "Deaktiviert eine Alarmzentrale.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Deaktivieren der Alarmzentrale.",
+                    "name": "Code"
+                }
+            },
+            "name": "Alarmzentrale deaktivieren"
+        },
+        "alarm_trigger": {
+            "description": "L\u00f6st einen Alarm manuell aus.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Aktivieren der Alarmzentrale.",
+                    "name": "Code"
+                }
+            },
+            "name": "Alarmzentrale ausl\u00f6sen"
+        }
+    },
+    "title": "Alarmzentrale",
+    "triggers": {
+        "armed": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Alarmzentralen aktiviert werden, unabh\u00e4ngig vom Modus.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale aktiviert"
+        },
+        "armed_away": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Alarmzentralen im Abwesendmodus aktiviert werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Abwesendmodus aktiviert"
+        },
+        "armed_home": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Alarmzentralen im Zuhausemodus aktiviert werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Zuhausemodus aktiviert"
+        },
+        "armed_night": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Alarmzentralen im Nachtmodus aktiviert werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Nachtmodus aktiviert"
+        },
+        "armed_vacation": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Alarmzentralen im Urlaubsmodus aktiviert werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale im Urlaubsmodus aktiviert"
+        },
+        "disarmed": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Alarmzentralen deaktiviert werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarmzentrale deaktiviert"
+        },
+        "triggered": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Alarme ausgel\u00f6st werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Alarm ausgel\u00f6st"
+        }
+    }
+}

@@ -1,0 +1,108 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} \u00e4r hemma",
+            "is_not_home": "{entity_name} \u00e4r inte hemma"
+        },
+        "extra_fields": {
+            "zone": "Zon"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} ankommer en zon",
+            "leaves": "{entity_name} l\u00e4mnar en zon"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Enhetssp\u00e5rare",
+            "state": {
+                "home": "Hemma",
+                "not_home": "Borta"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Batteri"
+                },
+                "gps_accuracy": {
+                    "name": "GPS-noggrannhet"
+                },
+                "latitude": {
+                    "name": "Latitud"
+                },
+                "longitude": {
+                    "name": "Longitud"
+                },
+                "source_type": {
+                    "name": "K\u00e4lla",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "Router"
+                    }
+                },
+                "tracking_type": {
+                    "name": "Sp\u00e5rningstyp",
+                    "state": {
+                        "connection": "Anslutning",
+                        "position": "Position"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "associated_zone_missing": {
+            "description": "Skannerenheten `{entity_id}` \u00e4r associerad med zonen `{zone}`, men den zonen har tagits bort. \n\nF\u00f6r att \u00e5tg\u00e4rda detta, konfigurera om skannern s\u00e5 att den anv\u00e4nder en annan zon eller \u00e5terskapa den saknade zonen.",
+            "title": "Skannern \u00e4r associerad med en borttagen zon"
+        },
+        "deprecated_see_action": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "\u00c5tg\u00e4rden `device_tracker.see` \u00e4r f\u00f6r\u00e5ldrad och kommer att tas bort i Home Assistant Core 2027.5.\n\nAnv\u00e4nd en [mall f\u00f6r enhetssp\u00e5rning]({docs_url}) ist\u00e4llet, ta sedan bort all anv\u00e4ndning av den h\u00e4r \u00e5tg\u00e4rden fr\u00e5n dina automatiseringar och skript och v\u00e4lj sedan **Bekr\u00e4fta** f\u00f6r att st\u00e4nga det h\u00e4r meddelandet.",
+                        "title": "Anv\u00e4ndning av f\u00f6r\u00e5ldrad \u00e5tg\u00e4rd device_tracker.see uppt\u00e4cktes"
+                    }
+                }
+            },
+            "title": "Anv\u00e4ndning av f\u00f6r\u00e5ldrad \u00e5tg\u00e4rd device_tracker.see uppt\u00e4cktes"
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Uppdatera uppgifterna manuellt f\u00f6r en sedd \u00e4ldre enhetssp\u00e5rare i filen known_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "Enhetens batteriniv\u00e5.",
+                    "name": "Batteriniv\u00e5"
+                },
+                "dev_id": {
+                    "description": "Enhetens ID (ID:t finns i `known_devices.yaml`).",
+                    "name": "Enhets-ID"
+                },
+                "gps": {
+                    "description": "GPS-koordinater f\u00f6r var enheten befinner sig, angivna med latitud och longitud (till exempel: [51,513845, -0,100539]).",
+                    "name": "GPS-koordinater"
+                },
+                "gps_accuracy": {
+                    "description": "GPS-koordinaternas noggrannhet.",
+                    "name": "GPS-noggrannhet"
+                },
+                "host_name": {
+                    "description": "V\u00e4rdnamn f\u00f6r enheten.",
+                    "name": "V\u00e4rdnamn"
+                },
+                "location_name": {
+                    "description": "Namn p\u00e5 platsen d\u00e4r enheten befinner sig. Alternativen \u00e4r: `home`, `not_home` eller namnet p\u00e5 zonen.",
+                    "name": "Plats"
+                },
+                "mac": {
+                    "description": "Enhetens MAC-adress.",
+                    "name": "MAC-adress"
+                }
+            },
+            "name": "Se enhetssp\u00e5rare"
+        }
+    },
+    "title": "Enhetssp\u00e5rare"
+}

@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Proverava da li je jedan ili vi\u0161e tajmera aktivno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer aktivan"
+        },
+        "is_idle": {
+            "description": "Proverava da li je jedan ili vi\u0161e tajmera u mirovanju.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer u mirovanju"
+        },
+        "is_paused": {
+            "description": "Proverava da li je jedan ili vi\u0161e tajmera pauzirano.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer pauziran"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Tajmer",
+            "state": {
+                "active": "Aktivno",
+                "idle": "Mirovanje",
+                "paused": "Pauzirano"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Trajanje"
+                },
+                "editable": {
+                    "name": "Upravljanje putem korisni\u010dkog interfejsa",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Da"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Zavr\u0161ava se u"
+                },
+                "last_transition": {
+                    "name": "Poslednja promena",
+                    "state": {
+                        "cancelled": "Otkazan",
+                        "finished": "Zavr\u0161en",
+                        "paused": "Pauziran",
+                        "restarted": "Ponovo pokrenut",
+                        "started": "Pokrenut"
+                    }
+                },
+                "remaining": {
+                    "name": "Preostalo"
+                },
+                "restore": {
+                    "name": "Obnovi"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "Vra\u0107a trajanje tajmera na poslednju poznatu po\u010detnu vrednost bez okidanja doga\u0111aja zavr\u0161etka.",
+            "name": "Otka\u017ei tajmer"
+        },
+        "change": {
+            "description": "Menja tajmer dodavanjem ili oduzimanjem zadatog trajanja.",
+            "fields": {
+                "duration": {
+                    "description": "Iznos vremena za promenu trenutnog trajanja (npr. 00:02:00).",
+                    "name": "Vremenska korekcija"
+                }
+            },
+            "name": "Izmeni tajmer"
+        },
+        "finish": {
+            "description": "Zavr\u0161ava pokrenuti tajmer pre predvi\u0111enog vremena.",
+            "name": "Zavr\u0161i tajmer"
+        },
+        "pause": {
+            "description": "Pauzira pokrenuti tajmer i zadr\u017eava preostalo vreme za kasniji nastavak.",
+            "name": "Pauziraj tajmer"
+        },
+        "reload": {
+            "description": "Ponovo u\u010ditava tajmere iz YAML konfiguracije.",
+            "name": "Ponovo u\u010ditaj tajmere"
+        },
+        "start": {
+            "description": "Pokre\u0107e tajmer ili ga ponovo pokre\u0107e sa zadatim trajanjem.",
+            "fields": {
+                "duration": {
+                    "description": "Vremenski interval za ponovno pokretanje tajmera (npr. 00:05:00).",
+                    "name": "Trajanje (opciono)"
+                }
+            },
+            "name": "Pokreni tajmer"
+        }
+    },
+    "title": "Tajmer",
+    "triggers": {
+        "cancelled": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e tajmera poni\u0161te.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer otkazan"
+        },
+        "finished": {
+            "description": "Pokre\u0107e se kada isteknu jedan ili vi\u0161e tajmera.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer zavr\u0161en"
+        },
+        "paused": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e tajmera pauziraju.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer pauziran"
+        },
+        "remaining_time_reached": {
+            "description": "Pokre\u0107e se kada preostalo vreme jednog ili vi\u0161e tajmera dostigne odre\u0111enu vrednost.",
+            "fields": {
+                "remaining": {
+                    "name": "Preostalo vreme"
+                }
+            },
+            "name": "Preostalo vreme tajmera dostignuto"
+        },
+        "restarted": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e tajmera ponovo pokrenu.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer ponovo pokrenut"
+        },
+        "started": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e tajmera pokrenu.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Tajmer pokrenut"
+        }
+    }
+}

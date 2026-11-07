@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "condition_threshold_name": "Schwellenwerttyp",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Luftentfeuchter entfeuchten.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Luftentfeuchter in Betrieb"
+        },
+        "is_humidifying": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Luftbefeuchter befeuchten.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Luftbefeuchter in Betrieb"
+        },
+        "is_mode": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Luftbefeuchter auf eine bestimmte Betriebsart eingestellt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "mode": {
+                    "description": "Die Betriebsarten, auf die gepr\u00fcft werden soll.",
+                    "name": "Betriebsart"
+                }
+            },
+            "name": "Luftbefeuchter-Betriebsart"
+        },
+        "is_off": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Luftbefeuchter ausgeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Luftbefeuchter ausgeschaltet"
+        },
+        "is_on": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Luftbefeuchter eingeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Luftbefeuchter eingeschaltet"
+        },
+        "is_target_humidity": {
+            "description": "Pr\u00fcft die Soll-Luftfeuchtigkeit eines oder mehrerer Luftbefeuchter.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Soll-Luftfeuchtigkeit eines Luftbefeuchters"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "Luftfeuchtigkeit f\u00fcr {entity_name} einstellen",
+            "set_mode": "Betriebsart von {entity_name} \u00e4ndern",
+            "toggle": "{entity_name} umschalten",
+            "turn_off": "{entity_name} ausschalten",
+            "turn_on": "{entity_name} einschalten"
+        },
+        "condition_type": {
+            "is_mode": "Wenn {entity_name} auf eine bestimmte Betriebsart eingestellt ist",
+            "is_off": "Wenn {entity_name} ausgeschaltet ist",
+            "is_on": "Wenn {entity_name} eingeschaltet ist"
+        },
+        "extra_fields": {
+            "above": "\u00dcber",
+            "below": "Unter",
+            "for": "Dauer",
+            "humidity": "Luftfeuchtigkeit",
+            "mode": "Betriebsart"
+        },
+        "trigger_type": {
+            "changed_states": "Sobald {entity_name} ein- oder ausgeschaltet wird",
+            "target_humidity_changed": "Sobald der Sollwert der Luftfeuchtigkeit von {entity_name} ge\u00e4ndert wird",
+            "turned_off": "Sobald {entity_name} ausgeschaltet wird",
+            "turned_on": "Sobald {entity_name} eingeschaltet wird"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Luftbefeuchter",
+            "state": {
+                "off": "Aus",
+                "on": "Ein"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Aktion",
+                    "state": {
+                        "drying": "Entfeuchtung",
+                        "humidifying": "Befeuchtung",
+                        "idle": "Leerlauf",
+                        "off": "Aus"
+                    }
+                },
+                "available_modes": {
+                    "name": "Verf\u00fcgbare Betriebsarten"
+                },
+                "current_humidity": {
+                    "name": "Ist-Wert der Luftfeuchtigkeit"
+                },
+                "humidity": {
+                    "name": "Sollwert der Luftfeuchtigkeit"
+                },
+                "max_humidity": {
+                    "name": "Maximaler Sollwert der Luftfeuchtigkeit"
+                },
+                "min_humidity": {
+                    "name": "Minimaler Sollwert der Luftfeuchtigkeit"
+                },
+                "mode": {
+                    "name": "Betriebsart",
+                    "state": {
+                        "auto": "Auto",
+                        "away": "Abwesend",
+                        "baby": "Baby",
+                        "boost": "Boost",
+                        "comfort": "Komfort",
+                        "eco": "Eco",
+                        "home": "Zuhause",
+                        "normal": "Normal",
+                        "sleep": "Schlafen"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Luftentfeuchter"
+        },
+        "humidifier": {
+            "name": "Luftbefeuchter"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Die angegebene Luftfeuchtigkeit {humidity} ist ung\u00fcltig. Der zul\u00e4ssige Bereich liegt zwischen {min_humidity} und {max_humidity}."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "Stellt die Soll-Luftfeuchtigkeit eines Luftbefeuchters ein.",
+            "fields": {
+                "humidity": {
+                    "description": "Sollwert der Luftfeuchtigkeit.",
+                    "name": "Luftfeuchtigkeit"
+                }
+            },
+            "name": "Luftbefeuchter-Sollluftfeuchtigkeit einstellen"
+        },
+        "set_mode": {
+            "description": "Stellt die Betriebsart eines Luftbefeuchters ein.",
+            "fields": {
+                "mode": {
+                    "description": "Betriebsart. Zum Beispiel \u201enormal\u201c, \u201eeco\u201c oder \u201eaway\u201c. Eine Liste m\u00f6glicher Werte findest du in der Integrationsdokumentation.",
+                    "name": "Betriebsart"
+                }
+            },
+            "name": "Luftbefeuchter-Betriebsart einstellen"
+        },
+        "toggle": {
+            "description": "Schaltet einen Luftbefeuchter zwischen ein und aus um.",
+            "name": "Luftbefeuchter umschalten"
+        },
+        "turn_off": {
+            "description": "Schaltet einen Luftbefeuchter aus.",
+            "name": "Luftbefeuchter ausschalten"
+        },
+        "turn_on": {
+            "description": "Schaltet einen Luftbefeuchter ein.",
+            "name": "Luftbefeuchter einschalten"
+        }
+    },
+    "title": "Luftbefeuchter",
+    "triggers": {
+        "mode_changed": {
+            "description": "Wird ausgel\u00f6st, sobald sich die Betriebsart eines oder mehrerer Luftbefeuchter \u00e4ndert.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "mode": {
+                    "description": "Die Betriebsarten, die als Ausl\u00f6ser dienen sollen.",
+                    "name": "Betriebsart"
+                }
+            },
+            "name": "Luftbefeuchter-Betriebsart ge\u00e4ndert"
+        },
+        "started_drying": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Luftentfeuchter mit der Entfeuchtung beginnen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Entfeuchtung durch Luftentfeuchter gestartet"
+        },
+        "started_humidifying": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Luftbefeuchter mit der Befeuchtung beginnen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Befeuchtung durch Luftbefeuchter gestartet"
+        },
+        "turned_off": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Luftbefeuchter ausgeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Luftbefeuchter ausgeschaltet"
+        },
+        "turned_on": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Luftbefeuchter eingeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Luftbefeuchter eingeschaltet"
+        }
+    }
+}

@@ -1,0 +1,902 @@
+{
+    "config": {
+        "abort": {
+            "addon_get_discovery_info_failed": "Matter Server uygulamas\u0131 ke\u015fif bilgilerini alma i\u015flemi ba\u015far\u0131s\u0131z oldu.",
+            "addon_info_failed": "Matter Server uygulamas\u0131 bilgileri al\u0131namad\u0131.",
+            "addon_install_failed": "Matter Server uygulamas\u0131n\u0131n kurulumu ba\u015far\u0131s\u0131z oldu.",
+            "addon_start_failed": "Matter Server uygulamas\u0131 ba\u015flat\u0131lamad\u0131.",
+            "already_configured": "Cihaz zaten yap\u0131land\u0131r\u0131lm\u0131\u015f",
+            "cannot_connect": "Ba\u011flanma hatas\u0131",
+            "not_matter_addon": "Ke\u015ffedilen uygulama, resmi Matter Server uygulamas\u0131 de\u011fildir.",
+            "reconfiguration_successful": "Matter entegrasyonu ba\u015far\u0131yla yeniden yap\u0131land\u0131r\u0131ld\u0131."
+        },
+        "error": {
+            "cannot_connect": "Ba\u011flanma hatas\u0131",
+            "invalid_server_version": "Matter sunucusu do\u011fru s\u00fcr\u00fcm de\u011fil",
+            "unknown": "Beklenmeyen hata"
+        },
+        "flow_title": "{name}",
+        "progress": {
+            "install_addon": "L\u00fctfen Matter Server uygulamas\u0131n\u0131n kurulumu tamamlanana kadar bekleyin. Bu i\u015flem birka\u00e7 dakika s\u00fcrebilir.",
+            "start_addon": "L\u00fctfen Matter Server uygulamas\u0131n\u0131n ba\u015flat\u0131lmas\u0131n\u0131 bekleyin. Bu uygulama, Home Assistant'taki Matter \u00f6zelli\u011fini \u00e7al\u0131\u015ft\u0131ran uygulamad\u0131r. Bu i\u015flem birka\u00e7 saniye s\u00fcrebilir."
+        },
+        "step": {
+            "hassio_confirm": {
+                "title": "Matter Server uygulamas\u0131yla Matter entegrasyonunu kurun"
+            },
+            "install_addon": {
+                "title": "Uygulama y\u00fckleme i\u015flemi ba\u015flad\u0131"
+            },
+            "manual": {
+                "data": {
+                    "url": "URL"
+                }
+            },
+            "on_supervisor": {
+                "data": {
+                    "use_addon": "Resmi Matter Server Supervisor uygulamas\u0131n\u0131 kullan\u0131n"
+                },
+                "description": "Matter Server Supervisor uygulamas\u0131n\u0131 kullanmak ister misiniz? E\u011fer Matter Server'\u0131 zaten ba\u015fka bir uygulamada, \u00f6zel bir konteynerde, yerel olarak vb. \u00e7al\u0131\u015ft\u0131r\u0131yorsan\u0131z \n bu se\u00e7ene\u011fi i\u015faretlemeyin.",
+                "title": "Ba\u011flant\u0131 y\u00f6ntemini se\u00e7in"
+            },
+            "start_addon": {
+                "title": "Uygulama ba\u015flat\u0131l\u0131yor."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "active_hardware_faults": {
+                "name": "Donan\u0131m ar\u0131zalar\u0131"
+            },
+            "active_network_faults": {
+                "name": "A\u011f ar\u0131zalar\u0131"
+            },
+            "active_radio_faults": {
+                "name": "Radyo ar\u0131zalar\u0131"
+            },
+            "actuator": {
+                "name": "Akt\u00fcat\u00f6r"
+            },
+            "alarm_door": {
+                "name": "Kap\u0131 alarm\u0131"
+            },
+            "battery_alert": {
+                "name": "Pil uyar\u0131s\u0131"
+            },
+            "boost_state": {
+                "name": "G\u00fc\u00e7lendirme durumu"
+            },
+            "config_status_operational": {
+                "name": "Yap\u0131land\u0131rma durumu"
+            },
+            "dishwasher_alarm_inflow": {
+                "name": "Giri\u015f alarm\u0131"
+            },
+            "end_of_service": {
+                "name": "Hizmet sonu"
+            },
+            "evse_charging_status": {
+                "name": "\u015earj durumu"
+            },
+            "evse_plug": {
+                "name": "Fi\u015f durumu"
+            },
+            "evse_supply_state": {
+                "name": "\u015earj cihaz\u0131 besleme durumu"
+            },
+            "hardware_fault": {
+                "name": "Donan\u0131m hatas\u0131"
+            },
+            "interconnected_co_alarm": {
+                "name": "Birbirine ba\u011fl\u0131 CO alarm\u0131"
+            },
+            "interconnected_smoke_alarm": {
+                "name": "Birbirine ba\u011fl\u0131 duman alarm\u0131"
+            },
+            "muted": {
+                "name": "Sessiz"
+            },
+            "rain": {
+                "name": "Ya\u011fmur"
+            },
+            "test_in_progress": {
+                "name": "Test devam ediyor"
+            },
+            "thermostat_remote_sensing_local_temperature": {
+                "name": "Yerel s\u0131cakl\u0131k uzaktan alg\u0131lama"
+            },
+            "thermostat_remote_sensing_occupancy": {
+                "name": "Doluluk uzaktan alg\u0131lama"
+            },
+            "thermostat_remote_sensing_outdoor_temperature": {
+                "name": "D\u0131\u015f ortam s\u0131cakl\u0131\u011f\u0131 uzaktan alg\u0131lama"
+            },
+            "valve_fault_blocked": {
+                "name": "Vana tak\u0131l\u0131 kald\u0131"
+            },
+            "valve_fault_general_fault": {
+                "name": "Genel hata"
+            },
+            "valve_fault_leaking": {
+                "name": "Vana s\u0131zd\u0131r\u0131yor"
+            },
+            "water_freeze": {
+                "name": "Su donmas\u0131"
+            },
+            "water_leak": {
+                "name": "Su s\u0131z\u0131nt\u0131s\u0131"
+            }
+        },
+        "button": {
+            "cancel_boost": {
+                "name": "Art\u0131rmay\u0131 iptal et"
+            },
+            "pause": {
+                "name": "Duraklat"
+            },
+            "reset_filter_condition": {
+                "name": "Filtre ko\u015fulunu s\u0131f\u0131rla"
+            },
+            "resume": {
+                "name": "Devam et"
+            },
+            "self_test_request": {
+                "name": "Kendi kendine test"
+            },
+            "start": {
+                "name": "Ba\u015flat"
+            },
+            "stop": {
+                "name": "Durdur"
+            },
+            "temporary_mute_request": {
+                "name": "Ge\u00e7ici sessize alma"
+            }
+        },
+        "climate": {
+            "thermostat": {
+                "name": "Termostat",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "going_to_sleep": "Uykuya gidiyorum",
+                            "vacation": "Tatil",
+                            "wake": "Uyan"
+                        }
+                    }
+                }
+            }
+        },
+        "cover": {
+            "cover": {
+                "name": "Panjur"
+            }
+        },
+        "event": {
+            "button": {
+                "name": "D\u00fc\u011fme",
+                "state_attributes": {
+                    "event_type": {
+                        "state": {
+                            "initial_press": "Bas\u0131l\u0131",
+                            "long_press": "Bas\u0131l\u0131 tutuldu",
+                            "long_release": "Tutukland\u0131ktan sonra serbest b\u0131rak\u0131ld\u0131",
+                            "multi_press_1": "Bir kez bas\u0131ld\u0131",
+                            "multi_press_2": "\u0130ki kez bas\u0131ld\u0131",
+                            "multi_press_3": "3 kez bas\u0131ld\u0131",
+                            "multi_press_4": "4 kez bas\u0131ld\u0131",
+                            "multi_press_5": "5 kez bas\u0131ld\u0131",
+                            "multi_press_6": "6 kez bas\u0131ld\u0131",
+                            "multi_press_7": "7 kez bas\u0131ld\u0131",
+                            "multi_press_8": "8 kez bas\u0131ld\u0131",
+                            "short_release": "Bas\u0131ld\u0131ktan sonra serbest b\u0131rak\u0131ld\u0131",
+                            "switch_latched": "Anahtar kilitli"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan": {
+                "name": "Fan",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Otomatik",
+                            "high": "Y\u00fcksek",
+                            "low": "D\u00fc\u015f\u00fck",
+                            "medium": "Orta",
+                            "natural_wind": "Do\u011fal r\u00fczgar",
+                            "sleep_wind": "Uyku r\u00fczgar\u0131"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "light": {
+                "name": "I\u015f\u0131k"
+            }
+        },
+        "lock": {
+            "lock": {
+                "name": "Kilit"
+            }
+        },
+        "number": {
+            "altitude": {
+                "name": "Deniz seviyesinden y\u00fckseklik"
+            },
+            "auto_relock_timer": {
+                "name": "Otomatik yeniden kilitleme s\u00fcresi"
+            },
+            "cook_time": {
+                "name": "Pi\u015firme s\u00fcresi"
+            },
+            "detection_delay": {
+                "name": "Alg\u0131lama gecikmesi"
+            },
+            "detection_threshold": {
+                "name": "Alg\u0131lama e\u015fi\u011fi"
+            },
+            "hold_time": {
+                "name": "Bekleme s\u00fcresi"
+            },
+            "led_indicator_intensity_off": {
+                "name": "LED kapal\u0131 yo\u011funluk"
+            },
+            "led_indicator_intensity_on": {
+                "name": "LED a\u00e7\u0131k yo\u011funlu\u011fu"
+            },
+            "occupied_setback": {
+                "name": "Cihaz me\u015fgul oldu\u011fu i\u00e7in geri al\u0131nd\u0131"
+            },
+            "off_transition_time": {
+                "name": "Kapal\u0131 ge\u00e7i\u015f s\u00fcresi"
+            },
+            "on_level": {
+                "name": "Seviyesinde"
+            },
+            "on_off_transition_time": {
+                "name": "A\u00e7ma/Kapama ge\u00e7i\u015f s\u00fcresi"
+            },
+            "on_transition_time": {
+                "name": "Ge\u00e7i\u015f zaman\u0131nda"
+            },
+            "power_on_level": {
+                "name": "G\u00fc\u00e7 a\u00e7ma seviyesi"
+            },
+            "pump_setpoint": {
+                "name": "Ayar Noktas\u0131"
+            },
+            "sensitivity_level": {
+                "name": "Hassasiyet"
+            },
+            "slat_rotation_time": {
+                "name": "Kanat d\u00f6n\u00fc\u015f s\u00fcresi"
+            },
+            "speaker_setpoint": {
+                "name": "Seviye"
+            },
+            "temperature_offset": {
+                "name": "S\u0131cakl\u0131k ofseti"
+            },
+            "temperature_setpoint": {
+                "name": "S\u0131cakl\u0131k ayar noktas\u0131"
+            },
+            "travel_time_down": {
+                "name": "Seyahat s\u00fcresi azald\u0131"
+            },
+            "travel_time_up": {
+                "name": "Seyahat s\u00fcresi"
+            },
+            "user_code_temporary_disable_time": {
+                "name": "Kullan\u0131c\u0131 kodu ge\u00e7ici devre d\u0131\u015f\u0131 b\u0131rakma s\u00fcresi"
+            },
+            "valve_configuration_and_control_default_open_duration": {
+                "name": "Varsay\u0131lan a\u00e7\u0131k kalma s\u00fcresi"
+            },
+            "wrong_code_entry_limit": {
+                "name": "Yanl\u0131\u015f kod s\u0131n\u0131r\u0131"
+            }
+        },
+        "select": {
+            "clean_mode": {
+                "name": "Temiz mod"
+            },
+            "device_energy_management_mode": {
+                "name": "Enerji y\u00f6netim modu"
+            },
+            "door_lock_operating_mode": {
+                "name": "\u00c7al\u0131\u015fma modu",
+                "state": {
+                    "no_remote_lock_unlock": "Uzaktan kilitleme/kilit a\u00e7ma \u00f6zelli\u011fi yok",
+                    "normal": "Normal",
+                    "passage": "Ge\u00e7it",
+                    "privacy": "Gizlilik",
+                    "vacation": "Tatil"
+                }
+            },
+            "door_lock_sound_volume": {
+                "name": "Ses seviyesi",
+                "state": {
+                    "high": "Y\u00fcksek",
+                    "low": "D\u00fc\u015f\u00fck",
+                    "medium": "Orta",
+                    "silent": "Sessiz"
+                }
+            },
+            "laundry_washer_number_of_rinses": {
+                "name": "Durulama say\u0131s\u0131",
+                "state": {
+                    "extra": "Ekstra",
+                    "max": "Maksimum",
+                    "normal": "Normal",
+                    "off": "Kapal\u0131"
+                }
+            },
+            "laundry_washer_spin_speed": {
+                "name": "S\u0131kma h\u0131z\u0131"
+            },
+            "mode": {
+                "name": "Mod"
+            },
+            "power_level": {
+                "name": "G\u00fc\u00e7 seviyesi (W)"
+            },
+            "pump_operation_mode": {
+                "name": "mod",
+                "state": {
+                    "local": "Yerel",
+                    "maximum": "Maksimum",
+                    "minimum": "Minimum",
+                    "normal": "Normal"
+                }
+            },
+            "selected_chime": {
+                "name": "Zil sesi"
+            },
+            "sensitivity_level": {
+                "name": "Hassasiyet",
+                "state": {
+                    "high": "Y\u00fcksek",
+                    "low": "D\u00fc\u015f\u00fck",
+                    "standard": "Standart"
+                }
+            },
+            "startup_on_off": {
+                "name": "G\u00fc\u00e7 a\u00e7ma davran\u0131\u015f\u0131",
+                "state": {
+                    "off": "Kapal\u0131",
+                    "on": "A\u00e7\u0131k",
+                    "previous": "\u00d6nceki durum",
+                    "toggle": "De\u011fi\u015ftir"
+                }
+            },
+            "switch_connection_mode": {
+                "name": "Ba\u011flant\u0131 modu",
+                "state": {
+                    "directly_connected": "Do\u011frudan ba\u011flant\u0131l\u0131",
+                    "matter_only": "Sadece Matter"
+                }
+            },
+            "switch_type": {
+                "name": "Anahtar t\u00fcr\u00fc",
+                "state": {
+                    "button": "D\u00fc\u011fme",
+                    "switch": "Anahtar"
+                }
+            },
+            "temperature_display_mode": {
+                "name": "S\u0131cakl\u0131k g\u00f6r\u00fcnt\u00fcleme modu"
+            },
+            "temperature_level": {
+                "name": "S\u0131cakl\u0131k seviyesi"
+            },
+            "water_heater_mode": {
+                "name": "Su \u0131s\u0131t\u0131c\u0131s\u0131 modu"
+            }
+        },
+        "sensor": {
+            "activated_carbon_filter_condition": {
+                "name": "Aktif karbon filtre durumu"
+            },
+            "active_current": {
+                "name": "Aktif ak\u0131m"
+            },
+            "air_quality": {
+                "name": "Hava kalitesi",
+                "state": {
+                    "extremely_poor": "Son derece zay\u0131f",
+                    "fair": "Dengeli",
+                    "good": "\u0130yi",
+                    "moderate": "Orta d\u00fczeyde",
+                    "poor": "Zay\u0131f",
+                    "very_poor": "\u00c7ok zay\u0131f"
+                }
+            },
+            "apparent_current": {
+                "name": "G\u00f6r\u00fcnen ak\u0131m"
+            },
+            "auto_close_time": {
+                "name": "Otomatik kapanma s\u00fcresi"
+            },
+            "battery_charge_state": {
+                "name": "Pil \u015farj durumu",
+                "state": {
+                    "charging": "\u015earj oluyor",
+                    "full_charge": "Tam \u015farj",
+                    "not_charging": "\u015earj olmuyor"
+                }
+            },
+            "battery_replacement_description": {
+                "name": "Pil tipi"
+            },
+            "battery_time_remaining": {
+                "name": "Kalan s\u00fcre"
+            },
+            "battery_time_to_full_charge": {
+                "name": "Tam \u015farj s\u00fcresi"
+            },
+            "battery_voltage": {
+                "name": "Ak\u00fc voltaj\u0131"
+            },
+            "boot_reason": {
+                "name": "\u00d6ny\u00fckleme nedeni",
+                "state": {
+                    "brown_out_reset": "Elektrik kesintisi s\u0131f\u0131rlama",
+                    "hardware_watchdog_reset": "Donan\u0131m izleme s\u0131f\u0131rlamas\u0131",
+                    "power_on_reboot": "G\u00fc\u00e7 a\u00e7ma yeniden ba\u015flatma",
+                    "software_reset": "Yaz\u0131l\u0131m s\u0131f\u0131rlama",
+                    "software_update_completed": "Yaz\u0131l\u0131m g\u00fcncellemesi tamamland\u0131",
+                    "software_watchdog_reset": "Yaz\u0131l\u0131m izleme s\u0131f\u0131rlama",
+                    "unspecified": "Belirtilmemi\u015f"
+                }
+            },
+            "contamination_state": {
+                "name": "Kirlenme durumu",
+                "state": {
+                    "critical": "Kritik",
+                    "low": "D\u00fc\u015f\u00fck",
+                    "normal": "Normal",
+                    "warning": "Uyar\u0131"
+                }
+            },
+            "current_phase": {
+                "name": "Mevcut a\u015fama"
+            },
+            "door_closed_events": {
+                "name": "Kap\u0131 kapal\u0131 etkinlikler"
+            },
+            "door_open_events": {
+                "name": "Kap\u0131 a\u00e7\u0131k etkinlikleri"
+            },
+            "energy_exported": {
+                "name": "\u0130hra\u00e7 edilen enerji"
+            },
+            "esa_opt_out_state": {
+                "name": "Enerji optimizasyonundan vazge\u00e7me",
+                "state": {
+                    "grid_opt_out": "\u015eebeke",
+                    "local_opt_out": "Yerel",
+                    "no_opt_out": "Kapal\u0131",
+                    "opt_out": "Yerel ve \u015febeke"
+                }
+            },
+            "esa_state": {
+                "name": "Cihaz enerji durumu",
+                "state": {
+                    "fault": "Hata",
+                    "offline": "\u00c7evrimd\u0131\u015f\u0131",
+                    "online": "\u00c7evrimi\u00e7i",
+                    "paused": "Durduruldu",
+                    "power_adjust_active": "G\u00fc\u00e7 ayar\u0131"
+                }
+            },
+            "estimated_end_time": {
+                "name": "Tahmini biti\u015f zaman\u0131"
+            },
+            "estimated_heat_required": {
+                "name": "Gerekli \u0131s\u0131tma enerjisi"
+            },
+            "eve_weather_trend": {
+                "name": "Hava durumu trendi",
+                "state": {
+                    "cloudy": "Bulutlu",
+                    "rainy": "Ya\u011fmurlu",
+                    "stormy": "F\u0131rt\u0131nal\u0131",
+                    "sunny": "G\u00fcne\u015fli"
+                }
+            },
+            "evse_charge_current": {
+                "name": "\u015earj ak\u0131m\u0131"
+            },
+            "evse_circuit_capacity": {
+                "name": "Devre kapasitesi"
+            },
+            "evse_fault_state": {
+                "name": "Hata durumu",
+                "state": {
+                    "contact_dry_failure": "Temas kuru ar\u0131zas\u0131",
+                    "contact_wet_failure": "Islak temas ar\u0131zas\u0131",
+                    "emergency_stop": "Acil durdurma",
+                    "ev_disconnected": "EV ba\u011flant\u0131s\u0131 kesildi",
+                    "live_neutral_swap": "Canl\u0131/n\u00f6tr takas\u0131",
+                    "meter_failure": "Saya\u00e7 ar\u0131zas\u0131",
+                    "no_error": "Tamam",
+                    "other": "Di\u011fer hata",
+                    "over_current": "A\u015f\u0131r\u0131 ak\u0131m",
+                    "over_temperature": "A\u015f\u0131r\u0131 s\u0131cakl\u0131k",
+                    "over_voltage": "A\u015f\u0131r\u0131 gerilim",
+                    "pilot_short_circuit": "Pilot k\u0131sa devresi",
+                    "power_loss": "G\u00fc\u00e7 kayb\u0131",
+                    "power_quality": "G\u00fc\u00e7 kalitesi",
+                    "under_voltage": "D\u00fc\u015f\u00fck voltaj",
+                    "wrong_power_supply": "Yanl\u0131\u015f g\u00fc\u00e7 kayna\u011f\u0131"
+                }
+            },
+            "evse_max_charge_current": {
+                "name": "Maksimum \u015farj ak\u0131m\u0131"
+            },
+            "evse_min_charge_current": {
+                "name": "Minimum \u015farj ak\u0131m\u0131"
+            },
+            "evse_soc": {
+                "name": "\u015earj durumu"
+            },
+            "evse_user_max_charge_current": {
+                "name": "Kullan\u0131c\u0131 maksimum \u015farj ak\u0131m\u0131"
+            },
+            "expiry_date": {
+                "name": "Son kullanma tarihi"
+            },
+            "flow": {
+                "name": "Ak\u0131\u015f"
+            },
+            "hepa_filter_condition": {
+                "name": "HEPA filtre durumu"
+            },
+            "nitrogen_dioxide": {
+                "name": "Azot dioksit"
+            },
+            "operational_error": {
+                "name": "Operasyonel hata",
+                "state": {
+                    "brush_jammed": "F\u0131r\u00e7a s\u0131k\u0131\u015fm\u0131\u015f",
+                    "cannot_reach_target_area": "Hedef alana ula\u015f\u0131lam\u0131yor",
+                    "command_invalid_in_state": "Mevcut durumda komut ge\u00e7ersiz",
+                    "dirty_water_tank_full": "Kirli su deposu dolu",
+                    "dirty_water_tank_missing": "Kirli su deposu eksik",
+                    "dust_bin_full": "Toz kutusu dolu",
+                    "dust_bin_missing": "Toz kutusu eksik",
+                    "failed_to_find_charging_dock": "\u015earj yuvas\u0131 bulunamad\u0131",
+                    "low_battery": "D\u00fc\u015f\u00fck pil",
+                    "mop_cleaning_pad_missing": "Paspas temizleme pedi eksik",
+                    "navigation_sensor_obscured": "Navigasyon sens\u00f6r\u00fc gizlendi",
+                    "no_error": "Hata yok",
+                    "stuck": "S\u0131k\u0131\u015fm\u0131\u015f",
+                    "unable_to_complete_operation": "\u0130\u015flem tamamlanamad\u0131",
+                    "unable_to_start_or_resume": "Ba\u015flat\u0131lam\u0131yor veya devam ettirilemiyor",
+                    "water_tank_empty": "Su deposu bo\u015f",
+                    "water_tank_lid_open": "Su deposu kapa\u011f\u0131 a\u00e7\u0131k",
+                    "water_tank_missing": "Su deposu eksik",
+                    "wheels_jammed": "Tekerlekler s\u0131k\u0131\u015ft\u0131"
+                }
+            },
+            "operational_state": {
+                "name": "Operational state",
+                "state": {
+                    "charging": "\u015earj oluyor",
+                    "docked": "Dock'da",
+                    "error": "Hata",
+                    "paused": "Durduruldu",
+                    "running": "\u00c7al\u0131\u015f\u0131yor",
+                    "seeking_charger": "\u015earj cihaz\u0131 aran\u0131yor",
+                    "stopped": "Durduruldu"
+                }
+            },
+            "outdoor_temperature": {
+                "name": "D\u0131\u015f ortam s\u0131cakl\u0131\u011f\u0131"
+            },
+            "pi_heating_demand": {
+                "name": "Is\u0131tma talebi"
+            },
+            "pump_control_mode": {
+                "name": "Kontrol modu",
+                "state": {
+                    "automatic": "Otomatik",
+                    "constant_flow": "Sabit ak\u0131\u015f",
+                    "constant_pressure": "Sabit bas\u0131n\u00e7",
+                    "constant_speed": "Sabit h\u0131z",
+                    "constant_temperature": "Sabit s\u0131cakl\u0131k",
+                    "proportional_pressure": "Orant\u0131l\u0131 bas\u0131n\u00e7"
+                }
+            },
+            "pump_speed": {
+                "name": "D\u00f6n\u00fc\u015f h\u0131z\u0131"
+            },
+            "radon_concentration": {
+                "name": "Radon konsantrasyonu"
+            },
+            "reactive_current": {
+                "name": "Reaktif ak\u0131m"
+            },
+            "reboot_count": {
+                "name": "Yeniden ba\u015flatma say\u0131s\u0131"
+            },
+            "rms_current": {
+                "name": "Etkin ak\u0131m"
+            },
+            "rms_voltage": {
+                "name": "Etkili voltaj"
+            },
+            "switch_current_position": {
+                "name": "Mevcut anahtar konumu"
+            },
+            "tank_percentage": {
+                "name": "S\u0131cak su seviyesi"
+            },
+            "tank_volume": {
+                "name": "Tank hacmi"
+            },
+            "thread_channel": {
+                "name": "Di\u015fli kanal\u0131"
+            },
+            "thread_network_name": {
+                "name": "\u0130\u015f par\u00e7ac\u0131\u011f\u0131 a\u011f ad\u0131"
+            },
+            "thread_routing_role": {
+                "name": "\u0130\u015f par\u00e7ac\u0131\u011f\u0131 y\u00f6nlendirme rol\u00fc",
+                "state": {
+                    "end_device": "U\u00e7 cihaz",
+                    "leader": "Lider",
+                    "reed": "Y\u00f6nlendirici uyumlu u\u00e7 cihaz",
+                    "router": "Y\u00f6nlendirici",
+                    "sleepy_end_device": "Uyku modundaki u\u00e7 cihaz",
+                    "unassigned": "Atanmam\u0131\u015f",
+                    "unknown": "Bilinmeyen",
+                    "unspecified": "Belirtilmemi\u015f"
+                }
+            },
+            "tvoc_level": {
+                "name": "TVOC seviyesi",
+                "state": {
+                    "critical": "Kritik",
+                    "high": "Y\u00fcksek",
+                    "low": "D\u00fc\u015f\u00fck",
+                    "medium": "Orta"
+                }
+            },
+            "uptime": {
+                "name": "\u00c7al\u0131\u015fma S\u00fcresi"
+            },
+            "valve_position": {
+                "name": "Vana konumu"
+            },
+            "voltage": {
+                "name": "Voltaj"
+            },
+            "wifi_rssi": {
+                "name": "Wi-Fi RSSI"
+            },
+            "window_covering_target_position": {
+                "name": "Hedef a\u00e7\u0131l\u0131\u015f pozisyonu"
+            }
+        },
+        "siren": {
+            "siren": {
+                "name": "Siren"
+            }
+        },
+        "switch": {
+            "audible_alarm_enabled": {
+                "name": "Sesli alarm etkinle\u015ftirildi"
+            },
+            "child_lock": {
+                "name": "\u00c7ocuk kilidi"
+            },
+            "display": {
+                "name": "Ekran"
+            },
+            "evse_charging_switch": {
+                "name": "\u015earj\u0131 etkinle\u015ftir"
+            },
+            "one_touch_locking": {
+                "name": "Tek dokunu\u015fla kilitle"
+            },
+            "power": {
+                "name": "G\u00fc\u00e7"
+            },
+            "privacy_mode_button": {
+                "name": "Gizlilik modu d\u00fc\u011fmesi"
+            },
+            "speaker_mute": {
+                "name": "Sessiz"
+            },
+            "switch": {
+                "name": "Anahtar"
+            },
+            "visual_alarm_enabled": {
+                "name": "G\u00f6rsel alarm etkinle\u015ftirildi"
+            }
+        },
+        "vacuum": {
+            "vacuum": {
+                "name": "Robot S\u00fcp\u00fcrge"
+            }
+        },
+        "valve": {
+            "valve": {
+                "name": "Vana"
+            }
+        },
+        "water_heater": {
+            "water_heater": {
+                "name": "Su \u0131s\u0131t\u0131c\u0131"
+            }
+        }
+    },
+    "exceptions": {
+        "addon_not_installed": {
+            "message": "Matter Server uygulamas\u0131 hen\u00fcz y\u00fcklenmedi."
+        },
+        "addon_not_ready": {
+            "message": "Matter Server uygulamas\u0131 hen\u00fcz haz\u0131r de\u011fil."
+        },
+        "addon_not_running": {
+            "message": "Matter Server uygulamas\u0131 hen\u00fcz \u00e7al\u0131\u015fm\u0131yor."
+        },
+        "credential_type_not_supported": {
+            "message": "Kilit, ` kimlik bilgisi t\u00fcr\u00fcn\u00fc desteklemiyor.{credential_type}`."
+        },
+        "invalid_credential_data": {
+            "message": "Ge\u00e7ersiz kimlik bilgisi verileri: {reason}."
+        },
+        "set_credential_failed": {
+            "message": "Kimlik bilgisi ayarlanamad\u0131: kilit ` durumunu d\u00f6nd\u00fcrd\u00fc.{status}`."
+        }
+    },
+    "issues": {
+        "ipv6_disabled": {
+            "description": "Matter, baz\u0131 cihazlarla ileti\u015fim kurmak i\u00e7in IPv6\u2019ya ihtiya\u00e7 duyar; ancak ba\u011fl\u0131 t\u00fcm a\u011f aray\u00fczlerinizde IPv6 devre d\u0131\u015f\u0131d\u0131r. Yerel olarak ba\u011flanm\u0131\u015f Wi-Fi ve Ethernet cihazlar\u0131 h\u00e2l\u00e2 \u00e7al\u0131\u015fabilir, ancak harici bir Thread s\u0131n\u0131r y\u00f6nlendiricisi kullanmak gibi \u00f6zellikler i\u00e7in IPv6\u2019n\u0131n etkinle\u015ftirilmesi gerekir. A\u011f ayarlar\u0131n\u0131 a\u00e7mak i\u00e7in \u201cDaha fazla bilgi\u201d se\u00e7ene\u011fini se\u00e7in.",
+            "title": "IPv6 devre d\u0131\u015f\u0131 b\u0131rak\u0131lm\u0131\u015f ancak Matter taraf\u0131ndan zorunlu tutulmaktad\u0131r"
+        },
+        "server_version_version_too_new": {
+            "description": "\u015eu anda \u00e7al\u0131\u015ft\u0131rd\u0131\u011f\u0131n\u0131z Matter Server s\u00fcr\u00fcm\u00fc, Home Assistant'\u0131n bu s\u00fcr\u00fcm\u00fc i\u00e7in \u00e7ok yeni. Bu sorunu d\u00fczeltmek i\u00e7in l\u00fctfen Home Assistant'\u0131 g\u00fcncelleyin veya Matter Server'\u0131n s\u00fcr\u00fcm\u00fcn\u00fc eski bir s\u00fcr\u00fcme d\u00fc\u015f\u00fcr\u00fcn.",
+            "title": "Matter Server'\u0131n eski s\u00fcr\u00fcm\u00fc gerekli"
+        },
+        "server_version_version_too_old": {
+            "description": "\u015eu anda \u00e7al\u0131\u015ft\u0131rd\u0131\u011f\u0131n\u0131z Matter Server s\u00fcr\u00fcm\u00fc, Home Assistant'\u0131n bu s\u00fcr\u00fcm\u00fc i\u00e7in \u00e7ok eski. Bu sorunu d\u00fczeltmek i\u00e7in l\u00fctfen Matter Sunucusunu en son s\u00fcr\u00fcme g\u00fcncelleyin.",
+            "title": "Matter Server'\u0131n daha yeni bir s\u00fcr\u00fcm\u00fc gerekli"
+        }
+    },
+    "services": {
+        "clear_lock_credential": {
+            "description": "Bir kilidin \u00fczerindeki kimlik bilgilerini kald\u0131r\u0131r.",
+            "fields": {
+                "credential_index": {
+                    "description": "Kimlik do\u011frulama yuvas\u0131 endeksinin temizlenmesi gerekiyor.",
+                    "name": "Kimlik bilgileri endeksi"
+                },
+                "credential_type": {
+                    "description": "Onaylanmas\u0131 gereken belge t\u00fcr\u00fc.",
+                    "name": "Kimlik bilgisi t\u00fcr\u00fc"
+                }
+            },
+            "name": "Kilit a\u00e7ma kimlik bilgilerini temizle"
+        },
+        "clear_lock_user": {
+            "description": "Kilitli kullan\u0131c\u0131y\u0131 ve onunla ili\u015fkili t\u00fcm kimlik bilgilerini siler. T\u00fcm kullan\u0131c\u0131lar\u0131 silmek i\u00e7in 65534 dizinini kullan\u0131n.",
+            "fields": {
+                "user_index": {
+                    "description": "Temizlemek i\u00e7in kullan\u0131c\u0131 yuvas\u0131 indeksi (1 tabanl\u0131) veya t\u00fcm\u00fcn\u00fc temizlemek i\u00e7in 65534.",
+                    "name": "Kullan\u0131c\u0131 dizini"
+                }
+            },
+            "name": "Kilit kullan\u0131c\u0131s\u0131n\u0131 temizle"
+        },
+        "get_lock_credential_status": {
+            "description": "Bir kilidin \u00fczerindeki kimlik do\u011frulama yuvas\u0131n\u0131n durumunu d\u00f6nd\u00fcr\u00fcr.",
+            "fields": {
+                "credential_index": {
+                    "description": "Sorgulanacak kimlik bilgisi yuvas\u0131 dizini.",
+                    "name": "Kimlik bilgileri endeksi"
+                },
+                "credential_type": {
+                    "description": "Sorgulanacak kimlik bilgisi t\u00fcr\u00fc.",
+                    "name": "Kimlik bilgisi t\u00fcr\u00fc"
+                }
+            },
+            "name": "Kilit kimlik bilgilerinin durumunu al\u0131n"
+        },
+        "get_lock_info": {
+            "description": "Desteklenen kimlik do\u011frulama t\u00fcrleri, kullan\u0131c\u0131 kapasitesi ve PIN uzunlu\u011fu k\u0131s\u0131tlamalar\u0131 dahil olmak \u00fczere kilit \u00f6zelliklerini d\u00f6nd\u00fcr\u00fcr.",
+            "name": "Kilit bilgilerini al\u0131n"
+        },
+        "get_lock_users": {
+            "description": "Bir kilit \u00fczerinde yap\u0131land\u0131r\u0131lm\u0131\u015f t\u00fcm kullan\u0131c\u0131lar\u0131 kimlik bilgileriyle birlikte d\u00f6nd\u00fcr\u00fcr.",
+            "name": "Kullan\u0131c\u0131lar\u0131 kilitleyin"
+        },
+        "open_commissioning_window": {
+            "description": "Bu Matter cihaz\u0131 i\u00e7in devreye alma penceresini 60 saniye boyunca a\u00e7arak cihazlar\u0131n\u0131zdan birini ba\u015fka bir Matter a\u011f\u0131na eklemeye izin verir.",
+            "fields": {
+                "device_id": {
+                    "description": "Di\u011fer Matter a\u011f\u0131na eklenecek Matter cihaz\u0131.",
+                    "name": "Cihaz"
+                }
+            },
+            "name": "Devreye alma penceresini a\u00e7\u0131n"
+        },
+        "set_lock_credential": {
+            "description": "Bir kilide kimlik bilgisi ekler veya g\u00fcnceller.",
+            "fields": {
+                "credential_data": {
+                    "description": "Kimlik do\u011frulama verileri. PIN i\u00e7in: yaln\u0131zca rakamlar. RFID i\u00e7in: onalt\u0131l\u0131k say\u0131 dizisi.",
+                    "name": "Kimlik bilgisi verileri"
+                },
+                "credential_index": {
+                    "description": "Kimlik do\u011frulama yuvas\u0131 dizini. Bo\u015f b\u0131rak\u0131n, b\u00f6ylece m\u00fcsait bir yuva otomatik olarak bulunur.",
+                    "name": "Kimlik bilgileri endeksi"
+                },
+                "credential_type": {
+                    "description": "Kimlik do\u011frulama y\u00f6ntemi (\u00f6rne\u011fin, PIN, RFID, parmak izi).",
+                    "name": "Kimlik bilgisi t\u00fcr\u00fc"
+                },
+                "user_index": {
+                    "description": "Kimlik bilgilerinin ili\u015fkilendirilece\u011fi kullan\u0131c\u0131 dizini. Otomatik atama i\u00e7in bo\u015f b\u0131rak\u0131n.",
+                    "name": "Kullan\u0131c\u0131 dizini"
+                },
+                "user_status": {
+                    "description": "Bu kimlik bilgisi i\u00e7in yeni bir kullan\u0131c\u0131 olu\u015fturulurken ayarlanacak kullan\u0131c\u0131 durumu.",
+                    "name": "Kullan\u0131c\u0131 durumu"
+                },
+                "user_type": {
+                    "description": "Bu kimlik bilgisi i\u00e7in yeni bir kullan\u0131c\u0131 olu\u015ftururken ayarlanacak kullan\u0131c\u0131 t\u00fcr\u00fc.",
+                    "name": "Kullan\u0131c\u0131 t\u00fcr\u00fc"
+                }
+            },
+            "name": "Kilit kimlik bilgilerini ayarlay\u0131n"
+        },
+        "set_lock_user": {
+            "description": "Kilit kullan\u0131c\u0131s\u0131 olu\u015fturur veya g\u00fcnceller.",
+            "fields": {
+                "credential_rule": {
+                    "description": "Kullan\u0131c\u0131 i\u00e7in kimlik do\u011frulama kural\u0131.",
+                    "name": "Kimlik do\u011frulama kural\u0131"
+                },
+                "user_index": {
+                    "description": "Kullan\u0131c\u0131 slot indeksi (1 tabanl\u0131). Bo\u015f b\u0131rak\u0131n, b\u00f6ylece m\u00fcsait bir slot otomatik olarak bulunur.",
+                    "name": "Kullan\u0131c\u0131 dizini"
+                },
+                "user_name": {
+                    "description": "Kullan\u0131c\u0131n\u0131n ad\u0131.",
+                    "name": "Kullan\u0131c\u0131 ad\u0131"
+                },
+                "user_type": {
+                    "description": "Olu\u015fturulacak kullan\u0131c\u0131 t\u00fcr\u00fc.",
+                    "name": "Kullan\u0131c\u0131 t\u00fcr\u00fc"
+                }
+            },
+            "name": "Kullan\u0131c\u0131 kilidini ayarla"
+        },
+        "water_heater_boost": {
+            "description": "Belirli bir s\u00fcre boyunca su \u0131s\u0131t\u0131c\u0131s\u0131n\u0131n g\u00fc\u00e7lendirilmesini sa\u011flar.",
+            "fields": {
+                "duration": {
+                    "description": "S\u00fcreyi saniye cinsinden art\u0131r\u0131n.",
+                    "name": "S\u00fcre"
+                },
+                "emergency_boost": {
+                    "description": "Acil durum g\u00fc\u00e7lendirme modunun etkinle\u015ftirilip etkinle\u015ftirilmeyece\u011fi.",
+                    "name": "Acil durum deste\u011fi"
+                },
+                "temporary_setpoint": {
+                    "description": "Y\u00fckseltme periyodu s\u0131ras\u0131nda ge\u00e7ici ayar noktas\u0131 s\u0131cakl\u0131\u011f\u0131 Celsius cinsinden.",
+                    "name": "Ge\u00e7ici ayar noktas\u0131"
+                }
+            },
+            "name": "Su \u0131s\u0131t\u0131c\u0131s\u0131n\u0131 g\u00fc\u00e7lendirin"
+        }
+    }
+}

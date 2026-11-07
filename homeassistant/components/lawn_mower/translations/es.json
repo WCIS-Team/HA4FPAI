@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Comprueba si uno o m\u00e1s cortac\u00e9spedes est\u00e1n en la base.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped est\u00e1 en la base"
+        },
+        "is_encountering_an_error": {
+            "description": "Comprueba si uno o m\u00e1s cortac\u00e9spedes est\u00e1n detectando un error.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped est\u00e1 detectando un error"
+        },
+        "is_idle": {
+            "description": "Comprueba si uno o m\u00e1s cortac\u00e9spedes est\u00e1n inactivos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped est\u00e1 inactivo"
+        },
+        "is_mowing": {
+            "description": "Comprueba si uno o m\u00e1s cortac\u00e9spedes est\u00e1n cortando el c\u00e9sped.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped est\u00e1 cortando el c\u00e9sped"
+        },
+        "is_paused": {
+            "description": "Comprueba si uno o m\u00e1s cortac\u00e9spedes est\u00e1n en pausa.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped est\u00e1 en pausa"
+        },
+        "is_returning": {
+            "description": "Comprueba si uno o m\u00e1s cortac\u00e9spedes est\u00e1n regresando a la base.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped est\u00e1 regresando"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Cortac\u00e9sped",
+            "state": {
+                "docked": "En la base",
+                "error": "Error",
+                "idle": "Inactivo",
+                "mowing": "Cortando el c\u00e9sped",
+                "paused": "En pausa",
+                "returning": "Volviendo"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Devuelve un cortac\u00e9sped a su base.",
+            "name": "Devolver el cortac\u00e9sped a la base"
+        },
+        "pause": {
+            "description": "Pausa la tarea actual de un cortac\u00e9sped.",
+            "name": "Pausar el cortac\u00e9sped"
+        },
+        "start_mowing": {
+            "description": "Inicia la tarea de corte de un cortac\u00e9sped.",
+            "name": "Iniciar cortac\u00e9sped"
+        },
+        "stop": {
+            "description": "Detiene la tarea actual del cortac\u00e9sped.",
+            "name": "Detener cortac\u00e9sped"
+        }
+    },
+    "title": "Cortac\u00e9sped",
+    "triggers": {
+        "became_idle": {
+            "description": "Se activa cuando uno o m\u00e1s cortac\u00e9spedes quedan inactivos.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped ha quedado inactivo"
+        },
+        "errored": {
+            "description": "Se dispara cuando uno o m\u00e1s cortac\u00e9spedes detectan un error",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped ha encontrado un error"
+        },
+        "paused_mowing": {
+            "description": "Se dispara cuando uno o m\u00e1s cortac\u00e9spedes pausan cortar el c\u00e9sped.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Cortac\u00e9sped en pausa"
+        },
+        "returned_to_dock": {
+            "description": "Se dispara cuando uno o m\u00e1s cortac\u00e9spedes han regresado a la base.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped se acopl\u00f3 a la base"
+        },
+        "started_mowing": {
+            "description": "Se dispara cuando uno o m\u00e1s cortac\u00e9spedes empiezan a cortar.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped empez\u00f3 a cortar"
+        },
+        "started_returning": {
+            "description": "Se dispara cuando uno o m\u00e1s cortac\u00e9spedes comienzan a regresar a la base.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El cortac\u00e9sped comenz\u00f3 a regresar a la base"
+        }
+    }
+}

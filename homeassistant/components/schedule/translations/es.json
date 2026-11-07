@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Comprueba si uno o m\u00e1s bloques de programaci\u00f3n no est\u00e1n activos actualmente.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Programaci\u00f3n desactivada"
+        },
+        "is_on": {
+            "description": "Comprueba si uno o m\u00e1s bloques de programaci\u00f3n est\u00e1n activos actualmente.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Programaci\u00f3n activada"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Programaci\u00f3n",
+            "state": {
+                "off": "Apagado",
+                "on": "Encendido"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "Gestionado a trav\u00e9s de la IU",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ed"
+                    }
+                },
+                "next_event": {
+                    "name": "Pr\u00f3ximo evento"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "Recupera los rangos de tiempo configurados de uno o varios horarios.",
+            "name": "Obtener horario"
+        },
+        "reload": {
+            "description": "Recarga las programaciones desde la configuraci\u00f3n de YAML.",
+            "name": "Recargar programaciones"
+        }
+    },
+    "title": "Programaci\u00f3n",
+    "triggers": {
+        "block_ended": {
+            "description": "Se dispara cuando uno o m\u00e1s bloques de programaci\u00f3n finalizan.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Bloque de programaci\u00f3n finalizado"
+        },
+        "block_started": {
+            "description": "Se dispara cuando uno o m\u00e1s bloques de programaci\u00f3n comienzan.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Bloque de programaci\u00f3n iniciado"
+        }
+    }
+}

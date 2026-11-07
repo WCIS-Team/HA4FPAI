@@ -1,0 +1,437 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "{addon} aplikaziora konektatzeak huts egin du. Aplikazioaren egoera egiaztatu eta berriro saiatu geroago.",
+            "addon_info_failed": "{addon} aplikazioaren informazioa jasotzeak huts egin du.",
+            "addon_install_failed": "{addon} aplikazioa instalatzeak huts egin du.",
+            "addon_start_failed": "{addon} aplikazioa hasteak huts egin du.",
+            "already_configured": "Zerbitzua dagoeneko konfiguratuta dago"
+        },
+        "error": {
+            "bad_birth": "Jaiotze-gaia baliogabea",
+            "bad_will": "Azken-nahiaren gai baliogabea",
+            "bad_ws_headers": "Baliozko HTTP goiburu eman JSON objektu gisa",
+            "cannot_connect": "Konexioak huts egin du",
+            "invalid_auth": "Autentifikazio baliogabea"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Bitartekaria",
+                    "password": "Pasahitza",
+                    "port": "Ataka",
+                    "protocol": "MQTT protokoloa",
+                    "username": "Erabiltzaile-izena"
+                },
+                "data_description": {
+                    "broker": "Zure MQTT bitartekariaren ostalari-izena edo IP helbidea."
+                },
+                "description": "Mesedez, zure MQTT bitartekarirako konexio informazioa sartu.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "CA ziurtagiri pertsonalizatuaren fitxategia kargatu",
+                            "client_cert": "Bezero-ziurtagiriaren fitxategia kargatu",
+                            "client_key": "Gako pribatuaren fitxategia kargatu",
+                            "client_key_password": "Pasahitza",
+                            "set_ca_cert": "Bitartekariaren ziurtagiriaren balioztatzea",
+                            "set_client_cert": "Bezero-ziurtagiri bat erabili",
+                            "tls_insecure": "Bitartekariaren ziurtagiriaren balioztatzeari kasurik ez egin",
+                            "transport": "MQTT garraioa",
+                            "ws_headers": "WebSocket goiburua JSON formatuan",
+                            "ws_path": "WebSocket helbidea"
+                        },
+                        "name": "Beste ezarpenak"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "title": "MQTT bitartekaria Home assistant aplikazioaren bitartez"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Pasahitza",
+                    "username": "Erabiltzaile-izena"
+                }
+            },
+            "start_addon": {
+                "title": "Hasierako aplikazioa"
+            },
+            "user": {
+                "menu_options": {
+                    "addon": "{addon} aplikazio ofiziala erabili."
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "error": {
+                "invalid_subscribe_topic": "Harpidetza-gai baliogabea",
+                "invalid_url": "URL baliogabea"
+            },
+            "initiate_flow": {
+                "user": "MQTT gailua gehitu"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "Eskuragarritasun txantiloia",
+                        "availability_topic": "Eskuragarritasun gaia"
+                    },
+                    "title": "Eskuragarritasun aukerak"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Entitatea"
+                    }
+                },
+                "device": {
+                    "data": {
+                        "model": "Modeloa",
+                        "name": "Izena"
+                    }
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Irudi entitatea",
+                        "name": "Entitate-izena",
+                        "platform": "Entitate-mota"
+                    }
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "device_class": "Gailu klasea",
+                        "entity_category": "Entitatearen kategoria",
+                        "state_class": "Egoera klasea",
+                        "temperature_unit": "Tenperatura unitatea"
+                    }
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "command_template": "Agindu txantiloia",
+                        "command_topic": "Aginduaren gaia",
+                        "content_type": "Eduki-mota",
+                        "green_template": "Txantiloi berdea",
+                        "image_topic": "Irudiaren gaia",
+                        "max": "Maximoa",
+                        "min": "Minimoa",
+                        "mode": "Modua",
+                        "mode_state_topic": "Operazio-moduaren egoeraren gaia",
+                        "state_topic": "Egoeraren gaia",
+                        "url_topic": "URL gaia",
+                        "value_template": "Balioaren txantiloia"
+                    },
+                    "sections": {
+                        "climate_action_settings": {
+                            "data": {
+                                "action_topic": "Ekintza gaia"
+                            },
+                            "data_description": {
+                                "action_template": "Ekintza gaian jasotako balioa errendatzeko [txantiloia]({value_templating_url})."
+                            }
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_state_topic": "Haizagailu-moduaren egoeraren gaia"
+                            }
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_topic": "Posizio egoeraren gaia"
+                            }
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "Uneko tenperaturaren txantiloia",
+                                "current_temperature_topic": "Uneko tenperaturaren gaia"
+                            },
+                            "name": "Uneko tenperaturaren ezarpenak"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_state_topic": "Norabide egoeraren gaia"
+                            }
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "percentage_state_topic": "Portzentai egoeraren gaia"
+                            },
+                            "data_description": {
+                                "percentage_value_template": "Abiadura portzentai balioa ateratzeko [txantiloia]({value_templating_url})."
+                            }
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness_scale": "Distira-eskala",
+                                "brightness_state_topic": "Distira egoeraren gaia"
+                            },
+                            "name": "Distira-konfigurazioa"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "Kolore egoeraren gaia"
+                            },
+                            "name": "Kolore-moduaren ezarpenak"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_state_topic": "Tenperatura kolorearen egoeraren gaia"
+                            }
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Efektua"
+                            }
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "HS aginduaren txantiloia",
+                                "hs_command_topic": "HS aginduaren gaia",
+                                "hs_state_topic": "HS egoeraren gaia",
+                                "hs_value_template": "HS balioaren txantiloia"
+                            },
+                            "data_description": {
+                                "hs_value_template": "HS balioa ateratzeko [txantiloia]({value_templating_url}) definitzen du."
+                            },
+                            "name": "HS kolore-moduaren ezarpenak"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "RGB aginduaren txantiloia",
+                                "rgb_command_topic": "RGB aginduaren gaia",
+                                "rgb_state_topic": "RGB egoeraren gaia",
+                                "rgb_value_template": "RGB balioaren txantiloia"
+                            },
+                            "data_description": {
+                                "rgb_value_template": "RGB balioa ateratzeko [txantiloia]({value_templating_url}) definitzen du."
+                            },
+                            "name": "RGB kolore-moduaren ezarpenak"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "RGBW aginduaren txantiloia",
+                                "rgbw_command_topic": "RGBW aginduaren gaia",
+                                "rgbw_state_topic": "RGBW egoeraren gaia",
+                                "rgbw_value_template": "RGBW balioaren txantiloia"
+                            },
+                            "data_description": {
+                                "rgbw_value_template": "RGBW balioa ateratzeko [txantiloia]({value_templating_url}) definitzen du."
+                            },
+                            "name": "RGBW kolore-moduaren ezarpenak"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_state_topic": "RGBWW egoeraren gaia",
+                                "rgbww_value_template": "RGBWW balioaren txantiloia"
+                            },
+                            "data_description": {
+                                "rgbww_value_template": "RGBWW balioa ateratzeko [txantiloia]({value_templating_url}) definitzen du."
+                            },
+                            "name": "RGBWW kolore-moduaren ezarpenak"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "Txuria aginduaren gaia"
+                            },
+                            "name": "Zuria kolore-moduaren ezarpenak"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "XY aginduaren txantiloia",
+                                "xy_command_topic": "XY aginduaren gaia",
+                                "xy_state_topic": "XY egoeraren gaia",
+                                "xy_value_template": "XY balioaren txantiloia"
+                            },
+                            "data_description": {
+                                "xy_value_template": "XY balioa ateratzeko [txantiloia]({value_templating_url})."
+                            },
+                            "name": "XY kolore-moduaren ezarpenak"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "target_humidity_state_topic": "Hezetasun-helburuaren egoeraren gaia"
+                            }
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "temperature_low_state_topic": "Tenperatura baxuaren egoeraren gaia",
+                                "temperature_state_topic": "Tenperatura egoeraren gaia"
+                            }
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "min": "Gutxieneko luzera",
+                                "mode": "Modua",
+                                "pattern": "Eredua"
+                            }
+                        }
+                    }
+                },
+                "summary_menu": {
+                    "menu_options": {
+                        "availability": "Eskuragarritasuna konfiguratu",
+                        "save_changes": "Aldaketak gorde"
+                    }
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Entitatea"
+                    }
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "turn_off": "Itzali",
+            "turn_on": "Piztu"
+        }
+    },
+    "exceptions": {
+        "command_template_error": {
+            "message": "`{command_template}` txantiloia `{entity_id}` entitaterako parseatzeak ondoko errorearekin huts egin du: {error}."
+        },
+        "mqtt_broker_error": {
+            "message": "MQTT-rekin hitzegiterakoan errorea: {error_message}."
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Jaiotze-gaia baliogabea",
+            "bad_will": "Azken-nahiaren gai baliogabea",
+            "bad_ws_headers": "Baliozko HTTP goiburu eman JSON objektu gisa",
+            "cannot_connect": "Konexioak huts egin du"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Jaiotze-mezua gaitu",
+                    "birth_payload": "Jaiotze-mezuaren datuak",
+                    "birth_qos": "Jaiotze-mezuaren QoS",
+                    "birth_topic": "Jaiotze-mezuaren gaia",
+                    "will_enable": "Azken nahiaren mezua gaitu",
+                    "will_payload": "Azken nahiaren mezuaren datuak",
+                    "will_qos": "Azken nahiaren mezuaren QoS",
+                    "will_topic": "Azken nahiaren mezuaren gaia"
+                },
+                "title": "MQTT aukerak"
+            }
+        }
+    },
+    "selector": {
+        "climate_modes": {
+            "options": {
+                "auto": "Automatikoa",
+                "dry": "Lehorra",
+                "heat": "Beroa",
+                "off": "Itzalita"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Konfigurazioa"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "json": "JSON",
+                "template": "Txantiloia"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Distira",
+                "first": "Lehenengoa",
+                "last": "Azkena"
+            }
+        },
+        "platform": {
+            "options": {
+                "button": "Botoia",
+                "date": "Data",
+                "image": "Irudia",
+                "notify": "Jakinarazpenak",
+                "number": "Zenbakia",
+                "switch": "Etengailua",
+                "text": "Testua",
+                "time": "Ordua",
+                "valve": "Balbula",
+                "water_heater": "Ur-berogailua"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automatikoa",
+                "custom": "Pertsonalizatua",
+                "off": "Itzalita"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Distira bakarrik",
+                "color_temp": "Kolore tenperatura",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Zuria",
+                "xy": "XY"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Pasahitza",
+                "text": "Testua"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Automatikoa",
+                "gas": "Gasa",
+                "off": "Itzalita"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "fields": {
+                "duration": {
+                    "name": "Iraupena"
+                },
+                "topic": {
+                    "name": "Gaia"
+                }
+            }
+        },
+        "publish": {
+            "fields": {
+                "payload": {
+                    "name": "Datuak"
+                },
+                "qos": {
+                    "name": "QoS"
+                },
+                "topic": {
+                    "name": "Gaia"
+                }
+            },
+            "name": "Argitaratu"
+        },
+        "reload": {
+            "name": "Birkargatu"
+        }
+    },
+    "triggers": {
+        "_": {
+            "fields": {
+                "payload": {
+                    "name": "Datuak"
+                },
+                "topic": {
+                    "description": "Entzuteko MQTT gaia",
+                    "name": "Gaia"
+                }
+            }
+        }
+    }
+}

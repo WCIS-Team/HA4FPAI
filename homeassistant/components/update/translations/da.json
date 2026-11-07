@@ -1,0 +1,154 @@
+{
+    "common": {
+        "condition_behavior_name": "Betingelsen opfyldes, hvis",
+        "condition_for_name": "I mindst",
+        "trigger_behavior_name": "Udl\u00f8s n\u00e5r",
+        "trigger_for_name": "I mindst"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Tester om en eller flere opdateringer er tilg\u00e6ngelige.",
+            "fields": {
+                "behavior": {
+                    "name": "Betingelsen opfyldes, hvis"
+                },
+                "for": {
+                    "name": "I mindst"
+                }
+            },
+            "name": "Opdatering er tilg\u00e6ngelig"
+        },
+        "is_not_available": {
+            "description": "Tester om en eller flere opdateringer ikke er tilg\u00e6ngelige.",
+            "fields": {
+                "behavior": {
+                    "name": "Betingelsen opfyldes, hvis"
+                },
+                "for": {
+                    "name": "I mindst"
+                }
+            },
+            "name": "Opdatering er ikke tilg\u00e6ngelig"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Varighed"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} opdateringstilg\u00e6ngelighed \u00e6ndret",
+            "turned_off": "{entity_name} blev opdateret",
+            "turned_on": "{entity_name} har en opdatering tilg\u00e6ngelig"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Opdatering",
+            "state": {
+                "off": "Opdateret",
+                "on": "Opdatering tilg\u00e6ngelig"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Automatisk opdatering",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "in_progress": {
+                    "name": "I gang",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "installed_version": {
+                    "name": "Installeret version"
+                },
+                "latest_version": {
+                    "name": "Nyeste version"
+                },
+                "release_summary": {
+                    "name": "Udgivelsesnoter"
+                },
+                "release_url": {
+                    "name": "Udgivelsens webadresse"
+                },
+                "skipped_version": {
+                    "name": "Oversprunget version"
+                },
+                "title": {
+                    "name": "Titel"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmware"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "Sikkerhedskopiering underst\u00f8ttes ikke for {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "Rydning af oversprungne opdateringer underst\u00f8ttes ikke for {entity_id}."
+        },
+        "no_update_available": {
+            "message": "Ingen opdatering tilg\u00e6ngelig for {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "Ingen opdatering tilg\u00e6ngelig at springe over {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "Det er ikke muligt at springe en opdatering over for {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "Installation af en bestemt version underst\u00f8ttes ikke for {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "Kan ikke springe en ukendt version over for {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "Installation af opdatering er allerede i gang for {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Fjerner markeringen som oversprunget fra en opdatering.",
+            "name": "Stop overspringning"
+        },
+        "install": {
+            "fields": {
+                "backup": {
+                    "description": "Hvis det underst\u00f8ttes af integrationen, oprettes der en sikkerhedskopi, f\u00f8r opdateringen starter.",
+                    "name": "Sikkerhedskopiering"
+                },
+                "version": {
+                    "description": "Den version, der skal installeres. Hvis den udelades, vil den nyeste version blive installeret.",
+                    "name": "Version"
+                }
+            },
+            "name": "Install\u00e9r opdatering"
+        },
+        "skip": {
+            "description": "Markerer en aktuelt tilg\u00e6ngelig opdatering som oversprunget.",
+            "name": "Spring opdatering over"
+        }
+    },
+    "title": "Opdatering",
+    "triggers": {
+        "became_available": {
+            "description": "Udl\u00f8ses, n\u00e5r en eller flere opdateringer bliver tilg\u00e6ngelige.",
+            "fields": {
+                "behavior": {
+                    "name": "Udl\u00f8s n\u00e5r"
+                },
+                "for": {
+                    "name": "I mindst"
+                }
+            },
+            "name": "Opdatering bliver tilg\u00e6ngelig"
+        }
+    }
+}

@@ -1,0 +1,212 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition passes if",
+        "condition_for_name": "For at least",
+        "trigger_behavior_name": "Trigger when",
+        "trigger_for_name": "For at least"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Tests if one or more fans are off.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition passes if"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Fan is off"
+        },
+        "is_on": {
+            "description": "Tests if one or more fans are on.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition passes if"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Fan is on"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Toggle {entity_name}",
+            "turn_off": "Turn off {entity_name}",
+            "turn_on": "Turn on {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} is off",
+            "is_on": "{entity_name} is on"
+        },
+        "extra_fields": {
+            "for": "Duration"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} turned on or off",
+            "turned_off": "{entity_name} turned off",
+            "turned_on": "{entity_name} turned on"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Fan",
+            "state": {
+                "off": "Off",
+                "on": "On"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Direction",
+                    "state": {
+                        "forward": "Forward",
+                        "reverse": "Reverse"
+                    }
+                },
+                "oscillating": {
+                    "name": "Oscillating",
+                    "state": {
+                        "false": "No",
+                        "true": "Yes"
+                    }
+                },
+                "percentage": {
+                    "name": "Speed"
+                },
+                "percentage_step": {
+                    "name": "Speed step"
+                },
+                "preset_mode": {
+                    "name": "Preset mode"
+                },
+                "preset_modes": {
+                    "name": "Available preset modes"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "Preset mode {preset_mode} is not valid, valid preset modes are: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Forward",
+                "reverse": "Reverse"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "Decreases the speed of a fan.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Percentage step by which the speed should be decreased.",
+                    "name": "Decrement"
+                }
+            },
+            "name": "Decrease fan speed"
+        },
+        "increase_speed": {
+            "description": "Increases the speed of a fan.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Percentage step by which the speed should be increased.",
+                    "name": "Increment"
+                }
+            },
+            "name": "Increase fan speed"
+        },
+        "oscillate": {
+            "description": "Controls the oscillation of a fan.",
+            "fields": {
+                "oscillating": {
+                    "description": "Turns oscillation on/off.",
+                    "name": "Oscillating"
+                }
+            },
+            "name": "Oscillate fan"
+        },
+        "set_direction": {
+            "description": "Sets a fan's rotation direction.",
+            "fields": {
+                "direction": {
+                    "description": "Direction of the fan rotation.",
+                    "name": "Direction"
+                }
+            },
+            "name": "Set fan direction"
+        },
+        "set_percentage": {
+            "description": "Sets the speed of a fan.",
+            "fields": {
+                "percentage": {
+                    "description": "Speed of the fan.",
+                    "name": "Percentage"
+                }
+            },
+            "name": "Set fan speed"
+        },
+        "set_preset_mode": {
+            "description": "Sets the preset mode of a fan.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Preset fan mode.",
+                    "name": "Preset mode"
+                }
+            },
+            "name": "Set fan preset mode"
+        },
+        "toggle": {
+            "description": "Toggles a fan on/off.",
+            "name": "Toggle fan"
+        },
+        "turn_off": {
+            "description": "Turns off a fan.",
+            "name": "Turn off fan"
+        },
+        "turn_on": {
+            "description": "Turns on a fan.",
+            "fields": {
+                "percentage": {
+                    "description": "Speed of the fan.",
+                    "name": "Percentage"
+                },
+                "preset_mode": {
+                    "description": "Preset fan mode.",
+                    "name": "Preset mode"
+                }
+            },
+            "name": "Turn on fan"
+        }
+    },
+    "title": "Fan",
+    "triggers": {
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Trigger when"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Fan turned off"
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Trigger when"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Fan turned on"
+        }
+    }
+}

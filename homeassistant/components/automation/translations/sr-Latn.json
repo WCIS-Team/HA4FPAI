@@ -1,0 +1,111 @@
+{
+    "common": {
+        "validation_failed_short_title": "Neuspe\u0161no pode\u0161avanje automatizacije",
+        "validation_failed_title": "\u201e{name}\u201d - Neispravno pode\u0161avanje"
+    },
+    "entity_component": {
+        "_": {
+            "name": "Automatizacija",
+            "state": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            },
+            "state_attributes": {
+                "current": {
+                    "name": "Pokrenute automatizacije"
+                },
+                "id": {
+                    "name": "ID"
+                },
+                "last_triggered": {
+                    "name": "Poslednja aktivacija"
+                },
+                "max": {
+                    "name": "Maksimalan broj pokrenutih automatizacija"
+                },
+                "mode": {
+                    "name": "Re\u017eim rada",
+                    "state": {
+                        "parallel": "Paralelno",
+                        "queued": "Stavljeno u red",
+                        "restart": "Ponovno pokretanje",
+                        "single": "Jednom"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "service_not_found": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Automatizacija \u201e{name}\u201d ({entity_id}) sadr\u017ei nepoznatu akciju: \u201e{service}\u201d.\n\nOva gre\u0161ka spre\u010dava pravilno izvr\u0161avanje automatizacije. Mo\u017eda ova akcija vi\u0161e nije dostupna ili je do\u0161lo do gre\u0161ke u kucanju.\n\nDa biste ispravili gre\u0161ku, [izmenite automatizaciju]({edit}) i uklonite ovu akciju.\n\nIzaberite opciju **Potvrdi** u nastavku kako biste potvrdili da je gre\u0161ka u automatizaciji ispravljena.",
+                        "title": "\u201e{name}\u201d - Upotreba nepoznate akcje"
+                    }
+                }
+            },
+            "title": "\u201e{name}\u201d - Upotreba nepoznate akcje"
+        },
+        "validation_failed_actions": {
+            "description": "Automatizacija \u201e{name}\u201d ({entity_id}) nije aktivna jer radnje nije bilo mogu\u0107e postaviti.\n\nGre\u0161ka: `{error}`.\n\nDa biste otklonili ovu gre\u0161ku, [izmenite automatizaciju]({edit}), zatim sa\u010duvajte i ponovo u\u010ditajte konfiguraciju automatizacije",
+            "short_title": "Neuspe\u0161no pode\u0161avanje automatizacije",
+            "title": "\u201e{name}\u201d - Neispravno pode\u0161avanje"
+        },
+        "validation_failed_blueprint": {
+            "description": "Konfigurisanje automatizacije iz nacrta \u201e{name}\u201d ({entity_id}) nije uspelo.\n\nGre\u0161ka`{error}`.\n\nDa biste otklonili ovu gre\u0161ku, [izmenite automatizaciju]({edit}), zatim sa\u010duvajte i ponovo u\u010ditajte konfiguraciju automatizacije.",
+            "short_title": "Neuspe\u0161no pode\u0161avanje automatizacije",
+            "title": "\u201e{name}\u201d - Neispravno pode\u0161avanje"
+        },
+        "validation_failed_conditions": {
+            "description": "Automatizacija \u201e{name}\u201d ({entity_id}) je neaktivna jer konfigurisanje njenih uslova nije uspelo.\n\nGre\u0161ka: {error}.\n\nDa biste otklonili ovu gre\u0161ku, [izmenite automatizaciju]({edit}), zatim sa\u010duvajte i ponovo u\u010ditajte konfiguraciju automatizacije.",
+            "short_title": "Neuspe\u0161no pode\u0161avanje automatizacije",
+            "title": "\u201e{name}\u201d - Neispravno pode\u0161avanje"
+        },
+        "validation_failed_schema": {
+            "description": "Automatizacija \u201e{name}\u201d ({entity_id}) je neaktivna zbog gre\u0161aka u konfiguraciji.\n\nGre\u0161ka: {error}.\n\nDa biste otklonili ovu gre\u0161ku, [izmenite automatizaciju]({edit}), zatim je sa\u010duvajte i ponovo u\u010ditajte konfiguraciju automatizacija.",
+            "short_title": "Neuspe\u0161no pode\u0161avanje automatizacije",
+            "title": "\u201e{name}\u201d - Neispravno pode\u0161avanje"
+        },
+        "validation_failed_triggers": {
+            "description": "Automatizacija \u201e{name}\u201d ({entity_id}) je neaktivna jer konfigurisanje njenih pokreta\u010da nije uspelo.\n\nGre\u0161ka: {error}.\n\nDa biste re\u0161ili ovaj problem, [izmenite automatizaciju]({edit}) i ispravite gre\u0161ku, a zatim sa\u010duvajte i ponovo u\u010ditajte konfiguraciju automatizacija.",
+            "short_title": "Neuspe\u0161no pode\u0161avanje automatizacije",
+            "title": "\u201e{name}\u201d - Neispravno pode\u0161avanje"
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Osve\u017eava i primenjuje sve definicije iz konfiguracione datoteke automatizacija.",
+            "name": "Ponovo u\u010ditaj automatizacije"
+        },
+        "toggle": {
+            "description": "Menja trenutni status automatizacije izme\u0111u aktivnog i neaktivnog.",
+            "name": "Prebaci stanje automatizacije"
+        },
+        "trigger": {
+            "description": "Pokretanje akcija automatizacije.",
+            "fields": {
+                "skip_condition": {
+                    "description": "Odre\u0111ivanje da li \u0107e uslovi biti presko\u010deni.",
+                    "name": "Ignorisanje uslova"
+                }
+            },
+            "name": "Pokreni automatizaciju"
+        },
+        "turn_off": {
+            "description": "Onemogu\u0107ava dalju proveri uslova i izvr\u0161avanje izabrane automatizacije.",
+            "fields": {
+                "stop_actions": {
+                    "description": "Defini\u0161e da li je neophodno trenutno zaustavljanje svih aktivnih faza (koraka) automatizacije.",
+                    "name": "Obustava aktivnih procesa"
+                }
+            },
+            "name": "Isklju\u010di automatizaciju"
+        },
+        "turn_on": {
+            "description": "Omogu\u0107ava izvr\u0161avanje logike i akciju unutar izabrane automatizacije.",
+            "name": "Uklju\u010di automatizaciju"
+        }
+    },
+    "title": "Automatizacija"
+}

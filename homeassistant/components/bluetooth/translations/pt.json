@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Servi\u00e7o j\u00e1 configurado",
+            "no_adapters": "N\u00e3o foram encontrados adaptadores Bluetooth n\u00e3o configurados."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "Pretende configurar {name}?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adaptador"
+                },
+                "description": "Selecionar um adaptador Bluetooth para configurar"
+            },
+            "single_adapter": {
+                "description": "Pretende configurar o adaptador Bluetooth {name} {manufacturer} {model}?"
+            },
+            "user": {
+                "data": {
+                    "address": "Dispositivo"
+                },
+                "description": "Escolher um dispositivo para configurar"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "O adaptador Bluetooth **{adapter}** ({model}) est\u00e1 a funcionar em modo degradado porque o seu contentor necessita de permiss\u00f5es adicionais para aceder totalmente ao hardware Bluetooth.\n\nPor favor, siga as instru\u00e7\u00f5es na nossa documenta\u00e7\u00e3o para adicionar as permiss\u00f5es necess\u00e1rias:\n[Permiss\u00f5es Bluetooth para Docker]({docs_url})\n\nDepois de adicionar estas permiss\u00f5es, reinicie o seu contentor do Home Assistant para que as altera\u00e7\u00f5es tenham efeito.",
+            "title": "O adaptador Bluetooth requer permiss\u00f5es adicionais"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "O adaptador Bluetooth **{adapter}** ({model}) est\u00e1 preso no modo de varrimento passivo, apesar de solicitar o modo de varrimento ativo. **Foi tentada a recupera\u00e7\u00e3o autom\u00e1tica, mas falhou.** \u00c9 prov\u00e1vel que se trate de um problema do kernel, do firmware ou do sistema operativo e o sistema necessita de um ciclo de energia completo para recuperar o adaptador.\n\nNo modo passivo, o adaptador s\u00f3 pode receber an\u00fancios, mas n\u00e3o pode solicitar dados adicionais dos dispositivos, o que afetar\u00e1 a descoberta e a funcionalidade do dispositivo.\n\n**\u00c9 necess\u00e1ria interven\u00e7\u00e3o manual necess\u00e1ria:**\n1. **Desligue o sistema completamente** (n\u00e3o basta reiniciar)\n2. **Desligue a alimenta\u00e7\u00e3o** (desligar a ficha da tomada ou desligar o interrutor)\n3. Aguarde 10 segundos\n4. Se o problema persistir ap\u00f3s o ciclo de energia:\n- Verifique se existem atualiza\u00e7\u00f5es do kernel/firmware\n- O adaptador Bluetooth integrado pode ter problemas de hardware",
+            "title": "O adaptador Bluetooth requer um ciclo de energia do sistema"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "O adaptador Bluetooth **{adapter}** ({model}) est\u00e1 preso no modo de varrimento passivo, apesar de solicitar o modo de varrimento ativo. **Foi tentada uma recupera\u00e7\u00e3o autom\u00e1tica, mas falhou.** \u00c9 prov\u00e1vel que se trate de um problema do kernel, do firmware ou do sistema operativo e o adaptador necessita de um ciclo de alimenta\u00e7\u00e3o manual para recuperar.\n\nNo modo passivo, o adaptador s\u00f3 pode receber an\u00fancios, mas n\u00e3o pode solicitar dados adicionais de dispositivos, o que afetar\u00e1 a descoberta e a funcionalidade do dispositivo.\n**\u00c9 necess\u00e1ria interven\u00e7\u00e3o manual necess\u00e1ria:**\n1. **Desligue o adaptador USB**\n2. Aguarde 5 segundos\n3. **Volte a lig\u00e1-lo**\n4. Aguarde que o Home Assistant detete o adaptador\n\nSe o problema persistir ap\u00f3s o ciclo de energia:\n- Experimente uma porta USB diferente\n- Verifique se existem atualiza\u00e7\u00f5es do kernel/firmware\n- Considere a utiliza\u00e7\u00e3o de um adaptador Bluetooth diferente",
+            "title": "O adaptador USB Bluetooth requer um ciclo de alimenta\u00e7\u00e3o manual"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Os adaptadores Bluetooth locais que n\u00e3o suportam pesquisa passiva n\u00e3o podem ser configurados.",
+            "remote_adapters_not_supported": "A configura\u00e7\u00e3o Bluetooth para adaptadores remotos n\u00e3o \u00e9 suportada."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Modo de varrimento"
+                },
+                "data_description": {
+                    "mode": "O modo autom\u00e1tico \u00e9 recomendado para a maioria das configura\u00e7\u00f5es. Poupa a bateria dos seus dispositivos Bluetooth e, ao mesmo tempo, continua a detetar rapidamente novos dispositivos e atualiza\u00e7\u00f5es."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Ativo (utiliza mais bateria do dispositivo, atualiza\u00e7\u00f5es mais r\u00e1pidas)",
+                "auto": "Autom\u00e1tico (recomendado, poupa a bateria do dispositivo)",
+                "passive": "Passivo (menor utiliza\u00e7\u00e3o da bateria do dispositivo, podem faltar alguns pormenores)"
+            }
+        }
+    }
+}

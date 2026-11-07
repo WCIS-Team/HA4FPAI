@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Zeitplan-Bl\u00f6cke derzeit nicht aktiv sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Zeitplan aus"
+        },
+        "is_on": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Zeitplan-Bl\u00f6cke derzeit aktiv sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Zeitplan ein"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Zeitplan",
+            "state": {
+                "off": "Aus",
+                "on": "Ein"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "Verwaltet \u00fcber UI",
+                    "state": {
+                        "false": "Nein",
+                        "true": "Ja"
+                    }
+                },
+                "next_event": {
+                    "name": "N\u00e4chstes Ereignis"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "Ruft die konfigurierten Zeitspannen eines oder mehrerer Zeitpl\u00e4ne ab.",
+            "name": "Zeitplan abrufen"
+        },
+        "reload": {
+            "description": "L\u00e4dt Zeitpl\u00e4ne aus der YAML-Konfiguration neu.",
+            "name": "Zeitpl\u00e4ne neu laden"
+        }
+    },
+    "title": "Zeitplan",
+    "triggers": {
+        "block_ended": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Zeitplan-Bl\u00f6cke enden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Zeitblock endet"
+        },
+        "block_started": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Zeitplan-Bl\u00f6cke beginnen.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Zeitblock beginnt"
+        }
+    }
+}

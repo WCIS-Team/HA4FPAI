@@ -1,0 +1,68 @@
+{
+    "common": {
+        "trigger_for_name": "Per almeno"
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Attiva/disattiva {entity_name}",
+            "turn_off": "Disattiva {entity_name}",
+            "turn_on": "Attiva {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} \u00e8 disattivato",
+            "is_on": "{entity_name} \u00e8 attivo"
+        },
+        "extra_fields": {
+            "for": "Durata"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} attivato o disattivato",
+            "turned_off": "{entity_name} disattivato",
+            "turned_on": "{entity_name} attivato"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Interruttore",
+            "state": {
+                "off": "Spento",
+                "on": "Acceso"
+            }
+        },
+        "outlet": {
+            "name": "Presa",
+            "state": {
+                "off": "Spento",
+                "on": "Acceso"
+            }
+        },
+        "switch": {
+            "name": "Interruttore",
+            "state": {
+                "off": "Spento",
+                "on": "Acceso"
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Attiva/disattiva un interruttore."
+        }
+    },
+    "title": "Interruttore",
+    "triggers": {
+        "turned_off": {
+            "description": "Si attiva quando uno o pi\u00f9 interruttori sono disattivati",
+            "name": "Interruttore spento"
+        },
+        "turned_on": {
+            "description": "Si attiva quando uno o pi\u00f9 interruttori sono attivati",
+            "fields": {
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "Interruttore acceso"
+        }
+    }
+}

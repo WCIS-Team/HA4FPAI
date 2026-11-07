@@ -1,0 +1,365 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "state": {
+                "name": "Deluje"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "Razli\u010dica OS Agenta"
+            },
+            "apparmor_version": {
+                "name": "Razli\u010dica Apparmor"
+            },
+            "cpu_percent": {
+                "name": "CPE odstotek"
+            },
+            "disk_free": {
+                "name": "Prosti disk"
+            },
+            "disk_total": {
+                "name": "Skupaj disk"
+            },
+            "disk_used": {
+                "name": "Uporabljen disk"
+            },
+            "memory_percent": {
+                "name": "Odstotek pomnilnika"
+            },
+            "version": {
+                "name": "Verzija"
+            },
+            "version_latest": {
+                "name": "Najnovej\u0161a razli\u010dica"
+            }
+        }
+    },
+    "issues": {
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Popravka ni bilo mogo\u010de uporabiti. Za ve\u010d podrobnosti preverite dnevnike nadzornika."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "addon_disable_boot": "Onemogo\u010di",
+                            "addon_execute_start": "Za\u017eeni"
+                        }
+                    }
+                }
+            }
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Popravka ni bilo mogo\u010de uporabiti. Za ve\u010d podrobnosti preverite dnevnike nadzornika."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "mount_execute_reload": "Ponovno nalo\u017ei",
+                            "mount_execute_remove": "Odstrani"
+                        }
+                    }
+                }
+            },
+            "title": "Omre\u017ena naprava za shranjevanje ni delovala"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Eden ali ve\u010d ponovnih zagonov ni uspelo. Za ve\u010d podrobnosti preverite dnevnike nadzornika."
+                }
+            },
+            "title": "Potreben je ponovni zagon"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Datote\u010dnega sistema ni bilo mogo\u010de preimenovati. Za ve\u010d podrobnosti preverite dnevnike nadzornika."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Pri `{reference}` smo odkrili \u0161e en aktiven podatkovni disk (ki vsebuje datote\u010dni sistem `hassos-data` iz druge namestitve Home Assistanta).\n\nOdlo\u010diti se morate, kaj boste s tem naredili. V nasprotnem primeru lahko Home Assistant ob ponovnem zagonu sistema izbere napa\u010den podatkovni disk.\n\n\u010ce tega podatkovnega diska ne \u017eelite uporabljati, ga odklopite iz sistema. \u010ce ga pustite priklopljenega, izberite eno od naslednjih mo\u017enosti:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Uporabite zaznan podatkovni disk namesto trenutnega sistema",
+                            "system_rename_data_disk": "Ozna\u010di kot neaktiven podatkovni disk (preimenuj datote\u010dni sistem)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "Izberite **Po\u0161lji**, da bo `{reference}` aktiven podatkovni disk. Eden in edini.\n\nNe boste imeli ve\u010d dostopa do trenutnih podatkov Home Assistanta (ozna\u010deni bodo kot neaktivni podatkovni disk). Po ponovnem zagonu bo va\u0161 sistem v stanju podatkov Home Assistanta na `{reference}``."
+                    }
+                }
+            },
+            "title": "Zaznanih ve\u010d podatkovnih diskov"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Sistema ni bilo mogo\u010de znova zagnati. Za ve\u010d podrobnosti preverite dnevnike nadzornika."
+                }
+            },
+            "title": "Zahtevan ponovni zagon"
+        },
+        "unhealthy": {
+            "description": "Sistem trenutno ni zdrav zaradi {reason}. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nezdrav sistem - {reason}"
+        },
+        "unhealthy_docker": {
+            "description": "Sistem trenutno ni zdrav, ker je Docker nepravilno konfiguriran. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nezdrav sistem \u2013 Docker napa\u010dno konfiguriran"
+        },
+        "unhealthy_privileged": {
+            "description": "Sistem trenutno ni zdrav, ker nima privilegiranega dostopa do izvajalnega okolja docker. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nezdrav sistem - Ni privilegiran"
+        },
+        "unhealthy_setup": {
+            "description": "Sistem trenutno ni zdrav, ker nastavitev ni bila dokon\u010dana. Obstaja ve\u010d razlogov, zakaj se to lahko zgodi. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nezdrav sistem - namestitev ni uspela"
+        },
+        "unhealthy_supervisor": {
+            "description": "Sistem trenutno ni zdrav, ker poskus posodobitve Supervisorja na najnovej\u0161o razli\u010dico ni uspel. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nezdrav sistem \u2013 posodobitev Supervisorja ni uspela"
+        },
+        "unhealthy_untrusted": {
+            "description": "Sistem trenutno ni zdrav, ker je v uporabi zaznal kodo ali slike, ki jim ni mogo\u010de zaupati. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nezdrav sistem \u2013 koda, ki ji ni mogo\u010de zaupati"
+        },
+        "unsupported": {
+            "description": "Sistem ni podprt zaradi {reason}. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem \u2013 {reason}"
+        },
+        "unsupported_apparmor": {
+            "title": "Nepodprt sistem \u2013 te\u017eave z aplikacijo AppArmor"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Sistem ni podprt, ker je v uporabi napa\u010dna razli\u010dica Docker CGroup. Uporabite povezavo, \u010de \u017eelite izvedeti pravilno razli\u010dico in kako to popraviti.",
+            "title": "Nepodprt sistem - razli\u010dica CGroup"
+        },
+        "unsupported_connectivity_check": {
+            "description": "Sistem ni podprt, ker Home Assistant ne more ugotoviti, kdaj je na voljo internetna povezava. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem - preverjanje povezljivosti je onemogo\u010deno"
+        },
+        "unsupported_dbus": {
+            "description": "Sistem ni podprt, ker D-Bus ne deluje pravilno. Brez tega marsikaj ne uspe, saj Supervisor ne more komunicirati z gostiteljem. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem - te\u017eave z D-Busom"
+        },
+        "unsupported_dns_server": {
+            "description": "Sistem ni podprt, ker navedeni stre\u017enik DNS ne deluje pravilno in je bila nadomestna mo\u017enost DNS onemogo\u010dena. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem \u2013 te\u017eave s stre\u017enikom DNS"
+        },
+        "unsupported_docker_configuration": {
+            "title": "Nepodprt sistem - Docker napa\u010dno konfiguriran"
+        },
+        "unsupported_docker_version": {
+            "title": "Nepodprt sistem \u2013 razli\u010dica Dockerja"
+        },
+        "unsupported_job_conditions": {
+            "description": "Sistem ni podprt, ker je bil onemogo\u010den eden ali ve\u010d delovnih pogojev, ki \u0161\u010ditijo pred nepri\u010dakovanimi okvarami in odpovedmi. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem - za\u0161\u010dite onemogo\u010dene"
+        },
+        "unsupported_lxc": {
+            "description": "Sistem ni podprt, ker se izvaja v virtualnem ra\u010dunalniku LXC. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem - zaznan LXC"
+        },
+        "unsupported_network_manager": {
+            "description": "Sistem ni podprt, ker upravitelj omre\u017eja manjka, je neaktiven ali napa\u010dno konfiguriran. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem \u2013 te\u017eave z upraviteljem omre\u017eja"
+        },
+        "unsupported_os": {
+            "title": "Nepodprt sistem \u2013 operacijski sistem"
+        },
+        "unsupported_os_agent": {
+            "description": "Sistem ni podprt, ker OS-Agent manjka, je neaktiven ali napa\u010dno konfiguriran. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem - te\u017eave z OS-Agentom"
+        },
+        "unsupported_restart_policy": {
+            "description": "Sistem ni podprt, ker ima kontejner Docker nastavljen pravilnik o ponovnem zagonu, ki lahko povzro\u010di te\u017eave pri zagonu. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem \u2013 pravilnik o ponovnem zagonu kontejnerja"
+        },
+        "unsupported_software": {
+            "description": "Sistem ni podprt, ker je bila zaznana dodatna programska oprema zunaj ekosistema Home Assistant. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem - Nepodprta programska oprema"
+        },
+        "unsupported_supervisor_version": {
+            "description": "Sistem ni podprt, ker je v uporabi zastarela razli\u010dica Supervisorja in je samodejna posodobitev onemogo\u010dena. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem - razli\u010dica Supervisorja"
+        },
+        "unsupported_systemd": {
+            "description": "Sistem ni podprt, ker Systemd manjka, je neaktiven ali napa\u010dno konfiguriran. Za informacije o odpravljanju te\u017eav izberite Ve\u010d informacij.",
+            "title": "Nepodprt sistem \u2013 te\u017eave s Systemd"
+        },
+        "unsupported_virtualization_image": {
+            "description": "Sistem ni podprt, ker uporabljena slika Home Assistant OS ni namenjena uporabi v virtualiziranem okolju. Uporabite povezavo, \u010de \u017eelite izvedeti ve\u010d in kako to popraviti.",
+            "title": "Nepodprt sistem - Napa\u010dna slika OS za virtualizacijo"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Ponovno za\u017eene dodatek",
+            "fields": {
+                "addon": {
+                    "description": "Dodatek, ki se naj ponovno za\u017eene.",
+                    "name": "Dodatek"
+                }
+            },
+            "name": "Ponovno za\u017eeni dodatek"
+        },
+        "addon_start": {
+            "description": "Za\u017eene dodatek",
+            "fields": {
+                "addon": {
+                    "description": "Dodatek, ki se naj za\u017eene",
+                    "name": "Dodatek"
+                }
+            },
+            "name": "Za\u017eeni dodatek"
+        },
+        "addon_stdin": {
+            "description": "Zapisuje podatke na standardni vhod dodatka.",
+            "fields": {
+                "addon": {
+                    "description": "Dodatek, v katerega naj se zapisuje",
+                    "name": "Dodatek"
+                }
+            },
+            "name": "Zapi\u0161i podatke na standardni vhod dodatka"
+        },
+        "addon_stop": {
+            "description": "Zaustavi dodatek.",
+            "fields": {
+                "addon": {
+                    "description": "Dodatek, ki se naj zaustavi.",
+                    "name": "Dodatek"
+                }
+            },
+            "name": "Zaustavi dodatek."
+        },
+        "app_start": {
+            "fields": {
+                "app": {
+                    "name": "Aplikacija"
+                }
+            }
+        },
+        "backup_full": {
+            "description": "Ustvari popolno varnostno kopijo.",
+            "fields": {
+                "compressed": {
+                    "description": "Stisne varnostne kopije.",
+                    "name": "Stisnjeno"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Izvzemi datoteko podatkovne bazo Home Assistanta iz varnostne kopije",
+                    "name": "Izvzemi podatkovno bazo Home Assistanta"
+                },
+                "location": {
+                    "description": "Naziv rezervne omre\u017ene shrambe za gostovanje varnostnih kopij.",
+                    "name": "Lokacija"
+                },
+                "name": {
+                    "description": "Izbirno (privzeto = trenutni datum in \u010das).",
+                    "name": "Naziv"
+                },
+                "password": {
+                    "description": "Geslo za za\u0161\u010dito varnostne kopije.",
+                    "name": "Geslo"
+                }
+            },
+            "name": "Ustvari popolno varnostno kopijo."
+        },
+        "backup_partial": {
+            "description": "Ustvari delno varnostno kopijo.",
+            "fields": {
+                "apps": {
+                    "name": "Aplikacije"
+                },
+                "compressed": {
+                    "description": "Stisne varnostne kopije.",
+                    "name": "Stisnjeno"
+                },
+                "folders": {
+                    "description": "Seznam imenikov, ki bojo vklju\u010deni v varnostno kopijo.",
+                    "name": "Mape"
+                },
+                "homeassistant": {
+                    "description": "Vklju\u010duje nastavitve Home Assistanta v varnostni kopiji",
+                    "name": "Nastavitve Home Assistanta"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Izvzemi datoteko podatkovne bazo Home Assistanta iz varnostne kopije",
+                    "name": "Izvzemi podatkovno bazo Home Assistanta"
+                },
+                "location": {
+                    "description": "Naziv mre\u017ene shrambe za shranjevanje varnostnih kopij",
+                    "name": "Lokacija"
+                },
+                "name": {
+                    "description": "Opcijsko (privzeto = trenutni datum in \u010das).",
+                    "name": "Naziv"
+                },
+                "password": {
+                    "description": "Geslo s katerim bo varnostna kopija za\u0161\u010ditena",
+                    "name": "Geslo"
+                }
+            },
+            "name": "Ustvari delno varnostno kopijo"
+        },
+        "host_reboot": {
+            "description": "Znova za\u017eene gostiteljski sistem.",
+            "name": "Znova za\u017eeni gostiteljski sistem."
+        },
+        "host_shutdown": {
+            "description": "Izklopi gostiteljski sistem.",
+            "name": "Izklopi gostiteljski sistem."
+        },
+        "restore_full": {
+            "description": "Obnovi iz popolne varnostne kopije.",
+            "fields": {
+                "password": {
+                    "description": "Neobvezno geslo.",
+                    "name": "Geslo"
+                },
+                "slug": {
+                    "description": "Imenska koda varnostne kopije za obnovitev."
+                }
+            },
+            "name": "Obnovi iz popolne varnostne kopije."
+        },
+        "restore_partial": {
+            "description": "Obnovi iz popolne varnostne kopije.",
+            "fields": {
+                "folders": {
+                    "description": "Seznam imenikov za obnovitev iz varnostne kopije.",
+                    "name": "Mape"
+                },
+                "homeassistant": {
+                    "description": "Obnovi Home Assistanta.",
+                    "name": "Nastavitve Home Assistanta"
+                },
+                "password": {
+                    "description": "Neobvezno geslo.",
+                    "name": "Geslo"
+                }
+            },
+            "name": "Obnovi iz delne varnostne kopije"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Razli\u010dica Agenta",
+            "disk_total": "Disk skupno",
+            "disk_used": "Uporabljen disk",
+            "docker_version": "Razli\u010dica Dockerja",
+            "healthy": "Zdrav",
+            "host_os": "Gostiteljski operacijski sistem",
+            "supervisor_api": "API nadzornika",
+            "supervisor_version": "Razli\u010dica Supervisorja",
+            "supported": "Podprto",
+            "update_channel": "Posodobi kanal",
+            "version_api": "API razli\u010dica"
+        }
+    }
+}

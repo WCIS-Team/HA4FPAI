@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatisk s\u00e4kerhetskopiering",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "S\u00e4kerhetskopieringsfas"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Slutf\u00f6rd",
+                            "failed": "Misslyckades",
+                            "in_progress": "P\u00e5g\u00e5r"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Orsak till fel",
+                        "state": {
+                            "backup_agent_error": "Fel p\u00e5 s\u00e4kerhetskopieringsagent",
+                            "backup_agent_unreachable": "S\u00e4kerhetskopieringsagenten \u00e4r inte tillg\u00e4nglig",
+                            "backup_manager_error": "Fel i s\u00e4kerhetskopieringshanteraren",
+                            "backup_not_found": "S\u00e4kerhetskopian hittades inte",
+                            "backup_reader_writer_error": "Fel vid l\u00e4sning/skrivning f\u00f6r s\u00e4kerhetskopia",
+                            "decrypt_on_download_not_supported": "Dekryptering vid nedladdning st\u00f6ds inte",
+                            "invalid_backup_filename": "Ogiltigt filnamn f\u00f6r s\u00e4kerhetskopian",
+                            "multiple_errors": "Flera fel",
+                            "password_incorrect": "Felaktigt l\u00f6senord",
+                            "unknown_error": "Ok\u00e4nt fel",
+                            "upload_failed": "Uppladdning misslyckades"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Tillst\u00e5nd f\u00f6r s\u00e4kerhetskopieringshanterare",
+                "state": {
+                    "blocked": "Blockerad",
+                    "create_backup": "Skapar en s\u00e4kerhetskopia",
+                    "idle": "Inaktiv",
+                    "receive_backup": "Tar emot en s\u00e4kerhetskopia",
+                    "restore_backup": "\u00c5terst\u00e4ller en s\u00e4kerhetskopia"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Senaste f\u00f6rs\u00f6k till automatisk s\u00e4kerhetskopiering"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Senaste lyckade automatiska s\u00e4kerhetskopiering"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "N\u00e4sta schemalagda automatiska s\u00e4kerhetskopiering"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "S\u00e4kerhetskopieringsplatsen `{agent_id}` \u00e4r inte tillg\u00e4nglig men \u00e4r fortfarande konfigurerad f\u00f6r automatiska s\u00e4kerhetskopieringar.\n\nBes\u00f6k [konfigurationssidan f\u00f6r automatisk s\u00e4kerhetskopiering]({backup_settings}) f\u00f6r att granska och uppdatera dina platser f\u00f6r s\u00e4kerhetskopiering. S\u00e4kerhetskopior kommer inte att laddas upp till valda platser som inte \u00e4r tillg\u00e4ngliga.",
+            "title": "Platsen f\u00f6r s\u00e4kerhetskopiering {agent_id} \u00e4r inte tillg\u00e4nglig"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Apparna {failed_addons} kunde inte inkluderas i den automatiska s\u00e4kerhetskopian. Kontrollera supervisor-loggarna f\u00f6r mer information. Ett nytt f\u00f6rs\u00f6k kommer att g\u00f6ras vid n\u00e4sta schemalagda tidpunkt om ett schema f\u00f6r s\u00e4kerhetskopiering har konfigurerats.",
+            "title": "En eller flera appar kunde inte inkluderas i automatisk s\u00e4kerhetskopia"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Den automatiska s\u00e4kerhetskopian skapades med fel:\n* Platser som s\u00e4kerhetskopian inte kunde laddas upp till: {failed_agents}\n* Appar som inte kunde s\u00e4kerhetskopieras: {failed_addons}\n* Mappar som inte kunde s\u00e4kerhetskopieras: {failed_folders}\n\nKontrollera core- och supervisor-loggarna f\u00f6r mer information. Ett nytt f\u00f6rs\u00f6k kommer att g\u00f6ras vid n\u00e4sta schemalagda tidpunkt om ett schema f\u00f6r s\u00e4kerhetskopiering har konfigurerats.",
+            "title": "Automatisk s\u00e4kerhetskopia skapades med fel"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Den automatiska s\u00e4kerhetskopian kunde inte skapas. Kontrollera loggarna f\u00f6r mer information. Ett nytt f\u00f6rs\u00f6k kommer att g\u00f6ras vid n\u00e4sta schemalagda tidpunkt om ett schema f\u00f6r s\u00e4kerhetskopiering har konfigurerats.",
+            "title": "Automatisk s\u00e4kerhetskopia kunde inte skapas"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Mapparna {failed_folders} kunde inte inkluderas i den automatiska s\u00e4kerhetskopian. Kontrollera supervisor-loggarna f\u00f6r mer information. Ett nytt f\u00f6rs\u00f6k kommer att g\u00f6ras vid n\u00e4sta schemalagda tidpunkt om ett schema f\u00f6r s\u00e4kerhetskopiering har konfigurerats.",
+            "title": "En eller flera mappar kunde inte inkluderas i automatisk s\u00e4kerhetskopia"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Den automatiska s\u00e4kerhetskopian kunde inte laddas upp till de inst\u00e4llda platserna {failed_agents}. Kontrollera loggarna f\u00f6r mer information. Ett nytt f\u00f6rs\u00f6k kommer att g\u00f6ras vid n\u00e4sta schemalagda tidpunkt om ett schema f\u00f6r s\u00e4kerhetskopiering har konfigurerats.",
+            "title": "Automatisk s\u00e4kerhetskopia kunde inte laddas upp till de inst\u00e4llda platserna"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Skapar en ny s\u00e4kerhetskopia.",
+            "name": "Skapa s\u00e4kerhetskopia"
+        },
+        "create_automatic": {
+            "description": "Skapar en ny s\u00e4kerhetskopia med inst\u00e4llningar f\u00f6r automatisk s\u00e4kerhetskopiering.",
+            "name": "Skapa automatisk s\u00e4kerhetskopia"
+        }
+    }
+}

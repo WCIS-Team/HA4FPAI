@@ -1,0 +1,79 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "De databaseback-up die om {start_time} moest worden uitgevoerd, is mislukt vanwege een gebrek aan resources. De back-up is onbetrouwbaar en moet opnieuw worden uitgevoerd. Dit kan gebeuren wanner de database te groot is of als het systeem zwaar wordt belast. Overweeg om de systeemhardware te upgraden of de database te verkleinen door het aantal te bewaren geschiedenisdagen te verminderen of een filter aan te maken.",
+            "title": "Databaseback-up is mislukt vanwege een tekort aan resources"
+        },
+        "maria_db_range_index_regression": {
+            "title": "Update MariaDB naar {min_version} of hoger om een belangrijk performance probleem op te lossen"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Stopt de opname van gebeurtenissen en statuswijzigingen.",
+            "name": "Recorder uitschakelen"
+        },
+        "enable": {
+            "description": "Start de opname van gebeurtenissen en statuswijzigingen.",
+            "name": "Recorder inschakelen"
+        },
+        "get_statistics": {
+            "fields": {
+                "end_time": {
+                    "name": "Eindtijd"
+                },
+                "start_time": {
+                    "name": "Begintijd"
+                }
+            }
+        },
+        "purge": {
+            "description": "Start de opschoontaak - om oude gegevens uit de database op te schonen.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Pas naast het op tijd gebaseerde opschonen ook filters voor `entity_id` en `event_type` toe.",
+                    "name": "Filter toepassen"
+                },
+                "keep_days": {
+                    "description": "Aantal dagen om de gegevens in de database te bewaren. Beginnend vanaf vandaag, terugtellen. Een waarde van `7` betekent dat alles ouder dan een week zal worden opgeschoond.",
+                    "name": "Dagen om te bewaren"
+                },
+                "repack": {
+                    "description": "Probeer schijfruimte te besparen door het hele databasebestand te herschrijven.",
+                    "name": "Herverpakken"
+                }
+            },
+            "name": "Recorder-database opschonen"
+        },
+        "purge_entities": {
+            "description": "Start een opschoontaak om de gegevens met betrekking tot specifieke entiteiten uit de database te verwijderen.",
+            "fields": {
+                "domains": {
+                    "description": "Lijst met domeinen waarvan de gegevens uit de Recorder-database moeten worden verwijderd.",
+                    "name": "Domeinen om te verwijderen"
+                },
+                "entity_globs": {
+                    "description": "Lijst met glob-patronen die worden gebruikt om de entiteiten te selecteren waarvan de gegevens uit de Recorder-database moeten worden verwijderd.",
+                    "name": "Entiteitsglobs om te verwijderen"
+                },
+                "entity_id": {
+                    "description": "Lijst van entiteiten waarvan de data verwijderd moet worden uit de recorderdatabase.",
+                    "name": "Te verwijderen entiteiten"
+                },
+                "keep_days": {
+                    "description": "Aantal dagen dat de gegevens moeten worden bewaard voor rijen die overeenkomen met het filter. Vanaf vandaag, terugtellend. Een waarde van `7` betekent dat alles ouder dan een week wordt opgeschoond. De standaardwaarde van 0 dagen zal alle overeenkomende rijen onmiddellijk verwijderen.",
+                    "name": "Dagen om te bewaren"
+                }
+            },
+            "name": "Recorder-entiteiten opschonen"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Starttijd huidige run",
+            "database_engine": "Database-engine",
+            "database_version": "Databaseversie",
+            "oldest_recorder_run": "Starttijd oudste run"
+        }
+    }
+}

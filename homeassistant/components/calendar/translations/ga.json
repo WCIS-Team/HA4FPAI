@@ -1,0 +1,153 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_event_active": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil imeacht gn\u00edomhach i bhf\u00e9ilire amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 imeacht f\u00e9ilire gn\u00edomhach"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "F\u00e9ilire",
+            "state": {
+                "off": "As",
+                "on": "Ar si\u00fal"
+            },
+            "state_attributes": {
+                "all_day": {
+                    "name": "An l\u00e1 ar fad",
+                    "state": {
+                        "false": "N\u00edl",
+                        "true": "T\u00e1"
+                    }
+                },
+                "description": {
+                    "name": "Cur s\u00edos"
+                },
+                "end_time": {
+                    "name": "Am deiridh"
+                },
+                "location": {
+                    "name": "Su\u00edomh"
+                },
+                "message": {
+                    "name": "Teachtaireacht"
+                },
+                "start_time": {
+                    "name": "Am tosaithe"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_calendar_list_events": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Bain \u00fas\u00e1id as `calendar.get_events` ina ionad sin a thaca\u00edonn le hil-eintitis.\n\nCuir an gn\u00edomh seo ina \u00e1it agus coigeartaigh do uathoibrithe agus scripteanna agus roghnaigh **Cuir Isteach** chun an cheist seo a dh\u00fanadh.",
+                        "title": "Braitheadh \u00fas\u00e1id calendar.list_events gn\u00edomha\u00edochta at\u00e1 imithe i l\u00e9ig"
+                    }
+                }
+            },
+            "title": "Braitheadh \u00fas\u00e1id calendar.list_events gn\u00edomha\u00edochta at\u00e1 imithe i l\u00e9ig"
+        }
+    },
+    "selector": {
+        "trigger_offset_type": {
+            "options": {
+                "after": "Tar \u00e9is",
+                "before": "Roimh"
+            }
+        }
+    },
+    "services": {
+        "create_event": {
+            "description": "Cuireann s\u00e9 imeacht f\u00e9ilire nua leis.",
+            "fields": {
+                "description": {
+                    "description": "Cur s\u00edos n\u00edos ioml\u00e1ine ar an imeacht n\u00e1 an ceann a shol\u00e1thra\u00edtear san achoimre.",
+                    "name": "Cur s\u00edos"
+                },
+                "end_date": {
+                    "description": "An d\u00e1ta ba ch\u00f3ir don imeacht lae ioml\u00e1n cr\u00edochn\u00fa (eisiach).",
+                    "name": "D\u00e1ta deiridh"
+                },
+                "end_date_time": {
+                    "description": "An d\u00e1ta agus an t-am ba ch\u00f3ir don imeacht cr\u00edochn\u00fa.",
+                    "name": "Am deiridh"
+                },
+                "in": {
+                    "description": "Laethanta n\u00f3 seachtain\u00ed inar mian leat an \u00f3c\u00e1id \u200b\u200ba chruth\u00fa.",
+                    "name": "Isteach"
+                },
+                "location": {
+                    "description": "Su\u00edomh an imeachta.",
+                    "name": "Su\u00edomh"
+                },
+                "start_date": {
+                    "description": "An d\u00e1ta ba ch\u00f3ir don imeacht lae ioml\u00e1n tos\u00fa.",
+                    "name": "D\u00e1ta tosaithe"
+                },
+                "start_date_time": {
+                    "description": "An d\u00e1ta agus an t-am ba ch\u00f3ir don imeacht tos\u00fa.",
+                    "name": "Am tosaithe"
+                },
+                "summary": {
+                    "description": "Sainmh\u00edn\u00edonn s\u00e9 an achoimre ghearr n\u00f3 \u00e1bhar na h\u00f3c\u00e1ide.",
+                    "name": "Achoimre"
+                }
+            }
+        },
+        "get_events": {
+            "description": "Aisghabhann s\u00e9 imeachta\u00ed ar fh\u00e9ilire laistigh de raon ama.",
+            "fields": {
+                "duration": {
+                    "description": "Tugann s\u00e9 imeachta\u00ed gn\u00edomhacha ar ais \u00f3n am tosaithe don tr\u00e9imhse shonraithe.",
+                    "name": "Fad"
+                },
+                "end_date_time": {
+                    "description": "Tugann s\u00e9 seo imeachta\u00ed gn\u00edomhacha roimh an am seo ar ais (eisiach). N\u00ed f\u00e9idir \u00e9 a \u00fas\u00e1id le Fad.",
+                    "name": "Am deiridh"
+                },
+                "start_date_time": {
+                    "description": "Tugann s\u00e9 imeachta\u00ed gn\u00edomhacha ar ais tar \u00e9is an ama seo (eisiach). Nuair nach bhfuil s\u00e9 socraithe, is \u00e9 seo an r\u00e9amhshocr\u00fa.",
+                    "name": "Am tosaithe"
+                }
+            }
+        }
+    },
+    "title": "F\u00e9ilire",
+    "triggers": {
+        "event_ended": {
+            "fields": {
+                "offset": {
+                    "name": "Frith\u00e1ireamh"
+                },
+                "offset_type": {
+                    "description": "Cib\u00e9 acu a spreagfar roimh n\u00f3 i ndiaidh dheireadh na h\u00f3c\u00e1ide, m\u00e1 t\u00e1 frith\u00e1ireamh sainmh\u00ednithe.",
+                    "name": "Cine\u00e1l frith\u00e1ireamh"
+                }
+            },
+            "name": "Imeacht f\u00e9ilire cr\u00edochnaithe"
+        },
+        "event_started": {
+            "fields": {
+                "offset": {
+                    "name": "Frith\u00e1ireamh"
+                },
+                "offset_type": {
+                    "description": "Cib\u00e9 acu a spreagfar roimh n\u00f3 i ndiaidh th\u00fas an imeachta, m\u00e1 t\u00e1 frith\u00e1ireamh sainmh\u00ednithe.",
+                    "name": "Cine\u00e1l frith\u00e1ireamh"
+                }
+            },
+            "name": "Imeacht f\u00e9ilire tosaithe"
+        }
+    }
+}

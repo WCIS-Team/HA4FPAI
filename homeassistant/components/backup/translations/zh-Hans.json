@@ -1,0 +1,92 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "\u81ea\u52a8\u5907\u4efd",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "\u5907\u4efd\u9636\u6bb5"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "\u6210\u529f\u5b8c\u6210",
+                            "failed": "\u5931\u8d25",
+                            "in_progress": "\u8fdb\u884c\u4e2d"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "\u5931\u8d25\u539f\u56e0",
+                        "state": {
+                            "backup_agent_error": "\u5907\u4efd\u4ee3\u7406\u51fa\u9519",
+                            "backup_agent_unreachable": "\u5907\u4efd\u4ee3\u7406\u65e0\u6cd5\u8fde\u63a5",
+                            "backup_manager_error": "\u5907\u4efd\u7ba1\u7406\u5668\u51fa\u9519",
+                            "backup_not_found": "\u672a\u627e\u5230\u5907\u4efd",
+                            "backup_reader_writer_error": "\u5907\u4efd\u8bfb\u53d6\u5668/\u5199\u5165\u5668\u9519\u8bef",
+                            "invalid_backup_filename": "\u5907\u4efd\u6587\u4ef6\u540d\u65e0\u6548",
+                            "multiple_errors": "\u591a\u4e2a\u9519\u8bef",
+                            "password_incorrect": "\u5bc6\u7801\u4e0d\u6b63\u786e",
+                            "unknown_error": "\u672a\u77e5\u9519\u8bef",
+                            "upload_failed": "\u4e0a\u4f20\u5931\u8d25"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "\u5907\u4efd\u7ba1\u7406\u5668\u72b6\u6001",
+                "state": {
+                    "create_backup": "\u521b\u5efa\u5907\u4efd",
+                    "idle": "\u7a7a\u95f2",
+                    "receive_backup": "\u63a5\u53d7\u5907\u4efd",
+                    "restore_backup": "\u8fd8\u539f\u5907\u4efd"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "\u4e0a\u6b21\u5c1d\u8bd5\u81ea\u52a8\u5907\u4efd"
+            },
+            "last_successful_automatic_backup": {
+                "name": "\u4e0a\u6b21\u6210\u529f\u7684\u81ea\u52a8\u5907\u4efd"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "\u4e0b\u4e00\u6b21\u8ba1\u5212\u7684\u81ea\u52a8\u5907\u4efd"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "\u5907\u4efd\u4f4d\u7f6e\u201c{agent_id}\u201d\u4e0d\u53ef\u7528\uff0c\u4f46\u4ecd\u914d\u7f6e\u4e3a\u81ea\u52a8\u5907\u4efd\u3002\n \n\u8bbf\u95ee[\u81ea\u52a8\u5907\u4efd\u914d\u7f6e\u9875]({backup_settings})\u53ef\u67e5\u770b\u548c\u66f4\u65b0\u60a8\u7684\u5907\u4efd\u4f4d\u7f6e\u3002\u5907\u4efd\u4e0d\u4f1a\u4e0a\u4f20\u5230\u4e0d\u53ef\u7528\u7684\u9009\u5b9a\u4f4d\u7f6e\u3002",
+            "title": "\u5907\u4efd\u4f4d\u7f6e {agent_id} \u4e0d\u53ef\u7528"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "\u65e0\u6cd5\u5728\u81ea\u52a8\u5907\u4efd\u4e2d\u5305\u542b\u5e94\u7528 {failed_addons} \u3002\u67e5\u770b Supervisor \u65e5\u5fd7\u53ef\u89e3\u66f4\u591a\u4fe1\u606f\u3002\u5982\u679c\u5df2\u914d\u7f6e\u5907\u4efd\u8ba1\u5212\uff0c\u5219\u4f1a\u5728\u4e0b\u4e00\u4e2a\u8ba1\u5212\u65f6\u95f4\u518d\u6b21\u5c1d\u8bd5\u5907\u4efd\u3002",
+            "title": "\u81ea\u52a8\u5907\u4efd\u5e76\u975e\u80fd\u5305\u542b\u6240\u6709\u5e94\u7528"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "\u521b\u5efa\u81ea\u52a8\u5907\u4efd\u65f6\u51fa\u73b0\u9519\u8bef\uff1a\n* \u65e0\u6cd5\u4e0a\u4f20\u5907\u4efd\u7684\u4f4d\u7f6e\uff1a{failed_agents}\n* \u65e0\u6cd5\u5907\u4efd\u7684\u5e94\u7528\uff1a{failed_addons}\n* \u65e0\u6cd5\u5907\u4efd\u7684\u6587\u4ef6\u5939\uff1a{failed_folders}\n \n\u67e5\u770b Core \u548c Supervisor \u65e5\u5fd7\u53ef\u83b7\u53d6\u66f4\u591a\u4fe1\u606f\u3002\u5982\u679c\u914d\u7f6e\u4e86\u5907\u4efd\u8ba1\u5212\uff0c\u5219\u5c06\u5728\u4e0b\u4e00\u4e2a\u8ba1\u5212\u65f6\u95f4\u518d\u6b21\u5c1d\u8bd5\u5907\u4efd\u3002",
+            "title": "\u81ea\u52a8\u5907\u4efd\u521b\u5efa\u65f6\u51fa\u73b0\u9519\u8bef"
+        },
+        "automatic_backup_failed_create": {
+            "description": "\u65e0\u6cd5\u521b\u5efa\u81ea\u52a8\u5907\u4efd\u3002\u68c0\u67e5\u65e5\u5fd7\u53ef\u83b7\u53d6\u66f4\u591a\u4fe1\u606f\u3002\u5982\u679c\u914d\u7f6e\u4e86\u5907\u4efd\u8ba1\u5212\uff0c\u5219\u4f1a\u5728\u4e0b\u4e00\u4e2a\u8ba1\u5212\u65f6\u95f4\u518d\u6b21\u5c1d\u8bd5\u3002",
+            "title": "\u65e0\u6cd5\u521b\u5efa\u81ea\u52a8\u5907\u4efd"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "\u65e0\u6cd5\u5728\u81ea\u52a8\u5907\u4efd\u4e2d\u5305\u542b\u6587\u4ef6\u5939 {failed_folders} \u3002\u67e5\u770b Supervisor \u65e5\u5fd7\u53ef\u4e86\u89e3\u66f4\u591a\u4fe1\u606f\u3002\u5982\u679c\u5df2\u914d\u7f6e\u5907\u4efd\u8ba1\u5212\uff0c\u5219\u4f1a\u5728\u4e0b\u4e00\u4e2a\u8ba1\u5212\u65f6\u95f4\u518d\u6b21\u5c1d\u8bd5\u5907\u4efd\u3002",
+            "title": "\u5e76\u975e\u6240\u6709\u6587\u4ef6\u5939\u90fd\u53ef\u4ee5\u5305\u542b\u5728\u81ea\u52a8\u5907\u4efd\u4e2d"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "\u65e0\u6cd5\u5c06\u81ea\u52a8\u5907\u4efd\u4e0a\u4f20\u81f3\u914d\u7f6e\u7684\u4f4d\u7f6e {failed_agents} \u3002\u68c0\u67e5\u65e5\u5fd7\u53ef\u83b7\u53d6\u66f4\u591a\u4fe1\u606f\u3002\u5982\u679c\u914d\u7f6e\u4e86\u5907\u4efd\u8ba1\u5212\uff0c\u5219\u4f1a\u5728\u4e0b\u4e00\u4e2a\u8ba1\u5212\u65f6\u95f4\u518d\u6b21\u5c1d\u8bd5\u3002",
+            "title": "\u65e0\u6cd5\u4e0a\u4f20\u81ea\u52a8\u5907\u4efd\u5230\u914d\u7f6e\u7684\u4f4d\u7f6e"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "\u521b\u5efa\u65b0\u7684\u5907\u4efd\u3002",
+            "name": "\u521b\u5efa\u5907\u4efd"
+        },
+        "create_automatic": {
+            "description": "\u4f7f\u7528\u81ea\u52a8\u5907\u4efd\u8bbe\u7f6e\u521b\u5efa\u65b0\u7684\u5907\u4efd\u3002",
+            "name": "\u521b\u5efa\u81ea\u52a8\u5907\u4efd"
+        }
+    }
+}

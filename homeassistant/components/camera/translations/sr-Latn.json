@@ -1,0 +1,98 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Kamera",
+            "state": {
+                "idle": "Mirovanje",
+                "recording": "Snimanje",
+                "streaming": "Strimovanje"
+            },
+            "state_attributes": {
+                "access_token": {
+                    "name": "Pristupni token"
+                },
+                "brand": {
+                    "name": "Proizvo\u0111a\u010d"
+                },
+                "frontend_stream_type": {
+                    "name": "Vrsta strima",
+                    "state": {
+                        "hls": "HLS",
+                        "webrtc": "WebRTC"
+                    }
+                },
+                "model_name": {
+                    "name": "Model"
+                },
+                "motion_detection": {
+                    "name": "Detekcija pokreta",
+                    "state": {
+                        "false": "Onemogu\u0107eno",
+                        "true": "Omogu\u0107eno"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "disable_motion_detection": {
+            "description": "Isklju\u010duje detekciju pokreta na kameri.",
+            "name": "Isklju\u010di detekciju pokreta na kameri"
+        },
+        "enable_motion_detection": {
+            "description": "Uklju\u010duje detekciju pokreta na kameri.",
+            "name": "Uklju\u010di detekciju pokreta na kameri"
+        },
+        "play_stream": {
+            "description": "Pu\u0161ta strim kamere na podr\u017eanom medijskom plejeru.",
+            "fields": {
+                "format": {
+                    "description": "Specifi\u010dni protokol ili format video zapisa podr\u017ean od strane izabranog plejera.",
+                    "name": "Format video strima"
+                },
+                "media_player": {
+                    "description": "Ciljni multimedijalni ure\u0111aj predvi\u0111en za prijem i prikaz video signala.",
+                    "name": "Identifikator multimedijalnog plejera"
+                }
+            },
+            "name": "Pusti prenos u\u017eivo sa kamere"
+        },
+        "record": {
+            "description": "Pravi video-snimak u\u017eivo prenosa kamere.",
+            "fields": {
+                "duration": {
+                    "description": "\u017deljeni vremenski interval trajanja snimka izra\u017een u sekundama.",
+                    "name": "Trajanje"
+                },
+                "filename": {
+                    "description": "Kompletna lokacija za skladi\u0161tenje datoteke (mora biti u .mp4 formatu).",
+                    "name": "Sistemska putanja datoteke"
+                },
+                "lookback": {
+                    "description": "Vremenski period pre inicijalizacije servisa koji se uklju\u010duje u zapis (zahteva aktivni HLS protokol).",
+                    "name": "Prefunkcija snimanja (Lookback)"
+                }
+            },
+            "name": "Snimi prikaz kamere"
+        },
+        "snapshot": {
+            "description": "Pravi snimak sa kamere.",
+            "fields": {
+                "filename": {
+                    "description": "Kompletna lokacija i naziv datoteke za skladi\u0161tenje (npr. /config/www/ulaz.jpg).",
+                    "name": "Sistemska putanja datoteke"
+                }
+            },
+            "name": "Napravi snimak sa kamere"
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje kameru.",
+            "name": "Isklju\u010di kameru"
+        },
+        "turn_on": {
+            "description": "Uklju\u010duje kameru.",
+            "name": "Uklju\u010di kameru"
+        }
+    },
+    "title": "Kamera"
+}

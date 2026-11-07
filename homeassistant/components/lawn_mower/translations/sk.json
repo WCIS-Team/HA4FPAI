@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Testuje, \u010di je jedna alebo viac kosa\u010diek na tr\u00e1vu zaparkovan\u00fdch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu je zaparkovan\u00e1"
+        },
+        "is_encountering_an_error": {
+            "description": "Testuje, \u010di sa jedna alebo viac kosa\u010diek na tr\u00e1vu stret\u00e1va s chybou.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu m\u00e1 chybu"
+        },
+        "is_idle": {
+            "description": "Skontroluje, \u010di je jedna alebo viac kosa\u010diek v ne\u010dinnosti.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka je vypnut\u00e1"
+        },
+        "is_mowing": {
+            "description": "Testuje, \u010di kos\u00ed jedna alebo viac kosa\u010diek na tr\u00e1vu.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu kos\u00ed"
+        },
+        "is_paused": {
+            "description": "Testuje, \u010di je pozastaven\u00e1 jedna alebo viac kosa\u010diek na tr\u00e1vu.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu je pozastaven\u00e1"
+        },
+        "is_returning": {
+            "description": "Testuje, \u010di sa jedna alebo viac kosa\u010diek na tr\u00e1vu vracia na dok.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu sa vracia"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Kosa\u010dka na tr\u00e1vu",
+            "state": {
+                "docked": "V doku",
+                "error": "Chyba",
+                "idle": "Ne\u010dinn\u00fd",
+                "mowing": "Kosenie",
+                "paused": "Pozastaven\u00fd",
+                "returning": "Vracia sa"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Vr\u00e1ti kosa\u010dku na tr\u00e1vu do doku.",
+            "name": "Vr\u00e1tenie kosa\u010dky na tr\u00e1vu do doku"
+        },
+        "pause": {
+            "description": "Pozastav\u00ed aktu\u00e1lnu \u00falohu kosa\u010dky na tr\u00e1vu.",
+            "name": "Pozastavenie kosa\u010dky na tr\u00e1vu"
+        },
+        "start_mowing": {
+            "description": "Spust\u00ed \u00falohu kosenia tr\u00e1vy kosa\u010dkou.",
+            "name": "Spustite kosa\u010dku na tr\u00e1vu"
+        },
+        "stop": {
+            "description": "Zastav\u00ed aktu\u00e1lnu \u00falohu kosa\u010dky na tr\u00e1vu.",
+            "name": "Zastavte kosa\u010dku na tr\u00e1vu"
+        }
+    },
+    "title": "Kosa\u010dka na tr\u00e1vu",
+    "triggers": {
+        "became_idle": {
+            "description": "Spust\u00ed sa, ke\u010f jedna alebo viacer\u00e9 kosa\u010dky prestan\u00fa pracova\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka sa zastavila"
+        },
+        "errored": {
+            "description": "Spust\u00ed sa, ke\u010f sa vyskytne chyba u jednej alebo viacer\u00fdch kosa\u010diek na tr\u00e1vu.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu zaznamenala chybu"
+        },
+        "paused_mowing": {
+            "description": "Spust\u00ed sa, ke\u010f jedna alebo viac kosa\u010diek na tr\u00e1vu pozastav\u00ed kosenie.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu pozastavila kosenie"
+        },
+        "returned_to_dock": {
+            "description": "Spust\u00ed sa, ke\u010f sa jedna alebo viac kosa\u010diek na tr\u00e1vu vr\u00e1ti do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu vr\u00e1ten\u00e1 do doku"
+        },
+        "started_mowing": {
+            "description": "Spust\u00ed sa, ke\u010f jedna alebo viac kosa\u010diek na tr\u00e1vu za\u010dne kosi\u0165.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu za\u010dala kosi\u0165"
+        },
+        "started_returning": {
+            "description": "Spust\u00ed sa, ke\u010f sa jedna alebo viac kosa\u010diek na tr\u00e1vu za\u010dne vraca\u0165 do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Kosa\u010dka na tr\u00e1vu sa za\u010dala vraca\u0165 do doku"
+        }
+    }
+}

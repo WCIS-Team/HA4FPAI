@@ -1,0 +1,160 @@
+{
+    "common": {
+        "condition_behavior_name": "Gabhann an coinn\u00edoll m\u00e1",
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil cianrialt\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 m\u00fachta.",
+            "fields": {
+                "behavior": {
+                    "name": "Gabhann an coinn\u00edoll m\u00e1"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an cianrialt\u00e1n m\u00fachta"
+        },
+        "is_on": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil cianrialt\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar si\u00fal.",
+            "fields": {
+                "behavior": {
+                    "name": "Gabhann an coinn\u00edoll m\u00e1"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an cianrialt\u00e1n ar si\u00fal"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Scor\u00e1naigh {entity_name}",
+            "turn_off": "M\u00fach {entity_name}",
+            "turn_on": "Cas ar {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "T\u00e1 {entity_name} m\u00fachta",
+            "is_on": "T\u00e1 {entity_name} ar si\u00fal"
+        },
+        "extra_fields": {
+            "for": "Fad"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} casta air n\u00f3 as",
+            "turned_off": "M\u00fachadh {entity_name}",
+            "turned_on": "T\u00e1 {entity_name} casta air"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Cianda",
+            "state": {
+                "off": "As",
+                "on": "Ar si\u00fal"
+            }
+        }
+    },
+    "services": {
+        "delete_command": {
+            "fields": {
+                "command": {
+                    "description": "An t-aon ord\u00fa n\u00f3 an liosta orduithe at\u00e1 le scriosadh.",
+                    "name": "Ord\u00fa"
+                },
+                "device": {
+                    "description": "Gl\u00e9as as a scriosfar orduithe.",
+                    "name": "Gl\u00e9as"
+                }
+            }
+        },
+        "learn_command": {
+            "fields": {
+                "alternative": {
+                    "description": "M\u00e1s g\u00e1 c\u00f3d a st\u00f3r\u00e1il mar mhalairt air sin. T\u00e1 s\u00e9 seo \u00fas\u00e1ideach le haghaidh c\u00f3id scoite. \u00das\u00e1idtear c\u00f3id scoite le haghaidh lasc-ghl\u00e9asanna nach nd\u00e9anann ach feidhm amh\u00e1in. Mar shampla, c\u00f3d chun gl\u00e9as a chasadh air amh\u00e1in. Mura bhfuil s\u00e9 ar si\u00fal cheana f\u00e9in, n\u00ed athr\u00f3idh seoladh an ch\u00f3id an staid.",
+                    "name": "Rogha eile"
+                },
+                "command": {
+                    "description": "Ord\u00fa aonair n\u00f3 liosta orduithe le foghlaim.",
+                    "name": "Ord\u00fa"
+                },
+                "command_type": {
+                    "description": "An cine\u00e1l ordaithe at\u00e1 le foghlaim.",
+                    "name": "Cine\u00e1l ordaithe"
+                },
+                "device": {
+                    "description": "Aitheantas gl\u00e9is chun ord\u00fa a fhoghlaim uaidh.",
+                    "name": "Gl\u00e9as"
+                },
+                "timeout": {
+                    "description": "Am cr\u00edochnaithe chun an t-ord\u00fa a fhoghlaim.",
+                    "name": "Am cr\u00edochnaithe"
+                }
+            }
+        },
+        "send_command": {
+            "description": "Seolann s\u00e9 ord\u00fa n\u00f3 liosta orduithe chuig gl\u00e9as.",
+            "fields": {
+                "command": {
+                    "description": "Ord\u00fa aonair n\u00f3 liosta orduithe le seoladh.",
+                    "name": "Ord\u00fa"
+                },
+                "delay_secs": {
+                    "description": "An t-am is mian leat fanacht idir orduithe ar\u00eds agus ar\u00eds eile.",
+                    "name": "Moill soicind\u00ed"
+                },
+                "device": {
+                    "description": "Aitheantas gl\u00e9is le hord\u00fa a sheoladh chuige.",
+                    "name": "Gl\u00e9as"
+                },
+                "hold_secs": {
+                    "description": "An t-am is mian leat \u00e9 a choinne\u00e1il sula seoltar an scaoileadh.",
+                    "name": "Coinnigh soicind\u00ed"
+                },
+                "num_repeats": {
+                    "description": "An l\u00edon uaireanta is mian leat na horduithe a athdh\u00e9anamh.",
+                    "name": "Athdh\u00e9antar"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Seolann an t-ord\u00fa scor\u00e1naigh."
+        },
+        "turn_off": {
+            "description": "Seolann s\u00e9 an t-ord\u00fa m\u00fachta."
+        },
+        "turn_on": {
+            "description": "Seolann s\u00e9 an t-ord\u00fa casadh air.",
+            "fields": {
+                "activity": {
+                    "description": "Aitheantas na gn\u00edomha\u00edochta n\u00f3 ainm na gn\u00edomha\u00edochta at\u00e1 le tos\u00fa.",
+                    "name": "Gn\u00edomha\u00edocht"
+                }
+            }
+        }
+    },
+    "title": "Cianda",
+    "triggers": {
+        "turned_off": {
+            "description": "Spreagtar \u00e9 nuair a mh\u00fachtar cianrialt\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Cianrialt\u00e1n m\u00fachta"
+        },
+        "turned_on": {
+            "description": "Spreagtar \u00e9 nuair a chasann cianrialt\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 air.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Cianrialt\u00e1n casta air"
+        }
+    }
+}

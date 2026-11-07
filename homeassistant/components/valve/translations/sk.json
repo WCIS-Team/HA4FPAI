@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "Testuje, \u010di je jeden alebo viac ventilov zatvoren\u00fdch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Ventil je zatvoren\u00fd"
+        },
+        "is_open": {
+            "description": "Testuje, \u010di je otvoren\u00fd jeden alebo viac ventilov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Ventil je otvoren\u00fd"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventil",
+            "state": {
+                "closed": "Zatvoren\u00e9",
+                "closing": "Zatv\u00e1ra sa",
+                "open": "Otvoren\u00e9",
+                "opening": "Otvor",
+                "stopped": "Zastaven\u00e9"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Poz\u00edcia"
+                }
+            }
+        },
+        "gas": {
+            "name": "Plyn"
+        },
+        "water": {
+            "name": "Voda"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Zatvor\u00ed ventil.",
+            "name": "Zatvorenie ventilu"
+        },
+        "open_valve": {
+            "description": "Otvor\u00ed ventil.",
+            "name": "Otvorenie ventilu"
+        },
+        "set_valve_position": {
+            "description": "Presunie ventil do ur\u010ditej polohy.",
+            "fields": {
+                "position": {
+                    "description": "Cie\u013eov\u00e1 poz\u00edcia.",
+                    "name": "Poz\u00edcia"
+                }
+            },
+            "name": "Nastavenie polohy ventilu"
+        },
+        "stop_valve": {
+            "description": "Zastav\u00ed ventil.",
+            "name": "Zastavenie ventilu"
+        },
+        "toggle": {
+            "description": "Prep\u00edna ventil otvoren\u00fd/zavret\u00fd.",
+            "name": "Prep\u00ednac\u00ed ventil"
+        }
+    },
+    "title": "Ventil",
+    "triggers": {
+        "closed": {
+            "description": "Spust\u00ed sa, ke\u010f sa jeden alebo viac ventilov zatvor\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Ventil zatvoren\u00fd"
+        },
+        "opened": {
+            "description": "Spust\u00ed sa, ke\u010f sa otvor\u00ed jeden alebo viac ventilov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Ventil otvoren\u00fd"
+        }
+    }
+}

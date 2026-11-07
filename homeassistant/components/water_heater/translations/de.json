@@ -1,0 +1,245 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "condition_threshold_name": "Schwellenwerttyp",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens",
+        "trigger_threshold_name": "Schwellenwerttyp"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Warmwasserbereiter ausgeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Warmwasserbereiter ausgeschaltet"
+        },
+        "is_on": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Warmwasserbereiter eingeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Warmwasserbereiter eingeschaltet"
+        },
+        "is_operation_mode": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Warmwasserbereiter auf eine bestimmte Betriebsart eingestellt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "operation_mode": {
+                    "description": "Die Betriebsart, auf die gepr\u00fcft werden soll.",
+                    "name": "Betriebsart"
+                }
+            },
+            "name": "Warmwasserbereiter-Betriebsart"
+        },
+        "is_target_temperature": {
+            "description": "Pr\u00fcft den Temperatur-Sollwert eines oder mehrerer Warmwasserbereiter.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Warmwasserbereiter-Solltemperatur"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "{entity_name} ausschalten",
+            "turn_on": "{entity_name} einschalten"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Warmwasserbereiter",
+            "state": {
+                "eco": "Eco",
+                "electric": "Elektrisch",
+                "gas": "Gas",
+                "heat_pump": "W\u00e4rmepumpe",
+                "high_demand": "Hoher Bedarf",
+                "off": "Aus",
+                "performance": "Hochleistung"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Abwesendmodus",
+                    "state": {
+                        "off": "Aus",
+                        "on": "Ein"
+                    }
+                },
+                "current_operation": {
+                    "name": "Aktueller Betrieb"
+                },
+                "current_temperature": {
+                    "name": "Ist-Temperatur"
+                },
+                "max_temp": {
+                    "name": "Maximale Soll-Temperatur"
+                },
+                "min_temp": {
+                    "name": "Minimale Soll-Temperatur"
+                },
+                "operation_mode": {
+                    "name": "Betriebsart",
+                    "state": {
+                        "eco": "Eco",
+                        "electric": "Elektrisch",
+                        "gas": "Gas",
+                        "heat_pump": "W\u00e4rmepumpe",
+                        "high_demand": "Hoher Bedarf",
+                        "off": "Aus",
+                        "performance": "Hochleistung"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "Obere Soll-Temperatur"
+                },
+                "target_temp_low": {
+                    "name": "Untere Soll-Temperatur"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "Die Betriebsart {operation_mode} ist f\u00fcr {entity_id} ung\u00fcltig. G\u00fcltige Betriebsarten sind: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "Die Betriebsart {operation_mode} ist f\u00fcr {entity_id} ung\u00fcltig. Die Liste der Betriebsarten ist nicht definiert."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "description": "Stellt den Abwesendmodus eines Warmwasserbereiters ein.",
+            "fields": {
+                "away_mode": {
+                    "description": "Neuer Wert des Abwesendmodus.",
+                    "name": "Abwesendmodus"
+                }
+            },
+            "name": "Warmwasserbereiter-Abwesendmodus einstellen"
+        },
+        "set_operation_mode": {
+            "description": "Stellt die Betriebsart eines Warmwasserbereiters sein.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Neuer Wert f\u00fcr die Betriebsart. Eine Liste der m\u00f6glichen Werte findest du in der Dokumentation der Integration.",
+                    "name": "Betriebsart"
+                }
+            },
+            "name": "Warmwasserbereiter-Betriebsart einstellen"
+        },
+        "set_temperature": {
+            "description": "Stellt die Soll-Temperatur eines Warmwasserbereiters ein.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Neuer Wert f\u00fcr die Betriebsart. Eine Liste der m\u00f6glichen Werte findest du in der Dokumentation der Integration.",
+                    "name": "Betriebsart"
+                },
+                "temperature": {
+                    "description": "Neue Soll-Temperatur f\u00fcr den Warmwasserbereiter.",
+                    "name": "Temperatur"
+                }
+            },
+            "name": "Warmwasserbereiter-Solltemperatur einstellen"
+        },
+        "turn_off": {
+            "description": "Schaltet einen Warmwasserbereiter aus.",
+            "name": "Warmwasserbereiter ausschalten"
+        },
+        "turn_on": {
+            "description": "Schaltet einen Warmwasserbereiter ein.",
+            "name": "Warmwasserbereiter einschalten"
+        }
+    },
+    "title": "Warmwasserbereiter",
+    "triggers": {
+        "operation_mode_changed": {
+            "description": "Wird ausgel\u00f6st, sobald die Betriebsart eines oder mehrerer Warmwasserbereiter in eine bestimmte Betriebsart wechselt.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "operation_mode": {
+                    "description": "Die Betriebsarten, die als Ausl\u00f6ser dienen sollen.",
+                    "name": "Betriebsart"
+                }
+            },
+            "name": "Warmwasserbereiter-Betriebsart ge\u00e4ndert"
+        },
+        "target_temperature_changed": {
+            "description": "Wird ausgel\u00f6st, sobald sich der Temperatur-Sollwert eines oder mehrerer Warmwasserbereiter \u00e4ndert.",
+            "fields": {
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Soll-Temperatur eines Warmwasserbereiters ge\u00e4ndert"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Wird ausgel\u00f6st, sobald der Temperatur-Sollwert eines oder mehrerer Warmwasserbereiter einen Schwellenwert \u00fcberschreitet.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                },
+                "threshold": {
+                    "name": "Schwellenwerttyp"
+                }
+            },
+            "name": "Solltemperatur-Schwellenwert f\u00fcr Warmwasserbereiter \u00fcberschritten"
+        },
+        "turned_off": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Warmwasserbereiter ausgeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Warmwasserbereiter ausgeschaltet"
+        },
+        "turned_on": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Warmwasserbereiter eingeschaltet werden, unabh\u00e4ngig von der Betriebsart.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Warmwasserbereiter eingeschaltet"
+        }
+    }
+}

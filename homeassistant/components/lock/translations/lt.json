@@ -1,0 +1,192 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "Patikrina, ar u\u017estrigusi viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017eraktas u\u017estrig\u0119s"
+        },
+        "is_locked": {
+            "description": "Patikrina, ar u\u017erakinta viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017eraktas u\u017erakintas"
+        },
+        "is_open": {
+            "description": "Patikrina, ar atidaryta viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017eraktas atidarytas"
+        },
+        "is_unlocked": {
+            "description": "Patikrina, ar atrakinta viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017eraktas atrakintas"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "U\u017erakinti {entity_name}",
+            "open": "Atidaryti {entity_name}",
+            "unlock": "Atrakinti {entity_name}"
+        },
+        "condition_type": {
+            "is_jammed": "{entity_name} u\u017estrig\u0119s",
+            "is_locked": "{entity_name} yra u\u017erakintas",
+            "is_locking": "{entity_name} u\u017erakinamas",
+            "is_open": "{entity_name} yra atidarytas",
+            "is_opening": "{entity_name} atidaroma",
+            "is_unlocked": "{entity_name} yra atrakintas",
+            "is_unlocking": "{entity_name} atrakina"
+        },
+        "extra_fields": {
+            "for": "Trukm\u0117"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} u\u017erakinta",
+            "open": "{entity_name} atidaryta",
+            "unlocked": "{entity_name} atrakinta"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "U\u017eraktas",
+            "state": {
+                "jammed": "U\u017estrig\u0119s",
+                "locked": "U\u017erakinta",
+                "locking": "U\u017erakinimas",
+                "open": "Atidaryta",
+                "opening": "Atidarymas",
+                "unlocked": "Atrakinta",
+                "unlocking": "Atrakinimas"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Pakeit\u0117"
+                },
+                "code_format": {
+                    "name": "Kodo formatas"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "{entity_id} kodas neatitinka \u0161ablono {code_format} ."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "U\u017erakina spyn\u0105.",
+            "fields": {
+                "code": {
+                    "description": "Kodas naudojamas spynai u\u017erakinti.",
+                    "name": "Kodas"
+                }
+            },
+            "name": "U\u017erakinti u\u017erakt\u0105"
+        },
+        "open": {
+            "description": "Atidaro spyn\u0105.",
+            "fields": {
+                "code": {
+                    "description": "Kodas naudojamas u\u017eraktui atidaryti.",
+                    "name": "Kodas"
+                }
+            },
+            "name": "Atidaryti spyn\u0105"
+        },
+        "unlock": {
+            "description": "Atrakina spyn\u0105.",
+            "fields": {
+                "code": {
+                    "description": "Kodas naudojamas u\u017eraktui atrakinti.",
+                    "name": "Kodas"
+                }
+            },
+            "name": "Atrakinti u\u017erakt\u0105"
+        }
+    },
+    "title": "U\u017eraktas",
+    "triggers": {
+        "jammed": {
+            "description": "Suveikia, kai u\u017estringa viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017estrig\u0119s u\u017eraktas"
+        },
+        "locked": {
+            "description": "Suveikia, kai u\u017esirakina viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017erakinta"
+        },
+        "opened": {
+            "description": "Suveikia, kai atidaroma viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017eraktas atidarytas"
+        },
+        "unlocked": {
+            "description": "Suveikia, kai atsirakina viena ar kelios spynos.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "U\u017eraktas atrakintas"
+        }
+    }
+}

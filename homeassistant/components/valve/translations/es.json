@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "Comprueba si una o m\u00e1s v\u00e1lvulas est\u00e1n cerradas.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "La v\u00e1lvula est\u00e1 cerrada."
+        },
+        "is_open": {
+            "description": "Comprueba si una o m\u00e1s v\u00e1lvulas est\u00e1n abiertas.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "La v\u00e1lvula est\u00e1 abierta."
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "V\u00e1lvula",
+            "state": {
+                "closed": "Cerrado",
+                "closing": "Cerrando",
+                "open": "Abierto",
+                "opening": "Abriendo",
+                "stopped": "Detenido"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Posici\u00f3n"
+                }
+            }
+        },
+        "gas": {
+            "name": "Gas"
+        },
+        "water": {
+            "name": "Agua"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Cierra una v\u00e1lvula.",
+            "name": "Cerrar v\u00e1lvula"
+        },
+        "open_valve": {
+            "description": "Abre una v\u00e1lvula.",
+            "name": "Abrir v\u00e1lvula"
+        },
+        "set_valve_position": {
+            "description": "Mueve una v\u00e1lvula a una posici\u00f3n espec\u00edfica.",
+            "fields": {
+                "position": {
+                    "description": "Posici\u00f3n objetivo.",
+                    "name": "Posici\u00f3n"
+                }
+            },
+            "name": "Establecer posici\u00f3n de v\u00e1lvula"
+        },
+        "stop_valve": {
+            "description": "Detiene una v\u00e1lvula.",
+            "name": "Detener v\u00e1lvula"
+        },
+        "toggle": {
+            "description": "Abre o cierra una v\u00e1lvula.",
+            "name": "Alternar v\u00e1lvula"
+        }
+    },
+    "title": "V\u00e1lvula",
+    "triggers": {
+        "closed": {
+            "description": "Se dispara cuando una o m\u00e1s v\u00e1lvulas se cierran.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "V\u00e1lvula cerrada"
+        },
+        "opened": {
+            "description": "Se dispara cuando una o m\u00e1s v\u00e1lvulas se abren.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "V\u00e1lvula abierta"
+        }
+    }
+}

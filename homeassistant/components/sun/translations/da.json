@@ -1,0 +1,357 @@
+{
+    "common": {
+        "condition_threshold_name": "T\u00e6rskeltype",
+        "trigger_for_name": "I mindst",
+        "trigger_offset_name": "Forskydning",
+        "trigger_offset_type_description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+        "trigger_offset_type_name": "Forskydningstype",
+        "trigger_threshold_name": "T\u00e6rskeltype",
+        "twilight_type_description": "Fasen af tusm\u00f8rke.",
+        "twilight_type_name": "Tusm\u00f8rketype"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Tester solens h\u00f8jde i forhold til en t\u00e6rskelv\u00e6rdi, du har angivet.",
+            "fields": {
+                "threshold": {
+                    "name": "T\u00e6rskeltype"
+                }
+            },
+            "name": "Solh\u00f8jde"
+        },
+        "is_ascending": {
+            "description": "Tester om solen er p\u00e5 vej op.",
+            "name": "Solen er p\u00e5 vej op"
+        },
+        "is_blue_hour": {
+            "name": "Det er den bl\u00e5 time"
+        },
+        "is_descending": {
+            "description": "Tester om solen er p\u00e5 vej ned.",
+            "name": "Solen er p\u00e5 vej ned"
+        },
+        "is_evening_twilight": {
+            "description": "Tester om det er aftenskumring, eventuelt af en bestemt type.",
+            "fields": {
+                "type": {
+                    "description": "Fasen af tusm\u00f8rke.",
+                    "name": "Tusm\u00f8rketype"
+                }
+            },
+            "name": "Det er aftenskumring"
+        },
+        "is_golden_hour": {
+            "name": "Det er den gyldne time"
+        },
+        "is_midnight_sun": {
+            "name": "Det er midnatssol"
+        },
+        "is_morning_twilight": {
+            "description": "Tester om det er morgenskumring, eventuelt af en bestemt type.",
+            "fields": {
+                "type": {
+                    "description": "Fasen af tusm\u00f8rke.",
+                    "name": "Tusm\u00f8rketype"
+                }
+            },
+            "name": "Det er morgenskumring"
+        },
+        "is_night": {
+            "description": "Tester om det er nat.",
+            "name": "Det er nat"
+        },
+        "is_polar_night": {
+            "name": "Det er polarnat"
+        },
+        "is_set": {
+            "description": "Tester om solen er g\u00e5et ned.",
+            "name": "Solen er g\u00e5et ned"
+        },
+        "is_up": {
+            "description": "Tester om solen er st\u00e5et op.",
+            "name": "Solen er st\u00e5et op"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Vil du starte ops\u00e6tningen?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Stigende sol",
+                "state": {
+                    "off": "Nedg\u00e5ende",
+                    "on": "Stigende"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "N\u00e6ste daggry"
+            },
+            "next_dusk": {
+                "name": "N\u00e6ste skumring"
+            },
+            "next_midnight": {
+                "name": "N\u00e6ste midnat"
+            },
+            "next_noon": {
+                "name": "N\u00e6ste middag"
+            },
+            "next_rising": {
+                "name": "N\u00e6ste solopgang"
+            },
+            "next_setting": {
+                "name": "N\u00e6ste solnedgang"
+            },
+            "solar_azimuth": {
+                "name": "Solens azimut"
+            },
+            "solar_elevation": {
+                "name": "Solh\u00f8jde"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sol",
+            "state": {
+                "above_horizon": "Over horisonten",
+                "below_horizon": "Under horisonten"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Hvilken som helst",
+                "evening": "Aften",
+                "morning": "Morgen"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Efter",
+                "before": "F\u00f8r"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Hvilket som helst",
+                "astronomical": "Astronomisk",
+                "civil": "Civil",
+                "nautical": "Nautisk"
+            }
+        }
+    },
+    "title": "Sol",
+    "triggers": {
+        "blue_hour_ended": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Den bl\u00e5 time slutter"
+        },
+        "blue_hour_started": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Den bl\u00e5 time begynder"
+        },
+        "dawn": {
+            "description": "Udl\u00f8ses ved daggry, n\u00e5r den civile, nautiske eller astronomiske tusm\u00f8rke begynder.",
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                },
+                "type": {
+                    "description": "Fasen af tusm\u00f8rke.",
+                    "name": "Tusm\u00f8rketype"
+                }
+            },
+            "name": "Daggry"
+        },
+        "dusk": {
+            "description": "Udl\u00f8ses ved skumring, n\u00e5r den civile, nautiske eller astronomiske skumring slutter.",
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                },
+                "type": {
+                    "description": "Fasen af tusm\u00f8rke.",
+                    "name": "Tusm\u00f8rketype"
+                }
+            },
+            "name": "Skumring"
+        },
+        "elevation_changed": {
+            "description": "Udl\u00f8ses n\u00e5r solens h\u00f8jde \u00e6ndres, eventuelt begr\u00e6nset til en t\u00e6rskel eller et interval, du angiver.",
+            "fields": {
+                "threshold": {
+                    "name": "T\u00e6rskeltype"
+                }
+            },
+            "name": "Solh\u00f8jde \u00e6ndres"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Udl\u00f8ses n\u00e5r solens h\u00f8jde overstiger en t\u00e6rskel, du har angivet.",
+            "fields": {
+                "for": {
+                    "name": "I mindst"
+                },
+                "threshold": {
+                    "name": "T\u00e6rskeltype"
+                }
+            },
+            "name": "Solh\u00f8jde krydser t\u00e6rskelv\u00e6rdi"
+        },
+        "golden_hour_ended": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Den gyldne time slutter"
+        },
+        "golden_hour_started": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Den gyldne time begynder"
+        },
+        "midnight_sun_ended": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Midnatssol slutter"
+        },
+        "midnight_sun_started": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Midnatssol begynder"
+        },
+        "polar_night_ended": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Polarnat slutter"
+        },
+        "polar_night_started": {
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Polarnat begynder"
+        },
+        "solar_midnight": {
+            "description": "Udl\u00f8ses n\u00e5r solen n\u00e5r sit laveste punkt.",
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Solmidnat"
+        },
+        "solar_noon": {
+            "description": "Udl\u00f8ses n\u00e5r solen n\u00e5r sit h\u00f8jeste punkt.",
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Solmiddag"
+        },
+        "sunrise": {
+            "description": "Udl\u00f8ses n\u00e5r solen st\u00e5r op.",
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Solopgang"
+        },
+        "sunset": {
+            "description": "Udl\u00f8ses n\u00e5r solen g\u00e5r ned.",
+            "fields": {
+                "offset": {
+                    "name": "Forskydning"
+                },
+                "offset_type": {
+                    "description": "Om den skal udl\u00f8ses f\u00f8r eller efter solbegivenheden.",
+                    "name": "Forskydningstype"
+                }
+            },
+            "name": "Solnedgang"
+        }
+    }
+}

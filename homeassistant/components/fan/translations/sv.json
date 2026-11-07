@@ -1,0 +1,225 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "section_additional_fields_name": "Ytterligare alternativ",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Testar om en eller flera fl\u00e4ktar \u00e4r avst\u00e4ngda.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Fl\u00e4kt \u00e4r avst\u00e4ngd"
+        },
+        "is_on": {
+            "description": "Testar om en eller flera fl\u00e4ktar \u00e4r p\u00e5slagna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Fl\u00e4kt \u00e4r p\u00e5"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "V\u00e4xla {entity_name}",
+            "turn_off": "Sl\u00e5 av {entity_name}",
+            "turn_on": "Sl\u00e5 p\u00e5 {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} \u00e4r av",
+            "is_on": "{entity_name} \u00e4r p\u00e5"
+        },
+        "extra_fields": {
+            "for": "Varaktighet"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} slogs p\u00e5 eller av",
+            "turned_off": "{entity_name} slogs av",
+            "turned_on": "{entity_name} slogs p\u00e5"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Fl\u00e4kt",
+            "state": {
+                "off": "Av",
+                "on": "P\u00e5"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Riktning",
+                    "state": {
+                        "forward": "Fram\u00e5t",
+                        "reverse": "Omv\u00e4nd"
+                    }
+                },
+                "oscillating": {
+                    "name": "Oscillerande",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "percentage": {
+                    "name": "Hastighet"
+                },
+                "percentage_step": {
+                    "name": "Hastighetssteg"
+                },
+                "preset_mode": {
+                    "name": "F\u00f6rinst\u00e4llningsl\u00e4ge"
+                },
+                "preset_modes": {
+                    "name": "Tillg\u00e4ngliga f\u00f6rinst\u00e4llningsl\u00e4gen"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "F\u00f6rinst\u00e4llt l\u00e4ge {preset_mode} \u00e4r inte giltigt, giltiga f\u00f6rinst\u00e4llda l\u00e4gen \u00e4r: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Fram\u00e5t",
+                "reverse": "Omv\u00e4nd"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "Minskar fl\u00e4ktens hastighet.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Procentuellt steg som hastigheten ska s\u00e4nkas med.",
+                    "name": "Minskning"
+                }
+            },
+            "name": "Minska fl\u00e4kthastigheten",
+            "sections": {
+                "additional_fields": {
+                    "name": "Ytterligare alternativ"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "\u00d6kar fl\u00e4ktens hastighet.",
+            "fields": {
+                "percentage_step": {
+                    "description": "Procentuellt steg som hastigheten ska \u00f6kas med.",
+                    "name": "\u00d6kning"
+                }
+            },
+            "name": "\u00d6ka fl\u00e4kthastigheten",
+            "sections": {
+                "additional_fields": {
+                    "name": "Ytterligare alternativ"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "Styr en fl\u00e4kts oscillation.",
+            "fields": {
+                "oscillating": {
+                    "description": "Sl\u00e5r p\u00e5/av oscillation.",
+                    "name": "Oscillerande"
+                }
+            },
+            "name": "Oscillera fl\u00e4kt"
+        },
+        "set_direction": {
+            "description": "St\u00e4ller in fl\u00e4ktens rotationsriktning.",
+            "fields": {
+                "direction": {
+                    "description": "Riktning f\u00f6r rotation.",
+                    "name": "Riktning"
+                }
+            },
+            "name": "Ange fl\u00e4ktens riktning"
+        },
+        "set_percentage": {
+            "description": "St\u00e4ller in fl\u00e4kthastigheten.",
+            "fields": {
+                "percentage": {
+                    "description": "Fl\u00e4ktens hastighet.",
+                    "name": "Procent"
+                }
+            },
+            "name": "St\u00e4ll in fl\u00e4kthastighet"
+        },
+        "set_preset_mode": {
+            "description": "St\u00e4ller in f\u00f6rinst\u00e4llt l\u00e4ge f\u00f6r en fl\u00e4kt.",
+            "fields": {
+                "preset_mode": {
+                    "description": "F\u00f6rinst\u00e4llt fl\u00e4ktl\u00e4ge.",
+                    "name": "F\u00f6rinst\u00e4llt l\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in f\u00f6rinst\u00e4llt l\u00e4ge"
+        },
+        "toggle": {
+            "description": "Sl\u00e5r p\u00e5/av en fl\u00e4kt.",
+            "name": "V\u00e4xla fl\u00e4kt"
+        },
+        "turn_off": {
+            "description": "St\u00e4nger av en fl\u00e4kt.",
+            "name": "St\u00e4ng av fl\u00e4kt"
+        },
+        "turn_on": {
+            "description": "Sl\u00e5r p\u00e5 en fl\u00e4kt.",
+            "fields": {
+                "percentage": {
+                    "description": "Fl\u00e4ktens hastighet.",
+                    "name": "Procent"
+                },
+                "preset_mode": {
+                    "description": "F\u00f6rinst\u00e4llt fl\u00e4ktl\u00e4ge.",
+                    "name": "F\u00f6rinst\u00e4llt l\u00e4ge"
+                }
+            },
+            "name": "Sl\u00e5 p\u00e5 fl\u00e4kt"
+        }
+    },
+    "title": "Fl\u00e4kt",
+    "triggers": {
+        "turned_off": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera fl\u00e4ktar st\u00e4ngs av.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Fl\u00e4kt st\u00e4ngdes av"
+        },
+        "turned_on": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera fl\u00e4ktar sl\u00e5s p\u00e5.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Fl\u00e4kt slogs p\u00e5"
+        }
+    }
+}

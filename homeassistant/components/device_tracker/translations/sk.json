@@ -1,0 +1,108 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} je doma",
+            "is_not_home": "{entity_name} nie je doma"
+        },
+        "extra_fields": {
+            "zone": "Z\u00f3na"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} vst\u00fapi do z\u00f3ny",
+            "leaves": "{entity_name} opust\u00ed z\u00f3nu"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sledovanie zariadenia",
+            "state": {
+                "home": "Doma",
+                "not_home": "Nepr\u00edtomnos\u0165"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Bat\u00e9ria"
+                },
+                "gps_accuracy": {
+                    "name": "Presnos\u0165 GPS"
+                },
+                "latitude": {
+                    "name": "Zemepisn\u00e1 \u0161\u00edrka"
+                },
+                "longitude": {
+                    "name": "Zemepisn\u00e1 d\u013a\u017eka"
+                },
+                "source_type": {
+                    "name": "Zdroj",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "Router"
+                    }
+                },
+                "tracking_type": {
+                    "name": "Typ sledovania",
+                    "state": {
+                        "connection": "Pripojenie",
+                        "position": "Poloha"
+                    }
+                }
+            }
+        }
+    },
+    "issues": {
+        "associated_zone_missing": {
+            "description": "Skenovacia entita `{entity_id}` je priraden\u00e1 k z\u00f3ne `{zone}`, ale t\u00e1to z\u00f3na bola odstr\u00e1nen\u00e1. \n\nAk to chcete opravi\u0165, prekonfigurujte skener tak, aby pou\u017e\u00edval in\u00fa z\u00f3nu, alebo znovu vytvorte ch\u00fdbaj\u00facu z\u00f3nu.",
+            "title": "Skener je spojen\u00fd s odstr\u00e1nenou z\u00f3nou"
+        },
+        "deprecated_see_action": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Akcia `device_tracker.see` je zastaran\u00e1 a v Home Assistant Core 2027.5 bude odstr\u00e1nen\u00e1.\n\nNamiesto nej pou\u017eite [\u0161abl\u00f3nu sledovania zariaden\u00ed]({docs_url}), n\u00e1sledne odstr\u00e1\u0148te v\u0161etky pou\u017eitia tejto akcie zo svojich automatiz\u00e1ci\u00ed a skriptov a kliknut\u00edm na **Odosla\u0165** uzavrite tento probl\u00e9m.",
+                        "title": "Zisten\u00e9 pou\u017eitie zastaranej akcie `device_tracker.see`"
+                    }
+                }
+            },
+            "title": "Zisten\u00e9 pou\u017eitie zastaranej akcie `device_tracker.see`"
+        }
+    },
+    "services": {
+        "see": {
+            "description": "Ru\u010dn\u00e1 aktualiz\u00e1cia z\u00e1znamov sledovan\u00e9ho star\u0161ieho zariadenia v s\u00fabore known_devices.yaml.",
+            "fields": {
+                "battery": {
+                    "description": "\u00darove\u0148 nabitia bat\u00e9rie zariadenia.",
+                    "name": "\u00darove\u0148 bat\u00e9rie"
+                },
+                "dev_id": {
+                    "description": "ID zariadenia (ID n\u00e1jdete v s\u00fabore `known_devices.yaml`).",
+                    "name": "ID zariadenia"
+                },
+                "gps": {
+                    "description": "S\u00faradnice GPS, kde sa zariadenie nach\u00e1dza, zadan\u00e9 pomocou zemepisnej \u0161\u00edrky a d\u013a\u017eky (napr\u00edklad: [51.513845, -0.100539]).",
+                    "name": "GPS s\u00faradnice"
+                },
+                "gps_accuracy": {
+                    "description": "Presnos\u0165 s\u00faradn\u00edc GPS.",
+                    "name": "Presnos\u0165 GPS"
+                },
+                "host_name": {
+                    "description": "N\u00e1zov hostite\u013ea zariadenia.",
+                    "name": "Meno hostite\u013ea"
+                },
+                "location_name": {
+                    "description": "N\u00e1zov miesta, kde sa zariadenie nach\u00e1dza. Na v\u00fdber s\u00fa tieto mo\u017enosti: `home`, `not_home` alebo n\u00e1zov z\u00f3ny.",
+                    "name": "Umiestnenie"
+                },
+                "mac": {
+                    "description": "MAC adresa zariadenia.",
+                    "name": "MAC adresa"
+                }
+            },
+            "name": "Zobrazi\u0165 sledova\u010d zariaden\u00ed"
+        }
+    },
+    "title": "Sledovanie zariadenia"
+}

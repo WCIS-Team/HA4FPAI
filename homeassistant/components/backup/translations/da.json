@@ -1,0 +1,86 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatisk sikkerhedskopiering",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Sikkerhedskopieringsfase"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Gennemf\u00f8rt",
+                            "failed": "Mislykkedes",
+                            "in_progress": "I gang"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "\u00c5rsag til fejl",
+                        "state": {
+                            "backup_not_found": "Sikkerhedskopi ikke fundet",
+                            "backup_reader_writer_error": "Fejl i l\u00e6ser/skriver ved sikkerhedskopiering",
+                            "decrypt_on_download_not_supported": "Dekryptering ved download underst\u00f8ttes ikke",
+                            "invalid_backup_filename": "Ugyldigt navn p\u00e5 sikkerhedskopifilen",
+                            "multiple_errors": "Flere fejl",
+                            "password_incorrect": "Forkert adgangskode",
+                            "unknown_error": "Ukendt fejl",
+                            "upload_failed": "Upload mislykkedes"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "state": {
+                    "blocked": "Blokeret",
+                    "create_backup": "Opretter sikkerhedskopi",
+                    "idle": "Inaktiv",
+                    "receive_backup": "Modtager en sikkerhedskopi",
+                    "restore_backup": "Gendanner en sikkerhedskopi"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Sidste fors\u00f8g p\u00e5 automatisk sikkerhedskopiering"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Seneste vellykkede automatiske sikkerhedskopiering"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "N\u00e6ste planlagte automatiske sikkerhedskopiering"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Sikkerhedskopi-placeringen `{agent_id}` er utilg\u00e6ngelig, men er stadig konfigureret til automatiske sikkerhedskopier.\n\nG\u00e5 til [konfiguration af automatiske sikkerhedskopier]({backup_settings}) for at gennemg\u00e5 og opdatere dine sikkerhedskopi-placeringer. Sikkerhedskopier vil ikke blive uploadet til de valgte placeringer, der er utilg\u00e6ngelige.",
+            "title": "Sikkerhedskopi-placeringen {agent_id} er utilg\u00e6ngelig"
+        },
+        "automatic_backup_failed_addons": {
+            "title": "Ikke alle apps kunne inkluderes i automatisk sikkerhedskopiering"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "title": "Der blev oprettet en automatisk sikkerhedskopi med fejl"
+        },
+        "automatic_backup_failed_create": {
+            "title": "Automatisk sikkerhedskopi kunne ikke oprettes"
+        },
+        "automatic_backup_failed_folders": {
+            "title": "Ikke alle mapper kunne inkluderes i automatisk sikkerhedskopiering"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Den automatiske sikkerhedskopi kunne ikke uploades til de konfigurerede placeringer: {failed_agents}. Se logfilerne for at f\u00e5 flere oplysninger. Der g\u00f8res et nyt fors\u00f8g p\u00e5 det n\u00e6ste planlagte tidspunkt, hvis der er konfigureret en sikkerhedskopieringsplan.",
+            "title": "Automatisk sikkerhedskopi kunne ikke uploades til de konfigurerede placeringer"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Opretter en ny sikkerhedskopi.",
+            "name": "Opret sikkerhedskopi"
+        },
+        "create_automatic": {
+            "description": "Opretter en ny sikkerhedskopi med automatiske indstillinger for sikkerhedskopiering.",
+            "name": "Opret automatisk sikkerhedskopi"
+        }
+    }
+}

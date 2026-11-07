@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Le service est d\u00e9j\u00e0 configur\u00e9",
+            "no_adapters": "Aucun adaptateur Bluetooth non configur\u00e9 n'a \u00e9t\u00e9 trouv\u00e9."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "Voulez-vous configurer {name}\u00a0?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adaptateur"
+                },
+                "description": "S\u00e9lectionnez un adaptateur Bluetooth \u00e0 configurer"
+            },
+            "single_adapter": {
+                "description": "Voulez-vous configurer l'adaptateur Bluetooth {name} {manufacturer} {model}\u00a0?"
+            },
+            "user": {
+                "data": {
+                    "address": "Appareil"
+                },
+                "description": "S\u00e9lectionnez l'appareil \u00e0 configurer"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "L'adaptateur Bluetooth **{adapter}** ({model}) fonctionne en mode d\u00e9grad\u00e9 car votre conteneur a besoin d'autorisations suppl\u00e9mentaires pour acc\u00e9der pleinement au mat\u00e9riel Bluetooth. \n\nVeuillez suivre les instructions de notre documentation pour ajouter les autorisations requises\u00a0: \n[Autorisations Bluetooth pour Docker]({docs_url})\n \nApr\u00e8s avoir ajout\u00e9 ces autorisations, red\u00e9marrez votre conteneur Home Assistant pour que les modifications prennent effet.",
+            "title": "L'adaptateur Bluetooth n\u00e9cessite des autorisations suppl\u00e9mentaires"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "L'adaptateur Bluetooth **{adapter}** ({model}) est bloqu\u00e9 en mode d'analyse passive malgr\u00e9 la demande du mode d'analyse active. **Une r\u00e9cup\u00e9ration automatique a \u00e9t\u00e9 tent\u00e9e mais a \u00e9chou\u00e9.** Il s'agit probablement d'un probl\u00e8me de noyau, de micrologiciel ou de syst\u00e8me d'exploitation, et le syst\u00e8me n\u00e9cessite un cycle d'alimentation complet pour r\u00e9cup\u00e9rer l'adaptateur.\n\nEn mode passif, l'adaptateur peut uniquement recevoir des annonces mais ne peut pas demander de donn\u00e9es suppl\u00e9mentaires aux appareils, ce qui affectera la d\u00e9couverte et les fonctionnalit\u00e9s des appareils.\n\n**Intervention manuelle requise\u00a0:**\n1. **Arr\u00eatez compl\u00e8tement le syst\u00e8me** (pas seulement un red\u00e9marrage)\n2. **Coupez l'alimentation** (d\u00e9branchez ou \u00e9teignez l'interrupteur)\n3. Attendez 10 secondes\n4. R\u00e9tablissez l'alimentation et red\u00e9marrez le syst\u00e8me\n\nSi le probl\u00e8me persiste apr\u00e8s un cycle d'alimentation\u00a0:\n- V\u00e9rifiez les mises \u00e0 jour du noyau/micrologiciel\n- L'adaptateur Bluetooth int\u00e9gr\u00e9 peut avoir des probl\u00e8mes mat\u00e9riels",
+            "title": "L'adaptateur Bluetooth n\u00e9cessite un cycle d'alimentation du syst\u00e8me"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "L'adaptateur Bluetooth **{adapter}** ({model}) est bloqu\u00e9 en mode d'analyse passive malgr\u00e9 la demande de mode d'analyse active. **Une tentative de r\u00e9cup\u00e9ration automatique a \u00e9chou\u00e9.** Il s'agit probablement d'un probl\u00e8me de noyau, de micrologiciel ou de syst\u00e8me d'exploitation, et l'adaptateur n\u00e9cessite un cycle d'alimentation manuel pour r\u00e9cup\u00e9rer.\n\nEn mode passif, l'adaptateur peut uniquement recevoir des annonces, mais ne peut pas demander de donn\u00e9es suppl\u00e9mentaires aux appareils, ce qui affectera la d\u00e9tection et le fonctionnement des appareils.\n\n**Intervention manuelle requise**\u00a0:\n1. **D\u00e9branchez l'adaptateur USB**\n2. Attendez 5 secondes\n3. **Rebranchez-le**\n4. Attendez que Home Assistant d\u00e9tecte l'adaptateur\n\nSi le probl\u00e8me persiste apr\u00e8s un cycle d'alimentation\u00a0:\n- Essayez un autre port USB\n- V\u00e9rifiez les mises \u00e0 jour du noyau/micrologiciel\n- Envisagez d'utiliser un autre adaptateur Bluetooth",
+            "title": "L'adaptateur USB Bluetooth n\u00e9cessite un cycle d'alimentation manuel"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Les adaptateurs Bluetooth locaux qui ne prennent pas en charge l'analyse passive ne peuvent pas \u00eatre configur\u00e9s.",
+            "remote_adapters_not_supported": "La configuration Bluetooth des adaptateurs distants n'est pas prise en charge."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Mode de balayage"
+                },
+                "data_description": {
+                    "mode": "Le mode automatique est recommand\u00e9 dans la plupart des configurations. Il permet d'\u00e9conomiser la batterie de vos appareils Bluetooth tout en assurant une d\u00e9tection rapide des nouveaux appareils et des mises \u00e0 jour."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Actif (consomme davantage de batterie de l'appareil, mises \u00e0 jour plus rapides)",
+                "auto": "Auto (recommand\u00e9, \u00e9conomise la batterie de l'appareil)",
+                "passive": "Passif (utilisation minimale de la batterie de l'appareil, certains d\u00e9tails peuvent \u00eatre manquants)"
+            }
+        }
+    }
+}

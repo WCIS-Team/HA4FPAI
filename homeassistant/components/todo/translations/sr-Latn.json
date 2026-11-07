@@ -1,0 +1,150 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "condition_threshold_name": "Tip grani\u010dne vrednosti"
+    },
+    "conditions": {
+        "all_completed": {
+            "description": "Proverava da li su sve stavke zavr\u0161ene u jednoj ili vi\u0161e listi obaveza.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Svaka obaveza zavr\u0161ena"
+        },
+        "incomplete": {
+            "description": "Proverava broj nezavr\u0161enih stavki u jednoj ili vi\u0161e listi obaveza.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Broj nezavr\u0161enih obaveza"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Lista obaveza"
+        }
+    },
+    "exceptions": {
+        "item_not_found": {
+            "message": "Nije mogu\u0107e prona\u0107i stavku liste zadataka: {item}"
+        },
+        "update_field_not_supported": {
+            "message": "Entitet ne podr\u017eava postavljanje polja: {service_field}"
+        }
+    },
+    "selector": {
+        "status": {
+            "options": {
+                "completed": "Zavr\u0161eno",
+                "needs_action": "U toku"
+            }
+        }
+    },
+    "services": {
+        "add_item": {
+            "description": "Dodaje stavku na listu obaveza.",
+            "fields": {
+                "description": {
+                    "description": "Detaljniji opis stavke na listi obaveza u odnosu na sam naziv stavke.",
+                    "name": "Opis"
+                },
+                "due_date": {
+                    "description": "Datum kada se o\u010dekuje zavr\u0161etak stavke na listi obaveza.",
+                    "name": "Rok za zavr\u0161etak"
+                },
+                "due_datetime": {
+                    "description": "Datum i vreme kada se o\u010dekuje zavr\u0161etak stavke na listi obaveza.",
+                    "name": "Rok i vreme zavr\u0161etka"
+                },
+                "item": {
+                    "description": "Tekstualni opis nove obaveze na listi.",
+                    "name": "Naziv stavke"
+                }
+            },
+            "name": "Dodaj stavku na listu obaveza"
+        },
+        "get_items": {
+            "description": "Preuzima stavke sa liste obaveza.",
+            "fields": {
+                "status": {
+                    "description": "Filtriranje stavki prema statusu. Ukoliko se ne navede, podrazumevano se prikazuju samo aktivne obaveze.",
+                    "name": "Status"
+                }
+            },
+            "name": "Preuzmi stavke sa liste obaveza"
+        },
+        "remove_completed_items": {
+            "description": "Uklanja zavr\u0161ene stavke sa liste obaveza.",
+            "name": "Ukloni zavr\u0161ene stavke sa liste obaveza"
+        },
+        "remove_item": {
+            "description": "Uklanja stavku sa liste obaveza na osnovu njenog imena ili UID-a.",
+            "fields": {
+                "item": {
+                    "description": "Naziv stavke ili jedinstveni identifikator (UID). Preporu\u010duje se upotreba UID-a u slu\u010daju dupliranih naziva.",
+                    "name": "Identifikator stavke (Naziv ili UID)"
+                }
+            },
+            "name": "Ukloni stavku sa liste obaveza"
+        },
+        "update_item": {
+            "description": "A\u017eurira stavku na listi obaveza na osnovu njenog imena ili UID-a.",
+            "fields": {
+                "description": {
+                    "description": "Detaljniji opis stavke na listi obaveza u odnosu na sam naziv stavke.",
+                    "name": "Opis"
+                },
+                "due_date": {
+                    "description": "Datum kada se o\u010dekuje zavr\u0161etak stavke na listi obaveza.",
+                    "name": "Rok za zavr\u0161etak"
+                },
+                "due_datetime": {
+                    "description": "Datum i vreme kada se o\u010dekuje zavr\u0161etak stavke na listi obaveza.",
+                    "name": "Rok i vreme zavr\u0161etka"
+                },
+                "item": {
+                    "description": "Naziv stavke ili jedinstveni identifikator (UID). Preporu\u010duje se upotreba UID-a u slu\u010daju dupliranih naziva.",
+                    "name": "Identifikator stavke (Naziv ili UID)"
+                },
+                "rename": {
+                    "description": "Novi naziv za stavku na listi obaveza.",
+                    "name": "Novi naziv"
+                },
+                "status": {
+                    "description": "Status stavke u listi obaveza.",
+                    "name": "Status"
+                }
+            },
+            "name": "A\u017euriraj stavku na listi obaveza"
+        }
+    },
+    "title": "Lista obaveza",
+    "triggers": {
+        "item_added": {
+            "description": "Pokre\u0107e se kada se stavka doda na listu obaveza.",
+            "name": "Stavka na listi obaveza dodata"
+        },
+        "item_completed": {
+            "description": "Pokre\u0107e se kada se stavka na listi obaveza ozna\u010di kao zavr\u0161ena.",
+            "name": "Stavka na listi obaveza zavr\u0161ena"
+        },
+        "item_removed": {
+            "description": "Pokre\u0107e se kada se stavka ukloni sa liste obaveza.",
+            "name": "Stavka sa liste obaveza uklonjena"
+        }
+    }
+}

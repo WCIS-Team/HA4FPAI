@@ -1,0 +1,98 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Kaamera",
+            "state": {
+                "idle": "Ootel",
+                "recording": "Salvestab",
+                "streaming": "Voogedastab"
+            },
+            "state_attributes": {
+                "access_token": {
+                    "name": "Juurdep\u00e4\u00e4sut\u00f5end"
+                },
+                "brand": {
+                    "name": "Tootja"
+                },
+                "frontend_stream_type": {
+                    "name": "Voo t\u00fc\u00fcp",
+                    "state": {
+                        "hls": "HLS",
+                        "webrtc": "WebRTC"
+                    }
+                },
+                "model_name": {
+                    "name": "Mudel"
+                },
+                "motion_detection": {
+                    "name": "Liikumise tuvastamine",
+                    "state": {
+                        "false": "Keelatud",
+                        "true": "Lubatud"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "disable_motion_detection": {
+            "description": "Keelab kaamera liikumistuvastuse.",
+            "name": "Keela kaamera liikumistuvastus"
+        },
+        "enable_motion_detection": {
+            "description": "V\u00f5imaldab kaamera liikumistuvastust.",
+            "name": "Luba kaamera liikumistuvastus"
+        },
+        "play_stream": {
+            "description": "Esitab kaameravoo toetatud meediam\u00e4ngijas.",
+            "fields": {
+                "format": {
+                    "description": "Meediam\u00e4ngija toetatud voovorming.",
+                    "name": "Vorming"
+                },
+                "media_player": {
+                    "description": "Meediam\u00e4ngija kuhu voogesitada.",
+                    "name": "Meediam\u00e4ngija"
+                }
+            },
+            "name": "Esita kaamera voogu"
+        },
+        "record": {
+            "description": "Loob reaalajas kaamera voo salvestuse.",
+            "fields": {
+                "duration": {
+                    "description": "Salvestuse planeeritud kestus. Tegelik kestus v\u00f5ib erineda.",
+                    "name": "Kestus"
+                },
+                "filename": {
+                    "description": "T\u00e4ielik tee failinime juurde. Peab olema mp4.",
+                    "name": "Faili nimi"
+                },
+                "lookback": {
+                    "description": "Salvestusse kaasatav planeeritud tagasivaateperiood (lisaks kestusele). Saadaval ainult siis, kui praegu on aktiivne HLS-voog. Tagasivaateperioodi tegelik pikkus v\u00f5ib erineda.",
+                    "name": "Tagasivaade"
+                }
+            },
+            "name": "Salvesta kaamera voog"
+        },
+        "snapshot": {
+            "description": "Teeb kaamerast hetkt\u00f5mmise.",
+            "fields": {
+                "filename": {
+                    "description": "T\u00e4ielik tee failinime juurde.",
+                    "name": "Faili nimi"
+                }
+            },
+            "name": "J\u00e4\u00e4dvusta kaamera hetkt\u00f5mmis"
+        },
+        "turn_off": {
+            "description": "L\u00fclitab kaamera v\u00e4lja.",
+            "name": "L\u00fclita kaamera v\u00e4lja"
+        },
+        "turn_on": {
+            "description": "L\u00fclitab kaamera sisse.",
+            "name": "L\u00fclita kaamera sisse"
+        }
+    },
+    "title": "Kaamera"
+}

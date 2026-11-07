@@ -1,0 +1,593 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "condition_threshold_name": "Slenkstis",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau",
+        "trigger_threshold_name": "Slenkstis"
+    },
+    "conditions": {
+        "is_muted": {
+            "description": "Patikrina, ar vienas ar keli medijos leistuvai yra nutildyti.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas nutildytas"
+        },
+        "is_not_playing": {
+            "description": "Patikrina, ar neveikia vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas negroja"
+        },
+        "is_off": {
+            "description": "Patikrina, ar i\u0161jungtas vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas i\u0161jungtas"
+        },
+        "is_on": {
+            "description": "Patikrina, ar \u012fjungtas vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas \u012fjungtas"
+        },
+        "is_paused": {
+            "description": "Patikrina, ar vienas ar keli medijos leistuvai yra pristabdyti.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas pristabdytas"
+        },
+        "is_playing": {
+            "description": "Patikrina, ar groja vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas groja"
+        },
+        "is_unmuted": {
+            "description": "Patikrina, ar vienas ar keli medijos leistuvai n\u0117ra nutildyti.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas n\u0117ra nutildytas"
+        },
+        "is_volume": {
+            "description": "Testuoja vieno ar keli\u0173 medijos leistuv\u0173 garsum\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "threshold": {
+                    "name": "Slenkstis"
+                }
+            },
+            "name": "Medijos grotuvo garsumas"
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "{entity_name} atlieka bufer\u012f",
+            "is_idle": "{entity_name} yra neaktyvus",
+            "is_off": "{entity_name} i\u0161jungtas",
+            "is_on": "{entity_name} yra \u012fjungtas",
+            "is_paused": "{entity_name} pristabdytas",
+            "is_playing": "{entity_name} groja"
+        },
+        "extra_fields": {
+            "for": "Trukm\u0117"
+        },
+        "trigger_type": {
+            "buffering": "{entity_name} pradeda saugoti bufer\u012f",
+            "changed_states": "{entity_name} \u012fjungtas arba i\u0161jungtas",
+            "idle": "{entity_name} tampa neaktyvus",
+            "paused": "{entity_name} pristabdytas",
+            "playing": "{entity_name} pradeda \u017eaisti",
+            "turned_off": "{entity_name} i\u0161jungtas",
+            "turned_on": "{entity_name} \u012fjungtas"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Medijos leistuvas",
+            "state": {
+                "buffering": "Buferis",
+                "idle": "Nedaroma nieko",
+                "off": "I\u0161jungta",
+                "on": "\u012ejungta",
+                "paused": "Pristabdyta",
+                "playing": "Groja",
+                "standby": "Bud\u0117jimo re\u017eimas"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "Programos ID"
+                },
+                "app_name": {
+                    "name": "Program\u0117l\u0117"
+                },
+                "entity_picture_local": {
+                    "name": "Vietinis pasiekiamas subjekto paveiksl\u0117lis"
+                },
+                "groups_members": {
+                    "name": "Grup\u0117s nariai"
+                },
+                "is_volume_muted": {
+                    "name": "Nutildyta",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Taip"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Albumo atlik\u0117jas"
+                },
+                "media_album_name": {
+                    "name": "Albumas"
+                },
+                "media_artist": {
+                    "name": "Atlik\u0117jas"
+                },
+                "media_channel": {
+                    "name": "Kanalas"
+                },
+                "media_content_id": {
+                    "name": "Turinio ID"
+                },
+                "media_content_type": {
+                    "name": "Turinio tipas",
+                    "state": {
+                        "album": "Albumas",
+                        "app": "Program\u0117l\u0117",
+                        "artist": "Atlik\u0117jas",
+                        "channel": "Kanalas",
+                        "channels": "Kanalai",
+                        "composer": "Kompozitorius",
+                        "contributing_artist": "Prisidedantis atlik\u0117jas",
+                        "episode": "Epizodas",
+                        "game": "\u017daidimas",
+                        "genre": "\u017danras",
+                        "image": "Vaizdas",
+                        "movie": "Filmas",
+                        "music": "Muzika",
+                        "playlist": "Grojara\u0161tis",
+                        "podcast": "Podkastas",
+                        "season": "Sezonas",
+                        "track": "Trasa",
+                        "tvshow": "TV laida",
+                        "url": "URL",
+                        "video": "Video"
+                    }
+                },
+                "media_duration": {
+                    "name": "Trukm\u0117"
+                },
+                "media_episode": {
+                    "name": "Epizodas"
+                },
+                "media_playlist": {
+                    "name": "Grojara\u0161tis"
+                },
+                "media_position": {
+                    "name": "Pad\u0117tis"
+                },
+                "media_position_updated_at": {
+                    "name": "Pozicija atnaujinta"
+                },
+                "media_season": {
+                    "name": "Sezonas"
+                },
+                "media_series_title": {
+                    "name": "Serija"
+                },
+                "media_title": {
+                    "name": "Pavadinimas"
+                },
+                "media_track": {
+                    "name": "Media takelis"
+                },
+                "repeat": {
+                    "name": "Pakartoti",
+                    "state": {
+                        "all": "Visi",
+                        "off": "I\u0161jungta",
+                        "one": "Vienas"
+                    }
+                },
+                "shuffle": {
+                    "name": "Mai\u0161yti",
+                    "state": {
+                        "false": "I\u0161jungta",
+                        "true": "\u012ejungta"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Garso re\u017eimas"
+                },
+                "sound_mode_list": {
+                    "name": "Galimi garso re\u017eimai"
+                },
+                "source": {
+                    "name": "\u0160altinis"
+                },
+                "source_list": {
+                    "name": "Galimi \u0161altiniai"
+                },
+                "volume_level": {
+                    "name": "Garsas"
+                }
+            }
+        },
+        "projector": {
+            "name": "Projektorius"
+        },
+        "receiver": {
+            "name": "Imtuvas"
+        },
+        "speaker": {
+            "name": "Garsiakalbis"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Prid\u0117ti \u012f eil\u0119",
+                "next": "Groti toliau",
+                "play": "Groti",
+                "replace": "\u017daiskite dabar ir i\u0161valykite eil\u0119"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "Pakartokite visk\u0105",
+                "off": "I\u0161jungta",
+                "one": "Pakartokite vien\u0105"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Nar\u0161o turim\u0105 laikmen\u0105.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Nar\u0161ytino turinio ID. Priklauso nuo integracijos.",
+                    "name": "Turinio ID"
+                },
+                "media_content_type": {
+                    "description": "Nar\u0161omo turinio tipas, pvz., paveiksl\u0117lis, muzika, TV laida, vaizdo \u012fra\u0161as, serija, kanalas arba grojara\u0161tis.",
+                    "name": "Turinio tipas"
+                }
+            },
+            "name": "Nar\u0161yti medij\u0105"
+        },
+        "clear_playlist": {
+            "description": "Pa\u0161alina visus elementus i\u0161 medijos leistuvo grojara\u0161\u010dio.",
+            "name": "I\u0161valyti medijos leistuvo grojara\u0161t\u012f"
+        },
+        "join": {
+            "description": "Sugrupuoja medijos leistuvus sinchroniniam atk\u016brimui. Veikia tik palaikomose keli\u0173 kambari\u0173 garso sistemose.",
+            "fields": {
+                "group_members": {
+                    "description": "Grotuvai, kurie bus sinchronizuojami su atk\u016brimu, nurodytu 'Tiksluose'.",
+                    "name": "Grup\u0117s nariai"
+                }
+            },
+            "name": "Prisijunkite prie medijos leistuv\u0173"
+        },
+        "media_next_track": {
+            "description": "Pasirenka kit\u0105 takel\u012f medijos leistuve.",
+            "name": "Kitas takelis"
+        },
+        "media_pause": {
+            "description": "Pristabdo atk\u016brim\u0105 medijos leistuve.",
+            "name": "Pristabdyti medij\u0105"
+        },
+        "media_play": {
+            "description": "Pradeda atk\u016brim\u0105 medijos leistuve.",
+            "name": "Leisti medij\u0105"
+        },
+        "media_play_pause": {
+            "description": "\u012ejungia / pristabdo medijos leistuv\u0119.",
+            "name": "Leisti / pristabdyti medij\u0105"
+        },
+        "media_previous_track": {
+            "description": "Pasirenka ankstesn\u012f takel\u012f medijos leistuve.",
+            "name": "Ankstesnis takelis"
+        },
+        "media_seek": {
+            "description": "Leid\u017eia pereiti \u012f kit\u0105 medijos dal\u012f, kuri \u0161iuo metu leid\u017eiama medijos leistuve.",
+            "fields": {
+                "seek_position": {
+                    "description": "Tikslin\u0117 pad\u0117tis \u0161iuo metu leid\u017eiamoje medijoje. Formatas priklauso nuo platformos.",
+                    "name": "Pad\u0117tis"
+                }
+            },
+            "name": "Ie\u0161koti medijos"
+        },
+        "media_stop": {
+            "description": "Sustabdo atk\u016brim\u0105 medijos leistuve.",
+            "name": "Sustabdyti medij\u0105"
+        },
+        "play_media": {
+            "description": "Pradeda leisti nurodyt\u0105 medij\u0105 medijos leistuve.",
+            "fields": {
+                "announce": {
+                    "description": "Jei \u017einiasklaida tur\u0117t\u0173 b\u016bti rodoma kaip prane\u0161imas.",
+                    "name": "Paskelbti"
+                },
+                "enqueue": {
+                    "description": "Jei turinys tur\u0117t\u0173 b\u016bti paleistas dabar arba \u012ftrauktas \u012f eil\u0119.",
+                    "name": "Eil\u0117"
+                },
+                "media": {
+                    "description": "Pasirinkta leisti medija.",
+                    "name": "Media"
+                }
+            },
+            "name": "Leisti nurodyt\u0105 medij\u0105"
+        },
+        "repeat_set": {
+            "description": "Nustato medijos leistuvo kartojimo re\u017eim\u0105.",
+            "fields": {
+                "repeat": {
+                    "description": "Nesvarbu, ar medija (viena, ar visos) turi b\u016bti leid\u017eiama cikle, ar ne.",
+                    "name": "Kartojimo Re\u017eimas"
+                }
+            },
+            "name": "Nustatyti medijos leistuvo kartojim\u0105"
+        },
+        "search_media": {
+            "description": "Ie\u0161ko turimos medijos.",
+            "fields": {
+                "media_content_id": {
+                    "description": "Nar\u0161ytino turinio ID. Priklauso nuo integracijos.",
+                    "name": "Turinio ID"
+                },
+                "media_content_type": {
+                    "description": "Nar\u0161omo turinio tipas, pvz., paveiksl\u0117lis, muzika, TV laida, vaizdo \u012fra\u0161as, serija, kanalas arba grojara\u0161tis.",
+                    "name": "Turinio tipas"
+                },
+                "media_filter_classes": {
+                    "description": "Medijos klasi\u0173, pagal kurias galima filtruoti paie\u0161kos rezultatus, s\u0105ra\u0161as.",
+                    "name": "Medijos klas\u0117s filtras"
+                },
+                "search_query": {
+                    "description": "Terminas, kurio reikia ie\u0161koti.",
+                    "name": "Paie\u0161kos u\u017eklausa"
+                }
+            },
+            "name": "Ie\u0161koti \u017einiasklaidos"
+        },
+        "select_sound_mode": {
+            "description": "Pasirenka konkret\u0173 medijos leistuvo garso re\u017eim\u0105.",
+            "fields": {
+                "sound_mode": {
+                    "description": "Garso re\u017eimo, \u012f kur\u012f norite perjungti, pavadinimas.",
+                    "name": "Garso re\u017eimas"
+                }
+            },
+            "name": "Pasirinkite medijos leistuvo garso re\u017eim\u0105"
+        },
+        "select_source": {
+            "description": "Siun\u010dia medijos leistuvui komand\u0105 pakeisti \u012fvesties \u0161altin\u012f.",
+            "fields": {
+                "source": {
+                    "description": "\u0160altinio, \u012f kur\u012f norite perjungti, pavadinimas. Priklauso nuo platformos.",
+                    "name": "\u0160altinis"
+                }
+            },
+            "name": "Pasirinkite medijos leistuvo \u0161altin\u012f"
+        },
+        "shuffle_set": {
+            "description": "\u012ejungia arba i\u0161jungia medijos leistuvo atsitiktin\u0117s grojimo re\u017eim\u0105.",
+            "fields": {
+                "shuffle": {
+                    "description": "Nesvarbu, ar \u017einiasklaida tur\u0117t\u0173 b\u016bti leid\u017eiama atsitiktine tvarka, ar ne.",
+                    "name": "Mai\u0161ymo re\u017eimas"
+                }
+            },
+            "name": "Nustatyti medijos leistuvo mai\u0161ym\u0105"
+        },
+        "toggle": {
+            "description": "\u012ejungia / i\u0161jungia medijos grotuv\u0105.",
+            "name": "Perjungti medijos grotuv\u0105"
+        },
+        "turn_off": {
+            "description": "I\u0161jungia medijos leistuvo maitinim\u0105.",
+            "name": "I\u0161jungti medijos leistuv\u0105"
+        },
+        "turn_on": {
+            "description": "\u012ejungia medijos leistuvo maitinim\u0105.",
+            "name": "\u012ejungti medijos leistuv\u0105"
+        },
+        "unjoin": {
+            "description": "Pa\u0161alina medijos leistuv\u0105 i\u0161 grup\u0117s. Veikia tik platformose, kurios palaiko leistuv\u0173 grupes.",
+            "name": "Atsijungti nuo medijos leistuv\u0117s"
+        },
+        "volume_down": {
+            "description": "Suma\u017eina medijos leistuvo garsum\u0105.",
+            "name": "Suma\u017einkite medijos leistuvo garsum\u0105"
+        },
+        "volume_mute": {
+            "description": "Nutildo arba \u012fjungia medijos leistuvo gars\u0105.",
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Nurodo, ar jis nutildytas, ar ne.",
+                    "name": "Nutildyta"
+                }
+            },
+            "name": "Nutildyti / \u012fjungti medijos grotuvo gars\u0105"
+        },
+        "volume_set": {
+            "description": "Nustato medijos leistuvo garsumo lyg\u012f.",
+            "fields": {
+                "volume_level": {
+                    "description": "Apimtis. 0 negirdimas, 1 yra did\u017eiausias garsumas.",
+                    "name": "Lygis"
+                }
+            },
+            "name": "Nustatykite medijos leistuvo garsum\u0105"
+        },
+        "volume_up": {
+            "description": "Padidina medijos leistuvo garsum\u0105.",
+            "name": "Padidinkite medijos leistuvo garsum\u0105"
+        }
+    },
+    "title": "Medijos leistuvas",
+    "triggers": {
+        "muted": {
+            "description": "Suveikia, kai nutildomas vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas nutildytas"
+        },
+        "paused_playing": {
+            "description": "Suveikia, kai vienas ar keli medijos leistuvai pristabdo atk\u016brim\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas pristabd\u0117 atk\u016brim\u0105"
+        },
+        "started_playing": {
+            "description": "Suveikia, kai pradeda groti vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas prad\u0117jo groti"
+        },
+        "stopped_playing": {
+            "description": "Suveikia, kai vienas ar keli medijos leistuvai nustoja groti.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas nustojo groti"
+        },
+        "turned_off": {
+            "description": "Suveikia, kai i\u0161sijungia vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas i\u0161jungtas"
+        },
+        "turned_on": {
+            "description": "Suveikia, kai \u012fsijungia vienas ar keli medijos leistuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvas \u012fjungtas"
+        },
+        "unmuted": {
+            "description": "Suveikia, kai \u012fjungiamas vieno ar keli\u0173 medijos leistuv\u0173 garsas.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Medijos grotuvo garsas \u012fjungtas"
+        },
+        "volume_changed": {
+            "description": "Suveikia, kai pasikei\u010dia vieno ar keli\u0173 medijos leistuv\u0173 garsumas.",
+            "fields": {
+                "threshold": {
+                    "name": "Slenkstis"
+                }
+            },
+            "name": "Pakeistas medijos leistuvo garsumas"
+        },
+        "volume_crossed_threshold": {
+            "description": "Suveikia, kai vieno ar keli\u0173 medijos leistuv\u0173 garsumas vir\u0161ija rib\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "threshold": {
+                    "name": "Slenkstis"
+                }
+            },
+            "name": "Medijos grotuvo garsumo riba vir\u0161yta"
+        }
+    }
+}

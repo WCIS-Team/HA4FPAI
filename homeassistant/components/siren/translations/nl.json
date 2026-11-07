@@ -1,0 +1,93 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer",
+        "trigger_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_off": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sirene",
+            "state": {
+                "off": "Uit",
+                "on": "Aan"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "Beschikbare tonen"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "name": "Sirene omschakelen"
+        },
+        "turn_off": {
+            "name": "Sirene uitzetten"
+        },
+        "turn_on": {
+            "fields": {
+                "duration": {
+                    "description": "Aantal seconden dat een geluid wordt afgespeeld. Vereist ondersteuning van de integratie.",
+                    "name": "Duur"
+                },
+                "tone": {
+                    "description": "De toon om uit te zenden. Wanneer de eigenschap `available_tones` een kaart is, kan zowel de sleutel als de waarde worden gebruikt. Moet worden ondersteund door de integratie.",
+                    "name": "Toon"
+                },
+                "volume_level": {
+                    "description": "Het volume. 0 is onhoorbaar, 1 is het maximale volume. Moet worden ondersteund door de integratie.",
+                    "name": "Volume"
+                }
+            },
+            "name": "Sirene aanzetten"
+        }
+    },
+    "title": "Sirene",
+    "triggers": {
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Sirene ingeschakeld"
+        }
+    }
+}

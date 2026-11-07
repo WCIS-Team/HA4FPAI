@@ -1,0 +1,88 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_home": "{entity_name} er hjemme",
+            "is_not_home": "{entity_name} er ikke hjemme"
+        },
+        "extra_fields": {
+            "zone": "Zone"
+        },
+        "trigger_type": {
+            "enters": "{entity_name} kommer ind i en zone",
+            "leaves": "{entity_name} forlader en zone"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Enhedssporing",
+            "state": {
+                "home": "Hjemme",
+                "not_home": "Ude"
+            },
+            "state_attributes": {
+                "battery": {
+                    "name": "Batteri"
+                },
+                "gps_accuracy": {
+                    "name": "GPS-n\u00f8jagtighed"
+                },
+                "latitude": {
+                    "name": "Breddegrad"
+                },
+                "longitude": {
+                    "name": "L\u00e6ngdegrad"
+                },
+                "source_type": {
+                    "name": "Kilde",
+                    "state": {
+                        "bluetooth": "Bluetooth",
+                        "bluetooth_le": "Bluetooth LE",
+                        "gps": "GPS",
+                        "router": "Router"
+                    }
+                },
+                "tracking_type": {
+                    "name": "Sporingstype",
+                    "state": {
+                        "connection": "Forbindelse",
+                        "position": "Position"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "see": {
+            "fields": {
+                "battery": {
+                    "description": "Enhedens batteriniveau.",
+                    "name": "Batteriniveau"
+                },
+                "dev_id": {
+                    "name": "Enheds-ID"
+                },
+                "gps": {
+                    "name": "GPS-koordinater"
+                },
+                "gps_accuracy": {
+                    "description": "N\u00f8jagtigheden af GPS-koordinaterne.",
+                    "name": "GPS-n\u00f8jagtighed"
+                },
+                "host_name": {
+                    "description": "Enhedens v\u00e6rtsnavn.",
+                    "name": "V\u00e6rtsnavn"
+                },
+                "location_name": {
+                    "description": "Navnet p\u00e5 det sted, hvor enheden befinder sig. Valgmulighederne er: `home`, `not_home` eller navnet p\u00e5 zonen.",
+                    "name": "Lokalitet"
+                },
+                "mac": {
+                    "description": "Enhedens MAC-adresse.",
+                    "name": "MAC-adresse"
+                }
+            },
+            "name": "Se enhedssporer"
+        }
+    },
+    "title": "Enhedssporing"
+}

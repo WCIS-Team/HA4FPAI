@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Testar om en eller flera sirener \u00e4r avst\u00e4ngda.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Siren \u00e4r av"
+        },
+        "is_on": {
+            "description": "Testar om en eller flera sirener \u00e4r p\u00e5slagna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Siren \u00e4r p\u00e5"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Siren",
+            "state": {
+                "off": "Av",
+                "on": "P\u00e5"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "Tillg\u00e4ngliga toner"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "V\u00e4xlar sirenen p\u00e5/av.",
+            "name": "V\u00e4xla siren"
+        },
+        "turn_off": {
+            "description": "St\u00e4nger av sirenen.",
+            "name": "Sl\u00e5 av siren"
+        },
+        "turn_on": {
+            "description": "Sl\u00e5r p\u00e5 sirenen.",
+            "fields": {
+                "duration": {
+                    "description": "Antal sekunder som ljudet spelas upp. M\u00e5ste st\u00f6djas av integrationen.",
+                    "name": "Varaktighet"
+                },
+                "tone": {
+                    "description": "Den ton som ska avges. N\u00e4r egenskapen `available_tones` \u00e4r en mappning kan antingen nyckeln eller v\u00e4rdet anv\u00e4ndas. M\u00e5ste st\u00f6djas av integrationen.",
+                    "name": "Ton"
+                },
+                "volume_level": {
+                    "description": "Volymen. 0 \u00e4r oh\u00f6rbart, 1 \u00e4r maxvolymen. M\u00e5ste st\u00f6djas av integrationen.",
+                    "name": "Volym"
+                }
+            },
+            "name": "Sl\u00e5 p\u00e5 siren"
+        }
+    },
+    "title": "Siren",
+    "triggers": {
+        "turned_off": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera sirener st\u00e4ngs av.",
+            "fields": {
+                "behavior": {
+                    "name": "Beteende"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Siren avslagen"
+        },
+        "turned_on": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera sirener sl\u00e5s p\u00e5.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Siren avslagen"
+        }
+    }
+}

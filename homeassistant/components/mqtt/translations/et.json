@@ -1,0 +1,1424 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Rakendusega {addon} \u00fchenduse loomine nurjus. Kontrolli lisandmooduli olekut ja proovi hiljem uuesti.",
+            "addon_info_failed": "Rakenduse {addon} teabe hankimine nurjus.",
+            "addon_install_failed": "Rakenduse {addon} paigaldamine nurjus.",
+            "addon_start_failed": "Rakenduse {addon} k\u00e4ivitamine nurjus.",
+            "already_configured": "Teenus on juba seadistatud"
+        },
+        "error": {
+            "bad_birth": "Kehtetu loomise teavitus",
+            "bad_certificate": "CA sertifikaat on kehtetu",
+            "bad_client_cert": "Kehtetu kliendisertifikaat, veendu, et on esitatud kehtiv fail",
+            "bad_client_cert_key": "Kliendisertifikaat ja privaatne v\u00f5ti ei ole kehtiv paar",
+            "bad_discovery_prefix": "Sobimatu tuvastuse eesliide",
+            "bad_will": "Kehtetu l\u00f5petamise teavitus",
+            "bad_ws_headers": "Esita korrektsed HTTP p\u00e4ised JSON objektina",
+            "cannot_connect": "Vahendajaga ei saa \u00fchendust luua.",
+            "client_key_error": "Esitatud on kehtetu privaatv\u00f5tme fail v\u00f5i vale salas\u00f5na",
+            "invalid_auth": "Tuvastamine nurjus",
+            "invalid_inclusion": "Kliendisertifikaat ja privaatne v\u00f5ti tuleb konfigureerida koos"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Vahendaja",
+                    "password": "Salas\u00f5na",
+                    "port": "Port",
+                    "protocol": "MQTT protokoll",
+                    "username": "Kasutajanimi"
+                },
+                "data_description": {
+                    "broker": "MQTT-vahendaja hostinimi v\u00f5i IP-aadress.",
+                    "password": "MQTT-vahendajasse sisselogimise salas\u00f5na.",
+                    "port": "Port, mida MQTT-vahendaja kuulab. N\u00e4iteks 1883.",
+                    "protocol": "Kasutatav MQTT protokolli versioon. Pane t\u00e4hele, et Home Assistant vahetub vaikselt versioonile 5 kui teie vahendaja seda toetab.",
+                    "username": "Kasutajanimi MQTT-vahendajasse sisselogimiseks."
+                },
+                "description": "Sisesta oma MQTT vahendaja andmed.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "Lae \u00fcles kohandatud CA-sertifikaadi fail",
+                            "client_cert": "Lae \u00fcles kliendi sertifikaadifail",
+                            "client_id": "Kliendi ID (j\u00e4ta t\u00fchjaks kui soovid juhuslikult genereeritud ID-d)",
+                            "client_key": "Lae \u00fcles privaatv\u00f5tme fail",
+                            "client_key_password": "Salas\u00f5na",
+                            "keepalive": "Aegumiss\u00f5numite saatmise vaheline aeg",
+                            "set_ca_cert": "Vahendaja ertifikaadi kinnitamine",
+                            "set_client_cert": "Kasuta kliendi sertifikaati",
+                            "tls_insecure": "Eira vahendaja serdi valideerimist",
+                            "transport": "MQTT \u00fclekanne",
+                            "ws_headers": "WebSocketi p\u00e4ised JSON vormingus",
+                            "ws_path": "WebSocketi rada"
+                        },
+                        "data_description": {
+                            "certificate": "Kohandatud CA sertifikaadi fail MQTT vahendaja sertifikaadi kinnitamiseks.",
+                            "client_cert": "Kliendisertifikaat, mille abil saab autentida MQTT-vahendajat.",
+                            "client_id": "Unikaalne ID, mis identifitseerib Home Assistant MQTT API MQTT-kliendina. See valik on soovitatav j\u00e4tta t\u00fchjaks.",
+                            "client_key": "Kliendisertifikaadi juurde kuuluv privaatv\u00f5tme fail.",
+                            "client_key_password": "Privaatv\u00f5tme faili salas\u00f5na (kui see on m\u00e4\u00e4ratud).",
+                            "keepalive": "Soovitatav on v\u00e4\u00e4rtus alla 90 sekundi. Vaikimisi on see 60 sekundit.",
+                            "set_ca_cert": "Kui see on juba seatud v\u00e4\u00e4rtusele **Kohandatud**, on konfigureeritud kohandatud CA valideerimissertifikaat. Vali automaatseks CA valideerimiseks **Automaatne** v\u00f5i lae \u00fcles kohandatud CA sertifikaat, et lubada MQTT maakleri sertifikaadi valideerimine.",
+                            "set_client_cert": "Kui see on juba valitud, on kliendisertifikaadi autentimine lubatud. Lubamiseks lae \u00fcles kliendisertifikaat ja v\u00f5ti.",
+                            "tls_insecure": "V\u00f5imalus ignoreerida MQTT-vahendaja sertifikaadi valideerimist.",
+                            "transport": "MQTT-vahendajaga \u00fchenduse loomiseks kasutatav transport.",
+                            "ws_headers": "WebSocket-p\u00e4ised mis edastatakse WebSocketi p\u00f5hise \u00fchenduse kaudu MQTT-vahendajale.",
+                            "ws_path": "WebSocketi rada mida kasutatakse \u00fchenduse loomiseks MQTT vahendajaga."
+                        },
+                        "name": "Muud seaded"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "Kas soovid seadistada Home Assistanti \u00fchenduse loomiseks rakenduse {addon} pakutava MQTT vahendajaga?",
+                "title": "MQTT vahendaja  Home Assistanti rakenduse abil"
+            },
+            "install_addon": {
+                "title": "Rakenduse paigaldamine"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Salas\u00f5na",
+                    "username": "Kasutajanimi"
+                },
+                "data_description": {
+                    "password": "MQTT-vahendajasse sisselogimise salas\u00f5na.",
+                    "username": "Kasutajanimi MQTT-vahendajasse sisselogimiseks."
+                },
+                "description": "MQTT-vahendaja teatas autentimisveast. Palun kinnita maakleri \u00f5ige kasutajanimi ja parool.",
+                "title": "MQTT-vahendajaga n\u00f5utav uuesti autentimine"
+            },
+            "start_addon": {
+                "title": "Rakenduse k\u00e4ivitamine"
+            },
+            "user": {
+                "description": "Vali kuidas MQTT-maakleriga \u00fchendust luua:",
+                "menu_options": {
+                    "addon": "Kasuta ametlikku rakendust {addon}.",
+                    "broker": "Sisesta k\u00e4sitsi MQTT maakleri \u00fchenduse \u00fcksikasjad"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "MQTT seade {platform} \u00fcksusega \"{entity}\" on edukalt loodud.\n\nPane t\u00e4hele, et saad MQTT-seadet igal ajal uuesti konfigureerida, n\u00e4iteks lisada uusi \u00fcksusi."
+            },
+            "entry_type": "MQTT seade",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "Get position ja set position teemavalikud tuleb m\u00e4\u00e4rata koos",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "Positsiooniv\u00e4\u00e4rtuse malli tuleb kasutada koos positsiooni oleku teema s\u00e4ttega.",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "M\u00e4\u00e4ratud positsiooni teemaga tuleb kasutada m\u00e4\u00e4ratud positsiooni malli",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "Kallutusk\u00e4su malli tuleb kasutada koos kallutusk\u00e4su teemaga",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "Kalde v\u00e4\u00e4rtuse malli tuleb kasutada kalde oleku teemaga",
+                "cover_value_template_must_be_used_with_state_topic": "V\u00e4\u00e4rtusmalli tuleb kasutada koos olekuteema valikuga",
+                "empty_list_not_allowed": "T\u00fchi loend ei ole lubatud. Lisa v\u00e4hemalt \u00fcks \u00fcksus.",
+                "fan_preset_mode_reset_in_preset_modes_list": "Kasulik koormus \"l\u00e4htesta eelseadistatud re\u017eiim\" ei ole eelseadistatud re\u017eiimina kehtiv",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "Kiirusevahemiku maksimum peab olema suurem kui kiirusevahemiku miinimum",
+                "invalid_input": "Kehtetu v\u00e4\u00e4rtus",
+                "invalid_regular_expression": "Peab olema kehtiv regulaaravaldis",
+                "invalid_subscribe_topic": "Kehtetu tellimisteema",
+                "invalid_supported_color_modes": "Sobimatu toetatud v\u00e4rvire\u017eiimide valik",
+                "invalid_template": "Mall on vigane",
+                "invalid_uom": "Valitud seadmeklass ei toeta m\u00f5\u00f5t\u00fchikut \"{unit_of_measurement}\",eemalda seadmeklass, vali seadmeklass, mis toetab \"{unit_of_measurement}\", v\u00f5i vali loetelust toetatud m\u00f5\u00f5t\u00fchik",
+                "invalid_uom_for_state_class": "Valitud olekuklass ei toeta m\u00f5\u00f5t\u00fchikut \"{unit_of_measurement}\",eemalda olekuklass, vali olekuklass mis toetab \"{unit_of_measurement}\" v\u00f5i vali loetelust toetatud m\u00f5\u00f5t\u00fchik",
+                "invalid_url": "Sobimatu URL",
+                "last_reset_not_with_state_class_total": "Viimase v\u00e4\u00e4rtuse l\u00e4htestamise malli valikut tuleks kasutada ainult seisundiklassi \"Kokku\" puhul",
+                "max_below_min": "Maksimaalne v\u00e4\u00e4rtus peaks olema suurem v\u00f5i v\u00f5rdne minimaalse v\u00e4\u00e4rtusega",
+                "max_below_min_humidity": "Maksimaalne \u00f5huniiskuse v\u00e4\u00e4rtus peaks olema suurem kui minimaalne \u00f5huniiskuse v\u00e4\u00e4rtus",
+                "max_below_min_kelvin": "Maksimaalne Kelvini v\u00e4\u00e4rtus peaks olema suurem kui minimaalne Kelvini v\u00e4\u00e4rtus",
+                "max_below_min_temperature": "Maksimaalne temperatuuri v\u00e4\u00e4rtus peaks olema suurem kui minimaalne temperatuuri v\u00e4\u00e4rtus",
+                "options_device_class_enum": "Seadistust \"Valikud\" tuleb kasutada koos loendusseadme klassiga. Kui j\u00e4tkad, l\u00e4htestatakse olemasolevad valikud",
+                "options_not_allowed_with_state_class_or_uom": "Seadistus \"Valikud\" ei ole lubatud kui kasutatakse olekuklassi v\u00f5i m\u00f5\u00f5t\u00fchikut",
+                "options_with_enum_device_class": "Seadista loendusanduri valikud",
+                "preset_mode_none_not_allowed": "Eelseadistus \"puudub\" ei ole kehtiv eelseadistatud re\u017eiim",
+                "uom_required_for_device_class": "Valitud seadmeklass n\u00f5uab \u00fchikut"
+            },
+            "initiate_flow": {
+                "reconfigure": "Seadista MQTT seade uuesti",
+                "user": "MQTT seadme lisamine"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "K\u00e4ttesaadavuse mall",
+                        "availability_topic": "K\u00e4ttesaadavuse teema",
+                        "payload_available": "Kasulik koormus on saadaval",
+                        "payload_not_available": "Kasulik koormus pole saadaval"
+                    },
+                    "data_description": {
+                        "availability_template": "[template]( {value_templating_url} ) k\u00e4ttesaadavuse teema kohta saadud k\u00e4ttesaadavuse teabe renderdamiseks",
+                        "availability_topic": "Teema saadavuse kasuliku koormuse saamiseks",
+                        "payload_available": "Kasulik koormus mis n\u00e4itab, et seade on saadaval (vaikimisi on v\u00f5rgus)",
+                        "payload_not_available": "Kasulik koormus mis n\u00e4itab, et seade pole saadaval (vaikimisi on v\u00f5rgu\u00fchenduseta)"
+                    },
+                    "description": "K\u00e4ttesaadavuse funktsioon v\u00f5imaldab seadmel teatada selle saadavusest.",
+                    "title": "K\u00e4ttesaadavuse valikud"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Olem"
+                    },
+                    "data_description": {
+                        "component": "Vali olem mille soovid kustutada. N\u00f5utav on v\u00e4hemalt \u00fcks olem."
+                    },
+                    "description": "Olemi kustutamine. Olem eemaldatakse seadmest. Olemi eemaldamine katkestab k\u00f5ik sellest s\u00f5ltuvad automatiseerimised v\u00f5i skriptid.",
+                    "title": "Kustuta olem"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "Konfiguratsiooni URL",
+                        "manufacturer": "Tootja",
+                        "model": "Mudel",
+                        "model_id": "Mudeli ID",
+                        "name": "Nimi"
+                    },
+                    "data_description": {
+                        "configuration_url": "Link veebilehele, mille kaudu saab selle seadme konfiguratsiooni hallata. V\u00f5ib olla kas 'http://', 'https://' v\u00f5i sisemine 'homeassistant://' URL.",
+                        "manufacturer": "N\u00e4iteks Cleanmaster O\u00dc.",
+                        "model": "N\u00e4iteks \"Cleanmaster Pro\".",
+                        "model_id": "N\u00e4iteks \"123NK2PRO\".",
+                        "name": "K\u00e4sitsi lisatud MQTT-seadme nimi."
+                    },
+                    "description": "Sisesta MQTT seadme \u00fcksikasjad:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "S\u00f5numite aegumise intervall",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "Avaldatud s\u00f5numi s\u00e4ilitamise ajavahemik.",
+                                "qos": "QoS v\u00e4\u00e4rtus mida seadme olemid peaksid kasutama."
+                            },
+                            "name": "MQTT seaded"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "Riistvara versioon",
+                                "sw_version": "Tarkvara versioon"
+                            },
+                            "data_description": {
+                                "hw_version": "Seadme riistvaraversioon. N\u00e4iteks \"v1.0 rev a\".",
+                                "sw_version": "Seadme tarkvaraversioon. N\u00e4iteks \"2025.1.0\"."
+                            },
+                            "name": "Muud seadme seaded"
+                        }
+                    },
+                    "title": "Konfigureeri MQTT-seadme \u00fcksikasjad"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Olemi pilt",
+                        "name": "Olemi nimi",
+                        "platform": "Olemi t\u00fc\u00fcp"
+                    },
+                    "data_description": {
+                        "entity_picture": "M\u00e4\u00e4ratava pildi URL.",
+                        "name": "Olemi nimi. J\u00e4ta t\u00fchjaks, kui soovid m\u00e4\u00e4rata selle v\u00e4\u00e4rtuseks \u201ePuudub\u201d ja [m\u00e4rkida selle MQTT-seadme p\u00f5hifunktsiooniks]( {naming_entities_url} ).",
+                        "platform": "Konfigureeritava olemi t\u00fc\u00fcp."
+                    },
+                    "description": "Konfigureeri p\u00f5hilised {platform_label}olemi{entity_name_label} s\u00e4tted",
+                    "title": "MQTT seadme \"{mqtt_device}\" konfigureerimine"
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "H\u00e4irekoodi valideerimise re\u017eiim",
+                        "climate_feature_action": "Praeguse tegevuse tugi",
+                        "climate_feature_current_humidity": "Praeguse niiskuse tugi",
+                        "climate_feature_current_temperature": "Praeguse temperatuuri tugi",
+                        "climate_feature_fan_modes": "Ventilaatori re\u017eiimi tugi",
+                        "climate_feature_power": "Toite sisse-/v\u00e4ljal\u00fclitamise tugi",
+                        "climate_feature_preset_modes": "Eelseadistatud re\u017eiimide tugi",
+                        "climate_feature_swing_horizontal_modes": "Horisontaalse kiikumisre\u017eiimi tugi",
+                        "climate_feature_swing_modes": "Kiikumisre\u017eiimi tugi",
+                        "climate_feature_target_humidity": "Sihtniiskuse tugi",
+                        "climate_feature_target_temperature": "Sihttemperatuuri tugi",
+                        "device_class": "Seadmeklass",
+                        "entity_category": "Olemi kategooria",
+                        "fan_feature_direction": "Puhumissuuna tugi",
+                        "fan_feature_oscillation": "V\u00f5nkumisre\u017eiimide tugi",
+                        "fan_feature_preset_modes": "Eelseadistatud re\u017eiimide tugi",
+                        "fan_feature_speed": "Kiiruse muutmise tugi",
+                        "image_processing_mode": "Pildit\u00f6\u00f6tlusre\u017eiim",
+                        "options": "Lisa valik",
+                        "reports_position": "Teatab asendi",
+                        "schema": "Skeem",
+                        "state_class": "Olekuklass",
+                        "suggested_display_precision": "Soovitatav kuvamise t\u00e4psus",
+                        "supported_features": "Toetatud funktsioonid",
+                        "temperature_unit": "Temperatuuri \u00fchik",
+                        "unit_of_measurement": "M\u00f5\u00f5t\u00fchik",
+                        "water_heater_feature_current_temperature": "Praeguse temperatuuri tugi",
+                        "water_heater_feature_power": "Toite sisse-/v\u00e4ljal\u00fclitamise tugi"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Konfigureerib, kuidas h\u00e4ires\u00fcsteemi juhtpaneel koodi valideerib. Kohalik kood konfigureeritakse seadmega ja Home Assistant valideerib selle. Seadmele saadetakse kaugkood ja see valideeritakse eemalt. [Lisateave.]( {url} #kood)",
+                        "climate_feature_action": "Kliimaseade toetab praeguse tegevuse kajastamist.",
+                        "climate_feature_current_humidity": "Kliimaseade toetab praeguse \u00f5huniiskuse teatamist.",
+                        "climate_feature_current_temperature": "Kliimaseade toetab praeguse temperatuuri edastamist.",
+                        "climate_feature_fan_modes": "Kliimaseade toetab ventilaatori re\u017eiime.",
+                        "climate_feature_power": "Kliimaseade toetab toite sisse- ja v\u00e4ljal\u00fclitamise k\u00e4ske.",
+                        "climate_feature_preset_modes": "Kliimaseade toetab eelseadistatud re\u017eiime.",
+                        "climate_feature_swing_horizontal_modes": "Kliimaseade toetab horisontaalseid kiikumisre\u017eiime.",
+                        "climate_feature_swing_modes": "Kliimaseade toetab kiikumisre\u017eiime.",
+                        "climate_feature_target_humidity": "Kliimaseade toetab sihtniiskuse seadmist.",
+                        "climate_feature_target_temperature": "Kliimaseade toetab sihttemperatuuri seadmist.",
+                        "device_class": "Olemi {platform} seadmeklass. [Lisateave.]( {url} #device_class)",
+                        "entity_category": "V\u00f5imaldab m\u00e4rkida \u00fcksuse seadme konfiguratsiooniks v\u00f5i diagnostikaks. Kategooriaga \u00fcksus ei ole n\u00e4htav pilve-, Alexa- ega Google Assistant komponentidele ega kaasata kaudsetesse toiminguk\u00f5nedesse seadmetele v\u00f5i aladele. Anduri\u00fcksustele ei saa m\u00e4\u00e4rata seadme konfiguratsiooniklassi. [Lisateave.] ( {registry_properties_url} )",
+                        "fan_feature_direction": "Ventilaator toetab puhumissuuna muutmist.",
+                        "fan_feature_oscillation": "Ventilaator toetab v\u00f5nkumist.",
+                        "fan_feature_preset_modes": "Ventilaator toetab eelseadistatud re\u017eiime.",
+                        "fan_feature_speed": "Ventilaator toetab mitut kiirust.",
+                        "image_processing_mode": "Vali kuidas pildiandmeid vastu v\u00f5etakse.",
+                        "options": "Anduri oleku v\u00e4\u00e4rtuste valikud. Anduri seadmeklass peab olema seatud valikule Loend. Valikut ei saa kasutada koos olekuklassi v\u00f5i m\u00f5\u00f5t\u00fchikuga.",
+                        "reports_position": "M\u00e4\u00e4ra see suvand kui klapp teatab asukohast v\u00f5i toetab asukoha m\u00e4\u00e4ramist. Selle suvandi lubamisel avaldatakse asukoht, mitte aga koormus \u201eopen\u201d, \u201eclose\u201d v\u00f5i \u201estop\u201d, mis on m\u00e4\u00e4ratletud kui kasulik koormus. S\u00f5numite vastuv\u00f5tmisel aktsepteerib olekuteema numbrilisi kasulikke koormusi v\u00f5i \u00fchte konfigureeritud olekus\u00f5numitest.",
+                        "schema": "Kasutatav skeem. [Lisateave.]({url}#comparison-of-light-mqtt-schema)",
+                        "state_class": "Anduri [olekuklass]( {available_state_classes_url} ). [Lisateave.]( {url} #state_class)",
+                        "suggested_display_precision": "K\u00fcmnendkohtade arv mida tuleks olemi olekus {platform} p\u00e4rast \u00fcmardamist kasutada. [Lisateave.]( {url} #suggested_display_precision)",
+                        "supported_features": "Funktsioonid mida olem toetab.",
+                        "temperature_unit": "See m\u00e4\u00e4rab loomuliku m\u00f5\u00f5t\u00fchiku millega MQTT seade t\u00f6\u00f6tab.",
+                        "unit_of_measurement": "M\u00e4\u00e4rab m\u00f5\u00f5t\u00fchiku kui see on olemas.",
+                        "water_heater_feature_current_temperature": "Veesoojendi toetab hetketemperatuuri edastamist.",
+                        "water_heater_feature_power": "Veesoojendi toetab k\u00e4ske \"sisse\" ja \"v\u00e4lja\"."
+                    },
+                    "description": "Seadista konkreetsed \u00fcksikasjad {platform} olemi \"{entity}\" jaoks:",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "Soovitatav kuvamise t\u00e4psus"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "K\u00fcmnendkohtade arv mida tuleks olemi olekus {platform} p\u00e4rast \u00fcmardamist kasutada. [Lisateave.]( {url} #suggested_display_precision)"
+                            },
+                            "name": "Muud seaded"
+                        }
+                    },
+                    "title": "MQTT seadme \"{mqtt_device}\" konfigureerimine"
+                },
+                "export": {
+                    "description": "Eksport v\u00f5imaldab MQTT-seadme konfiguratsiooni \u00fcle viia YAML-p\u00f5hisesse konfiguratsiooni v\u00f5i MQTT-tuvastusesse. Konfiguratsiooni eksport v\u00f5ib olla abiks ka t\u00f5rkeotsingul.",
+                    "menu_options": {
+                        "export_discovery": "Ekspordi MQTT avastamisteave",
+                        "export_yaml": "Ekspordi YAML-i konfiguratsiooni"
+                    },
+                    "title": "Ekspordi MQTT seadme konfiguratsioon"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Avastamise kasulik koormus:",
+                        "discovery_topic": "Avastamise teema"
+                    },
+                    "data_description": {
+                        "discovery_payload": "JSON [discovery payload]({url}#device-discovery-payload), mis sisaldab teavet MQTT-seadme kohta.",
+                        "discovery_topic": "[discovery topic]({url}#discovery-topic), et avaldada avastamise kasulikku koormust, mida kasutatakse MQTT-avastamise k\u00e4ivitamiseks. Sellesse teemasse avaldatud t\u00fchi kasuliku koormuse korral eemaldatakse seade ja avastatud \u00fcksused."
+                    },
+                    "description": "MQTT [discovery]( {url} #device-discovery-payload) kaudu seadistamise lubamiseks tuleb avastamise kasulik koormus avaldada avastamise teemas. Kopeeri teave allolevatelt v\u00e4ljadelt. Home Assistant tuvastab, kas MQTT-seadme seadistamist prooviti hoopis MQTT avastamise kaudu, ja pakub parandusvoo \u00fcleliigse alamkirje puhastamiseks. Samuti saad identifikaatoreid muuta kui ei soovi alamkirjet eemaldada.",
+                    "title": "Ekspordi MQTT seadme konfiguratsioon"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "Kopeeri allolev YAML-i konfiguratsioon:"
+                    },
+                    "data_description": {
+                        "yaml": "Lisa YAML-i konfiguratsioon oma [configuration.yaml]-i ( {url} #yaml-configuration-listed-per-item)."
+                    },
+                    "description": "Saad alloleva konfiguratsiooni kopeerida ja paigutada selle oma configuration.yaml-faili. Home Assistant tuvastab kas MQTT-seadme seadistamist prooviti YAML-i kaudu ja pakub parandusvoogu \u00fcleliigse alamkirje puhastamiseks. Samuti saad identifikaatoreid muuta kui ei soovi alamkirjet eemaldada.",
+                    "title": "Ekspordi MQTT seadme konfiguratsioon"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "Saadaval olevad toonid",
+                        "blue_template": "Sinise mall",
+                        "brightness_template": "Heleduse mall",
+                        "code": "Valvestuskood",
+                        "code_arm_required": "Vajalik on koodiga valvestamine",
+                        "code_disarm_required": "Vajalik on koodiga valvest vabastamine",
+                        "code_format": "Koodi vorming",
+                        "code_trigger_required": "Koodi k\u00e4ivitamine on vajalik",
+                        "color_temp_template": "V\u00e4rvitemperatuuri mall",
+                        "command_off_template": "K\u00e4skluse \"v\u00e4lja\" mall",
+                        "command_on_template": "K\u00e4skluse \"sisse\" mall",
+                        "command_template": "K\u00e4su mall",
+                        "command_topic": "K\u00e4su teema",
+                        "content_type": "Sisu t\u00fc\u00fcp",
+                        "force_update": "Sunni v\u00e4rskendama",
+                        "green_template": "Rohelise mall",
+                        "image_encoding": "Pildi kodeering",
+                        "image_topic": "Pildi teema",
+                        "last_reset_value_template": "Viimase l\u00e4htestamise v\u00e4\u00e4rtuse mall",
+                        "max": "Maksimaalne",
+                        "min": "Minimaalne",
+                        "mode": "Re\u017eiim",
+                        "mode_command_template": "T\u00f6\u00f6re\u017eiimi k\u00e4su mall",
+                        "mode_command_topic": "T\u00f6\u00f6re\u017eiimi k\u00e4su teema",
+                        "mode_state_template": "T\u00f6\u00f6re\u017eiimi v\u00e4\u00e4rtuse mall",
+                        "mode_state_topic": "T\u00f6\u00f6re\u017eiimi oleku teema",
+                        "modes": "Toetatud t\u00f6\u00f6re\u017eiimid",
+                        "on_command_type": "Sissel\u00fclitamise k\u00e4su t\u00fc\u00fcp",
+                        "optimistic": "Optimistlik",
+                        "options": "M\u00e4\u00e4ra valikud",
+                        "payload_off": "Kasulik koormus v\u00e4lja l\u00fclitamiseks",
+                        "payload_on": "Kasulik koormus sisse l\u00fclitamiseks",
+                        "payload_press": "Kasulik koormus \"vajutus\"",
+                        "payload_reset": "Kasulik koormuse \"l\u00e4htestamine\"",
+                        "position_closed": "Asend \"suletud\"",
+                        "position_open": "Asend \"avatud\"",
+                        "qos": "QoS",
+                        "red_template": "Punase mall",
+                        "retain": "S\u00e4ilita",
+                        "state_off": "Olek \"v\u00e4ljas\"",
+                        "state_on": "Olek \"sees\"",
+                        "state_template": "Oleku mall",
+                        "state_topic": "Oleku teema",
+                        "state_value_template": "Oleku v\u00e4\u00e4rtuse mall",
+                        "step": "Samm",
+                        "support_duration": "Kestuse tugi",
+                        "support_volume_set": "M\u00e4\u00e4ra helitugevuse tugi",
+                        "supported_color_modes": "Toetatud v\u00e4rvire\u017eiimid",
+                        "timezone": "Ajav\u00f6\u00f6nd",
+                        "url_template": "URL-i mall",
+                        "url_topic": "URL-i teema",
+                        "value_template": "V\u00e4\u00e4rtuse mall"
+                    },
+                    "data_description": {
+                        "available_tones": "Sireen toetab helisignaale. Muutuja `tone` muutub kasutatavaks \"Command template\" seadistuses. [Lisateave.]({url}#available_tones)",
+                        "blue_template": "[Template]( {value_templating_url} ) sinise v\u00e4rvi eraldamiseks oleku kasuliku koormuse v\u00e4\u00e4rtusest. Malli oodatav tulemus on t\u00e4isarv vahemikus 0\u2013255.",
+                        "brightness_template": "[Template]( {value_templating_url} ) heleduse eraldamiseks oleku kasuliku koormuse v\u00e4\u00e4rtusest. Malli oodatav tulemus on t\u00e4isarv vahemikus 0\u2013255.",
+                        "code": "M\u00e4\u00e4rab koodi alarmi lubamiseks v\u00f5i keelamiseks kasutajaliideses. Pane t\u00e4hele, et see blokeerib MQTT-s\u00f5numik\u00e4skude saatmise kaugseadmesse,kui koodi valideerimine eba\u00f5nnestub. [Lisateave.] ( {url} #kood)",
+                        "code_arm_required": "Kui see on m\u00e4\u00e4ratud, on kood alarmi sissel\u00fclitamiseks vajalik. Kui seda pole m\u00e4\u00e4ratud, siis koodi ei valideerita.",
+                        "code_disarm_required": "Kui see on m\u00e4\u00e4ratud, on kood alarmi v\u00e4ljal\u00fclitamiseks vajalik. Kui seda pole m\u00e4\u00e4ratud, siis koodi ei valideerita.",
+                        "code_format": "Regulaaravaldis esitatud koodi kinnitamiseks kui see on toimingu ajal m\u00e4\u00e4ratud MQTT-luku avamiseks, lukustamiseks v\u00f5i avamiseks. [Lisateave.]({url}#code_format)",
+                        "code_trigger_required": "Kui see on m\u00e4\u00e4ratud, on kood alarmi k\u00e4sitsi k\u00e4ivitamiseks vajalik. Kui seda pole m\u00e4\u00e4ratud, siis koodi ei valideerita.",
+                        "color_temp_template": "[Template]( {value_templating_url} ) v\u00e4rvitemperatuuri kelvinites eraldamiseks oleku kasuliku v\u00e4\u00e4rtuse p\u00f5hjal. Malli oodatav tulemus on t\u00e4isarv.",
+                        "command_off_template": "\u201eV\u00e4ljas\u201c oleku muutuste [template]( {command_templating_url} ). Saadaval olevad muutujad on: `state` ja `transition`.",
+                        "command_on_template": "\u201eOn\u201d oleku [template]( {command_templating_url} ) muutub. Saadaval olevad muutujad: `state`, `brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`, `flash`, `transition` ja `effect`. V\u00e4\u00e4rtused `red`, `green`, `blue` ja `brightness` on esitatud t\u00e4isarvudena vahemikus 0\u2013255. `hue` v\u00e4\u00e4rtus on esitatud ujukomaarvuna vahemikus 0\u2013360. `sat` v\u00e4\u00e4rtus on esitatud ujukomaarvuna vahemikus 0\u2013100. `color_temp` v\u00e4\u00e4rtus on esitatud t\u00e4isarvuna, mis t\u00e4histab kelvini \u00fchikuid.",
+                        "command_template": "[Template]( {command_templating_url} ) k\u00e4surea teemas avaldatava kasuliku koormuse renderdamiseks. [Lisateave.]( {url} #command_template)",
+                        "command_topic": "Avaldamise teema, mida kasutatakse olemi {platform} juhtimiseks. [Lisateave.]( {url} #command_topic)",
+                        "content_type": "Sisu t\u00fc\u00fcp v\u00f5i pildiandmed, mis on saadud pildi teemasse.",
+                        "force_update": "Saadab v\u00e4rskenduss\u00fcndmused isegi siis kui v\u00e4\u00e4rtus pole muutunud. Kasulik, kui soovite ajaloos sisukaid v\u00e4\u00e4rtusgraafikuid. [Lisateave.]({url}#force_update)",
+                        "green_template": "[Template]( {value_templating_url} ) rohelise v\u00e4rvi eraldamiseks oleku kasuliku koormuse v\u00e4\u00e4rtusest. Malli oodatav tulemus on t\u00e4isarv vahemikus 0\u2013255.",
+                        "image_encoding": "Vali vastuv\u00f5etud pildiandmete kodeering",
+                        "image_topic": "MQTT teema tellis pildiandmeid sisaldavate s\u00f5numite saamise. [Lisateave.]( {url} #image_topic)",
+                        "last_reset_value_template": "M\u00e4\u00e4rab malli [template]( {value_templating_url} ) viimase l\u00e4htestamise v\u00e4ljav\u00f5tmiseks. Kui viimase l\u00e4htestamise mall on m\u00e4\u00e4ratud, peab olekuklassi valik olema Kokku. [Lisateave.]( {url} #last_reset_value_template)",
+                        "max": "Maksimaalne v\u00e4\u00e4rtus. [Lisateave.]( {url} #max)",
+                        "min": "Minimaalne v\u00e4\u00e4rtus. [Lisateave.]({url}#min)",
+                        "mode": "M\u00e4\u00e4ra kuidas numbrit kasutajaliideses kuvatakse. [Lisateave.] ( {url} #mode)",
+                        "mode_command_template": "[Template]({command_templating_url}), et m\u00e4\u00e4rata t\u00f6\u00f6re\u017eiim, mis saadetakse t\u00f6\u00f6re\u017eiimi k\u00e4su teemasse. [Lisateave]({url}#mode_command_template)",
+                        "mode_command_topic": "MQTT teema seadmete t\u00f6\u00f6re\u017eiimi muutmise k\u00e4skude avaldamiseks. [Lisateave.] ( {url} #mode_command_topic)",
+                        "mode_state_template": "M\u00e4\u00e4rab [template]( {value_templating_url} ) t\u00f6\u00f6re\u017eiimi oleku ekstraheerimiseks. [Lisateave.]( {url} #mode_state_template)",
+                        "mode_state_topic": "MQTT-teema, mis on tellitud t\u00f6\u00f6re\u017eiimi olekuteadete vastuv\u00f5tmiseks. [Lisateave.]({url}#mode_state_topic)",
+                        "modes": "Toetatud t\u00f6\u00f6re\u017eiimide loend. [Lisateave.] ( {url} #re\u017eiimid)",
+                        "on_command_type": "M\u00e4\u00e4ratleb, millal \"kasulik koormus sees\" saadetakse. Kasutades \"viimast\" (vaikimisi), saadab mis tahes stiili (heledus, v\u00e4rv jne) teemad k\u00f5igepealt ja seej\u00e4rel \"kasuliku koormuse\" command_topic. \"Esimene\" kasutamine saadab \"kasuliku koormuse sisse\" ja seej\u00e4rel k\u00f5ik stiiliteemad. Funktsiooni \"Heledus\" kasutamine saadab valguse sissel\u00fclitamiseks ainult heleduse k\u00e4ske, mitte \"Kasulik koormus sees\".",
+                        "optimistic": "M\u00e4rk, mis m\u00e4\u00e4rab kas {platform} \u00fcksus t\u00f6\u00f6tab optimistlikus re\u017eiimis. [Lisateave.]({url}#optimistic)",
+                        "options": "Valikuv\u00f5imaluste loetelu.",
+                        "payload_off": "Kasulik koormus mis t\u00e4histab v\u00e4ljal\u00fclitatud olekut.",
+                        "payload_on": "Kasulik koormus mis t\u00e4histab sissel\u00fclitatud olekut.",
+                        "payload_press": "Nupu aktiveerimisel saadetav kasulik koormus.",
+                        "payload_reset": "Oleku teemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab olemi m\u00e4\u00e4ramata olekut.",
+                        "position_closed": "Suletud asendit t\u00e4histav number. Toimingu sooritamisel skaleeritakse ventiili asend vahemikku (asend \"suletud\"\u2026asend \"avatud\") ja v\u00e4\u00e4rtuse saabumisel skaleeritakse tagasi.",
+                        "position_open": "Avatud asendit t\u00e4histav number. Toimingu sooritamisel skaleeritakse ventiili asend vahemikku (asend \"suletud\"\u2026asend \"avatud\") ja v\u00e4\u00e4rtuse saabumisel skaleeritakse tagasi.",
+                        "qos": "QoS-i v\u00e4\u00e4rtus mida {platform} olem peaks kasutama.",
+                        "red_template": "[Template]( {value_templating_url} ) punase v\u00e4rvi eraldamiseks oleku kasulikust v\u00e4\u00e4rtusest. Malli oodatav tulemus on t\u00e4isarv vahemikus 0\u2013255.",
+                        "retain": "Vali kas {platform} \u00fcksuse avaldatud v\u00e4\u00e4rtused peaksid s\u00e4ilima MQTT-vahendaja juures.",
+                        "state_off": "Sissetulev kasulik koormus, mis t\u00e4histab olekut \"v\u00e4ljas\". Kasuta ainult siis, kui oleku teemas olekut \"v\u00e4ljas\" t\u00e4histav v\u00e4\u00e4rtus erineb v\u00e4\u00e4rtusest, mis tuleks seadme v\u00e4ljal\u00fclitamiseks k\u00e4suteemasse saata.",
+                        "state_on": "Sissetulev kasulik koormus, mis t\u00e4histab olekut \"sees\". Kasuta ainult siis, kui oleku teemas olekut \"sees\" t\u00e4histav v\u00e4\u00e4rtus erineb v\u00e4\u00e4rtusest, mis tuleks seadme sissel\u00fclitamiseks k\u00e4suteemasse saata.",
+                        "state_template": "[Template]( {value_templating_url} ) oleku eraldamiseks oleku kasuliku teabe v\u00e4\u00e4rtusest.",
+                        "state_topic": "MQTT teema, mis on tellitud, et saada {platform} olekuv\u00e4\u00e4rtusi. [Lisateave.]({url}#state_topic)",
+                        "step": "Sammu v\u00e4\u00e4rtus. V\u00e4ikseim v\u00e4\u00e4rtus 0,001.",
+                        "support_duration": "Sireen toetab kestuse m\u00e4\u00e4ramist sekundites. Muutuja `duration` muutub k\u00e4ttesaadavaks k\u00e4sumalli seades. [Lisateave.]( {url} #support_duration)",
+                        "support_volume_set": "Sireen toetab helitugevuse seadistamist. Muutuja `volume_level` muutub kasutatavaks \"Command template\" seadistuses. [Lisateave.]({url}#support_volume_set)",
+                        "supported_color_modes": "Valgusti toetatud v\u00e4rvire\u017eiimide loend. V\u00f5imalikud v\u00e4rvire\u017eiimid on Sees/V\u00e4ljas, Heledus, V\u00e4rvitemperatuur, HS, XY, RGB, RGBW, RGBWW, VALGE. Pange t\u00e4hele, et kui kasutatakse sissel\u00fclitamist v\u00f5i heledust, peab see olema loendis ainus v\u00e4\u00e4rtus. [Lisateave.]({url}#supported_color_modes)",
+                        "timezone": "Seadistatakse kehtivaks [IANA ajav\u00f6\u00f6ndi identifikaatoriks]({tz_abbr_url}). \u00c4ra sea seda valikut kui kuup\u00e4eva/aja struktuur annab ajav\u00f6\u00f6ndi teavet staatuse uuendamise kaudu.",
+                        "url_template": "[Mall]( {value_templating_url} ) URL-i eraldamiseks vastuv\u00f5etud URL-i teema kasuliku koormuse v\u00e4\u00e4rtusest. [Lisateave.]( {url} #url_template)",
+                        "url_topic": "MQTT teema tellis pildi URL-i sisaldavate s\u00f5numite saamise. [Lisateave.]( {url} #url_topic)",
+                        "value_template": "M\u00e4\u00e4rab malli [template]( {value_templating_url} ), et ekstraheerida {platform} \u00fcksuse v\u00e4\u00e4rtus. [Lisateave.]( {url} #value_template)"
+                    },
+                    "description": "Seadista MQTT konkreetsed \u00fcksikasjad {platform} olem \"{entity}\":",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Kasulik koormus \"valvesta eemal\"",
+                                "payload_arm_custom_bypass": "Kasulik koormus \"valvesta valikuliselt\"",
+                                "payload_arm_disarm": "Kasulik koormus \"valvest maha\"",
+                                "payload_arm_home": "Kasulik koormus \"valvesta kodus\"",
+                                "payload_arm_night": "Kasulik koormus \"valvesta \u00f6\u00f6seks\"",
+                                "payload_arm_vacation": "Kasulik koormus \"valvesta puhkuseks\"",
+                                "payload_trigger": "Kasulik koormus \"h\u00e4ire vallandamine\""
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Kasulik koormus, mis saadetakse k\u00e4su \"arm away\" andmisel.",
+                                "payload_arm_custom_bypass": "Kasulik koormus, mis saadetakse k\u00e4su \"arm custom bypass\" v\u00e4ljastamisel.",
+                                "payload_arm_disarm": "Kasulik koormus, mis saadetakse k\u00e4su \"valve maha\" v\u00e4ljastamisel.",
+                                "payload_arm_home": "Kasulik koormus, mis saadetakse kui antakse k\u00e4sk \"arm home\".",
+                                "payload_arm_night": "Kasulik koormus, mis saadetakse k\u00e4skluse \"\u00f6\u00f6seks valvestamine\" andmisel.",
+                                "payload_arm_vacation": "Kasulik koormus, mis saadetakse k\u00e4su \"arm vacation\" andmisel.",
+                                "payload_trigger": "K\u00e4skluse \"k\u00e4ivitush\u00e4ire\" andmisel saadetav kasulik koormus."
+                            },
+                            "name": "H\u00e4ire juhtpaneeli kasuliku koormuse seaded"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "Toimingu mall",
+                                "action_topic": "Toimingu teema"
+                            },
+                            "data_description": {
+                                "action_template": "[template]( {value_templating_url} ), millega tegevusteema kohta saadud v\u00e4\u00e4rtust renderdada."
+                            },
+                            "name": "Praegused toimingus\u00e4tted"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "Ventilaatori re\u017eiimi k\u00e4su mall",
+                                "fan_mode_command_topic": "Ventilaatori re\u017eiimi k\u00e4skluse teema",
+                                "fan_mode_state_template": "Ventilaatori re\u017eiimi oleku mall",
+                                "fan_mode_state_topic": "Ventilaatori re\u017eiimi oleku teema",
+                                "fan_modes": "Ventilaatori re\u017eiimid"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "[template]( {command_templating_url} ) ventilaatorire\u017eiimi k\u00e4suteemas avaldatava kasuliku koormuse koostamiseks.",
+                                "fan_mode_command_topic": "MQTT teema kliimaventilaatori re\u017eiimi muutmise k\u00e4skude avaldamiseks. [Lisateave.]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "M\u00e4\u00e4ratleb [malli]({value_templating_url}), et eraldada ventilaatori re\u017eiimi v\u00e4\u00e4rtus.",
+                                "fan_mode_state_topic": "MQTT-teema, mis on tellitud kliimaventilaatori re\u017eiimi vastuv\u00f5tmiseks. [Lisateave.]({url}#fan_mode_state_topic)",
+                                "fan_modes": "Selle kliimaseadme ventilaatori re\u017eiimide loend. Levinud ventilaatori re\u017eiimid, millel on t\u00f5lked, on \u201ev\u00e4ljas\u201d, \u201esees\u201d, \u201eautomaatne\u201d, \u201emadal\u201d, \u201ekeskmine\u201d, \u201ek\u00f5rge\u201d, \u201ekeskmine\u201d, \u201efookus\u201d ja \u201ehajutatud\u201d."
+                            },
+                            "name": "Ventilaatori re\u017eiimi seaded"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "Kasulik koormus v\u00e4lja l\u00fclitamiseks",
+                                "payload_on": "Kasulik koormus sisse l\u00fclitamiseks",
+                                "power_command_template": "Toite l\u00fclitamise k\u00e4su mall",
+                                "power_command_topic": "Toite l\u00fclitamise k\u00e4su teema"
+                            },
+                            "data_description": {
+                                "payload_off": "Kasulik koormus mis t\u00e4histab v\u00e4ljal\u00fclitatud olekut.",
+                                "payload_on": "Kasulik koormus mis t\u00e4histab sissel\u00fclitatud olekut.",
+                                "power_command_template": "[template]( {command_templating_url} ) k\u00e4surea k\u00e4su teemas avaldatava kasuliku koormuse koostamiseks. Parameeter `value` on kasuliku koormuse seadistus \"on\" v\u00f5i \"off\".",
+                                "power_command_topic": "MQTT teema kliimaseadmete toite oleku muutmise k\u00e4skude avaldamiseks. Saadab kasuliku koormuse, mis on konfigureeritud kasuliku koormusega \"sisse\" v\u00f5i kasuliku koormusega \"v\u00e4lja\". [Lisateave.] ( {url} #power_command_topic)"
+                            },
+                            "name": "V\u00f5imsuse seaded"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "Eelseadistatud re\u017eiimi k\u00e4su mall",
+                                "preset_mode_command_topic": "Eelseadistatud re\u017eiimi k\u00e4su teema",
+                                "preset_mode_state_topic": "Eelseadistatud re\u017eiimi oleku teema",
+                                "preset_mode_value_template": "Eelseadistatud re\u017eiimi v\u00e4\u00e4rtuse mall",
+                                "preset_modes": "Eelseadistatud re\u017eiimid"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "[mall]({command_templating_url}) eelseadistatud re\u017eiimi k\u00e4su teemas avaldatava kasuliku koormuse koostamiseks.",
+                                "preset_mode_command_topic": "MQTT-teema, et avaldada k\u00e4ske kliimaseadme eelseadistatud re\u017eiimi muutmiseks. [Lisateave.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "MQTT-teema mis on tellitud ventilaatori eelseadistatud re\u017eiimi vastuv\u00f5tmiseks. [Lisateave.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "M\u00e4\u00e4rab [malli]({value_templating_url}) ventilaatori eelseadistatud re\u017eiimi v\u00e4\u00e4rtuse hankimiseks.",
+                                "preset_modes": "Eelseadistatud re\u017eiimide loend, milles see kliimaseade on v\u00f5imeline t\u00f6\u00f6tama. Levinud eelseadistatud re\u017eiimid, mis t\u00f5lkeid pakuvad, on \"puudub\", \"eemal\", \"\u00f6ko\", \"v\u00f5imendus\", \"mugavus\", \"kodu\", \"uni\" ja \"tegevus\"."
+                            },
+                            "name": "Eelseadistatud re\u017eiimi s\u00e4tted"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "Horisontaalse kiikumisre\u017eiimi k\u00e4skude mall",
+                                "swing_horizontal_mode_command_topic": "Horisontaalse kiikumisre\u017eiimi k\u00e4su teema",
+                                "swing_horizontal_mode_state_template": "Horisontaalse kiikumisre\u017eiimi oleku mall",
+                                "swing_horizontal_mode_state_topic": "Horisontaalse kiikumisre\u017eiimi oleku teema",
+                                "swing_horizontal_modes": "Horisontaalsed \u00f5\u00f5tsumisre\u017eiimid"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "[Template]( {command_templating_url} ) horisontaalse kiikumisre\u017eiimi k\u00e4suteemas avaldatava kasuliku koormuse koostamiseks.",
+                                "swing_horizontal_mode_command_topic": "MQTT teema, et avaldada k\u00e4ske kliimaseadme horisontaalse kiikumise re\u017eiimi muutmiseks. [Lisateave.]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "M\u00e4\u00e4rab [template]( {value_templating_url} ) kliima horisontaalse kiikumisre\u017eiimi v\u00e4\u00e4rtuse ekstraheerimiseks.",
+                                "swing_horizontal_mode_state_topic": "MQTT teema tellis kliimaseadme horisontaalse kiikumise re\u017eiimi. [Lisateave.] ( {url} #swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "Loetelu horisontaalsetest kiikre\u017eiimidest, millega see kliima on v\u00f5imeline t\u00f6\u00f6tama. Tavalised horisontaalse kiikumise re\u017eiimid, mis pakuvad t\u00f5lkeid, on \"v\u00e4lja\" ja \"sisse\"."
+                            },
+                            "name": "Horisontaalse kiikumise re\u017eiimi seaded"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "Kiigere\u017eiimi k\u00e4sumall",
+                                "swing_mode_command_topic": "Kiikumisre\u017eiimi k\u00e4su teema",
+                                "swing_mode_state_template": "Kiikumisre\u017eiimi oleku mall",
+                                "swing_mode_state_topic": "Kiikumisre\u017eiimi oleku teema",
+                                "swing_modes": "\u00d5\u00f5tsumise re\u017eiimid"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "[Template]( {command_templating_url} ) swing-re\u017eiimi k\u00e4suteemas avaldatava kasuliku koormuse koostamiseks.",
+                                "swing_mode_command_topic": "MQTT-teema, et avaldada k\u00e4ske kliima \u00f5\u00f5tsumisre\u017eiimi muutmiseks. [Lisateave.]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "M\u00e4\u00e4rab [template]( {value_templating_url} ) kliimamuutuste re\u017eiimi v\u00e4\u00e4rtuse ekstraheerimiseks.",
+                                "swing_mode_state_topic": "MQTT-teema, mis on tellitud kliima \u00f5\u00f5tsumisre\u017eiimi vastuv\u00f5tmiseks. [Lisateave.]({url}#swing_mode_state_topic)",
+                                "swing_modes": "Loetelu \u00f5\u00f5tsumisre\u017eiimidest, millega see kliima on v\u00f5imeline t\u00f6\u00f6tama. Tavalised liikumisv\u00f5imalused on \"v\u00e4lja\", \"sisse\", \"vertikaalne\", \"horisontaalne\" ja \"m\u00f5lemad\"."
+                            },
+                            "name": "\u00d5\u00f5tsumise re\u017eiimi seaded"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Kasulik koormus \"sulge\"",
+                                "payload_open": "Kasulik koormus \"ava\"",
+                                "payload_stop": "Kasulik koormus \"stopp\"",
+                                "payload_stop_tilt": "Kasulik koormus \"peata kallutus\"",
+                                "state_closed": "Olek \"suletud\"",
+                                "state_closing": "Olek \"sulgemine\"",
+                                "state_open": "Olek \"avatud\"",
+                                "state_opening": "Olek \"avamine\"",
+                                "state_stopped": "Olek \"peatatud\""
+                            },
+                            "data_description": {
+                                "payload_close": "Kasulik koormus, mis saadetakse k\u00e4su \"sulge\" v\u00e4ljastamisel.",
+                                "payload_open": "Kasulik koormus, mis saadetakse k\u00e4su \"avamine\" v\u00e4ljastamisel.",
+                                "payload_stop": "Kasulik koormus, mis saadetakse k\u00e4su \"stop\" v\u00e4ljastamisel. Peatamisfunktsiooni keelamiseks j\u00e4tke t\u00fchjaks.",
+                                "payload_stop_tilt": "Kasulik koormus, mis saadetakse k\u00e4su \"peata kallutamine\" v\u00e4ljastamisel.",
+                                "state_closed": "Olekuteemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab olekut \"suletud\".",
+                                "state_closing": "Oleku teemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab \"sulgumine\" olekut.",
+                                "state_open": "Kasuliku koormuse vastuv\u00f5tt oleku teemas, mis t\u00e4histab \"avatud\" olekut.",
+                                "state_opening": "Kasulik koormus, mis on saadud oleku teemal, mis t\u00e4histab \"avaneb\" olekut.",
+                                "state_stopped": "Oleku teemas vastuv\u00f5etud kasulik koormus mis t\u00e4histab olekut \"peatatud\" (kaante puhul, mis ei kajasta olekut \"avatud\"/\"suletud\")."
+                            },
+                            "name": "Kasuliku koormuse s\u00e4tted"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "Positsiooni \"suletud\" v\u00e4\u00e4rtus",
+                                "position_open": "Positsiooni \"avatud\" v\u00e4\u00e4rtus",
+                                "position_template": "Positsiooniv\u00e4\u00e4rtuse mall",
+                                "position_topic": "Positsiooni oleku teema",
+                                "set_position_template": "M\u00e4\u00e4ra positsiooni mall",
+                                "set_position_topic": "Seadista positsiooni teema"
+                            },
+                            "data_description": {
+                                "position_closed": "Number mis t\u00e4histab \"suletud\" positsiooni.",
+                                "position_open": "Number mis t\u00e4histab \"avatud\" asendit.",
+                                "position_template": "M\u00e4\u00e4ratleb [malli]({value_templating_url}) positsiooniteema kasuliku koormuse v\u00e4ljav\u00f5tmiseks. Malli sees on saadaval ka j\u00e4rgmised muutujad: `entity_id`, `position_open`, `position_closed`, `tilt_min` ja `tilt_max`. [Lisateave.]({url}#positsioon_mall)",
+                                "position_topic": "MQTT teema tellis kattepositsiooni oleku teadete vastuv\u00f5tmise. [Lisateave.]({url}#position_topic)",
+                                "set_position_template": "[Mall]({command_templating_url}) m\u00e4\u00e4rata m\u00e4\u00e4ratud positsiooni teemasse saadetav positsioon. Vormis on saadaval j\u00e4rgmised muutujad: \"v\u00e4\u00e4rtus\" (skaleeritud sihtpositsioon), \"entity_id\", \"positsioon\" (sihtpositsiooni protsent), \"position_open\", \"position_closed\", \"tilt_min\" ja \"tilt_max\". [Lisateave.]({url}#set_position_template)",
+                                "set_position_topic": "MQTT teema kuhu positsioonik\u00e4ske avaldada. Kui soovid kasutada positsiooni teemat, pead kasutama ka m\u00e4\u00e4ratud positsiooni teemat. Kasuta malli, kui positsiooni teema soovib teistsuguseid v\u00e4\u00e4rtusi kui vahemikus \"positsioon suletud\" - \"position_open\". Kui mall ei ole defineeritud ja positsioon \"suletud\" != 100 ja positsioon \"avatud\" != 0, siis arvutatakse \u00f5ige positsiooni v\u00e4\u00e4rtus protsendilisest positsioonist. [Lisateave.]({url}#set_position_topic)"
+                            },
+                            "name": "Positsiooniseaded"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "Kallutuse \"suletud\" v\u00e4\u00e4rtus",
+                                "tilt_command_template": "Kallutusk\u00e4su mall",
+                                "tilt_command_topic": "Kallutusk\u00e4su teema",
+                                "tilt_max": "Max kallutus",
+                                "tilt_min": "Min kallutus",
+                                "tilt_opened_value": "Kallutuse \"avatud\" v\u00e4\u00e4rtus",
+                                "tilt_optimistic": "Kallutamine optimistlik",
+                                "tilt_status_template": "Kallutusv\u00e4\u00e4rtuse mall",
+                                "tilt_status_topic": "Kallutuse oleku teema"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "V\u00e4\u00e4rtus, mis saadetakse \"m\u00e4\u00e4ra kallutamise teema\", kui avakatte kalle on suletud.",
+                                "tilt_command_template": "[Mall]({command_templating_url}) m\u00e4\u00e4ratud kaldeteemasse saadetava asendi m\u00e4\u00e4ramiseks. Vormis on saadaval j\u00e4rgmised muutujad: \"entity_id\", \"tilt_position\" (sihtkaldeasendi protsent), \"position_open\", \"position_closed\", \"tilt_min\" ja \"tilt_max\". [Lisateave.]({url}#tilt_command_template)",
+                                "tilt_command_topic": "MQTT teema avakatte kalde juhtimise k\u00e4skude avaldamiseks. [Lisateave.]({url}#tilt_command_topic)",
+                                "tilt_max": "Maksimaalne kallutusv\u00e4\u00e4rtus.",
+                                "tilt_min": "Minimaalne kallutusv\u00e4\u00e4rtus.",
+                                "tilt_opened_value": "V\u00e4\u00e4rtus, mis saadetakse katte kallutamise avamisel kallutusk\u00e4su teemasse.",
+                                "tilt_optimistic": "Lipp, mis m\u00e4\u00e4rab, kas kallutamine t\u00f6\u00f6tab optimistlikus re\u017eiimis. Kui kallutamise oleku teema pole m\u00e4\u00e4ratletud, t\u00f6\u00f6tab kallutamine vaikimisi optimisre\u017eiimis. [Lisateave.]({url}#tilt_optimistic)",
+                                "tilt_status_template": "M\u00e4\u00e4ratleb [malli]({value_templating_url}) kaldeoleku teema kasuliku koormuse eraldamiseks. Vormis on saadaval j\u00e4rgmised muutujad: \"entity_id\", \"position_open\", \"position_closed\", \"tilt_min\" ja \"tilt_max\". [Lisateave.]({url}#tilt_status_template)",
+                                "tilt_status_topic": "MQTT teema tellis kaldeoleku v\u00e4rskendusv\u00e4\u00e4rtuste saamiseks. [Lisateave.]({url}#tilt_status_topic)"
+                            },
+                            "name": "Kallutuss\u00e4tted"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "Praeguse \u00f5huniiskuse mall",
+                                "current_humidity_topic": "Praeguse \u00f5huniiskuse teema"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "M\u00e4\u00e4rab [template]( {value_templating_url} ) praeguse \u00f5huniiskuse v\u00e4\u00e4rtuse ekstraheerimiseks. [Lisateave.]( {url} #current_humidity_template)",
+                                "current_humidity_topic": "MQTT-teema, mis on tellitud, et saada jooksvaid niiskuse ajakohastatud v\u00e4\u00e4rtusi. [Lisateave.]({url}#current_humidity_topic)"
+                            },
+                            "name": "Praegused niiskuse seaded"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "Praeguse temperatuuri mall",
+                                "current_temperature_topic": "Praeguse temperatuuri teema"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "M\u00e4\u00e4rab [template]( {value_templating_url} ) praeguse temperatuuri v\u00e4\u00e4rtuse ekstraheerimiseks. [Lisateave.]( {url} #current_temperature_template)",
+                                "current_temperature_topic": "MQTT-teema, mis on tellitud, et saada jooksvaid temperatuuri ajakohastatud v\u00e4\u00e4rtusi. [Lisateave.]({url}#current_temperature_topic)"
+                            },
+                            "name": "Praegused temperatuuri seaded"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "Suuna k\u00e4su mall",
+                                "direction_command_topic": "Suuna k\u00e4su teema",
+                                "direction_state_topic": "Suuna oleku teema",
+                                "direction_value_template": "Suuna v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "direction_command_template": "A [mall]({command_templating_url}), et koostada suunamisk\u00e4skude teemas avaldatav kasuliku sisu. Malli muutuja `value` on kas `forward` v\u00f5i `reverse`.",
+                                "direction_command_topic": "MQTT-teema, et avaldada k\u00e4ske ventilaatori suuna muutmiseks. Maksukoormus on kas `forward` v\u00f5i `reverse` ja seda saab kohandada, kasutades suuna muutmise k\u00e4su malli. [Lisateave.]({url}#direction_command_topic)",
+                                "direction_state_topic": "MQTT-teema mis on tellitud ventilaatori suuna oleku vastuv\u00f5tmiseks. Aktsepteeritud olekud on `forward` v\u00f5i `reverse`. [Lisateave.]({url}#direction_state_topic)",
+                                "direction_value_template": "M\u00e4\u00e4rab [malli]({value_templating_url}) ventilaatori suuna oleku v\u00e4\u00e4rtuse eraldamiseks. Mall peaks tagastama kas \"edasi\" v\u00f5i \"tagurpidi\". Kui mall tagastab t\u00fchja stringi, ignoreeritakse suunda."
+                            },
+                            "name": "Suuna seaded"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "V\u00f5nkumise k\u00e4su mall",
+                                "oscillation_command_topic": "V\u00f5nkumise k\u00e4su teema",
+                                "oscillation_state_topic": "V\u00f5nkumise oleku teema",
+                                "oscillation_value_template": "V\u00f5nkumise v\u00e4\u00e4rtuse mall",
+                                "payload_oscillation_off": "Kasulik koormus \"v\u00f5nkumine v\u00e4ljas\"",
+                                "payload_oscillation_on": "Kasulik koormus \"v\u00f5nkumine sees\""
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "[mall]({command_templating_url}) v\u00f5nkek\u00e4su teemas avaldatava kasuliku koormuse koostamiseks.",
+                                "oscillation_command_topic": "MQTT teema ventilaatori v\u00f5nkumise oleku muutmise k\u00e4skude avaldamiseks. [Lisateave.] ( {url} #oscillation_command_topic)",
+                                "oscillation_state_topic": "MQTT-teema mis on tellitud ventilaatori v\u00f5nkumise seisundi vastuv\u00f5tmiseks. [Lisateave.]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "M\u00e4\u00e4ratb [malli]({value_templating_url}) ventilaatori v\u00f5nkumise oleku v\u00e4\u00e4rtuse eraldamiseks.",
+                                "payload_oscillation_off": "Kasulik koormus mis t\u00e4histab v\u00f5nkumise olekut \"v\u00e4ljas\".",
+                                "payload_oscillation_on": "Kasulik koormus mis t\u00e4histab v\u00f5nkumist \"sees\"."
+                            },
+                            "name": "V\u00f5nkumise seaded"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Kasulik koormus \"l\u00e4htesta eelseadistatud re\u017eiim\"",
+                                "preset_mode_command_template": "Eelseadistatud re\u017eiimi k\u00e4su mall",
+                                "preset_mode_command_topic": "Eelseadistatud re\u017eiimi k\u00e4su teema",
+                                "preset_mode_state_topic": "Eelseadistatud re\u017eiimi oleku teema",
+                                "preset_mode_value_template": "Eelseadistatud re\u017eiimi v\u00e4\u00e4rtuse mall",
+                                "preset_modes": "Eelseadistatud re\u017eiimid"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Spetsiaalne kasulik koormus mis l\u00e4htestab ventilaatori eelseadistatud re\u017eiimi oleku atribuudi tundmatuks kui see v\u00f5etakse vastu eelseadistatud re\u017eiimi oleku teemas.",
+                                "preset_mode_command_template": "[mall]({command_templating_url}) eelseadistatud re\u017eiimi k\u00e4su teemas avaldatava kasuliku koormuse koostamiseks.",
+                                "preset_mode_command_topic": "MQTT teema ventilaatori eelseadistatud re\u017eiimi muutmise k\u00e4skude avaldamiseks. [Lisateave.] ( {url} #preset_mode_command_topic)",
+                                "preset_mode_state_topic": "MQTT-teema mis on tellitud ventilaatori eelseadistatud re\u017eiimi vastuv\u00f5tmiseks. [Lisateave.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "M\u00e4\u00e4rab [malli]({value_templating_url}) ventilaatori eelseadistatud re\u017eiimi v\u00e4\u00e4rtuse hankimiseks.",
+                                "preset_modes": "Selle ventilaatori eelseadistatud re\u017eiimide loend. Levinud n\u00e4ited on automaatne, nutikas, vihisev, \u00f6ko ja tuuleiil."
+                            },
+                            "name": "Eelseadistatud re\u017eiimi s\u00e4tted"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Kasulik koormus \"protsendi l\u00e4htestamine\"",
+                                "percentage_command_template": "Protsendiv\u00e4\u00e4rtuse k\u00e4su mall",
+                                "percentage_command_topic": "Protsendiv\u00e4\u00e4rtuse k\u00e4su teema",
+                                "percentage_state_topic": "Protsendiv\u00e4\u00e4rtuse teema",
+                                "percentage_value_template": "Protsendiv\u00e4\u00e4rtuse mall",
+                                "speed_range_max": "Kiiruse vahemik max",
+                                "speed_range_min": "Kiiruse vahemik min"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Spetsiaalne kasulik koormus, mis l\u00e4htestab ventilaatori kiiruse protsentuaalse oleku atribuudi tundmatuks, kui see v\u00f5etakse vastu protsentuaalse oleku teemas.",
+                                "percentage_command_template": "[template]( {command_templating_url} ) k\u00e4su protsenditeema juures avaldatava kasuliku koormuse koostamiseks.",
+                                "percentage_command_topic": "MQTT-teema k\u00e4skude avaldamiseks, et muuta ventilaatori kiiruse olekut protsentuaalse seadistuse alusel. V\u00e4\u00e4rtus peab olema vahemikus \"speed range min\" kuni \"speed range max\". [Lisateave.]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "MQTT-teema, mis on tellitud ventilaatori kiiruse seisundi vastuv\u00f5tmiseks. See on v\u00e4\u00e4rtus vahemikus \"speed range min\" kuni \"speed range max\". [Lisateave.]({url}#percentage_state_topic)",
+                                "percentage_value_template": "M\u00e4\u00e4ratleb [malli]({value_templating_url}), et eraldada kiiruse protsent.",
+                                "speed_range_max": "Numbrilise v\u00e4ljundvahemiku maksimum (vastab 100 %-le). Protsentuaalne samm on 100 / kiiruste arv \"kiirusvahemikus\".",
+                                "speed_range_min": "Numbrilise v\u00e4ljundvahemiku miinimum (v\u00e4lja l\u00fclitatud ei ole, nii et speed_range_min - 1 t\u00e4hendab 0 %). Protsentuaalne samm on 100 / kiiruste arv \"kiirusvahemikus\"."
+                            },
+                            "name": "Kiiruse seaded"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "Eraldi heledus",
+                                "brightness_command_template": "Heleduse k\u00e4su mall",
+                                "brightness_command_topic": "Heleduse k\u00e4su teema",
+                                "brightness_scale": "Heleduse skaala",
+                                "brightness_state_topic": "Heleduse oleku teema",
+                                "brightness_value_template": "Heleduse v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "brightness": "Lipp, mis m\u00e4\u00e4rab kas valgus toetab heledust kui toetatakse RGB, RGBW v\u00f5i RGBWW v\u00e4rvire\u017eiimi.",
+                                "brightness_command_template": "[Template]( {command_templating_url} ) k\u00e4su teemas heleduse avaldatava kasuliku koormuse koostamiseks.",
+                                "brightness_command_topic": "Avaldamise teema, mida kasutatakse heleduse juhtimiseks. [Lisateave.]( {url} #brightness_command_topic)",
+                                "brightness_scale": "M\u00e4\u00e4rab maksimaalse heleduse v\u00e4\u00e4rtuse (st 100%).",
+                                "brightness_state_topic": "MQTT-teema mis on tellitud heleduse oleku v\u00e4\u00e4rtuste vastuv\u00f5tmiseks. [Lisateave.]({url}#brightness_state_topic)",
+                                "brightness_value_template": "M\u00e4\u00e4rab heleduse v\u00e4\u00e4rtuse eraldamiseks malli [template]( {value_templating_url} )."
+                            },
+                            "name": "Heleduse seaded"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "V\u00e4rvire\u017eiimi oleku teema",
+                                "color_mode_value_template": "V\u00e4rvire\u017eiimi v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "MQTT-teema mis on tellitud v\u00e4rvire\u017eiimi uuenduste vastuv\u00f5tmiseks. Kui seda ei ole konfigureeritud, m\u00e4\u00e4ratakse v\u00e4rvire\u017eiim automaatselt vastavalt viimasele vastuv\u00f5etud kehtivale v\u00e4rvile v\u00f5i v\u00e4rvitemperatuurile.",
+                                "color_mode_value_template": "M\u00e4\u00e4rab [template]( {value_templating_url} ) v\u00e4rvire\u017eiimi v\u00e4\u00e4rtuse eraldamiseks."
+                            },
+                            "name": "V\u00e4rvire\u017eiimi seaded"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "V\u00e4rvitemperatuuri k\u00e4su mall",
+                                "color_temp_command_topic": "V\u00e4rvitemperatuuri k\u00e4su teema",
+                                "color_temp_state_topic": "V\u00e4rvitemperatuuri oleku teema",
+                                "color_temp_value_template": "V\u00e4rvitemperatuuri v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "[template]( {command_templating_url} ) v\u00e4rvitemperatuuri k\u00e4suteemas avaldatava kasuliku koormuse koostamiseks.",
+                                "color_temp_command_topic": "Avaldamise teema mida kasutatakse v\u00e4rvitemperatuuri reguleerimiseks. [Lisateave.]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "MQTT-teema, mis on tellitud v\u00e4rvitemperatuuri oleku uuenduste vastuv\u00f5tmiseks. [Lisateave.]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "M\u00e4\u00e4rab [template]( {value_templating_url} ) v\u00e4rvitemperatuuri v\u00e4\u00e4rtuse ekstraheerimiseks."
+                            },
+                            "name": "V\u00e4rvitemperatuuri seaded"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Efekt",
+                                "effect_command_template": "Efekti k\u00e4su mall",
+                                "effect_command_topic": "Efekti k\u00e4su teema",
+                                "effect_list": "Efektide loend",
+                                "effect_state_topic": "Efekti oleku teema",
+                                "effect_template": "Efekti mall",
+                                "effect_value_template": "Efekti v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "effect": "Lipp mis m\u00e4\u00e4rab kas valgus toetab efekte.",
+                                "effect_command_template": "[template]( {command_templating_url} ) k\u00e4su teemas avaldatava kasuliku koormuse koostamiseks.",
+                                "effect_command_topic": "Avaldamise teema mida kasutatakse valguse efekti oleku juhtimiseks. [Lisateave.] ( {url} #effect_command_topic)",
+                                "effect_list": "Valguse toetatavate efektide loend.",
+                                "effect_state_topic": "MQTT-teema, mis on tellitud, et saada m\u00f5ju seisundi uuendusi. [Lisateave.]({url}#effect_state_topic)"
+                            },
+                            "name": "Efekti seaded"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "HS k\u00e4su mall",
+                                "hs_command_topic": "HS-i k\u00e4su teema",
+                                "hs_state_topic": "HS oleku teema",
+                                "hs_value_template": "HS v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "hs_command_template": "M\u00e4\u00e4rab malli [template]( {command_templating_url} ) HS k\u00e4suteemale saadetava s\u00f5numi koostamiseks. Saadaval olevad muutujad: `hue` ja `sat`.",
+                                "hs_command_topic": "MQTT teema kus avaldatakse k\u00e4ske valguse v\u00e4rvioleku muutmiseks HS-vormingus (toon/k\u00fcllastus). Tooni vahemik: 0\u00b0 .. 360\u00b0, k\u00fcllastusvahemik: 0..100. M\u00e4rkus: Heledus saadetakse heleduse k\u00e4skude teemas eraldi. [Lisateave.] ( {url} #hs_command_topic)",
+                                "hs_state_topic": "MQTT teema, mis on tellitud, et saada v\u00e4rvuse oleku uuendusi HS-vormingus. Eeldatav kasuliku koormuse v\u00e4\u00e4rtus on v\u00e4rvitooni ja k\u00fcllastuse v\u00e4\u00e4rtused, mis on eraldatud komadega, n\u00e4iteks `359.5,100.0`. M\u00e4rkus: heledus v\u00f5etakse eraldi vastu heleduse oleku teemas. [Lisateave.]({url}#hs_state_topic)",
+                                "hs_value_template": "M\u00e4\u00e4rab HS-v\u00e4\u00e4rtuse ekstraheerimiseks malli [template]( {value_templating_url} )."
+                            },
+                            "name": "HS v\u00e4rvire\u017eiimi seaded"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "RGB k\u00e4skude mall",
+                                "rgb_command_topic": "RGB k\u00e4skluse teema",
+                                "rgb_state_topic": "RGB oleku teema",
+                                "rgb_value_template": "RGB v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "M\u00e4\u00e4rab malli [template]( {command_templating_url} ) RGB k\u00e4suteemale saadetava s\u00f5numi koostamiseks. Saadaval olevad muutujad: `red`, `green` ja `blue`.",
+                                "rgb_command_topic": "MQTT teema kus avaldatakse k\u00e4ske valguse RGB oleku muutmiseks. [Lisateave.] ( {url} #rgb_command_topic)",
+                                "rgb_state_topic": "MQTT-teema, mis on tellitud RGB oleku uuenduste vastuv\u00f5tmiseks. Eeldatav kasuliku koormuse moodustavad komadega eraldatud RGB-v\u00e4\u00e4rtused, n\u00e4iteks `255,0,127`. [Lisateave.]({url}#rgb_state_topic)",
+                                "rgb_value_template": "M\u00e4\u00e4rab RGB-v\u00e4\u00e4rtuse eraldamiseks malli [template]( {value_templating_url} )."
+                            },
+                            "name": "RGB v\u00e4rvire\u017eiimi seaded"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "RGBW k\u00e4su mall",
+                                "rgbw_command_topic": "RGBW k\u00e4su teema",
+                                "rgbw_state_topic": "RGBW oleku teema",
+                                "rgbw_value_template": "RGBW v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "M\u00e4\u00e4ratleb [malli]({command_templating_url}) s\u00f5numi koostamiseks, mis saadetakse RGBW k\u00e4su teemasse. Saadaolevad muutujad: `punane`, `roheline`, `sinine` ja `valge`.",
+                                "rgbw_command_topic": "MQTT teema kus avaldatakse k\u00e4ske valguse RGBW oleku muutmiseks. [Lisateave.] ( {url} #rgbw_command_topic)",
+                                "rgbw_state_topic": "MQTT-teema mis on tellitud RGBW oleku uuenduste vastuv\u00f5tmiseks. Eeldatav kasuliku koormuse moodustavad RGBW-v\u00e4\u00e4rtused, mis on eraldatud komadega, n\u00e4iteks `255,0,127,64`. [Lisateave.]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "M\u00e4\u00e4rab RGBW v\u00e4\u00e4rtuse eraldamiseks [malli]({value_templating_url})."
+                            },
+                            "name": "RGBW v\u00e4rvire\u017eiimi seaded"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "RGBWW k\u00e4su mall",
+                                "rgbww_command_topic": "RGBWW k\u00e4su teema",
+                                "rgbww_state_topic": "RGBWW oleku teema",
+                                "rgbww_value_template": "RGBWW v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "M\u00e4\u00e4rab [malli]({command_templating_url}) RGBWW k\u00e4suteemale saadetava s\u00f5numi koostamiseks. Saadaval olevad muutujad: `red`, `green`, `blue`, `cold_white` ja `warm_white`.",
+                                "rgbww_command_topic": "MQTT teema kus avaldatakse k\u00e4ske valguse RGBWW oleku muutmiseks. [Lisateave.] ( {url} #rgbww_command_topic)",
+                                "rgbww_state_topic": "MQTT-teema mis on tellitud RGBWW oleku uuenduste vastuv\u00f5tmiseks. Eeldatava kasuliku koormuse moodustavad komadega eraldatud RGBWW-v\u00e4\u00e4rtused, n\u00e4iteks \"255,0,127,64,32\". [Lisateave.]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "M\u00e4\u00e4rab RGBWW v\u00e4\u00e4rtuse eraldamiseks [malli]({value_templating_url})."
+                            },
+                            "name": "RGBWW v\u00e4rvire\u017eiimi seaded"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "Valge k\u00e4su teema",
+                                "white_scale": "Valge skaala"
+                            },
+                            "data_description": {
+                                "white_command_topic": "MQTT-teema, et avaldada k\u00e4sud valguse muutmiseks valge re\u017eiimile antud heledusega. [Lisateave.]({url}#white_command_topic)",
+                                "white_scale": "M\u00e4\u00e4rab maksimaalse valge taseme (st 100%) maksimaalsest."
+                            },
+                            "name": "Valge v\u00e4rvire\u017eiimi seaded"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "XY k\u00e4su mall",
+                                "xy_command_topic": "XY k\u00e4su teema",
+                                "xy_state_topic": "XY oleku teema",
+                                "xy_value_template": "XY-v\u00e4\u00e4rtuse mall"
+                            },
+                            "data_description": {
+                                "xy_command_template": "M\u00e4\u00e4rab [malli]({command_templating_url}) s\u00f5numi koostamiseks, mis saadetakse XY k\u00e4suteemale. Saadaval olevad muutujad: `x` ja `y`.",
+                                "xy_command_topic": "MQTT teema, kus avaldatakse k\u00e4ske valguse XY oleku muutmiseks. [Lisateave.] ( {url} #xy_command_topic)",
+                                "xy_state_topic": "MQTT teema tellis XY oleku v\u00e4rskenduste saamise. Oodatav kasulik koormus on komadega eraldatud X ja Y v\u00e4rviv\u00e4\u00e4rtused, n\u00e4iteks `0.675,0.322`. [Lisateave.]( {url} #xy_state_topic)",
+                                "xy_value_template": "M\u00e4\u00e4rab [malli]({value_templating_url}) XY-v\u00e4\u00e4rtuse eraldamiseks."
+                            },
+                            "name": "XY v\u00e4rvire\u017eiimi s\u00e4tted"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Kasulik koormus \"lukusta\"",
+                                "payload_open": "Kasulik koormus \"ava\"",
+                                "payload_reset": "Kasulik koormuse \"l\u00e4htestamine\"",
+                                "payload_unlock": "Kasulik koormus \"ava lukust\"",
+                                "state_jammed": "Olek \"kinni kiilunud\"",
+                                "state_locked": "Olek \"lukustatud\"",
+                                "state_locking": "Olek \"lukustamine\"",
+                                "state_unlocked": "Olek \"lukustamata\"",
+                                "state_unlocking": "Olek \"avamine\""
+                            },
+                            "data_description": {
+                                "payload_lock": "Kasulik koormus, mis saadetakse k\u00e4su \"ava\" v\u00e4ljastamisel.",
+                                "payload_open": "Kasulik koormus mis saadetakse k\u00e4su \"avamine\" v\u00e4ljastamisel. M\u00e4\u00e4ra see kasulik koormus kui lukk toetab toimingut \"ava\".",
+                                "payload_reset": "Oleku teemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab luku m\u00e4\u00e4ramata olekut.",
+                                "payload_unlock": "Kasulik koormus, mis saadetakse k\u00e4su \"lukusta lahti\" v\u00e4ljastamisel.",
+                                "state_jammed": "Olekuteemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab olekut \"kinni kiilunud\".",
+                                "state_locked": "Olekuteemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab olekut \"lukustatud\".",
+                                "state_locking": "Oleku teemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab \"lukustumine\" olekut.",
+                                "state_unlocked": "Oleku teemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab \"avatud\" olekut.",
+                                "state_unlocking": "Oleku teemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab \"avanemine\" olekut."
+                            },
+                            "name": "Luku kasuliku koormuse seaded"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Aegub p\u00e4rast",
+                                "flash": "V\u00e4lgtuse tugi",
+                                "flash_time_long": "Pika v\u00e4lgatuse aeg",
+                                "flash_time_short": "L\u00fchikese v\u00e4lgatuse aeg",
+                                "max_kelvin": "Max Kelvin",
+                                "min_kelvin": "Min Kelvin",
+                                "off_delay": "V\u00e4ljal\u00fclitusviivitus",
+                                "transition": "\u00dclemineku tugi"
+                            },
+                            "data_description": {
+                                "expire_after": "Kui see on m\u00e4\u00e4ratud, m\u00e4\u00e4rab see sekundite arvu p\u00e4rast anduri oleku aegumist kui seda ei v\u00e4rskendata. P\u00e4rast aegumist muutub anduri olek k\u00e4ttesaamatuks. Kui seda pole m\u00e4\u00e4ratud, ei aegu anduri olek kunagi. [Lisateave.]({url}#expire_after)",
+                                "flash": "L\u00fclita selle valguse v\u00e4lklambi funktsioon sisse",
+                                "flash_time_long": "\"Pika\" v\u00e4lgatuse kestus sekundites.",
+                                "flash_time_short": "\"L\u00fchikese\" v\u00e4lgatuse kestus sekundites.",
+                                "max_kelvin": "Maksimaalne v\u00e4rvitemperatuur Kelvinites.",
+                                "min_kelvin": "Minimaalne v\u00e4rvitemperatuur Kelvinites.",
+                                "off_delay": "Andurite puhul, mis saadavad ainult \"sees\" oleku v\u00e4rskendusi (nagu PIR-id), m\u00e4\u00e4rab see muutuja sekundites viivituse mille m\u00f6\u00f6dudes anduri olek v\u00e4rskendatakse tagasi \"v\u00e4ljas\" olekusse.",
+                                "transition": "Luba selle valgusti \u00fcleminekufunktsioon"
+                            },
+                            "name": "Muud seaded"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "K\u00e4su \"off\" mall"
+                            },
+                            "name": "Muud sireeni seaded"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "Maksimaalne \u00f5huniiskus",
+                                "min_humidity": "Minimaalne \u00f5huniiskus",
+                                "target_humidity_command_template": "Sihtniiskuse k\u00e4su mall",
+                                "target_humidity_command_topic": "Sihtniiskuse k\u00e4su teema",
+                                "target_humidity_state_template": "Sihtniiskuse oleku mall",
+                                "target_humidity_state_topic": "Sihtniiskuse oleku teema"
+                            },
+                            "data_description": {
+                                "max_humidity": "Maksimaalne seatav \u00f5huniiskuse sihtv\u00e4\u00e4rtus.",
+                                "min_humidity": "Minimaalne seatav \u00f5huniiskuse sihtv\u00e4\u00e4rtus.",
+                                "target_humidity_command_template": "[Template]( {command_templating_url} ) sihtniiskuse k\u00e4suteemas avaldatava kasuliku koormuse koostamiseks.",
+                                "target_humidity_command_topic": "MQTT teema, et avaldada k\u00e4ske kliima sihtniiskuse muutmiseks. [Lisateave.]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "[template]( {value_templating_url} ), millega renderdada sihtniiskuse oleku teemal saadud v\u00e4\u00e4rtust.",
+                                "target_humidity_state_topic": "MQTT teema, et tellida sihtniiskuse muutuste kohta teavet. [Lisateave.] ( {url} #niiskuse_seisund_teema)"
+                            },
+                            "name": "Sihtniiskuse seaded"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Algne temperatuur",
+                                "max_temp": "Maksimaalne temperatuur",
+                                "min_temp": "Minimaalne temperatuur",
+                                "precision": "T\u00e4psus",
+                                "temp_step": "Temperatuuri samm",
+                                "temperature_command_template": "Temperatuuri k\u00e4su mall",
+                                "temperature_command_topic": "Temperatuuri k\u00e4su teema",
+                                "temperature_high_command_template": "\u00dclemise temperatuuri k\u00e4su mall",
+                                "temperature_high_command_topic": "\u00dclemise temperatuuri k\u00e4su teema",
+                                "temperature_high_state_template": "\u00dclemise temperatuuri oleku mall",
+                                "temperature_high_state_topic": "\u00dclemise temperatuuri oleku teema",
+                                "temperature_low_command_template": "Madalama temperatuuri k\u00e4su mall",
+                                "temperature_low_command_topic": "Madalama temperatuuri k\u00e4su teema",
+                                "temperature_low_state_template": "Madalama temperatuuri oleku mall",
+                                "temperature_low_state_topic": "Madalama temperatuuri oleku teema",
+                                "temperature_state_template": "Temperatuuri oleku mall",
+                                "temperature_state_topic": "Temperatuuri oleku teema"
+                            },
+                            "data_description": {
+                                "initial": "Seade k\u00e4ivitub selle sihttemperatuuriga.",
+                                "max_temp": "Maksimaalne sihttemperatuur mida saab m\u00e4\u00e4rata.",
+                                "min_temp": "Minimaalne sihttemperatuur mida saab m\u00e4\u00e4rata.",
+                                "precision": "Termostaadi t\u00f6\u00f6tamise t\u00e4psus kraadides.",
+                                "temp_step": "Sihttemperatuuri samm Celsiuse v\u00f5i Fahrenheiti kraadides.",
+                                "temperature_command_template": "[Template]( {command_templating_url} ) temperatuuri k\u00e4su teemas avaldatava kasuliku koormuse koostamiseks.",
+                                "temperature_command_topic": "MQTT teema sihttemperatuuri muutmise k\u00e4skude avaldamiseks. [Lisateave.] ( {url} #temperatuuri_k\u00e4sk_teema)",
+                                "temperature_high_command_template": "[Malli]( {command_templating_url} ) abil koostatakse \u00fclemise temperatuuri k\u00e4suteemas avaldatav kasulik koormus.",
+                                "temperature_high_command_topic": "MQTT teema, et avaldada k\u00e4ske kliima \u00fclemise sihttemperatuuri muutmiseks. [Lisateave.]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "[Malli]( {value_templating_url} ) abil renderdatakse \u00fclemise temperatuuri oleku teemal saadud v\u00e4\u00e4rtus.",
+                                "temperature_high_state_topic": "MQTT-teema, millega saab tellida \u00fclemise sihttemperatuuri muutusi. [Lisateave.]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "Madalama temperatuuri k\u00e4suteemas avaldatava kasuliku koormuse koostamiseks on vaja [template]( {command_templating_url} ).",
+                                "temperature_low_command_topic": "MQTT teema, et avaldada k\u00e4ske kliima alumise sihttemperatuuri muutmiseks. [Lisateave.]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "Madalama temperatuuri oleku teema kohta saadud v\u00e4\u00e4rtuse renderdamiseks [template]( {value_templating_url} ).",
+                                "temperature_low_state_topic": "MQTT-teema, millega saab tellida alumise sihttemperatuuri muutusi. [Lisateave.]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "[template]( {value_templating_url} ), millega renderdada temperatuuri oleku teema kohta saadud v\u00e4\u00e4rtust.",
+                                "temperature_state_topic": "MQTT-teema mille abil saab tellida sihttemperatuuri muutusi. [Lisateave.]({url}#temperature_state_topic)"
+                            },
+                            "name": "Sihttemperatuuri seaded"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maksimaalne pikkus",
+                                "min": "Minimaalne pikkus",
+                                "mode": "Re\u017eiim",
+                                "pattern": "Muster"
+                            },
+                            "data_description": {
+                                "max": "Tekstisisestuse maksimaalne pikkus",
+                                "min": "Tekstisisestuse minimaalne pikkus",
+                                "mode": "Tekstisisestusre\u017eiim",
+                                "pattern": "Kehtiv regulaaravaldise muster"
+                            },
+                            "name": "Muud teksti\u00fcksuse s\u00e4tted"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Kasulik koormus \"sulge\"",
+                                "payload_open": "Kasulik koormus \"ava\"",
+                                "payload_stop": "Kasulik koormus \"stopp\"",
+                                "state_closed": "Olek \"suletud\"",
+                                "state_closing": "Olek \"sulgemine\"",
+                                "state_open": "Olek \"avatud\"",
+                                "state_opening": "Olek \"avamine\""
+                            },
+                            "data_description": {
+                                "payload_close": "Kasulik koormus, mis saadetakse k\u00e4su \"sulge\" v\u00e4ljastamisel.",
+                                "payload_open": "Kasulik koormus, mis saadetakse k\u00e4su \"avamine\" v\u00e4ljastamisel.",
+                                "payload_stop": "Kood mis saadetakse \"stopp\"-k\u00e4su andmisel. M\u00e4\u00e4ra see kood ainult siis kui klapp toetab \"stopp\"-toimingut.",
+                                "state_closed": "Olekuteemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab olekut \"suletud\".",
+                                "state_closing": "Oleku teemas vastuv\u00f5etud kasulik koormus, mis t\u00e4histab \"sulgumine\" olekut.",
+                                "state_open": "Kasuliku koormuse vastuv\u00f5tt oleku teemas, mis t\u00e4histab \"avatud\" olekut.",
+                                "state_opening": "Kasulik koormus, mis on saadud oleku teemal, mis t\u00e4histab \"avaneb\" olekut."
+                            },
+                            "name": "Klapi kasuliku koormuse seaded"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "Kasulik koormus v\u00e4lja l\u00fclitamiseks",
+                                "payload_on": "Kasulik koormus sisse l\u00fclitamiseks",
+                                "power_command_template": "Toite l\u00fclitamise k\u00e4su mall",
+                                "power_command_topic": "Toite l\u00fclitamise k\u00e4su teema"
+                            },
+                            "data_description": {
+                                "payload_off": "Kasulik koormus mis t\u00e4histab v\u00e4ljal\u00fclitatud olekut.",
+                                "payload_on": "Kasulik koormus mis t\u00e4histab sissel\u00fclitatud olekut.",
+                                "power_command_template": "[template]( {command_templating_url} ) k\u00e4surea k\u00e4su teemas avaldatava kasuliku koormuse koostamiseks. Parameeter `value` on kasuliku koormuse seadistus \"on\" v\u00f5i \"off\".",
+                                "power_command_topic": "MQTT teema veeboileri toite oleku muutmise k\u00e4skude avaldamiseks. Saadab kasuliku koormuse, mis on konfigureeritud kasuliku koormusega \"sisse\" v\u00f5i kasuliku koormusega \"v\u00e4lja\". [Lisateave.] ( {url} #power_command_topic)"
+                            },
+                            "name": "V\u00f5imsuse seaded"
+                        }
+                    },
+                    "title": "MQTT seadme \"{mqtt_device}\" konfigureerimine"
+                },
+                "summary_menu": {
+                    "description": "Seadistatud olemid: \n {mqtt_items} \n \n Otsusta mida edasi teha:",
+                    "menu_options": {
+                        "availability": "K\u00e4ttesaadavuse seadistamine",
+                        "delete_entity": "Kustuta olem",
+                        "device": "Seadme atribuutide v\u00e4rskendamine",
+                        "entity": "Lisa veel \u00fcks olem \"{mqtt_device}\"",
+                        "export": "Ekspordi MQTT seadme konfiguratsioon",
+                        "save_changes": "Salvesta muudatused",
+                        "update_entity": "V\u00e4rskenda olemi atribuute"
+                    },
+                    "title": "Seadista \"{mqtt_device}\" uuesti"
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Olem"
+                    },
+                    "data_description": {
+                        "component": "Vali olem mida soovid v\u00e4rskendada."
+                    },
+                    "description": "Vali olem mida soovid v\u00e4rskendada",
+                    "title": "Vali olem"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Esimene nupp",
+            "button_2": "Teine nupp",
+            "button_3": "Kolmas nupp",
+            "button_4": "Neljas nupp",
+            "button_5": "Viies nupp",
+            "button_6": "Kuues nupp",
+            "turn_off": "L\u00fclita v\u00e4lja",
+            "turn_on": "L\u00fclita sisse"
+        },
+        "trigger_type": {
+            "button_double_press": "\" {subtype} \" on topeltkl\u00f5psatud",
+            "button_long_press": "\" {subtype} \" on pikalt alla vajutatud",
+            "button_long_release": "\"{subtype}\" vabastatati p\u00e4rast pikka vajutust",
+            "button_quadruple_press": "\"{subtype}\" on neljakordselt kl\u00f5psatud",
+            "button_quintuple_press": "\"{subtype}\" on viiekordselt kl\u00f5psatud",
+            "button_short_press": "\u201e {subtype} \u201d on vajutatud",
+            "button_short_release": "\" {subtype} \" vabastati",
+            "button_triple_press": "\"{subtype}\" on kolmekordselt kl\u00f5psatud"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "Rakenduse {addon} \u00f5igesti k\u00e4ivitamine nurjus."
+        },
+        "command_template_error": {
+            "message": "Malli \"{command_template}\" anal\u00fc\u00fcsimine \u00fcksuse \"{entity_id}\" jaoks nurjus veaga: {error}."
+        },
+        "invalid_platform_config_message": {
+            "message": "K\u00e4sitsi seadistatud MQTT-elemendi `{domain}` YAML seadete taaslaadimine nurjus. Teade: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "Ei saa avaldada: teemamall ' {topic_template}' tekitas p\u00e4rast aal\u00fc\u00fcsimist sobimatu teema ' {topic}' ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "T\u00f5rge MQTT-ga suhtlemisel: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "MQTT tellimise ID limiit on t\u00e4is. Tellimiseks ei saa rohkem ID-sid genereerida."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "Teema {topic} avaldamine s\u00f5numi aegumise intervalliga ei ole toetatud protokolli versiooni {protocol}puhul."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Ei saa tellida teemat \"{topic}\", sest MQTT ei ole lubatud, veendu, et MQTT on \u00f5igesti seadistatud."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Teemas \"{topic}\" ei saa avaldada, veendu, et MQTT on \u00f5igesti seadistatud."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Teemat \"{topic}\" ei saa tellida, veendu, et MQTT on \u00f5igesti seadistatud."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Teema \" {topic} \" tellimust ei saa kaks korda t\u00fchistada."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "Teema peab olema string! Sain: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "P\u00e4\u00e4stikut ei saa kaks korda eemaldada."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "Home Assistant tuvastas k\u00e4sitsi seadistatud \u00fcksuse jaoks kehtetu konfiguratsiooni. \n\n Platvormi domeen: ** {domain} **\n Konfiguratsioonikirje: ** {config_file} **\n Rea l\u00e4hedal: ** {line} **\nLeitud konfiguratsioon:\n ```yaml\n {config}\n ```\n Viga: ** {error} **. \n\n Veendu, et konfiguratsioon oleks kehtiv ja selle probleemi lahendamiseks [taaslae](/config/tools/yaml) k\u00e4sitsi konfigureeritud MQTT \u00fcksused v\u00f5i taask\u00e4ivita Home Assistant.",
+            "title": "Leiti vale seadistusega MQTT {domain} \u00fcksus"
+        },
+        "protocol_5_migration": {
+            "description": "Automaatne \u00fcleminek MQTT protokolli versioonile 5 nurjus. MQTT maakleri jaoks praegu konfigureeritud protokolli versioon {broker} on {protocol} kuid see protokolli versioon on aegunud ja selle tugi eemaldatakse.\n\nVeendu, et maakler toetab protokolli versiooni 5. Selle probleemi lahendamiseks v\u00e4rskenda oma MQTT maakleri \u00fchenduse seadeid ja taask\u00e4ivita Home Assistant.",
+            "title": "MQTT protokolli \u00fcleviimine nurjus"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Eksporditud MQTT seade \" {name} \" tuvastati MQTT avastamise kaudu. Vali **Esita**, et kinnitada MQTT seadme migreerimist peamisse MQTT konfiguratsiooni ja eemaldada olemasolev MQTT seadme alamkirje. Veendu, et avastamine s\u00e4ilitatakse MQTT vahendajas v\u00f5i saadetakse uuesti p\u00e4rast alamkirje eemaldamist, et MQTT seade \u00f5igesti seadistataks. Teise v\u00f5imalusena saad muuta seadme identifikaatoreid ja \u00fcksuste unikaalseid ID-sid oma MQTT avastamise konfiguratsiooni kasulikus koormuses ning t\u00fchistada selle paranduse kui soovid MQTT seadme alamkirjet s\u00e4ilitada.",
+                        "title": "MQTT seadme \"{name}\" alamkirje migratsioon MQTT avastamisse"
+                    }
+                }
+            },
+            "title": "MQTT seadme \"{name}\" alamkirje migratsioon MQTT avastamisse"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Eksporditud MQTT seade \" {name} \" tuvastati YAML-i konfiguratsioonis. Vali **Esita**, et kinnitada MQTT seadme migreerimist peamisse MQTT konfiguratsioonikirjesse ja eemaldada olemasolev MQTT seadme alamkirje. Teise v\u00f5imalusena saad muuta seadme identifikaatoreid ja \u00fcksuse unikaalseid ID-sid oma configuration.yaml failis ning t\u00fchistada selle paranduse kui soovid MQTT seadme alamkirjet s\u00e4ilitada.",
+                        "title": "MQTT seadme \"{name}\" alamkirje liigutamine YAML-i"
+                    }
+                }
+            },
+            "title": "MQTT seadme \"{name}\" alamkirje liigutamine YAML-i"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant tuvastas k\u00e4sitsi konfigureeritud MQTT-\u00fcksused kuid neid ei saa laadida kuna MQTT pole \u00f5igesti seadistatud. Veendu, et MQTT vahendaja oleks \u00f5igesti seadistatud v\u00f5i eemalda MQTT konfiguratsioon failist `configuration.yaml` ja taask\u00e4ivita Home Assistant, et see probleem lahendada.",
+            "title": "MQTT pole \u00f5igesti seadistatud"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Kehtetu loomise teavitus",
+            "bad_certificate": "CA sertifikaat on kehtetu",
+            "bad_client_cert": "Kehtetu kliendi sertifikaat, veendu, et on esitatud PEM-kodeeritud fail",
+            "bad_client_cert_key": "Kliendisertifikaat ja privaatne sertifikaat ei ole kehtiv paar",
+            "bad_discovery_prefix": "Sobimatu tuvastuse eesliide",
+            "bad_will": "Kehtetu l\u00f5petamise teavitus",
+            "bad_ws_headers": "Esita korrektsed HTTP p\u00e4ised JSON objektina",
+            "cannot_connect": "\u00dchendamine nurjus",
+            "client_key_error": "Esitatud on kehtetu privaatv\u00f5tme fail v\u00f5i vale salas\u00f5na",
+            "invalid_inclusion": "Kliendisertifikaat ja privaatne v\u00f5ti tuleb konfigureerida koos."
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Luba loomisteavitus",
+                    "birth_payload": "S\u00fcnniteate v\u00e4\u00e4rtus",
+                    "birth_qos": "S\u00fcnniteate QoS",
+                    "birth_retain": "S\u00fcnniteate j\u00e4\u00e4dvustamine",
+                    "birth_topic": "S\u00fcnniteate teema",
+                    "discovery": "Luba avastamine",
+                    "discovery_prefix": "Avastamise eesliide",
+                    "discovery_qos": "Avastuslik teenusekvaliteet",
+                    "will_enable": "Luba loomisteavitus",
+                    "will_payload": "L\u00f5petamisteate v\u00e4\u00e4rtus",
+                    "will_qos": "L\u00f5petamisteate QoS",
+                    "will_retain": "L\u00f5petamisteate j\u00e4\u00e4dvustamine",
+                    "will_topic": "L\u00f5petamisteade"
+                },
+                "data_description": {
+                    "birth_enable": "Kui see on m\u00e4\u00e4ratud, avaldab Home Assistant veebis\u00f5numi MQTT-vahendajale kui MQTT on valmis.",
+                    "birth_payload": "S\u00fcnnis\u00f5num mis avaldatakse kui MQTT on valmis ja \u00fchendatud.",
+                    "birth_qos": "S\u00fcnnis\u00f5numi teenuse kvaliteet, mis avaldatakse kui MQTT on valmis ja \u00fchendatud",
+                    "birth_retain": "Kui see on m\u00e4\u00e4ratud, s\u00e4ilitab Home Assistant MQTT maaklerile avaldatud s\u00fcnnis\u00f5numi.",
+                    "birth_topic": "MQTT teema kus Home Assistant avaldab s\u00fcnnis\u00f5numi.",
+                    "discovery": "V\u00f5imalus lubada MQTT automaatne avastamine.",
+                    "discovery_prefix": "Konfiguratsiooniteemade eesliide mida MQTT-\u00fchendus tellib.",
+                    "discovery_qos": "MQTT maakleri avastamistellimuste teenuse kvaliteet.",
+                    "will_enable": "Kui see on m\u00e4\u00e4ratud, palub Home Assistant MQTT vahendajal avaldada tahteavaldus kui MQTT peatub v\u00f5i \u00fchendus vahendajaga katkeb.",
+                    "will_payload": "Teade mille MQTT-vahendaja avaldab kui \u00fchendus katkeb.",
+                    "will_qos": "MQTT-vahendaja poolt avaldatud tahteteate teenuse kvaliteet.",
+                    "will_retain": "Kui see on m\u00e4\u00e4ratud s\u00e4ilitab MQTT-vahendaja tahteteate s\u00f5numi.",
+                    "will_topic": "MQTT-teema millele MQTT-vahendaja avaldab tahteteate."
+                },
+                "description": "Avastamine - Kui avastamine on lubatud (soovitatav), avastab Home Assistant automaatselt seadmed ja \u00fcksused, mis avaldavad oma konfiguratsiooni MQTT-vahendaja kaudu. Kui avastamine on v\u00e4lja l\u00fclitatud, tuleb kogu konfigureerimine teha k\u00e4sitsi.\nDiscovery prefix (Avastamise eesliide) - automaatse avastamise konfiguratsiooniteema eesliide, millega peab algama.\nBirth message (s\u00fcnniteade) - s\u00fcnniteade saadetakse iga kord, kui Home Assistant (taas)\u00fchendub MQTT-vahendajaga.\nWill message - Will message saadetakse iga kord, kui Home Assistant kaotab \u00fchenduse maakleriga, nii puhta (nt Home Assistant l\u00f5petab tegevuse) kui ka ebapuhta (nt Home Assistant kukub kokku v\u00f5i kaotab v\u00f5rgu\u00fchenduse) katkestamise korral.",
+                "title": "MQTT valikud"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Kohaliku koodi valideerimine",
+                "remote_code": "Numbriline kaugkoodi valideerimine",
+                "remote_code_text": "Teksti kaugkoodi valideerimine"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "Valvesta eemal",
+                "arm_custom_bypass": "Valvesta valikuliselt",
+                "arm_home": "Valvesta kodus",
+                "arm_night": "\u00d6ine valvestus",
+                "arm_vacation": "Valvesta puhkuse re\u017eiimis",
+                "trigger": "K\u00e4ivita h\u00e4ire"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Automaatne",
+                "cool": "Jahuta",
+                "dry": "Kuivata",
+                "fan_only": "Ventileeri",
+                "heat": "K\u00fcta",
+                "heat_cool": "K\u00fcte/jahutus",
+                "off": "V\u00e4ljas"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Seaded",
+                "diagnostic": "T\u00f5rkeotsing"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64 kodeering",
+                "raw": "T\u00f6\u00f6tlemata andmed"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "Pildiandmed on vastu v\u00f5etud",
+                "image_url": "Pildi URL on vastu v\u00f5etud"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "Vaikimisi skeem",
+                "json": "JSON",
+                "template": "Mall"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automaatne",
+                "box": "Sisestusv\u00e4li",
+                "slider": "Kerimisriba"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Heledus",
+                "first": "Esimene",
+                "last": "Viimane"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Valvekeskuse juhtpaneel",
+                "binary_sensor": "Binaarne andur",
+                "button": "Nupp",
+                "climate": "Kliimaseade",
+                "cover": "Kardin",
+                "date": "Kuup\u00e4ev",
+                "datetime": "Kuup\u00e4ev/kellaaeg",
+                "fan": "Ventilaator",
+                "image": "Pilt",
+                "light": "Valgus",
+                "lock": "Lukk",
+                "notify": "Teavitused",
+                "number": "Number",
+                "select": "Vali",
+                "sensor": "Andur",
+                "siren": "Sireen",
+                "switch": "L\u00fcliti",
+                "text": "Tekst",
+                "time": "Kellaaeg",
+                "valve": "Ventiil",
+                "water_heater": "Veesoojendi"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automaatne",
+                "custom": "Kohandatud",
+                "off": "V\u00e4ljas"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Ainult heledus",
+                "color_temp": "V\u00e4rvustemperatuur",
+                "hs": "HS",
+                "onoff": "Sees / v\u00e4ljas",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Valge",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "\u00dclemine/alumine sihttemperatuur",
+                "none": "Sihttemperatuur puudub",
+                "single": "\u00dcks sihttemperatuur"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Salas\u00f5na",
+                "text": "Tekst"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Automaatne",
+                "eco": "\u00d6ko",
+                "electric": "Elektriline",
+                "gas": "Gaas",
+                "heat_pump": "Soojuspump",
+                "high_demand": "K\u00f5rge n\u00f5udlus",
+                "off": "V\u00e4ljas",
+                "performance": "J\u00f5udlus"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Kirjutab k\u00f5ik konkreetse teema s\u00f5numid konfiguratsioonikaustas asuvasse faili `mqtt_dump.txt`.",
+            "fields": {
+                "duration": {
+                    "description": "Kui kaua peaks sekundites s\u00f5numeid kuulama.",
+                    "name": "Kestus"
+                },
+                "topic": {
+                    "description": "Teema mida kuulata.",
+                    "name": "Teema"
+                }
+            },
+            "name": "Ekspordi"
+        },
+        "publish": {
+            "description": "Avaldab s\u00f5numi MQTT teemasse.",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Kui `Payload` on Pythoni baitide literaal, hinda baitide literaali ja avalda toorandmed.",
+                    "name": "Hinda payloadi"
+                },
+                "message_expiry_interval": {
+                    "description": "Avaldamiss\u00f5num aegub p\u00e4rast intervalli m\u00f6\u00f6dumist juhul kui seadme tellija oli ajutiselt v\u00f5rgu\u00fchenduseta v\u00f5i s\u00f5num m\u00e4\u00e4rati s\u00e4ilitatavaks s\u00f5numiks. Toetatud ainult MQTT protokolli versiooniga 5.0.",
+                    "name": "S\u00f5numite aegumise intervall"
+                },
+                "payload": {
+                    "description": "Avaldatav v\u00e4\u00e4rtus. Kui seda pole esitatud, avaldab see t\u00fchja s\u00f5numi.",
+                    "name": "V\u00e4\u00e4rtus"
+                },
+                "qos": {
+                    "description": "Kasutatava QoS tase. 0: K\u00f5ige rohkem \u00fcks kord. 1: V\u00e4hemalt \u00fcks kord. 2: t\u00e4pselt \u00fcks kord.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Kui s\u00f5numil peaks olema seatud s\u00e4ilituslipp. Kui see on m\u00e4\u00e4ratud, salvestab maakler teema kohta uusima s\u00f5numi.",
+                    "name": "S\u00e4ilita"
+                },
+                "topic": {
+                    "description": "Teema avaldamiseks.",
+                    "name": "Teema"
+                }
+            },
+            "name": "Avalda",
+            "sections": {
+                "publish_options": {
+                    "name": "Avaldamisvalikud"
+                }
+            }
+        },
+        "reload": {
+            "description": "Taaslaeb MQTT olemid YAML-i konfiguratsioonist.",
+            "name": "Taaslae"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "K\u00e4ivitub p\u00e4rast konkreetse s\u00f5numi saamist antud MQTT-teemasse.",
+            "fields": {
+                "payload": {
+                    "description": "K\u00e4ivitav kasulik koormus.",
+                    "name": "Kasulik koormus"
+                },
+                "topic": {
+                    "description": "MQTT teema mida kuulata.",
+                    "name": "Teema"
+                }
+            },
+            "name": "Saadud MQTT-teade"
+        }
+    }
+}

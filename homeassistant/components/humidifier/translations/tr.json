@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "condition_threshold_name": "E\u015fik tipi",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "En az\u0131ndan"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "Bir veya daha fazla nemlendiricinin kuruyup kurumad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici kurutuyor"
+        },
+        "is_humidifying": {
+            "description": "Bir veya daha fazla nemlendiricinin nemlendirme yap\u0131p yapmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici nemlendirme yap\u0131yor"
+        },
+        "is_mode": {
+            "description": "Nemlendiricilerden bir veya daha fazlas\u0131n\u0131n belirli bir moda ayarlan\u0131p ayarlanmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                },
+                "mode": {
+                    "description": "Kontrol edilmesi gereken \u00e7al\u0131\u015fma modlar\u0131.",
+                    "name": "Mod"
+                }
+            },
+            "name": "Nemlendirici modda"
+        },
+        "is_off": {
+            "description": "Bir veya daha fazla nemlendiricinin kapal\u0131 olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici kapal\u0131"
+        },
+        "is_on": {
+            "description": "Nemlendiricilerden birinin veya daha fazlas\u0131n\u0131n a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici a\u00e7\u0131k"
+        },
+        "is_target_humidity": {
+            "description": "Bir veya daha fazla nemlendiricinin hedef nem seviyesini test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                },
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "Nemlendiricinin hedef nem seviyesi"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "{entity_name} i\u00e7in nemi ayarla",
+            "set_mode": "{entity_name} \u00fczerindeki mod de\u011fi\u015ftirme",
+            "toggle": "{entity_name} de\u011fi\u015ftir",
+            "turn_off": "{entity_name} kapat",
+            "turn_on": "{entity_name} a\u00e7\u0131n"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} belirli bir moda ayarland\u0131",
+            "is_off": "{entity_name} kapal\u0131",
+            "is_on": "{entity_name} a\u00e7\u0131k"
+        },
+        "extra_fields": {
+            "above": "\u00dczerinde",
+            "below": "Alt\u0131nda",
+            "for": "S\u00fcre",
+            "humidity": "Nem",
+            "mode": "Mod"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} a\u00e7\u0131ld\u0131 veya kapat\u0131ld\u0131",
+            "target_humidity_changed": "{entity_name} hedef nem de\u011fi\u015fti",
+            "turned_off": "{entity_name} kapat\u0131ld\u0131",
+            "turned_on": "{entity_name} a\u00e7\u0131ld\u0131"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Nemlendirici",
+            "state": {
+                "off": "Kapal\u0131",
+                "on": "A\u00e7\u0131k"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Eylem",
+                    "state": {
+                        "drying": "Kurutuluyor",
+                        "humidifying": "Nemlendirme",
+                        "idle": "Bo\u015fta",
+                        "off": "Kapal\u0131"
+                    }
+                },
+                "available_modes": {
+                    "name": "Mevcut modlar"
+                },
+                "current_humidity": {
+                    "name": "Mevcut nem"
+                },
+                "humidity": {
+                    "name": "Hedef nem"
+                },
+                "max_humidity": {
+                    "name": "Maksimum hedef nem"
+                },
+                "min_humidity": {
+                    "name": "Minimum hedef nem"
+                },
+                "mode": {
+                    "name": "Mod",
+                    "state": {
+                        "auto": "Otomatik",
+                        "away": "D\u0131\u015far\u0131da",
+                        "baby": "Bebek",
+                        "boost": "G\u00fc\u00e7l\u00fc",
+                        "comfort": "Konfor",
+                        "eco": "Eko",
+                        "home": "Evde",
+                        "normal": "Normal",
+                        "sleep": "Uyku"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Nem Al\u0131c\u0131"
+        },
+        "humidifier": {
+            "name": "Nemlendirici"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Sa\u011flanan nem {humidity} ge\u00e7erli de\u011fil. Kabul edilen aral\u0131k {min_humidity} ile {max_humidity} aras\u0131ndad\u0131r."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "Nemlendiricinin hedef nem seviyesini ayarlar.",
+            "fields": {
+                "humidity": {
+                    "description": "Hedef nem.",
+                    "name": "Nem"
+                }
+            },
+            "name": "Nemlendiricinin hedef nem seviyesini ayarlay\u0131n"
+        },
+        "set_mode": {
+            "description": "Nemlendiricinin \u00e7al\u0131\u015fma modunu ayarlar.",
+            "fields": {
+                "mode": {
+                    "description": "\u00c7al\u0131\u015fma modu. \u00d6rne\u011fin, \"normal\", \"eko\" veya \"uzakta\". Olas\u0131 de\u011ferlerin listesi i\u00e7in entegrasyon dok\u00fcman\u0131na bak\u0131n.",
+                    "name": "Mod"
+                }
+            },
+            "name": "Nemlendirici modunu ayarlay\u0131n"
+        },
+        "toggle": {
+            "description": "Nemlendiriciyi a\u00e7ar/kapat\u0131r.",
+            "name": "Nemlendiriciyi a\u00e7\u0131p kapat"
+        },
+        "turn_off": {
+            "description": "Nemlendiriciyi kapat\u0131r.",
+            "name": "Nemlendiriciyi kapat\u0131n"
+        },
+        "turn_on": {
+            "description": "Nemlendiriciyi \u00e7al\u0131\u015ft\u0131r\u0131r.",
+            "name": "Nemlendiriciyi \u00e7al\u0131\u015ft\u0131r\u0131n"
+        }
+    },
+    "title": "Nemlendirici",
+    "triggers": {
+        "mode_changed": {
+            "description": "Bir veya daha fazla nemlendiricinin \u00e7al\u0131\u015fma modu de\u011fi\u015fti\u011finde tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                },
+                "mode": {
+                    "description": "Tetiklenecek \u00e7al\u0131\u015fma modlar\u0131.",
+                    "name": "Mod"
+                }
+            },
+            "name": "Nemlendirici modu de\u011fi\u015ftirildi"
+        },
+        "started_drying": {
+            "description": "Nemlendiricilerden bir veya daha fazlas\u0131 kurutmaya ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici kurutmaya ba\u015flad\u0131"
+        },
+        "started_humidifying": {
+            "description": "Bir veya daha fazla nemlendirici nemlendirmeye ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici nemlendirmeye ba\u015flad\u0131"
+        },
+        "turned_off": {
+            "description": "Bir veya daha fazla nemlendirici kapand\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici kapal\u0131"
+        },
+        "turned_on": {
+            "description": "Bir veya daha fazla nemlendirici a\u00e7\u0131ld\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Nemlendirici a\u00e7\u0131k"
+        }
+    }
+}

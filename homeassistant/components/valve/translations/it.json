@@ -1,0 +1,68 @@
+{
+    "conditions": {
+        "is_closed": {
+            "description": "Verifica se una o pi\u00f9 valvole sono chiuse.",
+            "name": "La valvola \u00e8 chiusa"
+        },
+        "is_open": {
+            "description": "Verifica se una o pi\u00f9 valvole sono aperte.",
+            "name": "La valvola \u00e8 aperta"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Valvola",
+            "state": {
+                "closed": "Chiuso",
+                "closing": "In chiusura",
+                "open": "Aperto",
+                "opening": "In apertura",
+                "stopped": "Fermato/a"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Posizione"
+                }
+            }
+        },
+        "gas": {
+            "name": "Gas"
+        },
+        "water": {
+            "name": "Acqua"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Chiude una valvola."
+        },
+        "open_valve": {
+            "description": "Apre una valvola."
+        },
+        "set_valve_position": {
+            "description": "Sposta una valvola in una posizione specifica.",
+            "fields": {
+                "position": {
+                    "description": "Posizione desiderata.",
+                    "name": "Posizione"
+                }
+            },
+            "name": "Imposta la posizione della valvola"
+        },
+        "stop_valve": {
+            "description": "Arresta una valvola."
+        },
+        "toggle": {
+            "description": "Attiva/disattiva una valvola"
+        }
+    },
+    "title": "Valvola",
+    "triggers": {
+        "closed": {
+            "description": "Si attiva quando una o pi\u00f9 valvole si chiudono"
+        },
+        "opened": {
+            "description": "Si attiva quando una o pi\u00f9 valvole si aprono"
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "\uc790\ub3d9 \ubc31\uc5c5",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "\ubc31\uc5c5 \ub2e8\uacc4"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "\uc131\uacf5\uc801\uc73c\ub85c \uc644\ub8cc\ub418\uc5c8\uc2b5\ub2c8\ub2e4",
+                            "failed": "\uc2e4\ud328\ud55c",
+                            "in_progress": "\uc9c4\ud589 \uc911"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "\uc2e4\ud328 \uc6d0\uc778",
+                        "state": {
+                            "backup_agent_error": "\ubc31\uc5c5 \uc5d0\uc774\uc804\ud2b8 \uc624\ub958",
+                            "backup_agent_unreachable": "\ubc31\uc5c5 \uc5d0\uc774\uc804\ud2b8\uc5d0 \uc5f0\uacb0\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+                            "backup_manager_error": "\ubc31\uc5c5 \uad00\ub9ac\uc790 \uc624\ub958",
+                            "backup_not_found": "\ubc31\uc5c5 \ud30c\uc77c\uc744 \ucc3e\uc744 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+                            "backup_reader_writer_error": "\ubc31\uc5c5 \ub9ac\ub354/\ub77c\uc774\ud130 \uc624\ub958",
+                            "decrypt_on_download_not_supported": "\ub2e4\uc6b4\ub85c\ub4dc \uc911 \ubcf5\ud638\ud654\ub294 \uc9c0\uc6d0\ub418\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+                            "invalid_backup_filename": "\uc798\ubabb\ub41c \ubc31\uc5c5 \ud30c\uc77c \uc774\ub984\uc785\ub2c8\ub2e4.",
+                            "multiple_errors": "\ub2e4\uc911 \uc624\ub958",
+                            "password_incorrect": "\ube44\ubc00\ubc88\ud638\uac00 \uc798\ubabb\ub418\uc5c8\uc2b5\ub2c8\ub2e4",
+                            "unknown_error": "\uc54c \uc218 \uc5c6\ub294 \uc624\ub958",
+                            "upload_failed": "\uc5c5\ub85c\ub4dc \uc2e4\ud328"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "\ubc31\uc5c5 \uad00\ub9ac\uc790 \uc0c1\ud0dc",
+                "state": {
+                    "blocked": "\ucc28\ub2e8\ub428",
+                    "create_backup": "\ubc31\uc5c5 \uc0dd\uc131",
+                    "idle": "\uc720\ud734 \uc911",
+                    "receive_backup": "\ubc31\uc5c5 \uc218\uc2e0",
+                    "restore_backup": "\ubc31\uc5c5 \ubcf5\uc6d0"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "\ub9c8\uc9c0\ub9c9 \uc790\ub3d9 \ubc31\uc5c5 \uc2dc\ub3c4"
+            },
+            "last_successful_automatic_backup": {
+                "name": "\ub9c8\uc9c0\ub9c9\uc73c\ub85c \uc131\uacf5\uc801\uc73c\ub85c \uc644\ub8cc\ub41c \uc790\ub3d9 \ubc31\uc5c5"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "\ub2e4\uc74c \uc608\uc57d\ub41c \uc790\ub3d9 \ubc31\uc5c5"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "\ubc31\uc5c5 \uc704\uce58 `{agent_id}`\ub294 \uc0ac\uc6a9\ud560 \uc218 \uc5c6\uc9c0\ub9cc \uc790\ub3d9 \ubc31\uc5c5\uc744 \uc704\ud574 \uc544\uc9c1 \uad6c\uc131\ub418\uc5b4 \uc788\uc2b5\ub2c8\ub2e4.\n [\uc790\ub3d9 \ubc31\uc5c5 \uad6c\uc131 \ud398\uc774\uc9c0]({backup_settings})\ub97c \ubc29\ubb38\ud558\uc5ec \ubc31\uc5c5 \uc704\uce58\ub97c \uac80\ud1a0\ud558\uace0 \uc5c5\ub370\uc774\ud2b8\ud558\uc138\uc694. \uc0ac\uc6a9\ud560 \uc218 \uc5c6\ub294 \uc120\ud0dd\ud55c \uc704\uce58\uc5d0\ub294 \ubc31\uc5c5\uc774 \uc5c5\ub85c\ub4dc\ub418\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.",
+            "title": "\ubc31\uc5c5 \uc704\uce58 {agent_id} \uc0ac\uc6a9\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4."
+        },
+        "automatic_backup_failed_addons": {
+            "description": "\uc571 {failed_addons} \uc790\ub3d9 \ubc31\uc5c5\uc5d0 \ud3ec\ud568\ub418\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4. \uc790\uc138\ud55c \ub0b4\uc6a9\uc740 \uad00\ub9ac\uc790 \ub85c\uadf8\ub97c \ud655\uc778\ud558\uc138\uc694. \ubc31\uc5c5 \uc77c\uc815\uc774 \uc124\uc815\ub418\uc5b4 \uc788\ub294 \uacbd\uc6b0 \ub2e4\uc74c \uc608\uc57d \uc2dc\uac04\uc5d0 \ub2e4\uc2dc \uc2dc\ub3c4\ud569\ub2c8\ub2e4.",
+            "title": "\ubaa8\ub4e0 \uc571\uc774 \uc790\ub3d9 \ubc31\uc5c5\uc5d0 \ud3ec\ud568\ub420 \uc218\ub294 \uc5c6\uc2b5\ub2c8\ub2e4."
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "\uc790\ub3d9 \ubc31\uc5c5\uc774 \uc0dd\uc131\ub418\ub294 \uacfc\uc815\uc5d0\uc11c \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4.\n* \ubc31\uc5c5 \ud30c\uc77c\uc744 \uc5c5\ub85c\ub4dc\ud560 \uc218 \uc5c6\uc5c8\ub358 \uc704\uce58: {failed_agents}\n* \ubc31\uc5c5\ud560 \uc218 \uc5c6\uc5c8\ub358 \uc571: {failed_addons}\n* \ubc31\uc5c5\ud560 \uc218 \uc5c6\uc5c8\ub358 \ud3f4\ub354: {failed_folders}\n\uc790\uc138\ud55c \ub0b4\uc6a9\uc740 \ucf54\uc5b4 \ubc0f \uc288\ud37c\ubc14\uc774\uc800 \ub85c\uadf8\ub97c \ud655\uc778\ud558\uc138\uc694. \ubc31\uc5c5 \uc77c\uc815\uc774 \uc124\uc815\ub418\uc5b4 \uc788\ub294 \uacbd\uc6b0 \ub2e4\uc74c \uc608\uc57d\ub41c \uc2dc\uac04\uc5d0 \ub2e4\uc2dc \uc2dc\ub3c4\ud569\ub2c8\ub2e4.",
+            "title": "\uc790\ub3d9 \ubc31\uc5c5\uc774 \uc624\ub958\uc640 \ud568\uaed8 \uc0dd\uc131\ub418\uc5c8\uc2b5\ub2c8\ub2e4."
+        },
+        "automatic_backup_failed_create": {
+            "description": "\uc790\ub3d9 \ubc31\uc5c5\uc744 \uc0dd\uc131\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \uc790\uc138\ud55c \ub0b4\uc6a9\uc740 \ub85c\uadf8\ub97c \ud655\uc778\ud558\uc138\uc694. \ubc31\uc5c5 \uc77c\uc815\uc774 \uc124\uc815\ub418\uc5b4 \uc788\ub294 \uacbd\uc6b0 \ub2e4\uc74c \uc608\uc57d \uc2dc\uac04\uc5d0 \ub2e4\uc2dc \uc2dc\ub3c4\ud569\ub2c8\ub2e4.",
+            "title": "\uc790\ub3d9 \ubc31\uc5c5\uc744 \uc0dd\uc131\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4."
+        },
+        "automatic_backup_failed_folders": {
+            "description": "\ud3f4\ub354 {failed_folders} \uc790\ub3d9 \ubc31\uc5c5\uc5d0 \ud3ec\ud568\ub418\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4. \uc790\uc138\ud55c \ub0b4\uc6a9\uc740 \uad00\ub9ac\uc790 \ub85c\uadf8\ub97c \ud655\uc778\ud558\uc138\uc694. \ubc31\uc5c5 \uc77c\uc815\uc774 \uc124\uc815\ub418\uc5b4 \uc788\ub294 \uacbd\uc6b0 \ub2e4\uc74c \uc608\uc57d \uc2dc\uac04\uc5d0 \ub2e4\uc2dc \uc2dc\ub3c4\ud569\ub2c8\ub2e4.",
+            "title": "\uc790\ub3d9 \ubc31\uc5c5\uc5d0 \ubaa8\ub4e0 \ud3f4\ub354\uac00 \ud3ec\ud568\ub420 \uc218\ub294 \uc5c6\uc2b5\ub2c8\ub2e4."
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "\uc790\ub3d9 \ubc31\uc5c5 \ud30c\uc77c\uc744 \uc9c0\uc815\ub41c \uc704\uce58\uc5d0 \uc5c5\ub85c\ub4dc\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. {failed_agents}\uc790\uc138\ud55c \ub0b4\uc6a9\uc740 \ub85c\uadf8\ub97c \ud655\uc778\ud574 \uc8fc\uc2ed\uc2dc\uc624. \ubc31\uc5c5 \uc77c\uc815\uc774 \uc124\uc815\ub418\uc5b4 \uc788\ub294 \uacbd\uc6b0 \ub2e4\uc74c \uc608\uc57d \uc2dc\uac04\uc5d0 \ub2e4\uc2dc \uc2dc\ub3c4\ud569\ub2c8\ub2e4.",
+            "title": "\uc790\ub3d9 \ubc31\uc5c5 \ud30c\uc77c\uc744 \uc124\uc815\ub41c \uc704\uce58\uc5d0 \uc5c5\ub85c\ub4dc\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4."
+        }
+    },
+    "services": {
+        "create": {
+            "description": "\uc0c8 \ubc31\uc5c5 \ub9cc\ub4e4\uae30",
+            "name": "\ubc31\uc5c5 \ub9cc\ub4e4\uae30"
+        },
+        "create_automatic": {
+            "description": "\uc790\ub3d9 \ubc31\uc5c5 \uc124\uc815\uc744 \uc0ac\uc6a9\ud558\uc5ec \uc0c8 \ubc31\uc5c5\uc744 \uc0dd\uc131\ud569\ub2c8\ub2e4.",
+            "name": "\uc790\ub3d9 \ubc31\uc5c5 \uc0dd\uc131"
+        }
+    }
+}

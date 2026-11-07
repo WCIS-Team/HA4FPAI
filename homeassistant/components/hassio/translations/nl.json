@@ -1,0 +1,568 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "mount": {
+                "name": "Verbonden"
+            },
+            "state": {
+                "name": "Actief"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "OS Agent-versie"
+            },
+            "apparmor_version": {
+                "name": "AppArmor-versie"
+            },
+            "cpu_percent": {
+                "name": "CPU-percentage"
+            },
+            "disk_free": {
+                "name": "Schijfruimte vrij"
+            },
+            "disk_total": {
+                "name": "Schijfruimte totaal"
+            },
+            "disk_used": {
+                "name": "Schijfruimte gebruikt"
+            },
+            "memory_percent": {
+                "name": "Geheugenpercentage"
+            },
+            "version": {
+                "name": "Versie"
+            },
+            "version_latest": {
+                "name": "Nieuwste versie"
+            }
+        },
+        "update": {
+            "update": {
+                "name": "Update"
+            }
+        }
+    },
+    "exceptions": {
+        "mount_reload_error": {
+            "message": "Het herladen van de mount {name} is mislukt: {error}"
+        },
+        "mount_reload_invalid_device": {
+            "message": "Het apparaat is geen supervisor mount punt"
+        },
+        "supervisor_not_connected": {
+            "message": "Geen verbinding met de supervisor / systeem te druk"
+        },
+        "supervisor_update_pending": {
+            "message": "De supervisor was verouderd tijdens de onboarding. De update is gestart; er wordt opnieuw geprobeerd zodra deze is voltooid."
+        }
+    },
+    "issues": {
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Kan de oplossing niet toepassen. Controleer de logboeken van de supervisor voor meer details."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "De app {addon} is ingesteld om te starten bij het opstarten, maar start niet. Dit gebeurt meestal wanneer de configuratie niet correct is of wanneer dezelfde poort in meerdere apps wordt gebruikt. Controleer de configuratie en de logboeken voor {addon} en Supervisor.\n\nKlik op Start om het opnieuw te proberen of op Uitschakelen om de optie \"Start bij opstarten\" uit te schakelen.",
+                        "menu_options": {
+                            "addon_disable_boot": "Uitschakelen",
+                            "addon_execute_start": "Starten"
+                        }
+                    }
+                }
+            },
+            "title": "De app kon bij het opstarten niet worden gestart"
+        },
+        "issue_addon_deprecated_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "De app kon niet worden verwijderd. Raadpleeg de Supervisor-logbestanden voor meer informatie."
+                }
+            },
+            "title": "De ge\u00efnstalleerde app is verouderd"
+        },
+        "issue_addon_deprecated_arch_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "De app kon niet worden verwijderd. Raadpleeg de Supervisor-logboeken voor meer informatie."
+                }
+            },
+            "title": "De ge\u00efnstalleerde app is gebouwd voor niet-ondersteunde architecturen en/of machines"
+        },
+        "issue_addon_detached_addon_missing": {
+            "description": "Repository voor app {addon} ontbreekt. Dit betekent dat het geen updates meer krijgt en dat back-ups mogelijk niet goed worden hersteld omdat de supervisor mogelijk niet in staat is om de benodigde bronnen te bouwen/downloaden.\n\nControleer de [documentatie van de app]({addon_url}) voor installatie-instructies en voeg de repository toe aan de store.",
+            "title": "Ontbrekende repository voor een ge\u00efnstalleerde app"
+        },
+        "issue_addon_detached_addon_removed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "De app kon niet worden verwijderd. Raadpleeg de Supervisor-logbestanden voor meer informatie."
+                }
+            },
+            "title": "Ge\u00efnstalleerde app is verwijderd uit de repository"
+        },
+        "issue_addon_pwned": {
+            "description": "De app {addon} gebruikt geheimen/wachtwoorden in de configuratie die als onveilig worden beschouwd. Zie [pwned geheimen/wachtwoorden]({more_info_pwned}) voor meer informatie.",
+            "title": "Onveilige wachtwoorden aangetroffen in de configuratie van de app"
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Kon de fix niet toepassen. Controleer de logboeken van Supervisor voor meer details."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "mount_execute_reload": "Herladen",
+                            "mount_execute_remove": "Verwijderen"
+                        }
+                    }
+                }
+            },
+            "title": "Netwerkopslagapparaat mislukt"
+        },
+        "issue_system_disk_lifetime": {
+            "description": "De dataschijf heeft meer dan 90% van zijn verwachte levensduur bereikt. De schijf kan binnenkort defect raken, wat kan leiden tot gegevensverlies. Vervang de schijf zo snel mogelijk en migreer je gegevens.",
+            "title": "Schijflevensduur overschrijdt 90%"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Een of meer herstarts zijn mislukt. Controleer de supervisorlogboeken voor meer details."
+                },
+                "step": {
+                    "system_execute_rebuild": {
+                        "description": "De standaardconfiguratie voor apps en Home Assistant is gewijzigd. Om de configuratie bij te werken met de nieuwe standaardinstellingen, is een herstart vereist voor het volgende: \n\n - {components}"
+                    }
+                }
+            },
+            "title": "Herstart vereist"
+        },
+        "issue_system_free_space": {
+            "description": "De data-disk heeft nog maar {free_space}GB vrije ruimte beschikbaar. Dit kan problemen veroorzaken met de stabiliteit van het systeem en invloed hebben op functionaliteit zoals backups en updates. Ga naar [opslag]({storage_url}) om te zien wat de ruimte inneemt of bekijk [opslag opruimen]({more_info_free_space}) voor tips hoe meer ruimte kan worden vrijgemaakt.",
+            "title": "De data-disk begint vol te raken"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Het bestandssysteem kon niet hernoemd worden. Controleer de Supervisor-logboeken voor meer details."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Op `{reference}` hebben we nog een andere actieve datadisk (met een `hassos-data` bestandssysteem van een andere Home Assistant installatie) gevonden.\n\nJe moet besluiten wat je hiermee wilt doen, anders zou Home Assistant de verkeerde datadisk partitie kunnen kiezen wanneer het systeem opnieuw start.\n\nAls je de datadisk niet wilt gebruiken, koppel deze dan los van je systeem. Als je de disk wilt houden, kies dan \u00e9\u00e9n van de volgende opties:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Gebruik de gedetecteerde datadisk in plaats van het huidige systeemdisk",
+                            "system_rename_data_disk": "Markeren als inactieve datadisk (hernoemen bestandssysteem)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "Klik op **Verzenden** om `{reference}` in te stellen als de actieve gegevensschijf. De enige echte.\n\nJe hebt dan geen toegang meer tot de huidige Home Assistant-gegevens (deze worden gemarkeerd als inactieve gegevensschijf). Na het opnieuw opstarten bevindt je systeem zich in de staat van de Home Assistant-gegevens op `{reference}`."
+                    }
+                }
+            },
+            "title": "Meerdere dataschijven gedetecteerd"
+        },
+        "issue_system_ntp_sync_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Kon NTP niet opnieuw inschakelen. Controleer de Supervisor-logs voor meer informatie."
+                },
+                "step": {
+                    "system_enable_ntp": {
+                        "description": "Het apparaat kon geen contact maken met de geconfigureerde tijdservers (NTP). Met behulp van een secundaire online tijdcontrole hebben we vastgesteld dat de systeemklok meer dan 1 uur afweek. De tijd is gecorrigeerd en de NTP-service is tijdelijk uitgeschakeld zodat de correctie kon worden toegepast. Om de systeemtijd nauwkeurig te houden, is het aan te raden het probleem op te lossen dat de toegang tot de NTP-servers verhindert.\n\nControleer de **Host logs** om te onderzoeken waarom de NTP-servers niet konden worden bereikt. Zodra dit is opgelost, selecteert u **Submit** om de NTP-service opnieuw in te schakelen."
+                    }
+                }
+            },
+            "title": "Tijd synchronisatie probleem gedetecteerd"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Het systeem kon niet herstart worden. Controleer de Supervisor-logboeken voor meer details."
+                },
+                "step": {
+                    "system_execute_reboot": {
+                        "description": "Er zijn instellingen gewijzigd die een herstart van het systeem vereisen om van kracht te worden.\n\nKies **Herstarten** om het systeem nu opnieuw op te starten. Home Assistant en alle apps zullen gedurende een korte periode niet beschikbaar zijn."
+                    }
+                }
+            },
+            "title": "Herstart is vereist"
+        },
+        "legacy_homeassistant_folder": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Een automatisering of script met de actie `hassio.backup_partial` of `hassio.restore_partial`, waarbij `\"homeassistant\"` is opgenomen in `folders`. Dit is een legacy alias voor de optie `homeassistant: true` en zal in een toekomstige release niet langer worden geaccepteerd.\n\nWerk de betreffende automatiseringen en scripts bij door `homeassistant: true` in te stellen en `\"homeassistant\"` uit de lijst `folders` te verwijderen. Zodra dit is gedaan, selecteer je **Verzenden** om dit probleem als opgelost te markeren.",
+                        "title": "Legacy-map \"homeassistant\" wordt gebruikt bij gedeeltelijke back-up/herstel."
+                    }
+                }
+            },
+            "title": "Legacy-map \"homeassistant\" wordt gebruikt bij gedeeltelijke back-up/herstel."
+        },
+        "unhealthy": {
+            "description": "Systeem is momenteel niet in orde vanwege {reason}. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Ongezond systeem - {reason}"
+        },
+        "unhealthy_docker": {
+            "description": "Het systeem is momenteel niet in orde omdat Docker onjuist is geconfigureerd.  Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Ongezond systeem - Docker verkeerd geconfigureerd"
+        },
+        "unhealthy_docker_gateway_unprotected": {
+            "description": "Het systeem verkeert momenteel in een ongewenste toestand omdat de supervisor er niet in is geslaagd firewallbescherming toe te passen op het IP-adres van de Docker-gateway. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van dit probleem.",
+            "title": "Systeem niet in orde - Docker gateway niet beveiligd"
+        },
+        "unhealthy_duplicate_os_installation": {
+            "description": "Het systeem is momenteel niet in orde omdat er meerdere Home Assistant OS-installaties zijn gedetecteerd. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Systeem niet in orde - Dubbele installatie van het Home Assistant-OS"
+        },
+        "unhealthy_os_filesystem_check_error": {
+            "description": "Het systeem is momenteel niet in orde omdat een controle op de integriteit van het bestandssysteem op een besturingssysteempartitie is mislukt. Dit kan worden veroorzaakt door onverwacht stroomverlies of een defecte opslag. Selecteer 'Meer informatie' voor meer informatie over het oplossen van problemen.",
+            "title": "Ongezond systeem - Controle van het bestandssysteem op de OS-partitie is mislukt"
+        },
+        "unhealthy_oserror_bad_message": {
+            "description": "Het systeem is momenteel niet in orde omdat het besturingssysteem een \u200b\u200bOS-fout heeft gemeld: Ongeldig bericht. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Systeem niet in orde - Fout in het besturingssysteem: Ongeldig bericht"
+        },
+        "unhealthy_privileged": {
+            "description": "Het systeem is momenteel niet in orde omdat het geen rechten heeft voor toegang tot de Docker runtime.  Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Ongezond systeem - Geen privileges"
+        },
+        "unhealthy_setup": {
+            "description": "Systeem is momenteel niet in orde omdat de setup niet afgerond kon worden. Dit kan het gevolg zijn van meerdere oorzaken. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Ongezond systeem - Setup mislukt"
+        },
+        "unhealthy_supervisor": {
+            "description": "Het systeem is momenteel ongezond omdat een poging om Supervisor bij te werken naar de nieuwste versie is mislukt. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Ongezond systeem - Supervisor-update mislukt"
+        },
+        "unhealthy_untrusted": {
+            "description": "Systeem is momenteel niet in orde omdat er niet vertrouwde code of images in gebruik zijn. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Systeem niet in orde - Niet vertrouwde code"
+        },
+        "unsupported": {
+            "description": "Dit systeem wordt niet ondersteund vanwege {reason}. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - {reason}"
+        },
+        "unsupported_apparmor": {
+            "description": "Systeem wordt niet ondersteund omdat AppArmor niet correct werkt en add-ons op een onbeschermde en onveilige manier worden uitgevoerd. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - AppArmor-problemen"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Systeem wordt niet ondersteund omdat de verkeerde versie van Docker CGroup in gebruik is. Gebruik de link om de juiste versie te vinden en hoe je dit kunt oplossen.",
+            "title": "Niet-ondersteund systeem - CGroup version"
+        },
+        "unsupported_connectivity_check": {
+            "description": "Systeem wordt niet ondersteund omdat Home Assistant niet kan bepalen wanneer er een internetverbinding beschikbaar is. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - Connectiviteitscontrole uitgeschakeld"
+        },
+        "unsupported_dbus": {
+            "description": "Systeem wordt niet ondersteund omdat D-Bus niet goed werkt. Veel dingen mislukken zonder dit omdat Supervisor niet met de host kan communiceren. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - D-Bus problemen"
+        },
+        "unsupported_dns_server": {
+            "description": "Systeem wordt niet ondersteund omdat de opgegeven DNS-server niet correct werkt en de fallback DNS-optie is uitgeschakeld. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - DNS-serverproblemen"
+        },
+        "unsupported_docker_configuration": {
+            "description": "Systeem wordt niet ondersteund omdat de Docker daemon op een onverwachte manier draait. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet ondersteund systeem - Docker verkeerd geconfigureerd"
+        },
+        "unsupported_docker_version": {
+            "description": "Het systeem wordt niet ondersteund omdat de Docker-versie verouderd is. Kies \u2018Meer informatie\u2019 voor informatie over de vereiste versie en hoe je dit kunt oplossen.",
+            "title": "Niet ondersteund systeem - Docker versie"
+        },
+        "unsupported_home_assistant_core_version": {
+            "description": "Het systeem wordt niet ondersteund omdat de gebruikte versie van Home Assistant Core niet wordt ondersteund. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - Home Assistant Core-versie"
+        },
+        "unsupported_job_conditions": {
+            "description": "Systeem wordt niet ondersteund omdat een of meer taakcondities zijn uitgeschakeld die beschermen tegen onverwachte storingen en defecten. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - Beveiligingen uitgeschakeld"
+        },
+        "unsupported_lxc": {
+            "description": "Systeem wordt niet ondersteund omdat het wordt uitgevoerd in een LXC virtuele machine. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - LXC gedetecteerd"
+        },
+        "unsupported_network_manager": {
+            "description": "Systeem wordt niet ondersteund omdat Network Manager ontbreekt, inactief is of verkeerd geconfigureerd is. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - Problemen met Network Manager"
+        },
+        "unsupported_os": {
+            "description": "Het systeem wordt niet ondersteund omdat het gebruikte besturingssysteem niet is getest of wordt onderhouden voor gebruik met Supervisor. Kies \u2018Meer informatie\u2019 voor informatie over ondersteunde besturingssystemen en hoe je dit kunt oplossen.",
+            "title": "Niet ondersteund systeem - Besturingssysteem"
+        },
+        "unsupported_os_agent": {
+            "description": "Systeem wordt niet ondersteund omdat OS-Agent ontbreekt, inactief is of verkeerd geconfigureerd is. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet ondersteund systeem - Besturingssysteem-agent problemen"
+        },
+        "unsupported_os_version": {
+            "description": "Het systeem wordt niet ondersteund omdat de gebruikte versie van het Home Assistant-OS niet wordt ondersteund. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - Home Assistant OS-versie"
+        },
+        "unsupported_restart_policy": {
+            "description": "Systeem wordt niet ondersteund omdat een Docker-container een herstartbeleid heeft ingesteld dat problemen kan veroorzaken bij het opstarten. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet ondersteund systeem - Container herstart policy"
+        },
+        "unsupported_software": {
+            "description": "Systeem wordt niet ondersteund omdat er extra software buiten het Home Assistant ecosysteem is gedetecteerd. Kies \u2018Meer informatie\u2019 voor informatie over het oplossen van het probleem.",
+            "title": "Niet-ondersteund systeem - Niet-ondersteunde software"
+        },
+        "unsupported_supervisor_version": {
+            "description": "Systeem wordt niet ondersteund omdat een verouderde versie van Supervisor in gebruik is en auto-update is uitgeschakeld. Klik op Meer informatie voor informatie over het oplossen van het problemen.",
+            "title": "Niet-ondersteund systeem - Supervisor-versie"
+        },
+        "unsupported_systemd": {
+            "description": "Systeem wordt niet ondersteund omdat Systemd ontbreekt, inactief is of verkeerd geconfigureerd is. Klik op Meer informatie voor informatie over het oplossen van het problemen.",
+            "title": "Niet-ondersteund systeem - Systemd-problemen"
+        },
+        "unsupported_systemd_journal": {
+            "description": "Systeem wordt niet ondersteund omdat Systemd Journal en/of de gateway-service ontbreekt, inactief is of verkeerd geconfigureerd is. Klik op Meer informatie voor informatie over het oplossen van het problemen.",
+            "title": "Niet-ondersteund systeem - Systemd Journal problemen"
+        },
+        "unsupported_systemd_resolved": {
+            "description": "Systeem wordt niet ondersteund omdat Systemd Resolved ontbreekt, inactief is of verkeerd geconfigureerd is. Klik op Meer informatie voor informatie over het oplossen van het problemen.",
+            "title": "Niet-ondersteund systeem - Systemd-Resolved problemen"
+        },
+        "unsupported_virtualization_image": {
+            "description": "Het systeem is niet ondersteund omdat het gebruikte Home Assistant OS image niet is bedoeld om toe te passen in een gevirtualiseerde omgeving. Klik op 'Meer informatie' voor informatie over het oplossen van het probleem.",
+            "title": "Niet ondersteund systeem - Incorrect OS image voor virtualisatie"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Herstart een add-on.",
+            "fields": {
+                "addon": {
+                    "description": "De add-on om opnieuw op te starten.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Add-on herstarten"
+        },
+        "addon_start": {
+            "description": "Start een add-on.",
+            "fields": {
+                "addon": {
+                    "description": "De add-on om te starten.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Add-on starten"
+        },
+        "addon_stdin": {
+            "description": "Schrijft gegevens naar de standaardinvoer van de add-on.",
+            "fields": {
+                "addon": {
+                    "description": "De add-on om naar te schrijven.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Gegevens naar de stdin van de add-on schrijven"
+        },
+        "addon_stop": {
+            "description": "Stopt een add-on.",
+            "fields": {
+                "addon": {
+                    "description": "De add-on om te stoppen.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Stop add-on"
+        },
+        "app_restart": {
+            "description": "Start een Home Assistant-app opnieuw op.",
+            "fields": {
+                "app": {
+                    "description": "De app om opnieuw te starten",
+                    "name": "App"
+                }
+            },
+            "name": "App herstarten"
+        },
+        "app_start": {
+            "description": "Start een Home Assistant-app.",
+            "fields": {
+                "app": {
+                    "description": "De app om op te starten",
+                    "name": "App"
+                }
+            },
+            "name": "App opstarten"
+        },
+        "app_stdin": {
+            "description": "Schrijft gegevens naar de standaardinvoer van een Home Assistant-app.",
+            "fields": {
+                "app": {
+                    "description": "De app om naar te schrijven.",
+                    "name": "App"
+                },
+                "input": {
+                    "description": "De gegevens om te schijven.",
+                    "name": "Invoer"
+                }
+            },
+            "name": "Gegevens naar de stdin van de app schrijven"
+        },
+        "app_stop": {
+            "description": "Stopt een Home Assistant-app.",
+            "fields": {
+                "app": {
+                    "description": "De app om te stoppen",
+                    "name": "App"
+                }
+            },
+            "name": "App stoppen"
+        },
+        "backup_full": {
+            "description": "Maakt een volledige back-up",
+            "fields": {
+                "compressed": {
+                    "description": "Comprimeert de back-up bestanden",
+                    "name": "Gecomprimeerd"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Het Home Assistant databasebestand uitsluiten van de back-up.",
+                    "name": "Home Assistant database uitsluiten"
+                },
+                "location": {
+                    "description": "De naam van de back-up netwerkopslag voor het bewaren van back-up's.",
+                    "name": "Locatie"
+                },
+                "name": {
+                    "description": "Optioneel (standaard = huidige datum en tijd).",
+                    "name": "Naam"
+                },
+                "password": {
+                    "description": "Wachtwoord om de back-up te beveiligen.",
+                    "name": "Wachtwoord"
+                }
+            },
+            "name": "Maak een volledige back-up"
+        },
+        "backup_partial": {
+            "description": "Maakt een gedeeltelijke back-up.",
+            "fields": {
+                "addons": {
+                    "description": "Lijst met apps (voorheen add-ons) die in de back-up moeten worden opgenomen. Gebruik de slug van elke app. Verouderde optie: gebruik in plaats daarvan apps.",
+                    "name": "Add-ons (verouderd)"
+                },
+                "apps": {
+                    "description": "Lijst met apps die in de back-up moeten worden opgenomen. Gebruik de slug van elke app.",
+                    "name": "Apps"
+                },
+                "compressed": {
+                    "description": "Comprimeert de back-up bestanden",
+                    "name": "Gecomprimeerd"
+                },
+                "folders": {
+                    "description": "Lijst met mappen die in de back-up moeten worden opgenomen.",
+                    "name": "Mappen"
+                },
+                "homeassistant": {
+                    "description": "Home Assistant instellingen meenemen in de back-up.",
+                    "name": "Home Assistant instellingen"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Het Home Assistant databasebestand uitsluiten van de back-up.",
+                    "name": "Home Assistant database uitsluiten"
+                },
+                "location": {
+                    "description": "De naam van de back-up netwerkopslag voor het bewaren van back-up's.",
+                    "name": "Locatie"
+                },
+                "name": {
+                    "description": "Optioneel (standaard = huidige datum en tijd).",
+                    "name": "Naam"
+                },
+                "password": {
+                    "description": "Wachtwoord om de back-up te beveiligen.",
+                    "name": "Wachtwoord"
+                }
+            },
+            "name": "Gedeeltelijke back-up maken"
+        },
+        "host_reboot": {
+            "description": "Herstart het systeem.",
+            "name": "Het hostsysteem opnieuw starten"
+        },
+        "host_shutdown": {
+            "description": "Schakelt het systeem uit.",
+            "name": "Het hostsysteem uitschakelen"
+        },
+        "mount_reload": {
+            "description": "Herlaadt een netwerkopslag.",
+            "fields": {
+                "device_id": {
+                    "description": "De apparaat-ID van de netwerkopslag die opnieuw geladen moet worden.",
+                    "name": "Apparaat-ID"
+                }
+            },
+            "name": "Netwerkopslag opnieuw laden"
+        },
+        "restore_full": {
+            "description": "Herstellen van volledige back-up.",
+            "fields": {
+                "password": {
+                    "description": "Optioneel wachtwoord.",
+                    "name": "Wachtwoord"
+                },
+                "slug": {
+                    "description": "Geef de `slug` van een back-up om van te herstellen.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Terugzetten vanuit een volledige back-up"
+        },
+        "restore_partial": {
+            "description": "Herstellen van een gedeeltelijke back-up.",
+            "fields": {
+                "addons": {
+                    "description": "Lijst met apps (voorheen add-ons) die vanuit de back-up moeten worden hersteld. Gebruik de slug van elke app. Verouderde optie: gebruik in plaats daarvan apps.",
+                    "name": "Add-ons (verouderd)"
+                },
+                "apps": {
+                    "description": "Lijst met apps die vanuit de back-up moeten worden teruggezet. Gebruik de slug van elke app.",
+                    "name": "Apps"
+                },
+                "folders": {
+                    "description": "Lijst met mappen die vanuit de back-up moeten worden hersteld.",
+                    "name": "Mappen"
+                },
+                "homeassistant": {
+                    "description": "Herstelt Home Assistant.",
+                    "name": "Home Assistant instellingen"
+                },
+                "password": {
+                    "description": "Optioneel wachtwoord.",
+                    "name": "Wachtwoord"
+                },
+                "slug": {
+                    "description": "Geef de `slug` van een back-up om van te herstellen.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Terugzetten vanuit een gedeeltelijke back-up"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Agent-versie",
+            "board": "Bord",
+            "disk_life_time": "Levensduur van de schijf",
+            "disk_total": "Totale schijfruimte",
+            "disk_used": "Gebruikte schijfruimte",
+            "docker_version": "Dockerversie",
+            "healthy": "Gezond",
+            "host_os": "Host-besturingssysteem",
+            "installed_addons": "Ge\u00efnstalleerde apps",
+            "nameservers": "Naamservers",
+            "supervisor_api": "Supervisor API",
+            "supervisor_version": "Supervisor versie",
+            "supported": "Ondersteund",
+            "update_channel": "Updatekanaal",
+            "version_api": "API Versie"
+        }
+    }
+}

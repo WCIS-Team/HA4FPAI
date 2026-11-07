@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Z\u00e1loha datab\u00e1ze uveden\u00e1 v {start_time} selhala kv\u016fli nedostatku zdroj\u016f. Z\u00e1loze nelze d\u016fv\u011b\u0159ovat a je nutn\u00e9 ji restartovat. To se m\u016f\u017ee st\u00e1t, pokud je datab\u00e1ze p\u0159\u00edli\u0161 velk\u00e1 nebo pokud je syst\u00e9m pod velk\u00fdm zat\u00ed\u017een\u00edm. Zva\u017ete vylep\u0161en\u00ed hardwaru syst\u00e9mu nebo zmen\u0161en\u00ed velikosti datab\u00e1ze sn\u00ed\u017een\u00edm po\u010dtu dn\u016f historie, kter\u00e9 se maj\u00ed zachovat, nebo vytvo\u0159en\u00edm filtru.",
+            "title": "Z\u00e1lohov\u00e1n\u00ed datab\u00e1ze se nezda\u0159ilo kv\u016fli nedostatku zdroj\u016f"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "Verze {server_version} z {database_engine} nen\u00ed podporovanou verz\u00ed s dlouhodobou podporou (LTS). Podpora pro kr\u00e1tkodob\u00e9 verze a verze LTS s ukon\u010denou podporou bude ukon\u010dena; aktualizujte na jednu z podporovan\u00fdch verz\u00ed LTS ({lts_versions}) a restartujte Home Assistanta, abyste mohli pokra\u010dovat v pou\u017e\u00edv\u00e1n\u00ed rekord\u00e9ru.",
+            "title": "Aktualizujte slu\u017ebu \"{database_engine}\" na podporovanou verzi LTS, abyste mohli z\u00e1znamn\u00edk nad\u00e1le pou\u017e\u00edvat"
+        },
+        "database_engine_too_old": {
+            "description": "Podpora pro verzi {server_version} z {database_engine} kon\u010d\u00ed; minim\u00e1ln\u00ed podporovan\u00e1 verze bude {min_version}. Aktualizujte software datab\u00e1ze a restartujte Home Assistanta.",
+            "title": "Aktualizujte {database_engine} na {min_version} nebo nov\u011bj\u0161\u00ed, abyste mohli pokra\u010dovat v pou\u017e\u00edv\u00e1n\u00ed rekord\u00e9ru"
+        },
+        "maria_db_range_index_regression": {
+            "description": "Star\u0161\u00ed verze MariaDB trp\u00ed v\u00fdznamnou regres\u00ed v\u00fdkonu p\u0159i na\u010d\u00edt\u00e1n\u00ed historick\u00fdch dat nebo \u010di\u0161t\u011bn\u00ed datab\u00e1ze. Aktualizujte na verzi MariaDB {min_version} nebo nov\u011bj\u0161\u00ed a restartujte Home Assistanta. Pokud pou\u017e\u00edv\u00e1te aplikaci MariaDB, nezapome\u0148te ji aktualizovat na nejnov\u011bj\u0161\u00ed verzi.",
+            "title": "Aktualizujte MariaDB na {min_version} nebo nov\u011bj\u0161\u00ed, vy\u0159e\u0161te v\u00fdznamn\u00fd probl\u00e9m s v\u00fdkonem"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Zastav\u00ed z\u00e1znam ud\u00e1lost\u00ed a zm\u011bn stavu.",
+            "name": "Zak\u00e1zat rekord\u00e9r"
+        },
+        "enable": {
+            "description": "Spust\u00ed z\u00e1znam ud\u00e1lost\u00ed a zm\u011bn stavu.",
+            "name": "Povolit rekord\u00e9r"
+        },
+        "get_statistics": {
+            "description": "Na\u010dte statistick\u00e1 data pro entity v r\u00e1mci ur\u010dit\u00e9ho \u010dasov\u00e9ho obdob\u00ed.",
+            "fields": {
+                "end_time": {
+                    "description": "Koncov\u00fd \u010das pro statistick\u00fd dotaz. Pokud je vynech\u00e1n, vr\u00e1t\u00ed v\u0161echny statistiky od po\u010d\u00e1te\u010dn\u00edho \u010dasu d\u00e1le.",
+                    "name": "\u010cas ukon\u010den\u00ed"
+                },
+                "period": {
+                    "description": "\u010casov\u00e9 obdob\u00ed, podle kter\u00e9ho se maj\u00ed seskupit statistiky.",
+                    "name": "Obdob\u00ed"
+                },
+                "start_time": {
+                    "description": "\u010cas zah\u00e1jen\u00ed statistick\u00e9ho dotazu.",
+                    "name": "\u010cas zah\u00e1jen\u00ed"
+                },
+                "statistic_ids": {
+                    "description": "ID entit nebo ID statistik, pro kter\u00e9 se maj\u00ed vr\u00e1tit statistiky.",
+                    "name": "ID statistik"
+                },
+                "types": {
+                    "description": "Typy statistick\u00fdch hodnot, kter\u00e9 se maj\u00ed vr\u00e1tit.",
+                    "name": "Typy"
+                },
+                "units": {
+                    "description": "Voliteln\u00e9 mapov\u00e1n\u00ed p\u0159evodu jednotek.",
+                    "name": "Jednotky"
+                }
+            },
+            "name": "Z\u00edskat statistiky rekord\u00e9ru"
+        },
+        "purge": {
+            "description": "Spust\u00ed \u00fakol \u010di\u0161t\u011bn\u00ed - vy\u010dist\u00ed datab\u00e1zi od star\u00fdch dat.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Krom\u011b \u010di\u0161t\u011bn\u00ed na z\u00e1klad\u011b \u010dasu pou\u017eije filtry \"entity_id\" a \"event_type\".",
+                    "name": "Pou\u017e\u00edt filtr"
+                },
+                "keep_days": {
+                    "description": "Po\u010det dn\u016f pro uchov\u00e1n\u00ed dat v datab\u00e1zi. Po\u010d\u00ednaje dne\u0161kem, po\u010d\u00edt\u00e1n\u00ed pozp\u00e1tku. Hodnota \"7\" znamen\u00e1, \u017ee v\u0161e star\u0161\u00ed ne\u017e t\u00fdden bude vymaz\u00e1no.",
+                    "name": "Dny k uchov\u00e1n\u00ed"
+                },
+                "repack": {
+                    "description": "Pokus\u00ed se u\u0161et\u0159it m\u00edsto na disku p\u0159eps\u00e1n\u00edm cel\u00e9ho souboru datab\u00e1ze.",
+                    "name": "P\u0159ebalit"
+                }
+            },
+            "name": "Vy\u010distit datab\u00e1zi rekord\u00e9ru"
+        },
+        "purge_entities": {
+            "description": "Spust\u00ed \u00fakol \u010di\u0161t\u011bn\u00ed k odebr\u00e1n\u00ed dat souvisej\u00edc\u00edch s konkr\u00e9tn\u00edmi entitami z va\u0161\u00ed datab\u00e1ze.",
+            "fields": {
+                "domains": {
+                    "description": "Seznam dom\u00e9n, pro kter\u00e9 je t\u0159eba odebrat data z datab\u00e1ze rekord\u00e9ru.",
+                    "name": "Dom\u00e9ny k odebr\u00e1n\u00ed"
+                },
+                "entity_globs": {
+                    "description": "Seznam vzor\u016f glob pou\u017e\u00edvan\u00fdch k v\u00fdb\u011bru entit, pro kter\u00e9 maj\u00ed b\u00fdt data odebr\u00e1na z datab\u00e1ze rekord\u00e9ru.",
+                    "name": "Entity globs k odebr\u00e1n\u00ed"
+                },
+                "entity_id": {
+                    "description": "Seznam entit, pro kter\u00e9 maj\u00ed b\u00fdt data odebr\u00e1na z datab\u00e1ze rekord\u00e9ru.",
+                    "name": "Entity k odebr\u00e1n\u00ed."
+                },
+                "keep_days": {
+                    "description": "Po\u010det dn\u016f, po kter\u00e9 se maj\u00ed uchov\u00e1vat data pro \u0159\u00e1dky odpov\u00eddaj\u00edc\u00ed filtru. Po\u010d\u00ednaje dne\u0161kem, po\u010d\u00edt\u00e1n\u00ed pozp\u00e1tku. Hodnota \"7\" znamen\u00e1, \u017ee v\u0161e star\u0161\u00ed ne\u017e t\u00fdden bude vymaz\u00e1no. V\u00fdchoz\u00ed hodnota 0 dn\u016f okam\u017eit\u011b odebere v\u0161echny odpov\u00eddaj\u00edc\u00ed \u0159\u00e1dky.",
+                    "name": "Dny k uchov\u00e1n\u00ed"
+                }
+            },
+            "name": "Vy\u010distit entity rekord\u00e9ru"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Aktu\u00e1ln\u00ed \u010das zah\u00e1jen\u00ed b\u011bhu",
+            "database_engine": "Datab\u00e1zov\u00fd stroj",
+            "database_version": "Verze datab\u00e1ze",
+            "estimated_db_size": "Odhadovan\u00e1 velikost datab\u00e1ze (MiB)",
+            "oldest_recorder_run": "\u010cas spu\u0161t\u011bn\u00ed nejstar\u0161\u00edho b\u011bhu"
+        }
+    }
+}

@@ -1,0 +1,201 @@
+{
+    "common": {
+        "condition_behavior_name": "La condizione passa se",
+        "condition_for_name": "Per almeno",
+        "trigger_behavior_name": "Attiva quando",
+        "trigger_for_name": "Per almeno"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Verifica se uno o pi\u00f9 aspirapolvere stanno pulendo.",
+            "fields": {
+                "behavior": {
+                    "name": "La condizione passa se"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere sta pulendo"
+        },
+        "is_docked": {
+            "description": "Verifica se uno o pi\u00f9 aspirapolvere sono alla base.",
+            "fields": {
+                "behavior": {
+                    "name": "La condizione passa se"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere \u00e8 alla base"
+        },
+        "is_encountering_an_error": {
+            "description": "Verifica se uno o pi\u00f9 aspirapolvere stanno riscontrando un problema.",
+            "fields": {
+                "behavior": {
+                    "name": "La condizione passa se"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere sta riscontrando un problema"
+        },
+        "is_paused": {
+            "description": "Verifica se uno o pi\u00f9 aspirapolvere sono in pausa.",
+            "fields": {
+                "behavior": {
+                    "name": "La condizione passa se"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere \u00e8 in pausa"
+        },
+        "is_returning": {
+            "description": "Verifica se uno o pi\u00f9 aspirapolvere stanno rientrando alla base.",
+            "fields": {
+                "behavior": {
+                    "name": "La condizione passa se"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere sta rientrando"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Lascia pulire {entity_name}",
+            "dock": "Lascia che {entity_name} ritorni alla base"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} sta pulendo",
+            "is_docked": "{entity_name} \u00e8 agganciato alla base"
+        },
+        "extra_fields": {
+            "for": "Durata"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} ha iniziato la pulizia",
+            "docked": "{entity_name} agganciato"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Aspirapolvere",
+            "state": {
+                "cleaning": "In pulizia",
+                "docked": "Alla base",
+                "error": "Errore",
+                "idle": "Inattivo",
+                "off": "Spento",
+                "on": "Acceso",
+                "paused": "In pausa",
+                "returning": "Ritornando alla base"
+            }
+        }
+    },
+    "exceptions": {
+        "areas_not_mapped": {
+            "message": "Le seguenti aree non sono mappate ad alcun segmento di aspirazione mirata: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "I segmenti dell'aspirapolvere sono cambiati per {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Indica all'aspirapolvere di pulire una o pi\u00f9 aree.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Aree da pulire.",
+                    "name": "Aree"
+                }
+            },
+            "name": "Pulisci area con aspirapolvere"
+        },
+        "send_command": {
+            "fields": {
+                "command": {
+                    "description": "Comando da eseguire. I comandi sono specifici dell'integrazione.",
+                    "name": "Comando"
+                },
+                "params": {
+                    "description": "Parametri per il comando. I parametri sono specifici dell'integrazione.",
+                    "name": "Parametri"
+                }
+            }
+        },
+        "set_fan_speed": {
+            "fields": {
+                "fan_speed": {
+                    "description": "Velocit\u00e0 della ventola. Il valore dipende dall'integrazione. Alcune integrazioni hanno passaggi di velocit\u00e0, come \"medio\". Alcuni usano una percentuale, tra 0 e 100.",
+                    "name": "Velocit\u00e0 della ventola"
+                }
+            }
+        }
+    },
+    "title": "Aspirapolvere",
+    "triggers": {
+        "errored": {
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            }
+        },
+        "paused_cleaning": {
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere ha messo in pausa la pulizia"
+        },
+        "returned_to_dock": {
+            "description": "Si attiva quando uno o pi\u00f9 aspirapolveri sono tornati alla base",
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            }
+        },
+        "started_cleaning": {
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere ha cominciato a pulire"
+        },
+        "started_returning": {
+            "fields": {
+                "behavior": {
+                    "name": "Attiva quando"
+                },
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'aspirapolvere ha cominciato a rientrare alla base"
+        }
+    }
+}

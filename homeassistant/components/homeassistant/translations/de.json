@@ -1,0 +1,365 @@
+{
+    "config": {
+        "abort": {
+            "already_in_progress": "Die Konfiguration l\u00e4uft bereits. Schlie\u00dfe die bestehende Konfiguration ab, bevor du erneut beginnst.",
+            "authorize_url_timeout": "Zeit\u00fcberschreitung beim Erstellen einer Autorisierungs-URL.",
+            "cloud_not_connected": "Nicht mit Home Assistant Cloud verbunden.",
+            "missing_credentials": "F\u00fcr die Integration sind OAuth-Anmeldedaten erforderlich.",
+            "no_devices_found": "Keine Ger\u00e4te im Netzwerk gefunden",
+            "no_url_available": "Keine URL verf\u00fcgbar. Informationen zu diesem Fehler [findest du im Hilfebereich]({docs_url}).",
+            "oauth_error": "Ung\u00fcltige Token-Daten empfangen.",
+            "oauth_failed": "Fehler beim Abrufen des Zugriffstokens.",
+            "oauth_implementation_unavailable": "Derzeit sind keine OAuth2-Implementierungen verf\u00fcgbar.",
+            "oauth_timeout": "Zeit\u00fcberschreitung beim Aufl\u00f6sen des OAuth-Tokens.",
+            "oauth_unauthorized": "OAuth-Autorisierungsfehler beim Abrufen des Zugriffstokens.",
+            "reauth_successful": "Die erneute Authentifizierung war erfolgreich",
+            "reconfigure_successful": "Die Neukonfiguration war erfolgreich",
+            "single_instance_allowed": "Bereits konfiguriert. Nur eine einzige Konfiguration ist m\u00f6glich.",
+            "user_rejected_authorize": "Kontoverkn\u00fcpfung abgelehnt: {error}"
+        }
+    },
+    "exceptions": {
+        "component_import_err": {
+            "message": "Import nicht m\u00f6glich {domain}: {error}"
+        },
+        "config_platform_import_err": {
+            "message": "Fehler beim Importieren der Konfigurationsplattform {domain}: {error}"
+        },
+        "config_schema_unknown_err": {
+            "message": "Unbekannter Fehler beim Aufruf von {domain} CONFIG_SCHEMA \u2013 {error}."
+        },
+        "config_validation_err": {
+            "message": "Ung\u00fcltige Konfiguration f\u00fcr die Integration {domain} in {config_file}, Zeile {line}: {error}."
+        },
+        "config_validator_unknown_err": {
+            "message": "Unbekannter Fehler beim Aufruf {domain}-Konfigurationsvalidators \u2013 {error}."
+        },
+        "core_config_reload_failed": {
+            "message": "Fehler beim Neuladen der Home Assistant Core-Konfiguration \u2013 {error}"
+        },
+        "max_length_exceeded": {
+            "message": "Der Wert {value} f\u00fcr die Eigenschaft {property_name} hat eine maximale L\u00e4nge von {max_length} Zeichen."
+        },
+        "multiple_integration_config_errors": {
+            "message": "Die Konfiguration f\u00fcr die Integration {domain} konnte aufgrund mehrerer ({errors}) Fehler nicht verarbeitet werden. Weitere Informationen findest du in den Protokollen."
+        },
+        "oauth2_helper_reauth_required": {
+            "message": "Anmeldedaten sind ung\u00fcltig, erneute Authentifizierung erforderlich"
+        },
+        "oauth2_helper_refresh_failed": {
+            "message": "OAuth2-Token-Aktualisierung f\u00fcr {domain} fehlgeschlagen"
+        },
+        "oauth2_helper_refresh_transient": {
+            "message": "Vor\u00fcbergehender Fehler beim Aktualisieren der Anmeldedaten f\u00fcr {domain}. Versuche es sp\u00e4ter noch einmal."
+        },
+        "oauth2_implementation_unavailable": {
+            "message": "OAuth2-Implementierung nicht verf\u00fcgbar, wird erneut versucht"
+        },
+        "oauth2_unknown_implementation": {
+            "message": "Die konfigurierte Authentifizierungsmethode ist nicht mehr verf\u00fcgbar, eine erneute Authentifizierung ist erforderlich."
+        },
+        "platform_component_load_err": {
+            "message": "Plattformfehler: {domain} \u2013 {error}."
+        },
+        "platform_component_load_exc": {
+            "message": "Plattformfehler: {domain} \u2013 {error}."
+        },
+        "platform_config_validation_err": {
+            "message": "Ung\u00fcltige Konfiguration f\u00fcr {domain} aus Integration {p_name} in Datei {config_file}, Zeile {line}: {error}. Weitere Informationen findest du in den Protokollen."
+        },
+        "platform_schema_validator_err": {
+            "message": "Unbekannter Fehler beim Validieren der Konfiguration f\u00fcr {domain} aus der Integration {p_name} \u2013 {error}."
+        },
+        "scene_config_reload_failed": {
+            "message": "Fehler beim Neuladen der Home Assistant Szenen-Plattform-Konfiguration \u2013 {error}"
+        },
+        "service_config_entry_not_found": {
+            "message": "Konfigurationseintrag mit ID {entry_id} zur Integration {domain} wurde nicht gefunden."
+        },
+        "service_config_entry_not_loaded": {
+            "message": "Konfigurationseintrag {entry_title} zur Integration {domain} ist nicht geladen."
+        },
+        "service_config_entry_wrong_domain": {
+            "message": "Konfigurationseintrag {entry_title} geh\u00f6rt nicht zur Integration {domain}."
+        },
+        "service_device_not_found": {
+            "message": "Ger\u00e4t mit ID {device_id} wurde nicht gefunden."
+        },
+        "service_device_wrong_domain": {
+            "message": "Das Ger\u00e4t {device_name} geh\u00f6rt nicht zur Integration {domain}."
+        },
+        "service_does_not_support_response": {
+            "message": "Eine Aktion, die keine Antworten zur\u00fcckgibt, kann nicht mit {return_response} aufgerufen werden."
+        },
+        "service_found_multiple_config_entry_for_domain": {
+            "message": "Mehrere Konfigurationseintr\u00e4ge f\u00fcr die {domain}-Integration gefunden."
+        },
+        "service_found_no_config_entry_for_domain": {
+            "message": "Keinen Konfigurationseintrag f\u00fcr die {domain}-Integration gefunden."
+        },
+        "service_lacks_response_request": {
+            "message": "Die Aktion erfordert Antworten und muss mit {return_response} aufgerufen werden."
+        },
+        "service_not_found": {
+            "message": "Aktion {domain}.{service} nicht gefunden."
+        },
+        "service_not_supported": {
+            "message": "Die Aktion {domain}.{service} wird von der Entit\u00e4t {entity_id} nicht unterst\u00fctzt."
+        },
+        "service_reponse_invalid": {
+            "message": "Die Verarbeitung der zur\u00fcckgegebenen Aktionsantwortdaten ist fehlgeschlagen. Es wurde ein Dictionary erwartet, aber es wurde {response_data_type} erhalten."
+        },
+        "service_should_be_blocking": {
+            "message": "Ein nicht-blockierender Aktionsaufruf mit dem Argument {non_blocking_argument} kann nicht zusammen mit dem Argument {return_response} verwendet werden."
+        }
+    },
+    "issues": {
+        "config_entry_only": {
+            "description": "Die {domain}-Integration unterst\u00fctzt keine Konfiguration \u00fcber eine YAML-Datei. M\u00f6glicherweise bemerkt man bei der Integration keine offensichtlichen Probleme, aber die in YAML definierten Konfigurationseinstellungen werden nicht tats\u00e4chlich angewendet. \n\nUm dieses Problem zu beheben: \n\n1. Falls du dies noch nicht getan hast, [richte die Integration ein]({add_integration}). \n\n2. Entferne `{domain}` aus deiner YAML-Konfigurationsdatei. \n\n3. Starte Home Assistant neu.",
+            "title": "Die {domain}-Integration unterst\u00fctzt keine YAML-Konfiguration"
+        },
+        "config_entry_reauth": {
+            "description": "Eine erneute Authentifizierung ist erforderlich",
+            "title": "Authentifizierung f\u00fcr {name} abgelaufen"
+        },
+        "config_entry_unique_id_collision": {
+            "description": "Es gibt mehrere {domain}-Konfigurationseintr\u00e4ge mit derselben eindeutigen ID.\nDie Konfigurationseintr\u00e4ge hei\u00dfen {titles}\n\nUm diesen Fehler zu beheben, [konfiguriere die Integration]({configure_url}) und entferne alle bis auf eines der Duplikate.\n\nHinweis: Nach dem Entfernen dieser Duplikate kann eine weitere Gruppe von Duplikaten sichtbar werden.",
+            "title": "Mehrere {domain}-Konfigurationseintr\u00e4ge mit derselben eindeutigen ID"
+        },
+        "config_entry_unique_id_collision_many": {
+            "description": "Es gibt mehrere ({number_of_entries}) {domain}-Konfigurationseintr\u00e4ge mit derselben eindeutigen ID.\nDie ersten {title_limit}-Konfigurationseintr\u00e4ge hei\u00dfen {titles}.\n\nUm diesen Fehler zu beheben, [konfiguriere die Integration]({configure_url}) und entferne alle bis auf einen der Duplikate. \n\nHinweis: Nach dem Entfernen dieser Duplikate kann eine weitere Gruppe von Duplikaten sichtbar werden.",
+            "title": "Mehrere {domain}-Konfigurationseintr\u00e4ge mit derselben eindeutigen ID"
+        },
+        "country_not_configured": {
+            "description": "Es wurde noch kein Land konfiguriert. W\u00e4hle unten \u201eWeitere Informationen\u201c, um dein Land einzustellen.",
+            "title": "Das Land wurde nicht konfiguriert"
+        },
+        "deprecated_architecture": {
+            "description": "Dieses System verwendet 32-Bit-Hardware (`{arch}`), die veraltet ist und nach der Ver\u00f6ffentlichung von Home Assistant 2025.12 keine Updates mehr erh\u00e4lt. Da deine Hardware neuere Versionen von Home Assistant nicht mehr ausf\u00fchren kann, musst du auf neue Hardware migrieren.",
+            "title": "Hinweis: Veraltete 32-Bit-Architektur"
+        },
+        "deprecated_container": {
+            "description": "Dieses System l\u00e4uft auf einem 32-Bit-Betriebssystem (`{arch}`), das veraltet ist und nach der Ver\u00f6ffentlichung von Home Assistant 2025.12 keine Updates mehr erh\u00e4lt. Pr\u00fcfe, ob dein System ein 64-Bit-Betriebssystem ausf\u00fchren kann. Andernfalls musst du auf neue Hardware migrieren.",
+            "title": "Hinweis: Veraltete 32-Bit-Architektur"
+        },
+        "deprecated_method": {
+            "description": "Dieses System verwendet den {installation_type} Installationstyp, der seit Home Assistant 2025.12 nicht mehr unterst\u00fctzt wird. Um weiterhin Updates und Support zu erhalten, migriere zu einer unterst\u00fctzten Installationsmethode.",
+            "title": "Nicht unterst\u00fctzte Installationsmethode"
+        },
+        "deprecated_method_architecture": {
+            "description": "Dieses System verwendet den {installation_type} Installationstyp und 32-Bit-Hardware ({arch}), die beide seit Home Assistant 2025.12 nicht mehr unterst\u00fctzt werden. Um weiterhin Updates und Support zu erhalten, migriere auf unterst\u00fctzte Hardware und verwende eine unterst\u00fctzte Installationsmethode.",
+            "title": "Nicht unterst\u00fctzte Installationsmethode und Architektur"
+        },
+        "deprecated_os_aarch64": {
+            "description": "Dieses System l\u00e4uft auf einem 32-Bit-Betriebssystem (`armv7`), das veraltet ist und nach der Ver\u00f6ffentlichung von Home Assistant 2025.12 keine Updates mehr erhalten wird. Um Home Assistant weiterhin auf dieser Hardware zu verwenden, musst du ein 64-Bit-Betriebssystem installieren. Bitte beachte unsere [Installationsanleitung]({installation_guide}).",
+            "title": "Hinweis: Veraltete 32-Bit-Architektur"
+        },
+        "deprecated_os_armv7": {
+            "description": "Dieses System l\u00e4uft auf einem 32-Bit-Betriebssystem (`armv7`), das veraltet ist und nach der Ver\u00f6ffentlichung von Home Assistant 2025.12 keine Updates mehr erhalten wird. Da deine Hardware nicht mehr in der Lage ist, neuere Versionen von Home Assistant auszuf\u00fchren, musst du auf eine neue Hardware umsteigen.",
+            "title": "Hinweis: Veraltete 32-Bit-Architektur"
+        },
+        "deprecated_system_packages_config_flow_integration": {
+            "description": "Die Integration {integration_title} wird entfernt, da sie von Systempaketen abh\u00e4ngt, die nur auf Systemen mit veralteter Architektur installiert werden k\u00f6nnen. Um dieses Problem zu beheben, entferne alle Konfigurationseintr\u00e4ge von \u201e{integration_title}\u201c.",
+            "title": "Die {integration_title}-Integration wird entfernt"
+        },
+        "deprecated_system_packages_yaml_integration": {
+            "description": "Die Integration {integration_title} wird entfernt, da sie von Systempaketen abh\u00e4ngt, die nur auf Systemen mit veralteter Architektur installiert werden k\u00f6nnen. Um dies zu beheben, entferne den {domain}-Eintrag aus deiner configuration.yaml-Datei und starte Home Assistant neu.",
+            "title": "Das {integration_title} Integration wird entfernt"
+        },
+        "deprecated_trigger_behavior": {
+            "description": "Eine Automation, ein Skript oder eine Template-Entit\u00e4t verwendet die Verhaltensoption `{deprecated_behavior}` f\u00fcr Ausl\u00f6ser, die in `{new_behavior}` umbenannt wurde. Der alte Wert funktioniert vorerst noch, die Unterst\u00fctzung daf\u00fcr wird jedoch in einer zuk\u00fcnftigen Version entfernt.\n\nUm dieses Problem zu beheben, \u00f6ffne jede betroffene Automation oder jedes betroffene Skript im Editor und speichere es erneut. Home Assistant erkennt und aktualisiert die veraltete Option automatisch. Alternativ kannst du deine Konfigurationsdateien (z. B. `automations.yaml`) direkt bearbeiten und in den Ausl\u00f6seroptionen `behavior: {deprecated_behavior}` in `behavior: {new_behavior}` \u00e4ndern. Lass die Option `behavior` von Bedingungen unver\u00e4ndert, da Bedingungen weiterhin `any` und `all` verwenden. Starte Home Assistant anschlie\u00dfend neu.",
+            "title": "Veraltete Verhaltensoption f\u00fcr Ausl\u00f6ser in Gebrauch"
+        },
+        "deprecated_yaml": {
+            "description": "Die Konfiguration von {integration_title} mithilfe von YAML wird entfernt.\n\nDeine vorhandene YAML-Konfiguration wurde automatisch in die Benutzeroberfl\u00e4che importiert.\n\nEntferne die `{domain}`-Konfiguration aus deiner configuration.yaml-Datei und starte Home Assistant neu, um dieses Problem zu beheben.",
+            "title": "Die {integration_title} YAML-Konfiguration wird entfernt"
+        },
+        "entity_own_area_without_own_name": {
+            "description": "Die Entit\u00e4t `{entity_id}` hat keinen eigenen Namen, repr\u00e4sentiert also ihr Ger\u00e4t und dessen Standort. Ein der Entit\u00e4t selbst zugewiesener Bereich widerspricht diesem und wird nicht unterst\u00fctzt.\n\nUm dieses Problem zu beheben, \u00f6ffne die [Entit\u00e4tseinstellungen]({entity_settings_url}) und entferne entweder den Bereich der Entit\u00e4t oder gib der Entit\u00e4t einen Namen.",
+            "title": "Die Entit\u00e4t {entity_id} hat einen Bereich, aber keinen eigenen Namen"
+        },
+        "historic_currency": {
+            "description": "Die W\u00e4hrung {currency} wird nicht mehr verwendet, bitte konfiguriere die W\u00e4hrungskonfiguration neu.",
+            "title": "Die konfigurierte W\u00e4hrung ist nicht mehr in Gebrauch"
+        },
+        "imperial_unit_system": {
+            "description": "Das imperiale Einheitensystem ist veraltet und dein System verwendet derzeit das US-\u00fcbliche Einheitensystem. Bitte aktualisiere deine Konfiguration, um das US-\u00fcbliche Einheitensystem zu verwenden, und lade die Core-Konfiguration neu, um dieses Problem zu beheben.",
+            "title": "Das imperiale Einheitensystem ist veraltet"
+        },
+        "integration_not_found": {
+            "fix_flow": {
+                "abort": {
+                    "issue_ignored": "Nicht existierende Integration {domain} ignoriert."
+                },
+                "step": {
+                    "init": {
+                        "description": "Die Integration `{domain}` konnte nicht gefunden werden. Dies passiert, wenn eine (benutzerdefinierte) Integration aus Home Assistant entfernt wurde, aber noch Konfigurationen f\u00fcr diese Integration vorhanden sind. Verwende bitte die Kn\u00f6pfe unten, um entweder die vorherigen Konfigurationen f\u00fcr `{domain}` zu entfernen oder dies zu ignorieren.",
+                        "menu_options": {
+                            "confirm": "Vorherige Konfigurationen entfernen",
+                            "ignore": "Ignorieren"
+                        },
+                        "title": "Integration {domain} nicht gefunden"
+                    }
+                }
+            },
+            "title": "Integration {domain} nicht gefunden"
+        },
+        "legacy_templates_false": {
+            "description": "An deinen Templates \u00e4ndert sich nichts. \n\nEntferne den Schl\u00fcssel `legacy_templates` aus der `homeassistant`-Konfiguration in deiner configuration.yaml-Datei und starte Home Assistant neu, um dieses Problem zu beheben.",
+            "title": "Der Konfigurationsschl\u00fcssel legacy_templates wird entfernt"
+        },
+        "legacy_templates_true": {
+            "description": "Bitte f\u00fchre die folgenden Schritte aus:\n- \u00dcbernehme deine Konfiguration, um das Rendern von Templates f\u00fcr native Python-Typen zu unterst\u00fctzen.\n- Entferne den Schl\u00fcssel `legacy_templates` aus der Konfiguration `homeassistant` in deiner configuration.yaml-Datei.\n- Starte Home Assistant neu, um dieses Problem zu beheben.",
+            "title": "Die Unterst\u00fctzung f\u00fcr \u00e4ltere Templates wird entfernt"
+        },
+        "orphaned_ignored_config_entry": {
+            "fix_flow": {
+                "abort": {
+                    "issue_ignored": "Nicht vorhandene Integration {domain} ignoriert."
+                },
+                "step": {
+                    "init": {
+                        "description": "Es gibt einen ignorierten, verwaisten Konfigurationseintrag f\u00fcr die `{domain}`-Integration. Dies kann vorkommen, wenn eine Integration entfernt wird, der Konfigurationseintrag aber weiterhin in Home Assistant vorhanden ist.\n\nUm dieses Problem zu beheben, dr\u00fccke **Entfernen**, um den verwaisten Eintrag zu l\u00f6schen.",
+                        "menu_options": {
+                            "confirm": "Entfernen",
+                            "ignore": "Ignorieren"
+                        },
+                        "title": "Verwaister, ignorierter Konfigurationseintrag f\u00fcr {domain}"
+                    }
+                }
+            },
+            "title": "Verwaister, ignorierter Konfigurationseintrag f\u00fcr {domain}"
+        },
+        "platform_config_not_supported": {
+            "description": "Die Konfiguration der {integration_domain}-Integration durch Hinzuf\u00fcgen von `{platform_key}` unter dem Schl\u00fcssel `{platform_domain}:` wird nicht unterst\u00fctzt. Die {integration_domain}-Integration muss stattdessen unter ihrem eigenen Schl\u00fcssel `{integration_domain}:` konfiguriert werden.\n\nUm dies zu beheben:\n\n1. Entferne folgendes aus deiner YAML-Konfigurationsdatei:\n\n{yaml_example}\n\n2. Verschiebe die Konfiguration stattdessen unter den Schl\u00fcssel `{integration_domain}:`.\n\n3. Starte Home Assistant neu.\n\nUm die ausf\u00fchrliche Dokumentation anzuzeigen, w\u00e4hle \u201eWeitere Informationen\u201c.",
+            "title": "Nicht unterst\u00fctzte YAML-Konfiguration f\u00fcr die {integration_domain}-Integration"
+        },
+        "platform_only": {
+            "description": "Die {domain}-Integration unterst\u00fctzt keine Konfiguration unter ihrem eigenen Schl\u00fcssel, sie muss unter ihren unterst\u00fctzten Plattformen konfiguriert werden.\n\nSo l\u00f6st man dieses Problem:\n\n1. Entferne `{domain}` aus deiner YAML-Konfigurationsdatei.\n\n2. Starte Home Assistant neu.",
+            "title": "Die {domain}-Integration unterst\u00fctzt keine YAML-Konfiguration unter eigenem Schl\u00fcssel"
+        },
+        "platform_setup_not_supported": {
+            "description": "Es ist nicht m\u00f6glich, {integration_domain} {platform_domain} durch Hinzuf\u00fcgen von `{platform_key}` zur Konfiguration von {platform_domain} zu konfigurieren. Bitte lies in der Dokumentation nach, wie du diese Integration einrichten kannst.\n\nUm dies zu beheben:\n\n1. Entferne die Vorkommen von `{platform_key}` aus der `{platform_domain}`-Konfiguration in deiner YAML-Konfigurationsdatei.\n\n2. Starte Home Assistant neu.",
+            "title": "Nicht verwendete YAML-Konfiguration f\u00fcr die {integration_domain}-Integration"
+        },
+        "storage_corruption": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Der Speicher `{storage_key}` konnte nicht geparst werden und wurde in `{corrupt_path}` umbenannt, damit Home Assistant fortfahren kann. \n\nEin Standard-`{storage_key}` wurde m\u00f6glicherweise automatisch erstellt. \n\nWenn du manuelle \u00c4nderungen an der Speicherdatei vorgenommen hast, behebe alle Syntaxfehler in `{corrupt_path}`, stelle die Datei im urspr\u00fcnglichen Pfad `{original_path}` wieder her und starte Home Assistant neu. Andernfalls stelle das System aus einem Backup wieder her. \n\nKlicke unten auf **OK**, um zu best\u00e4tigen, dass du die Datei repariert oder wiederhergestellt hast. \n\nDer genaue Fehler war: {error}",
+                        "title": "Speicherbesch\u00e4digung f\u00fcr {storage_key} erkannt"
+                    }
+                }
+            },
+            "title": "Speicherbesch\u00e4digung f\u00fcr {storage_key} erkannt"
+        },
+        "unsupported_local_deps": {
+            "description": "Auf diesem System wird Home Assistant au\u00dferhalb einer virtuellen Umgebung oder eines Docker-Containers ausgef\u00fchrt. Dies wird nicht unterst\u00fctzt und nach der Ver\u00f6ffentlichung von Home Assistant 2026.11 nicht mehr funktionieren.",
+            "title": "Hinweis: Veraltete Installationsmethode"
+        }
+    },
+    "services": {
+        "check_config": {
+            "description": "\u00dcberpr\u00fcft die YAML-Konfigurationsdateien von Home Assistant auf Fehler. Fehler werden in den Home-Assistant-Protokollen angezeigt.",
+            "name": "Home-Assistant-Konfiguration pr\u00fcfen"
+        },
+        "reload_all": {
+            "description": "L\u00e4dt alle YAML-Konfigurationen neu, die ohne Neustart von Home Assistant neu geladen werden k\u00f6nnen.",
+            "name": "Gesamte Home-Assistant-Konfiguration neu laden"
+        },
+        "reload_config_entry": {
+            "description": "L\u00e4dt den Konfigurationseintrag mit der angegebenen Konfigurationseintrag-ID neu.",
+            "fields": {
+                "entry_id": {
+                    "description": "Der neuzuladende Konfigurationseintrag.",
+                    "name": "Konfigurationseintrag-ID"
+                }
+            },
+            "name": "Konfigurationseintrag neu laden"
+        },
+        "reload_core_config": {
+            "description": "L\u00e4dt die Core-Konfiguration aus der YAML-Konfiguration neu.",
+            "name": "Core-Konfiguration neu laden"
+        },
+        "reload_custom_templates": {
+            "description": "L\u00e4dt Jinja2-Templates neu, die sich im Ordner `custom_templates` in deiner Konfiguration befinden. Neue Werte werden beim n\u00e4chsten Rendern des Templates angewendet.",
+            "name": "Benutzerdefinierte Jinja2-Templates neu laden"
+        },
+        "restart": {
+            "description": "Startet Home Assistant neu.",
+            "fields": {
+                "safe_mode": {
+                    "description": "Benutzerdefinierte Integrationen und Karten deaktivieren.",
+                    "name": "Abgesicherter Modus"
+                }
+            },
+            "name": "Home Assistant neu starten"
+        },
+        "save_persistent_states": {
+            "description": "Speichert die persistenten Zust\u00e4nde sofort. Beh\u00e4lt das normale periodische Speicherintervall bei.",
+            "name": "Persistente Zust\u00e4nde speichern"
+        },
+        "set_location": {
+            "description": "Aktualisiert den Standort von Home Assistant.",
+            "fields": {
+                "elevation": {
+                    "description": "H\u00f6he deines Standorts \u00fcber dem Meeresspiegel.",
+                    "name": "Meeresh\u00f6he"
+                },
+                "latitude": {
+                    "description": "Breitengrad deines Standorts.",
+                    "name": "Breitengrad"
+                },
+                "longitude": {
+                    "description": "L\u00e4ngengrad deines Standorts.",
+                    "name": "L\u00e4ngengrad"
+                }
+            },
+            "name": "Home-Assistant-Standort festlegen"
+        },
+        "stop": {
+            "description": "Stoppt Home Assistant.",
+            "name": "Home Assistant stoppen"
+        },
+        "toggle": {
+            "description": "Allgemeine Aktion zum Ein-/Ausschalten von Ger\u00e4ten in jeder Domain.",
+            "name": "Generisches Umschalten"
+        },
+        "turn_off": {
+            "description": "Allgemeine Aktion zum Ausschalten von Ger\u00e4ten in jeder Domain.",
+            "name": "Generisches Ausschalten"
+        },
+        "turn_on": {
+            "description": "Allgemeine Aktion zum Einschalten von Ger\u00e4ten in jeder Domain.",
+            "name": "Generisches Einschalten"
+        },
+        "update_entity": {
+            "description": "Zwingt eine oder mehrere Entit\u00e4ten, ihre Daten zu aktualisieren.",
+            "fields": {
+                "entity_id": {
+                    "description": "Liste der Entit\u00e4ten, deren Aktualisierung erzwungen werden soll.",
+                    "name": "Zu aktualisierende Entit\u00e4ten"
+                }
+            },
+            "name": "Entit\u00e4t aktualisieren"
+        }
+    },
+    "system_health": {
+        "info": {
+            "arch": "CPU-Architektur",
+            "config_dir": "Konfigurationsverzeichnis",
+            "container_arch": "Container-Architektur",
+            "dev": "Entwicklung",
+            "docker": "Docker",
+            "hassio": "Supervisor",
+            "installation_type": "Installationstyp",
+            "os_name": "Betriebssystem-Familie",
+            "os_version": "Betriebssystem-Version",
+            "python_version": "Python-Version",
+            "timezone": "Zeitzone",
+            "user": "Benutzer",
+            "version": "Version",
+            "virtualenv": "Virtuelle Umgebung"
+        }
+    }
+}

@@ -1,0 +1,504 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "field_brightness_description": "Uimhir a l\u00e9ir\u00edonn gile, \u00e1it a m\u00fachann 0 an solas, seasann 1 don ghile \u00edosta, agus seasann 255 don ghile uasta.",
+        "field_brightness_name": "Luach gile",
+        "field_brightness_pct_description": "Uimhir a l\u00e9ir\u00edonn c\u00e9atad\u00e1n na gile ioml\u00e1ine, \u00e1it a m\u00fachann 0 an solas, seasann 1 don ghile \u00edosta, agus seasann 100 don ghile uasta.",
+        "field_brightness_pct_name": "Gile",
+        "field_brightness_step_description": "Athraigh an gile de mh\u00e9id \u00e1irithe.",
+        "field_brightness_step_name": "Luach c\u00e9ime gile",
+        "field_brightness_step_pct_description": "Athraigh gile faoi ch\u00e9atad\u00e1n.",
+        "field_brightness_step_pct_name": "C\u00e9im gile",
+        "field_color_name_description": "Ainm datha at\u00e1 inl\u00e9ite ag daoine.",
+        "field_color_name_name": "Ainm datha",
+        "field_color_temp_kelvin_description": "Teocht datha i Ceilvin.",
+        "field_color_temp_kelvin_name": "Teocht datha",
+        "field_effect_description": "\u00c9ifeacht solais.",
+        "field_effect_name": "\u00c9ifeacht",
+        "field_flash_description": "Abair leis an solas splancadh, is f\u00e9idir leis a bheith ina luach gearr n\u00f3 fada.",
+        "field_flash_name": "Splanc",
+        "field_hs_color_description": "Dath i bhform\u00e1id hue/sat. Liosta de dh\u00e1 shl\u00e1nuimhir. Is \u00e9 0-360 an Hue agus is \u00e9 0-100 an Sat.",
+        "field_hs_color_name": "Dath L\u00ed/Sath",
+        "field_profile_description": "Ainm pr\u00f3if\u00edl solais le h\u00fas\u00e1id.",
+        "field_profile_name": "Pr\u00f3if\u00edl",
+        "field_rgb_color_description": "An dath i bhform\u00e1id RGB. Liosta de thr\u00ed shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas agus gorm.",
+        "field_rgb_color_name": "Dath",
+        "field_rgbw_color_description": "An dath i bhform\u00e1id RGBW. Liosta de cheithre shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas, gorm agus b\u00e1n.",
+        "field_rgbw_color_name": "RGBW-dath",
+        "field_rgbww_color_description": "An dath i bhform\u00e1id RGBWW. Liosta de ch\u00faig shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas, gorm, b\u00e1n fuar, agus b\u00e1n te.",
+        "field_rgbww_color_name": "RGBWW-dath",
+        "field_transition_description": "An fad a th\u00f3gann s\u00e9 chun an ch\u00e9ad st\u00e1t eile a bhaint amach.",
+        "field_transition_name": "Aistri\u00fa",
+        "field_white_description": "Socraigh an solas go m\u00f3d b\u00e1n.",
+        "field_white_name": "B\u00e1n",
+        "field_xy_color_description": "Dath\u00faigh i bhform\u00e1id XY. Liosta de dh\u00e1 uimhir dheach\u00falacha idir 0 agus 1.",
+        "field_xy_color_name": "Dath XY",
+        "section_additional_fields_name": "Roghanna breise",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_brightness": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il ar ghile soilse amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Gile solais"
+        },
+        "is_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "brightness_decrease": "Laghdaigh gile {entity_name}",
+            "brightness_increase": "M\u00e9adaigh gile {entity_name}",
+            "flash": "Flash {entity_name}",
+            "toggle": "Scor\u00e1naigh {entity_name}",
+            "turn_off": "M\u00fach {entity_name}",
+            "turn_on": "Cas ar {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "T\u00e1 {entity_name} m\u00fachta",
+            "is_on": "T\u00e1 {entity_name} ar si\u00fal"
+        },
+        "extra_fields": {
+            "brightness_pct": "Gile",
+            "flash": "Splanc",
+            "for": "Fad"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} casta air n\u00f3 as",
+            "turned_off": "M\u00fachadh {entity_name}",
+            "turned_on": "T\u00e1 {entity_name} casta air"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Solas",
+            "state": {
+                "off": "As",
+                "on": "Ar si\u00fal"
+            },
+            "state_attributes": {
+                "brightness": {
+                    "name": "Gile"
+                },
+                "color_mode": {
+                    "name": "M\u00f3d datha",
+                    "state": {
+                        "brightness": "Gile amh\u00e1in",
+                        "color_temp": "Teocht datha",
+                        "hs": "HS",
+                        "onoff": "Ar/As",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Anaithnid",
+                        "white": "B\u00e1n",
+                        "xy": "XY"
+                    }
+                },
+                "color_temp_kelvin": {
+                    "name": "Teocht datha (Ceilvin)"
+                },
+                "effect": {
+                    "name": "\u00c9ifeacht",
+                    "state": {
+                        "off": "As"
+                    }
+                },
+                "effect_list": {
+                    "name": "\u00c9ifeachta\u00ed at\u00e1 ar f\u00e1il"
+                },
+                "max_color_temp_kelvin": {
+                    "name": "Uasteocht datha (Ceilbh\u00edn)"
+                },
+                "min_color_temp_kelvin": {
+                    "name": "Teocht datha \u00edosta (Ceilbh\u00edn)"
+                },
+                "supported_color_modes": {
+                    "name": "Modhanna datha at\u00e1 ar f\u00e1il",
+                    "state": {
+                        "brightness": "Gile amh\u00e1in",
+                        "color_temp": "Teocht datha",
+                        "hs": "HS",
+                        "onoff": "Ar/As",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Anaithnid",
+                        "white": "B\u00e1n",
+                        "xy": "XY"
+                    }
+                }
+            }
+        }
+    },
+    "selector": {
+        "color_name": {
+            "options": {
+                "aliceblue": "Alice gorm",
+                "antiquewhite": "B\u00e1n seanr\u00e9",
+                "aqua": "Aqua",
+                "aquamarine": "Aquamarine",
+                "azure": "Azure",
+                "beige": "B\u00e9is",
+                "bisque": "Bisque",
+                "blanchedalmond": "Alm\u00f3n b\u00e1naithe",
+                "blue": "Gorm",
+                "blueviolet": "Vialait gorm",
+                "brown": "Donn",
+                "burlywood": "Burlywood",
+                "cadetblue": "Dalta gorm",
+                "chartreuse": "Chartreuse",
+                "chocolate": "Seacl\u00e1id",
+                "coral": "Coir\u00e9al",
+                "cornflowerblue": "Gorm arbhair",
+                "cornsilk": "S\u00edoda arbhair",
+                "crimson": "Corcairdhearg",
+                "cyan": "Cian",
+                "darkblue": "Gorm dorcha",
+                "darkcyan": "Cian dorcha",
+                "darkgoldenrod": "Slat \u00f3rga dorcha",
+                "darkgray": "Liath dorcha",
+                "darkgreen": "Glas dorcha",
+                "darkgrey": "Liath dorcha",
+                "darkkhaki": "C\u00e1ca\u00ed dorcha",
+                "darkmagenta": "Maigeanta dorcha",
+                "darkolivegreen": "Glas ol\u00f3ige dorcha",
+                "darkorange": "Or\u00e1iste dorcha",
+                "darkorchid": "Orchid dorcha",
+                "darkred": "Dearg dorcha",
+                "darksalmon": "Brad\u00e1n dorcha",
+                "darkseagreen": "Glas dorcha farraige",
+                "darkslateblue": "Gorm slinn dorcha",
+                "darkslategray": "Liath slinn dorcha",
+                "darkslategrey": "Liath slinn dorcha",
+                "darkturquoise": "Tuirquoise dorcha",
+                "darkviolet": "Violet dorcha",
+                "deeppink": "B\u00e1ndearg domhain",
+                "deepskyblue": "Gorm sp\u00e9ire domhain",
+                "dimgray": "Liath dorcha",
+                "dimgrey": "Liath dorcha",
+                "dodgerblue": "Gorm Dodger",
+                "firebrick": "Br\u00edce d\u00f3ite\u00e1in",
+                "floralwhite": "Bl\u00e1thanna b\u00e1na",
+                "forestgreen": "Glas foraoise",
+                "fuchsia": "F\u00fachsia",
+                "gainsboro": "Gainsboro",
+                "ghostwhite": "Taibhse b\u00e1n",
+                "gold": "\u00d3ir",
+                "goldenrod": "Slat \u00f3rga",
+                "gray": "Liath",
+                "green": "Glas",
+                "greenyellow": "Bu\u00ed glas",
+                "grey": "Liath",
+                "homeassistant": "Home Assistant",
+                "honeydew": "Dr\u00facht meala",
+                "hotpink": "B\u00e1ndearg te",
+                "indianred": "Dearg Indiach",
+                "indigo": "Indeag\u00f3",
+                "ivory": "Eabhair",
+                "khaki": "C\u00e1ca\u00ed",
+                "lavender": "Labhandar",
+                "lavenderblush": "Dearg\u00e1n labhandar",
+                "lawngreen": "Glas faiche",
+                "lemonchiffon": "S\u00edf\u00f3n l\u00edom\u00f3ide",
+                "lightblue": "Gorm \u00e9adrom",
+                "lightcoral": "Corail \u00e9adrom",
+                "lightcyan": "Cian \u00e9adrom",
+                "lightgoldenrodyellow": "Bu\u00ed \u00f3rga \u00e9adrom",
+                "lightgray": "Liath \u00e9adrom",
+                "lightgreen": "Glas \u00e9adrom",
+                "lightgrey": "Liath \u00e9adrom",
+                "lightpink": "B\u00e1ndearg \u00e9adrom",
+                "lightsalmon": "Brad\u00e1n \u00e9adrom",
+                "lightseagreen": "Glas mara \u00e9adrom",
+                "lightskyblue": "Gorm sp\u00e9ir \u00e9adrom",
+                "lightslategray": "Liath slinn \u00e9adrom",
+                "lightslategrey": "Liath slinn \u00e9adrom",
+                "lightsteelblue": "Gorm cruach \u00e9adrom",
+                "lightyellow": "Bu\u00ed \u00e9adrom",
+                "lime": "Aoil",
+                "limegreen": "Glas aoil",
+                "linen": "L\u00edn\u00e9adach",
+                "magenta": "Maigeanta",
+                "maroon": "Mar\u00fan",
+                "mediumaquamarine": "Uiscead\u00e1n me\u00e1nach",
+                "mediumblue": "Gorm me\u00e1nach",
+                "mediumorchid": "Orchid mhe\u00e1nmh\u00e9ide",
+                "mediumpurple": "Corcra me\u00e1nach",
+                "mediumseagreen": "Glas mara me\u00e1nach",
+                "mediumslateblue": "Gorm scl\u00e1ta me\u00e1nach",
+                "mediumspringgreen": "Glas earraigh me\u00e1nach",
+                "mediumturquoise": "Tuirquoise me\u00e1nach",
+                "mediumvioletred": "Dearg corcra me\u00e1nach",
+                "midnightblue": "Gorm me\u00e1n o\u00edche",
+                "mintcream": "Uachtar mionta",
+                "mistyrose": "R\u00f3s ceoach",
+                "moccasin": "Mocas\u00edn",
+                "navajowhite": "Navajo b\u00e1n",
+                "navy": "Cabhlach",
+                "navyblue": "D\u00faghorm",
+                "oldlace": "Seanl\u00e1sa",
+                "olive": "Ol\u00f3g",
+                "olivedrab": "Ol\u00f3g liath",
+                "orange": "Or\u00e1iste",
+                "orangered": "Dearg or\u00e1iste",
+                "orchid": "Magairl\u00edn",
+                "palegoldenrod": "Slat \u00f3rga b\u00e1n",
+                "palegreen": "Glas \u00e9adrom",
+                "paleturquoise": "Turcaidghorm \u00e9adrom",
+                "palevioletred": "Dearg corcra \u00e9adrom",
+                "papayawhip": "Fuip Papaya",
+                "peachpuff": "Puff p\u00e9itseog",
+                "peru": "Peiri\u00fa",
+                "pink": "B\u00e1ndearg",
+                "plum": "Pluma",
+                "powderblue": "Gorm p\u00fadair",
+                "purple": "Corcra",
+                "red": "Dearg",
+                "rosybrown": "Donn r\u00f3sach",
+                "royalblue": "Gorm r\u00edoga",
+                "saddlebrown": "Donn diallait",
+                "salmon": "Brad\u00e1n",
+                "sandybrown": "Donn gainmheach",
+                "seagreen": "Glas farraige",
+                "seashell": "Sliog\u00e1n mara",
+                "sienna": "Sienna",
+                "silver": "Airgead",
+                "skyblue": "Gorm sp\u00e9ire",
+                "slateblue": "Gorm slinn",
+                "slategray": "Liath slinn",
+                "slategrey": "Liath slinn",
+                "snow": "Sneachta",
+                "springgreen": "Glas an earraigh",
+                "steelblue": "Gorm cruach",
+                "tan": "Cr\u00f3n",
+                "teal": "T\u00e9al",
+                "thistle": "Feochad\u00e1n",
+                "tomato": "Tr\u00e1ta\u00ed",
+                "turquoise": "Turcaidghorm",
+                "violet": "Vialait",
+                "wheat": "Cruithneacht",
+                "white": "B\u00e1n",
+                "whitesmoke": "Deatach b\u00e1n",
+                "yellow": "Bu\u00ed",
+                "yellowgreen": "Glas bu\u00ed"
+            }
+        },
+        "flash": {
+            "options": {
+                "long": "Fada",
+                "short": "Gearr"
+            }
+        },
+        "state": {
+            "options": {
+                "off": "As",
+                "on": "Ar si\u00fal"
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Athra\u00edonn s\u00e9 solas amh\u00e1in n\u00f3 n\u00edos m\u00f3, \u00f3 air go m\u00fachta, n\u00f3 as go air, bunaithe ar a staid reatha.",
+            "fields": {
+                "brightness": {
+                    "description": "Uimhir a l\u00e9ir\u00edonn gile, \u00e1it a m\u00fachann 0 an solas, seasann 1 don ghile \u00edosta, agus seasann 255 don ghile uasta.",
+                    "name": "Luach gile"
+                },
+                "brightness_pct": {
+                    "description": "Uimhir a l\u00e9ir\u00edonn c\u00e9atad\u00e1n na gile ioml\u00e1ine, \u00e1it a m\u00fachann 0 an solas, seasann 1 don ghile \u00edosta, agus seasann 100 don ghile uasta.",
+                    "name": "Gile"
+                },
+                "color_name": {
+                    "description": "Ainm datha at\u00e1 inl\u00e9ite ag daoine.",
+                    "name": "Ainm datha"
+                },
+                "color_temp_kelvin": {
+                    "description": "Teocht datha i Ceilvin.",
+                    "name": "Teocht datha"
+                },
+                "effect": {
+                    "description": "\u00c9ifeacht solais.",
+                    "name": "\u00c9ifeacht"
+                },
+                "flash": {
+                    "description": "Abair leis an solas splancadh, is f\u00e9idir leis a bheith ina luach gearr n\u00f3 fada.",
+                    "name": "Splanc"
+                },
+                "hs_color": {
+                    "description": "Dath i bhform\u00e1id hue/sat. Liosta de dh\u00e1 shl\u00e1nuimhir. Is \u00e9 0-360 an Hue agus is \u00e9 0-100 an Sat.",
+                    "name": "Dath L\u00ed/Sath"
+                },
+                "profile": {
+                    "description": "Ainm pr\u00f3if\u00edl solais le h\u00fas\u00e1id.",
+                    "name": "Pr\u00f3if\u00edl"
+                },
+                "rgb_color": {
+                    "description": "An dath i bhform\u00e1id RGB. Liosta de thr\u00ed shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas agus gorm.",
+                    "name": "Dath"
+                },
+                "rgbw_color": {
+                    "description": "An dath i bhform\u00e1id RGBW. Liosta de cheithre shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas, gorm agus b\u00e1n.",
+                    "name": "RGBW-dath"
+                },
+                "rgbww_color": {
+                    "description": "An dath i bhform\u00e1id RGBWW. Liosta de ch\u00faig shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas, gorm, b\u00e1n fuar, agus b\u00e1n te.",
+                    "name": "RGBWW-dath"
+                },
+                "transition": {
+                    "description": "An fad a th\u00f3gann s\u00e9 chun an ch\u00e9ad st\u00e1t eile a bhaint amach.",
+                    "name": "Aistri\u00fa"
+                },
+                "white": {
+                    "description": "Socraigh an solas go m\u00f3d b\u00e1n.",
+                    "name": "B\u00e1n"
+                },
+                "xy_color": {
+                    "description": "Dath\u00faigh i bhform\u00e1id XY. Liosta de dh\u00e1 uimhir dheach\u00falacha idir 0 agus 1.",
+                    "name": "Dath XY"
+                }
+            },
+            "name": "Solas a scor\u00e1naigh",
+            "sections": {
+                "additional_fields": {
+                    "name": "Roghanna breise"
+                }
+            }
+        },
+        "turn_off": {
+            "description": "M\u00fachann s\u00e9 solas amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "flash": {
+                    "description": "Abair leis an solas splancadh, is f\u00e9idir leis a bheith ina luach gearr n\u00f3 fada.",
+                    "name": "Splanc"
+                },
+                "transition": {
+                    "description": "An fad a th\u00f3gann s\u00e9 chun an ch\u00e9ad st\u00e1t eile a bhaint amach.",
+                    "name": "Aistri\u00fa"
+                }
+            },
+            "sections": {
+                "additional_fields": {
+                    "name": "Roghanna breise"
+                }
+            }
+        },
+        "turn_on": {
+            "description": "Casann s\u00e9 solas amh\u00e1in n\u00f3 n\u00edos m\u00f3 air agus coigearta\u00edonn s\u00e9 a n-air\u00edonna, fi\u00fa nuair a bh\u00edonn siad casta air cheana f\u00e9in.",
+            "fields": {
+                "brightness": {
+                    "description": "Uimhir a l\u00e9ir\u00edonn gile, \u00e1it a m\u00fachann 0 an solas, seasann 1 don ghile \u00edosta, agus seasann 255 don ghile uasta.",
+                    "name": "Luach gile"
+                },
+                "brightness_pct": {
+                    "description": "Uimhir a l\u00e9ir\u00edonn c\u00e9atad\u00e1n na gile ioml\u00e1ine, \u00e1it a m\u00fachann 0 an solas, seasann 1 don ghile \u00edosta, agus seasann 100 don ghile uasta.",
+                    "name": "Gile"
+                },
+                "brightness_step": {
+                    "description": "Athraigh an gile de mh\u00e9id \u00e1irithe.",
+                    "name": "Luach c\u00e9ime gile"
+                },
+                "brightness_step_pct": {
+                    "description": "Athraigh gile faoi ch\u00e9atad\u00e1n.",
+                    "name": "C\u00e9im gile"
+                },
+                "color_name": {
+                    "description": "Ainm datha at\u00e1 inl\u00e9ite ag daoine.",
+                    "name": "Ainm datha"
+                },
+                "color_temp_kelvin": {
+                    "description": "Teocht datha i Ceilvin.",
+                    "name": "Teocht datha"
+                },
+                "effect": {
+                    "description": "\u00c9ifeacht solais.",
+                    "name": "\u00c9ifeacht"
+                },
+                "flash": {
+                    "description": "Abair leis an solas splancadh, is f\u00e9idir leis a bheith ina luach gearr n\u00f3 fada.",
+                    "name": "Splanc"
+                },
+                "hs_color": {
+                    "description": "Dath i bhform\u00e1id hue/sat. Liosta de dh\u00e1 shl\u00e1nuimhir. Is \u00e9 0-360 an Hue agus is \u00e9 0-100 an Sat.",
+                    "name": "Dath L\u00ed/Sath"
+                },
+                "profile": {
+                    "description": "Ainm pr\u00f3if\u00edl solais le h\u00fas\u00e1id.",
+                    "name": "Pr\u00f3if\u00edl"
+                },
+                "rgb_color": {
+                    "description": "An dath i bhform\u00e1id RGB. Liosta de thr\u00ed shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas agus gorm.",
+                    "name": "Dath"
+                },
+                "rgbw_color": {
+                    "name": "RGBW-dath"
+                },
+                "rgbww_color": {
+                    "description": "An dath i bhform\u00e1id RGBWW. Liosta de ch\u00faig shl\u00e1nuimhir idir 0 agus 255 a l\u00e9ir\u00edonn luachanna dearg, glas, gorm, b\u00e1n fuar, agus b\u00e1n te.",
+                    "name": "RGBWW-dath"
+                },
+                "transition": {
+                    "description": "An fad a th\u00f3gann s\u00e9 chun an ch\u00e9ad st\u00e1t eile a bhaint amach.",
+                    "name": "Aistri\u00fa"
+                },
+                "white": {
+                    "description": "Socraigh an solas go m\u00f3d b\u00e1n.",
+                    "name": "B\u00e1n"
+                },
+                "xy_color": {
+                    "description": "Dath\u00faigh i bhform\u00e1id XY. Liosta de dh\u00e1 uimhir dheach\u00falacha idir 0 agus 1.",
+                    "name": "Dath XY"
+                }
+            },
+            "sections": {
+                "additional_fields": {
+                    "name": "Roghanna breise"
+                }
+            }
+        }
+    },
+    "title": "Solas",
+    "triggers": {
+        "brightness_changed": {
+            "name": "Athra\u00edodh gile an tsolais"
+        },
+        "brightness_crossed_threshold": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Gile solais thar an tairseach"
+        },
+        "turned_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "turned_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        }
+    }
+}

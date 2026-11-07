@@ -1,0 +1,135 @@
+{
+    "conditions": {
+        "is_mode": {
+            "description": "Verifica se uno o pi\u00f9 umidificatori sono impostati su una determinata modalit\u00e0.",
+            "fields": {
+                "mode": {
+                    "name": "Modalit\u00e0"
+                }
+            },
+            "name": "Il deumidificatore \u00e8 in modalit\u00e0"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "Impostare l'umidit\u00e0 per {entity_name}",
+            "set_mode": "Cambiare la modalit\u00e0 di {entity_name}",
+            "toggle": "Attiva/disattiva {entity_name}",
+            "turn_off": "Disattiva {entity_name}",
+            "turn_on": "Attiva {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} \u00e8 impostato su una modalit\u00e0 specifica",
+            "is_off": "{entity_name} \u00e8 disattivato",
+            "is_on": "{entity_name} \u00e8 attivo"
+        },
+        "extra_fields": {
+            "above": "Maggiore di",
+            "below": "Minore di",
+            "for": "Durata"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} attivato o disattivato",
+            "target_humidity_changed": "{entity_name} umidit\u00e0 desiderata modificata",
+            "turned_off": "{entity_name} disattivato",
+            "turned_on": "{entity_name} attivato"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Umidificatore",
+            "state": {
+                "off": "Spento",
+                "on": "Acceso"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Azione",
+                    "state": {
+                        "drying": "Deumidificando",
+                        "humidifying": "Umidificazione",
+                        "idle": "Inattivo",
+                        "off": "Spento"
+                    }
+                },
+                "available_modes": {
+                    "name": "Modalit\u00e0 disponibili"
+                },
+                "current_humidity": {
+                    "name": "Umidit\u00e0 attuale"
+                },
+                "humidity": {
+                    "name": "Umidit\u00e0 desiderata"
+                },
+                "max_humidity": {
+                    "name": "Umidit\u00e0 massima desiderata"
+                },
+                "min_humidity": {
+                    "name": "Umidit\u00e0 minima desiderata"
+                },
+                "mode": {
+                    "name": "Modalit\u00e0",
+                    "state": {
+                        "auto": "Automatico",
+                        "away": "Fuori casa",
+                        "baby": "Neonati",
+                        "boost": "Boost",
+                        "comfort": "Comfort",
+                        "eco": "Eco",
+                        "home": "In casa",
+                        "normal": "Normale",
+                        "sleep": "Notte"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Deumidificatore"
+        },
+        "humidifier": {
+            "name": "Umidificatore"
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "Umidit\u00e0 desiderata",
+                    "name": "Umidit\u00e0"
+                }
+            }
+        },
+        "set_mode": {
+            "fields": {
+                "mode": {
+                    "name": "Modalit\u00e0"
+                }
+            }
+        }
+    },
+    "title": "Umidificatore",
+    "triggers": {
+        "mode_changed": {
+            "fields": {
+                "mode": {
+                    "name": "Modalit\u00e0"
+                }
+            },
+            "name": "Modalit\u00e0 deumidificatore cambiata"
+        },
+        "started_drying": {
+            "description": "Si attiva quando uno o pi\u00f9 umidificatori iniziano a deumidificare"
+        },
+        "started_humidifying": {
+            "description": "Si attiva quando uno o pi\u00f9 umidificatori iniziano a umidificare"
+        },
+        "turned_off": {
+            "description": "Si attiva quando uno o pi\u00f9 umidificatori si spegnono",
+            "name": "Umidificatore spento"
+        },
+        "turned_on": {
+            "description": "Si attiva quando uno o pi\u00f9 umidificatori si accendono",
+            "name": "Umidificatore acceso"
+        }
+    }
+}

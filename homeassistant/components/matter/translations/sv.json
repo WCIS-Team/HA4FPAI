@@ -1,0 +1,902 @@
+{
+    "config": {
+        "abort": {
+            "addon_get_discovery_info_failed": "Det gick inte att h\u00e4mta identifieringsinformation f\u00f6r Matter Server-till\u00e4gget.",
+            "addon_info_failed": "Misslyckades ta emot till\u00e4ggsinformation f\u00f6r Matter-server.",
+            "addon_install_failed": "Misslyckades att installera Matter Server-till\u00e4gget.",
+            "addon_start_failed": "Misslyckades att starta Matter Server-till\u00e4gget.",
+            "already_configured": "Enheten \u00e4r redan konfigurerad",
+            "cannot_connect": "Det gick inte att ansluta",
+            "not_matter_addon": "Uppt\u00e4ckt till\u00e4gg \u00e4r inte det officiella Matter Server-till\u00e4gget.",
+            "reconfiguration_successful": "Lyckades \u00e5terkonfigurera Matter-integrationen."
+        },
+        "error": {
+            "cannot_connect": "Det gick inte att ansluta",
+            "invalid_server_version": "Matter server \u00e4r inte r\u00e4tt version",
+            "unknown": "Ov\u00e4ntat fel"
+        },
+        "flow_title": "{name}",
+        "progress": {
+            "install_addon": "V\u00e4nligen v\u00e4nta n\u00e4r installationen av Matter Server-till\u00e4gget slutf\u00f6rs. Detta kan ta flera minuter.",
+            "start_addon": "Var god v\u00e4nta medan Matter Server-till\u00e4gget startas. Det h\u00e4r till\u00e4gget driver Matter i Home Assistant. Detta kan ta n\u00e5gra sekunder."
+        },
+        "step": {
+            "hassio_confirm": {
+                "title": "St\u00e4ll in Matter-konfigurationen med Matter-server till\u00e4gget."
+            },
+            "install_addon": {
+                "title": "Installationen av till\u00e4gget har startat"
+            },
+            "manual": {
+                "data": {
+                    "url": "URL"
+                }
+            },
+            "on_supervisor": {
+                "data": {
+                    "use_addon": "Anv\u00e4nd det officiella Matter Server-till\u00e4gget"
+                },
+                "description": "Vill du anv\u00e4nde det officiella till\u00e4gget f\u00f6r Matter-server?\n\nOm du redan k\u00f6r Matter-server i ett annat till\u00e4gg, i en anpassad container, eller p\u00e5 annat s\u00e4tt., ska du inte v\u00e4lja detta alternativ.",
+                "title": "V\u00e4lj anslutningsmetod"
+            },
+            "start_addon": {
+                "title": "Startar till\u00e4gg."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "active_hardware_faults": {
+                "name": "H\u00e5rdvarufel"
+            },
+            "active_network_faults": {
+                "name": "N\u00e4tverksfel"
+            },
+            "active_radio_faults": {
+                "name": "Radiofel"
+            },
+            "actuator": {
+                "name": "Aktor"
+            },
+            "alarm_door": {
+                "name": "D\u00f6rrlarm"
+            },
+            "battery_alert": {
+                "name": "Batterivarning"
+            },
+            "boost_state": {
+                "name": "Boost-l\u00e4ge"
+            },
+            "config_status_operational": {
+                "name": "Konfigurationsstatus"
+            },
+            "dishwasher_alarm_inflow": {
+                "name": "Infl\u00f6deslarm"
+            },
+            "end_of_service": {
+                "name": "Tj\u00e4nstens upph\u00f6rande"
+            },
+            "evse_charging_status": {
+                "name": "Laddningsstatus"
+            },
+            "evse_plug": {
+                "name": "Kontaktl\u00e4ge"
+            },
+            "evse_supply_state": {
+                "name": "Laddarens driftsstatus"
+            },
+            "hardware_fault": {
+                "name": "H\u00e5rdvarufel"
+            },
+            "interconnected_co_alarm": {
+                "name": "Sammankopplat CO-larm"
+            },
+            "interconnected_smoke_alarm": {
+                "name": "Sammankopplad brandvarnare"
+            },
+            "muted": {
+                "name": "Ljud av"
+            },
+            "rain": {
+                "name": "Regn"
+            },
+            "test_in_progress": {
+                "name": "Test p\u00e5g\u00e5r"
+            },
+            "thermostat_remote_sensing_local_temperature": {
+                "name": "Fj\u00e4rravk\u00e4nning av lokal temperatur"
+            },
+            "thermostat_remote_sensing_occupancy": {
+                "name": "Fj\u00e4rravk\u00e4nning av bel\u00e4ggningsgrad"
+            },
+            "thermostat_remote_sensing_outdoor_temperature": {
+                "name": "Fj\u00e4rravk\u00e4nning av utetemperatur"
+            },
+            "valve_fault_blocked": {
+                "name": "Ventil blockerad"
+            },
+            "valve_fault_general_fault": {
+                "name": "Allm\u00e4nt fel"
+            },
+            "valve_fault_leaking": {
+                "name": "Ventill\u00e4ckage"
+            },
+            "water_freeze": {
+                "name": "Vattenfrysning"
+            },
+            "water_leak": {
+                "name": "Vattenl\u00e4cka"
+            }
+        },
+        "button": {
+            "cancel_boost": {
+                "name": "Avbryt \u00f6kning"
+            },
+            "pause": {
+                "name": "Pausa"
+            },
+            "reset_filter_condition": {
+                "name": "\u00c5terst\u00e4ll filtertillst\u00e5nd"
+            },
+            "resume": {
+                "name": "Forts\u00e4tt"
+            },
+            "self_test_request": {
+                "name": "Sj\u00e4lvtest"
+            },
+            "start": {
+                "name": "Starta"
+            },
+            "stop": {
+                "name": "Stoppa"
+            },
+            "temporary_mute_request": {
+                "name": "Tillf\u00e4llig ljudavst\u00e4ngning"
+            }
+        },
+        "climate": {
+            "thermostat": {
+                "name": "Termostat",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "going_to_sleep": "Ska sova",
+                            "vacation": "Semester",
+                            "wake": "Vakna"
+                        }
+                    }
+                }
+            }
+        },
+        "cover": {
+            "cover": {
+                "name": "Skydd"
+            }
+        },
+        "event": {
+            "button": {
+                "name": "Knapp",
+                "state_attributes": {
+                    "event_type": {
+                        "state": {
+                            "initial_press": "F\u00f6rsta tryckningen",
+                            "long_press": "L\u00e5ng tryckning",
+                            "long_release": "L\u00e5ngt uppsl\u00e4pp",
+                            "multi_press_1": "Tryckt en g\u00e5ng",
+                            "multi_press_2": "Tryckt tv\u00e5 g\u00e5nger",
+                            "multi_press_3": "Tryckt 3 g\u00e5nger",
+                            "multi_press_4": "Tryckt 4 g\u00e5nger",
+                            "multi_press_5": "Tryckt 5 g\u00e5nger",
+                            "multi_press_6": "Tryckt 6 g\u00e5nger",
+                            "multi_press_7": "Tryckt 7 g\u00e5nger",
+                            "multi_press_8": "Tryckt 8 g\u00e5nger",
+                            "short_release": "Kort uppsl\u00e4pp",
+                            "switch_latched": "Str\u00f6mbrytare l\u00e5st"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan": {
+                "name": "Fl\u00e4kt",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "high": "H\u00f6g",
+                            "low": "L\u00e5g",
+                            "medium": "Medel",
+                            "natural_wind": "Naturlig vind",
+                            "sleep_wind": "Sova vind"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "light": {
+                "name": "Lampa"
+            }
+        },
+        "lock": {
+            "lock": {
+                "name": "L\u00e5s"
+            }
+        },
+        "number": {
+            "altitude": {
+                "name": "H\u00f6jd \u00f6ver havet"
+            },
+            "auto_relock_timer": {
+                "name": "Timer f\u00f6r automatisk \u00e5terl\u00e5sning"
+            },
+            "cook_time": {
+                "name": "Tillagningstid"
+            },
+            "detection_delay": {
+                "name": "Detekteringsf\u00f6rdr\u00f6jning"
+            },
+            "detection_threshold": {
+                "name": "Detekteringstr\u00f6skelv\u00e4rde"
+            },
+            "hold_time": {
+                "name": "H\u00e5lltid"
+            },
+            "led_indicator_intensity_off": {
+                "name": "LED av intensitet"
+            },
+            "led_indicator_intensity_on": {
+                "name": "LED p\u00e5 intensitet"
+            },
+            "occupied_setback": {
+                "name": "Bel\u00e4ggning s\u00e4nkning"
+            },
+            "off_transition_time": {
+                "name": "Av \u00f6verg\u00e5ngstid"
+            },
+            "on_level": {
+                "name": "P\u00e5 niv\u00e5"
+            },
+            "on_off_transition_time": {
+                "name": "P\u00e5/av \u00f6verg\u00e5ngstid"
+            },
+            "on_transition_time": {
+                "name": "P\u00e5 \u00f6verg\u00e5ngstid"
+            },
+            "power_on_level": {
+                "name": "Power on-niv\u00e5"
+            },
+            "pump_setpoint": {
+                "name": "B\u00f6rv\u00e4rde"
+            },
+            "sensitivity_level": {
+                "name": "K\u00e4nslighet"
+            },
+            "slat_rotation_time": {
+                "name": "Rotationstid f\u00f6r lamell"
+            },
+            "speaker_setpoint": {
+                "name": "Volym"
+            },
+            "temperature_offset": {
+                "name": "Temperaturf\u00f6rskjutning"
+            },
+            "temperature_setpoint": {
+                "name": "B\u00f6rv\u00e4rde f\u00f6r temperatur"
+            },
+            "travel_time_down": {
+                "name": "Restid ner"
+            },
+            "travel_time_up": {
+                "name": "Restid upp"
+            },
+            "user_code_temporary_disable_time": {
+                "name": "Anv\u00e4ndarkod tillf\u00e4llig avst\u00e4ngningstid"
+            },
+            "valve_configuration_and_control_default_open_duration": {
+                "name": "Standardvaraktighet f\u00f6r \u00f6ppet l\u00e4ge"
+            },
+            "wrong_code_entry_limit": {
+                "name": "Fel kodgr\u00e4ns"
+            }
+        },
+        "select": {
+            "clean_mode": {
+                "name": "St\u00e4dl\u00e4ge"
+            },
+            "device_energy_management_mode": {
+                "name": "Energihanteringsl\u00e4ge"
+            },
+            "door_lock_operating_mode": {
+                "name": "Driftl\u00e4ge",
+                "state": {
+                    "no_remote_lock_unlock": "Ingen fj\u00e4rrl\u00e5sning/uppl\u00e5sning",
+                    "normal": "Normal",
+                    "passage": "Passage",
+                    "privacy": "Integritet",
+                    "vacation": "Semester"
+                }
+            },
+            "door_lock_sound_volume": {
+                "name": "Ljudvolym",
+                "state": {
+                    "high": "H\u00f6g",
+                    "low": "L\u00e5g",
+                    "medium": "Medel",
+                    "silent": "Tyst"
+                }
+            },
+            "laundry_washer_number_of_rinses": {
+                "name": "Antal sk\u00f6ljningar",
+                "state": {
+                    "extra": "Extra",
+                    "max": "Max",
+                    "normal": "Normal",
+                    "off": "Av"
+                }
+            },
+            "laundry_washer_spin_speed": {
+                "name": "Centrifugeringshastighet"
+            },
+            "mode": {
+                "name": "L\u00e4ge"
+            },
+            "power_level": {
+                "name": "Effektniv\u00e5 (W)"
+            },
+            "pump_operation_mode": {
+                "name": "l\u00e4ge",
+                "state": {
+                    "local": "Lokal",
+                    "maximum": "Maximal",
+                    "minimum": "Minimum",
+                    "normal": "Normal"
+                }
+            },
+            "selected_chime": {
+                "name": "Klockljud"
+            },
+            "sensitivity_level": {
+                "name": "K\u00e4nslighet",
+                "state": {
+                    "high": "H\u00f6g",
+                    "low": "L\u00e5g",
+                    "standard": "Standard"
+                }
+            },
+            "startup_on_off": {
+                "name": "Uppstartsbeteende",
+                "state": {
+                    "off": "Av",
+                    "on": "P\u00e5",
+                    "previous": "F\u00f6reg\u00e5ende",
+                    "toggle": "V\u00e4xla"
+                }
+            },
+            "switch_connection_mode": {
+                "name": "Anslutningsl\u00e4ge",
+                "state": {
+                    "directly_connected": "Direkt ansluten",
+                    "matter_only": "Endast Matter"
+                }
+            },
+            "switch_type": {
+                "name": "Brytartyp",
+                "state": {
+                    "button": "Knapp",
+                    "switch": "Brytare"
+                }
+            },
+            "temperature_display_mode": {
+                "name": "Temperaturvisningsl\u00e4ge"
+            },
+            "temperature_level": {
+                "name": "Temperaturniv\u00e5"
+            },
+            "water_heater_mode": {
+                "name": "Varmvattenl\u00e4ge"
+            }
+        },
+        "sensor": {
+            "activated_carbon_filter_condition": {
+                "name": "Aktivt kolfilter tillst\u00e5nd"
+            },
+            "active_current": {
+                "name": "Aktiv str\u00f6m"
+            },
+            "air_quality": {
+                "name": "Luftkvalitet",
+                "state": {
+                    "extremely_poor": "Extremt d\u00e5lig",
+                    "fair": "Vettig",
+                    "good": "Bra",
+                    "moderate": "M\u00e5ttlig",
+                    "poor": "D\u00e5lig",
+                    "very_poor": "Mycket d\u00e5lig"
+                }
+            },
+            "apparent_current": {
+                "name": "Skenbar str\u00f6m"
+            },
+            "auto_close_time": {
+                "name": "Tid f\u00f6r automatisk st\u00e4ngning"
+            },
+            "battery_charge_state": {
+                "name": "Batteriets laddningstillst\u00e5nd",
+                "state": {
+                    "charging": "Laddar",
+                    "full_charge": "Full laddning",
+                    "not_charging": "Laddar inte"
+                }
+            },
+            "battery_replacement_description": {
+                "name": "Batterityp"
+            },
+            "battery_time_remaining": {
+                "name": "\u00c5terst\u00e5ende tid"
+            },
+            "battery_time_to_full_charge": {
+                "name": "Tid till full laddning"
+            },
+            "battery_voltage": {
+                "name": "Batterisp\u00e4nning"
+            },
+            "boot_reason": {
+                "name": "Startorsak",
+                "state": {
+                    "brown_out_reset": "\u00c5terst\u00e4llning vid str\u00f6mavbrott",
+                    "hardware_watchdog_reset": "\u00c5terst\u00e4llning av h\u00e5rdvaru\u00f6vervakning",
+                    "power_on_reboot": "Omstart vid p\u00e5slag",
+                    "software_reset": "\u00c5terst\u00e4llning av programvara",
+                    "software_update_completed": "Programuppdatering slutf\u00f6rd",
+                    "software_watchdog_reset": "\u00c5terst\u00e4llning av programvaru\u00f6vervakning",
+                    "unspecified": "Ospecificerad"
+                }
+            },
+            "contamination_state": {
+                "name": "Kontamineringstillst\u00e5nd",
+                "state": {
+                    "critical": "Kritisk",
+                    "low": "L\u00e5g",
+                    "normal": "Normal",
+                    "warning": "Varning"
+                }
+            },
+            "current_phase": {
+                "name": "Nuvarande fas"
+            },
+            "door_closed_events": {
+                "name": "H\u00e4ndelser vid st\u00e4ngd d\u00f6rr"
+            },
+            "door_open_events": {
+                "name": "H\u00e4ndelser vid \u00f6ppen d\u00f6rr"
+            },
+            "energy_exported": {
+                "name": "Exporterad energi"
+            },
+            "esa_opt_out_state": {
+                "name": "Energioptimering opt-out",
+                "state": {
+                    "grid_opt_out": "Eln\u00e4t",
+                    "local_opt_out": "Lokalt",
+                    "no_opt_out": "Av",
+                    "opt_out": "Lokalt och eln\u00e4t"
+                }
+            },
+            "esa_state": {
+                "name": "Apparatens energistatus",
+                "state": {
+                    "fault": "Fel",
+                    "offline": "Offline",
+                    "online": "Online",
+                    "paused": "Pausad",
+                    "power_adjust_active": "Effektjustering"
+                }
+            },
+            "estimated_end_time": {
+                "name": "Ber\u00e4knad sluttid"
+            },
+            "estimated_heat_required": {
+                "name": "Erforderlig uppv\u00e4rmningsenergi"
+            },
+            "eve_weather_trend": {
+                "name": "V\u00e4dertrend",
+                "state": {
+                    "cloudy": "Molnigt",
+                    "rainy": "Regnigt",
+                    "stormy": "Stormig",
+                    "sunny": "Soligt"
+                }
+            },
+            "evse_charge_current": {
+                "name": "Laddningsstr\u00f6m"
+            },
+            "evse_circuit_capacity": {
+                "name": "S\u00e4kringens kapacitet"
+            },
+            "evse_fault_state": {
+                "name": "Feltillst\u00e5nd",
+                "state": {
+                    "contact_dry_failure": "Kontaktfel torr",
+                    "contact_wet_failure": "Kontaktfel v\u00e5t",
+                    "emergency_stop": "N\u00f6dstopp",
+                    "ev_disconnected": "EV fr\u00e5nkopplad",
+                    "live_neutral_swap": "Fas/nolla v\u00e4xlade",
+                    "meter_failure": "M\u00e4tarfel",
+                    "no_error": "OK",
+                    "other": "Annat fel",
+                    "over_current": "\u00d6verstr\u00f6m",
+                    "over_temperature": "\u00d6vertemperatur",
+                    "over_voltage": "\u00d6versp\u00e4nning",
+                    "pilot_short_circuit": "Pilotkortslutning",
+                    "power_loss": "Str\u00f6mavbrott",
+                    "power_quality": "Str\u00f6mkvalitet",
+                    "under_voltage": "Undersp\u00e4nning",
+                    "wrong_power_supply": "Fel str\u00f6mf\u00f6rs\u00f6rjning"
+                }
+            },
+            "evse_max_charge_current": {
+                "name": "Max laddningsstr\u00f6m"
+            },
+            "evse_min_charge_current": {
+                "name": "Minsta laddningsstr\u00f6m"
+            },
+            "evse_soc": {
+                "name": "Laddningsniv\u00e5"
+            },
+            "evse_user_max_charge_current": {
+                "name": "Anv\u00e4ndarens max laddningsstr\u00f6m"
+            },
+            "expiry_date": {
+                "name": "Utg\u00e5ngsdatum"
+            },
+            "flow": {
+                "name": "Fl\u00f6de"
+            },
+            "hepa_filter_condition": {
+                "name": "Hepa-filter tillst\u00e5nd"
+            },
+            "nitrogen_dioxide": {
+                "name": "Kv\u00e4vedioxid"
+            },
+            "operational_error": {
+                "name": "Driftsfel",
+                "state": {
+                    "brush_jammed": "Borsten har fastnat",
+                    "cannot_reach_target_area": "Kan inte n\u00e5 m\u00e5lomr\u00e5det",
+                    "command_invalid_in_state": "Kommandot \u00e4r ogiltigt i aktuellt tillst\u00e5nd",
+                    "dirty_water_tank_full": "Smutsvattentanken \u00e4r full",
+                    "dirty_water_tank_missing": "Smutsvattentank saknas",
+                    "dust_bin_full": "Sopbeh\u00e5llaren full",
+                    "dust_bin_missing": "Sopbeh\u00e5llare saknas",
+                    "failed_to_find_charging_dock": "Kunde inte hitta laddningsdockan",
+                    "low_battery": "L\u00e5gt batteri",
+                    "mop_cleaning_pad_missing": "Moppreng\u00f6ringsdyna saknas",
+                    "navigation_sensor_obscured": "Navigationssensorn \u00e4r skymd",
+                    "no_error": "Inget fel",
+                    "stuck": "Fastnat",
+                    "unable_to_complete_operation": "Det gick inte att slutf\u00f6ra \u00e5tg\u00e4rden",
+                    "unable_to_start_or_resume": "Det g\u00e5r inte att starta eller \u00e5teruppta",
+                    "water_tank_empty": "Vattentanken \u00e4r tom",
+                    "water_tank_lid_open": "Vattentankens lock \u00f6ppet",
+                    "water_tank_missing": "Vattentank saknas",
+                    "wheels_jammed": "Hjulen fastnade"
+                }
+            },
+            "operational_state": {
+                "name": "Driftstillst\u00e5nd",
+                "state": {
+                    "charging": "Laddar",
+                    "docked": "Dockad",
+                    "error": "Fel",
+                    "paused": "Pausad",
+                    "running": "K\u00f6rs",
+                    "seeking_charger": "Letar laddare",
+                    "stopped": "Stoppad"
+                }
+            },
+            "outdoor_temperature": {
+                "name": "Utomhustemperatur"
+            },
+            "pi_heating_demand": {
+                "name": "V\u00e4rmebehov"
+            },
+            "pump_control_mode": {
+                "name": "Styrl\u00e4ge",
+                "state": {
+                    "automatic": "Automatisk",
+                    "constant_flow": "Konstant fl\u00f6de",
+                    "constant_pressure": "Konstant tryck",
+                    "constant_speed": "Konstant hastighet",
+                    "constant_temperature": "Konstant temperatur",
+                    "proportional_pressure": "Proportionellt tryck"
+                }
+            },
+            "pump_speed": {
+                "name": "Rotationshastighet"
+            },
+            "radon_concentration": {
+                "name": "Radonkoncentration"
+            },
+            "reactive_current": {
+                "name": "Reaktiv str\u00f6m"
+            },
+            "reboot_count": {
+                "name": "Antal omstarter"
+            },
+            "rms_current": {
+                "name": "Effektivv\u00e4rde str\u00f6m"
+            },
+            "rms_voltage": {
+                "name": "Effektivv\u00e4rde sp\u00e4nning"
+            },
+            "switch_current_position": {
+                "name": "Aktuell brytarposition"
+            },
+            "tank_percentage": {
+                "name": "Varmvattenniv\u00e5"
+            },
+            "tank_volume": {
+                "name": "Tankvolym"
+            },
+            "thread_channel": {
+                "name": "Thread-kanal"
+            },
+            "thread_network_name": {
+                "name": "Thread-n\u00e4tverksnamn"
+            },
+            "thread_routing_role": {
+                "name": "Thread-routing roll",
+                "state": {
+                    "end_device": "Slutenhet",
+                    "leader": "Ledare",
+                    "reed": "Routerkompatibel slutenhet",
+                    "router": "Router",
+                    "sleepy_end_device": "Sovande slutenhet",
+                    "unassigned": "Ej tilldelad",
+                    "unknown": "Ok\u00e4nd",
+                    "unspecified": "Ospecificerad"
+                }
+            },
+            "tvoc_level": {
+                "name": "TVOC-niv\u00e5",
+                "state": {
+                    "critical": "Kritisk",
+                    "high": "H\u00f6g",
+                    "low": "L\u00e5g",
+                    "medium": "Medel"
+                }
+            },
+            "uptime": {
+                "name": "Upptid"
+            },
+            "valve_position": {
+                "name": "Ventill\u00e4ge"
+            },
+            "voltage": {
+                "name": "Sp\u00e4nning"
+            },
+            "wifi_rssi": {
+                "name": "Wi-Fi-RSSI"
+            },
+            "window_covering_target_position": {
+                "name": "M\u00e5l\u00f6ppningsposition"
+            }
+        },
+        "siren": {
+            "siren": {
+                "name": "Siren"
+            }
+        },
+        "switch": {
+            "audible_alarm_enabled": {
+                "name": "H\u00f6rbart larm aktiverat"
+            },
+            "child_lock": {
+                "name": "Barnl\u00e5s"
+            },
+            "display": {
+                "name": "Display"
+            },
+            "evse_charging_switch": {
+                "name": "Aktivera laddning"
+            },
+            "one_touch_locking": {
+                "name": "L\u00e5sning med ett tryck"
+            },
+            "power": {
+                "name": "Str\u00f6m"
+            },
+            "privacy_mode_button": {
+                "name": "Knapp f\u00f6r sekretessl\u00e4ge"
+            },
+            "speaker_mute": {
+                "name": "Tysta"
+            },
+            "switch": {
+                "name": "Brytare"
+            },
+            "visual_alarm_enabled": {
+                "name": "Visuellt larm aktiverat"
+            }
+        },
+        "vacuum": {
+            "vacuum": {
+                "name": "Dammsugare"
+            }
+        },
+        "valve": {
+            "valve": {
+                "name": "Ventil"
+            }
+        },
+        "water_heater": {
+            "water_heater": {
+                "name": "Varmvattenberedare"
+            }
+        }
+    },
+    "exceptions": {
+        "addon_not_installed": {
+            "message": "Matter Server-appen \u00e4r inte installerad \u00e4n."
+        },
+        "addon_not_ready": {
+            "message": "Matter Server-appen \u00e4r inte klar \u00e4n."
+        },
+        "addon_not_running": {
+            "message": "Matter Server-appen k\u00f6rs inte \u00e4n."
+        },
+        "credential_type_not_supported": {
+            "message": "L\u00e5set st\u00f6der inte autentiseringsuppgifter av typen `{credential_type}`."
+        },
+        "invalid_credential_data": {
+            "message": "Ogiltiga autentiseringsuppgifter: {reason}."
+        },
+        "set_credential_failed": {
+            "message": "Misslyckades med att ange autentiseringsuppgifter: l\u00e5s returnerade status `{status}`."
+        }
+    },
+    "issues": {
+        "ipv6_disabled": {
+            "description": "Matter anv\u00e4nder IPv6 f\u00f6r att kommunicera med vissa enheter, men IPv6 \u00e4r inaktiverat p\u00e5 alla dina anslutna n\u00e4tverksgr\u00e4nssnitt. Lokalt anslutna Wi-Fi- och Ethernet-enheter kan fortfarande fungera, men vissa funktioner, till exempel anv\u00e4ndning av en extern Thread-gr\u00e4nsrouter, kr\u00e4ver att IPv6 \u00e4r aktiverat. V\u00e4lj \u201dL\u00e4s mer\u201d f\u00f6r att \u00f6ppna n\u00e4tverksinst\u00e4llningarna.",
+            "title": "IPv6 kr\u00e4vs av Matter men \u00e4r inaktiverat"
+        },
+        "server_version_version_too_new": {
+            "description": "Den version av Matter Server som du k\u00f6r f\u00f6r n\u00e4rvarande \u00e4r f\u00f6r ny f\u00f6r den h\u00e4r versionen av Home Assistant. Uppdatera Home Assistant eller nedgradera Matter Server till en \u00e4ldre version f\u00f6r att \u00e5tg\u00e4rda detta problem.",
+            "title": "\u00c4ldre version av Matter Server beh\u00f6vs"
+        },
+        "server_version_version_too_old": {
+            "description": "Den version av Matter Server som du f\u00f6r n\u00e4rvarande k\u00f6r \u00e4r f\u00f6r gammal f\u00f6r den h\u00e4r versionen av Home Assistant. V\u00e4nligen uppdatera Matter Server till den senaste versionen f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "Nyare version av Matter Server beh\u00f6vs"
+        }
+    },
+    "services": {
+        "clear_lock_credential": {
+            "description": "Tar bort en autentiseringsuppgift fr\u00e5n ett l\u00e5s.",
+            "fields": {
+                "credential_index": {
+                    "description": "Indexet f\u00f6r den autentiseringsuppgift som ska rensas.",
+                    "name": "Autentiseringsindex"
+                },
+                "credential_type": {
+                    "description": "Den typ av autentiseringsuppgifter som ska rensas.",
+                    "name": "Typ av autentisering"
+                }
+            },
+            "name": "Rensa l\u00e5sautentisering"
+        },
+        "clear_lock_user": {
+            "description": "Tar bort en l\u00e5sanv\u00e4ndare och alla tillh\u00f6rande inloggningsuppgifter. Anv\u00e4nd index 65534 f\u00f6r att rensa bort alla anv\u00e4ndare.",
+            "fields": {
+                "user_index": {
+                    "description": "Index f\u00f6r den anv\u00e4ndarplats (1-baserat) som ska rensas, eller 65534 f\u00f6r att rensa alla.",
+                    "name": "Anv\u00e4ndarindex"
+                }
+            },
+            "name": "Ta bort l\u00e5sanv\u00e4ndare"
+        },
+        "get_lock_credential_status": {
+            "description": "Returnerar statusen f\u00f6r en autentiseringsplats p\u00e5 ett l\u00e5s.",
+            "fields": {
+                "credential_index": {
+                    "description": "Indexet f\u00f6r den autentiseringsplats som ska s\u00f6kas.",
+                    "name": "Autentiseringsindex"
+                },
+                "credential_type": {
+                    "description": "Den typ av autentiseringsuppgift som ska h\u00e4mtas.",
+                    "name": "Typ av autentisering"
+                }
+            },
+            "name": "H\u00e4mta status f\u00f6r l\u00e5sautentisering"
+        },
+        "get_lock_info": {
+            "description": "Returnerar l\u00e5sfunktioner, inklusive vilka typer av autentiseringsuppgifter som st\u00f6ds, anv\u00e4ndarkapacitet och begr\u00e4nsningar f\u00f6r PIN-kodens l\u00e4ngd.",
+            "name": "H\u00e4mta l\u00e5sinformation"
+        },
+        "get_lock_users": {
+            "description": "Returnerar alla anv\u00e4ndare som \u00e4r konfigurerade p\u00e5 ett l\u00e5s tillsammans med deras inloggningsuppgifter.",
+            "name": "H\u00e4mta l\u00e5sanv\u00e4ndare"
+        },
+        "open_commissioning_window": {
+            "description": "Till\u00e5ter att du l\u00e4gger till en av dina enheter i ett annat Matter-n\u00e4tverk genom att \u00f6ppna drifts\u00e4ttningsf\u00f6nstret f\u00f6r denna Matter-enhet i 60 sekunder.",
+            "fields": {
+                "device_id": {
+                    "description": "Den Matter-enhet som ska l\u00e4ggas till i det andra Matter-n\u00e4tverket.",
+                    "name": "Enhet"
+                }
+            },
+            "name": "\u00d6ppna drifts\u00e4ttningsf\u00f6nstret"
+        },
+        "set_lock_credential": {
+            "description": "L\u00e4gger till eller uppdaterar en autentiseringsuppgift p\u00e5 ett l\u00e5s.",
+            "fields": {
+                "credential_data": {
+                    "description": "Autentiseringsuppgifterna. F\u00f6r PIN: endast siffror. F\u00f6r RFID: hexadecimal str\u00e4ng.",
+                    "name": "Autentiseringsuppgifter"
+                },
+                "credential_index": {
+                    "description": "Index f\u00f6r autentiseringsuppgifter. L\u00e4mna tomt f\u00f6r att automatiskt hitta en tillg\u00e4nglig plats.",
+                    "name": "Autentiseringsindex"
+                },
+                "credential_type": {
+                    "description": "Typ av autentiseringsuppgift (t.ex. PIN, RFID, fingeravtryck).",
+                    "name": "Typ av autentisering"
+                },
+                "user_index": {
+                    "description": "Anv\u00e4ndarindexet som autentiseringsuppgifterna ska kopplas till. L\u00e4mna f\u00e4ltet tomt f\u00f6r automatisk tilldelning.",
+                    "name": "Anv\u00e4ndarindex"
+                },
+                "user_status": {
+                    "description": "Den anv\u00e4ndarstatus som ska anges n\u00e4r en ny anv\u00e4ndare skapas f\u00f6r denna autentiseringsuppgift.",
+                    "name": "Anv\u00e4ndarstatus"
+                },
+                "user_type": {
+                    "description": "Den anv\u00e4ndartyp som ska anges n\u00e4r en ny anv\u00e4ndare skapas f\u00f6r denna autentiseringsuppgift.",
+                    "name": "Anv\u00e4ndartyp"
+                }
+            },
+            "name": "St\u00e4ll in l\u00e5sautentisering"
+        },
+        "set_lock_user": {
+            "description": "Skapar eller uppdaterar en l\u00e5sanv\u00e4ndare.",
+            "fields": {
+                "credential_rule": {
+                    "description": "Autentiseringsregeln f\u00f6r anv\u00e4ndaren.",
+                    "name": "Autentiseringsregel"
+                },
+                "user_index": {
+                    "description": "Anv\u00e4ndarplatsens index (b\u00f6rjar p\u00e5 1). L\u00e4mna f\u00e4ltet tomt f\u00f6r att automatiskt hitta en ledig plats.",
+                    "name": "Anv\u00e4ndarindex"
+                },
+                "user_name": {
+                    "description": "Anv\u00e4ndarens namn.",
+                    "name": "Anv\u00e4ndarnamn"
+                },
+                "user_type": {
+                    "description": "Den typ av anv\u00e4ndare som ska skapas.",
+                    "name": "Anv\u00e4ndartyp"
+                }
+            },
+            "name": "St\u00e4ll in l\u00e5sanv\u00e4ndare"
+        },
+        "water_heater_boost": {
+            "description": "Aktiverar extra uppv\u00e4rmning av varmvattenberedaren under en viss tid.",
+            "fields": {
+                "duration": {
+                    "description": "\u00d6ka varaktighet i sekunder.",
+                    "name": "Varaktighet"
+                },
+                "emergency_boost": {
+                    "description": "Anger om n\u00f6dboostl\u00e4get ska aktiveras.",
+                    "name": "N\u00f6dboost"
+                },
+                "temporary_setpoint": {
+                    "description": "Tillf\u00e4llig b\u00f6rv\u00e4rdestemperatur i Celsius under boostperioden.",
+                    "name": "Tillf\u00e4lligt b\u00f6rv\u00e4rde"
+                }
+            },
+            "name": "Boosta varmvattenberedare"
+        }
+    }
+}

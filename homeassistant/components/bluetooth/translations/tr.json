@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Hizmet zaten yap\u0131land\u0131r\u0131lm\u0131\u015f",
+            "no_adapters": "Yap\u0131land\u0131r\u0131lmam\u0131\u015f Bluetooth ba\u011fda\u015ft\u0131r\u0131c\u0131s\u0131 bulunamad\u0131."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "{name} 'i kurmak istiyor musunuz?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adapt\u00f6r"
+                },
+                "description": "Kurmak i\u00e7in bir Bluetooth adapt\u00f6r\u00fc se\u00e7in"
+            },
+            "single_adapter": {
+                "description": "Bluetooth adapt\u00f6r\u00fcn\u00fc {name} {manufacturer} {model} kurmak istiyor musunuz?"
+            },
+            "user": {
+                "data": {
+                    "address": "Cihaz"
+                },
+                "description": "Kurmak i\u00e7in bir cihaz se\u00e7in"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "Bluetooth adapt\u00f6r\u00fc **{adapter}** ({model}) bozulmu\u015f modda \u00e7al\u0131\u015f\u0131yor \u00e7\u00fcnk\u00fc konteynerinizin Bluetooth donan\u0131m\u0131na tam olarak eri\u015fmesi i\u00e7in ek izinlere ihtiyac\u0131 var. L\u00fctfen gerekli izinleri eklemek i\u00e7in belgelerimizdeki talimatlar\u0131 izleyin: [Docker i\u00e7in Bluetooth izinleri] ({docs_url}) Bu izinleri ekledikten sonra, de\u011fi\u015fikliklerin etkili olmas\u0131 i\u00e7in Home Assistant konteynerinizi yeniden ba\u015flat\u0131n.",
+            "title": "Bluetooth adapt\u00f6r\u00fc ek izinler gerektiriyor"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "Bluetooth adapt\u00f6r\u00fc **{adapter}** ({model}) etkin tarama modu istenmesine ra\u011fmen pasif tarama modunda tak\u0131l\u0131 kald\u0131. **Otomatik kurtarma denendi ancak ba\u015far\u0131s\u0131z oldu.** Bu muhtemelen bir \u00e7ekirdek, donan\u0131m yaz\u0131l\u0131m\u0131 veya i\u015fletim sistemi sorunudur ve ba\u011fda\u015ft\u0131r\u0131c\u0131n\u0131n kurtar\u0131lmas\u0131 i\u00e7in sistemin tamamen kapat\u0131lmas\u0131 gerekir. \n \n Pasif modda, ba\u011fda\u015ft\u0131r\u0131c\u0131 yaln\u0131zca reklam alabilir ancak ayg\u0131tlardan ek veri talep edemez; bu da ayg\u0131t ke\u015ffini ve i\u015flevselli\u011fini etkiler. \n \n **Manuel m\u00fcdahale gerekli:** \n 1. **Sistemi tamamen kapat\u0131n** (sadece yeniden ba\u015flatma de\u011fil) \n 2. **G\u00fcc\u00fc kesin** (fi\u015fi \u00e7ekin veya anahtardan kapat\u0131n) \n 3. 10 saniye bekleyin \n 4. G\u00fcc\u00fc geri y\u00fckleyin ve sistemi ba\u015flat\u0131n \n \n G\u00fc\u00e7 d\u00f6ng\u00fcs\u00fcnden sonra sorun devam ederse: \n - \u00c7ekirdek/donan\u0131m yaz\u0131l\u0131m\u0131 g\u00fcncellemelerini kontrol edin \n - Yerle\u015fik Bluetooth ba\u011fda\u015ft\u0131r\u0131c\u0131s\u0131nda donan\u0131m sorunlar\u0131 olabilir",
+            "title": "Bluetooth adapt\u00f6r\u00fc sistem g\u00fc\u00e7 d\u00f6ng\u00fcs\u00fcn\u00fc gerektirir"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "Bluetooth adapt\u00f6r\u00fc **{adapter}** ({model}) etkin tarama modu istenmesine ra\u011fmen pasif tarama modunda tak\u0131l\u0131 kald\u0131. **Otomatik kurtarma denendi ancak ba\u015far\u0131s\u0131z oldu.** Bu muhtemelen bir \u00e7ekirdek, ayg\u0131t yaz\u0131l\u0131m\u0131 veya i\u015fletim sistemi sorunudur ve ba\u011fda\u015ft\u0131r\u0131c\u0131n\u0131n kurtar\u0131lmas\u0131 i\u00e7in manuel bir g\u00fc\u00e7 d\u00f6ng\u00fcs\u00fc gerekir. \n \n Pasif modda, ba\u011fda\u015ft\u0131r\u0131c\u0131 yaln\u0131zca reklam alabilir ancak cihazlardan ek veri isteyemez; bu da cihaz ke\u015ffini ve i\u015flevselli\u011fini etkiler. \n \n **Manuel m\u00fcdahale gerekli:** \n 1. **USB ba\u011fda\u015ft\u0131r\u0131c\u0131s\u0131n\u0131 \u00e7\u0131kar\u0131n** \n 2. 5 saniye bekleyin \n 3. **Tekrar tak\u0131n** \n 4. Home Assistant'\u0131n ba\u011fda\u015ft\u0131r\u0131c\u0131y\u0131 alg\u0131lamas\u0131n\u0131 bekleyin \n \n G\u00fc\u00e7 d\u00f6ng\u00fcs\u00fcnden sonra sorun devam ederse: \n - Farkl\u0131 bir USB ba\u011flant\u0131 noktas\u0131 deneyin \n - \u00c7ekirdek/bellenim g\u00fcncellemelerini kontrol edin \n - Farkl\u0131 bir Bluetooth ba\u011fda\u015ft\u0131r\u0131c\u0131s\u0131 kullanmay\u0131 d\u00fc\u015f\u00fcn\u00fcn",
+            "title": "Bluetooth USB adapt\u00f6r\u00fc manuel g\u00fc\u00e7 d\u00f6ng\u00fcs\u00fc gerektirir"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Pasif taramay\u0131 desteklemeyen yerel Bluetooth ba\u011fda\u015ft\u0131r\u0131c\u0131lar\u0131 yap\u0131land\u0131r\u0131lamaz.",
+            "remote_adapters_not_supported": "Uzak ba\u011fda\u015ft\u0131r\u0131c\u0131lar i\u00e7in Bluetooth yap\u0131land\u0131rmas\u0131 desteklenmiyor."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Tarama modu"
+                },
+                "data_description": {
+                    "mode": "\u00c7o\u011fu kurulumda \u201cOtomatik\u201d se\u00e7ene\u011fi \u00f6nerilir. Bu se\u00e7enek, Bluetooth cihazlar\u0131n\u0131z\u0131n pil \u00f6mr\u00fcn\u00fc korurken, yeni cihazlar\u0131 ve g\u00fcncellemeleri h\u0131zl\u0131 bir \u015fekilde alg\u0131lamaya devam eder."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Aktif (daha fazla pil t\u00fcketir, en h\u0131zl\u0131 g\u00fcncellemeleri sa\u011flar)",
+                "auto": "Otomatik (\u00f6nerilir, cihaz\u0131n pil \u00f6mr\u00fcn\u00fc uzat\u0131r)",
+                "passive": "Pasif (en d\u00fc\u015f\u00fck cihaz pil t\u00fcketimi, baz\u0131 ayr\u0131nt\u0131lar eksik olabilir)"
+            }
+        }
+    }
+}

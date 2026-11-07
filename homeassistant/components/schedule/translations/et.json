@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu ajakavaplokki on hetkel mitteaktiivsed.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Ajakava on v\u00e4lja l\u00fclitatud"
+        },
+        "is_on": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu ajakavaplokki on hetkel aktiivsed.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Ajakava on sees"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ajakava",
+            "state": {
+                "off": "V\u00e4ljas",
+                "on": "Sees"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "Hallatakse kasutajaliideses",
+                    "state": {
+                        "false": "Ei",
+                        "true": "Jah"
+                    }
+                },
+                "next_event": {
+                    "name": "J\u00e4rgmine s\u00fcndmus"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "Hangib \u00fche v\u00f5i mitme ajakava konfigureeritud ajavahemikud.",
+            "name": "Hangi ajakava"
+        },
+        "reload": {
+            "description": "Taaslaeb ajakavad YAML-i konfiguratsioonist.",
+            "name": "Taaslae ajakavad"
+        }
+    },
+    "title": "Ajakava",
+    "triggers": {
+        "block_ended": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme ajakavaploki l\u00f5ppemisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Ajakava l\u00f5ppes"
+        },
+        "block_started": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme ajakavaploki k\u00e4ivitumisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Ajakava alustati"
+        }
+    }
+}

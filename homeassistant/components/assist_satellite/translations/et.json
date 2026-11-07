@@ -1,0 +1,208 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "Kontrollib,kas \u00fcks v\u00f5i mitu Assist satelliiti on j\u00f5udeolekus.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist satelliit on j\u00f5ude"
+        },
+        "is_listening": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu Assist satelliiti kuulavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist satelliit kuulab"
+        },
+        "is_processing": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu Assist satelliiti t\u00f6\u00f6tlevad andmeid.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist satelliit t\u00f6\u00f6tleb"
+        },
+        "is_responding": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu Assist satelliiti reageerivad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist satelliit reageerib"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Assisti satelliit",
+            "state": {
+                "idle": "Ootel",
+                "listening": "Kuulamine",
+                "processing": "T\u00f6\u00f6tlemine",
+                "responding": "Vastamine"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "Vastuse ID",
+                "sentences": "Laused"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "description": "V\u00f5imaldab Assist satelliidil s\u00f5numi edastada.",
+            "fields": {
+                "media_id": {
+                    "description": "K\u00f5nes\u00fcnteesi kasutamise asemel teatava meedia ID.",
+                    "name": "Meedia ID"
+                },
+                "message": {
+                    "description": "S\u00f5num mida kuulutada.",
+                    "name": "S\u00f5num"
+                },
+                "preannounce": {
+                    "description": "M\u00e4ngi heli enne teadet.",
+                    "name": "Eelteatamine"
+                },
+                "preannounce_media_id": {
+                    "description": "Enne teadaannet esitatava meediumi ID.",
+                    "name": "Meediumi ID etteteatamine"
+                }
+            },
+            "name": "Teata satelliidi kaudu"
+        },
+        "ask_question": {
+            "description": "Esitab Assistendile k\u00fcsimuse ja saab kasutajalt vastuse.",
+            "fields": {
+                "answers": {
+                    "description": "V\u00f5imalikud vastused k\u00fcsimusele.",
+                    "name": "Vastused"
+                },
+                "entity_id": {
+                    "description": "Assisti seadme olem millelt k\u00fcsida.",
+                    "name": "Olem"
+                },
+                "preannounce": {
+                    "description": "Esita heli enne s\u00f5numi v\u00f5i meedia k\u00e4ivitamist.",
+                    "name": "Eelteatamine"
+                },
+                "preannounce_media_id": {
+                    "description": "Meediumi ID mida esitatakse enne k\u00e4ivituss\u00f5numit v\u00f5i meediumit.",
+                    "name": "Eelteavituse meedia ID"
+                },
+                "question": {
+                    "description": "K\u00fcsimus mida esitada.",
+                    "name": "K\u00fcsimus"
+                },
+                "question_media_id": {
+                    "description": "K\u00fcsimuse meedia ID mida kasutatakse k\u00f5nes\u00fcnteesi asemel.",
+                    "name": "K\u00fcsimuse meedia ID"
+                }
+            },
+            "name": "Esita k\u00fcsimus assistendi kaudu"
+        },
+        "start_conversation": {
+            "description": "Alustab vestlust Assist satelliidi kaudu.",
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Anna tehisintellektile p\u00e4ringu kohta taustteavet.",
+                    "name": "T\u00e4iendav s\u00fcsteemiviip"
+                },
+                "preannounce": {
+                    "description": "Esita heli enne s\u00f5numi v\u00f5i meedia k\u00e4ivitamist.",
+                    "name": "Eelteatamine"
+                },
+                "preannounce_media_id": {
+                    "description": "Meediumi ID mida esitatakse enne k\u00e4ivituss\u00f5numit v\u00f5i meediumit.",
+                    "name": "Meediumi ID etteteatamine"
+                },
+                "start_media_id": {
+                    "description": "Meedia ID, millega alustada, selle asemel, et kasutada tekstist-k\u00f5neks.",
+                    "name": "Meedia ID"
+                },
+                "start_message": {
+                    "description": "S\u00f5num millega alustada.",
+                    "name": "S\u00f5num"
+                }
+            },
+            "name": "Alusta vestlust satelliidi kaudu"
+        }
+    },
+    "title": "Assisti satelliit",
+    "triggers": {
+        "idle": {
+            "description": "K\u00e4ivitub siis, kui \u00fcks v\u00f5i mitu Assist-satelliiti j\u00e4\u00e4vad p\u00e4rast k\u00e4su t\u00f6\u00f6tlemist ootere\u017eiimi.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist-satelliit l\u00e4heb j\u00f5udeolekusse"
+        },
+        "listening": {
+            "description": "K\u00e4ivitub siis, kui \u00fcks v\u00f5i mitu Assist-satelliiti hakkavad ootama kellegi k\u00e4sku.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist-satelliit hakkab kuulama"
+        },
+        "processing": {
+            "description": "K\u00e4ivitub siis, kui \u00fcks v\u00f5i mitu Assist-satelliiti hakkavad k\u00e4sku t\u00f6\u00f6tlema p\u00e4rast selle vastuv\u00f5tmist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist-satelliit t\u00f6\u00f6tleb teavet"
+        },
+        "responding": {
+            "description": "K\u00e4ivitub siis, kui \u00fcks v\u00f5i mitu Assist-satelliiti hakkavad p\u00e4rast k\u00e4su t\u00f6\u00f6tlemist sellele reageerima v\u00f5i midagi teatama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Assist-satelliit reageeris"
+        }
+    }
+}

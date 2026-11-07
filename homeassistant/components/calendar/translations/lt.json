@@ -1,0 +1,161 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_event_active": {
+            "description": "Patikrina, ar viename ar keliuose kalendoriuose yra aktyvus \u012fvykis.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Kalendoriaus \u012fvykis aktyvus"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Kalendorius",
+            "state": {
+                "off": "I\u0161jungta",
+                "on": "\u012ejungta"
+            },
+            "state_attributes": {
+                "all_day": {
+                    "name": "Vis\u0105 dien\u0105",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Taip"
+                    }
+                },
+                "description": {
+                    "name": "Apra\u0161ymas"
+                },
+                "end_time": {
+                    "name": "Pabaigos laikas"
+                },
+                "location": {
+                    "name": "Vieta"
+                },
+                "message": {
+                    "name": "Prane\u0161imas"
+                },
+                "start_time": {
+                    "name": "Prad\u017eios laikas"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_service_calendar_list_events": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Vietoj to naudokite \u201ecalendar.get_events\u201c, kuri palaiko kelis subjektus. Pakeiskite \u0161\u012f veiksm\u0105 ir pakoreguokite automatizavim\u0105 bei scenarijus ir pasirinkite **Pateikti**, kad u\u017ebaigtum\u0117te \u0161i\u0105 problem\u0105.",
+                        "title": "Aptiktas nebenaudojamo veiksmo calendar.list_events naudojimas"
+                    }
+                }
+            },
+            "title": "Aptiktas nebenaudojamo veiksmo calendar.list_events naudojimas"
+        }
+    },
+    "selector": {
+        "trigger_offset_type": {
+            "options": {
+                "after": "Po",
+                "before": "Prie\u0161"
+            }
+        }
+    },
+    "services": {
+        "create_event": {
+            "description": "Prideda nauj\u0105 kalendoriaus \u012fvyk\u012f.",
+            "fields": {
+                "description": {
+                    "description": "I\u0161samesnis \u012fvykio apra\u0161ymas nei pateiktas santraukoje.",
+                    "name": "Apra\u0161ymas"
+                },
+                "end_date": {
+                    "description": "Vis\u0105 dien\u0105 trunkan\u010dio renginio pabaigos data (i\u0161skyrus).",
+                    "name": "Pabaigos data"
+                },
+                "end_date_time": {
+                    "description": "Data ir laikas, kada \u012fvykis tur\u0117t\u0173 baigtis.",
+                    "name": "Pabaigos laikas"
+                },
+                "in": {
+                    "description": "Dienos ar savait\u0117s, per kurias norite sukurti \u012fvyk\u012f.",
+                    "name": "\u012e"
+                },
+                "location": {
+                    "description": "Renginio vieta.",
+                    "name": "Vieta"
+                },
+                "start_date": {
+                    "description": "Vis\u0105 dien\u0105 trunkan\u010dio renginio prad\u017eios data.",
+                    "name": "Prad\u017eios data"
+                },
+                "start_date_time": {
+                    "description": "Renginio prad\u017eios data ir laikas.",
+                    "name": "Prad\u017eios laikas"
+                },
+                "summary": {
+                    "description": "Apibr\u0117\u017eia trump\u0105 \u012fvykio santrauk\u0105 arba tem\u0105.",
+                    "name": "Santrauka"
+                }
+            },
+            "name": "Sukurti kalendoriaus \u012fvyk\u012f"
+        },
+        "get_events": {
+            "description": "Nuskaito \u012fvykius kalendoriuje tam tikru laikotarpiu.",
+            "fields": {
+                "duration": {
+                    "description": "Gr\u0105\u017eina aktyvius \u012fvykius nuo prad\u017eios laiko nurodytai trukmei.",
+                    "name": "Trukm\u0117"
+                },
+                "end_date_time": {
+                    "description": "Pateikia aktyvius \u012fvykius iki \u0161io laiko (i\u0161skyrus). Negalima naudoti su trukme.",
+                    "name": "Pabaigos laikas"
+                },
+                "start_date_time": {
+                    "description": "Pateikia aktyvius \u012fvykius po \u0161io laiko (i\u0161skyrus). Kai nenustatyta, pagal nutyl\u0117jim\u0105 yra dabar.",
+                    "name": "Prad\u017eios laikas"
+                }
+            },
+            "name": "Gauti kalendoriaus \u012fvykius"
+        }
+    },
+    "title": "Kalendorius",
+    "triggers": {
+        "event_ended": {
+            "description": "Suaktyv\u0117ja, kai baigiasi vienas ar keli kalendoriaus \u012fvykiai.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar suaktyvinti prie\u0161 \u012fvykio pabaig\u0105, ar po jos, jei apibr\u0117\u017etas poslinkis.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Kalendoriaus \u012fvykis baig\u0117si"
+        },
+        "event_started": {
+            "description": "Suaktyvinama, kai prasideda vienas ar keli kalendoriaus \u012fvykiai.",
+            "fields": {
+                "offset": {
+                    "name": "Poslinkis"
+                },
+                "offset_type": {
+                    "description": "Ar suaktyvinti prie\u0161 \u012fvykio prad\u017ei\u0105, ar po jos, jei apibr\u0117\u017etas poslinkis.",
+                    "name": "Poslinkio tipas"
+                }
+            },
+            "name": "Kalendoriaus \u012fvykis prad\u0117tas"
+        }
+    }
+}

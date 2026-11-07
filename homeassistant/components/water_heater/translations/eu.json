@@ -1,0 +1,102 @@
+{
+    "common": {
+        "condition_threshold_name": "Atalase mota",
+        "trigger_threshold_name": "Atalase mota"
+    },
+    "conditions": {
+        "is_off": {
+            "name": "Ur-berogailua itzalita dago"
+        },
+        "is_on": {
+            "name": "Ur-berogailua piztuta dago"
+        },
+        "is_target_temperature": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            },
+            "name": "Ur-berogailuaren helburu tenperatura"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "{entity_name} itzali",
+            "turn_on": "{entity_name} piztu"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ur-berogailua",
+            "state": {
+                "gas": "Gasa",
+                "off": "Itzalita"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "state": {
+                        "off": "Itzalita",
+                        "on": "Piztuta"
+                    }
+                },
+                "current_temperature": {
+                    "name": "Uneko tenperatura"
+                },
+                "operation_mode": {
+                    "state": {
+                        "gas": "Gasa",
+                        "off": "Itzalita"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "set_operation_mode": {
+            "description": "Ur-berogailuaren funtzionamendu modua ezartzen du.",
+            "name": "Ur-berogailuaren funtzionamendu modua ezarri"
+        },
+        "set_temperature": {
+            "fields": {
+                "temperature": {
+                    "name": "Tenperatura"
+                }
+            },
+            "name": "Ur-berogailuaren helburu tenperatura ezarri"
+        },
+        "turn_off": {
+            "description": "Ur-berogailua itzaltzen du.",
+            "name": "Ur-berogailua itzali"
+        },
+        "turn_on": {
+            "description": "Ur-berogailua pizten du.",
+            "name": "Ur-berogailua piztu"
+        }
+    },
+    "title": "Ur-berogailua",
+    "triggers": {
+        "operation_mode_changed": {
+            "name": "Ur-berogailuaren funtzionamendu modua aldatua"
+        },
+        "target_temperature_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "target_temperature_crossed_threshold": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "turned_off": {
+            "name": "Ur-berogailua itzali da"
+        },
+        "turned_on": {
+            "name": "Ur-berogailua piztu da"
+        }
+    }
+}

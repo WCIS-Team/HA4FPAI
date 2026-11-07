@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u8655\u65bc\u555f\u7528\u4e2d\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5df2\u555f\u7528"
+        },
+        "is_idle": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u8655\u65bc\u9592\u7f6e\u4e2d\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5df2\u9592\u7f6e"
+        },
+        "is_paused": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u8655\u65bc\u66ab\u505c\u4e2d\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5df2\u66ab\u505c"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u8a08\u6642\u5668",
+            "state": {
+                "active": "\u555f\u7528",
+                "idle": "\u5f85\u547d",
+                "paused": "\u5df2\u66ab\u505c"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "\u6301\u7e8c\u6642\u9593"
+                },
+                "editable": {
+                    "name": "\u900f\u904e UI \u7ba1\u7406",
+                    "state": {
+                        "false": "\u5426",
+                        "true": "\u662f"
+                    }
+                },
+                "finishes_at": {
+                    "name": "\u5b8c\u6210\u65bc"
+                },
+                "last_transition": {
+                    "name": "\u4e0a\u6b21\u8f49\u63db",
+                    "state": {
+                        "cancelled": "\u53d6\u6d88",
+                        "finished": "\u5b8c\u6210",
+                        "paused": "\u66ab\u505c",
+                        "restarted": "\u91cd\u65b0\u958b\u59cb",
+                        "started": "\u958b\u59cb"
+                    }
+                },
+                "remaining": {
+                    "name": "\u5269\u9918"
+                },
+                "restore": {
+                    "name": "\u56de\u5fa9"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "\u5c07\u8a08\u6642\u5668\u7684\u6301\u7e8c\u6642\u9593\u91cd\u7f6e\u70ba\u6700\u5f8c\u5df2\u77e5\u521d\u59cb\u503c\u3001\u800c\u4e0d\u89f8\u767c\u8a08\u6642\u5668\u5b8c\u6210\u4e8b\u4ef6\u3002",
+            "name": "\u53d6\u6d88\u8a08\u6642\u5668"
+        },
+        "change": {
+            "description": "\u85c9\u7531\u589e\u52a0\u6216\u6e1b\u5c11\u6307\u5b9a\u6301\u7e8c\u6642\u9593\u4ee5\u8b8a\u66f4\u8a08\u6642\u5668\u3002",
+            "fields": {
+                "duration": {
+                    "description": "\u91dd\u5c0d\u57f7\u884c\u4e2d\u8a08\u6642\u5668\u589e\u52a0\u6216\u6e1b\u5c11\u6301\u7e8c\u6642\u9593\u3002",
+                    "name": "\u6301\u7e8c\u6642\u9593"
+                }
+            },
+            "name": "\u8b8a\u66f4\u8a08\u6642\u5668"
+        },
+        "finish": {
+            "description": "\u6bd4\u9810\u5b9a\u6642\u9593\u66f4\u65e9\u5b8c\u6210\u57f7\u884c\u4e2d\u8a08\u6642\u5668\u3002",
+            "name": "\u5b8c\u6210\u8a08\u6642\u5668"
+        },
+        "pause": {
+            "description": "\u66ab\u505c\u57f7\u884c\u4e2d\u8a08\u6642\u5668\u3001\u4fdd\u7559\u5269\u9918\u6301\u7e8c\u6642\u9593\u4ee5\u4f5c\u70ba\u7a0d\u5f8c\u7e7c\u7e8c\u3002",
+            "name": "\u66ab\u505c\u8a08\u6642\u5668"
+        },
+        "reload": {
+            "description": "\u91cd\u65b0\u8f09\u5165 YAML \u8a2d\u5b9a\u8a08\u6642\u5668\u3002",
+            "name": "\u91cd\u65b0\u8f09\u5165\u8a08\u6642\u5668"
+        },
+        "start": {
+            "description": "\u958b\u59cb\u8a08\u6642\u5668\u6216\u6309\u7167\u6240\u63d0\u4f9b\u7684\u6301\u7e8c\u6642\u9593\u91cd\u65b0\u958b\u59cb\u3002",
+            "fields": {
+                "duration": {
+                    "description": "\u91cd\u65b0\u555f\u52d5\u8a08\u6642\u5668\u7684\u81ea\u5b9a\u7fa9\u6301\u7e8c\u6642\u9593\u3002",
+                    "name": "\u6301\u7e8c\u6642\u9593"
+                }
+            },
+            "name": "\u958b\u555f\u8a08\u6642\u5668"
+        }
+    },
+    "title": "\u8a08\u6642\u5668",
+    "triggers": {
+        "cancelled": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u53d6\u6d88\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5df2\u53d6\u6d88"
+        },
+        "finished": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u7d50\u675f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5df2\u7d50\u675f"
+        },
+        "paused": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u66ab\u505c\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5df2\u66ab\u505c"
+        },
+        "remaining_time_reached": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u9054\u5230\u6307\u5b9a\u5269\u9918\u6642\u9593\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "remaining": {
+                    "name": "\u5269\u9918\u6642\u9593"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5269\u9918\u6642\u9593\u5df2\u5230"
+        },
+        "restarted": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u91cd\u65b0\u958b\u59cb\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u91cd\u65b0\u958b\u59cb"
+        },
+        "started": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u8a08\u6642\u5668\u958b\u59cb\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u8a08\u6642\u5668\u5df2\u958b\u59cb"
+        }
+    }
+}

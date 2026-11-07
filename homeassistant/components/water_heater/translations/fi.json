@@ -1,0 +1,66 @@
+{
+    "device_automation": {
+        "action_type": {
+            "turn_off": "Sammuta {entity_name}",
+            "turn_on": "Kytke p\u00e4\u00e4lle {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "state": {
+                "eco": "Eko",
+                "electric": "S\u00e4hk\u00f6inen",
+                "gas": "Kaasu",
+                "off": "Pois",
+                "performance": "Tehokas"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Poissa-tila",
+                    "state": {
+                        "off": "Pois",
+                        "on": "P\u00e4\u00e4ll\u00e4"
+                    }
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "Toimintatila {operation_mode} ei ole voimassa osoitteessa {entity_id}. Voimassa olevat toimintatilat ovat: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "Toimintatila {operation_mode} ei ole voimassa osoitteessa {entity_id}. Toimintaluetteloa ei ole m\u00e4\u00e4ritelty."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "fields": {
+                "away_mode": {
+                    "description": "Poissa-tilan uusi arvo",
+                    "name": "Poissa-tila"
+                }
+            }
+        },
+        "set_operation_mode": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Toimintatilan uusi arvo. Luettelo mahdollisista tiloista on integrointidokumentaatiossa.",
+                    "name": "Toimintatila"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Toimintatilan uusi arvo. Luettelo mahdollisista tiloista on integrointidokumentaatiossa.",
+                    "name": "Toimintatila"
+                },
+                "temperature": {
+                    "description": "Uusi tavoitel\u00e4mp\u00f6tila vedenl\u00e4mmittimelle.",
+                    "name": "L\u00e4mp\u00f6tila"
+                }
+            }
+        }
+    }
+}

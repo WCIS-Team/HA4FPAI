@@ -1,0 +1,979 @@
+{
+    "common": {
+        "additional_options": "Opcje dodatkowe",
+        "availability_description": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane.",
+        "code_format": "Format kodu",
+        "device_class": "Klasa urz\u0105dzenia",
+        "device_id_description": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+        "state": "Stan",
+        "turn_off": "Akcje przy wy\u0142\u0105czaniu",
+        "turn_on": "Akcje przy w\u0142\u0105czeniu",
+        "unit_of_measurement": "Jednostka miary"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Akcje przy uzbrojeniu w trybie nieobecno\u015bci",
+                    "arm_custom_bypass": "Dzia\u0142ania przy niestandardowym obej\u015bciu uzbrojenia",
+                    "arm_home": "Akcje przy uzbrojeniu w trybie domowym",
+                    "arm_night": "Akcje przy uzbrojeniu w trybie nocnym",
+                    "arm_vacation": "Akcje przy uzbrojeniu w trybie wakacyjnym",
+                    "code_arm_required": "Wymagany kod do uzbrojenia alarmu",
+                    "code_format": "Format kodu",
+                    "device_id": "Urz\u0105dzenie",
+                    "disarm": "Akcje przy rozbrojeniu",
+                    "name": "Nazwa",
+                    "trigger": "Akcje przy wyzwoleniu",
+                    "value_template": "Stan"
+                },
+                "data_description": {
+                    "arm_away": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_away`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_custom_bypass": "Definiuje akcje do uruchomienia, gdy panel kontrolny alarmu jest uzbrojony w trybie `arm_custom_bypass`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_home": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_home`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_night": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_night`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_vacation": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_vacation`. Otrzymuje zmienn\u0105 `code`.",
+                    "code_arm_required": "Je\u015bli warto\u015b\u0107 ta jest prawdziwa, kod jest niezb\u0119dny do uzbrojenia alarmu.",
+                    "code_format": "Jeden z format\u00f3w: `number`, `text` lub `no_code`. Format kodu u\u017cywanego do uzbrajania/rozbrajania alarmu.",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "disarm": "Definiuje akcje do wykonania, gdy panel sterowania alarmem jest rozbrojony. Otrzymuje zmienn\u0105 `code`.",
+                    "trigger": "Definiuje akcje do wykonania po wyzwoleniu panelu sterowania alarmem. Otrzymuje zmienn\u0105 `code`.",
+                    "value_template": "Definiuje szablon do ustawiania stanu panelu alarmowego. Prawid\u0142owymi warto\u015bciami wyj\u015bciowymi z szablonu s\u0105: `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` oraz `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon panelu sterowania alarmem"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "state": "Stan"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "state": "Sensor jest \u201ew\u0142\u0105czony\u201d, je\u015bli szablon ma warto\u015b\u0107 \u201etrue\u201d, \u201eyes\u201d, \u201eon\u201d, \u201eenable\u201d lub liczb\u0119 dodatni\u0105. Ka\u017cda inna warto\u015b\u0107 spowoduje, \u017ce sensor stanie si\u0119 \"wy\u0142\u0105czony\"."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "delay_off": "Op\u00f3\u017anienie wy\u0142\u0105czenia",
+                            "delay_on": "Op\u00f3\u017anienie w\u0142\u0105czenia"
+                        },
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane.",
+                            "delay_off": "Czas, przez kt\u00f3ry stan szablonu nie mo\u017ce by\u0107 spe\u0142niony, zanim ten czujnik prze\u0142\u0105czy si\u0119 na `off`.",
+                            "delay_on": "Czas, przez kt\u00f3ry stan szablonu musi by\u0107 spe\u0142niony, zanim ten czujnik prze\u0142\u0105czy si\u0119 na `on`."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon sensora binarnego"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "press": "Akcje przy naci\u015bni\u0119ciu"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "press": "Definiuje akcje uruchamiane po naci\u015bni\u0119ciu przycisku."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon przycisku"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Aktualna temperatura"
+                }
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Akcje przy zamykaniu",
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "open_cover": "Akcje przy otwieraniu",
+                    "position": "Pozycja",
+                    "set_cover_position": "Akcje przy ustawieniu pozycji",
+                    "state": "Stan",
+                    "stop_cover": "Akcje przy zatrzymaniu"
+                },
+                "data_description": {
+                    "close_cover": "Definiuje akcje do wykonania po zamkni\u0119ciu zas\u0142ony",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "open_cover": "Okre\u015bla akcje do wykonania, gdy zas\u0142ona zostanie otwarta.",
+                    "position": "Definiuje szablon zwracaj\u0105cy pozycj\u0119 zas\u0142ony. Prawid\u0142owe warto\u015bci to liczby pomi\u0119dzy \"0\" (zamkni\u0119ta) i \"100\" (otwarta).",
+                    "set_cover_position": "Definiuje akcje do wykonania, gdy zas\u0142ona otrzyma polecenie \"set_cover_position\" (ustaw pozycj\u0119 zas\u0142ony). Otrzymuje zmienn\u0105 \"position\" (pozycja).",
+                    "stop_cover": "Okre\u015bla akcje do wykonania, gdy zas\u0142ona zostanie zatrzymana."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon zas\u0142ony"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "in_zones": "Strefy",
+                    "latitude": "Szeroko\u015b\u0107 geograficzna",
+                    "longitude": "D\u0142ugo\u015b\u0107 geograficzna",
+                    "name": "Nazwa"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "in_zones": "Definiuje szablon, kt\u00f3ry zwraca list\u0119 stref, w kt\u00f3rych urz\u0105dzenie \u015bledz\u0105ce aktualnie si\u0119 znajduje. Szablon powinien zwraca\u0107 list\u0119 identyfikator\u00f3w encji stref. Je\u015bli urz\u0105dzenie \u015bledz\u0105ce nie znajduje si\u0119 w \u017cadnej strefie, szablon powinien zwr\u00f3ci\u0107 pust\u0105 list\u0119.",
+                    "latitude": "Definiuje szablon do pobierania szeroko\u015bci geograficznej urz\u0105dzenia \u015bledz\u0105cego. Prawid\u0142owe warto\u015bci to liczby z zakresu od `-90` do `90`.",
+                    "longitude": "Definiuje szablon do pobierania d\u0142ugo\u015bci geograficznej urz\u0105dzenia \u015bledz\u0105cego. Prawid\u0142owe warto\u015bci to liczby z zakresu od `-180` do `180`.",
+                    "name": "Nazwa"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Dok\u0142adno\u015b\u0107 lokalizacji"
+                        },
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane.",
+                            "location_accuracy": "Definiuje szablon umo\u017cliwiaj\u0105cy uzyskanie dok\u0142adno\u015bci lokalizacji urz\u0105dzenia \u015bledz\u0105cego w metrach. Prawid\u0142owe warto\u015bci to liczby wi\u0119ksze lub r\u00f3wne `0`."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon \u015bledzenia urz\u0105dze\u0144"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "event_type": "Typ ostatnio wywo\u0142anego zdarzenia",
+                    "event_types": "Typy zdarze\u0144",
+                    "name": "Nazwa"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "event_type": "Definiuje szablon dla typu zdarzenia.",
+                    "event_types": "Definiuje szablon listy dost\u0119pnych typ\u00f3w zdarze\u0144."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon zdarzenia"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "percentage": "Procent",
+                    "set_percentage": "Akcje przy ustawionym procencie",
+                    "speed_count": "Licznik pr\u0119dko\u015bci",
+                    "state": "Stan",
+                    "turn_off": "Akcje przy wy\u0142\u0105czaniu",
+                    "turn_on": "Akcje przy w\u0142\u0105czeniu"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "percentage": "Definiuje szablon do pobierania procentowej pr\u0119dko\u015bci wentylatora.",
+                    "speed_count": "Liczba pr\u0119dko\u015bci obs\u0142ugiwanych przez wentylator. S\u0142u\u017cy do obliczania kroku procentowego dla akcji `fan.increase_speed` i `fan.decrease_speed`.",
+                    "state": "Wentylator jest \u201ew\u0142\u0105czony\u201d, je\u015bli szablon ma warto\u015b\u0107 \u201etrue\u201d, \u201eyes\u201d, \u201eon\u201d, \u201eenable\u201d lub liczb\u0119 dodatni\u0105. Ka\u017cda inna warto\u015b\u0107 spowoduje, \u017ce stanie si\u0119 \"wy\u0142\u0105czony\".",
+                    "turn_off": "Definiuje akcje do wykonania po wy\u0142\u0105czeniu wentylatora.",
+                    "turn_on": "Definiuje akcje do wykonania po w\u0142\u0105czeniu wentylatora. Otrzymuje zmienne `percentage` i/lub `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon wentylatora"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "url": "URL",
+                    "verify_ssl": "Weryfikacja certyfikatu SSL"
+                },
+                "data_description": {
+                    "url": "Definiuje szablon s\u0142u\u017c\u0105cy do pobierania adresu URL, pod kt\u00f3rym udost\u0119pniany jest obraz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon obrazu"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "state": "Stan",
+                    "turn_off": "Akcje przy wy\u0142\u0105czaniu",
+                    "turn_on": "Akcje przy w\u0142\u0105czeniu"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "state": "\u015awiat\u0142o jest \u201ew\u0142\u0105czone\u201d, je\u015bli szablon ma warto\u015b\u0107 \u201etrue\u201d, \u201eyes\u201d, \u201eon\u201d, \u201eenable\u201d lub liczb\u0119 dodatni\u0105. Ka\u017cda inna warto\u015b\u0107 spowoduje, \u017ce \u015bwiat\u0142o stanie si\u0119 \"wy\u0142\u0105czone\"."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon \u015bwiat\u0142a"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Format kodu",
+                    "device_id": "Urz\u0105dzenie",
+                    "lock": "Akcje przy zamykaniu",
+                    "name": "Nazwa",
+                    "open": "Akcje przy otwieraniu",
+                    "state": "Stan",
+                    "unlock": "Akcje przy odblokowaniu"
+                },
+                "data_description": {
+                    "code_format": "Definiuje szablon s\u0142u\u017c\u0105cy do pobierania atrybutu `code_format` zamka.",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "lock": "Definiuje akcje do uruchomienia po zablokowaniu zamka.",
+                    "open": "Definiuje akcje do uruchomienia po otwarciu zamka.",
+                    "unlock": "Definiuje akcje do uruchomienia po odblokowaniu zamka."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon zamka"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "max": "Warto\u015b\u0107 maksymalna",
+                    "min": "Warto\u015b\u0107 minimalna",
+                    "name": "Nazwa",
+                    "set_value": "Akcje przy ustawianiu warto\u015bci",
+                    "step": "Warto\u015b\u0107 kroku"
+                },
+                "data_description": {
+                    "max": "Okre\u015bla maksymaln\u0105 warto\u015b\u0107 liczby.",
+                    "min": "Okre\u015bla minimaln\u0105 warto\u015b\u0107 liczby.",
+                    "set_value": "Okre\u015bla dzia\u0142ania, kt\u00f3re maj\u0105 zosta\u0107 wykonane, gdy liczba zostanie ustawiona na okre\u015blon\u0105 warto\u015b\u0107. Przyjmuje zmienn\u0105 `value`.",
+                    "state": "Szablon dla bie\u017c\u0105cej warto\u015bci liczby.",
+                    "step": "Okre\u015bla krok zwi\u0119kszania/zmniejszania liczby.",
+                    "unit_of_measurement": "Definiuje jednostk\u0119 miary liczby, o ile istnieje."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon liczby"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "options": "Dost\u0119pne opcje",
+                    "select_option": "Akcje po zaznaczeniu"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "options": "Szablon dla dost\u0119pnych opcji pola wyboru.",
+                    "select_option": "Definiuje akcje do wykonania po wybraniu opcji z listy opcji. Otrzymuje zmienn\u0105 opcj\u0119.",
+                    "state": "Szablon dla aktualnej warto\u015bci pola wyboru."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon wyboru"
+            },
+            "sensor": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "state_class": "Klasa stanu"
+                },
+                "data_description": {
+                    "state": "Okre\u015bla szablon do pobierania stanu czujnika. Je\u015bli czujnik jest numeryczny, tzn. posiada `state_class` lub `unit_of_measurement`, szablon stanu musi zwraca\u0107 liczb\u0119 lub `none`. Szablon stanu nie mo\u017ce zwraca\u0107 ci\u0105gu znak\u00f3w, w tym `unknown` lub `unavailable`. Mo\u017cna zdefiniowa\u0107 szablon `availability`, aby uniemo\u017cliwi\u0107 renderowanie szablonu stanu.",
+                    "unit_of_measurement": "Okre\u015bla jednostk\u0119 miary dla czujnika, je\u015bli taka istnieje. Warto\u015b\u0107 ta b\u0119dzie r\u00f3wnie\u017c wy\u015bwietlana zgodnie z ustawieniami formatu liczby w profilu u\u017cytkownika i wp\u0142ynie na graficzn\u0105 prezentacj\u0119 w wizualizacji historii jako warto\u015b\u0107 ci\u0105g\u0142a."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon sensora"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "turn_off": "Akcje przy wy\u0142\u0105czaniu",
+                    "turn_on": "Akcje przy w\u0142\u0105czeniu"
+                },
+                "data_description": {
+                    "turn_off": "Definiuje akcje do uruchomienia po wy\u0142\u0105czeniu prze\u0142\u0105cznika.",
+                    "turn_on": "Definiuje akcje do uruchomienia po w\u0142\u0105czeniu prze\u0142\u0105cznika.",
+                    "value_template": "Definiuje szablon do ustawiania stanu prze\u0142\u0105cznika. Je\u015bli nie zostanie zdefiniowany, prze\u0142\u0105cznik b\u0119dzie optymistycznie zak\u0142ada\u0107, \u017ce wszystkie polecenia powiod\u0142y si\u0119."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon prze\u0142\u0105cznika"
+            },
+            "update": {
+                "data": {
+                    "backup": "Kopia zapasowa",
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "in_progress": "W toku",
+                    "install": "Akcje przy instalacji",
+                    "installed_version": "Zainstalowana wersja",
+                    "latest_version": "Ostatnia wersja",
+                    "name": "Nazwa",
+                    "release_summary": "Podsumowanie wydania",
+                    "release_url": "URL informacji o wydaniu",
+                    "title": "Tytu\u0142"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                }
+            },
+            "user": {
+                "description": "Ten pomocnik pozwala tworzy\u0107 encje pomocnicze, kt\u00f3re definiuj\u0105 sw\u00f3j stan za pomoc\u0105 szablonu. Jaki szablon chcesz utworzy\u0107?",
+                "menu_options": {
+                    "alarm_control_panel": "Panel kontrolny alarmu",
+                    "binary_sensor": "Sensor binarny",
+                    "button": "Przycisk",
+                    "cover": "Os\u0142ona",
+                    "device_tracker": "Lokalizator",
+                    "event": "Zdarzenie",
+                    "fan": "Wentylator",
+                    "image": "Obraz",
+                    "light": "\u015awiat\u0142o",
+                    "lock": "Zamek",
+                    "number": "Liczba",
+                    "select": "Selektor",
+                    "sensor": "Sensor",
+                    "switch": "Prze\u0142\u0105cznik",
+                    "update": "Aktualizacja",
+                    "vacuum": "Odkurzacz",
+                    "weather": "Pogoda"
+                },
+                "title": "Pomocnik szablonu"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Akcje przy czyszczeniu punktowym",
+                    "device_id": "Urz\u0105dzenie",
+                    "fan_speed": "Pr\u0119dko\u015b\u0107 wentylatora",
+                    "fan_speeds": "Pr\u0119dko\u015bci wentylatora",
+                    "locate": "Akcje przy lokalizowaniu",
+                    "name": "Nazwa",
+                    "pause": "Akcje przy wstrzymaniu",
+                    "return_to_base": "Akcje przy powrocie do bazy",
+                    "set_fan_speed": "Akcje przy ustawieniu pr\u0119dko\u015bci wentylatora",
+                    "start": "Akcje przy uruchomieniu",
+                    "state": "Stan",
+                    "stop": "Akcje przy zatrzymaniu"
+                },
+                "data_description": {
+                    "clean_spot": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia czyszczenia punktowego.",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "fan_speed": "Definiuje szablon pobieraj\u0105cy pr\u0119dko\u015b\u0107 wentylatora odkurzacza.",
+                    "fan_speeds": "Lista pr\u0119dko\u015bci wentylatora obs\u0142ugiwanych przez odkurzacz.",
+                    "locate": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia lokalizacji.",
+                    "pause": "Definiuje akcje do wykonania po wstrzymaniu odkurzacza.",
+                    "return_to_base": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia powrotu do bazy.",
+                    "set_fan_speed": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia ustawienia pr\u0119dko\u015bci wentylatora. Otrzymuje zmienn\u0105 'fan_speed'.",
+                    "start": "Definiuje akcje do wykonania po uruchomieniu odkurzacza.",
+                    "state": "Definiuje szablon pobieraj\u0105cy stan odkurzacza. Prawid\u0142owe warto\u015bci to 'cleaning', 'docked', 'idle', 'paused', 'returning' oraz 'error'.",
+                    "stop": "Definiuje akcje do wykonania po zatrzymaniu odkurzacza."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon odkurzacza"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Stan",
+                    "device_id": "Urz\u0105dzenie",
+                    "forecast_daily": "Prognoza dzienna",
+                    "forecast_hourly": "Prognoza godzinowa",
+                    "humidity": "Wilgotno\u015b\u0107",
+                    "name": "Nazwa",
+                    "temperature": "Temperature"
+                },
+                "data_description": {
+                    "condition": "Definiuje szablon do pobierania aktualnego stanu pogody",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "humidity": "Definiuje szablon do pobierania aktualnej wilgotno\u015bci",
+                    "temperature": "Definiuje szablon umo\u017cliwiaj\u0105cy uzyskanie aktualnej temperatury"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon pogody"
+            }
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "Pomocnik szablonu zosta\u0142 usuni\u0119ty"
+                },
+                "error": {
+                    "invalid_device": "Wybrane urz\u0105dzenie ju\u017c nie istnieje"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Urz\u0105dzenie"
+                        }
+                    }
+                }
+            }
+        },
+        "config_format_triggers": {
+            "title": "Niekompletna konfiguracja szablonu"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Akcje przy uzbrojeniu w trybie nieobecno\u015bci",
+                    "arm_custom_bypass": "Dzia\u0142ania przy niestandardowym obej\u015bciu uzbrojenia",
+                    "arm_home": "Akcje przy uzbrojeniu w trybie domowym",
+                    "arm_night": "Akcje przy uzbrojeniu w trybie nocnym",
+                    "arm_vacation": "Akcje przy uzbrojeniu w trybie wakacyjnym",
+                    "code_arm_required": "Wymagany kod do uzbrojenia alarmu",
+                    "code_format": "Format kodu",
+                    "device_id": "Urz\u0105dzenie",
+                    "disarm": "Akcje przy rozbrojeniu",
+                    "trigger": "Akcje przy wyzwoleniu",
+                    "value_template": "Stan"
+                },
+                "data_description": {
+                    "arm_away": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_away`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_custom_bypass": "Definiuje akcje do uruchomienia, gdy panel kontrolny alarmu jest uzbrojony w trybie `arm_custom_bypass`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_home": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_home`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_night": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_night`. Otrzymuje zmienn\u0105 `code`.",
+                    "arm_vacation": "Definiuje akcje do uruchomienia, gdy panel sterowania alarmem jest uzbrojony w trybie `arm_vacation`. Otrzymuje zmienn\u0105 `code`.",
+                    "code_arm_required": "Je\u015bli warto\u015b\u0107 ta jest prawdziwa, kod jest niezb\u0119dny do uzbrojenia alarmu.",
+                    "code_format": "Jeden z format\u00f3w: `number`, `text` lub `no_code`. Format kodu u\u017cywanego do uzbrajania/rozbrajania alarmu.",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "disarm": "Definiuje akcje do wykonania, gdy panel sterowania alarmem jest rozbrojony. Otrzymuje zmienn\u0105 `code`.",
+                    "trigger": "Definiuje akcje do wykonania po wyzwoleniu panelu sterowania alarmem. Otrzymuje zmienn\u0105 `code`.",
+                    "value_template": "Definiuje szablon do ustawiania stanu panelu alarmowego. Prawid\u0142owymi warto\u015bciami wyj\u015bciowymi z szablonu s\u0105: `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` oraz `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon panelu sterowania alarmem"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "state": "Stan"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "state": "Sensor jest \u201ew\u0142\u0105czony\u201d, je\u015bli szablon ma warto\u015b\u0107 \u201etrue\u201d, \u201eyes\u201d, \u201eon\u201d, \u201eenable\u201d lub liczb\u0119 dodatni\u0105. Ka\u017cda inna warto\u015b\u0107 spowoduje, \u017ce sensor stanie si\u0119 \"wy\u0142\u0105czony\"."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "delay_off": "Op\u00f3\u017anienie wy\u0142\u0105czenia",
+                            "delay_on": "Op\u00f3\u017anienie w\u0142\u0105czenia"
+                        },
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane.",
+                            "delay_off": "Czas, przez kt\u00f3ry stan szablonu nie mo\u017ce by\u0107 spe\u0142niony, zanim ten czujnik prze\u0142\u0105czy si\u0119 na `off`.",
+                            "delay_on": "Czas, przez kt\u00f3ry stan szablonu musi by\u0107 spe\u0142niony, zanim ten czujnik prze\u0142\u0105czy si\u0119 na `on`."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon sensora binarnego"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "press": "Akcje przy naci\u015bni\u0119ciu"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "press": "Definiuje akcje uruchamiane po naci\u015bni\u0119ciu przycisku."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon przycisku"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Akcje przy zamykaniu",
+                    "device_id": "Urz\u0105dzenie",
+                    "open_cover": "Akcje przy otwieraniu",
+                    "position": "Pozycja",
+                    "set_cover_position": "Akcje przy ustawieniu pozycji",
+                    "state": "Stan",
+                    "stop_cover": "Akcje przy zatrzymaniu"
+                },
+                "data_description": {
+                    "close_cover": "Definiuje akcje do wykonania po zamkni\u0119ciu zas\u0142ony",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "open_cover": "Okre\u015bla akcje do wykonania, gdy zas\u0142ona zostanie otwarta.",
+                    "position": "Definiuje szablon zwracaj\u0105cy pozycj\u0119 zas\u0142ony. Prawid\u0142owe warto\u015bci to liczby pomi\u0119dzy \"0\" (zamkni\u0119ta) i \"100\" (otwarta).",
+                    "set_cover_position": "Definiuje akcje do wykonania, gdy zas\u0142ona otrzyma polecenie \"set_cover_position\" (ustaw pozycj\u0119 zas\u0142ony). Otrzymuje zmienn\u0105 \"position\" (pozycja).",
+                    "stop_cover": "Okre\u015bla akcje do wykonania, gdy zas\u0142ona zostanie zatrzymana."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon zas\u0142ony"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "in_zones": "Strefy",
+                    "latitude": "Szeroko\u015b\u0107 geograficzna",
+                    "longitude": "D\u0142ugo\u015b\u0107 geograficzna"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "in_zones": "Definiuje szablon, kt\u00f3ry zwraca list\u0119 stref, w kt\u00f3rych urz\u0105dzenie \u015bledz\u0105ce aktualnie si\u0119 znajduje. Szablon powinien zwraca\u0107 list\u0119 identyfikator\u00f3w encji stref. Je\u015bli urz\u0105dzenie \u015bledz\u0105ce nie znajduje si\u0119 w \u017cadnej strefie, szablon powinien zwr\u00f3ci\u0107 pust\u0105 list\u0119.",
+                    "latitude": "Definiuje szablon do pobierania szeroko\u015bci geograficznej urz\u0105dzenia \u015bledz\u0105cego. Prawid\u0142owe warto\u015bci to liczby z zakresu od `-90` do `90`.",
+                    "longitude": "Definiuje szablon do pobierania d\u0142ugo\u015bci geograficznej urz\u0105dzenia \u015bledz\u0105cego. Prawid\u0142owe warto\u015bci to liczby z zakresu od `-180` do `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Dok\u0142adno\u015b\u0107 lokalizacji"
+                        },
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane.",
+                            "location_accuracy": "Definiuje szablon umo\u017cliwiaj\u0105cy uzyskanie dok\u0142adno\u015bci lokalizacji urz\u0105dzenia \u015bledz\u0105cego w metrach. Prawid\u0142owe warto\u015bci to liczby wi\u0119ksze lub r\u00f3wne `0`."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon \u015bledzenia urz\u0105dze\u0144"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "event_type": "Typ ostatnio wywo\u0142anego zdarzenia",
+                    "event_types": "Typy zdarze\u0144",
+                    "name": "Nazwa"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "event_type": "Definiuje szablon dla typu zdarzenia.",
+                    "event_types": "Definiuje szablon listy dost\u0119pnych typ\u00f3w zdarze\u0144."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon zdarzenia"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "percentage": "Procent",
+                    "set_percentage": "Akcje przy ustawionym procencie",
+                    "speed_count": "Licznik pr\u0119dko\u015bci",
+                    "state": "Stan",
+                    "turn_off": "Akcje przy wy\u0142\u0105czaniu",
+                    "turn_on": "Akcje przy w\u0142\u0105czeniu"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "percentage": "Definiuje szablon do pobierania procentowej pr\u0119dko\u015bci wentylatora.",
+                    "speed_count": "Liczba pr\u0119dko\u015bci obs\u0142ugiwanych przez wentylator. S\u0142u\u017cy do obliczania kroku procentowego dla akcji `fan.increase_speed` i `fan.decrease_speed`.",
+                    "state": "Wentylator jest \u201ew\u0142\u0105czony\u201d, je\u015bli szablon ma warto\u015b\u0107 \u201etrue\u201d, \u201eyes\u201d, \u201eon\u201d, \u201eenable\u201d lub liczb\u0119 dodatni\u0105. Ka\u017cda inna warto\u015b\u0107 spowoduje, \u017ce stanie si\u0119 \"wy\u0142\u0105czony\".",
+                    "turn_off": "Definiuje akcje do wykonania po wy\u0142\u0105czeniu wentylatora.",
+                    "turn_on": "Definiuje akcje do wykonania po w\u0142\u0105czeniu wentylatora. Otrzymuje zmienne `percentage` i/lub `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon wentylatora"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "url": "URL",
+                    "verify_ssl": "Weryfikacja certyfikatu SSL"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "url": "Definiuje szablon s\u0142u\u017c\u0105cy do pobierania adresu URL, pod kt\u00f3rym udost\u0119pniany jest obraz."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon obrazu"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "state": "Stan",
+                    "turn_off": "Akcje przy wy\u0142\u0105czaniu",
+                    "turn_on": "Akcje przy w\u0142\u0105czeniu"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "state": "\u015awiat\u0142o jest \u201ew\u0142\u0105czone\u201d, je\u015bli szablon ma warto\u015b\u0107 \u201etrue\u201d, \u201eyes\u201d, \u201eon\u201d, \u201eenable\u201d lub liczb\u0119 dodatni\u0105. Ka\u017cda inna warto\u015b\u0107 spowoduje, \u017ce \u015bwiat\u0142o stanie si\u0119 \"wy\u0142\u0105czone\"."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon \u015bwiat\u0142a"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Format kodu",
+                    "device_id": "Urz\u0105dzenie",
+                    "lock": "Akcje przy zamykaniu",
+                    "open": "Akcje przy otwieraniu",
+                    "state": "Stan",
+                    "unlock": "Akcje przy odblokowaniu"
+                },
+                "data_description": {
+                    "code_format": "Definiuje szablon s\u0142u\u017c\u0105cy do pobierania atrybutu `code_format` zamka.",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "lock": "Definiuje akcje do uruchomienia po zablokowaniu zamka.",
+                    "open": "Definiuje akcje do uruchomienia po otwarciu zamka.",
+                    "unlock": "Definiuje akcje do uruchomienia po odblokowaniu zamka."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon zamka"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "max": "Warto\u015b\u0107 maksymalna",
+                    "min": "Warto\u015b\u0107 minimalna",
+                    "name": "Nazwa",
+                    "set_value": "Akcje przy ustawianiu warto\u015bci",
+                    "state": "Stan",
+                    "step": "Warto\u015b\u0107 kroku"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "max": "Okre\u015bla maksymaln\u0105 warto\u015b\u0107 liczby.",
+                    "min": "Okre\u015bla minimaln\u0105 warto\u015b\u0107 liczby.",
+                    "set_value": "Okre\u015bla dzia\u0142ania, kt\u00f3re maj\u0105 zosta\u0107 wykonane, gdy liczba zostanie ustawiona na okre\u015blon\u0105 warto\u015b\u0107. Przyjmuje zmienn\u0105 `value`.",
+                    "state": "Szablon dla bie\u017c\u0105cej warto\u015bci liczby.",
+                    "step": "Okre\u015bla krok zwi\u0119kszania/zmniejszania liczby."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon liczby"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "options": "Dost\u0119pne opcje",
+                    "select_option": "Akcje po zaznaczeniu",
+                    "state": "Stan"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "options": "Szablon dla dost\u0119pnych opcji pola wyboru.",
+                    "select_option": "Definiuje akcje do wykonania po wybraniu opcji z listy opcji. Otrzymuje zmienn\u0105 opcj\u0119.",
+                    "state": "Szablon dla aktualnej warto\u015bci pola wyboru."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon wyboru"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "state": "Stan",
+                    "state_class": "Klasa stanu",
+                    "unit_of_measurement": "Jednostka miary"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "state": "Okre\u015bla szablon do pobierania stanu czujnika. Je\u015bli czujnik jest numeryczny, tzn. posiada `state_class` lub `unit_of_measurement`, szablon stanu musi zwraca\u0107 liczb\u0119 lub `none`. Szablon stanu nie mo\u017ce zwraca\u0107 ci\u0105gu znak\u00f3w, w tym `unknown` lub `unavailable`. Mo\u017cna zdefiniowa\u0107 szablon `availability`, aby uniemo\u017cliwi\u0107 renderowanie szablonu stanu.",
+                    "unit_of_measurement": "Okre\u015bla jednostk\u0119 miary dla czujnika, je\u015bli taka istnieje. Warto\u015b\u0107 ta b\u0119dzie r\u00f3wnie\u017c wy\u015bwietlana zgodnie z ustawieniami formatu liczby w profilu u\u017cytkownika i wp\u0142ynie na graficzn\u0105 prezentacj\u0119 w wizualizacji historii jako warto\u015b\u0107 ci\u0105g\u0142a."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon sensora"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Urz\u0105dzenie",
+                    "name": "Nazwa",
+                    "turn_off": "Akcje przy wy\u0142\u0105czaniu",
+                    "turn_on": "Akcje przy w\u0142\u0105czeniu",
+                    "value_template": "Stan"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "turn_off": "Definiuje akcje do uruchomienia po wy\u0142\u0105czeniu prze\u0142\u0105cznika.",
+                    "turn_on": "Definiuje akcje do uruchomienia po w\u0142\u0105czeniu prze\u0142\u0105cznika.",
+                    "value_template": "Definiuje szablon do ustawiania stanu prze\u0142\u0105cznika. Je\u015bli nie zostanie zdefiniowany, prze\u0142\u0105cznik b\u0119dzie optymistycznie zak\u0142ada\u0107, \u017ce wszystkie polecenia powiod\u0142y si\u0119."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon prze\u0142\u0105cznika"
+            },
+            "update": {
+                "data": {
+                    "backup": "Kopia zapasowa",
+                    "device_class": "Klasa urz\u0105dzenia",
+                    "device_id": "Urz\u0105dzenie",
+                    "in_progress": "W toku",
+                    "install": "Akcje przy instalacji",
+                    "installed_version": "Zainstalowana wersja",
+                    "latest_version": "Ostatnia wersja",
+                    "name": "Nazwa",
+                    "release_summary": "Podsumowanie wydania",
+                    "release_url": "URL informacji o wydaniu",
+                    "title": "Tytu\u0142"
+                },
+                "data_description": {
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Template update"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Akcje przy czyszczeniu punktowym",
+                    "device_id": "Urz\u0105dzenie",
+                    "fan_speed": "Pr\u0119dko\u015b\u0107 wentylatora",
+                    "fan_speeds": "Pr\u0119dko\u015bci wentylatora",
+                    "locate": "Akcje przy lokalizowaniu",
+                    "name": "Nazwa",
+                    "pause": "Akcje przy wstrzymaniu",
+                    "return_to_base": "Akcje przy powrocie do bazy",
+                    "set_fan_speed": "Akcje przy ustawieniu pr\u0119dko\u015bci wentylatora",
+                    "start": "Akcje przy uruchomieniu",
+                    "state": "Stan",
+                    "stop": "Akcje przy zatrzymaniu"
+                },
+                "data_description": {
+                    "clean_spot": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia czyszczenia punktowego.",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "fan_speed": "Definiuje szablon pobieraj\u0105cy pr\u0119dko\u015b\u0107 wentylatora odkurzacza.",
+                    "fan_speeds": "Lista pr\u0119dko\u015bci wentylatora obs\u0142ugiwanych przez odkurzacz.",
+                    "locate": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia lokalizacji.",
+                    "pause": "Definiuje akcje do wykonania po wstrzymaniu odkurzacza.",
+                    "return_to_base": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia powrotu do bazy.",
+                    "set_fan_speed": "Definiuje akcje do wykonania po wydaniu odkurzaczowi polecenia ustawienia pr\u0119dko\u015bci wentylatora. Otrzymuje zmienn\u0105 'fan_speed'.",
+                    "start": "Definiuje akcje do wykonania po uruchomieniu odkurzacza.",
+                    "state": "Definiuje szablon pobieraj\u0105cy stan odkurzacza. Prawid\u0142owe warto\u015bci to 'cleaning', 'docked', 'idle', 'paused', 'returning' oraz 'error'.",
+                    "stop": "Definiuje akcje do wykonania po zatrzymaniu odkurzacza."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "Definiuje szablon okre\u015blaj\u0105cy stan \"available\" (dost\u0119pny) encji. Je\u015bli szablon nie zadzia\u0142a lub zwr\u00f3ci jedn\u0105 z warto\u015bci: \"True\", \"1\", \"true\", \"yes\", \"on\", \"enable\" lub dowoln\u0105 liczb\u0119 r\u00f3\u017cn\u0105 od zera \u2013 encja b\u0119dzie dost\u0119pna. Je\u015bli szablon zwr\u00f3ci inn\u0105 warto\u015b\u0107, encja b\u0119dzie niedost\u0119pna. Je\u015bli nie zostanie skonfigurowany, encja b\u0119dzie zawsze dost\u0119pna. Uwaga: por\u00f3wnanie ci\u0105gu znak\u00f3w nie rozr\u00f3\u017cnia wielko\u015bci liter, wi\u0119c np. \"TrUe\" i \"yEs\" s\u0105 akceptowane."
+                        },
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon odkurzacza"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Stan",
+                    "device_id": "Urz\u0105dzenie",
+                    "forecast_daily": "Prognoza dzienna",
+                    "forecast_hourly": "Prognoza godzinowa",
+                    "humidity": "Wilgotno\u015b\u0107",
+                    "name": "Nazwa",
+                    "temperature": "Temperature"
+                },
+                "data_description": {
+                    "condition": "Definiuje szablon do pobierania aktualnego stanu pogody",
+                    "device_id": "Wybierz urz\u0105dzenie, kt\u00f3re chcesz powi\u0105za\u0107 z t\u0105 encj\u0105.",
+                    "humidity": "Definiuje szablon do pobierania aktualnej wilgotno\u015bci",
+                    "temperature": "Definiuje szablon umo\u017cliwiaj\u0105cy uzyskanie aktualnej temperatury"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Opcje dodatkowe"
+                    }
+                },
+                "title": "Szablon pogody"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Brak formatu kodu",
+                "number": "Liczba",
+                "text": "Tekst"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Brak jednostki miary"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "Oprogramowanie sprz\u0119towe"
+            }
+        }
+    }
+}

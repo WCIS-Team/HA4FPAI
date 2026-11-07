@@ -1,0 +1,77 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Kamera",
+            "state": {
+                "idle": "Siaga",
+                "recording": "Merekam",
+                "streaming": "Streaming"
+            },
+            "state_attributes": {
+                "access_token": {
+                    "name": "Token akses"
+                },
+                "brand": {
+                    "name": "Merek"
+                },
+                "frontend_stream_type": {
+                    "name": "Jenis stream",
+                    "state": {
+                        "hls": "HLS",
+                        "webrtc": "WebRTC"
+                    }
+                },
+                "model_name": {
+                    "name": "Model"
+                },
+                "motion_detection": {
+                    "name": "Deteksi gerakan",
+                    "state": {
+                        "false": "Nonaktif",
+                        "true": "Diaktifkan"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "play_stream": {
+            "fields": {
+                "format": {
+                    "description": "Format streaming yang didukung oleh pemutar media.",
+                    "name": "Format"
+                },
+                "media_player": {
+                    "name": "Pemutar media"
+                }
+            }
+        },
+        "record": {
+            "description": "Membuat rekaman feed kamera langsung.",
+            "fields": {
+                "duration": {
+                    "description": "Durasi rekaman yang direncanakan. Durasi sebenarnya mungkin berbeda.",
+                    "name": "Durasi"
+                },
+                "filename": {
+                    "description": "Jalur lengkap ke file. Harus berupa MP4.",
+                    "name": "Nama file"
+                },
+                "lookback": {
+                    "description": "Periode lihat balik yang direncanakan untuk disertakan dalam rekaman (selain durasinya). Hanya tersedia jika saat ini ada aliran HLS yang aktif. Lamanya periode lihat balik yang sebenarnya mungkin berbeda.",
+                    "name": "Lihat balik"
+                }
+            }
+        },
+        "snapshot": {
+            "description": "Mengambil snapshot dari kamera.",
+            "fields": {
+                "filename": {
+                    "description": "Jalur lengkap ke file",
+                    "name": "Nama file"
+                }
+            }
+        }
+    },
+    "title": "Kamera"
+}

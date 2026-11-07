@@ -1,0 +1,30 @@
+{
+    "exceptions": {
+        "failed_to_reload": {
+            "message": "No se pudieron volver a cargar los recursos del panel de control. Por favor, comprueba tu configuraci\u00f3n e int\u00e9ntalo de nuevo."
+        },
+        "url_already_exists": {
+            "message": "La URL \"{url}\" ya est\u00e1 en uso. Por favor, elige una diferente."
+        }
+    },
+    "issues": {
+        "yaml_mode_deprecated": {
+            "description": "La configuraci\u00f3n de tu panel YAML usa la opci\u00f3n heredada `mode: yaml`, que se eliminar\u00e1 en Home Assistant 2026.8. Tus paneles YAML seguir\u00e1n funcionando; solo necesitas actualizar su definici\u00f3n. \n \nPara actualizar tu configuraci\u00f3n: \n \n1. Elimina `mode: yaml` de `lovelace:` en tu `configuration.yaml` \n2. En su lugar, a\u00f1ade una entrada para el panel de control: \n \n  ```yaml \n  lovelace: \n    resource_mode: yaml \n    dashboards:\n      lovelace:\n        mode: yaml\n        filename: {config_file}\n        title: Vista general\n        icon: mdi:view-dashboard\n        show_in_sidebar: true\n  ``` \n \n3. Reinicia Home Assistant \n \nNota: `resource_mode: yaml` sigue cargando recursos desde YAML. Si quieres administrar los recursos a trav\u00e9s de la IU, puedes eliminar esta l\u00ednea y mover los recursos a Configuraci\u00f3n > Paneles de control > Recursos.",
+            "title": "La configuraci\u00f3n YAML de Lovelace necesita actualizaci\u00f3n"
+        }
+    },
+    "services": {
+        "reload_resources": {
+            "description": "Recarga los recursos del panel de control desde la configuraci\u00f3n YAML.",
+            "name": "Volver a cargar los recursos del panel de control"
+        }
+    },
+    "system_health": {
+        "info": {
+            "dashboards": "Paneles de control",
+            "mode": "Modo",
+            "resources": "Recursos",
+            "views": "Vistas"
+        }
+    }
+}

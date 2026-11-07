@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Testar om en eller flera gr\u00e4sklippare \u00e4r dockade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare \u00e4r dockad"
+        },
+        "is_encountering_an_error": {
+            "description": "Testar om en eller flera gr\u00e4sklippare har drabbats av ett fel.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare st\u00f6ter p\u00e5 ett fel"
+        },
+        "is_idle": {
+            "description": "Testar om en eller flera gr\u00e4sklippare \u00e4r inaktiva.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare \u00e4r inaktiv"
+        },
+        "is_mowing": {
+            "description": "Testar om en eller flera gr\u00e4sklippare klipper.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare klipper"
+        },
+        "is_paused": {
+            "description": "Testar om en eller flera gr\u00e4sklippare \u00e4r pausade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare \u00e4r pausad"
+        },
+        "is_returning": {
+            "description": "Testar om en eller flera gr\u00e4sklippare \u00e5terv\u00e4nder till dockan.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare \u00e4r p\u00e5 v\u00e4g tillbaka"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Gr\u00e4sklippare",
+            "state": {
+                "docked": "Dockad",
+                "error": "Fel",
+                "idle": "Inaktiv",
+                "mowing": "Klipper",
+                "paused": "Pausad",
+                "returning": "\u00c5terv\u00e4nder"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Avslutar p\u00e5g\u00e5ende klippning och \u00e5terv\u00e4nder till laddstationen.",
+            "name": "\u00c5terv\u00e4nd till laddstationen"
+        },
+        "pause": {
+            "description": "Pausar gr\u00e4sklippningen",
+            "name": "Pausa"
+        },
+        "start_mowing": {
+            "description": "Startar gr\u00e4sklippningen",
+            "name": "Starta gr\u00e4sklippning"
+        },
+        "stop": {
+            "description": "Avbryter en gr\u00e4sklippares p\u00e5g\u00e5ende uppgift.",
+            "name": "Stoppa gr\u00e4sklippare"
+        }
+    },
+    "title": "Gr\u00e4sklippare",
+    "triggers": {
+        "became_idle": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera gr\u00e4sklippare blir inaktiv.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare blev inaktiv"
+        },
+        "errored": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera gr\u00e4sklippare st\u00f6ter p\u00e5 ett fel.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare har st\u00f6tt p\u00e5 ett fel"
+        },
+        "paused_mowing": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera gr\u00e4sklippare pausar klippningen.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare har pausat klippning"
+        },
+        "returned_to_dock": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera gr\u00e4sklippare har \u00e5terv\u00e4nt till dockan.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare har \u00e5terv\u00e4nt till dockan"
+        },
+        "started_mowing": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera gr\u00e4sklippare b\u00f6rjar klippa.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklipparen b\u00f6rjade klippa"
+        },
+        "started_returning": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera gr\u00e4sklippare b\u00f6rjar \u00e5terv\u00e4nda till dockan.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Gr\u00e4sklippare har b\u00f6rjat \u00e5terv\u00e4nda till docka"
+        }
+    }
+}

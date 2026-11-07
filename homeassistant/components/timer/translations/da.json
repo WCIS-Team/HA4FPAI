@@ -1,0 +1,110 @@
+{
+    "common": {
+        "condition_behavior_name": "Betingelsen opfyldes, hvis",
+        "condition_for_name": "I mindst",
+        "trigger_for_name": "I mindst"
+    },
+    "conditions": {
+        "is_active": {
+            "name": "Timer er aktiv"
+        },
+        "is_idle": {
+            "name": "Timer er inaktiv"
+        },
+        "is_paused": {
+            "name": "Timer er sat p\u00e5 pause"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Timer",
+            "state": {
+                "active": "Aktiv",
+                "idle": "Inaktiv",
+                "paused": "P\u00e5 pause"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Varighed"
+                },
+                "editable": {
+                    "name": "Administreret via brugerfladen",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Slutter"
+                },
+                "last_transition": {
+                    "state": {
+                        "cancelled": "Annulleret"
+                    }
+                },
+                "remaining": {
+                    "name": "Tilbage"
+                },
+                "restore": {
+                    "name": "Gendan"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "name": "Annull\u00e9r timer"
+        },
+        "change": {
+            "fields": {
+                "duration": {
+                    "name": "Varighed"
+                }
+            },
+            "name": "\u00c6ndr timer"
+        },
+        "finish": {
+            "name": "Afslut timer"
+        },
+        "pause": {
+            "name": "Paus timer"
+        },
+        "reload": {
+            "name": "Genindl\u00e6s timere"
+        },
+        "start": {
+            "fields": {
+                "duration": {
+                    "name": "Varighed"
+                }
+            },
+            "name": "Start timer"
+        }
+    },
+    "title": "Timer",
+    "triggers": {
+        "cancelled": {
+            "name": "Timer annulleres"
+        },
+        "finished": {
+            "name": "Timer udl\u00f8ber"
+        },
+        "paused": {
+            "name": "Timer pauses"
+        },
+        "remaining_time_reached": {
+            "fields": {
+                "remaining": {
+                    "name": "Resterende tid"
+                }
+            },
+            "name": "Timers resterende tid n\u00e5es"
+        },
+        "restarted": {
+            "name": "Timer genstartes"
+        },
+        "started": {
+            "name": "Timer startes"
+        }
+    }
+}

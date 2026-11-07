@@ -1,0 +1,550 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "condition_threshold_name": "Type de seuil",
+        "field_brightness_description": "Nombre indiquant la luminosit\u00e9, o\u00f9 0 \u00e9teint la lumi\u00e8re, 1 est la luminosit\u00e9 minimale et 255 est la luminosit\u00e9 maximale.",
+        "field_brightness_name": "Valeur de luminosit\u00e9",
+        "field_brightness_pct_description": "Nombre indiquant le pourcentage de pleine luminosit\u00e9, o\u00f9 0 \u00e9teint la lumi\u00e8re, 1 est la luminosit\u00e9 minimale et 100 est la luminosit\u00e9 maximale.",
+        "field_brightness_pct_name": "Luminosit\u00e9",
+        "field_brightness_step_description": "Modifie la luminosit\u00e9 d'une certaine quantit\u00e9.",
+        "field_brightness_step_name": "Valeur de pas de luminosit\u00e9",
+        "field_brightness_step_pct_description": "Modifie la luminosit\u00e9 en pourcentage.",
+        "field_brightness_step_pct_name": "Pas de luminosit\u00e9",
+        "field_color_name_description": "Un nom de couleur lisible par l'homme.",
+        "field_color_name_name": "Nom de la couleur",
+        "field_color_temp_kelvin_description": "Temp\u00e9rature de couleur en Kelvin.",
+        "field_color_temp_kelvin_name": "Temp\u00e9rature de couleur",
+        "field_effect_description": "Effet lumineux.",
+        "field_effect_name": "Effet",
+        "field_flash_description": "Indique \u00e0 la lumi\u00e8re de clignoter, peut \u00eatre une valeur courte ou longue.",
+        "field_flash_name": "Flash",
+        "field_hs_color_description": "Couleur au format teinte/saturation. Une liste de deux nombres entiers. La teinte est comprise entre 0 et 360 et la saturation entre 0 et 100.",
+        "field_hs_color_name": "Couleur teinte/saturation",
+        "field_profile_description": "Nom d'un profil d'\u00e9clairage \u00e0 utiliser.",
+        "field_profile_name": "Profil",
+        "field_rgb_color_description": "La couleur au format RVB. Une liste de trois entiers entre 0 et 255 repr\u00e9sentant les valeurs de rouge, vert et bleu.",
+        "field_rgb_color_name": "Couleur",
+        "field_rgbw_color_description": "La couleur au format RGBW. Une liste de quatre nombres entiers compris entre 0 et 255 repr\u00e9sentant les valeurs du rouge, du vert, du bleu et du blanc.",
+        "field_rgbw_color_name": "Couleur RGBW",
+        "field_rgbww_color_description": "La couleur au format RGBWW. Une liste de cinq entiers entre 0 et 255 repr\u00e9sentant les valeurs de rouge, vert, bleu, blanc froid et blanc chaud.",
+        "field_rgbww_color_name": "Couleur RGBWW",
+        "field_transition_description": "Dur\u00e9e n\u00e9cessaire pour passer \u00e0 l'\u00e9tat suivant.",
+        "field_transition_name": "Transition",
+        "field_white_description": "R\u00e8gle la lumi\u00e8re sur le mode blanc.",
+        "field_white_name": "Blanc",
+        "field_xy_color_description": "Couleur au format XY. Une liste de deux nombres d\u00e9cimaux entre 0 et 1.",
+        "field_xy_color_name": "Couleur XY",
+        "section_additional_fields_name": "Options suppl\u00e9mentaires",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins",
+        "trigger_threshold_name": "Type de seuil"
+    },
+    "conditions": {
+        "is_brightness": {
+            "description": "V\u00e9rifie la luminosit\u00e9 d'une ou plusieurs lumi\u00e8res.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "Luminosit\u00e9 de la lumi\u00e8re"
+        },
+        "is_off": {
+            "description": "V\u00e9rifie si une ou plusieurs lumi\u00e8res sont \u00e9teintes.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La lumi\u00e8re est \u00e9teinte"
+        },
+        "is_on": {
+            "description": "V\u00e9rifie si une ou plusieurs lumi\u00e8res sont allum\u00e9es.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La lumi\u00e8re est allum\u00e9e"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "brightness_decrease": "Diminuer la luminosit\u00e9 de {entity_name}",
+            "brightness_increase": "Augmenter la luminosit\u00e9 de {entity_name}",
+            "flash": "Faire clignoter {entity_name}",
+            "toggle": "Basculer {entity_name}",
+            "turn_off": "\u00c9teindre {entity_name}",
+            "turn_on": "Allumer {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} est \u00e9teint",
+            "is_on": "{entity_name} est allum\u00e9"
+        },
+        "extra_fields": {
+            "brightness_pct": "Luminosit\u00e9",
+            "flash": "Flash",
+            "for": "Dur\u00e9e"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} a \u00e9t\u00e9 allum\u00e9 ou \u00e9teint",
+            "turned_off": "{entity_name} a \u00e9t\u00e9 \u00e9teint",
+            "turned_on": "{entity_name} a \u00e9t\u00e9 allum\u00e9"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Lumi\u00e8re",
+            "state": {
+                "off": "\u00c9teint",
+                "on": "Allum\u00e9"
+            },
+            "state_attributes": {
+                "brightness": {
+                    "name": "Luminosit\u00e9"
+                },
+                "color_mode": {
+                    "name": "Mode de couleur",
+                    "state": {
+                        "brightness": "Luminosit\u00e9 uniquement",
+                        "color_temp": "Temp\u00e9rature de couleur",
+                        "hs": "HS",
+                        "onoff": "Allum\u00e9/\u00c9teint",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Inconnu",
+                        "white": "Blanc",
+                        "xy": "XY"
+                    }
+                },
+                "color_temp_kelvin": {
+                    "name": "Temp\u00e9rature de couleur (Kelvin)"
+                },
+                "effect": {
+                    "name": "Effet",
+                    "state": {
+                        "off": "D\u00e9sactiv\u00e9"
+                    }
+                },
+                "effect_list": {
+                    "name": "Effets disponibles"
+                },
+                "max_color_temp_kelvin": {
+                    "name": "Temp\u00e9rature de couleur maximale (Kelvin)"
+                },
+                "min_color_temp_kelvin": {
+                    "name": "Temp\u00e9rature de couleur minimale (Kelvin)"
+                },
+                "supported_color_modes": {
+                    "name": "Modes de couleur disponibles",
+                    "state": {
+                        "brightness": "Luminosit\u00e9 uniquement",
+                        "color_temp": "Temp\u00e9rature de couleur",
+                        "hs": "HS",
+                        "onoff": "Allum\u00e9/\u00c9teint",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Inconnu",
+                        "white": "Blanc",
+                        "xy": "XY"
+                    }
+                }
+            }
+        }
+    },
+    "selector": {
+        "color_name": {
+            "options": {
+                "aliceblue": "Bleu Alice",
+                "antiquewhite": "Blanc antique",
+                "aqua": "Aqua",
+                "aquamarine": "Bleu vert",
+                "azure": "Azur",
+                "beige": "Beige",
+                "bisque": "Bisque",
+                "blanchedalmond": "Amande blanchie",
+                "blue": "Bleu",
+                "blueviolet": "Bleu violet",
+                "brown": "Marron",
+                "burlywood": "Burlywood",
+                "cadetblue": "Bleu cadet",
+                "chartreuse": "Chartreuse",
+                "chocolate": "Chocolat",
+                "coral": "Corail",
+                "cornflowerblue": "Bleu bleuet",
+                "cornsilk": "Soie de ma\u00efs",
+                "crimson": "Cramoisi",
+                "cyan": "Cyan",
+                "darkblue": "Bleu fonc\u00e9",
+                "darkcyan": "Cyan fonc\u00e9",
+                "darkgoldenrod": "Verge d'or fonc\u00e9e",
+                "darkgray": "Gris fonc\u00e9",
+                "darkgreen": "Vert fonc\u00e9",
+                "darkgrey": "Gris fonc\u00e9",
+                "darkkhaki": "Kaki fonc\u00e9",
+                "darkmagenta": "Magenta fonc\u00e9",
+                "darkolivegreen": "Vert olive fonc\u00e9",
+                "darkorange": "Orange fonc\u00e9",
+                "darkorchid": "Orchid\u00e9e fonc\u00e9e",
+                "darkred": "Rouge fonc\u00e9",
+                "darksalmon": "Saumon fonc\u00e9",
+                "darkseagreen": "Vert de mer fonc\u00e9",
+                "darkslateblue": "Bleu ardoise fonc\u00e9",
+                "darkslategray": "Gris ardoise fonc\u00e9",
+                "darkslategrey": "Gris ardoise fonc\u00e9",
+                "darkturquoise": "Turquoise fonc\u00e9",
+                "darkviolet": "Violet fonc\u00e9",
+                "deeppink": "Rose profond",
+                "deepskyblue": "Bleu ciel profond",
+                "dimgray": "Gris terne",
+                "dimgrey": "Gris terne",
+                "dodgerblue": "Bleu Dodger",
+                "firebrick": "Brique r\u00e9fractaire",
+                "floralwhite": "Blanc floral",
+                "forestgreen": "Vert for\u00eat",
+                "fuchsia": "Fuchsia",
+                "gainsboro": "Gainsboro",
+                "ghostwhite": "Blanc fant\u00f4me",
+                "gold": "Or",
+                "goldenrod": "Verge d'or",
+                "gray": "Gris",
+                "green": "Vert",
+                "greenyellow": "Vert jaune",
+                "grey": "Gris",
+                "homeassistant": "Home Assistant",
+                "honeydew": "Ros\u00e9e de miel",
+                "hotpink": "Rose vif",
+                "indianred": "Rouge indien",
+                "indigo": "Indigo",
+                "ivory": "Ivoire",
+                "khaki": "Kaki",
+                "lavender": "Lavande",
+                "lavenderblush": "Lavande ros\u00e9e",
+                "lawngreen": "Vert gazon",
+                "lemonchiffon": "Jaune citron",
+                "lightblue": "Bleu clair",
+                "lightcoral": "Corail clair",
+                "lightcyan": "Cyan clair",
+                "lightgoldenrodyellow": "Jaune d'or clair",
+                "lightgray": "Gris clair",
+                "lightgreen": "Vert clair",
+                "lightgrey": "Gris clair",
+                "lightpink": "Rose clair",
+                "lightsalmon": "Saumon clair",
+                "lightseagreen": "Vert de mer clair",
+                "lightskyblue": "Bleu ciel clair",
+                "lightslategray": "Gris ardoise clair",
+                "lightslategrey": "Gris ardoise clair",
+                "lightsteelblue": "Bleu acier clair",
+                "lightyellow": "Jaune clair",
+                "lime": "Citron vert",
+                "limegreen": "Vert citron",
+                "linen": "Lin",
+                "magenta": "Magenta",
+                "maroon": "Bordeaux",
+                "mediumaquamarine": "Aigue-marine moyenne",
+                "mediumblue": "Bleu moyen",
+                "mediumorchid": "Orchid\u00e9e moyenne",
+                "mediumpurple": "Violet moyen",
+                "mediumseagreen": "Vert de mer moyen",
+                "mediumslateblue": "Bleu ardoise moyen",
+                "mediumspringgreen": "Vert printemps moyen",
+                "mediumturquoise": "Turquoise moyen",
+                "mediumvioletred": "Rouge violet moyen",
+                "midnightblue": "Bleu nuit",
+                "mintcream": "Cr\u00e8me de menthe",
+                "mistyrose": "Rose brumeux",
+                "moccasin": "Mocassin",
+                "navajowhite": "Blanc navajo",
+                "navy": "Marine",
+                "navyblue": "Bleu marine",
+                "oldlace": "Dentelle ancienne",
+                "olive": "Olive",
+                "olivedrab": "Olive terne",
+                "orange": "Orange",
+                "orangered": "Rouge orang\u00e9",
+                "orchid": "Orchid\u00e9e",
+                "palegoldenrod": "Verge d'or p\u00e2le",
+                "palegreen": "Vert p\u00e2le",
+                "paleturquoise": "Turquoise p\u00e2le",
+                "palevioletred": "Rouge violet p\u00e2le",
+                "papayawhip": "Mousse de papaye",
+                "peachpuff": "P\u00eache",
+                "peru": "P\u00e9rou",
+                "pink": "Rose",
+                "plum": "Prune",
+                "powderblue": "Bleu poudr\u00e9",
+                "purple": "Violet",
+                "red": "Rouge",
+                "rosybrown": "Brun ros\u00e9",
+                "royalblue": "Bleu royal",
+                "saddlebrown": "Marron selle",
+                "salmon": "Saumon",
+                "sandybrown": "Brun sable",
+                "seagreen": "Vert marin",
+                "seashell": "Coquillage",
+                "sienna": "Terre de Sienne",
+                "silver": "Argent",
+                "skyblue": "Bleu ciel",
+                "slateblue": "Bleu ardoise",
+                "slategray": "Gris ardoise",
+                "slategrey": "Gris ardoise",
+                "snow": "Neige",
+                "springgreen": "Vert printanier",
+                "steelblue": "Bleu acier",
+                "tan": "Havane",
+                "teal": "Sarcelle",
+                "thistle": "Chardon",
+                "tomato": "Tomate",
+                "turquoise": "Turquoise",
+                "violet": "Violet",
+                "wheat": "Bl\u00e9",
+                "white": "Blanc",
+                "whitesmoke": "Fum\u00e9e blanche",
+                "yellow": "Jaune",
+                "yellowgreen": "Jaune vert"
+            }
+        },
+        "flash": {
+            "options": {
+                "long": "Long",
+                "short": "Court"
+            }
+        },
+        "state": {
+            "options": {
+                "off": "\u00c9teint",
+                "on": "Allum\u00e9"
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Allume ou \u00e9teint une ou plusieurs lumi\u00e8res selon leur \u00e9tat actuel.",
+            "fields": {
+                "brightness": {
+                    "description": "Nombre indiquant la luminosit\u00e9, o\u00f9 0 \u00e9teint la lumi\u00e8re, 1 est la luminosit\u00e9 minimale et 255 est la luminosit\u00e9 maximale.",
+                    "name": "Valeur de luminosit\u00e9"
+                },
+                "brightness_pct": {
+                    "description": "Nombre indiquant le pourcentage de pleine luminosit\u00e9, o\u00f9 0 \u00e9teint la lumi\u00e8re, 1 est la luminosit\u00e9 minimale et 100 est la luminosit\u00e9 maximale.",
+                    "name": "Luminosit\u00e9"
+                },
+                "color_name": {
+                    "description": "Un nom de couleur lisible par l'homme.",
+                    "name": "Nom de la couleur"
+                },
+                "color_temp_kelvin": {
+                    "description": "Temp\u00e9rature de couleur en Kelvin.",
+                    "name": "Temp\u00e9rature de couleur"
+                },
+                "effect": {
+                    "description": "Effet lumineux.",
+                    "name": "Effet"
+                },
+                "flash": {
+                    "description": "Indique \u00e0 la lumi\u00e8re de clignoter, peut \u00eatre une valeur courte ou longue.",
+                    "name": "Flash"
+                },
+                "hs_color": {
+                    "description": "Couleur au format teinte/saturation. Une liste de deux nombres entiers. La teinte est comprise entre 0 et 360 et la saturation entre 0 et 100.",
+                    "name": "Couleur teinte/saturation"
+                },
+                "profile": {
+                    "description": "Nom d'un profil d'\u00e9clairage \u00e0 utiliser.",
+                    "name": "Profil"
+                },
+                "rgb_color": {
+                    "description": "La couleur au format RVB. Une liste de trois entiers entre 0 et 255 repr\u00e9sentant les valeurs de rouge, vert et bleu.",
+                    "name": "Couleur"
+                },
+                "rgbw_color": {
+                    "description": "La couleur au format RGBW. Une liste de quatre nombres entiers compris entre 0 et 255 repr\u00e9sentant les valeurs du rouge, du vert, du bleu et du blanc.",
+                    "name": "Couleur RGBW"
+                },
+                "rgbww_color": {
+                    "description": "La couleur au format RGBWW. Une liste de cinq entiers entre 0 et 255 repr\u00e9sentant les valeurs de rouge, vert, bleu, blanc froid et blanc chaud.",
+                    "name": "Couleur RGBWW"
+                },
+                "transition": {
+                    "description": "Dur\u00e9e n\u00e9cessaire pour passer \u00e0 l'\u00e9tat suivant.",
+                    "name": "Transition"
+                },
+                "white": {
+                    "description": "R\u00e8gle la lumi\u00e8re sur le mode blanc.",
+                    "name": "Blanc"
+                },
+                "xy_color": {
+                    "description": "Couleur au format XY. Une liste de deux nombres d\u00e9cimaux entre 0 et 1.",
+                    "name": "Couleur XY"
+                }
+            },
+            "name": "Allumer/\u00c9teindre la lumi\u00e8re",
+            "sections": {
+                "additional_fields": {
+                    "name": "Options suppl\u00e9mentaires"
+                }
+            }
+        },
+        "turn_off": {
+            "description": "\u00c9teint une ou plusieurs lumi\u00e8res.",
+            "fields": {
+                "flash": {
+                    "description": "Indique \u00e0 la lumi\u00e8re de clignoter, peut \u00eatre une valeur courte ou longue.",
+                    "name": "Flash"
+                },
+                "transition": {
+                    "description": "Dur\u00e9e n\u00e9cessaire pour passer \u00e0 l'\u00e9tat suivant.",
+                    "name": "Transition"
+                }
+            },
+            "name": "\u00c9teindre la lumi\u00e8re",
+            "sections": {
+                "additional_fields": {
+                    "name": "Options suppl\u00e9mentaires"
+                }
+            }
+        },
+        "turn_on": {
+            "description": "Allume une ou plusieurs lumi\u00e8res et ajuste leurs propri\u00e9t\u00e9s, m\u00eame lorsqu'elles sont d\u00e9j\u00e0 allum\u00e9es.",
+            "fields": {
+                "brightness": {
+                    "description": "Nombre indiquant la luminosit\u00e9, o\u00f9 0 \u00e9teint la lumi\u00e8re, 1 est la luminosit\u00e9 minimale et 255 est la luminosit\u00e9 maximale.",
+                    "name": "Valeur de luminosit\u00e9"
+                },
+                "brightness_pct": {
+                    "description": "Nombre indiquant le pourcentage de pleine luminosit\u00e9, o\u00f9 0 \u00e9teint la lumi\u00e8re, 1 est la luminosit\u00e9 minimale et 100 est la luminosit\u00e9 maximale.",
+                    "name": "Luminosit\u00e9"
+                },
+                "brightness_step": {
+                    "description": "Modifie la luminosit\u00e9 d'une certaine quantit\u00e9.",
+                    "name": "Valeur de pas de luminosit\u00e9"
+                },
+                "brightness_step_pct": {
+                    "description": "Modifie la luminosit\u00e9 en pourcentage.",
+                    "name": "Pas de luminosit\u00e9"
+                },
+                "color_name": {
+                    "description": "Un nom de couleur lisible par l'homme.",
+                    "name": "Nom de la couleur"
+                },
+                "color_temp_kelvin": {
+                    "description": "Temp\u00e9rature de couleur en Kelvin.",
+                    "name": "Temp\u00e9rature de couleur"
+                },
+                "effect": {
+                    "description": "Effet lumineux.",
+                    "name": "Effet"
+                },
+                "flash": {
+                    "description": "Indique \u00e0 la lumi\u00e8re de clignoter, peut \u00eatre une valeur courte ou longue.",
+                    "name": "Flash"
+                },
+                "hs_color": {
+                    "description": "Couleur au format teinte/saturation. Une liste de deux nombres entiers. La teinte est comprise entre 0 et 360 et la saturation entre 0 et 100.",
+                    "name": "Couleur teinte/saturation"
+                },
+                "profile": {
+                    "description": "Nom d'un profil d'\u00e9clairage \u00e0 utiliser.",
+                    "name": "Profil"
+                },
+                "rgb_color": {
+                    "description": "La couleur au format RVB. Une liste de trois entiers entre 0 et 255 repr\u00e9sentant les valeurs de rouge, vert et bleu.",
+                    "name": "Couleur"
+                },
+                "rgbw_color": {
+                    "description": "La couleur au format RGBW. Une liste de quatre nombres entiers compris entre 0 et 255 repr\u00e9sentant les valeurs du rouge, du vert, du bleu et du blanc.",
+                    "name": "Couleur RGBW"
+                },
+                "rgbww_color": {
+                    "description": "La couleur au format RGBWW. Une liste de cinq entiers entre 0 et 255 repr\u00e9sentant les valeurs de rouge, vert, bleu, blanc froid et blanc chaud.",
+                    "name": "Couleur RGBWW"
+                },
+                "transition": {
+                    "description": "Dur\u00e9e n\u00e9cessaire pour passer \u00e0 l'\u00e9tat suivant.",
+                    "name": "Transition"
+                },
+                "white": {
+                    "description": "R\u00e8gle la lumi\u00e8re sur le mode blanc.",
+                    "name": "Blanc"
+                },
+                "xy_color": {
+                    "description": "Couleur au format XY. Une liste de deux nombres d\u00e9cimaux entre 0 et 1.",
+                    "name": "Couleur XY"
+                }
+            },
+            "name": "Allumer la lumi\u00e8re",
+            "sections": {
+                "additional_fields": {
+                    "name": "Options suppl\u00e9mentaires"
+                }
+            }
+        }
+    },
+    "title": "Lumi\u00e8re",
+    "triggers": {
+        "brightness_changed": {
+            "description": "Se d\u00e9clenche quand la luminosit\u00e9 d'une ou plusieurs lumi\u00e8res change.",
+            "fields": {
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "La luminosit\u00e9 a chang\u00e9"
+        },
+        "brightness_crossed_threshold": {
+            "description": "Se d\u00e9clenche quand la luminosit\u00e9 d'une ou plusieurs lumi\u00e8res franchit un seuil.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "La luminosit\u00e9 a franchi un seuil"
+        },
+        "turned_off": {
+            "description": "Se d\u00e9clenche quand une ou plusieurs lumi\u00e8res s'\u00e9teignent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La lumi\u00e8re s'est \u00e9teinte"
+        },
+        "turned_on": {
+            "description": "Se d\u00e9clenche quand une ou plusieurs lumi\u00e8res s'allument.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La lumi\u00e8re s'est allum\u00e9e"
+        }
+    }
+}

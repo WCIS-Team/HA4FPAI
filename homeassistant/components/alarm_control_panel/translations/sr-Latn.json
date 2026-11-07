@@ -1,0 +1,325 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_armed": {
+            "description": "Proverava da li je jedan ili vi\u0161e alarma aktiviran.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran"
+        },
+        "is_armed_away": {
+            "description": "Proverava da li je jedan ili vi\u0161e alarma aktiviran u re\u017eimu odsustva.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u re\u017eimu odsustva"
+        },
+        "is_armed_home": {
+            "description": "Proverava da li je jedan ili vi\u0161e alarma aktiviran u ku\u0107nom re\u017eimu.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u re\u017eimu kod ku\u0107e"
+        },
+        "is_armed_night": {
+            "description": "Proverava da li je jedan ili vi\u0161e alarma aktiviran u no\u0107nom re\u017eimu.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u no\u0107nom re\u017eimu"
+        },
+        "is_armed_vacation": {
+            "description": "Proverava da li je jedan ili vi\u0161e alarma aktiviran u re\u017eimu odmora.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u re\u017eimu odmora"
+        },
+        "is_disarmed": {
+            "description": "Proverava da li je jedan ili vi\u0161e alarma deaktiviran.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm deaktiviran"
+        },
+        "is_triggered": {
+            "description": "Proverava da li je jedan ili vi\u0161e alarma aktiviran.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm pokrenut"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "arm_away": "Aktiviraj {entity_name} u re\u017eimu odsustva",
+            "arm_home": "Aktiviraj {entity_name} u re\u017eimu kod ku\u0107e",
+            "arm_night": "Aktiviraj {entity_name} u no\u0107nom re\u017eimu",
+            "arm_vacation": "Aktiviraj {entity_name} u re\u017eimu odmora",
+            "disarm": "Isklju\u010di {entity_name}",
+            "trigger": "Pokreni {entity_name}"
+        },
+        "condition_type": {
+            "is_armed_away": "{entity_name} aktiviran u re\u017eimu odsustva",
+            "is_armed_home": "{entity_name} aktiviran u re\u017eimu kod ku\u0107e",
+            "is_armed_night": "{entity_name} aktiviran u no\u0107nom re\u017eimu",
+            "is_armed_vacation": "{entity_name} aktiviran u re\u017eimu odmora",
+            "is_disarmed": "{entity_name} deaktiviran",
+            "is_triggered": "{entity_name} pokrenut"
+        },
+        "extra_fields": {
+            "code": "Kod",
+            "for": "Trajanje"
+        },
+        "trigger_type": {
+            "armed_away": "{entity_name} aktiviran u re\u017eimu odsustva",
+            "armed_home": "{entity_name} aktiviran u re\u017eimu kod ku\u0107e",
+            "armed_night": "{entity_name} aktiviran u no\u0107nom re\u017eimu",
+            "armed_vacation": "{entity_name} aktiviran u re\u017eimu odmora",
+            "disarmed": "{entity_name} isklju\u010den",
+            "triggered": "{entity_name} pokrenut"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Alarmni panel",
+            "state": {
+                "armed": "Aktiviran",
+                "armed_away": "Aktiviran: Odsutan",
+                "armed_custom_bypass": "Aktiviran: Premo\u0161\u0107eno",
+                "armed_home": "Aktiviran: Kod ku\u0107e",
+                "armed_night": "Aktiviran: No\u0107",
+                "armed_vacation": "Aktiviran: Odmor",
+                "arming": "Aktivacija u toku",
+                "disarmed": "Deaktiviran",
+                "disarming": "Deaktivacija u toku",
+                "pending": "Na \u010dekanju",
+                "triggered": "Alarm aktiviran"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Izmenio"
+                },
+                "code_arm_required": {
+                    "name": "Kod za aktiviranje",
+                    "state": {
+                        "false": "Nije obavezan",
+                        "true": "Obavezan"
+                    }
+                },
+                "code_format": {
+                    "name": "Format koda",
+                    "state": {
+                        "number": "Broj\u010dani",
+                        "text": "Tekstualni"
+                    }
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "code_arm_required": {
+            "message": "Za aktiviranje je potreban kod, ali nije unet za {entity_id}."
+        }
+    },
+    "services": {
+        "alarm_arm_away": {
+            "description": "Uklju\u010duje alarm za vreme kada nikoga nema kod ku\u0107e.",
+            "fields": {
+                "code": {
+                    "description": "Sigurnosni kod za aktivaciju.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Uklju\u010di alarm: Odsustvo"
+        },
+        "alarm_arm_custom_bypass": {
+            "description": "Uklju\u010duje alarm uz i (premo\u0161\u0107ivanje) izabranih zona.",
+            "fields": {
+                "code": {
+                    "description": "Sigurnosni kod za aktivaciju.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Uklju\u010di alarm sa premo\u0161\u0107ivanjem"
+        },
+        "alarm_arm_home": {
+            "description": "Uklju\u010duje alarm u re\u017eimu za boravak kod ku\u0107e (kada ima prisustva).",
+            "fields": {
+                "code": {
+                    "description": "Sigurnosni kod za aktivaciju.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Uklju\u010di alarm: Kod ku\u0107e"
+        },
+        "alarm_arm_night": {
+            "description": "Uklju\u010duje alarm u no\u0107nom re\u017eimu rada.",
+            "fields": {
+                "code": {
+                    "description": "Sigurnosni kod za aktivaciju.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Uklju\u010di alarm: No\u0107ni re\u017eim"
+        },
+        "alarm_arm_vacation": {
+            "description": "Uklju\u010duje alarm prilago\u0111en za periode du\u017eeg odsustva (odmor).",
+            "fields": {
+                "code": {
+                    "description": "Sigurnosni kod za aktivaciju.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Uklju\u010di alarm: Odmor"
+        },
+        "alarm_disarm": {
+            "description": "Isklju\u010duje alarm i vra\u0107a bezbednosni sistem u stanje mirovanja.",
+            "fields": {
+                "code": {
+                    "description": "Kod za isklju\u010divanje alarma.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Isklju\u010di alarm"
+        },
+        "alarm_trigger": {
+            "description": "Pokretanje alarma ru\u010dno.",
+            "fields": {
+                "code": {
+                    "description": "Sigurnosni kod za aktivaciju.",
+                    "name": "Kod"
+                }
+            },
+            "name": "Pokreni alarm"
+        }
+    },
+    "title": "Alarmni panel",
+    "triggers": {
+        "armed": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e alarma aktiviraju, bez obzira na re\u017eim.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran"
+        },
+        "armed_away": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e alarma aktiviraju u re\u017eimu odsustva.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u re\u017eimu odsustva"
+        },
+        "armed_home": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e alarma aktiviraju u re\u017eimu \u201ekod ku\u0107e\u201d.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u re\u017eimu \u201ekod ku\u0107e\u201c"
+        },
+        "armed_night": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e alarma aktiviraju u no\u0107nom re\u017eimu.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u no\u0107nom re\u017eimu"
+        },
+        "armed_vacation": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e alarma aktiviraju u re\u017eimu odmora.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm aktiviran u re\u017eimu odmora"
+        },
+        "disarmed": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e alarma deaktiviraju.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm deaktiviran"
+        },
+        "triggered": {
+            "description": "Pokre\u0107e se kada se jedan ili vi\u0161e alarma oglase.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Alarm ogla\u0161en"
+        }
+    }
+}

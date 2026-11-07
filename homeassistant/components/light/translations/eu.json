@@ -1,0 +1,212 @@
+{
+    "common": {
+        "condition_threshold_name": "Atalase mota",
+        "field_brightness_pct_name": "Distira",
+        "field_brightness_step_name": "Distira-urratsaren balioa",
+        "field_brightness_step_pct_name": "Distira-urratsa",
+        "field_color_name_name": "Kolore-izena",
+        "field_color_temp_kelvin_name": "Kolore tenperatura",
+        "field_effect_name": "Efektua",
+        "field_profile_name": "Profila",
+        "field_rgb_color_name": "Kolorea",
+        "section_additional_fields_name": "Aukera gehigarriak",
+        "trigger_threshold_name": "Atalase mota"
+    },
+    "conditions": {
+        "is_brightness": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "brightness_decrease": "{entity_name}-en argitasuna jeitsi",
+            "brightness_increase": "{entity_name}-en argitasuna igo",
+            "flash": "{entity_name} keinuka egin",
+            "toggle": "{entity_name} txandakatu",
+            "turn_off": "{entity_name} itzali",
+            "turn_on": "{entity_name} piztu"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} itzalita dago",
+            "is_on": "{entity_name} piztuta dago"
+        },
+        "extra_fields": {
+            "brightness_pct": "Distira",
+            "for": "Iraupena"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} piztu edo itzali da",
+            "turned_off": "{entity_name} itzali da",
+            "turned_on": "{entity_name} piztu da"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "state": {
+                "off": "Itzalita",
+                "on": "Piztuta"
+            },
+            "state_attributes": {
+                "brightness": {
+                    "name": "Distira"
+                },
+                "color_mode": {
+                    "name": "Kolore-modua",
+                    "state": {
+                        "brightness": "Distira bakarrik",
+                        "color_temp": "Kolore tenperatura",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Ezezaguna",
+                        "white": "Zuria",
+                        "xy": "XY"
+                    }
+                },
+                "color_temp_kelvin": {
+                    "name": "Kolore tenperatura (Kelvin)"
+                },
+                "effect": {
+                    "name": "Efektua",
+                    "state": {
+                        "off": "Itzalita"
+                    }
+                },
+                "max_color_temp_kelvin": {
+                    "name": "Gehienezko kolore tenperatura (Kelvin)"
+                },
+                "min_color_temp_kelvin": {
+                    "name": "Gutxienezko kolore tenperatura (Kelvin)"
+                },
+                "supported_color_modes": {
+                    "state": {
+                        "brightness": "Distira bakarrik",
+                        "color_temp": "Kolore tenperatura",
+                        "rgb": "RGB",
+                        "rgbw": "RGBW",
+                        "rgbww": "RGBWW",
+                        "unknown": "Ezezaguna",
+                        "white": "Zuria",
+                        "xy": "XY"
+                    }
+                }
+            }
+        }
+    },
+    "selector": {
+        "color_name": {
+            "options": {
+                "blue": "Urdina",
+                "gold": "Urrea",
+                "gray": "Grisa",
+                "green": "Berdea",
+                "red": "Gorria",
+                "snow": "Elurra",
+                "yellow": "Horia",
+                "yellowgreen": "Hori-berdea"
+            }
+        },
+        "flash": {
+            "options": {
+                "long": "Luzea",
+                "short": "Laburra"
+            }
+        },
+        "state": {
+            "options": {
+                "off": "Itzalita",
+                "on": "Piztuta"
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "fields": {
+                "brightness_pct": {
+                    "name": "Distira"
+                },
+                "color_name": {
+                    "name": "Kolore-izena"
+                },
+                "color_temp_kelvin": {
+                    "name": "Kolore tenperatura"
+                },
+                "effect": {
+                    "name": "Efektua"
+                },
+                "profile": {
+                    "name": "Profila"
+                },
+                "rgb_color": {
+                    "name": "Kolorea"
+                }
+            },
+            "name": "Argia txandakatu",
+            "sections": {
+                "additional_fields": {
+                    "name": "Aukera gehigarriak"
+                }
+            }
+        },
+        "turn_off": {
+            "sections": {
+                "additional_fields": {
+                    "name": "Aukera gehigarriak"
+                }
+            }
+        },
+        "turn_on": {
+            "fields": {
+                "brightness_pct": {
+                    "name": "Distira"
+                },
+                "brightness_step": {
+                    "name": "Distira-urratsaren balioa"
+                },
+                "brightness_step_pct": {
+                    "name": "Distira-urratsa"
+                },
+                "color_name": {
+                    "name": "Kolore-izena"
+                },
+                "color_temp_kelvin": {
+                    "name": "Kolore tenperatura"
+                },
+                "effect": {
+                    "name": "Efektua"
+                },
+                "profile": {
+                    "name": "Profila"
+                },
+                "rgb_color": {
+                    "name": "Kolorea"
+                }
+            },
+            "sections": {
+                "additional_fields": {
+                    "name": "Aukera gehigarriak"
+                }
+            }
+        }
+    },
+    "triggers": {
+        "brightness_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        },
+        "brightness_crossed_threshold": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalase mota"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Patikrina, ar viename ar keliuose i\u0161skleid\u017eiamuosiuose meniu pasirinkta konkreti parinktis.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "option": {
+                    "description": "Galimos parinktys, kurias reikia patikrinti.",
+                    "name": "Pasirinkimas"
+                }
+            },
+            "name": "Pasirinkta i\u0161skleid\u017eiamojo meniu parinktis"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "Pakeiskite {entity_name} \u012f pirm\u0105j\u0105 parinkt\u012f",
+            "select_last": "Pakeiskite {entity_name} \u012f paskutin\u0119 parinkt\u012f",
+            "select_next": "Pakeiskite {entity_name} \u012f kit\u0105 parinkt\u012f",
+            "select_option": "Pakeiskite {entity_name} parinkt\u012f",
+            "select_previous": "Pakeiskite {entity_name} \u012f ankstesn\u0119 parinkt\u012f"
+        },
+        "condition_type": {
+            "selected_option": "Dabartin\u0117 pasirinkta parinktis {entity_name}"
+        },
+        "extra_fields": {
+            "cycle": "Ciklas",
+            "for": "Trukm\u0117",
+            "from": "I\u0161",
+            "option": "Parinktis",
+            "to": "\u012e"
+        },
+        "trigger_type": {
+            "current_option_changed": "{entity_name} parinktis pakeista"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Pasirinkimas",
+            "state_attributes": {
+                "options": {
+                    "name": "Parinktys"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "Subjektas {entity_id} neturi pasirinkimo galimybi\u0173."
+        },
+        "not_valid_option": {
+            "message": "Parinktis {option} negalioja subjektui {entity_id} , galiojan\u010dios parinktys yra: {options} ."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "Pasirenka pirm\u0105j\u0105 pasirinkimo parinkt\u012f.",
+            "name": "Pasirinkite pirm\u0105 variant\u0105"
+        },
+        "select_last": {
+            "description": "Pasirenka paskutin\u0119 pasirinkimo parinkt\u012f.",
+            "name": "Pasirinkite paskutin\u0119 parinkt\u012f"
+        },
+        "select_next": {
+            "description": "Pasirenka kit\u0105 pasirinkimo parinkt\u012f.",
+            "fields": {
+                "cycle": {
+                    "description": "Jei parinktis tur\u0117t\u0173 pereiti nuo paskutin\u0117s iki pirmosios.",
+                    "name": "Ciklas"
+                }
+            },
+            "name": "Pasirinkite kit\u0105 parinkt\u012f"
+        },
+        "select_option": {
+            "description": "Pasirenka pasirinkimo parinkt\u012f.",
+            "fields": {
+                "option": {
+                    "description": "Galimyb\u0117 pasirinkti.",
+                    "name": "Parinktis"
+                }
+            },
+            "name": "Pasirinkite parinkt\u012f"
+        },
+        "select_previous": {
+            "description": "Pasirenka ankstesn\u0119 pasirinkimo parinkt\u012f.",
+            "fields": {
+                "cycle": {
+                    "description": "Jei parinktis tur\u0117t\u0173 pereiti nuo pirmos iki paskutin\u0117s.",
+                    "name": "Ciklas"
+                }
+            },
+            "name": "Pasirinkti ankstesn\u0119 parinkt\u012f"
+        }
+    },
+    "title": "Pasirinkimas",
+    "triggers": {
+        "selection_changed": {
+            "description": "Suaktyv\u0117ja, kai pasikei\u010dia pasirinkta vieno ar keli\u0173 i\u0161skleid\u017eiam\u0173j\u0173 meniu parinktis.",
+            "name": "I\u0161skleid\u017eiamojo meniu pasirinkimas pakeistas"
+        }
+    }
+}

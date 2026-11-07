@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "A c\u00f3pia de seguran\u00e7a da base de dados declarada em {start_time} falhou devido \u00e0 falta de recursos. A c\u00f3pia de seguran\u00e7a n\u00e3o \u00e9 fi\u00e1vel e tem de ser reiniciada. Isto pode acontecer se a base de dados for demasiado grande ou se o sistema estiver sob carga pesada. Considere atualizar o hardware do sistema ou reduzir o tamanho da base de dados, diminuindo o n\u00famero de dias de hist\u00f3rico a manter ou criando um filtro.",
+            "title": "O backup da base de dados falhou por falta de recursos"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "A vers\u00e3o {server_version} do {database_engine} n\u00e3o \u00e9 uma vers\u00e3o com suporte a longo prazo (LTS). O suporte a vers\u00f5es de curto prazo e a vers\u00f5es LTS em fim de vida ser\u00e1 removido; por favor, atualize para uma das vers\u00f5es LTS suportadas ({lts_versions}) e reinicie o Home Assistant para continuar a utilizar o gravador.",
+            "title": "Atualize {database_engine} para uma vers\u00e3o LTS compat\u00edvel para continuar a utilizar o gravador"
+        },
+        "database_engine_too_old": {
+            "description": "O suporte \u00e0 vers\u00e3o {server_version} do {database_engine} est\u00e1 a chegar ao fim; a vers\u00e3o m\u00ednima suportada passar\u00e1 a ser {min_version}. Por favor, atualize o seu software de base de dados e reinicie o Home Assistant.",
+            "title": "Atualize {database_engine} para a vers\u00e3o {min_version} ou posterior para continuar a utilizar o gravador"
+        },
+        "maria_db_range_index_regression": {
+            "description": "Vers\u00f5es mais antigas do MariaDB sofrem de uma regress\u00e3o significativa de desempenho ao recuperar dados hist\u00f3ricos ou purgar a base de dados. Atualize para a vers\u00e3o {min_version} ou posterior do MariaDB e reinicie o Home Assistant. Se estiver a usar a app MariaDB Core, certifique-se de que a atualiza para a vers\u00e3o mais recente.",
+            "title": "Atualize o MariaDB para {min_version} ou resolva um problema significativo de desempenho mais tarde."
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Interrompe o registo de eventos e altera\u00e7\u00f5es de estado.",
+            "name": "Desativar Gravador"
+        },
+        "enable": {
+            "description": "Inicia o registo de eventos e altera\u00e7\u00f5es de estado.",
+            "name": "Ativar o gravador"
+        },
+        "get_statistics": {
+            "description": "Recupera dados estat\u00edsticos para entidades dentro de um per\u00edodo de tempo espec\u00edfico.",
+            "fields": {
+                "end_time": {
+                    "description": "A hora de fim da consulta de estat\u00edsticas. Se omitido, devolve todas as estat\u00edsticas a partir da hora de in\u00edcio.",
+                    "name": "Hora de fim"
+                },
+                "period": {
+                    "description": "O per\u00edodo de tempo para agrupar as estat\u00edsticas.",
+                    "name": "Per\u00edodo"
+                },
+                "start_time": {
+                    "description": "A hora de in\u00edcio da consulta de estat\u00edsticas.",
+                    "name": "Hora de in\u00edcio"
+                },
+                "statistic_ids": {
+                    "description": "Os IDs de entidade ou IDs de estat\u00edstica para os quais devem ser devolvidas estat\u00edsticas.",
+                    "name": "IDs de estat\u00edsticas"
+                },
+                "types": {
+                    "description": "Os tipos de valores estat\u00edsticos a devolver.",
+                    "name": "Tipos"
+                },
+                "units": {
+                    "description": "Mapeamento opcional de convers\u00e3o de unidades.",
+                    "name": "Unidades"
+                }
+            },
+            "name": "Obter estat\u00edsticas do gravador"
+        },
+        "purge": {
+            "description": "Inicia a tarefa de purga - para limpar dados antigos da sua base de dados.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Aplicar filtros `entity_id` e `event_type` para al\u00e9m da purga baseada no tempo.",
+                    "name": "Aplicar filtro"
+                },
+                "keep_days": {
+                    "description": "N\u00famero de dias para manter os dados na base de dados. A partir de hoje, em contagem decrescente. Um valor de `7` significa que tudo o que tiver mais de uma semana ser\u00e1 eliminado.",
+                    "name": "Dias para guardar"
+                },
+                "repack": {
+                    "description": "Tentativa de poupar espa\u00e7o em disco reescrevendo todo o ficheiro da base de dados.",
+                    "name": "Reembalar"
+                }
+            },
+            "name": "Purgar a base de dados do Gravador"
+        },
+        "purge_entities": {
+            "description": "Inicia uma tarefa de purga para remover os dados relacionados com entidades espec\u00edficas da sua base de dados.",
+            "fields": {
+                "domains": {
+                    "description": "Lista de dom\u00ednios para os quais os dados devem ser removidos da base de dados Recorder.",
+                    "name": "Dom\u00ednios a remover"
+                },
+                "entity_globs": {
+                    "description": "Lista de padr\u00f5es glob utilizados para selecionar as entidades para as quais os dados devem ser removidos da base de dados Recorder.",
+                    "name": "Globos de entidade a remover"
+                },
+                "entity_id": {
+                    "description": "Lista de entidades para as quais os dados devem ser removidos da base de dados Recorder.",
+                    "name": "Entidades a remover"
+                },
+                "keep_days": {
+                    "description": "N\u00famero de dias para manter os dados das linhas que correspondem ao filtro. A partir de hoje, em contagem regressiva. Um valor de `7` significa que tudo que tiver mais de uma semana ser\u00e1 removido. O valor padr\u00e3o de 0 dias remover\u00e1 todas as linhas correspondentes imediatamente.",
+                    "name": "Dias para guardar"
+                }
+            },
+            "name": "Entidades de registo de purga"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Hora de in\u00edcio da execu\u00e7\u00e3o atual",
+            "database_engine": "Motor de Base de Dados",
+            "database_version": "Vers\u00e3o de Base de Dados",
+            "estimated_db_size": "Tamanho estimado da base de dados (MiB)",
+            "oldest_recorder_run": "Hora de in\u00edcio da execu\u00e7\u00e3o mais antiga"
+        }
+    }
+}

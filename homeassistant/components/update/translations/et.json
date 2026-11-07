@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Testib kas saadaval on \u00fcks v\u00f5i mitu v\u00e4rskendust.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "V\u00e4rskendus on saadaval"
+        },
+        "is_not_available": {
+            "description": "Testib kas \u00fcks v\u00f5i mitu v\u00e4rskendust ei ole saadaval.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "V\u00e4rskendus pole saadaval"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Kestus"
+        },
+        "trigger_type": {
+            "changed_states": "Olemi {entity_name} v\u00e4rskenduse saadavus muutus",
+            "turned_off": "Olem {entity_name} muutus ajakohaseks",
+            "turned_on": "Olemile {entity_name} on saadaval v\u00e4rskendus"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "uuendus",
+            "state": {
+                "off": "Ajakohane",
+                "on": "Saadaval on uuendus"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Automaatne v\u00e4rskendamine",
+                    "state": {
+                        "false": "Ei",
+                        "true": "Jah"
+                    }
+                },
+                "in_progress": {
+                    "name": "K\u00e4imas",
+                    "state": {
+                        "false": "Ei",
+                        "true": "Jah"
+                    }
+                },
+                "installed_version": {
+                    "name": "Paigaldatud versioon"
+                },
+                "latest_version": {
+                    "name": "Uusim versioon"
+                },
+                "release_summary": {
+                    "name": "V\u00e4ljalaske kokkuv\u00f5te"
+                },
+                "release_url": {
+                    "name": "V\u00e4ljalaske URL"
+                },
+                "skipped_version": {
+                    "name": "Vahelej\u00e4etud versioon"
+                },
+                "title": {
+                    "name": "Nimetus"
+                }
+            }
+        },
+        "firmware": {
+            "name": "P\u00fcsivara"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "{entity_id}-i puhul ei toetata varundamist."
+        },
+        "clear_skipped_not_supported": {
+            "message": "Vahelej\u00e4etud v\u00e4rskenduse t\u00fchjendamist ei toetata {entity_id}."
+        },
+        "no_update_available": {
+            "message": "V\u00e4rskendust pole saadaval {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "Vahelej\u00e4tmiseks pole v\u00e4rskendusi saadaval {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "V\u00e4rskenduse vahelej\u00e4tmine pole toetatud {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "Konkreetse versiooni installimist ei toetata {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "Tundmatut versiooni ei saa vahele j\u00e4tta {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "V\u00e4rskenduse installimine on juba pooleli {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Eemaldab vahelej\u00e4etud versiooni markeri v\u00e4rskendusest.",
+            "name": "Vahelej\u00e4etud v\u00e4rskenduse kustutamine"
+        },
+        "install": {
+            "description": "Paigaldab seadme v\u00f5i teenuse v\u00e4rskenduse.",
+            "fields": {
+                "backup": {
+                    "description": "Kui sidumine toetab, luuakse enne uuendamise alustamist varukoopia.",
+                    "name": "Varukoopia"
+                },
+                "version": {
+                    "description": "Installitav versioon. Kui see puudub, installitakse uusim versioon.",
+                    "name": "Versioon"
+                }
+            },
+            "name": "Paigaldage v\u00e4rskendus"
+        },
+        "skip": {
+            "description": "M\u00e4rgib praegu saadaoleva v\u00e4rskenduse vahelej\u00e4etuks.",
+            "name": "J\u00e4ta v\u00e4rskendus vahele"
+        }
+    },
+    "title": "uuendus",
+    "triggers": {
+        "became_available": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu v\u00e4rskendust on saadaval.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Saadaval on uuendus"
+        }
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Pencadangan otomatis",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Tahap pencadangan"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Berhasil diselesaikan",
+                            "failed": "Gagal",
+                            "in_progress": "Sedang berlangsung"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Alasan kegagalan"
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Status Manajer Pencadangan",
+                "state": {
+                    "create_backup": "Membuat cadangan",
+                    "idle": "Siaga",
+                    "receive_backup": "Menerima cadangan",
+                    "restore_backup": "Memulihkan cadangan"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Upaya pencadangan otomatis terakhir"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Pencadangan otomatis terakhir yang berhasil"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Pencadangan otomatis terjadwal berikutnya"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Lokasi cadangan `{agent_id}` tidak tersedia tetapi masih dikonfigurasi untuk pencadangan otomatis. Silakan kunjungi [halaman konfigurasi pencadangan otomatis] ({backup_settings}) untuk meninjau dan memperbarui lokasi pencadangan. Cadangan tidak akan diunggah ke lokasi yang dipilih, yang tidak tersedia.",
+            "title": "Lokasi cadangan {agent_id} tidak tersedia"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "title": "Cadangan otomatis dibuat tetapi ada kesalahan"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Pencadangan otomatis tidak dapat dibuat. Periksa log untuk informasi lebih lanjut. Upaya lain akan dilakukan pada waktu yang dijadwalkan berikutnya jika jadwal pencadangan sudah dikonfigurasi.",
+            "title": "Pencadangan otomatis tidak dapat dibuat"
+        },
+        "automatic_backup_failed_folders": {
+            "title": "Tidak semua folder dapat disertakan dalam pencadangan otomatis"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Pencadangan otomatis tidak dapat diunggah ke lokasi yang dikonfigurasi {failed_agents}. Periksa log untuk informasi lebih lanjut. Upaya lain akan dilakukan pada waktu yang dijadwalkan berikutnya jika jadwal pencadangan sudah dikonfigurasi.",
+            "title": "Pencadangan otomatis tidak dapat diunggah ke lokasi yang dikonfigurasi"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Membuat cadangan baru.",
+            "name": "Buat cadangan"
+        },
+        "create_automatic": {
+            "description": "Membuat cadangan baru dengan pengaturan cadangan otomatis.",
+            "name": "Buat cadangan otomatis"
+        }
+    }
+}

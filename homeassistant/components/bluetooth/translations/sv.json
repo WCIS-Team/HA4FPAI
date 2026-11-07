@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Tj\u00e4nsten \u00e4r redan konfigurerad",
+            "no_adapters": "Inga okonfigurerade Bluetooth-adaptrar hittades."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "Vill du konfigurera {name}?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adapter"
+                },
+                "description": "V\u00e4lj en Bluetooth-adapter som ska konfigureras"
+            },
+            "single_adapter": {
+                "description": "Vill du st\u00e4lla in Bluetooth-adaptern {name} {manufacturer} {model} ?"
+            },
+            "user": {
+                "data": {
+                    "address": "Enhet"
+                },
+                "description": "V\u00e4lj en enhet att konfigurera"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "Bluetooth adaptern **{adapter}** ({model}) fungerar i degraderat l\u00e4ge eftersom din beh\u00e5llare beh\u00f6ver ytterligare beh\u00f6righeter f\u00f6r att f\u00e5 fullst\u00e4ndig \u00e5tkomst till Bluetooth h\u00e5rdvara.\n\nF\u00f6lj instruktionerna i v\u00e5r dokumentation f\u00f6r att l\u00e4gga till de beh\u00f6righeter som kr\u00e4vs:\n[Bluetooth beh\u00f6righeter f\u00f6r Docker]({docs_url})\n\nN\u00e4r du har lagt till dessa beh\u00f6righeter startar du om din Home Assistant beh\u00e5llare f\u00f6r att \u00e4ndringarna ska tr\u00e4da i kraft.",
+            "title": "Bluetooth adaptern kr\u00e4ver ytterligare beh\u00f6righeter"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "Bluetooth adaptern **{adapter}** ({model}) har fastnat i passivt skanningsl\u00e4ge trots att aktivt skanningsl\u00e4ge beg\u00e4rts. **Automatisk \u00e5terst\u00e4llning f\u00f6rs\u00f6ktes men misslyckades.** Detta \u00e4r troligtvis ett problem med k\u00e4rnan, firmware eller operativsystemet, och systemet kr\u00e4ver en fullst\u00e4ndig avst\u00e4ngning f\u00f6r att \u00e5terst\u00e4lla adaptern.\n\nI passivt l\u00e4ge kan adaptern bara ta emot reklam men kan inte beg\u00e4ra ytterligare data fr\u00e5n enheter, vilket p\u00e5verkar enhetsidentifiering och funktionalitet.\n\n**Manuell \u00e5tg\u00e4rd kr\u00e4vs:**\n1. **St\u00e4ng av systemet helt** (inte bara en omstart)\n2. **Bryt str\u00f6mmen** (koppla ur eller st\u00e4ng av vid str\u00f6mbrytaren)\n3. V\u00e4nta 10 sekunder\n4. \u00c5terst\u00e4ll str\u00f6mmen och starta systemet\n\nOm problemet kvarst\u00e5r efter att du har startat om och om:\n- Kontrollera om det finns k\u00e4rn/firmwareuppdateringar\n- Den inbyggda Bluetooth adaptern kan ha h\u00e5rdvaruproblem",
+            "title": "Bluetooth adaptern kr\u00e4ver att systemet startar om och om igen"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "Bluetooth adaptern **{adapter}** ({model}) har fastnat i passivt skanningsl\u00e4ge trots att aktivt skanningsl\u00e4ge beg\u00e4rts. **Automatisk \u00e5terst\u00e4llning f\u00f6rs\u00f6ktes men misslyckades.** Detta \u00e4r troligtvis ett problem med k\u00e4rnan, firmware eller operativsystemet, och adaptern kr\u00e4ver en manuell avst\u00e4ngning f\u00f6r att \u00e5terst\u00e4lla.\n\nI passivt l\u00e4ge kan adaptern bara ta emot reklam men kan inte beg\u00e4ra ytterligare data fr\u00e5n enheter, vilket p\u00e5verkar enhetens identifiering och funktionalitet.\n\n**Manuell \u00e5tg\u00e4rd kr\u00e4vs:**\n1. **Koppla ur USB adaptern**\n2. V\u00e4nta i 5 sekunder\n3. **Anslut den igen**\n4. V\u00e4nta tills Home Assistant uppt\u00e4cker adaptern\n\nOm problemet kvarst\u00e5r efter avst\u00e4ngning:\n- Prova en annan USB port\n- Kontrollera om det finns k\u00e4rn/firmwareuppdateringar\n- \u00d6verv\u00e4g att anv\u00e4nda en annan Bluetooth adapter",
+            "title": "Bluetooth USB adaptern kr\u00e4ver manuell avst\u00e4ngning"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Lokala Bluetooth-adaptrar som inte st\u00f6der passiv skanning kan inte konfigureras.",
+            "remote_adapters_not_supported": "Bluetooth-konfiguration f\u00f6r fj\u00e4rradaptrar st\u00f6ds inte."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Skanningsl\u00e4ge"
+                },
+                "data_description": {
+                    "mode": "Auto rekommenderas f\u00f6r de flesta konfigurationer. Det sparar batteri p\u00e5 dina Bluetooth-enheter samtidigt som det snabbt f\u00e5ngar upp nya enheter och uppdateringar."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Aktiv (h\u00f6gre batterif\u00f6rbrukning p\u00e5 enheten, uppdaterar snabbast)",
+                "auto": "Auto (rekommenderas, sparar enhetens batteri)",
+                "passive": "Passiv (l\u00e4gre batterif\u00f6rbrukning p\u00e5 enheten, vissa detaljer kan saknas)"
+            }
+        }
+    }
+}

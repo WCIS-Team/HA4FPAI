@@ -1,0 +1,192 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Schl\u00f6sser blockiert sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss blockiert"
+        },
+        "is_locked": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Schl\u00f6sser verriegelt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss verriegelt"
+        },
+        "is_open": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Schl\u00f6sser ge\u00f6ffnet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss ge\u00f6ffnet"
+        },
+        "is_unlocked": {
+            "description": "Pr\u00fcft, ob ein oder mehrere Schl\u00f6sser entriegelt sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss entriegelt"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "{entity_name} verriegeln",
+            "open": "{entity_name} \u00f6ffnen",
+            "unlock": "{entity_name} entriegeln"
+        },
+        "condition_type": {
+            "is_jammed": "Wenn {entity_name} verklemmt ist",
+            "is_locked": "Wenn {entity_name} verriegelt ist",
+            "is_locking": "Wenn {entity_name} verriegelt wird",
+            "is_open": "Wenn {entity_name} ge\u00f6ffnet ist",
+            "is_opening": "Wenn {entity_name} ge\u00f6ffnet wird",
+            "is_unlocked": "Wenn {entity_name} entriegelt ist",
+            "is_unlocking": "Wenn {entity_name} entriegelt wird"
+        },
+        "extra_fields": {
+            "for": "Dauer"
+        },
+        "trigger_type": {
+            "locked": "Sobald {entity_name} verriegelt ist",
+            "open": "Sobald {entity_name} ge\u00f6ffnet ist",
+            "unlocked": "Sobald {entity_name} entriegelt ist"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Schloss",
+            "state": {
+                "jammed": "Verklemmt",
+                "locked": "Verriegelt",
+                "locking": "Wird verriegelt",
+                "open": "Ge\u00f6ffnet",
+                "opening": "Wird ge\u00f6ffnet",
+                "unlocked": "Entriegelt",
+                "unlocking": "Wird entriegelt"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Ge\u00e4ndert durch"
+                },
+                "code_format": {
+                    "name": "Codeformat"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "Der Code f\u00fcr {entity_id} stimmt nicht mit dem Muster {code_format} \u00fcberein."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "Verriegelt ein Schloss.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Verriegeln des Schlosses.",
+                    "name": "Code"
+                }
+            },
+            "name": "Schloss verriegeln"
+        },
+        "open": {
+            "description": "\u00d6ffnet ein Schloss.",
+            "fields": {
+                "code": {
+                    "description": "Code zum \u00d6ffnen des Schlosses.",
+                    "name": "Code"
+                }
+            },
+            "name": "Schloss \u00f6ffnen"
+        },
+        "unlock": {
+            "description": "Entriegelt ein Schloss.",
+            "fields": {
+                "code": {
+                    "description": "Code zum Entriegeln des Schlosses.",
+                    "name": "Code"
+                }
+            },
+            "name": "Schloss entriegeln"
+        }
+    },
+    "title": "Schloss",
+    "triggers": {
+        "jammed": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Schl\u00f6sser blockiert werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss blockiert"
+        },
+        "locked": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Schl\u00f6sser verriegelt werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss verriegelt"
+        },
+        "opened": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Schl\u00f6sser ge\u00f6ffnet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss ge\u00f6ffnet"
+        },
+        "unlocked": {
+            "description": "Wird ausgel\u00f6st, sobald ein oder mehrere Schl\u00f6sser entriegelt werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Schloss entriegelt"
+        }
+    }
+}

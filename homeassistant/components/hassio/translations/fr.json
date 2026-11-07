@@ -1,0 +1,587 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "mount": {
+                "name": "Connect\u00e9"
+            },
+            "state": {
+                "name": "En cours d'ex\u00e9cution"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "Version de l'agent du syst\u00e8me d'exploitation"
+            },
+            "apparmor_version": {
+                "name": "Version d'AppArmor"
+            },
+            "cpu_percent": {
+                "name": "Pourcentage du processeur"
+            },
+            "disk_free": {
+                "name": "Taille du disque libre"
+            },
+            "disk_total": {
+                "name": "Taille totale du disque"
+            },
+            "disk_used": {
+                "name": "Taille du disque utilis\u00e9"
+            },
+            "memory_percent": {
+                "name": "Pourcentage de m\u00e9moire"
+            },
+            "version": {
+                "name": "Version"
+            },
+            "version_latest": {
+                "name": "Version la plus r\u00e9cente"
+            }
+        },
+        "update": {
+            "update": {
+                "name": "Mise \u00e0 jour"
+            }
+        }
+    },
+    "exceptions": {
+        "mount_reload_error": {
+            "message": "\u00c9chec du rechargement du point de montage {name}\u00a0: {error}"
+        },
+        "mount_reload_invalid_device": {
+            "message": "L'appareil n'est pas un point de montage du superviseur"
+        },
+        "supervisor_not_connected": {
+            "message": "Impossible de joindre le Supervisor / syst\u00e8me trop occup\u00e9"
+        },
+        "supervisor_update_pending": {
+            "message": "Le Supervisor n'\u00e9tait pas \u00e0 jour lors de la configuration initiale. Mise \u00e0 jour d\u00e9clench\u00e9e, une nouvelle tentative sera effectu\u00e9e une fois celle-ci termin\u00e9e."
+        }
+    },
+    "issues": {
+        "issue_addon_app_port_conflict": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible d'appliquer le correctif. Consultez les journaux du Superviseur pour plus de d\u00e9tails."
+                },
+                "step": {
+                    "addon_execute_start": {
+                        "description": "L'application {addon} pr\u00e9sente un conflit sur le port {port}. Elle ne peut pas modifier ce param\u00e8tre dans ses r\u00e9glages. Veuillez d\u00e9sinstaller l'application, ou arr\u00eater et reconfigurer l'autre service qui utilise le port {port}. Une fois le port lib\u00e9r\u00e9, s\u00e9lectionnez \u00e0 nouveau cette option pour d\u00e9marrer l'application."
+                    },
+                    "fix_menu": {
+                        "description": "L'application {addon} pr\u00e9sente un conflit sur le port {port}. Vous pouvez effacer la configuration du port dans les r\u00e9glages de l'application pour r\u00e9soudre automatiquement le probl\u00e8me et d\u00e9marrer l'application, ou lib\u00e9rer le port manuellement en arr\u00eatant ou en reconfigurant l'autre service qui l'utilise.",
+                        "menu_options": {
+                            "addon_clear_port_config": "Effacer la configuration du port",
+                            "addon_execute_start": "D\u00e9marrer apr\u00e8s lib\u00e9ration manuelle"
+                        }
+                    }
+                }
+            },
+            "title": "Conflit de port d'application"
+        },
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible d'appliquer le correctif. Consultez les journaux du Supervisor pour plus de d\u00e9tails."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Le module compl\u00e9mentaire {addon} est configur\u00e9 pour d\u00e9marrer au d\u00e9marrage de l'h\u00f4te mais il n'a pas pu d\u00e9marrer. Cela se produit g\u00e9n\u00e9ralement lorsque la configuration est incorrecte ou que le m\u00eame port est utilis\u00e9 dans plusieurs modules compl\u00e9mentaires. V\u00e9rifiez la configuration ainsi que les journaux de {addon} et du Supervisor.\n\nUtilisez D\u00e9marrer pour r\u00e9essayer ou D\u00e9sactiver pour d\u00e9sactiver l'option de d\u00e9marrage au d\u00e9marrage de l'h\u00f4te.",
+                        "menu_options": {
+                            "addon_disable_boot": "D\u00e9sactiver",
+                            "addon_execute_start": "D\u00e9marrer"
+                        }
+                    }
+                }
+            },
+            "title": "L'application n'a pas pu se lancer au d\u00e9marrage"
+        },
+        "issue_addon_deprecated_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible de d\u00e9sinstaller l'application. Consultez les journaux du Supervisor pour plus de d\u00e9tails."
+                }
+            },
+            "title": "L'application install\u00e9e est obsol\u00e8te"
+        },
+        "issue_addon_deprecated_arch_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible de d\u00e9sinstaller l'application. Consultez les journaux du superviseur pour plus de d\u00e9tails."
+                }
+            },
+            "title": "L'application install\u00e9e est con\u00e7ue pour des architectures et/ou des machines non prises en charge"
+        },
+        "issue_addon_detached_addon_missing": {
+            "description": "Le d\u00e9p\u00f4t du module compl\u00e9mentaire {addon} est manquant. Cela signifie qu'il ne recevra plus de mises \u00e0 jour et que les sauvegardes risquent de ne pas \u00eatre restaur\u00e9es correctement car le superviseur risque de ne pas \u00eatre en mesure de cr\u00e9er/t\u00e9l\u00e9charger les ressources requises.\n\nVeuillez consulter la [documentation du module compl\u00e9mentaire]({addon_url}) pour les instructions d'installation et ajouter le d\u00e9p\u00f4t au magasin.",
+            "title": "D\u00e9p\u00f4t manquant pour un module compl\u00e9mentaire install\u00e9"
+        },
+        "issue_addon_detached_addon_removed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible de d\u00e9sinstaller le module compl\u00e9mentaire. Consultez les journaux du superviseur pour plus de d\u00e9tails."
+                }
+            },
+            "title": "Le module compl\u00e9mentaire install\u00e9 a \u00e9t\u00e9 supprim\u00e9 du d\u00e9p\u00f4t"
+        },
+        "issue_addon_pwned": {
+            "description": "Le module compl\u00e9mentaire {addon} utilise des secrets/mots de passe dans sa configuration, qui sont d\u00e9tect\u00e9s comme non s\u00e9curis\u00e9s. Consultez [mots de passe et secrets pirat\u00e9s]({more_info_pwned}) pour plus d'informations sur ce probl\u00e8me.",
+            "title": "Secrets non s\u00e9curis\u00e9s d\u00e9tect\u00e9s dans la configuration du module compl\u00e9mentaire"
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible d'appliquer le correctif. Consultez les journaux du superviseur pour plus de d\u00e9tails."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "mount_execute_reload": "Recharger",
+                            "mount_execute_remove": "Supprimer"
+                        }
+                    }
+                }
+            },
+            "title": "D\u00e9faillance du p\u00e9riph\u00e9rique de stockage r\u00e9seau"
+        },
+        "issue_system_disk_lifetime": {
+            "description": "Le disque de donn\u00e9es a d\u00e9pass\u00e9 90 % de sa dur\u00e9e de vie pr\u00e9vue. Il pourrait bient\u00f4t tomber en panne, ce qui pourrait entra\u00eener une perte de donn\u00e9es. Remplacez-le rapidement et migrez vos donn\u00e9es.",
+            "title": "Dur\u00e9e de vie du disque sup\u00e9rieure \u00e0 90 %"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Un ou plusieurs red\u00e9marrages ont \u00e9chou\u00e9. V\u00e9rifiez les journaux du Supervisor pour plus de d\u00e9tails."
+                },
+                "step": {
+                    "system_execute_rebuild": {
+                        "description": "La configuration par d\u00e9faut des modules compl\u00e9mentaires et de Home Assistant a chang\u00e9. Pour mettre \u00e0 jour la configuration avec les nouvelles valeurs par d\u00e9faut, un red\u00e9marrage est requis pour les \u00e9l\u00e9ments suivants\u00a0: \n\n - {components}"
+                    }
+                }
+            },
+            "title": "Red\u00e9marrage(s) n\u00e9cessaire(s)"
+        },
+        "issue_system_free_space": {
+            "description": "Le disque de donn\u00e9es ne dispose plus que de {free_space}\u00a0Go d'espace libre. Cela peut entra\u00eener des probl\u00e8mes de stabilit\u00e9 du syst\u00e8me et perturber des fonctionnalit\u00e9s telles que les sauvegardes et les mises \u00e0 jour. Acc\u00e9dez \u00e0 [stockage]({storage_url}) pour voir ce qui occupe de l'espace ou consultez [lib\u00e9rer de l'espace]({more_info_free_space}) pour obtenir des conseils sur la lib\u00e9ration d'espace.",
+            "title": "Le disque de donn\u00e9es manque d'espace libre"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible de renommer le syst\u00e8me de fichiers. Consultez les journaux du Supervisor pour plus de d\u00e9tails."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "\u00c0 l'emplacement `{reference}`, nous avons d\u00e9tect\u00e9 un autre disque de donn\u00e9es actif (contenant un syst\u00e8me de fichiers `hassos-data` provenant d'une autre installation de Home Assistant).\n\nVous devez d\u00e9cider quoi en faire. Sinon, Home Assistant pourrait choisir le mauvais disque de donn\u00e9es au red\u00e9marrage du syst\u00e8me.\n\nSi vous ne souhaitez pas utiliser ce disque de donn\u00e9es, d\u00e9branchez-le de votre syst\u00e8me. Si vous le laissez branch\u00e9, choisissez l'une des options suivantes\u00a0:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Utiliser le disque de donn\u00e9es d\u00e9tect\u00e9 \u00e0 la place du syst\u00e8me actuel",
+                            "system_rename_data_disk": "Marquer comme disque de donn\u00e9es inactif (renommer le syst\u00e8me de fichiers)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "S\u00e9lectionnez **Valider** pour faire de `{reference}` le disque de donn\u00e9es actif. Le seul et unique.\n\nVous n'aurez plus acc\u00e8s aux donn\u00e9es actuelles de Home Assistant (elles seront marqu\u00e9es comme disque de donn\u00e9es inactif). Apr\u00e8s le red\u00e9marrage, votre syst\u00e8me sera dans l'\u00e9tat des donn\u00e9es Home Assistant sur `{reference}`."
+                    }
+                }
+            },
+            "title": "Plusieurs disques de donn\u00e9es d\u00e9tect\u00e9s"
+        },
+        "issue_system_ntp_sync_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible de r\u00e9activer le NTP. Consultez les journaux du Supervisor pour plus de d\u00e9tails."
+                },
+                "step": {
+                    "system_enable_ntp": {
+                        "description": "L'appareil n'a pas pu contacter ses serveurs de temps configur\u00e9s (NTP). \u00c0 l'aide d'une v\u00e9rification de l'heure en ligne secondaire, nous avons d\u00e9tect\u00e9 que l'horloge syst\u00e8me \u00e9tait d\u00e9cal\u00e9e de plus d'une heure. L'heure a \u00e9t\u00e9 corrig\u00e9e et le service NTP a \u00e9t\u00e9 temporairement d\u00e9sactiv\u00e9 afin que la correction puisse \u00eatre appliqu\u00e9e. Pour conserver une heure syst\u00e8me pr\u00e9cise, nous vous recommandons de r\u00e9soudre le probl\u00e8me qui emp\u00eache l'acc\u00e8s aux serveurs NTP.\n\nConsultez les **journaux de l'h\u00f4te** pour comprendre pourquoi les serveurs NTP n'ont pas pu \u00eatre contact\u00e9s. Une fois le probl\u00e8me r\u00e9solu, s\u00e9lectionnez **Valider** pour r\u00e9activer le service NTP."
+                    }
+                }
+            },
+            "title": "Probl\u00e8me de synchronisation de l'heure d\u00e9tect\u00e9"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Impossible de red\u00e9marrer le syst\u00e8me. Consultez les journaux du Supervisor pour plus de d\u00e9tails."
+                }
+            },
+            "title": "Red\u00e9marrage n\u00e9cessaire"
+        },
+        "legacy_homeassistant_folder": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Une automatisation ou un script a appel\u00e9 l'action `hassio.backup_partial` ou `hassio.restore_partial` avec `\"homeassistant\"` r\u00e9pertori\u00e9 dans `folders`. Il s'agit d'un alias h\u00e9rit\u00e9 de l'option `homeassistant: true` qui ne sera plus accept\u00e9 dans une prochaine version.\n\nMettez \u00e0 jour les automatisations et scripts concern\u00e9s pour d\u00e9finir `homeassistant: true` et supprimez `\"homeassistant\"` de la liste `folders`. Une fois cela fait, s\u00e9lectionnez **Valider** pour marquer ce probl\u00e8me comme r\u00e9solu.",
+                        "title": "Dossier \u00ab\u00a0homeassistant\u00a0\u00bb h\u00e9rit\u00e9 utilis\u00e9 dans la sauvegarde/restauration partielle"
+                    }
+                }
+            },
+            "title": "Dossier \u00ab\u00a0homeassistant\u00a0\u00bb h\u00e9rit\u00e9 utilis\u00e9 dans la sauvegarde/restauration partielle"
+        },
+        "unhealthy": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux en raison de {reason}. Pour obtenir des informations sur le d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me d\u00e9fectueux \u2013\u00a0{reason}"
+        },
+        "unhealthy_data_filesystem_check_error": {
+            "description": "Le syst\u00e8me est actuellement en mauvaise sant\u00e9, car une v\u00e9rification d'int\u00e9grit\u00e9 du syst\u00e8me de fichiers a \u00e9chou\u00e9 sur la partition de donn\u00e9es. Cela peut \u00eatre d\u00fb \u00e0 une coupure de courant inattendue ou \u00e0 un stockage d\u00e9faillant, et peut affecter la configuration, les applications ou les sauvegardes. Pour des informations de d\u00e9pannage, s\u00e9lectionnez \u00ab\u00a0En savoir plus\u00a0\u00bb.",
+            "title": "Syst\u00e8me d\u00e9fectueux - \u00c9chec de la v\u00e9rification du syst\u00e8me de fichiers de la partition de donn\u00e9es"
+        },
+        "unhealthy_docker": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux car Docker n'est pas configur\u00e9 correctement. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me d\u00e9fectueux \u2013\u00a0Docker mal configur\u00e9"
+        },
+        "unhealthy_docker_gateway_unprotected": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux car le superviseur n'a pas pu appliquer la protection du pare-feu \u00e0 l'adresse IP de la passerelle Docker. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me d\u00e9fectueux - Passerelle Docker non prot\u00e9g\u00e9e"
+        },
+        "unhealthy_duplicate_os_installation": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux, car il a d\u00e9tect\u00e9 plusieurs installations du syst\u00e8me d'exploitation Home Assistant. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me d\u00e9fectueux - Installation du syst\u00e8me d'exploitation Home Assistant en double"
+        },
+        "unhealthy_os_filesystem_check_error": {
+            "description": "Le syst\u00e8me est actuellement en mauvaise sant\u00e9, car une v\u00e9rification d'int\u00e9grit\u00e9 du syst\u00e8me de fichiers a \u00e9chou\u00e9 sur une partition du syst\u00e8me d'exploitation. Cela peut \u00eatre d\u00fb \u00e0 une coupure de courant inattendue ou \u00e0 un stockage d\u00e9faillant. Pour des informations de d\u00e9pannage, s\u00e9lectionnez \u00ab\u00a0En savoir plus\u00a0\u00bb.",
+            "title": "Syst\u00e8me en mauvaise sant\u00e9 - \u00c9chec de la v\u00e9rification du syst\u00e8me de fichiers de la partition de l'OS"
+        },
+        "unhealthy_oserror_bad_message": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux, car le syst\u00e8me d'exploitation a signal\u00e9 une erreur\u00a0: message incorrect. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me d\u00e9fectueux - Erreur du syst\u00e8me d'exploitation\u00a0: message incorrect"
+        },
+        "unhealthy_privileged": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux car il ne dispose pas d'un acc\u00e8s privil\u00e9gi\u00e9 \u00e0 l'environnement d'ex\u00e9cution Docker. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me d\u00e9fectueux \u2013\u00a0Non privil\u00e9gi\u00e9"
+        },
+        "unhealthy_setup": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux, car la configuration n'a pas abouti. Il y a un certain nombre de raisons pour lesquelles cela peut se produire, utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me d\u00e9fectueux \u2013\u00a0\u00c9chec de l'installation"
+        },
+        "unhealthy_supervisor": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux car une tentative de mise \u00e0 jour de Supervisor vers la derni\u00e8re version a \u00e9chou\u00e9. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me d\u00e9fectueux \u2013 \u00c9chec de la mise \u00e0 jour de Supervisor"
+        },
+        "unhealthy_untrusted": {
+            "description": "Le syst\u00e8me est actuellement d\u00e9fectueux car il a d\u00e9tect\u00e9 du code ou des images non fiables en cours d'utilisation. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me d\u00e9fectueux \u2013\u00a0Code non approuv\u00e9"
+        },
+        "unsupported": {
+            "description": "Le syst\u00e8me n'est pas pris en charge en raison de {reason}. Pour obtenir des informations sur le d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0{reason}"
+        },
+        "unsupported_apparmor": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car AppArmor ne fonctionne pas correctement et les modules compl\u00e9mentaires s'ex\u00e9cutent de mani\u00e8re non prot\u00e9g\u00e9e et non s\u00e9curis\u00e9e. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes li\u00e9s \u00e0 AppArmor"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car la mauvaise version de Docker CGroup est utilis\u00e9e. Utilisez le lien pour conna\u00eetre la version correcte et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Version de CGroup"
+        },
+        "unsupported_connectivity_check": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car Home Assistant ne peut pas d\u00e9terminer quand une connexion Internet est disponible. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0V\u00e9rification de connectivit\u00e9 d\u00e9sactiv\u00e9e"
+        },
+        "unsupported_dbus": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car D-Bus ne fonctionne pas correctement. Beaucoup de choses \u00e9chouent sans cela car Supervisor ne peut pas communiquer avec l'h\u00f4te. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes li\u00e9s \u00e0 D-Bus"
+        },
+        "unsupported_dns_server": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car le serveur DNS fourni ne fonctionne pas correctement et l'option DNS de secours a \u00e9t\u00e9 d\u00e9sactiv\u00e9e. Utilisez le lien pour en savoir plus et comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes de serveur DNS"
+        },
+        "unsupported_docker_configuration": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car le d\u00e9mon Docker s'ex\u00e9cute de mani\u00e8re inattendue. Utilisez le lien pour en savoir plus et comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Docker mal configur\u00e9"
+        },
+        "unsupported_docker_version": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car la version de Docker utilis\u00e9e est obsol\u00e8te. Utilisez le lien pour conna\u00eetre la version requise et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Version de Docker"
+        },
+        "unsupported_home_assistant_core_version": {
+            "description": "Le syst\u00e8me n'est pas pris en charge, car la version Core de Home Assistant utilis\u00e9e n'est pas prise en charge. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez \u00ab\u00a0En savoir plus\u00a0\u00bb.",
+            "title": "Syst\u00e8me non pris en charge - Version Home Assistant Core"
+        },
+        "unsupported_job_conditions": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car une ou plusieurs conditions de t\u00e2che ont \u00e9t\u00e9 d\u00e9sactiv\u00e9es. Ces conditions prot\u00e8gent le syst\u00e8me contre les d\u00e9faillances et les pannes inattendues. Cliquez sur le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Protections d\u00e9sactiv\u00e9es"
+        },
+        "unsupported_lxc": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car il est ex\u00e9cut\u00e9 sur une machine virtuelle LXC. Utilisez le lien pour en savoir plus et comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0LXC d\u00e9tect\u00e9"
+        },
+        "unsupported_network_manager": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car Network Manager est manquant, inactif ou mal configur\u00e9. Utilisez le lien pour en savoir plus et comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes li\u00e9s \u00e0 Network Manager"
+        },
+        "unsupported_os": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car le syst\u00e8me d'exploitation utilis\u00e9 n'est pas test\u00e9 ou maintenu pour une utilisation avec Supervisor. Utilisez le lien pour savoir quels syst\u00e8mes d'exploitation sont pris en charge et comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Syst\u00e8me d'exploitation"
+        },
+        "unsupported_os_agent": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car l'OS-Agent est manquant, inactif ou mal configur\u00e9. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes li\u00e9s \u00e0 OS-Agent"
+        },
+        "unsupported_os_version": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car la version du syst\u00e8me d'exploitation Home Assistant utilis\u00e9e n'est pas prise en charge. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me non pris en charge - Version du syst\u00e8me d'exploitation Home Assistant"
+        },
+        "unsupported_restart_policy": {
+            "description": "Le syst\u00e8me n'est pas pris en charge, car un conteneur Docker a une politique de red\u00e9marrage qui peut entra\u00eener des probl\u00e8mes au d\u00e9marrage. Utilisez le lien pour en savoir plus et comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0R\u00e8gle de red\u00e9marrage du conteneur"
+        },
+        "unsupported_software": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car un logiciel suppl\u00e9mentaire en dehors de l'\u00e9cosyst\u00e8me Home Assistant a \u00e9t\u00e9 d\u00e9tect\u00e9. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Logiciel non pris en charge"
+        },
+        "unsupported_supervisor_version": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car une version obsol\u00e8te de Supervisor est utilis\u00e9e et la mise \u00e0 jour automatique a \u00e9t\u00e9 d\u00e9sactiv\u00e9e. Utilisez le lien pour en savoir plus et savoir comment r\u00e9soudre ce probl\u00e8me.",
+            "title": "Syst\u00e8me non pris en charge \u2013 Version de Supervisor"
+        },
+        "unsupported_systemd": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car Systemd est manquant, inactif ou mal configur\u00e9. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes li\u00e9s \u00e0 Systemd"
+        },
+        "unsupported_systemd_journal": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car le journal Systemd ou le service de passerelle sont manquants, inactifs ou mal configur\u00e9s. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes li\u00e9s au Systemd Journal"
+        },
+        "unsupported_systemd_resolved": {
+            "description": "Le syst\u00e8me n'est pas pris en charge car Systemd Resolved est manquant, inactif ou mal configur\u00e9. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me non pris en charge \u2013\u00a0Probl\u00e8mes li\u00e9s \u00e0 Systemd-Resolved"
+        },
+        "unsupported_virtualization_image": {
+            "description": "Le syst\u00e8me n'est pas pris en charge, car l'image du syst\u00e8me d'exploitation Home Assistant utilis\u00e9e n'est pas con\u00e7ue pour un environnement virtualis\u00e9. Pour obtenir des informations de d\u00e9pannage, s\u00e9lectionnez En savoir plus.",
+            "title": "Syst\u00e8me non pris en charge \u2013 Image du syst\u00e8me d'exploitation incorrecte pour la virtualisation"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Red\u00e9marre un module compl\u00e9mentaire.",
+            "fields": {
+                "addon": {
+                    "description": "Le module compl\u00e9mentaire \u00e0 red\u00e9marrer.",
+                    "name": "Module compl\u00e9mentaire"
+                }
+            },
+            "name": "Red\u00e9marrer le module compl\u00e9mentaire"
+        },
+        "addon_start": {
+            "description": "D\u00e9marre un module compl\u00e9mentaire.",
+            "fields": {
+                "addon": {
+                    "description": "Le module compl\u00e9mentaire \u00e0 d\u00e9marrer.",
+                    "name": "Module compl\u00e9mentaire"
+                }
+            },
+            "name": "D\u00e9marrer un module compl\u00e9mentaire"
+        },
+        "addon_stdin": {
+            "description": "\u00c9crit des donn\u00e9es sur l'entr\u00e9e standard du module compl\u00e9mentaire.",
+            "fields": {
+                "addon": {
+                    "description": "Le module compl\u00e9mentaire sur lequel \u00e9crire.",
+                    "name": "Module compl\u00e9mentaire"
+                }
+            },
+            "name": "\u00c9crire des donn\u00e9es sur l'entr\u00e9e standard du module compl\u00e9mentaire"
+        },
+        "addon_stop": {
+            "description": "Arr\u00eate un module compl\u00e9mentaire.",
+            "fields": {
+                "addon": {
+                    "description": "Le module compl\u00e9mentaire \u00e0 arr\u00eater.",
+                    "name": "Module compl\u00e9mentaire"
+                }
+            },
+            "name": "Arr\u00eater le module compl\u00e9mentaire"
+        },
+        "app_restart": {
+            "description": "Red\u00e9marre une application Home Assistant.",
+            "fields": {
+                "app": {
+                    "description": "L'application \u00e0 red\u00e9marrer.",
+                    "name": "Application"
+                }
+            },
+            "name": "Red\u00e9marrer l'application"
+        },
+        "app_start": {
+            "description": "D\u00e9marre une application Home Assistant.",
+            "fields": {
+                "app": {
+                    "description": "L'application \u00e0 d\u00e9marrer.",
+                    "name": "Application"
+                }
+            },
+            "name": "D\u00e9marrer l'application"
+        },
+        "app_stdin": {
+            "description": "\u00c9crit des donn\u00e9es sur l'entr\u00e9e standard d'une application Home Assistant.",
+            "fields": {
+                "app": {
+                    "description": "L'application sur laquelle \u00e9crire.",
+                    "name": "Application"
+                },
+                "input": {
+                    "description": "Les donn\u00e9es \u00e0 \u00e9crire.",
+                    "name": "Entr\u00e9e"
+                }
+            },
+            "name": "\u00c9crire des donn\u00e9es sur l'entr\u00e9e standard de l'application"
+        },
+        "app_stop": {
+            "description": "Arr\u00eate une application Home Assistant.",
+            "fields": {
+                "app": {
+                    "description": "L'application \u00e0 arr\u00eater.",
+                    "name": "Application"
+                }
+            },
+            "name": "Arr\u00eater l'application"
+        },
+        "backup_full": {
+            "description": "Cr\u00e9e une sauvegarde compl\u00e8te.",
+            "fields": {
+                "compressed": {
+                    "description": "Compresse les fichiers de sauvegarde.",
+                    "name": "Compress\u00e9"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Exclure le fichier de base de donn\u00e9es de Home Assistant de la sauvegarde.",
+                    "name": "Exclure la base de donn\u00e9es de Home Assistant"
+                },
+                "location": {
+                    "description": "Nom d'un stockage r\u00e9seau de sauvegarde pour h\u00e9berger les sauvegardes.",
+                    "name": "Emplacement"
+                },
+                "name": {
+                    "description": "Facultatif (par d\u00e9faut = date et heure actuelles).",
+                    "name": "Nom"
+                },
+                "password": {
+                    "description": "Mot de passe pour prot\u00e9ger la sauvegarde.",
+                    "name": "Mot de passe"
+                }
+            },
+            "name": "Cr\u00e9er une sauvegarde compl\u00e8te"
+        },
+        "backup_partial": {
+            "description": "Cr\u00e9e une sauvegarde partielle.",
+            "fields": {
+                "addons": {
+                    "description": "Liste des applications (anciennement modules compl\u00e9mentaires) \u00e0 inclure dans la sauvegarde. Utilisez le slug de chaque application. Option d\u00e9pr\u00e9ci\u00e9e\u00a0: utilisez plut\u00f4t les applications.",
+                    "name": "Modules compl\u00e9mentaires (obsol\u00e8te)"
+                },
+                "apps": {
+                    "description": "Liste des applications \u00e0 inclure dans la sauvegarde. Utilisez le slug de chaque application.",
+                    "name": "Applications"
+                },
+                "compressed": {
+                    "description": "Compresse les fichiers de sauvegarde.",
+                    "name": "Compress\u00e9"
+                },
+                "folders": {
+                    "description": "Liste des r\u00e9pertoires \u00e0 inclure dans la sauvegarde.",
+                    "name": "Dossiers"
+                },
+                "homeassistant": {
+                    "description": "Inclut les param\u00e8tres de Home Assistant dans la sauvegarde.",
+                    "name": "Param\u00e8tres Home Assistant"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Exclure le fichier de base de donn\u00e9es de Home Assistant de la sauvegarde.",
+                    "name": "Exclure la base de donn\u00e9es de Home Assistant"
+                },
+                "location": {
+                    "description": "Nom d'un stockage r\u00e9seau de sauvegarde pour h\u00e9berger les sauvegardes.",
+                    "name": "Emplacement"
+                },
+                "name": {
+                    "description": "Facultatif (par d\u00e9faut = date et heure actuelles).",
+                    "name": "Nom"
+                },
+                "password": {
+                    "description": "Mot de passe pour prot\u00e9ger la sauvegarde.",
+                    "name": "Mot de passe"
+                }
+            },
+            "name": "Cr\u00e9er une sauvegarde partielle"
+        },
+        "host_reboot": {
+            "description": "Red\u00e9marre le syst\u00e8me h\u00f4te.",
+            "name": "Red\u00e9marrer le syst\u00e8me h\u00f4te"
+        },
+        "host_shutdown": {
+            "description": "Met le syst\u00e8me h\u00f4te hors tension.",
+            "name": "\u00c9teindre le syst\u00e8me h\u00f4te"
+        },
+        "mount_reload": {
+            "description": "Recharge un point de montage de stockage r\u00e9seau.",
+            "fields": {
+                "device_id": {
+                    "description": "L'identifiant de l'appareil du point de montage de stockage r\u00e9seau \u00e0 recharger.",
+                    "name": "ID de l'appareil"
+                }
+            },
+            "name": "Recharger le point de montage de stockage r\u00e9seau"
+        },
+        "restore_full": {
+            "description": "Restaure \u00e0 partir d'une sauvegarde compl\u00e8te.",
+            "fields": {
+                "password": {
+                    "description": "Mot de passe facultatif.",
+                    "name": "Mot de passe"
+                },
+                "slug": {
+                    "description": "Slug de la sauvegarde \u00e0 partir de laquelle restaurer.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Restaurer \u00e0 partir d'une sauvegarde compl\u00e8te"
+        },
+        "restore_partial": {
+            "description": "Restaure \u00e0 partir d'une sauvegarde partielle.",
+            "fields": {
+                "addons": {
+                    "description": "Liste des applications (anciennement modules compl\u00e9mentaires) \u00e0 restaurer \u00e0 partir de la sauvegarde. Utilisez le slug de chaque application. Option d\u00e9pr\u00e9ci\u00e9e\u00a0: utilisez plut\u00f4t les applications.",
+                    "name": "Modules compl\u00e9mentaires (obsol\u00e8te)"
+                },
+                "apps": {
+                    "description": "Liste des applications \u00e0 restaurer \u00e0 partir de la sauvegarde. Utilisez le slug de chaque application.",
+                    "name": "Applications"
+                },
+                "folders": {
+                    "description": "Liste des r\u00e9pertoires \u00e0 restaurer \u00e0 partir de la sauvegarde.",
+                    "name": "Dossiers"
+                },
+                "homeassistant": {
+                    "description": "Restaure Home Assistant.",
+                    "name": "Param\u00e8tres Home Assistant"
+                },
+                "password": {
+                    "description": "Mot de passe facultatif.",
+                    "name": "Mot de passe"
+                },
+                "slug": {
+                    "description": "Slug de la sauvegarde \u00e0 partir de laquelle restaurer.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Restaurer \u00e0 partir d'une sauvegarde partielle"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Version de l'agent",
+            "board": "Carte",
+            "disk_life_time": "Dur\u00e9e de vie du disque",
+            "disk_total": "Taille totale du disque",
+            "disk_used": "Taille utilis\u00e9e du disque",
+            "docker_version": "Version de Docker",
+            "healthy": "Sain",
+            "host_os": "Syst\u00e8me d'exploitation h\u00f4te",
+            "installed_addons": "Applications install\u00e9es",
+            "nameservers": "Serveurs de noms",
+            "supervisor_api": "API du Supervisor",
+            "supervisor_version": "Version du Supervisor",
+            "supported": "Pris en charge",
+            "update_channel": "Canal de mise \u00e0 jour",
+            "version_api": "Version de l'API"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "issues": {
+        "yaml_mode_deprecated": {
+            "description": "A configura\u00e7\u00e3o do seu dashboard YAML usa a op\u00e7\u00e3o legada `mode: yaml`, que ser\u00e1 removida no Home Assistant 2026.8. Seus dashboards YAML continuar\u00e3o funcionando, voc\u00ea s\u00f3 precisa atualizar a forma como eles s\u00e3o definidos.\n\nPara atualizar sua configura\u00e7\u00e3o:\n\n1. Remova `mode: yaml` de `lovelace:` no seu `configuration.yaml`\n2. Em vez disso, adicione uma entrada de dashboard:\n\n   ```yaml\n   lovelace:\n     resource_mode: yaml\n     dashboards:\n       lovelace:\n         mode: yaml\n         filename: {config_file}\n         title: Overview\n         icon: mdi:view-dashboard\n         show_in_sidebar: true\n   ```\n\n3. Reinicie o Home Assistant\n\nObserva\u00e7\u00e3o: `resource_mode: yaml` continua carregando recursos do YAML. Se voc\u00ea quiser gerenciar recursos pela interface do usu\u00e1rio, remova esta linha e mova seus recursos para Configura\u00e7\u00f5es > Dashboards > Recursos."
+        }
+    },
+    "services": {
+        "reload_resources": {
+            "description": "Recarrega os recursos do dashboard a partir da configura\u00e7\u00e3o YAML."
+        }
+    },
+    "system_health": {
+        "info": {
+            "dashboards": "Dashboards",
+            "mode": "Modo",
+            "resources": "Recursos",
+            "views": "Visualiza\u00e7\u00f5es"
+        }
+    }
+}

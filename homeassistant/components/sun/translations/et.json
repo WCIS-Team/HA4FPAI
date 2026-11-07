@@ -1,0 +1,338 @@
+{
+    "common": {
+        "condition_threshold_name": "K\u00fcnnise t\u00fc\u00fcp",
+        "period_name": "Ajavahemik",
+        "trigger_for_name": "V\u00e4hemalt",
+        "trigger_offset_name": "Nihe",
+        "trigger_offset_type_description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+        "trigger_offset_type_name": "Nihke t\u00fc\u00fcp",
+        "trigger_threshold_name": "K\u00fcnnise t\u00fc\u00fcp",
+        "twilight_type_description": "H\u00e4mariku faas.",
+        "twilight_type_name": "H\u00e4mariku t\u00fc\u00fcp"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Kontrollib p\u00e4ikese k\u00f5rgust v\u00f5rreldes m\u00e4\u00e4ratud k\u00fcnnisega.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "P\u00e4ikese k\u00f5rgus"
+        },
+        "is_ascending": {
+            "description": "Testib kas p\u00e4ike on t\u00f5usev.",
+            "name": "P\u00e4ike on t\u00f5usuteel"
+        },
+        "is_blue_hour": {
+            "description": "Kontrollib, kas onvidevik, soovi korral kindla ajavahemiku jooksul.",
+            "fields": {
+                "period": {
+                    "name": "Ajavahemik"
+                }
+            },
+            "name": "See on videvik"
+        },
+        "is_descending": {
+            "description": "Testib kas p\u00e4ike on laskumas.",
+            "name": "P\u00e4ike laskub"
+        },
+        "is_evening_twilight": {
+            "description": "Kontrollib kas on \u00f5htune h\u00e4marik, vajaduse korral teatud t\u00fc\u00fcpi.",
+            "fields": {
+                "type": {
+                    "description": "H\u00e4mariku faas.",
+                    "name": "H\u00e4mariku t\u00fc\u00fcp"
+                }
+            },
+            "name": "On \u00f5htuh\u00e4marus"
+        },
+        "is_golden_hour": {
+            "description": "Kontrollib, kas on kuldne tund, vajaduse korral kindla ajavahemiku jooksul.",
+            "fields": {
+                "period": {
+                    "name": "Ajavahemik"
+                }
+            },
+            "name": "See on kuldne tund"
+        },
+        "is_midnight_sun": {
+            "description": "Kontrollib, kas on tegemist kesk\u00f6ise p\u00e4ikesega.",
+            "name": "See on kesk\u00f6ine p\u00e4ike"
+        },
+        "is_morning_twilight": {
+            "description": "Kontrollib kas on hommikune h\u00e4marik, vajaduse korral teatud t\u00fc\u00fcpi.",
+            "fields": {
+                "type": {
+                    "description": "H\u00e4mariku faas.",
+                    "name": "H\u00e4mariku t\u00fc\u00fcp"
+                }
+            },
+            "name": "On hommikune h\u00e4marik"
+        },
+        "is_night": {
+            "description": "Kontrollib kas on \u00f6\u00f6.",
+            "name": "On \u00f6\u00f6"
+        },
+        "is_polar_night": {
+            "description": "Kontrollib, kas on polaar\u00f6\u00f6.",
+            "name": "On polaar\u00f6\u00f6"
+        },
+        "is_set": {
+            "description": "Kontrollib kas p\u00e4ike on loojunud.",
+            "name": "P\u00e4ike on loojunud"
+        },
+        "is_up": {
+            "description": "Kontrollib kas p\u00e4ike on t\u00f5usnud.",
+            "name": "P\u00e4ike on t\u00f5usnud"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Kas soovid alustada seadistamist?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "P\u00e4ike on t\u00f5usmas",
+                "state": {
+                    "off": "Loojub",
+                    "on": "T\u00f5useb"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "J\u00e4rgmine koidik"
+            },
+            "next_dusk": {
+                "name": "J\u00e4rgmine h\u00e4marik"
+            },
+            "next_midnight": {
+                "name": "J\u00e4rgmine kesk\u00f6\u00f6"
+            },
+            "next_noon": {
+                "name": "J\u00e4rgmine keskp\u00e4ev"
+            },
+            "next_rising": {
+                "name": "J\u00e4rgmine t\u00f5us"
+            },
+            "next_setting": {
+                "name": "J\u00e4rgmine loojang"
+            },
+            "solar_azimuth": {
+                "name": "P\u00e4ikese asimuut"
+            },
+            "solar_elevation": {
+                "name": "P\u00e4ikese k\u00f5rgus"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "P\u00e4ike",
+            "state": {
+                "above_horizon": "T\u00f5usnud",
+                "below_horizon": "Loojunud"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Mistahes",
+                "evening": "\u00d5htu",
+                "morning": "Hommik"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "P\u00e4rast",
+                "before": "Enne"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Mistahes",
+                "astronomical": "Astronoomiline",
+                "civil": "Tsiviil",
+                "nautical": "Nautiline"
+            }
+        }
+    },
+    "title": "P\u00e4ike",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "K\u00e4ivitub videviku l\u00f5ppedes \u2013 hommikul, \u00f5htul v\u00f5i m\u00f5lemal ajal.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                },
+                "period": {
+                    "name": "Ajavahemik"
+                }
+            },
+            "name": "Videvik l\u00f5ppes"
+        },
+        "blue_hour_started": {
+            "description": "K\u00e4ivitub videviku alguses, hommikul, \u00f5htul v\u00f5i m\u00f5lemal ajal.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            }
+        },
+        "dawn": {
+            "description": "K\u00e4ivitub koidikul kui algab tsiviil-, merendus- v\u00f5i astronoomiline h\u00e4marus.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                },
+                "type": {
+                    "description": "H\u00e4mariku faas.",
+                    "name": "H\u00e4mariku t\u00fc\u00fcp"
+                }
+            },
+            "name": "Koidik"
+        },
+        "dusk": {
+            "description": "K\u00e4ivitub videvikus kui l\u00f5peb tsiviil-, merendus- v\u00f5i astronoomiline videvik.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                },
+                "type": {
+                    "description": "H\u00e4mariku faas.",
+                    "name": "H\u00e4mariku t\u00fc\u00fcp"
+                }
+            },
+            "name": "Videvik"
+        },
+        "elevation_changed": {
+            "description": "K\u00e4ivitub iga kord kui p\u00e4ikese k\u00f5rgus muutub, valikuliselt piiratud m\u00e4\u00e4ratud l\u00e4vendi v\u00f5i vahemikuga.",
+            "fields": {
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "P\u00e4ikese k\u00f5rgus muutus"
+        },
+        "elevation_crossed_threshold": {
+            "description": "K\u00e4ivitub kui p\u00e4ikese k\u00f5rgus \u00fcletab m\u00e4\u00e4ratud l\u00e4ve.",
+            "fields": {
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "P\u00e4ikese k\u00f5rgus \u00fcletas l\u00e4ve"
+        },
+        "midnight_sun_started": {
+            "fields": {
+                "offset_type": {
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            },
+            "name": "Kesk\u00f6\u00f6p\u00e4ike algas"
+        },
+        "polar_night_ended": {
+            "description": "K\u00e4ivitub siis, kui polaar\u00f6\u00f6 l\u00f5peb ja p\u00e4ike j\u00e4lle t\u00f5useb.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            },
+            "name": "Polaar\u00f6\u00f6 l\u00f5ppes"
+        },
+        "polar_night_started": {
+            "description": "K\u00e4ivitub siis, kui algab polaar\u00f6\u00f6 ja p\u00e4ike enam ei t\u00f5use.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            },
+            "name": "Polaar\u00f6\u00f6 algas"
+        },
+        "solar_midnight": {
+            "description": "K\u00e4ivitub kui p\u00e4ike j\u00f5uab oma madalaimasse punkti.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            },
+            "name": "P\u00e4ikese kesk\u00f6\u00f6"
+        },
+        "solar_noon": {
+            "description": "K\u00e4ivitub kui p\u00e4ike j\u00f5uab oma k\u00f5rgeimasse punkti.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            },
+            "name": "P\u00e4ikese keskp\u00e4ev"
+        },
+        "sunrise": {
+            "description": "K\u00e4ivitub p\u00e4ikese t\u00f5ustes.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            },
+            "name": "P\u00e4ikeset\u00f5us"
+        },
+        "sunset": {
+            "description": "K\u00e4ivitub p\u00e4ikeseloojangu ajal.",
+            "fields": {
+                "offset": {
+                    "name": "Nihe"
+                },
+                "offset_type": {
+                    "description": "Kas k\u00e4ivitada enne v\u00f5i p\u00e4rast p\u00e4ikeses\u00fcndmust.",
+                    "name": "Nihke t\u00fc\u00fcp"
+                }
+            },
+            "name": "P\u00e4ikeseloojang"
+        }
+    }
+}

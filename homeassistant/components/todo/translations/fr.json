@@ -1,0 +1,150 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie si",
+        "condition_for_name": "Pendant au moins",
+        "condition_threshold_name": "Type de seuil"
+    },
+    "conditions": {
+        "all_completed": {
+            "description": "V\u00e9rifie si tous les \u00e9l\u00e9ments de t\u00e2che sont termin\u00e9s dans une ou plusieurs listes de t\u00e2ches.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Tous les \u00e9l\u00e9ments de t\u00e2che sont termin\u00e9s"
+        },
+        "incomplete": {
+            "description": "V\u00e9rifie le nombre d'\u00e9l\u00e9ments de t\u00e2che non termin\u00e9s dans une ou plusieurs listes de t\u00e2ches.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "Nombre d'\u00e9l\u00e9ments de t\u00e2che non termin\u00e9s"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Liste de t\u00e2ches"
+        }
+    },
+    "exceptions": {
+        "item_not_found": {
+            "message": "Impossible de trouver dans la liste de t\u00e2ches l'\u00e9l\u00e9ment\u00a0: {item}"
+        },
+        "update_field_not_supported": {
+            "message": "L'entit\u00e9 ne prend pas en charge la d\u00e9finition du champ\u00a0: {service_field}"
+        }
+    },
+    "selector": {
+        "status": {
+            "options": {
+                "completed": "Termin\u00e9",
+                "needs_action": "Non termin\u00e9"
+            }
+        }
+    },
+    "services": {
+        "add_item": {
+            "description": "Ajoute un nouvel \u00e9l\u00e9ment \u00e0 une liste de t\u00e2ches.",
+            "fields": {
+                "description": {
+                    "description": "Une description plus compl\u00e8te de l'\u00e9l\u00e9ment \u00e0 faire que celle fournie par le nom de l'\u00e9l\u00e9ment.",
+                    "name": "Description"
+                },
+                "due_date": {
+                    "description": "La date \u00e0 laquelle la t\u00e2che \u00e0 effectuer devrait \u00eatre termin\u00e9e.",
+                    "name": "Date d'\u00e9ch\u00e9ance"
+                },
+                "due_datetime": {
+                    "description": "La date et l'heure auxquelles la t\u00e2che \u00e0 effectuer devrait \u00eatre termin\u00e9e.",
+                    "name": "Date et heure d'\u00e9ch\u00e9ance"
+                },
+                "item": {
+                    "description": "Le nom qui repr\u00e9sente l'\u00e9l\u00e9ment de la liste de t\u00e2ches.",
+                    "name": "Nom de l'\u00e9l\u00e9ment"
+                }
+            },
+            "name": "Ajouter un \u00e9l\u00e9ment \u00e0 la liste de t\u00e2ches"
+        },
+        "get_items": {
+            "description": "Retourne les \u00e9l\u00e9ments d'une liste de t\u00e2ches.",
+            "fields": {
+                "status": {
+                    "description": "Renvoie uniquement les t\u00e2ches avec les statuts sp\u00e9cifi\u00e9s. Renvoie les actions non termin\u00e9es par d\u00e9faut.",
+                    "name": "Statut"
+                }
+            },
+            "name": "Obtenir les \u00e9l\u00e9ments de la liste de t\u00e2ches"
+        },
+        "remove_completed_items": {
+            "description": "Supprime tous les \u00e9l\u00e9ments de la liste de t\u00e2ches qui ont \u00e9t\u00e9 termin\u00e9s.",
+            "name": "Supprimer les \u00e9l\u00e9ments termin\u00e9s de la liste de t\u00e2ches"
+        },
+        "remove_item": {
+            "description": "Supprime un \u00e9l\u00e9ment de liste de t\u00e2ches existant par son nom ou son UID.",
+            "fields": {
+                "item": {
+                    "description": "Nom/r\u00e9sum\u00e9 de la t\u00e2che \u00e0 effectuer. Si vous avez des \u00e9l\u00e9ments avec des noms en double, vous pouvez r\u00e9f\u00e9rencer des \u00e9l\u00e9ments sp\u00e9cifiques en utilisant leur UID.",
+                    "name": "Nom de l'\u00e9l\u00e9ment ou UID"
+                }
+            },
+            "name": "Supprimer un \u00e9l\u00e9ment de la liste de t\u00e2ches"
+        },
+        "update_item": {
+            "description": "Met \u00e0 jour un \u00e9l\u00e9ment existant d'une liste de t\u00e2ches en fonction de son nom ou de son UID.",
+            "fields": {
+                "description": {
+                    "description": "Une description plus compl\u00e8te de l'\u00e9l\u00e9ment \u00e0 faire que celle fournie par le nom de l'\u00e9l\u00e9ment.",
+                    "name": "Description"
+                },
+                "due_date": {
+                    "description": "La date \u00e0 laquelle la t\u00e2che \u00e0 effectuer devrait \u00eatre termin\u00e9e.",
+                    "name": "Date d'\u00e9ch\u00e9ance"
+                },
+                "due_datetime": {
+                    "description": "La date et l'heure auxquelles la t\u00e2che \u00e0 effectuer devrait \u00eatre termin\u00e9e.",
+                    "name": "Date et heure d'\u00e9ch\u00e9ance"
+                },
+                "item": {
+                    "description": "Nom/r\u00e9sum\u00e9 de la t\u00e2che \u00e0 effectuer. Si vous avez des \u00e9l\u00e9ments avec des noms en double, vous pouvez r\u00e9f\u00e9rencer des \u00e9l\u00e9ments sp\u00e9cifiques en utilisant leur UID.",
+                    "name": "Nom de l'\u00e9l\u00e9ment ou UID"
+                },
+                "rename": {
+                    "description": "Le nouveau nom de l'\u00e9l\u00e9ment de la liste de t\u00e2ches",
+                    "name": "Renommer l'\u00e9l\u00e9ment"
+                },
+                "status": {
+                    "description": "Un statut pour l'\u00e9l\u00e9ment de la liste de t\u00e2ches.",
+                    "name": "D\u00e9finir le statut"
+                }
+            },
+            "name": "Mettre \u00e0 jour un \u00e9l\u00e9ment de la liste de t\u00e2ches"
+        }
+    },
+    "title": "Liste de t\u00e2ches",
+    "triggers": {
+        "item_added": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs \u00e9l\u00e9ments sont ajout\u00e9s \u00e0 une liste de t\u00e2ches.",
+            "name": "Un \u00e9l\u00e9ment de t\u00e2che a \u00e9t\u00e9 ajout\u00e9"
+        },
+        "item_completed": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs \u00e9l\u00e9ments de t\u00e2che sont marqu\u00e9s comme termin\u00e9s.",
+            "name": "Un \u00e9l\u00e9ment de t\u00e2che a \u00e9t\u00e9 termin\u00e9"
+        },
+        "item_removed": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs \u00e9l\u00e9ments de t\u00e2che sont retir\u00e9s d'une liste.",
+            "name": "Un \u00e9l\u00e9ment de t\u00e2che a \u00e9t\u00e9 retir\u00e9"
+        }
+    }
+}

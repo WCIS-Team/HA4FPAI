@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Testuje, \u010di je akt\u00edvny jeden alebo viac \u010dasova\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d je akt\u00edvny"
+        },
+        "is_idle": {
+            "description": "Testuje, \u010di je jeden alebo viac \u010dasova\u010dov ne\u010dinn\u00fdch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d je ne\u010dinn\u00fd"
+        },
+        "is_paused": {
+            "description": "Testuje, \u010di je jeden alebo viac \u010dasova\u010dov pozastaven\u00fdch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d je pozastaven\u00fd"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u010casova\u010d",
+            "state": {
+                "active": "Akt\u00edvny",
+                "idle": "Ne\u010dinn\u00fd",
+                "paused": "Pozastaven\u00fd"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Trvanie"
+                },
+                "editable": {
+                    "name": "Spravovan\u00e9 cez pou\u017e\u00edvate\u013esk\u00e9 rozhranie",
+                    "state": {
+                        "false": "Nie",
+                        "true": "\u00c1no"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Kon\u010d\u00ed o"
+                },
+                "last_transition": {
+                    "name": "Posledn\u00fd prechod",
+                    "state": {
+                        "cancelled": "Zru\u0161en\u00e9",
+                        "finished": "Dokon\u010den\u00e9",
+                        "paused": "Pozastaven\u00e9",
+                        "restarted": "Re\u0161tartovan\u00e9",
+                        "started": "Spusten\u00e9"
+                    }
+                },
+                "remaining": {
+                    "name": "Zost\u00e1vaj\u00face"
+                },
+                "restore": {
+                    "name": "Obnovi\u0165"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "Obnov\u00ed trvanie \u010dasova\u010da na posledn\u00fa zn\u00e1mu po\u010diato\u010dn\u00fa hodnotu bez toho, aby sa spustila udalos\u0165 ukon\u010denia \u010dasova\u010da.",
+            "name": "Zru\u0161i\u0165 \u010dasova\u010d"
+        },
+        "change": {
+            "description": "Zmen\u00ed \u010dasova\u010d pridan\u00edm alebo od\u010d\u00edtan\u00edm dan\u00e9ho trvania.",
+            "fields": {
+                "duration": {
+                    "description": "Trvanie, ktor\u00e9 sa m\u00e1 prida\u0165 alebo odpo\u010d\u00edta\u0165 od spusten\u00e9ho \u010dasova\u010da.",
+                    "name": "Trvanie"
+                }
+            },
+            "name": "Zmeni\u0165 \u010dasova\u010d"
+        },
+        "finish": {
+            "description": "Ukon\u010d\u00ed spusten\u00fd \u010dasova\u010d sk\u00f4r, ako je napl\u00e1novan\u00e9.",
+            "name": "\u010casova\u010d ukon\u010denia"
+        },
+        "pause": {
+            "description": "Pozastav\u00ed be\u017eiaci \u010dasova\u010d a ponech\u00e1 zost\u00e1vaj\u00face trvanie pre neskor\u0161ie pokra\u010dovanie.",
+            "name": "Pozastavi\u0165 \u010dasova\u010d"
+        },
+        "reload": {
+            "description": "Znova na\u010d\u00edta \u010dasova\u010de z konfigur\u00e1cie YAML.",
+            "name": "Obnovi\u0165 \u010d\u00edta\u010de"
+        },
+        "start": {
+            "description": "Spust\u00ed \u010dasova\u010d alebo ho re\u0161tartuje s poskytnut\u00fdm trvan\u00edm.",
+            "fields": {
+                "duration": {
+                    "description": "Vlastn\u00e9 trvanie na re\u0161tartovanie \u010dasova\u010da.",
+                    "name": "Trvanie"
+                }
+            },
+            "name": "Spusti\u0165 \u010dasova\u010d"
+        }
+    },
+    "title": "\u010casova\u010d",
+    "triggers": {
+        "cancelled": {
+            "description": "Spust\u00ed sa, ke\u010f sa zru\u0161\u00ed jeden alebo viac \u010dasova\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d zru\u0161en\u00fd"
+        },
+        "finished": {
+            "description": "Spust\u00ed sa po dokon\u010den\u00ed jedn\u00e9ho alebo viacer\u00fdch \u010dasova\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d dokon\u010den\u00fd"
+        },
+        "paused": {
+            "description": "Spust\u00ed sa, ke\u010f je pozastaven\u00fd jeden alebo viac \u010dasova\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d pozastaven\u00fd"
+        },
+        "remaining_time_reached": {
+            "description": "Spust\u00ed sa, ke\u010f jeden alebo viac \u010dasova\u010dov dosiahne ur\u010dit\u00fd zost\u00e1vaj\u00faci \u010das.",
+            "fields": {
+                "remaining": {
+                    "name": "Zost\u00e1vaj\u00faci \u010das"
+                }
+            },
+            "name": "Zost\u00e1vaj\u00faci \u010das \u010dasova\u010da bol dosiahnut\u00fd"
+        },
+        "restarted": {
+            "description": "Spust\u00ed sa, ke\u010f sa re\u0161tartuje jeden alebo viac \u010dasova\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d sa re\u0161tartoval"
+        },
+        "started": {
+            "description": "Spust\u00ed sa, ke\u010f sa spust\u00ed jeden alebo viac \u010dasova\u010dov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "\u010casova\u010d spusten\u00fd"
+        }
+    }
+}

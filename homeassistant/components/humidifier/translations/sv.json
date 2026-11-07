@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "condition_threshold_name": "Tr\u00f6skelv\u00e4rdestyp",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "Testar om en eller flera luftfuktare avfuktar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren avfuktar"
+        },
+        "is_humidifying": {
+            "description": "Testar om en eller flera luftfuktare fuktar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren befuktar"
+        },
+        "is_mode": {
+            "description": "Testar om en eller flera luftfuktare \u00e4r inst\u00e4llda p\u00e5 ett specifikt l\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "mode": {
+                    "description": "De driftl\u00e4gen som ska kontrolleras.",
+                    "name": "L\u00e4ge"
+                }
+            },
+            "name": "Luftfuktaren \u00e4r i l\u00e4ge"
+        },
+        "is_off": {
+            "description": "Testar om en eller flera luftfuktare \u00e4r avst\u00e4ngda.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren \u00e4r av"
+        },
+        "is_on": {
+            "description": "Testar om en eller flera luftfuktare \u00e4r p\u00e5slagna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren \u00e4r p\u00e5"
+        },
+        "is_target_humidity": {
+            "description": "Testar m\u00e5lfuktigheten f\u00f6r en eller flera luftfuktare.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Luftfuktarens m\u00e5lfuktighet"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "St\u00e4ll in luftfuktighet f\u00f6r {entity_name}",
+            "set_mode": "\u00c4ndra l\u00e4ge p\u00e5 {entity_name}",
+            "toggle": "V\u00e4xla {entity_name}",
+            "turn_off": "Sl\u00e5 av {entity_name}",
+            "turn_on": "Sl\u00e5 p\u00e5 {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} \u00e4r inst\u00e4lld p\u00e5 ett specifikt l\u00e4ge",
+            "is_off": "{entity_name} \u00e4r av",
+            "is_on": "{entity_name} \u00e4r p\u00e5"
+        },
+        "extra_fields": {
+            "above": "\u00d6ver",
+            "below": "Under",
+            "for": "Varaktighet",
+            "humidity": "Luftfuktighet",
+            "mode": "L\u00e4ge"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} slogs p\u00e5 eller av",
+            "target_humidity_changed": "{entity_name} m\u00e5lfuktighet \u00e4ndrad",
+            "turned_off": "{entity_name} slogs av",
+            "turned_on": "{entity_name} slogs p\u00e5"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Luftfuktare",
+            "state": {
+                "off": "Av",
+                "on": "P\u00e5"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "\u00c5tg\u00e4rd",
+                    "state": {
+                        "drying": "Avfuktar",
+                        "humidifying": "Fuktande",
+                        "idle": "Inaktiv",
+                        "off": "Av"
+                    }
+                },
+                "available_modes": {
+                    "name": "Tillg\u00e4ngliga l\u00e4gen"
+                },
+                "current_humidity": {
+                    "name": "Aktuell luftfuktighet"
+                },
+                "humidity": {
+                    "name": "M\u00e5lluftfuktighet"
+                },
+                "max_humidity": {
+                    "name": "H\u00f6gsta m\u00e5lluftfuktighet"
+                },
+                "min_humidity": {
+                    "name": "L\u00e4gsta m\u00e5lluftfuktighet"
+                },
+                "mode": {
+                    "name": "L\u00e4ge",
+                    "state": {
+                        "auto": "Auto",
+                        "away": "Borta",
+                        "baby": "Bebis",
+                        "boost": "Boost",
+                        "comfort": "Komfort",
+                        "eco": "Eko",
+                        "home": "Hemma",
+                        "normal": "Normal",
+                        "sleep": "Sov"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Avfuktare"
+        },
+        "humidifier": {
+            "name": "Luftfuktare"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Angiven fuktighet {humidity} \u00e4r inte giltig. Accepterat intervall \u00e4r {min_humidity} till {max_humidity}."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "St\u00e4ller in \u00f6nskad luftfuktighet.",
+            "fields": {
+                "humidity": {
+                    "description": "M\u00e5lfuktighet.",
+                    "name": "Luftfuktighet"
+                }
+            },
+            "name": "St\u00e4ll in luftfuktighet"
+        },
+        "set_mode": {
+            "description": "St\u00e4ller in driftl\u00e4ge f\u00f6r luftfuktare.",
+            "fields": {
+                "mode": {
+                    "description": "Driftl\u00e4ge. Till exempel \"normal\", \"eco\" eller \"away\". En lista \u00f6ver m\u00f6jliga v\u00e4rden finns i integrationens dokumentation.",
+                    "name": "Driftl\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in driftl\u00e4ge"
+        },
+        "toggle": {
+            "description": "V\u00e4xlar luftfuktaren p\u00e5/av.",
+            "name": "V\u00e4xla luftfuktaren"
+        },
+        "turn_off": {
+            "description": "St\u00e4nger av luftfuktaren.",
+            "name": "Sl\u00e5 av luftfuktaren"
+        },
+        "turn_on": {
+            "description": "Sl\u00e5r p\u00e5 luftfuktaren.",
+            "name": "Sl\u00e5 p\u00e5 luftfuktaren"
+        }
+    },
+    "title": "Luftfuktare",
+    "triggers": {
+        "mode_changed": {
+            "description": "Utl\u00f6ses n\u00e4r driftl\u00e4get f\u00f6r en eller flera luftfuktare f\u00f6r\u00e4ndras.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "mode": {
+                    "description": "De driftl\u00e4gen att utl\u00f6sa p\u00e5.",
+                    "name": "L\u00e4ge"
+                }
+            },
+            "name": "Luftfuktarens l\u00e4ge har \u00e4ndrats"
+        },
+        "started_drying": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera luftfuktare b\u00f6rjar avfukta.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren har b\u00f6rjat avfukta"
+        },
+        "started_humidifying": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera luftfuktare b\u00f6rjar luftfukta.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren har b\u00f6rjat luftfukta"
+        },
+        "turned_off": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera luftfuktare st\u00e4ngs av.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren har st\u00e4ngts av"
+        },
+        "turned_on": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera luftfuktare sl\u00e5s p\u00e5.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Luftfuktaren har slagits p\u00e5"
+        }
+    }
+}

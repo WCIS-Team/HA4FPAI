@@ -1,0 +1,93 @@
+# Explicit lean configuration: do not add default_config here.
+homeassistant:
+  name: HA Small Lab
+  latitude: 0
+  longitude: 0
+  elevation: 0
+  unit_system: metric
+  time_zone: Asia/Shanghai
+  country: CN
+  currency: CNY
+http:
+  server_host: 0.0.0.0
+  server_port: 8123
+api:
+websocket_api:
+frontend:
+config:
+logger:
+  default: warning
+system_log:
+rest_command:
+  cut_echo:
+    url: http://127.0.0.1:18094/echo
+    method: POST
+    content_type: application/json
+    payload: '{"source":"ha-small","value":"{{ value }}"}'
+# Recorder defaults to the selected configuration directory.
+recorder:
+  purge_keep_days: 3
+  commit_interval: 1
+history:
+logbook:
+conversation:
+assist_pipeline:
+stt:
+tts:
+person:
+  - name: Cut Person
+    id: cut_person
+zone:
+  - name: Cut Zone
+    latitude: 0.01
+    longitude: 0.01
+    radius: 30
+input_boolean:
+  cut_test:
+    name: Cut Test
+    initial: false
+input_number:
+  cut_level:
+    name: Cut Level
+    initial: 20
+    min: 0
+    max: 100
+    step: 1
+input_text:
+  cut_note:
+    name: Cut Note
+counter:
+  cut_counter:
+    name: Cut Counter
+    initial: 0
+    restore: true
+timer:
+  cut_timer:
+    name: Cut Timer
+    duration: '00:00:02'
+script:
+  cut_turn_on:
+    alias: Cut Turn On
+    sequence:
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.cut_test
+scene:
+  - name: Cut Off
+    entities:
+      input_boolean.cut_test: 'off'
+automation:
+  - id: cut_track_on
+    alias: Cut Track On
+    triggers:
+      - trigger: state
+        entity_id: input_boolean.cut_test
+        to: 'on'
+    actions:
+      - action: counter.increment
+        target:
+          entity_id: counter.cut_counter
+template:
+  - sensor:
+      - name: Cut Mirror
+        state: "{{ states('input_boolean.cut_test') }}"

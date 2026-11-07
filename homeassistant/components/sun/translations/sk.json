@@ -1,0 +1,414 @@
+{
+    "common": {
+        "condition_threshold_name": "Typ prahovej hodnoty",
+        "period_description": "Denn\u00e1 doba, ktor\u00fa treba zv\u00e1\u017ei\u0165: r\u00e1no, ve\u010der alebo ktor\u00fdko\u013evek z nich.",
+        "period_name": "Obdobie",
+        "trigger_for_name": "Aspo\u0148",
+        "trigger_offset_description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+        "trigger_offset_name": "Ofset",
+        "trigger_offset_type_description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+        "trigger_offset_type_name": "Typ ofsetu",
+        "trigger_threshold_name": "Typ prahovej hodnoty",
+        "twilight_type_description": "F\u00e1za s\u00famraku.",
+        "twilight_type_name": "Typ s\u00famraku"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Testuje v\u00fd\u0161ku slnka oproti nastavenej prahovej hodnote.",
+            "fields": {
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "V\u00fd\u0161ka slnka"
+        },
+        "is_ascending": {
+            "description": "Testuje, \u010di slnko vych\u00e1dza.",
+            "name": "Slnko vych\u00e1dza"
+        },
+        "is_blue_hour": {
+            "description": "Testuje, \u010di je modr\u00e1 hodina, volite\u013ene pre konkr\u00e9tne obdobie.",
+            "fields": {
+                "period": {
+                    "description": "Denn\u00e1 doba, ktor\u00fa treba zv\u00e1\u017ei\u0165: r\u00e1no, ve\u010der alebo ktor\u00fdko\u013evek z nich.",
+                    "name": "Obdobie"
+                }
+            },
+            "name": "Je modr\u00e1 hodina"
+        },
+        "is_descending": {
+            "description": "Testuje, \u010di slnko zapad\u00e1.",
+            "name": "Slnko zapad\u00e1"
+        },
+        "is_evening_twilight": {
+            "description": "Testuje, \u010di je ve\u010dern\u00fd s\u00famrak, volite\u013ene \u0161pecifick\u00e9ho typu.",
+            "fields": {
+                "type": {
+                    "description": "F\u00e1za s\u00famraku.",
+                    "name": "Typ s\u00famraku"
+                }
+            },
+            "name": "Je ve\u010dern\u00fd s\u00famrak"
+        },
+        "is_golden_hour": {
+            "description": "Testuje, \u010di je zlat\u00e1 hodinka, volite\u013ene na konkr\u00e9tne obdobie.",
+            "fields": {
+                "period": {
+                    "description": "Denn\u00e1 doba, ktor\u00fa treba zv\u00e1\u017ei\u0165: r\u00e1no, ve\u010der alebo ktor\u00fdko\u013evek z nich.",
+                    "name": "Obdobie"
+                }
+            },
+            "name": "Je zlat\u00e1 hodina"
+        },
+        "is_midnight_sun": {
+            "description": "Testuje, \u010di je polno\u010dn\u00e9 slnko.",
+            "name": "Je polno\u010dn\u00e9 slnko"
+        },
+        "is_morning_twilight": {
+            "description": "Testuje, \u010di je rann\u00fd s\u00famrak, volite\u013ene \u0161pecifick\u00e9ho typu.",
+            "fields": {
+                "type": {
+                    "description": "F\u00e1za s\u00famraku.",
+                    "name": "Typ s\u00famraku"
+                }
+            },
+            "name": "Je rann\u00fd s\u00famrak"
+        },
+        "is_night": {
+            "description": "Testuje, \u010di je noc.",
+            "name": "Je noc"
+        },
+        "is_polar_night": {
+            "description": "Testuje, \u010di je pol\u00e1rna noc.",
+            "name": "Je pol\u00e1rna noc"
+        },
+        "is_set": {
+            "description": "Testuje, \u010di slnko zapadlo.",
+            "name": "Slnko zapadlo"
+        },
+        "is_up": {
+            "description": "Skontroluje, \u010di u\u017e vy\u0161lo slnko.",
+            "name": "Slnko vy\u0161lo"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Chcete za\u010da\u0165 nastavova\u0165?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Sol\u00e1rny v\u00fdchod",
+                "state": {
+                    "off": "Nastavenie",
+                    "on": "Vych\u00e1dzaj\u00face"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "\u010eal\u0161ie svitanie"
+            },
+            "next_dusk": {
+                "name": "\u010eal\u0161\u00ed s\u00famrak"
+            },
+            "next_midnight": {
+                "name": "\u010eal\u0161ia polnoc"
+            },
+            "next_noon": {
+                "name": "\u010eal\u0161ie poludnie"
+            },
+            "next_rising": {
+                "name": "\u010eal\u0161\u00ed v\u00fdchod slnka"
+            },
+            "next_setting": {
+                "name": "\u010eal\u0161\u00ed z\u00e1pad slnka"
+            },
+            "solar_azimuth": {
+                "name": "Slne\u010dn\u00fd azimut"
+            },
+            "solar_elevation": {
+                "name": "Sol\u00e1rna v\u00fd\u0161ka"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Slnko",
+            "state": {
+                "above_horizon": "Nad horizontom",
+                "below_horizon": "Za horizontom"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "Ak\u00e9ko\u013evek",
+                "evening": "Ve\u010der",
+                "morning": "R\u00e1no"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Po",
+                "before": "Pred"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "Ak\u00e9ko\u013evek",
+                "astronomical": "Astronomick\u00fd",
+                "civil": "Ob\u010diansky",
+                "nautical": "N\u00e1morn\u00fd"
+            }
+        }
+    },
+    "title": "Slnko",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Spust\u00ed sa po skon\u010den\u00ed modrej hodinky, r\u00e1no, ve\u010der alebo v oboch pr\u00edpadoch.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                },
+                "period": {
+                    "description": "Denn\u00e1 doba, ktor\u00fa treba zv\u00e1\u017ei\u0165: r\u00e1no, ve\u010der alebo ktor\u00fdko\u013evek z nich.",
+                    "name": "Obdobie"
+                }
+            },
+            "name": "Modr\u00e1 hodina sa skon\u010dila"
+        },
+        "blue_hour_started": {
+            "description": "Spust\u00ed sa na za\u010diatku modrej hodinky, r\u00e1no, ve\u010der alebo v oboch pr\u00edpadoch.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                },
+                "period": {
+                    "description": "Denn\u00e1 doba, ktor\u00fa treba zv\u00e1\u017ei\u0165: r\u00e1no, ve\u010der alebo ktor\u00fdko\u013evek z nich.",
+                    "name": "Obdobie"
+                }
+            },
+            "name": "Modr\u00e1 hodina sa za\u010dala"
+        },
+        "dawn": {
+            "description": "Sp\u00fa\u0161\u0165a sa za \u00fasvitu, ke\u010f nast\u00e1va ob\u010dianske, n\u00e1morn\u00e9 alebo astronomick\u00e9 s\u00famrak.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                },
+                "type": {
+                    "description": "F\u00e1za s\u00famraku.",
+                    "name": "Typ s\u00famraku"
+                }
+            },
+            "name": "\u00dasvit"
+        },
+        "dusk": {
+            "description": "Sp\u00fa\u0161\u0165a sa za s\u00famraku, ke\u010f kon\u010d\u00ed ob\u010diansky, n\u00e1morn\u00fd alebo astronomick\u00fd s\u00famrak.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                },
+                "type": {
+                    "description": "F\u00e1za s\u00famraku.",
+                    "name": "Typ s\u00famraku"
+                }
+            },
+            "name": "S\u00famrak"
+        },
+        "elevation_changed": {
+            "description": "Spust\u00ed sa v\u017edy, ke\u010f sa zmen\u00ed v\u00fd\u0161ka Slnka nad obzorom, pr\u00edpadne s obmedzen\u00edm na prahov\u00fa hodnotu alebo rozsah, ktor\u00fd nastav\u00edte.",
+            "fields": {
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "Zmena v\u00fd\u0161ky slnka"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Spust\u00ed sa, ke\u010f v\u00fd\u0161ka slnka prekro\u010d\u00ed nastaven\u00fa prahov\u00fa hodnotu.",
+            "fields": {
+                "for": {
+                    "name": "Aspo\u0148"
+                },
+                "threshold": {
+                    "name": "Typ prahovej hodnoty"
+                }
+            },
+            "name": "V\u00fd\u0161ka slnka prekro\u010dila prahov\u00fa hodnotu"
+        },
+        "golden_hour_ended": {
+            "description": "Sp\u00fa\u0161\u0165a sa po skon\u010den\u00ed zlatej hodinky, r\u00e1no, ve\u010der alebo v oboch pr\u00edpadoch.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                },
+                "period": {
+                    "description": "Denn\u00e1 doba, ktor\u00fa treba zv\u00e1\u017ei\u0165: r\u00e1no, ve\u010der alebo ktor\u00fdko\u013evek z nich.",
+                    "name": "Obdobie"
+                }
+            },
+            "name": "Zlat\u00e1 hodina skon\u010dila"
+        },
+        "golden_hour_started": {
+            "description": "Sp\u00fa\u0161\u0165a sa na za\u010diatku zlatej hodinky, r\u00e1no, ve\u010der alebo v oboch pr\u00edpadoch.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                },
+                "period": {
+                    "description": "Denn\u00e1 doba, ktor\u00fa treba zv\u00e1\u017ei\u0165: r\u00e1no, ve\u010der alebo ktor\u00fdko\u013evek z nich.",
+                    "name": "Obdobie"
+                }
+            },
+            "name": "Za\u010dala sa zlat\u00e1 hodinka"
+        },
+        "midnight_sun_ended": {
+            "description": "Spust\u00ed sa, ke\u010f skon\u010d\u00ed obdobie polno\u010dn\u00e9ho slnka a slnko op\u00e4\u0165 zapadne.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "Polno\u010dn\u00e9 slnko skon\u010dilo"
+        },
+        "midnight_sun_started": {
+            "description": "Spust\u00ed sa, ke\u010f sa za\u010dne obdobie polno\u010dn\u00e9ho slnka a slnko prestane zapada\u0165.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "Za\u010dalo sa polno\u010dn\u00e9 slnko"
+        },
+        "polar_night_ended": {
+            "description": "Sp\u00fa\u0161\u0165a sa, ke\u010f sa skon\u010d\u00ed obdobie pol\u00e1rnej noci a op\u00e4\u0165 vyjde slnko.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "Pol\u00e1rna noc sa skon\u010dila"
+        },
+        "polar_night_started": {
+            "description": "Sp\u00fa\u0161\u0165a sa, ke\u010f sa za\u010dne obdobie pol\u00e1rnej noci a slnko prestane vych\u00e1dza\u0165.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "Za\u010dala sa pol\u00e1rna noc"
+        },
+        "solar_midnight": {
+            "description": "Spust\u00ed sa, ke\u010f Slnko dosiahne najni\u017e\u0161\u00ed bod.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "Sol\u00e1rna polnoc"
+        },
+        "solar_noon": {
+            "description": "Spust\u00ed sa, ke\u010f slnko dosiahne najvy\u0161\u0161\u00ed bod.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "Slne\u010dn\u00e9 poludnie"
+        },
+        "sunrise": {
+            "description": "Spust\u00ed sa pri v\u00fdchode slnka.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "V\u00fdchod slnka"
+        },
+        "sunset": {
+            "description": "Spust\u00ed sa pri z\u00e1pade slnka.",
+            "fields": {
+                "offset": {
+                    "description": "\u010cas spustenia pred alebo po slne\u010dnej udalosti.",
+                    "name": "Ofset"
+                },
+                "offset_type": {
+                    "description": "\u010ci sa m\u00e1 spusti\u0165 pred alebo po slne\u010dnej udalosti.",
+                    "name": "Typ ofsetu"
+                }
+            },
+            "name": "Z\u00e1pad slnka"
+        }
+    }
+}

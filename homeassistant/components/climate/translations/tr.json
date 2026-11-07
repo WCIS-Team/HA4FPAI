@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "condition_threshold_name": "E\u015fik tipi",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "For at least",
+        "trigger_threshold_name": "E\u015fik tipi"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Bir veya daha fazla termostat\u0131n so\u011futma yap\u0131p yapmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Termostat so\u011futuyor"
+        },
+        "is_drying": {
+            "description": "Bir veya daha fazla termostat\u0131n kurutma yap\u0131p yapmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Termostat kurutuyor"
+        },
+        "is_heating": {
+            "description": "Bir veya daha fazla termostat\u0131n \u0131s\u0131tma yap\u0131p yapmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Termostat \u0131s\u0131t\u0131yor"
+        },
+        "is_hvac_mode": {
+            "description": "Bir veya daha fazla termostat\u0131n belirli bir HVAC moduna ayarlan\u0131p ayarlanmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                },
+                "hvac_mode": {
+                    "description": "Test edilecek HVAC modlar\u0131.",
+                    "name": "Modlar"
+                }
+            },
+            "name": "Termostat HVAC modu"
+        },
+        "is_off": {
+            "description": "Bir veya daha fazla termostat\u0131n kapal\u0131 olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Termostat kapal\u0131"
+        },
+        "is_on": {
+            "description": "Bir veya daha fazla termostat\u0131n a\u00e7\u0131k olup olmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "Termostat a\u00e7\u0131k"
+        },
+        "is_target_humidity": {
+            "description": "Bir veya daha fazla termostat\u0131n nem ayar noktas\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                },
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "Termostat hedef nem seviyesi"
+        },
+        "is_target_temperature": {
+            "description": "Bir veya daha fazla termostat\u0131n s\u0131cakl\u0131k ayar noktas\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                },
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "Termostat hedef s\u0131cakl\u0131\u011f\u0131"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "{entity_name} \u00fczerinde HVAC modunu de\u011fi\u015ftir",
+            "set_preset_mode": "{entity_name} \u00fczerindeki \u00f6n ayar\u0131 de\u011fi\u015ftir"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} , belirli bir HVAC moduna ayarland\u0131",
+            "is_preset_mode": "{entity_name} , belirli bir \u00f6n ayar moduna ayarland\u0131"
+        },
+        "extra_fields": {
+            "above": "\u00dczerinde",
+            "below": "Alt\u0131nda",
+            "for": "S\u00fcre",
+            "hvac_mode": "HVAC modu",
+            "preset_mode": "\u00d6n ayar modu",
+            "to": "i\u00e7in"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} \u00f6l\u00e7\u00fclen nem de\u011fi\u015fti",
+            "current_temperature_changed": "{entity_name} \u00f6l\u00e7\u00fclen s\u0131cakl\u0131k de\u011fi\u015fti",
+            "hvac_mode_changed": "{entity_name} HVAC modu de\u011fi\u015fti"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostat",
+            "state": {
+                "auto": "Otomatik",
+                "cool": "So\u011futma",
+                "dry": "Kuru",
+                "fan_only": "Sadece fan",
+                "heat": "Is\u0131tma",
+                "heat_cool": "Is\u0131tma / So\u011futma",
+                "off": "Kapal\u0131"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Mevcut nem"
+                },
+                "current_temperature": {
+                    "name": "Mevcut s\u0131cakl\u0131k"
+                },
+                "fan_mode": {
+                    "name": "Fan modu",
+                    "state": {
+                        "auto": "Otomatik",
+                        "diffuse": "Da\u011f\u0131n\u0131k",
+                        "focus": "Odak",
+                        "high": "Y\u00fcksek",
+                        "low": "D\u00fc\u015f\u00fck",
+                        "medium": "Orta",
+                        "middle": "Orta",
+                        "off": "Kapal\u0131",
+                        "on": "A\u00e7\u0131k",
+                        "top": "Yukar\u0131"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Fan modlar\u0131"
+                },
+                "humidity": {
+                    "name": "Hedef nem"
+                },
+                "hvac_action": {
+                    "name": "Mevcut eylem",
+                    "state": {
+                        "cooling": "So\u011futuluyor",
+                        "defrosting": "Buz \u00e7\u00f6zme",
+                        "drying": "Kurutuluyor",
+                        "fan": "Fan",
+                        "heating": "Is\u0131t\u0131l\u0131yor",
+                        "idle": "Bo\u015fta",
+                        "off": "Kapal\u0131",
+                        "preheating": "\u00d6n \u0131s\u0131tma"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "HVAC modlar\u0131"
+                },
+                "max_humidity": {
+                    "name": "Maksimum hedef nem"
+                },
+                "max_temp": {
+                    "name": "Maksimum hedef s\u0131cakl\u0131k"
+                },
+                "min_humidity": {
+                    "name": "Minimum hedef nem"
+                },
+                "min_temp": {
+                    "name": "Minimum hedef s\u0131cakl\u0131k"
+                },
+                "preset_mode": {
+                    "name": "\u00d6n ayar",
+                    "state": {
+                        "activity": "Aktivite",
+                        "away": "D\u0131\u015far\u0131da",
+                        "boost": "G\u00fc\u00e7l\u00fc",
+                        "comfort": "Konfor",
+                        "eco": "Eko",
+                        "home": "Evde",
+                        "none": "Hi\u00e7biri",
+                        "sleep": "Uyku"
+                    }
+                },
+                "preset_modes": {
+                    "name": "\u00d6n Ayarlar"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Yatay sal\u0131n\u0131m modu",
+                    "state": {
+                        "off": "Kapal\u0131",
+                        "on": "A\u00e7\u0131k"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Yatay sal\u0131n\u0131m modlar\u0131"
+                },
+                "swing_mode": {
+                    "name": "Sal\u0131n\u0131m modu",
+                    "state": {
+                        "both": "\u00c7ift",
+                        "horizontal": "Yatay",
+                        "off": "Kapal\u0131",
+                        "on": "A\u00e7\u0131k",
+                        "vertical": "Dikey"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Sal\u0131n\u0131m modlar\u0131"
+                },
+                "target_temp_high": {
+                    "name": "\u00dcst hedef s\u0131cakl\u0131k"
+                },
+                "target_temp_low": {
+                    "name": "Daha d\u00fc\u015f\u00fck hedef s\u0131cakl\u0131k"
+                },
+                "target_temp_step": {
+                    "name": "Hedef s\u0131cakl\u0131k ad\u0131m\u0131"
+                },
+                "temperature": {
+                    "name": "Hedef s\u0131cakl\u0131k"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Sa\u011flanan nem {humidity} ge\u00e7erli de\u011fil. Kabul edilen aral\u0131k {min_humidity} ile {max_humidity} aras\u0131ndad\u0131r."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "'Alt hedef s\u0131cakl\u0131k', '\u00dcst hedef s\u0131cakl\u0131k'tan y\u00fcksek olamaz."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "'Hedef s\u0131cakl\u0131k' parametresiyle birlikte \"S\u0131cakl\u0131k ayarla\" i\u015flemi kullan\u0131ld\u0131 ancak varl\u0131k bu \u00f6zelli\u011fi desteklemiyor."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "'Alt/\u00dcst hedef s\u0131cakl\u0131k' parametresiyle birlikte s\u0131cakl\u0131k ayarlama i\u015flemi kullan\u0131ld\u0131 ancak varl\u0131k bu \u00f6zelli\u011fi desteklemiyor."
+        },
+        "not_valid_fan_mode": {
+            "message": "Fan modu {mode} ge\u00e7erli de\u011fil. Ge\u00e7erli fan modlar\u0131 \u015funlard\u0131r: {modes} ."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "Yatay sal\u0131n\u0131m modu {mode} ge\u00e7erli de\u011fil. Ge\u00e7erli yatay sal\u0131n\u0131m modlar\u0131 \u015funlard\u0131r: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "HVAC modu {mode} ge\u00e7erli de\u011fil. Ge\u00e7erli HVAC modlar\u0131 \u015funlard\u0131r: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "\u00d6n ayar modu {mode} ge\u00e7erli de\u011fil. Ge\u00e7erli \u00f6n ayar modlar\u0131 \u015funlard\u0131r: {modes} ."
+        },
+        "not_valid_swing_mode": {
+            "message": "Sal\u0131n\u0131m modu {mode} ge\u00e7erli de\u011fil. Ge\u00e7erli sal\u0131n\u0131m modlar\u0131 \u015funlard\u0131r: {modes} ."
+        },
+        "temp_out_of_range": {
+            "message": "Sa\u011flanan s\u0131cakl\u0131k {check_temp} ge\u00e7erli de\u011fil. Kabul edilen aral\u0131k {min_temp} ile {max_temp} aras\u0131ndad\u0131r."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "Termostat\u0131n fan modunu ayarlar.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Fan \u00e7al\u0131\u015fma modu.",
+                    "name": "Fan modu"
+                }
+            },
+            "name": "Termostat fan modunu ayarlay\u0131n"
+        },
+        "set_humidity": {
+            "description": "Termostat\u0131n hedef nem seviyesini ayarlar.",
+            "fields": {
+                "humidity": {
+                    "description": "Hedef nem.",
+                    "name": "Nem"
+                }
+            },
+            "name": "Termostattan hedef nem seviyesini ayarlay\u0131n"
+        },
+        "set_hvac_mode": {
+            "description": "Termostat\u0131n \u0131s\u0131tma, so\u011futma ve havaland\u0131rma (HVAC) modunu ayarlar.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "HVAC \u00e7al\u0131\u015fma modu.",
+                    "name": "HVAC modu"
+                }
+            },
+            "name": "Termostat\u0131 HVAC moduna ayarlay\u0131n"
+        },
+        "set_preset_mode": {
+            "description": "Termostat\u0131n \u00f6nceden ayarlanm\u0131\u015f modunu ayarlar.",
+            "fields": {
+                "preset_mode": {
+                    "description": "\u00d6n ayar modu.",
+                    "name": "\u00d6n ayar modu"
+                }
+            },
+            "name": "Termostat \u00f6n ayar modunu ayarlay\u0131n"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "Termostat\u0131n yatay sal\u0131n\u0131m modunu ayarlar",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Yatay sal\u0131n\u0131m \u00e7al\u0131\u015fma modu.",
+                    "name": "Yatay sal\u0131n\u0131m modu"
+                }
+            },
+            "name": "Termostat\u0131 yatay sal\u0131n\u0131m moduna ayarlay\u0131n"
+        },
+        "set_swing_mode": {
+            "description": "Termostat\u0131n sal\u0131n\u0131m modunu ayarlar.",
+            "fields": {
+                "swing_mode": {
+                    "description": "Kayd\u0131rma \u00e7al\u0131\u015fma modu.",
+                    "name": "Sal\u0131n\u0131m modu"
+                }
+            },
+            "name": "Termostat sal\u0131n\u0131m modunu ayarlay\u0131n"
+        },
+        "set_temperature": {
+            "description": "Termostat\u0131n hedef s\u0131cakl\u0131\u011f\u0131n\u0131 ayarlar.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "HVAC \u00e7al\u0131\u015fma modu.",
+                    "name": "HVAC modu"
+                },
+                "target_temp_high": {
+                    "description": "Maksimum s\u0131cakl\u0131k ayar noktas\u0131.",
+                    "name": "\u00dcst hedef s\u0131cakl\u0131k"
+                },
+                "target_temp_low": {
+                    "description": "Minimum s\u0131cakl\u0131k ayar noktas\u0131.",
+                    "name": "Daha d\u00fc\u015f\u00fck hedef s\u0131cakl\u0131k"
+                },
+                "temperature": {
+                    "description": "S\u0131cakl\u0131k ayar noktas\u0131.",
+                    "name": "Hedef s\u0131cakl\u0131k"
+                }
+            },
+            "name": "Termostat\u0131n hedef s\u0131cakl\u0131\u011f\u0131n\u0131 ayarlay\u0131n",
+            "sections": {
+                "temperature_range": {
+                    "name": "S\u0131cakl\u0131k aral\u0131\u011f\u0131"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Termostat\u0131 a\u00e7\u0131p kapat\u0131r.",
+            "name": "Termostat\u0131 a\u00e7\u0131p kapat"
+        },
+        "turn_off": {
+            "description": "Termostat\u0131 kapat\u0131r",
+            "name": "Termostat\u0131 kapat\u0131n"
+        },
+        "turn_on": {
+            "description": "Termostat\u0131 a\u00e7ar",
+            "name": "Termostat\u0131 a\u00e7\u0131n"
+        }
+    },
+    "title": "\u0130klimlendirme",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Bir veya daha fazla termostat\u0131n modu de\u011fi\u015fti\u011finde tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                },
+                "hvac_mode": {
+                    "description": "Tetiklenecek HVAC modlar\u0131.",
+                    "name": "Modlar"
+                }
+            },
+            "name": "Termostat modu de\u011fi\u015ftirildi"
+        },
+        "started_cooling": {
+            "description": "Bir veya daha fazla termostat so\u011futmaya ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostat so\u011futmaya ba\u015flad\u0131"
+        },
+        "started_drying": {
+            "description": "Bir veya daha fazla termostat kurutmaya ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostat kurutmaya ba\u015flad\u0131"
+        },
+        "started_heating": {
+            "description": "Bir veya daha fazla termostat \u0131s\u0131tmaya ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostat \u0131s\u0131tmaya ba\u015flad\u0131"
+        },
+        "target_humidity_changed": {
+            "description": "Bir veya daha fazla termostat\u0131n nem ayar noktas\u0131 de\u011fi\u015fti\u011finde tetiklenir.",
+            "fields": {
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "Termostat\u0131n hedef nem seviyesi de\u011fi\u015fti"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Bir veya daha fazla termostat\u0131n nem ayar de\u011feri bir e\u015fi\u011fi a\u015ft\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                },
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "Termostat\u0131n hedef nem seviyesi e\u015fi\u011fi a\u015f\u0131ld\u0131"
+        },
+        "target_temperature_changed": {
+            "description": "Bir veya daha fazla termostat\u0131n s\u0131cakl\u0131k ayar noktas\u0131 de\u011fi\u015fti\u011finde tetiklenir.",
+            "fields": {
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "Termostat\u0131n hedef s\u0131cakl\u0131\u011f\u0131 de\u011fi\u015fti"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Bir veya daha fazla termostat\u0131n s\u0131cakl\u0131k ayar noktas\u0131 bir e\u015fi\u011fi a\u015ft\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                },
+                "threshold": {
+                    "name": "E\u015fik tipi"
+                }
+            },
+            "name": "Termostat hedef s\u0131cakl\u0131\u011f\u0131 e\u015fik de\u011ferini a\u015ft\u0131"
+        },
+        "turned_off": {
+            "description": "Bir veya daha fazla termostat kapand\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostat kapat\u0131ld\u0131"
+        },
+        "turned_on": {
+            "description": "Termostatlardan bir veya daha fazlas\u0131 a\u00e7\u0131ld\u0131\u011f\u0131nda, moddan ba\u011f\u0131ms\u0131z olarak tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Termostat a\u00e7\u0131ld\u0131"
+        }
+    }
+}

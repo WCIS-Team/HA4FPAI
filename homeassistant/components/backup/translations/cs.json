@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automatick\u00e9 z\u00e1lohov\u00e1n\u00ed",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "F\u00e1ze z\u00e1lohov\u00e1n\u00ed"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "\u00dasp\u011b\u0161n\u011b dokon\u010deno",
+                            "failed": "Selhalo",
+                            "in_progress": "Prob\u00edh\u00e1"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "D\u016fvod selh\u00e1n\u00ed",
+                        "state": {
+                            "backup_agent_error": "Chyba agenta z\u00e1loh",
+                            "backup_agent_unreachable": "Agent z\u00e1loh je nedostupn\u00fd",
+                            "backup_manager_error": "Chyba spr\u00e1vce z\u00e1loh",
+                            "backup_not_found": "Z\u00e1loha nebyla nalezena",
+                            "backup_reader_writer_error": "Chyba \u010dte\u010dky/zapisova\u010de z\u00e1lohy",
+                            "decrypt_on_download_not_supported": "De\u0161ifrov\u00e1n\u00ed p\u0159i stahov\u00e1n\u00ed nen\u00ed podporov\u00e1no",
+                            "invalid_backup_filename": "Neplatn\u00fd n\u00e1zev souboru se z\u00e1lohou",
+                            "multiple_errors": "V\u00edce chyb",
+                            "password_incorrect": "Nespr\u00e1vn\u00e9 heslo",
+                            "unknown_error": "Nezn\u00e1m\u00e1 chyba",
+                            "upload_failed": "Nahr\u00e1v\u00e1n\u00ed selhalo"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Stav spr\u00e1vce z\u00e1lohov\u00e1n\u00ed",
+                "state": {
+                    "blocked": "Blokov\u00e1no",
+                    "create_backup": "Vytv\u00e1\u0159en\u00ed z\u00e1lohy",
+                    "idle": "Ne\u010dinn\u00e9",
+                    "receive_backup": "P\u0159ij\u00edm\u00e1n\u00ed z\u00e1lohy",
+                    "restore_backup": "Obnovov\u00e1n\u00ed z\u00e1lohy"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Posledn\u00ed pokus o automatick\u00e9 z\u00e1lohov\u00e1n\u00ed"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Posledn\u00ed \u00fasp\u011b\u0161n\u00e9 automatick\u00e9 z\u00e1lohov\u00e1n\u00ed"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Dal\u0161\u00ed pl\u00e1novan\u00e9 automatick\u00e9 z\u00e1lohov\u00e1n\u00ed"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Um\u00edst\u011bn\u00ed z\u00e1lohy \"{agent_id}\" nen\u00ed dostupn\u00e9, ale je st\u00e1le nastaveno pro automatick\u00e9 z\u00e1lohov\u00e1n\u00ed.\n \nNav\u0161tivte [str\u00e1nku nastaven\u00ed automatick\u00e9ho z\u00e1lohov\u00e1n\u00ed]({backup_settings}), kde si m\u016f\u017eete prohl\u00e9dnout a aktualizovat um\u00edst\u011bn\u00ed z\u00e1loh. Z\u00e1lohy nebudou nahr\u00e1ny do vybran\u00fdch um\u00edst\u011bn\u00ed, kter\u00e1 nejsou dostupn\u00e1.",
+            "title": "Um\u00edst\u011bn\u00ed z\u00e1lohy {agent_id} je nedostupn\u00e9"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Aplikace {failed_addons} se nepoda\u0159ilo zahrnout do automatick\u00e9ho z\u00e1lohov\u00e1n\u00ed. Dal\u0161\u00ed informace naleznete v protokolech Supervizora. Pokud je nastaven pl\u00e1n z\u00e1lohov\u00e1n\u00ed, bude v p\u0159\u00ed\u0161t\u00edm napl\u00e1novan\u00e9m \u010dase proveden dal\u0161\u00ed pokus.",
+            "title": "Ne v\u0161echny aplikace bylo mo\u017en\u00e9 zahrnout do automatick\u00e9ho z\u00e1lohov\u00e1n\u00ed"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Automatick\u00e1 z\u00e1loha byla vytvo\u0159ena s chybami:\n* m\u00edsta, kam se nepoda\u0159ilo z\u00e1lohu nahr\u00e1t: {failed_agents}\n* aplikace, kter\u00e9 nebylo mo\u017en\u00e9 z\u00e1lohovat: {failed_addons}\n* slo\u017eky, kter\u00e9 nemohly b\u00fdt z\u00e1lohov\u00e1ny: {failed_folders}\n\nDal\u0161\u00ed informace naleznete v protokolech Supervizora. Dal\u0161\u00ed pokus bude proveden v p\u0159\u00ed\u0161t\u00edm napl\u00e1novan\u00e9m \u010dase, pokud je nastaven pl\u00e1n z\u00e1lohov\u00e1n\u00ed.",
+            "title": "Automatick\u00e1 z\u00e1loha byla vytvo\u0159ena s chybami"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Automatickou z\u00e1lohu nelze vytvo\u0159it. Dal\u0161\u00ed informace naleznete v protokolech. Pokud je nastaven pl\u00e1n z\u00e1lohov\u00e1n\u00ed, bude proveden dal\u0161\u00ed pokus v p\u0159\u00ed\u0161t\u00edm napl\u00e1novan\u00e9m \u010dase.",
+            "title": "Automatickou z\u00e1lohu nelze vytvo\u0159it"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Slo\u017eky {failed_folders} se nepoda\u0159ilo zahrnout do automatick\u00e9ho z\u00e1lohov\u00e1n\u00ed. Dal\u0161\u00ed informace naleznete v protokolech Supervizora. Pokud je nastaven pl\u00e1n z\u00e1lohov\u00e1n\u00ed, bude v p\u0159\u00ed\u0161t\u00edm napl\u00e1novan\u00e9m \u010dase proveden dal\u0161\u00ed pokus.",
+            "title": "Ne v\u0161echny slo\u017eky se daly zahrnout do automatick\u00e9ho z\u00e1lohov\u00e1n\u00ed"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Automatickou z\u00e1lohu nebylo mo\u017en\u00e9 nahr\u00e1t do nastaven\u00fdch um\u00edst\u011bn\u00ed {failed_agents}. Dal\u0161\u00ed informace naleznete v protokolech. Pokud je nastaven pl\u00e1n z\u00e1lohov\u00e1n\u00ed, bude proveden dal\u0161\u00ed pokus v p\u0159\u00ed\u0161t\u00edm napl\u00e1novan\u00e9m \u010dase.",
+            "title": "Automatick\u00e9 z\u00e1lohov\u00e1n\u00ed nebylo mo\u017en\u00e9 nahr\u00e1t do nastaven\u00fdch um\u00edst\u011bn\u00ed"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Vytvo\u0159\u00ed novou z\u00e1lohu.",
+            "name": "Vytvo\u0159it z\u00e1lohu"
+        },
+        "create_automatic": {
+            "description": "Vytvo\u0159\u00ed novou z\u00e1lohu s nastaven\u00edm automatick\u00e9ho z\u00e1lohov\u00e1n\u00ed.",
+            "name": "Vytvo\u0159it automatickou z\u00e1lohu"
+        }
+    }
+}

@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb",
+        "trigger_behavior_name": "Aktiv\u00e1l\u00f3dik, amikor",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 dokkolt-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 dokkolva van"
+        },
+        "is_encountering_an_error": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 hib\u00e1t tapasztal-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 hib\u00e1t tapasztal"
+        },
+        "is_idle": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 t\u00e9tlen-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 t\u00e9tlen"
+        },
+        "is_mowing": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 f\u0171ny\u00edr\u00e1st v\u00e9gez-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 f\u0171ny\u00edr\u00e1st v\u00e9gez"
+        },
+        "is_paused": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 sz\u00fcnetel-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 sz\u00fcnetel"
+        },
+        "is_returning": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 visszat\u00e9r-e a dokkol\u00f3ra.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 visszat\u00e9r"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "F\u0171ny\u00edr\u00f3",
+            "state": {
+                "docked": "Dokkolva",
+                "error": "Hiba",
+                "idle": "T\u00e9tlen",
+                "mowing": "F\u0171ny\u00edr\u00e1s",
+                "paused": "Sz\u00fcnetel",
+                "returning": "Visszat\u00e9r\u00e9s"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Visszaviszi a f\u0171ny\u00edr\u00f3t a dokkol\u00f3\u00e1llom\u00e1shoz.",
+            "name": "F\u0171ny\u00edr\u00f3 visszak\u00fcld\u00e9se a dokkol\u00f3hoz"
+        },
+        "pause": {
+            "description": "Sz\u00fcnetelteti a f\u0171ny\u00edr\u00f3 aktu\u00e1lis feladat\u00e1t.",
+            "name": "F\u0171ny\u00edr\u00f3 sz\u00fcneteltet\u00e9se"
+        },
+        "start_mowing": {
+            "description": "Elind\u00edtja a f\u0171ny\u00edr\u00f3 f\u0171ny\u00edr\u00e1si feladat\u00e1t.",
+            "name": "F\u0171ny\u00edr\u00f3 ind\u00edt\u00e1sa"
+        },
+        "stop": {
+            "description": "Le\u00e1ll\u00edtja a f\u0171ny\u00edr\u00f3 aktu\u00e1lis feladat\u00e1t.",
+            "name": "F\u0171ny\u00edr\u00f3 le\u00e1ll\u00edt\u00e1sa"
+        }
+    },
+    "title": "F\u0171ny\u00edr\u00f3",
+    "triggers": {
+        "became_idle": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 t\u00e9tlenn\u00e9 v\u00e1lik.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 t\u00e9tlenn\u00e9 v\u00e1lt"
+        },
+        "errored": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 hib\u00e1t tapasztal.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 hib\u00e1t \u00e9szlelt"
+        },
+        "paused_mowing": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 sz\u00fcnetelteti a f\u0171ny\u00edr\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 meg\u00e1ll\u00edtotta a f\u0171ny\u00edr\u00e1st"
+        },
+        "returned_to_dock": {
+            "description": "Akkor aktiv\u00e1l\u00f3dik, ha egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 robot visszat\u00e9rt a dokkol\u00f3\u00e1llom\u00e1sra.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 robot visszat\u00e9rt a dokkol\u00f3\u00e1llom\u00e1sra"
+        },
+        "started_mowing": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 elkezdi a f\u0171ny\u00edr\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "A f\u0171ny\u00edr\u00f3 elkezdte a f\u0171ny\u00edr\u00e1st"
+        },
+        "started_returning": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb f\u0171ny\u00edr\u00f3 elkezd visszat\u00e9rni a dokkol\u00f3hoz.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "F\u0171ny\u00edr\u00f3 elkezdte a visszat\u00e9r\u00e9st a dokkol\u00f3hoz"
+        }
+    }
+}

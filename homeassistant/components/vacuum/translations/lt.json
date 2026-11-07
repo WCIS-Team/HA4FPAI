@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Patikrina, ar valo vienas ar keli dulki\u0173 siurbliai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblys valo"
+        },
+        "is_docked": {
+            "description": "Patikrina, ar prijungtas vienas ar keli dulki\u0173 siurbliai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblys prijungtas prie doko"
+        },
+        "is_encountering_an_error": {
+            "description": "Tikrina, ar vienas ar keli dulki\u0173 siurbliai susiduria su klaida.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblyje \u012fvyko klaida"
+        },
+        "is_paused": {
+            "description": "Patikrina, ar vienas ar keli dulki\u0173 siurbliai yra pristabdyti.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblio veikimas pristabdytas"
+        },
+        "is_returning": {
+            "description": "Patikrina, ar vienas ar keli dulki\u0173 siurbliai gr\u012f\u017eta \u012f dok\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblys gr\u012f\u017eta"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Leiskite {entity_name} valyti",
+            "dock": "Leiskite {entity_name} gr\u012f\u017eti \u012f stotel\u0119"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} valo",
+            "is_docked": "{entity_name} yra stotel\u0117je"
+        },
+        "extra_fields": {
+            "for": "Trukm\u0117"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} prad\u0117jo valyti",
+            "docked": "{entity_name} stotel\u0117je"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Dulki\u0173 siurblys",
+            "state": {
+                "cleaning": "Valymas",
+                "docked": "Stotel\u0117je",
+                "error": "Klaida",
+                "idle": "Nedaroma nieko",
+                "off": "I\u0161jungta",
+                "on": "\u012ejungta",
+                "paused": "Pristabdyta",
+                "returning": "Gr\u012f\u017eta \u012f stotel\u0119"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "Srities \u017eem\u0117lapi\u0173 sudarymas nesukonfig\u016bruotas `{entity_id}Prie\u0161 naudodami \u0161\u012f veiksm\u0105, sukonfig\u016bruokite segment\u0173 ir sri\u010di\u0173 susiejim\u0105."
+        },
+        "areas_not_mapped": {
+            "message": "\u0160ios sritys n\u0117ra susietos su jokiais tikslini\u0173 dulki\u0173 siurbli\u0173 segmentais: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Dulki\u0173 siurblio segmentai pasikeit\u0117 {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Nurodo dulki\u0173 siurbliui i\u0161valyti vien\u0105 ar kelias zonas.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Valomos vietos.",
+                    "name": "Sritys"
+                }
+            },
+            "name": "I\u0161valykite plot\u0105 dulki\u0173 siurbliu"
+        },
+        "clean_spot": {
+            "description": "Nurodo dulki\u0173 siurbliui i\u0161valyti d\u0117m\u0119.",
+            "name": "I\u0161valykite viet\u0105 dulki\u0173 siurbliu"
+        },
+        "locate": {
+            "description": "Suranda dulki\u0173 siurbl\u012f.",
+            "name": "Raskite dulki\u0173 siurbl\u012f"
+        },
+        "pause": {
+            "description": "Pristabdo dabartin\u0119 dulki\u0173 siurblio u\u017eduot\u012f.",
+            "name": "Dulki\u0173 siurblio pristabdymas"
+        },
+        "return_to_base": {
+            "description": "Siun\u010dia dulki\u0173 siurbl\u012f atgal \u012f jo dok\u0105.",
+            "name": "Gr\u0105\u017einkite dulki\u0173 siurbl\u012f \u012f dok\u0105"
+        },
+        "send_command": {
+            "description": "Siun\u010dia komand\u0105 dulki\u0173 siurbliui.",
+            "fields": {
+                "command": {
+                    "description": "\u012esakymas vykdyti. Komandos yra susijusios su integracija.",
+                    "name": "Komanda"
+                },
+                "params": {
+                    "description": "Komandos parametrai. Parametrai priklauso nuo integracijos.",
+                    "name": "Parametrai"
+                }
+            },
+            "name": "Si\u0173sti komand\u0105 dulki\u0173 siurbliui"
+        },
+        "set_fan_speed": {
+            "description": "Nustato dulki\u0173 siurblio ventiliatoriaus greit\u012f.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Ventiliatoriaus greitis. Vert\u0117 priklauso nuo integracijos. Kai kurios integracijos turi grei\u010dio \u017eingsnius, pvz., \u201evidutinis\u201c. Kai kurie naudoja procent\u0105 nuo 0 iki 100.",
+                    "name": "Ventiliatoriaus greitis"
+                }
+            },
+            "name": "Nustatykite dulki\u0173 siurblio ventiliatoriaus greit\u012f"
+        },
+        "start": {
+            "description": "Pradeda arba t\u0119sia dulki\u0173 siurblio valymo u\u017eduot\u012f.",
+            "name": "\u012ejunkite dulki\u0173 siurbl\u012f"
+        },
+        "start_pause": {
+            "description": "Paleid\u017eia, pristabdo arba t\u0119sia dulki\u0173 siurblio valymo u\u017eduot\u012f.",
+            "name": "Dulki\u0173 siurblio paleidimas / pristabdymas"
+        },
+        "stop": {
+            "description": "Sustabdo dulki\u0173 siurblio atliekam\u0105 u\u017eduot\u012f.",
+            "name": "Sustabdyti dulki\u0173 siurbl\u012f"
+        },
+        "toggle": {
+            "description": "\u012ejungia / i\u0161jungia dulki\u0173 siurbl\u012f.",
+            "name": "Perjungti dulki\u0173 siurbl\u012f"
+        },
+        "turn_off": {
+            "description": "I\u0161jungia dulki\u0173 siurbl\u012f.",
+            "name": "I\u0161junkite dulki\u0173 siurbl\u012f"
+        },
+        "turn_on": {
+            "description": "\u012ejungia dulki\u0173 siurbl\u012f.",
+            "name": "\u012ejunkite dulki\u0173 siurbl\u012f"
+        }
+    },
+    "title": "Dulki\u0173 siurblys",
+    "triggers": {
+        "errored": {
+            "description": "Suveikia, kai vienas ar keli dulki\u0173 siurbliai aptinka klaid\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblyje \u012fvyko klaida"
+        },
+        "paused_cleaning": {
+            "description": "Suveikia, kai vienas ar keli dulki\u0173 siurbliai pristabdo valym\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblio valymas pristabdytas"
+        },
+        "returned_to_dock": {
+            "description": "Suveikia, kai vienas ar keli dulki\u0173 siurbliai gr\u012f\u017eta \u012f dok\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblys gr\u0105\u017eintas \u012f dok\u0105"
+        },
+        "started_cleaning": {
+            "description": "Suveikia, kai vienas ar keli dulki\u0173 siurbliai pradeda valyti.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblys prad\u0117jo valyti"
+        },
+        "started_returning": {
+            "description": "Suveikia, kai vienas ar keli dulki\u0173 siurbliai pradeda gr\u012f\u017eti \u012f dok\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Dulki\u0173 siurblys prad\u0117jo gr\u012f\u017eti \u012f dok\u0105"
+        }
+    }
+}

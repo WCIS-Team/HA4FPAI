@@ -1,0 +1,243 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer",
+        "trigger_for_name": "Voor minstens"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Test of een, of meerdere, stofzuigers aan het stofzuigen zijn.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "De stofzuiger is aan het stofzuigen"
+        },
+        "is_docked": {
+            "description": "Test of een, of meerdere, stofzuigers in het laadstation staan.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "De stofzuiger staat in het oplaadstation"
+        },
+        "is_encountering_an_error": {
+            "description": "Test of een, of meerdere, stofzuigers een storing hebben.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "De stofzuiger geeft een storing"
+        },
+        "is_paused": {
+            "description": "Test of een, of meerdere, stofzuigers gepauzeerd zijn.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "De stofzuiger is gepauzeerd"
+        },
+        "is_returning": {
+            "description": "Test of een, of meerdere, stofzuigers terugkeren naar het laadstation",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "De stofzuiger gaat terug"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Laat {entity_name} schoonmaken",
+            "dock": "Laat {entity_name} terugkeren naar het basisstation"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} is aan het schoonmaken",
+            "is_docked": "{entity_name} is bij basisstation"
+        },
+        "extra_fields": {
+            "for": "Duur"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} begon met schoonmaken",
+            "docked": "{entity_name} is bij basisstation"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Stofzuiger",
+            "state": {
+                "cleaning": "Schoonmaken",
+                "docked": "Gedockt",
+                "error": "Fout",
+                "idle": "Inactief",
+                "off": "Uit",
+                "on": "Aan",
+                "paused": "Gepauzeerd",
+                "returning": "Terugkeren naar dock"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "Ruimtetoewijzing is niet geconfigureerd voor `{entity_id}`. Configureer de segment-naar-ruimte toewijzing voordat je deze actie gebruikt."
+        },
+        "areas_not_mapped": {
+            "message": "De volgende ruimtes zijn niet toegewezen aan segmenten van de betreffende stofzuigers: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "De stofzuigersegmenten voor {entity_id} zijn gewijzigd"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Geeft een stofzuiger de opdracht om \u00e9\u00e9n of meer ruimtes schoon te maken.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Ruimtes om schoon te maken",
+                    "name": "Ruimtes"
+                }
+            },
+            "name": "Stofzuig de ruimte"
+        },
+        "clean_spot": {
+            "description": "Geeft de stofzuiger de opdracht om een plek schoon te maken.",
+            "name": "Stofzuig een plek"
+        },
+        "locate": {
+            "description": "Lokaliseert een stofzuiger.",
+            "name": "Stofzuiger lokaliseren"
+        },
+        "pause": {
+            "description": "De huidige taak van de stofzuiger wordt gepauzeert.",
+            "name": "Stofzuiger pauzeren"
+        },
+        "return_to_base": {
+            "description": "Stuurt een stofzuiger terug naar het oplaadstation.",
+            "name": "Keer terug naar oplaadstation"
+        },
+        "send_command": {
+            "description": "Stuurt een opdracht naar de stofzuiger.",
+            "fields": {
+                "command": {
+                    "description": "Opdracht om uit te voeren. De opdrachten zijn integratiespecifiek.",
+                    "name": "Opdracht"
+                },
+                "params": {
+                    "description": "Parameters voor de opdracht. De parameters zijn integratiespecifiek.",
+                    "name": "Parameters"
+                }
+            },
+            "name": "Stuur een opdracht naar de stofzuiger"
+        },
+        "set_fan_speed": {
+            "description": "Stelt de ventilatorsnelheid van een stofzuiger in.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Ventilatorsnelheid. De waarde hangt af van de integratie. Sommige integraties hebben snelheidsstappen, zoals 'medium'. Sommige gebruiken een percentage, tussen 0 en 100.",
+                    "name": "Ventilatorsnelheid"
+                }
+            },
+            "name": "De zuigkracht van de stofzuiger instellen"
+        },
+        "start": {
+            "description": "Start of hervat de schoonmaaktaak van een stofzuiger.",
+            "name": "Stofzuiger aanzetten"
+        },
+        "start_pause": {
+            "description": "Start, pauzeert of hervat de schoonmaaktaak van een stofzuiger.",
+            "name": "Stofzuiger starten/pauzeren"
+        },
+        "stop": {
+            "name": "Stofzuiger uitzetten"
+        },
+        "toggle": {
+            "name": "Omschakelen"
+        },
+        "turn_off": {
+            "name": "Stofzuiger uitzetten"
+        },
+        "turn_on": {
+            "name": "Stofzuiger aanzetten"
+        }
+    },
+    "title": "Stofzuiger",
+    "triggers": {
+        "errored": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "paused_cleaning": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Stofzuiger heeft schoonmaken gepauzeerd"
+        },
+        "returned_to_dock": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            }
+        },
+        "started_cleaning": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Stofzuiger begon met schoonmaken"
+        },
+        "started_returning": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "De stofzuiger keerde terug naar het laadstation"
+        }
+    }
+}

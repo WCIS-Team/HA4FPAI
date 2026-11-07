@@ -1,0 +1,365 @@
+{
+    "config": {
+        "abort": {
+            "already_in_progress": "A konfigur\u00e1l\u00e1s m\u00e1r folyamatban van. Fejezze be a megl\u00e9v\u0151 konfigur\u00e1l\u00e1st, miel\u0151tt \u00fajrakezden\u00e9.",
+            "authorize_url_timeout": "Id\u0151t\u00fall\u00e9p\u00e9s a hiteles\u00edt\u00e9si URL l\u00e9trehoz\u00e1sakor.",
+            "cloud_not_connected": "Nincs csatlakoztatva a Home Assistant Cloudhoz.",
+            "missing_credentials": "Az integr\u00e1ci\u00f3hoz az alkalmaz\u00e1s hiteles\u00edt\u0151 adataira van sz\u00fcks\u00e9g.",
+            "no_devices_found": "Nem tal\u00e1lhat\u00f3 eszk\u00f6z a h\u00e1l\u00f3zaton",
+            "no_url_available": "Nincs el\u00e9rhet\u0151 URL. A hib\u00e1val kapcsolatos inform\u00e1ci\u00f3k\u00e9rt n\u00e9zze meg a [s\u00fag\u00f3]({docs_url}) le\u00edr\u00e1s\u00e1t.",
+            "oauth_error": "\u00c9rv\u00e9nytelen token adatok \u00e9rkeztek.",
+            "oauth_failed": "Hiba a hozz\u00e1f\u00e9r\u00e9si token megszerz\u00e9se k\u00f6zben.",
+            "oauth_implementation_unavailable": "Jelenleg nem \u00e1ll rendelkez\u00e9sre OAuth2-implement\u00e1ci\u00f3.",
+            "oauth_timeout": "Id\u0151t\u00fall\u00e9p\u00e9s az OAuth token felold\u00e1sakor.",
+            "oauth_unauthorized": "OAuth enged\u00e9lyez\u00e9si hiba a hozz\u00e1f\u00e9r\u00e9si token megszerz\u00e9se sor\u00e1n.",
+            "reauth_successful": "Az \u00fajrahiteles\u00edt\u00e9s sikeres volt",
+            "reconfigure_successful": "Az \u00fajrakonfigur\u00e1l\u00e1s sikeres volt",
+            "single_instance_allowed": "M\u00e1r konfigur\u00e1lva van. Csak egy konfigur\u00e1ci\u00f3 lehets\u00e9ges.",
+            "user_rejected_authorize": "A fi\u00f3k csatol\u00e1sa elutas\u00edtva: {error}"
+        }
+    },
+    "exceptions": {
+        "component_import_err": {
+            "message": "A(z) {domain} import\u00e1l\u00e1sa sikertelen: {error}"
+        },
+        "config_platform_import_err": {
+            "message": "Hiba a konfigur\u00e1ci\u00f3s platform {domain} import\u00e1l\u00e1sa sor\u00e1n: {error}"
+        },
+        "config_schema_unknown_err": {
+            "message": "Ismeretlen hiba a(z) {domain} CONFIG_SCHEMA h\u00edv\u00e1sakor - {error}."
+        },
+        "config_validation_err": {
+            "message": "\u00c9rv\u00e9nytelen konfigur\u00e1ci\u00f3 a(z) {domain} integr\u00e1ci\u00f3hoz itt {config_file} , {line} : {error} ."
+        },
+        "config_validator_unknown_err": {
+            "message": "Ismeretlen hiba t\u00f6rt\u00e9nt a(z) {domain} konfigur\u00e1ci\u00f3 ellen\u0151rz\u0151 h\u00edv\u00e1sakor - {error}."
+        },
+        "core_config_reload_failed": {
+            "message": "Nem siker\u00fclt \u00fajrat\u00f6lteni a Home Assistant Core konfigur\u00e1ci\u00f3j\u00e1t \u2013 {error}"
+        },
+        "max_length_exceeded": {
+            "message": "A(z) {property_name} tulajdons\u00e1g {value} \u00e9rt\u00e9k\u00e9nek maxim\u00e1lis hossza {max_length} karakter lehet."
+        },
+        "multiple_integration_config_errors": {
+            "message": "A(z) {domain} integr\u00e1ci\u00f3 konfigur\u00e1ci\u00f3j\u00e1nak feldolgoz\u00e1sa t\u00f6bb ( {errors} ) hiba miatt nem siker\u00fclt. Tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt ellen\u0151rizze a napl\u00f3kat."
+        },
+        "oauth2_helper_reauth_required": {
+            "message": "A hiteles\u00edt\u0151 adatok \u00e9rv\u00e9nytelenek, \u00fajrahiteles\u00edt\u00e9s sz\u00fcks\u00e9ges"
+        },
+        "oauth2_helper_refresh_failed": {
+            "message": "OAuth2 token friss\u00edt\u00e9s sikertelen a k\u00f6vetkez\u0151n\u00e9l: {domain}"
+        },
+        "oauth2_helper_refresh_transient": {
+            "message": "\u00c1tmeneti hiba a hiteles\u00edt\u0151 adatok friss\u00edt\u00e9se sor\u00e1n a k\u00f6vetkez\u0151n\u00e9l: {domain}, pr\u00f3b\u00e1lja \u00fajra k\u00e9s\u0151bb"
+        },
+        "oauth2_implementation_unavailable": {
+            "message": "Az OAuth2-implement\u00e1ci\u00f3 nem \u00e9rhet\u0151 el, \u00fajrapr\u00f3b\u00e1lkoz\u00e1s"
+        },
+        "oauth2_unknown_implementation": {
+            "message": "A be\u00e1ll\u00edtott hiteles\u00edt\u00e9si m\u00f3dszer m\u00e1r nem \u00e9rhet\u0151 el, \u00fajrahiteles\u00edt\u00e9s sz\u00fcks\u00e9ges."
+        },
+        "platform_component_load_err": {
+            "message": "Platformhiba: {domain} - {error}."
+        },
+        "platform_component_load_exc": {
+            "message": "Platformhiba: {domain} - {error}."
+        },
+        "platform_config_validation_err": {
+            "message": "\u00c9rv\u00e9nytelen konfigur\u00e1ci\u00f3 {domain} sz\u00e1m\u00e1ra a {p_name} integr\u00e1ci\u00f3b\u00f3l a {config_file} f\u00e1jl {line} sor\u00e1ban: {error} . Tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt ellen\u0151rizze a napl\u00f3kat."
+        },
+        "platform_schema_validator_err": {
+            "message": "Ismeretlen hiba a(z) {domain} konfigur\u00e1ci\u00f3j\u00e1nak \u00e9rv\u00e9nyes\u00edt\u00e9sekor {p_name} integr\u00e1ci\u00f3b\u00f3l \u2013 {error}."
+        },
+        "scene_config_reload_failed": {
+            "message": "Nem siker\u00fclt \u00fajrat\u00f6lteni a Home Assistant jelenet platform konfigur\u00e1ci\u00f3j\u00e1t \u2013 {error}"
+        },
+        "service_config_entry_not_found": {
+            "message": "A(z) {domain} integr\u00e1ci\u00f3 {entry_id} azonos\u00edt\u00f3j\u00fa konfigur\u00e1ci\u00f3s bejegyz\u00e9se nem tal\u00e1lhat\u00f3."
+        },
+        "service_config_entry_not_loaded": {
+            "message": "A(z) {domain} integr\u00e1ci\u00f3 {entry_title} konfigur\u00e1ci\u00f3s bejegyz\u00e9se nincs bet\u00f6ltve."
+        },
+        "service_config_entry_wrong_domain": {
+            "message": "A(z) {entry_title} konfigur\u00e1ci\u00f3s bejegyz\u00e9s nem tartozik a(z) {domain} integr\u00e1ci\u00f3hoz."
+        },
+        "service_device_not_found": {
+            "message": "A(z) {device_id} azonos\u00edt\u00f3j\u00fa eszk\u00f6z nem tal\u00e1lhat\u00f3."
+        },
+        "service_device_wrong_domain": {
+            "message": "A(z) {device_name} eszk\u00f6z nem tartozik a(z) {domain} integr\u00e1ci\u00f3hoz."
+        },
+        "service_does_not_support_response": {
+            "message": "Egy olyan m\u0171veletet, amely nem ad vissza v\u00e1laszt, nem lehet a(z) {return_response} param\u00e9terrel megh\u00edvni."
+        },
+        "service_found_multiple_config_entry_for_domain": {
+            "message": "T\u00f6bb konfigur\u00e1ci\u00f3s bejegyz\u00e9s is tal\u00e1lhat\u00f3 a(z) {domain} integr\u00e1ci\u00f3hoz."
+        },
+        "service_found_no_config_entry_for_domain": {
+            "message": "Nem tal\u00e1lhat\u00f3 konfigur\u00e1ci\u00f3s bejegyz\u00e9s a(z) {domain} integr\u00e1ci\u00f3hoz."
+        },
+        "service_lacks_response_request": {
+            "message": "A m\u0171velet v\u00e1laszt ig\u00e9nyel \u00e9s a(z) {return_response} param\u00e9terrel kell megh\u00edvni."
+        },
+        "service_not_found": {
+            "message": "A(z) {domain}.{service} m\u0171velet nem tal\u00e1lhat\u00f3."
+        },
+        "service_not_supported": {
+            "message": "A(z) {entity_id} entit\u00e1s nem t\u00e1mogatja a(z) {domain}.{service} m\u0171veletet."
+        },
+        "service_reponse_invalid": {
+            "message": "Nem siker\u00fclt feldolgozni a visszak\u00fcld\u00f6tt m\u0171veleti v\u00e1laszadatokat. Sz\u00f3t\u00e1r form\u00e1tum az elv\u00e1rt, de {response_data_type} t\u00edpus\u00fa adatot kaptunk."
+        },
+        "service_should_be_blocking": {
+            "message": "Egy nem blokkol\u00f3 m\u0171velet megh\u00edv\u00e1sa a(z) {non_blocking_argument} param\u00e9terrel nem haszn\u00e1lhat\u00f3 egy\u00fctt a(z) {return_response} param\u00e9terrel."
+        }
+    },
+    "issues": {
+        "config_entry_only": {
+            "description": "{domain} integr\u00e1ci\u00f3 nem t\u00e1mogatja a YAML f\u00e1jl \u00e1ltali konfigur\u00e1ci\u00f3t. Lehet, hogy nyilv\u00e1nval\u00f3 probl\u00e9m\u00e1kat ez nem okoz, de a YAML-ben defini\u00e1lt konfigur\u00e1ci\u00f3s be\u00e1ll\u00edt\u00e1sok nem ker\u00fclnek alkalmaz\u00e1sra. \n\nMegold\u00e1s: \n\n1. Ha esetleg m\u00e9g nem tette meg, [\u00e1ll\u00edtsa be az integr\u00e1ci\u00f3t]({add_integration}).\n\n2. T\u00e1vol\u00edtsa el a YAML konfigur\u00e1ci\u00f3s f\u00e1jlb\u00f3l a bejegyz\u00e9st: `{domain}:`\n\n3. Ind\u00edtsa \u00fajra a Home Assistantot.",
+            "title": "Az integr\u00e1ci\u00f3 nem t\u00e1mogatja a YAML konfigur\u00e1ci\u00f3t: {domain}"
+        },
+        "config_entry_reauth": {
+            "description": "\u00dajrahiteles\u00edt\u00e9sre van sz\u00fcks\u00e9g",
+            "title": "A(z) {name} hiteles\u00edt\u00e9se lej\u00e1rt"
+        },
+        "config_entry_unique_id_collision": {
+            "description": "T\u00f6bb {domain} konfigur\u00e1ci\u00f3s bejegyz\u00e9s tal\u00e1lhat\u00f3 ugyanazzal az egyedi azonos\u00edt\u00f3val. A konfigur\u00e1ci\u00f3s bejegyz\u00e9sek nevei: {titles}.\n\nA hiba kijav\u00edt\u00e1s\u00e1hoz [konfigur\u00e1lja az integr\u00e1ci\u00f3t]({configure_url}) \u00e9s t\u00e1vol\u00edtson el minden duplik\u00e1lt bejegyz\u00e9st, kiv\u00e9ve egyet.\n\nMegjegyz\u00e9s: Elk\u00e9pzelhet\u0151, hogy \u00fajabb duplik\u00e1lt csoportok jelennek meg, miut\u00e1n ezeket elt\u00e1vol\u00edtotta.",
+            "title": "T\u00f6bb {domain} konfigur\u00e1ci\u00f3s bejegyz\u00e9s tal\u00e1lhat\u00f3 azonos egyedi azonos\u00edt\u00f3val"
+        },
+        "config_entry_unique_id_collision_many": {
+            "description": "T\u00f6bb ({number_of_entries}) {domain} konfigur\u00e1ci\u00f3s bejegyz\u00e9s tal\u00e1lhat\u00f3 ugyanazzal az egyedi azonos\u00edt\u00f3val. Az els\u0151 {title_limit} konfigur\u00e1ci\u00f3s bejegyz\u00e9s nevei: {titles}.\n\nA hiba kijav\u00edt\u00e1s\u00e1hoz [konfigur\u00e1lja az integr\u00e1ci\u00f3t]({configure_url}) \u00e9s t\u00e1vol\u00edtson el minden duplik\u00e1lt bejegyz\u00e9st, kiv\u00e9ve egyet.\n\nMegjegyz\u00e9s: Elk\u00e9pzelhet\u0151, hogy \u00fajabb duplik\u00e1lt csoportok jelennek meg, miut\u00e1n ezeket elt\u00e1vol\u00edtotta.",
+            "title": "T\u00f6bb {domain} konfigur\u00e1ci\u00f3s bejegyz\u00e9s tal\u00e1lhat\u00f3 azonos egyedi azonos\u00edt\u00f3val"
+        },
+        "country_not_configured": {
+            "description": "Nincs orsz\u00e1g be\u00e1ll\u00edtva. Az orsz\u00e1g be\u00e1ll\u00edt\u00e1s\u00e1hoz v\u00e1lassza az al\u00e1bbi **Tov\u00e1bbi inform\u00e1ci\u00f3** lehet\u0151s\u00e9get.",
+            "title": "Az orsz\u00e1g nincs konfigur\u00e1lva"
+        },
+        "deprecated_architecture": {
+            "description": "Ez a rendszer 32 bites hardvert haszn\u00e1l (`{arch}`), amely elavultnak min\u0151s\u00fcl, \u00e9s a Home Assistant 2025.12 verzi\u00f3 megjelen\u00e9s\u00e9t k\u00f6vet\u0151en m\u00e1r nem kap friss\u00edt\u00e9seket. Mivel ez a hardver nem k\u00e9pes \u00fajabb Home Assistant verzi\u00f3k futtat\u00e1s\u00e1ra, \u00faj eszk\u00f6zre kell \u00e1tt\u00e9rnie.",
+            "title": "Elavul\u00e1si \u00e9rtes\u00edt\u00e9s: 32 bites architekt\u00fara"
+        },
+        "deprecated_container": {
+            "description": "Ez a rendszer egy 32 bites oper\u00e1ci\u00f3s rendszeren fut (`{arch}`), amely elavultnak min\u0151s\u00fcl, \u00e9s a Home Assistant 2025.12 verzi\u00f3j\u00e1nak megjelen\u00e9se ut\u00e1n m\u00e1r nem kap friss\u00edt\u00e9seket. Ellen\u0151rizze, hogy a rendszere k\u00e9pes-e 64 bites oper\u00e1ci\u00f3s rendszert futtatni. Ha nem, akkor \u00faj hardverre kell \u00e1tt\u00e9rnie.",
+            "title": "Elavul\u00e1si \u00e9rtes\u00edt\u00e9s: 32 bites architekt\u00fara"
+        },
+        "deprecated_method": {
+            "description": "Ez a rendszer a(z) {installation_type} telep\u00edt\u00e9si m\u00f3dot haszn\u00e1lja, amely a Home Assistant 2025.12 \u00f3ta nem t\u00e1mogatott. A friss\u00edt\u00e9sek \u00e9s a t\u00e1mogat\u00e1s folytat\u00e1s\u00e1hoz t\u00e9rjen \u00e1t egy t\u00e1mogatott telep\u00edt\u00e9si m\u00f3dszerre.",
+            "title": "Nem t\u00e1mogatott telep\u00edt\u00e9si m\u00f3d"
+        },
+        "deprecated_method_architecture": {
+            "description": "Ez a rendszer a(z) {installation_type} telep\u00edt\u00e9si m\u00f3dot \u00e9s 32 bites hardvert (`{arch}`) haszn\u00e1l, amelyek mindkett\u0151 a Home Assistant 2025.12 \u00f3ta nem t\u00e1mogatottak. A friss\u00edt\u00e9sek \u00e9s a t\u00e1mogat\u00e1s folytat\u00e1s\u00e1hoz v\u00e1ltson t\u00e1mogatott hardverre \u00e9s telep\u00edt\u00e9si m\u00f3dszerre.",
+            "title": "Nem t\u00e1mogatott telep\u00edt\u00e9si m\u00f3d \u00e9s architekt\u00fara"
+        },
+        "deprecated_os_aarch64": {
+            "description": "Ez a rendszer egy 32 bites oper\u00e1ci\u00f3s rendszeren fut (`armv7`), amely elavultnak min\u0151s\u00fcl, \u00e9s a Home Assistant 2025.12 verzi\u00f3 megjelen\u00e9s\u00e9t k\u00f6vet\u0151en nem kap t\u00f6bb friss\u00edt\u00e9st. A Home Assistant tov\u00e1bbi haszn\u00e1lat\u00e1hoz ezen a hardveren telep\u00edtenie kell egy 64 bites oper\u00e1ci\u00f3s rendszert. Tov\u00e1bbi inform\u00e1ci\u00f3\u00e9rt olvassa el [telep\u00edt\u00e9si \u00fatmutat\u00f3nkat]({installation_guide}).",
+            "title": "Elavul\u00e1si \u00e9rtes\u00edt\u00e9s: 32 bites architekt\u00fara"
+        },
+        "deprecated_os_armv7": {
+            "description": "Ez a rendszer egy 32 bites oper\u00e1ci\u00f3s rendszeren fut (`armv7`), amely elavultnak sz\u00e1m\u00edt, \u00e9s a Home Assistant 2025.12 verzi\u00f3 ut\u00e1n nem kap tov\u00e1bbi friss\u00edt\u00e9seket. Mivel ez a hardver nem k\u00e9pes \u00fajabb verzi\u00f3k futtat\u00e1s\u00e1ra, \u00faj eszk\u00f6zre kell \u00e1tt\u00e9rnie.",
+            "title": "Elavul\u00e1si \u00e9rtes\u00edt\u00e9s: 32 bites architekt\u00fara"
+        },
+        "deprecated_system_packages_config_flow_integration": {
+            "description": "A(z) {integration_title} integr\u00e1ci\u00f3 elt\u00e1vol\u00edt\u00e1sra ker\u00fcl, mivel olyan rendszerf\u00fcgg\u0151s\u00e9gekre \u00e9p\u00fcl, amelyek csak elavult architekt\u00far\u00e1n fut\u00f3 rendszerekre telep\u00edthet\u0151k. A probl\u00e9ma megold\u00e1s\u00e1hoz t\u00e1vol\u00edtsa el az \u00f6sszes \u201e{integration_title}\u201d konfigur\u00e1ci\u00f3s bejegyz\u00e9st.",
+            "title": "A(z) {integration_title} integr\u00e1ci\u00f3 el lesz t\u00e1vol\u00edtva."
+        },
+        "deprecated_system_packages_yaml_integration": {
+            "description": "A(z) {integration_title} integr\u00e1ci\u00f3 elt\u00e1vol\u00edt\u00e1sra ker\u00fcl, mivel olyan rendszerf\u00fcgg\u0151s\u00e9gekre t\u00e1maszkodik, amelyek csak elavult architekt\u00far\u00e1n fut\u00f3 rendszerekre telep\u00edthet\u0151k. A probl\u00e9ma megold\u00e1s\u00e1hoz t\u00e1vol\u00edtsa el a(z) {domain} bejegyz\u00e9st a `configuration.yaml` f\u00e1jlb\u00f3l, majd ind\u00edtsa \u00fajra a Home Assistantot.",
+            "title": "A(z) {integration_title} integr\u00e1ci\u00f3 el lesz t\u00e1vol\u00edtva"
+        },
+        "deprecated_trigger_behavior": {
+            "description": "Egy automatizmus, szkript vagy sablon entit\u00e1s a(z) `{deprecated_behavior}` esem\u00e9nyind\u00edt\u00f3-viselked\u00e9si be\u00e1ll\u00edt\u00e1st haszn\u00e1lja, amelyet \u00e1tneveztek `{new_behavior}` n\u00e9vre. A r\u00e9gi \u00e9rt\u00e9k egyel\u0151re m\u00e9g m\u0171k\u00f6dik, de a t\u00e1mogat\u00e1s\u00e1t egy k\u00e9s\u0151bbi kiad\u00e1sban elt\u00e1vol\u00edtjuk.\n\nA probl\u00e9ma megold\u00e1s\u00e1hoz nyissa meg az \u00e9rintett automatizmust vagy szkriptet a szerkeszt\u0151ben, \u00e9s mentse el \u00fajra; a Home Assistant automatikusan felismeri \u00e9s friss\u00edti az elavult be\u00e1ll\u00edt\u00e1st. M\u00e1sik lehet\u0151s\u00e9gk\u00e9nt szerkessze k\u00f6zvetlen\u00fcl a konfigur\u00e1ci\u00f3s f\u00e1jlokat (p\u00e9ld\u00e1ul az `automations.yaml` f\u00e1jlt), \u00e9s az esem\u00e9nyind\u00edt\u00f3k be\u00e1ll\u00edt\u00e1saiban m\u00f3dos\u00edtsa a `behavior: {deprecated_behavior}` \u00e9rt\u00e9ket `behavior: {new_behavior}` \u00e9rt\u00e9kre. A felt\u00e9telek `behavior` be\u00e1ll\u00edt\u00e1s\u00e1t hagyja v\u00e1ltozatlanul, mivel azok tov\u00e1bbra is az `any` \u00e9s `all` \u00e9rt\u00e9keket haszn\u00e1lj\u00e1k. Ezut\u00e1n ind\u00edtsa \u00fajra a Home Assistantot.",
+            "title": "Elavult esem\u00e9nyind\u00edt\u00f3 viselked\u00e9si be\u00e1ll\u00edt\u00e1s van haszn\u00e1latban"
+        },
+        "deprecated_yaml": {
+            "description": "A(z) {integration_title} YAML haszn\u00e1lat\u00e1val t\u00f6rt\u00e9n\u0151 konfigur\u00e1l\u00e1sa elt\u00e1vol\u00edt\u00e1sra ker\u00fcl.\n\nA megl\u00e9v\u0151 YAML konfigur\u00e1ci\u00f3j\u00e1t automatikusan import\u00e1ltuk a felhaszn\u00e1l\u00f3i fel\u00fcletre.\n\nT\u00e1vol\u00edtsa el a `{domain}` konfigur\u00e1ci\u00f3t a configuration.yaml f\u00e1jlb\u00f3l \u00e9s ind\u00edtsa \u00fajra a Home Assistantot, hogy megoldja ezt a probl\u00e9m\u00e1t.",
+            "title": "A(z) {integration_title} YAML konfigur\u00e1ci\u00f3 elt\u00e1vol\u00edt\u00e1sra ker\u00fcl"
+        },
+        "entity_own_area_without_own_name": {
+            "description": "A(z) `{entity_id}` entit\u00e1snak nincs saj\u00e1t neve, ez\u00e9rt az eszk\u00f6z\u00e9t k\u00e9pviseli, \u00e9s ott van, ahol az eszk\u00f6z. Az entit\u00e1son k\u00f6zvetlen\u00fcl be\u00e1ll\u00edtott ter\u00fclet ennek ellentmond, ez\u00e9rt nem t\u00e1mogatott.\n\nA probl\u00e9ma megold\u00e1s\u00e1hoz nyissa meg az [entit\u00e1s be\u00e1ll\u00edt\u00e1sait]({entity_settings_url}), \u00e9s vagy t\u00e1vol\u00edtsa el az entit\u00e1s ter\u00fclet\u00e9t, vagy adjon nevet az entit\u00e1snak.",
+            "title": "A(z) {entity_id} entit\u00e1snak van ter\u00fclete, de nincs saj\u00e1t neve"
+        },
+        "historic_currency": {
+            "description": "{currency} p\u00e9nznem m\u00e1r nincs haszn\u00e1latban, k\u00e9rem, konfigur\u00e1lja \u00fajra a p\u00e9nznemet.",
+            "title": "A be\u00e1ll\u00edtott p\u00e9nznem m\u00e1r nincs haszn\u00e1latban"
+        },
+        "imperial_unit_system": {
+            "description": "Az angolsz\u00e1sz m\u00e9rt\u00e9kegys\u00e9grendszer elavult \u00e9s jelenleg az Egyes\u00fclt \u00c1llamokbeli szok\u00e1sos m\u00e9rt\u00e9kegys\u00e9geket haszn\u00e1lja a rendszere. K\u00e9rj\u00fck, friss\u00edtse a konfigur\u00e1ci\u00f3t az Egyes\u00fclt \u00c1llamokbeli szok\u00e1sos m\u00e9rt\u00e9kegys\u00e9grendszer haszn\u00e1lat\u00e1ra, majd t\u00f6ltse \u00fajra a Core konfigur\u00e1ci\u00f3t a probl\u00e9ma megold\u00e1s\u00e1hoz.",
+            "title": "Az angolsz\u00e1sz m\u00e9rt\u00e9kegys\u00e9grendszer elavult"
+        },
+        "integration_not_found": {
+            "fix_flow": {
+                "abort": {
+                    "issue_ignored": "A nem l\u00e9tez\u0151 {domain} integr\u00e1ci\u00f3 figyelmen k\u00edv\u00fcl lett hagyva."
+                },
+                "step": {
+                    "init": {
+                        "description": "A(z) `{domain}` integr\u00e1ci\u00f3 nem tal\u00e1lhat\u00f3. Ez akkor fordul el\u0151, ha egy (egy\u00e9ni) integr\u00e1ci\u00f3 el lett t\u00e1vol\u00edtva a Home Assistantb\u00f3l, de m\u00e9g mindig vannak konfigur\u00e1ci\u00f3k ehhez a(z) `{domain}` integr\u00e1ci\u00f3hoz. K\u00e9rj\u00fck, haszn\u00e1lja az al\u00e1bbi gombokat a kor\u00e1bbi konfigur\u00e1ci\u00f3k elt\u00e1vol\u00edt\u00e1s\u00e1hoz, vagy hagyja figyelmen k\u00edv\u00fcl ezt az \u00e9rtes\u00edt\u00e9st.",
+                        "menu_options": {
+                            "confirm": "Kor\u00e1bbi konfigur\u00e1ci\u00f3k elt\u00e1vol\u00edt\u00e1sa",
+                            "ignore": "Mell\u0151z\u00e9s"
+                        },
+                        "title": "A(z) {domain} integr\u00e1ci\u00f3 nem tal\u00e1lhat\u00f3"
+                    }
+                }
+            },
+            "title": "A(z) {domain} integr\u00e1ci\u00f3 nem tal\u00e1lhat\u00f3"
+        },
+        "legacy_templates_false": {
+            "description": "A sablonokkal kapcsolatban semmi nem fog v\u00e1ltozni.\n\nA probl\u00e9ma megold\u00e1s\u00e1hoz t\u00e1vol\u00edtsa el a `legacy_templates` kulcsot a `homeassistant` konfigur\u00e1ci\u00f3b\u00f3l a configuration.yaml f\u00e1jlban, majd ind\u00edtsa \u00fajra a Home Assistantot.",
+            "title": "legacy_templates konfigur\u00e1ci\u00f3s kulcs elt\u00e1vol\u00edt\u00e1sa"
+        },
+        "legacy_templates_true": {
+            "description": "K\u00e9rj\u00fck, k\u00f6vesse az al\u00e1bbi l\u00e9p\u00e9seket:\n- M\u00f3dos\u00edtsa a konfigur\u00e1ci\u00f3j\u00e1t \u00fagy, hogy t\u00e1mogassa a sablonok renderel\u00e9s\u00e9t nat\u00edv python t\u00edpusokra.\n- T\u00e1vol\u00edtsa el a `legacy_templates` kulcsot a `homeassistant` konfigur\u00e1ci\u00f3b\u00f3l a configuration.yaml f\u00e1jlban.\n- Ind\u00edtsa \u00fajra a Home Assistantot a probl\u00e9ma megold\u00e1s\u00e1hoz.",
+            "title": "A r\u00e9gi sablonok t\u00e1mogat\u00e1s\u00e1nak megsz\u00fcntet\u00e9se"
+        },
+        "orphaned_ignored_config_entry": {
+            "fix_flow": {
+                "abort": {
+                    "issue_ignored": "A nem l\u00e9tez\u0151 {domain} integr\u00e1ci\u00f3 figyelmen k\u00edv\u00fcl hagyva."
+                },
+                "step": {
+                    "init": {
+                        "description": "Van egy figyelmen k\u00edv\u00fcl hagyott \u00e1rva konfigur\u00e1ci\u00f3s bejegyz\u00e9s a `{domain}` integr\u00e1ci\u00f3hoz. Ez akkor fordulhat el\u0151, amikor egy integr\u00e1ci\u00f3t elt\u00e1vol\u00edtanak, de a konfigur\u00e1ci\u00f3s bejegyz\u00e9s m\u00e9g mindig jelen van a Home Assistantban.\n\nA probl\u00e9ma megold\u00e1s\u00e1hoz nyomja meg a **T\u00f6rl\u00e9s** gombot az \u00e1rva bejegyz\u00e9s elt\u00e1vol\u00edt\u00e1s\u00e1hoz.",
+                        "menu_options": {
+                            "confirm": "T\u00f6rl\u00e9s",
+                            "ignore": "Figyelmen k\u00edv\u00fcl hagy\u00e1s"
+                        },
+                        "title": "\u00c1rva figyelmen k\u00edv\u00fcl hagyott konfigur\u00e1ci\u00f3s bejegyz\u00e9s: {domain}"
+                    }
+                }
+            },
+            "title": "\u00c1rva figyelmen k\u00edv\u00fcl hagyott konfigur\u00e1ci\u00f3s bejegyz\u00e9s: {domain}"
+        },
+        "platform_config_not_supported": {
+            "description": "A(z) {integration_domain} integr\u00e1ci\u00f3 konfigur\u00e1l\u00e1sa a `{platform_key}` kulcs `{platform_domain}:` al\u00e1 helyez\u00e9s\u00e9vel nem t\u00e1mogatott. A(z) {integration_domain} integr\u00e1ci\u00f3t ehelyett a saj\u00e1t `{integration_domain}:` kulcsa alatt kell konfigur\u00e1lni.\n\nA megold\u00e1s l\u00e9p\u00e9sei:\n\n1. T\u00e1vol\u00edtsa el a k\u00f6vetkez\u0151t a YAML-konfigur\u00e1ci\u00f3s f\u00e1jlb\u00f3l:\n\n{yaml_example}\n\n2. Helyezze \u00e1t a konfigur\u00e1ci\u00f3t a `{integration_domain}:` kulcs al\u00e1.\n\n3. Ind\u00edtsa \u00fajra a Home Assistantot.\n\nA r\u00e9szletes dokument\u00e1ci\u00f3hoz v\u00e1lassza a \u201eTudjon meg t\u00f6bbet\" lehet\u0151s\u00e9get.",
+            "title": "Nem t\u00e1mogatott YAML-konfigur\u00e1ci\u00f3 a(z) {integration_domain} integr\u00e1ci\u00f3hoz"
+        },
+        "platform_only": {
+            "description": "{domain} integr\u00e1ci\u00f3 nem t\u00e1mogatja a YAML f\u00e1jl \u00e1ltali konfigur\u00e1ci\u00f3t, saj\u00e1t kulcsbejegyz\u00e9sben; azt a t\u00e1mogatott platfomok alatt kell be\u00e1ll\u00edtani.\n\nMegold\u00e1s: \n\n1. T\u00e1vol\u00edtsa el a YAML konfigur\u00e1ci\u00f3s f\u00e1jlb\u00f3l a bejegyz\u00e9st: `{domain}:`\n\n2. Ind\u00edtsa \u00fajra a Home Assistantot.",
+            "title": "A {domain} integr\u00e1ci\u00f3 nem t\u00e1mogatja a YAML konfigur\u00e1ci\u00f3t saj\u00e1t kulcsbejegyz\u00e9sben"
+        },
+        "platform_setup_not_supported": {
+            "description": "Nem lehets\u00e9ges a(z) {integration_domain} {platform_domain} konfigur\u00e1l\u00e1sa a `{platform_key}` hozz\u00e1ad\u00e1s\u00e1val a {platform_domain} konfigur\u00e1ci\u00f3hoz. A be\u00e1ll\u00edt\u00e1ssal kapcsolatos tov\u00e1bbi inform\u00e1ci\u00f3k\u00e9rt tekintse meg a dokument\u00e1ci\u00f3t.\n\nA megold\u00e1s l\u00e9p\u00e9sei:\n\n1. T\u00e1vol\u00edtsa el a `{platform_key}` el\u0151fordul\u00e1sait a `{platform_domain}:` konfigur\u00e1ci\u00f3b\u00f3l a YAML-konfigur\u00e1ci\u00f3s f\u00e1jlban.\n\n2. Ind\u00edtsa \u00fajra a Home Assistantot.",
+            "title": "Fel nem haszn\u00e1lt YAML-konfigur\u00e1ci\u00f3 a(z) {integration_domain} integr\u00e1ci\u00f3hoz"
+        },
+        "storage_corruption": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "A `{storage_key}` t\u00e1rol\u00f3t nem siker\u00fclt elemezni \u00e9s \u00e1t lett nevezve `{corrupt_path}`-ra, hogy a Home Assistant folytathassa a m\u0171k\u00f6d\u00e9s\u00e9t.\n\nEgy alap\u00e9rtelmezett `{storage_key}` automatikusan l\u00e9trej\u00f6hetett.\n\nHa manu\u00e1lisan szerkesztette a t\u00e1rol\u00e1si f\u00e1jlt, jav\u00edtsa ki a `{corrupt_path}` f\u00e1jlban tal\u00e1lhat\u00f3 szintaktikai hib\u00e1kat, \u00e1ll\u00edtsa vissza a f\u00e1jlt az eredeti `{original_path}` hely\u00e9re \u00e9s ind\u00edtsa \u00fajra a Home Assistantot. Ellenkez\u0151 esetben \u00e1ll\u00edtsa vissza a rendszert egy biztons\u00e1gi ment\u00e9sb\u0151l.\n\nV\u00e1lassza a lenti **Mehet** lehet\u0151s\u00e9get, hogy meger\u0151s\u00edtse, hogy jav\u00edtotta a f\u00e1jlt vagy helyre\u00e1ll\u00edtotta egy biztons\u00e1gi ment\u00e9sb\u0151l.\n\nA pontos hiba: {error}",
+                        "title": "T\u00e1rhelys\u00e9r\u00fcl\u00e9s \u00e9szlelve: {storage_key}"
+                    }
+                }
+            },
+            "title": "T\u00e1rhelys\u00e9r\u00fcl\u00e9s \u00e9szlelve: {storage_key}"
+        },
+        "unsupported_local_deps": {
+            "description": "Ez a rendszer a Home Assistantot virtu\u00e1lis k\u00f6rnyezeten vagy Docker-kont\u00e9neren k\u00edv\u00fcl futtatja. Ez nem t\u00e1mogatott, \u00e9s a Home Assistant 2026.11-es kiad\u00e1sa ut\u00e1n nem fog m\u0171k\u00f6dni.",
+            "title": "Elavul\u00e1si \u00e9rtes\u00edt\u00e9s: Telep\u00edt\u00e9si m\u00f3dszer"
+        }
+    },
+    "services": {
+        "check_config": {
+            "description": "Ellen\u0151rzi a Home Assistant YAML-konfigur\u00e1ci\u00f3s f\u00e1jlokat hib\u00e1k szempontj\u00e1b\u00f3l. A hib\u00e1k a Home Assistant napl\u00f3kban jelennek meg.",
+            "name": "Home Assistant konfigur\u00e1ci\u00f3 ellen\u0151rz\u00e9se"
+        },
+        "reload_all": {
+            "description": "\u00dajrat\u00f6lti az \u00f6sszes olyan YAML-konfigur\u00e1ci\u00f3t, amely a Home Assistant \u00fajraind\u00edt\u00e1sa n\u00e9lk\u00fcl friss\u00edthet\u0151.",
+            "name": "\u00d6sszes Home Assistant konfigur\u00e1ci\u00f3 \u00fajrat\u00f6lt\u00e9se"
+        },
+        "reload_config_entry": {
+            "description": "\u00dajrat\u00f6lti a megadott azonos\u00edt\u00f3j\u00fa konfigur\u00e1ci\u00f3s bejegyz\u00e9st.",
+            "fields": {
+                "entry_id": {
+                    "description": "Az \u00fajrat\u00f6ltend\u0151 konfigur\u00e1ci\u00f3s bejegyz\u00e9s.",
+                    "name": "Konfigur\u00e1ci\u00f3s bejegyz\u00e9s azonos\u00edt\u00f3"
+                }
+            },
+            "name": "Konfigur\u00e1ci\u00f3s bejegyz\u00e9sek \u00fajrat\u00f6lt\u00e9se"
+        },
+        "reload_core_config": {
+            "description": "A Core konfigur\u00e1ci\u00f3 \u00fajrat\u00f6lt\u00e9se a YAML-konfigur\u00e1ci\u00f3b\u00f3l.",
+            "name": "Core konfigur\u00e1ci\u00f3 \u00fajrat\u00f6lt\u00e9se"
+        },
+        "reload_custom_templates": {
+            "description": "\u00dajrat\u00f6lti a `custom_templates` mapp\u00e1ban tal\u00e1lhat\u00f3 Jinja2 sablonokat a konfigur\u00e1ci\u00f3dban. Az \u00faj \u00e9rt\u00e9kek a sablon k\u00f6vetkez\u0151 megh\u00edv\u00e1sakor lesznek alkalmazva.",
+            "name": "Egy\u00e9ni Jinja2 sablonok \u00fajrat\u00f6lt\u00e9se"
+        },
+        "restart": {
+            "description": "\u00dajraind\u00edtja a Home Assistantot.",
+            "fields": {
+                "safe_mode": {
+                    "description": "Egy\u00e9ni integr\u00e1ci\u00f3k \u00e9s egy\u00e9ni k\u00e1rty\u00e1k letilt\u00e1sa.",
+                    "name": "Cs\u00f6kkentett m\u00f3d"
+                }
+            },
+            "name": "Home Assistant \u00fajraind\u00edt\u00e1sa"
+        },
+        "save_persistent_states": {
+            "description": "Az \u00e1lland\u00f3 \u00e1llapotokat azonnal menti. Fenntartja a norm\u00e1l periodikus ment\u00e9si intervallumot.",
+            "name": "\u00c1lland\u00f3 \u00e1llapotok ment\u00e9se"
+        },
+        "set_location": {
+            "description": "Friss\u00edti a Home Assistant hely\u00e9t.",
+            "fields": {
+                "elevation": {
+                    "description": "Az \u00d6n hely\u00e9nek tengerszint feletti magass\u00e1ga.",
+                    "name": "Magass\u00e1g"
+                },
+                "latitude": {
+                    "description": "A hely sz\u00e9less\u00e9gi foka.",
+                    "name": "Sz\u00e9less\u00e9g"
+                },
+                "longitude": {
+                    "description": "A hely hossz\u00fas\u00e1gi foka.",
+                    "name": "Hossz\u00fas\u00e1g"
+                }
+            },
+            "name": "Home Assistant helysz\u00edn be\u00e1ll\u00edt\u00e1sa"
+        },
+        "stop": {
+            "description": "Le\u00e1ll\u00edtja a Home Assistantot.",
+            "name": "Home Assistant le\u00e1ll\u00edt\u00e1sa"
+        },
+        "toggle": {
+            "description": "\u00c1ltal\u00e1nos m\u0171velet eszk\u00f6z\u00f6k ki- \u00e9s bekapcsol\u00e1s\u00e1ra b\u00e1rmely tartom\u00e1nyban.",
+            "name": "Be/ki kapcsol\u00e1s - \u00e1ltal\u00e1nos"
+        },
+        "turn_off": {
+            "description": "\u00c1ltal\u00e1nos m\u0171velet eszk\u00f6z\u00f6k kikapcsol\u00e1s\u00e1ra b\u00e1rmely tartom\u00e1nyban.",
+            "name": "Kikapcsol\u00e1s - \u00e1ltal\u00e1nos"
+        },
+        "turn_on": {
+            "description": "\u00c1ltal\u00e1nos m\u0171velet eszk\u00f6z\u00f6k bekapcsol\u00e1s\u00e1ra b\u00e1rmely tartom\u00e1nyban.",
+            "name": "Bekapcsol\u00e1s - \u00e1ltal\u00e1nos"
+        },
+        "update_entity": {
+            "description": "Egy vagy t\u00f6bb entit\u00e1s adatainak friss\u00edt\u00e9s\u00e9t k\u00e9nyszer\u00edti.",
+            "fields": {
+                "entity_id": {
+                    "description": "Azoknak az entit\u00e1soknak a list\u00e1ja, amelyeket friss\u00edt\u00e9sre szeretne k\u00e9nyszer\u00edteni.",
+                    "name": "Friss\u00edtend\u0151 entit\u00e1sok"
+                }
+            },
+            "name": "Entit\u00e1s friss\u00edt\u00e9se"
+        }
+    },
+    "system_health": {
+        "info": {
+            "arch": "Processzor architekt\u00fara",
+            "config_dir": "Konfigur\u00e1ci\u00f3s k\u00f6nyvt\u00e1r",
+            "container_arch": "Kont\u00e9ner architekt\u00fara",
+            "dev": "Fejleszt\u00e9s",
+            "docker": "Docker",
+            "hassio": "Supervisor",
+            "installation_type": "Telep\u00edt\u00e9s t\u00edpusa",
+            "os_name": "Oper\u00e1ci\u00f3s rendszer csal\u00e1d",
+            "os_version": "Oper\u00e1ci\u00f3s rendszer verzi\u00f3ja",
+            "python_version": "Python verzi\u00f3",
+            "timezone": "Id\u0151z\u00f3na",
+            "user": "Felhaszn\u00e1l\u00f3",
+            "version": "Verzi\u00f3",
+            "virtualenv": "Virtu\u00e1lis k\u00f6rnyezet"
+        }
+    }
+}

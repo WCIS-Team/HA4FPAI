@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Sauvegarde automatique",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "\u00c9tape de sauvegarde"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Termin\u00e9 avec succ\u00e8s",
+                            "failed": "\u00c9chou\u00e9",
+                            "in_progress": "En cours"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Raison de l'\u00e9chec",
+                        "state": {
+                            "backup_agent_error": "Erreur de l'agent de sauvegarde",
+                            "backup_agent_unreachable": "Agent de sauvegarde inaccessible",
+                            "backup_manager_error": "Erreur du gestionnaire de sauvegarde",
+                            "backup_not_found": "Sauvegarde introuvable",
+                            "backup_reader_writer_error": "Erreur du lecteur/enregistreur de sauvegarde",
+                            "decrypt_on_download_not_supported": "D\u00e9chiffrement au t\u00e9l\u00e9chargement non pris en charge",
+                            "invalid_backup_filename": "Nom de fichier de sauvegarde invalide",
+                            "multiple_errors": "Erreurs multiples",
+                            "password_incorrect": "Mot de passe incorrect",
+                            "unknown_error": "Erreur inconnue",
+                            "upload_failed": "\u00c9chec du t\u00e9l\u00e9versement"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "\u00c9tat du gestionnaire de sauvegarde",
+                "state": {
+                    "blocked": "Bloqu\u00e9",
+                    "create_backup": "Cr\u00e9ation d'une sauvegarde",
+                    "idle": "Inactif",
+                    "receive_backup": "R\u00e9ception d'une sauvegarde",
+                    "restore_backup": "Restauration d'une sauvegarde"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Derni\u00e8re tentative de sauvegarde automatique"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Derni\u00e8re sauvegarde automatique r\u00e9ussie"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Prochaine sauvegarde automatique programm\u00e9e"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "L'emplacement de sauvegarde \u00ab\u00a0{agent_id}\u00a0\u00bb n'est pas disponible mais est toujours configur\u00e9 pour les sauvegardes automatiques.\n\nVeuillez visiter la [page de configuration des sauvegardes automatiques]({backup_settings}) pour v\u00e9rifier et mettre \u00e0 jour vos emplacements de sauvegarde. Les sauvegardes ne seront pas t\u00e9l\u00e9vers\u00e9es vers les emplacements s\u00e9lectionn\u00e9s qui ne sont pas disponibles.",
+            "title": "L'emplacement de sauvegarde {agent_id} n'est pas disponible"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Les modules compl\u00e9mentaires {failed_addons} n'ont pas pu \u00eatre inclus dans la sauvegarde automatique. Veuillez consulter les journaux du superviseur pour plus d'informations. Une autre tentative sera effectu\u00e9e \u00e0 la prochaine heure programm\u00e9e si une planification de sauvegarde est configur\u00e9e.",
+            "title": "Tous les modules compl\u00e9mentaires n'ont pas pu \u00eatre inclus dans la sauvegarde automatique"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "La sauvegarde automatique a \u00e9t\u00e9 cr\u00e9\u00e9e avec des erreurs :\n* Emplacements o\u00f9 la sauvegarde n'a pas pu \u00eatre t\u00e9l\u00e9vers\u00e9e : {failed_agents}\n* Modules compl\u00e9mentaires qui n'ont pas pu \u00eatre sauvegard\u00e9s : {failed_addons}\n* Dossiers qui n'ont pas pu \u00eatre sauvegard\u00e9s : {failed_folders}\n\nVeuillez consulter les journaux de Core et du superviseur pour plus d'informations. Une autre tentative sera effectu\u00e9e \u00e0 la prochaine heure planifi\u00e9e si une planification de sauvegarde est configur\u00e9e.",
+            "title": "Une sauvegarde automatique a \u00e9t\u00e9 cr\u00e9\u00e9e avec des erreurs"
+        },
+        "automatic_backup_failed_create": {
+            "description": "La sauvegarde automatique n'a pas pu \u00eatre cr\u00e9\u00e9e. Veuillez consulter les journaux pour plus d'informations. Une nouvelle tentative sera effectu\u00e9e lors de la prochaine sauvegarde planifi\u00e9e si un programme de sauvegarde est configur\u00e9.",
+            "title": "La sauvegarde automatique n'a pas pu \u00eatre cr\u00e9\u00e9e"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Les dossiers {failed_folders} n'ont pas pu \u00eatre inclus dans la sauvegarde automatique. Veuillez consulter les journaux du superviseur pour plus d'informations. Une autre tentative sera effectu\u00e9e \u00e0 la prochaine heure programm\u00e9e si une planification de sauvegarde est configur\u00e9e.",
+            "title": "Tous les dossiers n'ont pas pu \u00eatre inclus dans la sauvegarde automatique"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "La sauvegarde automatique n'a pas pu \u00eatre t\u00e9l\u00e9vers\u00e9e vers les emplacements configur\u00e9s {failed_agents}. Veuillez consulter les journaux pour plus d'informations. Une autre tentative sera effectu\u00e9e \u00e0 la prochaine heure programm\u00e9e si une planification de sauvegarde est configur\u00e9e.",
+            "title": "La sauvegarde automatique n'a pas pu \u00eatre t\u00e9l\u00e9vers\u00e9e vers les emplacements configur\u00e9s"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Cr\u00e9e une nouvelle sauvegarde.",
+            "name": "Cr\u00e9er une sauvegarde"
+        },
+        "create_automatic": {
+            "description": "Cr\u00e9e une nouvelle sauvegarde avec des param\u00e8tres de sauvegarde automatique.",
+            "name": "Cr\u00e9er une sauvegarde automatique"
+        }
+    }
+}

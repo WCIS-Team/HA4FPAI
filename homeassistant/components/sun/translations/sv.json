@@ -1,0 +1,399 @@
+{
+    "common": {
+        "condition_threshold_name": "Gr\u00e4nsv\u00e4rdestyp",
+        "period_description": "Vilken tid p\u00e5 dagen som ska \u00f6verv\u00e4gas: morgonen, kv\u00e4llen eller b\u00e5da.",
+        "period_name": "Period",
+        "trigger_for_name": "Under \u00e5tminstone",
+        "trigger_offset_name": "F\u00f6rskjutning",
+        "trigger_offset_type_description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+        "trigger_offset_type_name": "F\u00f6rskjutningstyp",
+        "trigger_threshold_name": "Gr\u00e4nsv\u00e4rdestyp",
+        "twilight_type_description": "Fasen av skymning/gryning.",
+        "twilight_type_name": "Typ av skymning/gryning"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Testar solens h\u00f6ljd mot ett gr\u00e4nsv\u00e4rde du s\u00e4tter.",
+            "fields": {
+                "threshold": {
+                    "name": "Gr\u00e4nsv\u00e4rdestyp"
+                }
+            },
+            "name": "Solh\u00f6jd"
+        },
+        "is_ascending": {
+            "description": "Testar om solen g\u00e5r upp.",
+            "name": "Solen g\u00e5r upp"
+        },
+        "is_blue_hour": {
+            "description": "Testar om det \u00e4r bl\u00e5 timmen, eventuellt f\u00f6r en viss tidsperiod.",
+            "fields": {
+                "period": {
+                    "description": "Vilken tid p\u00e5 dagen som ska \u00f6verv\u00e4gas: morgonen, kv\u00e4llen eller b\u00e5da.",
+                    "name": "Period"
+                }
+            },
+            "name": "Det \u00e4r bl\u00e5 timmen"
+        },
+        "is_descending": {
+            "description": "Testar om solen g\u00e5r ner.",
+            "name": "Solen g\u00e5r ner"
+        },
+        "is_evening_twilight": {
+            "description": "Testar om det \u00e4r skymning, eventuellt av en specifik typ.",
+            "fields": {
+                "type": {
+                    "description": "Fasen av skymning/gryning.",
+                    "name": "Typ av skymning/gryning"
+                }
+            },
+            "name": "Det \u00e4r skymning"
+        },
+        "is_golden_hour": {
+            "description": "Testar om det \u00e4r gyllene timmen, eventuellt f\u00f6r en viss tidsperiod.",
+            "fields": {
+                "period": {
+                    "description": "Vilken tid p\u00e5 dagen som ska \u00f6verv\u00e4gas: morgonen, kv\u00e4llen eller b\u00e5da.",
+                    "name": "Period"
+                }
+            },
+            "name": "Det \u00e4r gyllene timmen"
+        },
+        "is_midnight_sun": {
+            "description": "Testar om det \u00e4r midnattssol.",
+            "name": "Det \u00e4r midnattssol"
+        },
+        "is_morning_twilight": {
+            "description": "Testar om det \u00e4r gryning, eventuellt av en specifik typ.",
+            "fields": {
+                "type": {
+                    "description": "Fasen av skymning/gryning.",
+                    "name": "Typ av skymning/gryning"
+                }
+            },
+            "name": "Det \u00e4r gryning"
+        },
+        "is_night": {
+            "description": "Testar om det \u00e4r natt.",
+            "name": "Det \u00e4r natt"
+        },
+        "is_polar_night": {
+            "description": "Testar om det \u00e4r polarnatt.",
+            "name": "Det \u00e4r polarnatt"
+        },
+        "is_set": {
+            "description": "Testar om solen \u00e4r nere.",
+            "name": "Solen \u00e4r nere"
+        },
+        "is_up": {
+            "description": "Testar om solen \u00e4r uppe.",
+            "name": "Solen \u00e4r uppe"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Vill du starta installationen?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Stigande sol",
+                "state": {
+                    "off": "Sjunkande",
+                    "on": "Stigande"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "N\u00e4sta gryning"
+            },
+            "next_dusk": {
+                "name": "N\u00e4sta skymning"
+            },
+            "next_midnight": {
+                "name": "N\u00e4sta midnatt"
+            },
+            "next_noon": {
+                "name": "N\u00e4sta middag"
+            },
+            "next_rising": {
+                "name": "N\u00e4sta soluppg\u00e5ng"
+            },
+            "next_setting": {
+                "name": "N\u00e4sta solnedg\u00e5ng"
+            },
+            "solar_azimuth": {
+                "name": "Solens azimut"
+            },
+            "solar_elevation": {
+                "name": "Solh\u00f6jd"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sol",
+            "state": {
+                "above_horizon": "\u00d6ver horisonten",
+                "below_horizon": "Under horisonten"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "N\u00e5got",
+                "evening": "Kv\u00e4ll",
+                "morning": "Morgon"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Efter",
+                "before": "F\u00f6re"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "N\u00e5got",
+                "astronomical": "Astronomisk",
+                "civil": "Borgerlig",
+                "nautical": "Nautisk"
+            }
+        }
+    },
+    "title": "Sol",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "Utl\u00f6ses n\u00e4r bl\u00e5 timmen slutar, p\u00e5 morgonen, kv\u00e4llen eller endera.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                },
+                "period": {
+                    "description": "Vilken tid p\u00e5 dagen som ska \u00f6verv\u00e4gas: morgonen, kv\u00e4llen eller b\u00e5da.",
+                    "name": "Period"
+                }
+            },
+            "name": "Bl\u00e5 timmen slutade"
+        },
+        "blue_hour_started": {
+            "description": "Utl\u00f6ses n\u00e4r bl\u00e5 timmen b\u00f6rjar, p\u00e5 morgonen, kv\u00e4llen eller endera.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                },
+                "period": {
+                    "description": "Vilken tid p\u00e5 dagen som ska \u00f6verv\u00e4gas: morgonen, kv\u00e4llen eller b\u00e5da.",
+                    "name": "Period"
+                }
+            },
+            "name": "Bl\u00e5 timmen b\u00f6rjade"
+        },
+        "dawn": {
+            "description": "Utl\u00f6ses vid gryning, n\u00e4r borgerlig, nautisk, eller astronomisk gryning b\u00f6rjar.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                },
+                "type": {
+                    "description": "Fasen av gryning.",
+                    "name": "Gryningstyp"
+                }
+            },
+            "name": "Gryning"
+        },
+        "dusk": {
+            "description": "Utl\u00f6ses vid skymning, n\u00e4r borgerlig, nautisk, eller astronomisk skymning slutar.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                },
+                "type": {
+                    "description": "Fasen av skymning.",
+                    "name": "Skymningstyp"
+                }
+            },
+            "name": "Skymning"
+        },
+        "elevation_changed": {
+            "description": "Utl\u00f6ses n\u00e4r solens h\u00f6jd \u00e4ndras, valfritt begr\u00e4nsad till ett tr\u00f6skelv\u00e4rde eller intervall som du anger.",
+            "fields": {
+                "threshold": {
+                    "name": "Gr\u00e4nsv\u00e4rdestyp"
+                }
+            },
+            "name": "Solh\u00f6jd \u00e4ndrades"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Utl\u00f6ses n\u00e4r solens h\u00f6jd passerar ett tr\u00f6skelv\u00e4rde du har angett.",
+            "fields": {
+                "for": {
+                    "name": "Under \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Gr\u00e4nsv\u00e4rdestyp"
+                }
+            },
+            "name": "Solh\u00f6jd passerade tr\u00f6skelv\u00e4rde"
+        },
+        "golden_hour_ended": {
+            "description": "Utl\u00f6ses n\u00e4r gyllene timmen slutar, p\u00e5 morgonen, kv\u00e4llen eller endera.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                },
+                "period": {
+                    "description": "Vilken tid p\u00e5 dagen som ska \u00f6verv\u00e4gas: morgonen, kv\u00e4llen eller b\u00e5da.",
+                    "name": "Period"
+                }
+            },
+            "name": "Gyllene timmen slutade"
+        },
+        "golden_hour_started": {
+            "description": "Utl\u00f6ses n\u00e4r gyllene timmen startar, p\u00e5 morgonen, kv\u00e4llen eller endera.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                },
+                "period": {
+                    "description": "Vilken tid p\u00e5 dagen som ska \u00f6verv\u00e4gas: morgonen, kv\u00e4llen eller b\u00e5da.",
+                    "name": "Period"
+                }
+            },
+            "name": "Gyllene timmen b\u00f6rjade"
+        },
+        "midnight_sun_ended": {
+            "description": "Utl\u00f6ses n\u00e4r midnattssolsperioden slutar och solen g\u00e5r ner igen.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Midnattssolen slutade"
+        },
+        "midnight_sun_started": {
+            "description": "Utl\u00f6ses n\u00e4r midnattsolsperioden b\u00f6rjar och solen slutar g\u00e5 ner.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Midnattssolen startade"
+        },
+        "polar_night_ended": {
+            "description": "Utl\u00f6ses n\u00e4r polarnatten tar slut och solen g\u00e5r upp igen.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Polarnatten slutade"
+        },
+        "polar_night_started": {
+            "description": "Utl\u00f6ses n\u00e4r polarnatten b\u00f6rjar och solen slutar g\u00e5 upp.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Polarnatten startade"
+        },
+        "solar_midnight": {
+            "description": "Utl\u00f6ses n\u00e4r solen n\u00e5r sin l\u00e4gsta punkt.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Sann midnatt"
+        },
+        "solar_noon": {
+            "description": "Utl\u00f6ses n\u00e4r solen n\u00e5r sin h\u00f6gsta punkt.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Sann middag"
+        },
+        "sunrise": {
+            "description": "Utl\u00f6ses n\u00e4r solen g\u00e5r upp.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Soluppg\u00e5ng"
+        },
+        "sunset": {
+            "description": "Utl\u00f6ses n\u00e4r solen g\u00e5r ner.",
+            "fields": {
+                "offset": {
+                    "name": "F\u00f6rskjutning"
+                },
+                "offset_type": {
+                    "description": "Om den ska utl\u00f6sas f\u00f6re eller efter solh\u00e4ndelsen.",
+                    "name": "F\u00f6rskjutningstyp"
+                }
+            },
+            "name": "Solnedg\u00e5ng"
+        }
+    }
+}

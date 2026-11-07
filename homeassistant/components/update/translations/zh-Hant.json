@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "\u6e2c\u8a66\u662f\u5426\u6709\u4e00\u500b\u6216\u591a\u500b\u53ef\u7528\u7684\u66f4\u65b0\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u6709\u53ef\u7528\u7684\u66f4\u65b0"
+        },
+        "is_not_available": {
+            "description": "\u6e2c\u8a66\u4e00\u500b\u6216\u591a\u500b\u66f4\u65b0\u662f\u5426\u4e0d\u53ef\u7528\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u66f4\u65b0\u4e0d\u53ef\u7528"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "\u6301\u7e8c\u6642\u9593"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name}\u53ef\u7528\u66f4\u65b0\u5df2\u8b8a\u66f4",
+            "turned_off": "{entity_name}\u5df2\u6700\u65b0",
+            "turned_on": "{entity_name}\u6709\u66f4\u65b0"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u66f4\u65b0",
+            "state": {
+                "off": "\u5df2\u6700\u65b0",
+                "on": "\u6709\u66f4\u65b0"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "\u81ea\u52d5\u66f4\u65b0",
+                    "state": {
+                        "false": "\u5426",
+                        "true": "\u662f"
+                    }
+                },
+                "in_progress": {
+                    "name": "\u9032\u884c\u4e2d",
+                    "state": {
+                        "false": "\u5426",
+                        "true": "\u662f"
+                    }
+                },
+                "installed_version": {
+                    "name": "\u5df2\u5b89\u88dd\u7248\u672c"
+                },
+                "latest_version": {
+                    "name": "\u6700\u65b0\u7248\u672c"
+                },
+                "release_summary": {
+                    "name": "\u767c\u4f48\u6458\u8981"
+                },
+                "release_url": {
+                    "name": "\u767c\u4f48\u7db2\u5740"
+                },
+                "skipped_version": {
+                    "name": "\u5df2\u5ffd\u7565\u7684\u7248\u672c"
+                },
+                "title": {
+                    "name": "\u6a19\u984c"
+                }
+            }
+        },
+        "firmware": {
+            "name": "\u97cc\u9ad4"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "{entity_id} \u4e0d\u652f\u63f4\u5099\u4efd\u3002"
+        },
+        "clear_skipped_not_supported": {
+            "message": "\u4e0d\u652f\u63f4\u6e05\u9664 {entity_id} \u7684\u5df2\u8df3\u904e\u66f4\u65b0\u3002"
+        },
+        "no_update_available": {
+            "message": "{entity_id} \u6c92\u6709\u53ef\u7528\u7684\u66f4\u65b0\u3002"
+        },
+        "no_update_available_to_skip": {
+            "message": "\u6c92\u6709\u53ef\u4f9b {entity_id} \u7565\u904e\u7684\u66f4\u65b0\u3002"
+        },
+        "skip_not_supported": {
+            "message": "{entity_id} \u4e0d\u652f\u63f4\u7565\u904e\u66f4\u65b0\u3002"
+        },
+        "specific_version_not_supported": {
+            "message": "\u4e0d\u652f\u63f4\u70ba {entity_id} \u5b89\u88dd\u7279\u5b9a\u7248\u672c\u3002"
+        },
+        "unknown_version_to_skip": {
+            "message": "\u7121\u6cd5\u8df3\u904e {entity_id} \u7684\u672a\u77e5\u7248\u672c\u3002"
+        },
+        "update_in_progress": {
+            "message": "\u5df2\u70ba {entity_id} \u9032\u884c\u66f4\u65b0\u5b89\u88dd\u3002"
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "\u7531\u66f4\u65b0\u4e2d\u79fb\u9664\u5df2\u8df3\u904e\u7684\u7248\u672c\u6a19\u8a18\u3002",
+            "name": "\u6e05\u9664\u5df2\u8df3\u904e\u66f4\u65b0"
+        },
+        "install": {
+            "description": "\u5b89\u88dd\u88dd\u7f6e\u6216\u670d\u52d9\u7684\u66f4\u65b0\u3002",
+            "fields": {
+                "backup": {
+                    "description": "\u5047\u5982\u6574\u5408\u652f\u63f4\u3001\u5c07\u65bc\u958b\u59cb\u66f4\u65b0\u524d\u5efa\u7acb\u5099\u4efd\u3002",
+                    "name": "\u5099\u4efd"
+                },
+                "version": {
+                    "description": "\u8981\u5b89\u88dd\u7684\u7248\u672c\u3002\u5047\u5982\u5ffd\u7565\u3001\u5247\u5c07\u5b89\u88dd\u6700\u65b0\u7248\u672c\u3002",
+                    "name": "\u7248\u672c"
+                }
+            },
+            "name": "\u5b89\u88dd\u66f4\u65b0"
+        },
+        "skip": {
+            "description": "\u5c07\u76ee\u524d\u53ef\u7528\u7684\u66f4\u65b0\u6a19\u793a\u70ba\u8df3\u904e\u3002",
+            "name": "\u8df3\u904e\u66f4\u65b0"
+        }
+    },
+    "title": "\u66f4\u65b0",
+    "triggers": {
+        "became_available": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u66f4\u65b0\u767c\u5e03\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u66f4\u65b0\u5df2\u767c\u5e03"
+        }
+    }
+}

@@ -1,0 +1,82 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Verifica se in uno o pi\u00f9 menu a tendina \u00e8 selezionata una determinata opzione.",
+            "fields": {
+                "option": {
+                    "description": "Le opzioni da verificare.",
+                    "name": "Opzione"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "Cambia {entity_name} nella prima opzione",
+            "select_last": "Cambia {entity_name} all'ultima opzione",
+            "select_next": "Cambia {entity_name} all'opzione successiva",
+            "select_option": "Cambia l'opzione {entity_name}",
+            "select_previous": "Cambia {entity_name} all'opzione precedente"
+        },
+        "condition_type": {
+            "selected_option": "Opzione selezionata {entity_name} corrente"
+        },
+        "extra_fields": {
+            "for": "Durata",
+            "to": "A"
+        },
+        "trigger_type": {
+            "current_option_changed": "Opzione {entity_name} modificata"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Seleziona",
+            "state_attributes": {
+                "options": {
+                    "name": "Opzioni"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "L\u2019entit\u00e0 {entity_id} non presenta opzioni tra cui scegliere."
+        },
+        "not_valid_option": {
+            "message": "L'opzione {option} non \u00e8 valida per l'entit\u00e0 {entity_id}; le opzioni valide sono: {options}."
+        }
+    },
+    "services": {
+        "select_next": {
+            "fields": {
+                "cycle": {
+                    "description": "Se l'opzione deve scorrere dall'ultima alla prima.",
+                    "name": "Ciclo"
+                }
+            }
+        },
+        "select_option": {
+            "fields": {
+                "option": {
+                    "description": "Opzione da selezionare.",
+                    "name": "Opzione"
+                }
+            }
+        },
+        "select_previous": {
+            "fields": {
+                "cycle": {
+                    "description": "Se l'opzione deve scorrere dalla prima all'ultima.",
+                    "name": "Ciclo"
+                }
+            }
+        }
+    },
+    "title": "Seleziona",
+    "triggers": {
+        "selection_changed": {
+            "description": "Si attiva quando l'opzione selezionata di uno o pi\u00f9 men\u00f9 a tendina cambia"
+        }
+    }
+}

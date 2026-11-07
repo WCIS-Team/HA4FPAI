@@ -1,0 +1,587 @@
+{
+    "common": {
+        "availability": "Disponibilit\u00e0",
+        "availability_description": "Definisce un modello per ottenere lo stato \"disponibile\" dell'entit\u00e0. Se il rendering del modello non riesce o restituisce 'True', '\"1\"', '\"true\"', '\"yes\"', '\"on\"', '\"enable\"' o un numero diverso da zero, l'entit\u00e0 sar\u00e0 'disponibile'. Se il modello restituisce qualsiasi altro valore, l'entit\u00e0 sar\u00e0 \"non disponibile\". Se non configurata, l'entit\u00e0 sar\u00e0 sempre \"disponibile\". Si noti che il confronto tra stringhe non fa distinzione tra maiuscole e minuscole; Sono ammessi '\"TrUe\"' e '\"yEs\"'.",
+        "temperature_unit": "Unit\u00e0 di misura della temperatura",
+        "temperature_unit_description": "L'unit\u00e0 di misura per l'output di qualsiasi modello di temperatura. Una delle seguenti: `\u00b0C`, `\u00b0F` o `K`."
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "arm_away": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_away`. Riceve la variabile `code`.",
+                    "arm_custom_bypass": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_custom_bypass`. Riceve la variabile `code`.",
+                    "arm_home": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_home`. Riceve la variabile `code`.",
+                    "arm_night": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_night`. Riceve la variabile `code`.",
+                    "arm_vacation": "Definisce le azioni da eseguire quando il pannello di controllo dell'allarme \u00e8 attivato su `arm_vacation`. Riceve la variabile `code`.",
+                    "code_arm_required": "Se \u00e8 vero, il codice \u00e8 necessario per attivare l'allarme.",
+                    "code_format": "Uno tra 'numero', 'testo' o 'no_code'. Formato per il codice utilizzato per inserire/disinserire l'allarme.",
+                    "disarm": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 disattivata. Riceve la variabile `code`.",
+                    "trigger": "Definisce le azioni da eseguire quando viene attivato il pannello di controllo dell'allarme. Riceve la variabile `code`.",
+                    "value_template": "Definisce un modello per impostare lo stato del pannello di allarme. I valori di output validi del modello sono `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` e `triggered`."
+                },
+                "title": "Modello pannello di controllo allarme"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "state": "Il sensore \u00e8 `on` se il modello restituisce `True`, `yes`, `on`, `enable` o un numero positivo. Qualsiasi altro valore lo restituir\u00e0 come `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "delay_off": "Ritardo disattivato",
+                            "delay_on": "Ritardo attivato"
+                        },
+                        "data_description": {
+                            "delay_off": "Il periodo di tempo durante il quale lo stato del modello non deve essere raggiunto prima che questo sensore passi allo stato \"disattivo\".",
+                            "delay_on": "Il periodo di tempo durante il quale deve essere rispettato lo stato del modello prima che questo sensore passi allo stato \"attivo\"."
+                        }
+                    }
+                },
+                "title": "Modello di sensore binario"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome",
+                    "press": "Azione alla pressione"
+                },
+                "data_description": {
+                    "press": "Definisce le azioni da eseguire quando si preme il pulsante."
+                },
+                "title": "Pulsante modello"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Temperatura attuale",
+                    "device_id": "Dispositivo",
+                    "hvac_action": "Azione in corso",
+                    "hvac_mode": "Modalit\u00e0 HVAC",
+                    "hvac_modes": "Modalit\u00e0 HVAC",
+                    "name": "Nome",
+                    "set_hvac_mode": "Azioni relative alla modalit\u00e0 HVAC impostata",
+                    "set_temperature": "Azioni relative alla temperatura impostata",
+                    "target_temperature": "Temperatura desiderata",
+                    "temperature_unit": "Unit\u00e0 di misura della temperatura"
+                },
+                "data_description": {
+                    "current_temperature": "Definisce un modello per la temperatura attuale.",
+                    "hvac_action": "Definisce un modello per l'azione HVAC corrente. Le azioni HVAC valide sono `raffreddamento`, `sbrinamento`, `asciugatura`, `ventilazione`, `riscaldamento`, `inattivo`, `spento` e `preriscaldamento`.",
+                    "hvac_mode": "Definisce un modello per la modalit\u00e0 HVAC corrente. Le modalit\u00e0 HVAC valide sono `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` e `off`.",
+                    "hvac_modes": "Definisce un modello per un elenco delle modalit\u00e0 HVAC disponibili. Le modalit\u00e0 HVAC valide per l'elenco sono `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` e `off`.",
+                    "set_hvac_mode": "Definisce le azioni da eseguire quando al sistema di climatizzazione viene inviato il comando `set_hvac_mode`. Accetta la variabile `hvac_mode`.",
+                    "set_temperature": "Definisce le azioni da eseguire quando al sistema di climatizzazione viene inviato un comando `set_temperature`. Accetta le variabili `hvac_mode`, `temperature`, `target_temp_high` e `target_temp_low`. Se viene specificata la variabile `hvac_mode`, le azioni `set_hvac_mode` vengono eseguite prima di quelle contenute in `set_temperature`.",
+                    "target_temperature": "Definisce un modello per la temperatura di destinazione.",
+                    "temperature_unit": "L'unit\u00e0 di misura per l'output di qualsiasi modello di temperatura. Una delle seguenti: `\u00b0C`, `\u00b0F` o `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilit\u00e0",
+                            "max_temperature": "Temperatura desiderata massima",
+                            "min_temperature": "Temperatura desiderata minima"
+                        },
+                        "data_description": {
+                            "availability": "Definisce un modello per ottenere lo stato \"disponibile\" dell'entit\u00e0. Se il rendering del modello non riesce o restituisce 'True', '\"1\"', '\"true\"', '\"yes\"', '\"on\"', '\"enable\"' o un numero diverso da zero, l'entit\u00e0 sar\u00e0 'disponibile'. Se il modello restituisce qualsiasi altro valore, l'entit\u00e0 sar\u00e0 \"non disponibile\". Se non configurata, l'entit\u00e0 sar\u00e0 sempre \"disponibile\". Si noti che il confronto tra stringhe non fa distinzione tra maiuscole e minuscole; Sono ammessi '\"TrUe\"' e '\"yEs\"'."
+                        }
+                    }
+                },
+                "title": "Modello di termostato"
+            },
+            "device_tracker": {
+                "data_description": {
+                    "in_zones": "Definisce un modello che restituisce un elenco delle zone in cui si trova attualmente il tracker del dispositivo. Il modello deve restituire un elenco di ID entit\u00e0 zona. Se il tracker del dispositivo non si trova in alcuna zona, il modello deve restituire un elenco vuoto."
+                }
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome",
+                    "percentage": "Percentuale",
+                    "set_percentage": "Azioni sulla percentuale impostata",
+                    "speed_count": "Conteggio della velocit\u00e0"
+                },
+                "data_description": {
+                    "percentage": "Definisce un modello per ottenere la percentuale di velocit\u00e0 della ventola.",
+                    "speed_count": "Numero di velocit\u00e0 supportate dalla ventola. Utilizzato per calcolare la percentuale di incremento per le azioni `fan.increase_speed` e `fan.decrease_speed`.",
+                    "state": "La ventola \u00e8 'on' se il modello restituisce come 'True', 'yes', 'on', 'enable' o un numero positivo. Qualsiasi altro valore lo render\u00e0 come 'off'.",
+                    "turn_off": "Definisce le azioni da eseguire quando la ventola \u00e8 spenta.",
+                    "turn_on": "Definisce le azioni da eseguire quando la ventola \u00e8 accesa. Riceve le variabili `percentage` e/o `preset_mode`."
+                },
+                "title": "Modello ventilatore"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome",
+                    "url": "URL",
+                    "verify_ssl": "Verifica il certificato SSL"
+                },
+                "data_description": {
+                    "url": "Definisce un modello per ottenere l'URL su cui viene servita l'immagine.",
+                    "verify_ssl": "Abilita o disabilita la verifica del certificato SSL. Disattiva per utilizzare un URL http o se disponi di un certificato SSL autofirmato e non hai installato il certificato CA per abilitare la verifica."
+                }
+            },
+            "light": {
+                "data": {
+                    "temperature": "Temperatura di colore"
+                },
+                "data_description": {
+                    "hs": "Definisce un modello per ottenere il colore HS della luce. Deve essere renderizzata una tupla (tonalit\u00e0, saturazione).",
+                    "level": "Definisce un modello per ottenere la luminosit\u00e0 della luce. I valori validi sono compresi tra 0 e 255.",
+                    "set_level": "Definisce le azioni da eseguire quando alla luce viene impartito un comando di luminosit\u00e0. Lo script verr\u00e0 chiamato solo se la chiamata `turn_on` ha solo `brightness` e, facoltativamente, `transition`. Riceve le variabili `brightness` e, facoltativamente, `transition`.",
+                    "set_temperature": "Definisce le azioni da eseguire quando alla luce viene impartito un comando di temperatura colore. Riceve la variabile `color_temp_kelvin`. Pu\u00f2 ricevere anche le variabili `brightness` e/o `transition`.",
+                    "state": "La luce \u00e8 `accesa` se il modello viene valutato come `True`, `yes`, `on`, `enable` o un numero positivo. Qualsiasi altro valore la render\u00e0 `off`.",
+                    "temperature": "Definisce un modello per ottenere la temperatura di colore della luce.",
+                    "turn_off": "Definisce le azioni da eseguire quando la luce viene spenta.",
+                    "turn_on": "Definisce le azioni da eseguire quando la luce viene accesa."
+                },
+                "title": "Modello luce"
+            },
+            "lock": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "lock": "Azioni sul blocco",
+                    "name": "Nome",
+                    "open": "Azioni all'apertura",
+                    "unlock": "Azioni allo sblocco"
+                },
+                "data_description": {
+                    "code_format": "Definisce un modello per ottenere l'attributo `code_format` della serratura.",
+                    "lock": "Definisce le azioni da eseguire quando la serratura \u00e8 chiusa.",
+                    "open": "Definisce le azioni da eseguire quando la serratura \u00e8 aperta.",
+                    "unlock": "Definisce le azioni da eseguire quando la serratura viene sbloccata."
+                },
+                "title": "Modello serratura"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Classe del dispositivo",
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "max": "Definisce il valore massimo del numero.",
+                    "min": "Definisce il valore minimo del numero.",
+                    "set_value": "Definisce le azioni da eseguire quando il numero \u00e8 impostato su un valore. Riceve la variabile 'value'.",
+                    "state": "Modello per il valore corrente del numero.",
+                    "step": "Definisce il passo di incremento/decremento del numero.",
+                    "unit_of_measurement": "Definisce l'unit\u00e0 di misura del numero, se presente."
+                }
+            },
+            "select": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "options": "Modello per le opzioni disponibili per la selezione.",
+                    "select_option": "Definisce le azioni da eseguire quando viene selezionata un'opzione dall'elenco delle opzioni. Riceve la variabile 'option'.",
+                    "state": "Modello per il valore corrente della selezione."
+                }
+            },
+            "sensor": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome",
+                    "state_class": "Classe di stato"
+                },
+                "data_description": {
+                    "state": "Definisce un modello per ottenere lo stato del sensore. Se il sensore \u00e8 numerico, ovvero ha una `state_class` o una `unit_of_measurement`, il modello di stato deve essere visualizzato come un numero o come `none`. Il modello di stato non deve essere visualizzato come una stringa, inclusi `unknown` o `unavailable`. \u00c8 possibile definire un modello `availability` per sopprimere il rendering del modello di stato.",
+                    "unit_of_measurement": "Definisce l'unit\u00e0 di misura del sensore, se presente. Il valore verr\u00e0 visualizzato in base al formato numerico impostato nel profilo utente e influenzer\u00e0 la presentazione grafica nella cronologia come valore continuo."
+                },
+                "title": "Modello di sensore"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "turn_off": "Definisce le azioni da eseguire quando l'interruttore \u00e8 spento.",
+                    "turn_on": "Definisce le azioni da eseguire quando l'interruttore \u00e8 acceso."
+                }
+            },
+            "update": {
+                "data": {
+                    "update_percentage": "Percentuale di aggiornamento"
+                },
+                "data_description": {
+                    "update_percentage": "Definisce un template per ottenere la percentuale di completamento dell'aggiornamento"
+                }
+            },
+            "user": {
+                "menu_options": {
+                    "climate": "Climatizzatore",
+                    "weather": "Tempo atmosferico"
+                },
+                "title": "Aiutante per i modelli"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Azioni sul punto pulito",
+                    "device_id": "Dispositivo",
+                    "fan_speed": "Velocit\u00e0 della ventola",
+                    "fan_speeds": "Velocit\u00e0 della ventola",
+                    "locate": "Azioni alla localizzazione",
+                    "name": "Nome",
+                    "pause": "Azioni alla pausa",
+                    "return_to_base": "Azioni al ritorno alla base",
+                    "set_fan_speed": "Azioni all'impostazione della velocit\u00e0 della ventola",
+                    "start": "Azioni all'avvio",
+                    "stop": "Azioni all'arresto"
+                },
+                "data_description": {
+                    "clean_spot": "Definisce le azioni da eseguire quando all'aspirapolvere viene assegnato un comando 'Pulisci punto'.",
+                    "fan_speed": "Definisce un modello per ottenere la velocit\u00e0 della ventola dell'aspirapolvere.",
+                    "fan_speeds": "Elenco delle velocit\u00e0 della ventola supportate dall'aspirapolvere.",
+                    "locate": "Definisce le azioni da eseguire quando all'aspirapolvere viene assegnato un comando 'Localizza'.",
+                    "pause": "Definisce le azioni da eseguire quando l'aspirapolvere \u00e8 in pausa.",
+                    "return_to_base": "Definisce le azioni da eseguire quando all'aspirapolvere viene assegnato un comando 'Torna al dock'.",
+                    "set_fan_speed": "Definisce le azioni da eseguire quando all'aspirapolvere viene dato un comando per impostare la velocit\u00e0 della ventola. Riceve la variabile 'fan_speed'.",
+                    "start": "Definisce le azioni da eseguire all'avvio dell'aspirapolvere.",
+                    "state": "Definisce un modello per ottenere lo stato del vuoto. I valori validi sono 'cleaning', 'docked', 'idle', 'paused', 'returning' e 'error'.",
+                    "stop": "Definisce le azioni da eseguire quando l'aspirapolvere viene arrestato."
+                },
+                "title": "Modello aspirapolvere"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Condizione",
+                    "device_id": "Dispositivo",
+                    "forecast_daily": "Previsioni giornaliere",
+                    "forecast_hourly": "Previsioni orarie",
+                    "humidity": "Umidit\u00e0",
+                    "name": "Nome",
+                    "temperature": "Temperatura",
+                    "temperature_unit": "Unit\u00e0 di misura della temperatura"
+                },
+                "data_description": {
+                    "condition": "Definisce un modello per ottenere le condizioni meteorologiche attuali",
+                    "forecast_daily": "Definisce un modello per ottenere i [dati delle previsioni giornaliere]({daily_link})",
+                    "forecast_hourly": "Definisce un modello per ottenere i [dati delle previsioni orarie]({hourly_link})",
+                    "humidity": "Definisce un modello per ottenere l\u2019umidit\u00e0 attuale",
+                    "temperature": "Definisce un modello per ottenere la temperatura attuale",
+                    "temperature_unit": "L'unit\u00e0 di misura per l'output di qualsiasi modello di temperatura. Una delle seguenti: `\u00b0C`, `\u00b0F` o `K`."
+                },
+                "title": "Modello meteo"
+            }
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "L'aiutante di modello \u00e8 stato rimosso"
+                },
+                "error": {
+                    "invalid_device": "Il dispositivo selezionato non esiste pi\u00f9"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Dispositivo"
+                        },
+                        "data_description": {
+                            "device_id": "Il dispositivo a cui dovrebbe essere collegato questo aiutante di modello."
+                        },
+                        "description": "L\u2019aiutante di modello {name} era collegato a un dispositivo che \u00e8 stato suddiviso in pi\u00f9 dispositivi. Finch\u00e9 non viene selezionato un dispositivo, l\u2019aiutante non \u00e8 collegato ad alcun dispositivo.\n\nSeleziona il dispositivo a cui questo aiutante deve essere collegato oppure lascia vuoto per non collegarlo ad alcun dispositivo.",
+                        "title": "Seleziona il dispositivo per {name}"
+                    }
+                }
+            },
+            "title": "\u00c8 necessario selezionare di nuovo il dispositivo per l'auitante di modello {name}"
+        },
+        "config_format_actions": {
+            "title": "L'opzione Modello di Azione richiede un attivatore"
+        },
+        "config_format_triggers": {
+            "title": "Configurazione incompleta del modello"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "device_id": "Dispositivo"
+                },
+                "data_description": {
+                    "arm_away": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_away`. Riceve la variabile `code`.",
+                    "arm_custom_bypass": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_custom_bypass`. Riceve la variabile `code`.",
+                    "arm_home": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_home`. Riceve la variabile `code`.",
+                    "arm_night": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 attivata su `arm_night`. Riceve la variabile `code`.",
+                    "arm_vacation": "Definisce le azioni da eseguire quando il pannello di controllo dell'allarme \u00e8 attivato su `arm_vacation`. Riceve la variabile `code`.",
+                    "code_arm_required": "Se \u00e8 vero, il codice \u00e8 necessario per attivare l'allarme.",
+                    "code_format": "Uno tra 'numero', 'testo' o 'no_code'. Formato per il codice utilizzato per inserire/disinserire l'allarme.",
+                    "disarm": "Definisce le azioni da eseguire quando la centrale di allarme \u00e8 disattivata. Riceve la variabile `code`.",
+                    "trigger": "Definisce le azioni da eseguire quando viene attivato il pannello di controllo dell'allarme. Riceve la variabile `code`.",
+                    "value_template": "Definisce un modello per impostare lo stato del pannello di allarme. I valori di output validi del modello sono `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` e `triggered`."
+                },
+                "title": "Modello pannello di controllo allarme"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_id": "Dispositivo"
+                },
+                "data_description": {
+                    "state": "Il sensore \u00e8 `on` se il modello restituisce `True`, `yes`, `on`, `enable` o un numero positivo. Qualsiasi altro valore lo restituir\u00e0 come `off`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "delay_off": "Ritardo disattivato",
+                            "delay_on": "Ritardo attivato"
+                        },
+                        "data_description": {
+                            "delay_off": "Il periodo di tempo durante il quale lo stato del modello non deve essere raggiunto prima che questo sensore passi allo stato \"disattivo\".",
+                            "delay_on": "Il periodo di tempo durante il quale deve essere rispettato lo stato del modello prima che questo sensore passi allo stato \"attivo\"."
+                        }
+                    }
+                },
+                "title": "Modello di sensore binario"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "press": "Azione alla pressione"
+                },
+                "data_description": {
+                    "press": "Definisce le azioni da eseguire quando si preme il pulsante."
+                },
+                "title": "Pulsante modello"
+            },
+            "climate": {
+                "data": {
+                    "current_temperature": "Temperatura attuale",
+                    "device_id": "Dispositivo",
+                    "hvac_action": "Azione in corso",
+                    "hvac_mode": "Modalit\u00e0 HVAC",
+                    "hvac_modes": "Modalit\u00e0 HVAC",
+                    "name": "Nome",
+                    "set_hvac_mode": "Azioni relative alla modalit\u00e0 HVAC impostata",
+                    "set_temperature": "Azioni relative alla temperatura impostata",
+                    "target_temperature": "Temperatura desiderata",
+                    "temperature_unit": "Unit\u00e0 di misura della temperatura"
+                },
+                "data_description": {
+                    "current_temperature": "Definisce un modello per la temperatura attuale.",
+                    "hvac_action": "Definisce un modello per l'azione HVAC corrente. Le azioni HVAC valide sono `raffreddamento`, `sbrinamento`, `asciugatura`, `ventilazione`, `riscaldamento`, `inattivo`, `spento` e `preriscaldamento`.",
+                    "hvac_mode": "Definisce un modello per la modalit\u00e0 HVAC corrente. Le modalit\u00e0 HVAC valide sono `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` e `off`.",
+                    "hvac_modes": "Definisce un modello per un elenco delle modalit\u00e0 HVAC disponibili. Le modalit\u00e0 HVAC valide per l'elenco sono `auto`, `cool`, `dry`, `fan_only`, `heat`, `heat_cool` e `off`.",
+                    "set_hvac_mode": "Definisce le azioni da eseguire quando al sistema di climatizzazione viene inviato il comando `set_hvac_mode`. Accetta la variabile `hvac_mode`.",
+                    "set_temperature": "Definisce le azioni da eseguire quando al sistema di climatizzazione viene inviato un comando `set_temperature`. Accetta le variabili `hvac_mode`, `temperature`, `target_temp_high` e `target_temp_low`. Se viene specificata la variabile `hvac_mode`, le azioni `set_hvac_mode` vengono eseguite prima di quelle contenute in `set_temperature`.",
+                    "target_temperature": "Definisce un modello per la temperatura di destinazione.",
+                    "temperature_unit": "L'unit\u00e0 di misura per l'output di qualsiasi modello di temperatura. Una delle seguenti: `\u00b0C`, `\u00b0F` o `K`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "availability": "Disponibilit\u00e0",
+                            "max_temperature": "Temperatura desiderata massima",
+                            "min_temperature": "Temperatura desiderata minima"
+                        },
+                        "data_description": {
+                            "availability": "Definisce un modello per ottenere lo stato \"disponibile\" dell'entit\u00e0. Se il rendering del modello non riesce o restituisce 'True', '\"1\"', '\"true\"', '\"yes\"', '\"on\"', '\"enable\"' o un numero diverso da zero, l'entit\u00e0 sar\u00e0 'disponibile'. Se il modello restituisce qualsiasi altro valore, l'entit\u00e0 sar\u00e0 \"non disponibile\". Se non configurata, l'entit\u00e0 sar\u00e0 sempre \"disponibile\". Si noti che il confronto tra stringhe non fa distinzione tra maiuscole e minuscole; Sono ammessi '\"TrUe\"' e '\"yEs\"'."
+                        }
+                    }
+                },
+                "title": "Modello di termostato"
+            },
+            "device_tracker": {
+                "data_description": {
+                    "in_zones": "Definisce un modello che restituisce un elenco delle zone in cui si trova attualmente il tracker del dispositivo. Il modello deve restituire un elenco di ID entit\u00e0 zona. Se il tracker del dispositivo non si trova in alcuna zona, il modello deve restituire un elenco vuoto."
+                }
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "percentage": "Percentuale",
+                    "set_percentage": "Azioni sulla percentuale impostata",
+                    "speed_count": "Conteggio della velocit\u00e0"
+                },
+                "data_description": {
+                    "percentage": "Definisce un modello per ottenere la percentuale di velocit\u00e0 della ventola.",
+                    "speed_count": "Numero di velocit\u00e0 supportate dalla ventola. Utilizzato per calcolare la percentuale di incremento per le azioni `fan.increase_speed` e `fan.decrease_speed`.",
+                    "state": "La ventola \u00e8 'on' se il modello restituisce come 'True', 'yes', 'on', 'enable' o un numero positivo. Qualsiasi altro valore lo render\u00e0 come 'off'.",
+                    "turn_off": "Definisce le azioni da eseguire quando la ventola \u00e8 spenta.",
+                    "turn_on": "Definisce le azioni da eseguire quando la ventola \u00e8 accesa. Riceve le variabili `percentage` e/o `preset_mode`."
+                },
+                "title": "Modello ventilatore"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "url": "URL",
+                    "verify_ssl": "Verifica il certificato SSL"
+                },
+                "data_description": {
+                    "url": "Definisce un modello per ottenere l'URL su cui viene servita l'immagine.",
+                    "verify_ssl": "Abilita o disabilita la verifica del certificato SSL. Disattiva per utilizzare un URL http o se disponi di un certificato SSL autofirmato e non hai installato il certificato CA per abilitare la verifica."
+                }
+            },
+            "light": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome",
+                    "temperature": "Temperatura di colore"
+                },
+                "data_description": {
+                    "hs": "Definisce un modello per ottenere il colore HS della luce. Deve essere renderizzata una tupla (tonalit\u00e0, saturazione).",
+                    "level": "Definisce un modello per ottenere la luminosit\u00e0 della luce. I valori validi sono compresi tra 0 e 255.",
+                    "set_level": "Definisce le azioni da eseguire quando alla luce viene impartito un comando di luminosit\u00e0. Lo script verr\u00e0 chiamato solo se la chiamata `turn_on` ha solo `brightness` e, facoltativamente, `transition`. Riceve le variabili `brightness` e, facoltativamente, `transition`.",
+                    "set_temperature": "Definisce le azioni da eseguire quando alla luce viene impartito un comando di temperatura colore. Riceve la variabile `color_temp_kelvin`. Pu\u00f2 ricevere anche le variabili `brightness` e/o `transition`.",
+                    "state": "La luce \u00e8 `accesa` se il modello viene valutato come `True`, `yes`, `on`, `enable` o un numero positivo. Qualsiasi altro valore la render\u00e0 `off`.",
+                    "temperature": "Definisce un modello per ottenere la temperatura di colore della luce.",
+                    "turn_off": "Definisce le azioni da eseguire quando la luce viene spenta.",
+                    "turn_on": "Definisce le azioni da eseguire quando la luce viene accesa."
+                },
+                "title": "Modello luce"
+            },
+            "lock": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "lock": "Azioni sul blocco",
+                    "open": "Azioni all'apertura",
+                    "unlock": "Azioni allo sblocco"
+                },
+                "data_description": {
+                    "code_format": "Definisce un modello per ottenere l'attributo `code_format` della serratura.",
+                    "lock": "Definisce le azioni da eseguire quando la serratura \u00e8 chiusa.",
+                    "open": "Definisce le azioni da eseguire quando la serratura \u00e8 aperta.",
+                    "unlock": "Definisce le azioni da eseguire quando la serratura viene sbloccata."
+                },
+                "title": "Modello serratura"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Classe del dispositivo",
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "max": "Definisce il valore massimo del numero.",
+                    "min": "Definisce il valore minimo del numero.",
+                    "set_value": "Definisce le azioni da eseguire quando il numero \u00e8 impostato su un valore. Riceve la variabile 'value'.",
+                    "state": "Modello per il valore corrente del numero.",
+                    "step": "Definisce il passo di incremento/decremento del numero."
+                }
+            },
+            "select": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "options": "Modello per le opzioni disponibili per la selezione.",
+                    "select_option": "Definisce le azioni da eseguire quando viene selezionata un'opzione dall'elenco delle opzioni. Riceve la variabile 'option'.",
+                    "state": "Modello per il valore corrente della selezione."
+                }
+            },
+            "sensor": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "state_class": "Classe di stato"
+                },
+                "data_description": {
+                    "state": "Definisce un modello per ottenere lo stato del sensore. Se il sensore \u00e8 numerico, ovvero ha una `state_class` o una `unit_of_measurement`, il modello di stato deve essere visualizzato come un numero o come `none`. Il modello di stato non deve essere visualizzato come una stringa, inclusi `unknown` o `unavailable`. \u00c8 possibile definire un modello `availability` per sopprimere il rendering del modello di stato.",
+                    "unit_of_measurement": "Definisce l'unit\u00e0 di misura del sensore, se presente. Il valore verr\u00e0 visualizzato in base al formato numerico impostato nel profilo utente e influenzer\u00e0 la presentazione grafica nella cronologia come valore continuo."
+                },
+                "title": "Modello di sensore"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Dispositivo",
+                    "name": "Nome"
+                },
+                "data_description": {
+                    "turn_off": "Definisce le azioni da eseguire quando l'interruttore \u00e8 spento.",
+                    "turn_on": "Definisce le azioni da eseguire quando l'interruttore \u00e8 acceso."
+                }
+            },
+            "update": {
+                "data": {
+                    "update_percentage": "Percentuale di aggiornamento"
+                },
+                "data_description": {
+                    "update_percentage": "Definisce un template per ottenere la percentuale di completamento dell'aggiornamento"
+                }
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Azioni sul punto pulito",
+                    "device_id": "Dispositivo",
+                    "fan_speed": "Velocit\u00e0 della ventola",
+                    "fan_speeds": "Velocit\u00e0 della ventola",
+                    "locate": "Azioni alla localizzazione",
+                    "name": "Nome",
+                    "pause": "Azioni alla pausa",
+                    "return_to_base": "Azioni al ritorno alla base",
+                    "set_fan_speed": "Azioni all'impostazione della velocit\u00e0 della ventola",
+                    "start": "Azioni all'avvio",
+                    "stop": "Azioni all'arresto"
+                },
+                "data_description": {
+                    "clean_spot": "Definisce le azioni da eseguire quando all'aspirapolvere viene assegnato un comando 'Pulisci punto'.",
+                    "fan_speed": "Definisce un modello per ottenere la velocit\u00e0 della ventola dell'aspirapolvere.",
+                    "fan_speeds": "Elenco delle velocit\u00e0 della ventola supportate dall'aspirapolvere.",
+                    "locate": "Definisce le azioni da eseguire quando all'aspirapolvere viene assegnato un comando 'Localizza'.",
+                    "pause": "Definisce le azioni da eseguire quando l'aspirapolvere \u00e8 in pausa.",
+                    "return_to_base": "Definisce le azioni da eseguire quando all'aspirapolvere viene assegnato un comando 'Torna al dock'.",
+                    "set_fan_speed": "Definisce le azioni da eseguire quando all'aspirapolvere viene dato un comando per impostare la velocit\u00e0 della ventola. Riceve la variabile 'fan_speed'.",
+                    "start": "Definisce le azioni da eseguire all'avvio dell'aspirapolvere.",
+                    "state": "Definisce un modello per ottenere lo stato del vuoto. I valori validi sono 'cleaning', 'docked', 'idle', 'paused', 'returning' e 'error'.",
+                    "stop": "Definisce le azioni da eseguire quando l'aspirapolvere viene arrestato."
+                },
+                "title": "Modello aspirapolvere"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Condizione",
+                    "device_id": "Dispositivo",
+                    "forecast_daily": "Previsioni giornaliere",
+                    "forecast_hourly": "Previsioni orarie",
+                    "humidity": "Umidit\u00e0",
+                    "name": "Nome",
+                    "temperature": "Temperatura",
+                    "temperature_unit": "Unit\u00e0 di misura della temperatura"
+                },
+                "data_description": {
+                    "condition": "Definisce un modello per ottenere le condizioni meteorologiche attuali",
+                    "forecast_daily": "Definisce un modello per ottenere i [dati delle previsioni giornaliere]({daily_link})",
+                    "forecast_hourly": "Definisce un modello per ottenere i [dati delle previsioni orarie]({hourly_link})",
+                    "humidity": "Definisce un modello per ottenere l\u2019umidit\u00e0 attuale",
+                    "temperature": "Definisce un modello per ottenere la temperatura attuale",
+                    "temperature_unit": "L'unit\u00e0 di misura per l'output di qualsiasi modello di temperatura. Una delle seguenti: `\u00b0C`, `\u00b0F` o `K`."
+                },
+                "title": "Modello meteo"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Nessun formato di codice",
+                "number": "Numero",
+                "text": "Testo"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "Nessuna unit\u00e0 di misura"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Ricarica le entit\u00e0 modello dalla configurazione YAML."
+        }
+    }
+}

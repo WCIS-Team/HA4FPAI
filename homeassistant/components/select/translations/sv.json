@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Testar om en eller flera rullgardinsmenyer har ett specifikt alternativ valt.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "option": {
+                    "description": "Alternativen att kontrollera.",
+                    "name": "Alternativ"
+                }
+            },
+            "name": "Ett alternativ i rullgardinsmenyn valdes"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "\u00c4ndra {entity_name} till f\u00f6rsta alternativet",
+            "select_last": "\u00c4ndra {entity_name} till sista alternativet",
+            "select_next": "\u00c4ndra {entity_name} till n\u00e4sta alternativ",
+            "select_option": "\u00c4ndra alternativ f\u00f6r {entity_name}",
+            "select_previous": "\u00c4ndra {entity_name} till f\u00f6reg\u00e5ende alternativ"
+        },
+        "condition_type": {
+            "selected_option": "Nuvarande valt alternativ f\u00f6r {entity_name}"
+        },
+        "extra_fields": {
+            "cycle": "Loopa",
+            "for": "Varaktighet",
+            "from": "Fr\u00e5n",
+            "option": "Alternativ",
+            "to": "Till"
+        },
+        "trigger_type": {
+            "current_option_changed": "Alternativ f\u00f6r {entity_name} \u00e4ndrat"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Val",
+            "state_attributes": {
+                "options": {
+                    "name": "Alternativ"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "Entiteten {entity_id} har inga alternativ att v\u00e4lja bland."
+        },
+        "not_valid_option": {
+            "message": "Alternativ {option} \u00e4r inte giltigt f\u00f6r entitet {entity_id}, giltiga alternativ \u00e4r: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "V\u00e4ljer det f\u00f6rsta alternativet.",
+            "name": "V\u00e4lj det f\u00f6rsta alternativet"
+        },
+        "select_last": {
+            "description": "V\u00e4ljer det sista alternativet.",
+            "name": "V\u00e4lj det sista alternativet"
+        },
+        "select_next": {
+            "description": "V\u00e4ljer n\u00e4sta alternativ i en v\u00e4lj-ruta.",
+            "fields": {
+                "cycle": {
+                    "description": "Om alternativet ska loopa fr\u00e5n det sista till det f\u00f6rsta.",
+                    "name": "Loopa"
+                }
+            },
+            "name": "V\u00e4lj n\u00e4sta alternativ"
+        },
+        "select_option": {
+            "description": "V\u00e4ljer ett alternativ.",
+            "fields": {
+                "option": {
+                    "description": "Alternativ som ska v\u00e4ljas.",
+                    "name": "Alternativ"
+                }
+            },
+            "name": "V\u00e4lj"
+        },
+        "select_previous": {
+            "description": "V\u00e4ljer det f\u00f6reg\u00e5ende alternativet.",
+            "fields": {
+                "cycle": {
+                    "description": "Om alternativet ska loopa fr\u00e5n det f\u00f6rsta till det sista.",
+                    "name": "Loopa"
+                }
+            },
+            "name": "V\u00e4lj f\u00f6reg\u00e5ende alternativ"
+        }
+    },
+    "title": "Val",
+    "triggers": {
+        "selection_changed": {
+            "description": "Utl\u00f6ses n\u00e4r det valda alternativet i en eller flera rullgardinsmenyer \u00e4ndras.",
+            "name": "Valet i rullgardinsmenyn \u00e4ndrades"
+        }
+    }
+}

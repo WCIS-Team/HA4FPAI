@@ -1,0 +1,192 @@
+{
+    "common": {
+        "condition_behavior_name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e",
+        "condition_for_name": "\u6301\u7e8c",
+        "trigger_behavior_name": "\u89f8\u767c\u689d\u4ef6",
+        "trigger_for_name": "\u6301\u7e8c"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u9580\u9396\u5361\u4f4f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9580\u9396\u5361\u4f4f"
+        },
+        "is_locked": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u9580\u9396\u5df2\u4e0a\u9396\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9580\u9396\u5df2\u4e0a\u9396"
+        },
+        "is_open": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u9580\u9396\u958b\u555f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9580\u9396\u958b\u555f"
+        },
+        "is_unlocked": {
+            "description": "\u6e2c\u8a66\u5047\u5982\u4e00\u500b\u6216\u591a\u500b\u9580\u9396\u89e3\u9396\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u5982\u679c\u6210\u7acb\u3001\u5224\u65b7\u5f0f\u901a\u904e"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9580\u9396\u5df2\u89e3\u9396"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "\u4e0a\u9396{entity_name}",
+            "open": "\u958b\u555f{entity_name}",
+            "unlock": "\u89e3\u9396{entity_name}"
+        },
+        "condition_type": {
+            "is_jammed": "{entity_name}\u5361\u4f4f\u4e86",
+            "is_locked": "{entity_name}\u5df2\u4e0a\u9396",
+            "is_locking": "{entity_name}\u4e0a\u9396\u4e2d",
+            "is_open": "{entity_name}\u70ba\u958b\u555f",
+            "is_opening": "{entity_name}\u958b\u555f\u4e2d",
+            "is_unlocked": "{entity_name}\u5df2\u89e3\u9396",
+            "is_unlocking": "{entity_name}\u89e3\u9396\u4e2d"
+        },
+        "extra_fields": {
+            "for": "\u6301\u7e8c\u6642\u9593"
+        },
+        "trigger_type": {
+            "locked": "{entity_name}\u5df2\u4e0a\u9396",
+            "open": "{entity_name}\u5df2\u958b\u555f",
+            "unlocked": "{entity_name}\u5df2\u89e3\u9396"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u9580\u9396",
+            "state": {
+                "jammed": "\u5361\u4f4f",
+                "locked": "\u5df2\u4e0a\u9396",
+                "locking": "\u4e0a\u9396\u4e2d",
+                "open": "\u958b\u555f",
+                "opening": "\u958b\u555f\u4e2d",
+                "unlocked": "\u5df2\u89e3\u9396",
+                "unlocking": "\u89e3\u9396\u4e2d"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "\u8b8a\u66f4\u8005"
+                },
+                "code_format": {
+                    "name": "\u4ee3\u78bc\u683c\u5f0f"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "{entity_id} \u7684\u4ee3\u78bc\u8207 {code_format} \u6a21\u5f0f\u4e0d\u7b26\u3002"
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "\u9396\u5b9a\u9396\u3002",
+            "fields": {
+                "code": {
+                    "description": "\u7528\u65bc\u9396\u5b9a\u9396\u7684\u4ee3\u78bc\u3002",
+                    "name": "\u4ee3\u78bc"
+                }
+            },
+            "name": "\u4e0a\u9396\u9580\u9396"
+        },
+        "open": {
+            "description": "\u6253\u958b\u9396\u3002",
+            "fields": {
+                "code": {
+                    "description": "\u7528\u65bc\u6253\u958b\u9396\u7684\u4ee3\u78bc\u3002",
+                    "name": "\u4ee3\u78bc"
+                }
+            },
+            "name": "\u958b\u555f\u9580\u9396"
+        },
+        "unlock": {
+            "description": "\u89e3\u9396\u9396\u3002",
+            "fields": {
+                "code": {
+                    "description": "\u7528\u65bc\u89e3\u9396\u9396\u7684\u4ee3\u78bc\u3002",
+                    "name": "\u4ee3\u78bc"
+                }
+            },
+            "name": "\u89e3\u9396\u9580\u9396"
+        }
+    },
+    "title": "\u9580\u9396",
+    "triggers": {
+        "jammed": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u9396\u5361\u4f4f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9396\u5361\u4f4f\u4e86"
+        },
+        "locked": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u9396\u4e0a\u9396\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9396\u5df2\u4e0a\u9396"
+        },
+        "opened": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u9396\u958b\u555f\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9396\u5df2\u958b\u555f"
+        },
+        "unlocked": {
+            "description": "\u7576\u4e00\u500b\u6216\u591a\u500b\u9396\u89e3\u9396\u6642\u89f8\u767c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u89f8\u767c\u689d\u4ef6"
+                },
+                "for": {
+                    "name": "\u6301\u7e8c"
+                }
+            },
+            "name": "\u9396\u5df2\u89e3\u9396"
+        }
+    }
+}

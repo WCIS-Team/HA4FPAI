@@ -1,0 +1,463 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "condition_threshold_name": "Tairseach",
+        "trigger_for_name": "Ar a laghad",
+        "trigger_threshold_name": "Tairseach"
+    },
+    "conditions": {
+        "is_muted": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il an bhfuil seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 m\u00fachta.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an seinnteoir me\u00e1n m\u00fachta"
+        },
+        "is_not_playing": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 nach bhfuil ag seinm.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "N\u00edl an seinnteoir me\u00e1n ag seinm"
+        },
+        "is_off": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 m\u00fachta.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an seinnteoir me\u00e1n m\u00fachta"
+        },
+        "is_on": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il an bhfuil seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar si\u00fal.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an seinnteoir me\u00e1n ar si\u00fal"
+        },
+        "is_paused": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar sos.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an seinnteoir me\u00e1n ar sos"
+        },
+        "is_playing": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il an bhfuil seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 ag seinm.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an seinnteoir me\u00e1n ag seinm"
+        },
+        "is_unmuted": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3 m\u00fachta.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "N\u00edl an seinnteoir me\u00e1n m\u00fachta"
+        },
+        "is_volume": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il ar thoirt seinnteoir me\u00e1n amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "threshold": {
+                    "name": "Tairseach"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "T\u00e1 {entity_name} ag maol\u00e1n\u00fa",
+            "is_idle": "T\u00e1 {entity_name} d\u00edomhaoin",
+            "is_off": "T\u00e1 {entity_name} m\u00fachta",
+            "is_on": "T\u00e1 {entity_name} ar si\u00fal",
+            "is_paused": "{entity_name} is paused",
+            "is_playing": "T\u00e1 {entity_name} ag imirt"
+        },
+        "extra_fields": {
+            "for": "Fad"
+        },
+        "trigger_type": {
+            "buffering": "Tosa\u00edonn {entity_name} ag maol\u00e1n\u00fa",
+            "changed_states": "{entity_name} casta air n\u00f3 as",
+            "idle": "\u00c9ir\u00edonn {entity_name} d\u00edomhaoin",
+            "paused": "T\u00e1 {entity_name} ar sos",
+            "playing": "Tosa\u00edonn {entity_name} ag seinm",
+            "turned_off": "M\u00fachadh {entity_name}",
+            "turned_on": "T\u00e1 {entity_name} casta air"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Seinnteoir me\u00e1n",
+            "state": {
+                "buffering": "Maol\u00e1n\u00fa",
+                "idle": "D\u00edomhaoin",
+                "off": "As",
+                "on": "Ar si\u00fal",
+                "paused": "Sosaithe",
+                "playing": "Ag imirt",
+                "standby": "Fuireachas"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "Aitheantas Aipe"
+                },
+                "app_name": {
+                    "name": "Aip"
+                },
+                "entity_picture_local": {
+                    "name": "Picti\u00far eintitis inrochtana \u00e1iti\u00fail"
+                },
+                "groups_members": {
+                    "name": "Baill an ghr\u00fapa"
+                },
+                "is_volume_muted": {
+                    "name": "Balbhaithe",
+                    "state": {
+                        "false": "N\u00edl",
+                        "true": "T\u00e1"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Eala\u00edont\u00f3ir albam"
+                },
+                "media_album_name": {
+                    "name": "Albam"
+                },
+                "media_artist": {
+                    "name": "Eala\u00edont\u00f3ir"
+                },
+                "media_channel": {
+                    "name": "Cain\u00e9al"
+                },
+                "media_content_id": {
+                    "name": "Aitheantas \u00c1bhair"
+                },
+                "media_content_type": {
+                    "name": "Cine\u00e1l \u00e1bhair",
+                    "state": {
+                        "album": "Albam",
+                        "app": "Aip",
+                        "artist": "Eala\u00edont\u00f3ir",
+                        "channel": "Cain\u00e9al",
+                        "channels": "Cain\u00e9il",
+                        "composer": "Cumad\u00f3ir",
+                        "contributing_artist": "Eala\u00edont\u00f3ir rannph\u00e1irteach",
+                        "episode": "Eipeas\u00f3id",
+                        "game": "Cluiche",
+                        "genre": "Se\u00e1nra",
+                        "image": "\u00cdomh\u00e1",
+                        "movie": "Scann\u00e1n",
+                        "music": "Ceol",
+                        "playlist": "Seinmliosta",
+                        "podcast": "Podchraoladh",
+                        "season": "S\u00e9as\u00far",
+                        "track": "Rian",
+                        "tvshow": "Cl\u00e1r teilif\u00edse",
+                        "url": "URL",
+                        "video": "F\u00edse\u00e1n"
+                    }
+                },
+                "media_duration": {
+                    "name": "Fad"
+                },
+                "media_episode": {
+                    "name": "Eipeas\u00f3id"
+                },
+                "media_playlist": {
+                    "name": "Seinmliosta"
+                },
+                "media_position": {
+                    "name": "Seasamh"
+                },
+                "media_position_updated_at": {
+                    "name": "Su\u00edomh nuashonraithe"
+                },
+                "media_season": {
+                    "name": "S\u00e9as\u00far"
+                },
+                "media_series_title": {
+                    "name": "Sraith"
+                },
+                "media_title": {
+                    "name": "Teideal"
+                },
+                "media_track": {
+                    "name": "Rian"
+                },
+                "repeat": {
+                    "name": "D\u00e9an ar\u00eds",
+                    "state": {
+                        "all": "Gach",
+                        "off": "As",
+                        "one": "Aon"
+                    }
+                },
+                "shuffle": {
+                    "name": "Measc\u00e1n",
+                    "state": {
+                        "false": "As",
+                        "true": "Ar si\u00fal"
+                    }
+                },
+                "sound_mode": {
+                    "name": "M\u00f3d fuaime"
+                },
+                "sound_mode_list": {
+                    "name": "Modhanna fuaime at\u00e1 ar f\u00e1il"
+                },
+                "source": {
+                    "name": "Foinse"
+                },
+                "source_list": {
+                    "name": "Foins\u00ed at\u00e1 ar f\u00e1il"
+                },
+                "volume_level": {
+                    "name": "Toirt"
+                }
+            }
+        },
+        "projector": {
+            "name": "Teilgeoir"
+        },
+        "receiver": {
+            "name": "Glacad\u00f3ir"
+        },
+        "speaker": {
+            "name": "Cainteoir"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Cuir leis an scuaine",
+                "next": "Seinn ina dhiaidh sin",
+                "play": "Seinn",
+                "replace": "Seinn anois agus glan an scuaine"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "D\u00e9an gach rud ar\u00eds",
+                "off": "As",
+                "one": "D\u00e9an ceann amh\u00e1in ar\u00eds"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Brabhs\u00e1lann s\u00e9 na me\u00e1in at\u00e1 ar f\u00e1il.",
+            "fields": {
+                "media_content_id": {
+                    "description": "ID an \u00e1bhair at\u00e1 le brabhs\u00e1il. Braitheann s\u00e9 ar chomhth\u00e1th\u00fa.",
+                    "name": "ID \u00e1bhair"
+                },
+                "media_content_type": {
+                    "name": "Cine\u00e1l \u00e1bhair"
+                }
+            },
+            "name": "Brabhs\u00e1il na me\u00e1in"
+        },
+        "join": {
+            "description": "Gr\u00fap\u00e1lann s\u00e9 seinnteoir\u00ed me\u00e1n le ch\u00e9ile le haghaidh athsheinm sioncr\u00f3nach. N\u00ed oibr\u00edonn s\u00e9 ach ar ch\u00f3rais fuaime ilsheomra a dtaca\u00edtear leo.",
+            "fields": {
+                "group_members": {
+                    "description": "Na himreoir\u00ed a shioncron\u00f3far leis an athsheinm at\u00e1 sonraithe i 'Spriocanna'.",
+                    "name": "Baill an ghr\u00fapa"
+                }
+            }
+        },
+        "media_seek": {
+            "fields": {
+                "seek_position": {
+                    "description": "Su\u00edomh sprice sna me\u00e1in at\u00e1 \u00e1 seinm faoi l\u00e1thair. Braitheann an fhorm\u00e1id ar an ard\u00e1n.",
+                    "name": "Seasamh"
+                }
+            }
+        },
+        "play_media": {
+            "fields": {
+                "announce": {
+                    "description": "D\u00e1 mba cheart na me\u00e1in a sheinm mar fh\u00f3gra.",
+                    "name": "F\u00f3graigh"
+                },
+                "enqueue": {
+                    "description": "M\u00e1s ceart an t-\u00e1bhar a sheinm anois n\u00f3 a chur leis an scuaine.",
+                    "name": "Cuir i scuaine"
+                },
+                "media": {
+                    "description": "Na me\u00e1in a roghna\u00edodh le himirt.",
+                    "name": "Me\u00e1in"
+                }
+            }
+        },
+        "repeat_set": {
+            "fields": {
+                "repeat": {
+                    "description": "Cib\u00e9 acu ba ch\u00f3ir na me\u00e1in (ceann amh\u00e1in n\u00f3 iad uile) a sheinm i l\u00fab n\u00f3 nach ea.",
+                    "name": "M\u00f3d athdh\u00e9anta"
+                }
+            }
+        },
+        "search_media": {
+            "description": "D\u00e9anann s\u00e9 cuardach ar na me\u00e1in at\u00e1 ar f\u00e1il.",
+            "fields": {
+                "media_content_id": {
+                    "description": "ID an \u00e1bhair at\u00e1 le brabhs\u00e1il. Braitheann s\u00e9 ar chomhth\u00e1th\u00fa.",
+                    "name": "ID \u00e1bhair"
+                },
+                "media_content_type": {
+                    "name": "Cine\u00e1l \u00e1bhair"
+                },
+                "media_filter_classes": {
+                    "description": "Liosta de na haicm\u00ed me\u00e1n chun na tortha\u00ed cuardaigh a scagadh d\u00e1 r\u00e9ir."
+                },
+                "search_query": {
+                    "description": "An t\u00e9arma le cuardach.",
+                    "name": "Fiosr\u00fach\u00e1n cuardaigh"
+                }
+            },
+            "name": "Cuardaigh me\u00e1in"
+        },
+        "select_sound_mode": {
+            "fields": {
+                "sound_mode": {
+                    "description": "Ainm an mhodha fuaime le hathr\u00fa chuige.",
+                    "name": "M\u00f3d fuaime"
+                }
+            }
+        },
+        "select_source": {
+            "fields": {
+                "source": {
+                    "description": "Ainm an fhoinse le hathr\u00fa chuici. Braitheann s\u00e9 ar an ard\u00e1n.",
+                    "name": "Foinse"
+                }
+            }
+        },
+        "shuffle_set": {
+            "fields": {
+                "shuffle": {
+                    "description": "Cib\u00e9 acu ba ch\u00f3ir na me\u00e1in a sheinm in ord randamach n\u00f3 nach ea.",
+                    "name": "M\u00f3d measctha"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Casann s\u00e9 seinnteoir me\u00e1n air/as."
+        },
+        "volume_mute": {
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Sainmh\u00edn\u00edonn s\u00e9 an bhfuil s\u00e9 balbhaithe n\u00f3 nach bhfuil.",
+                    "name": "Balbhaithe"
+                }
+            }
+        },
+        "volume_set": {
+            "fields": {
+                "volume_level": {
+                    "description": "An toirt. N\u00ed f\u00e9idir 0 a chloiste\u00e1il, is \u00e9 1 an toirt uasta.",
+                    "name": "Leibh\u00e9al"
+                }
+            }
+        }
+    },
+    "title": "Seinnteoir me\u00e1n",
+    "triggers": {
+        "muted": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Seinnteoir me\u00e1n m\u00fachta"
+        },
+        "paused_playing": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Cuireadh sos ar an seinnteoir me\u00e1n ag seinm"
+        },
+        "started_playing": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Thosaigh an seinnteoir me\u00e1n ag seinm"
+        },
+        "stopped_playing": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "turned_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Imreoir me\u00e1n m\u00fachta"
+        },
+        "turned_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Media player turned on"
+        },
+        "unmuted": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Seinnteoir me\u00e1n d\u00edbholgtha"
+        },
+        "volume_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Tairseach"
+                }
+            },
+            "name": "Athra\u00edodh toirt an seinnteora me\u00e1n"
+        },
+        "volume_crossed_threshold": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "threshold": {
+                    "name": "Tairseach"
+                }
+            },
+            "name": "Tharraigh toirt an seinnteora me\u00e1n an tairseach"
+        }
+    }
+}

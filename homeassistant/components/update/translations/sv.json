@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Testar om en eller flera uppdateringar finns tillg\u00e4ngliga.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Uppdatering \u00e4r tillg\u00e4nglig"
+        },
+        "is_not_available": {
+            "description": "Testar om en eller flera uppdateringar inte \u00e4r tillg\u00e4ngliga.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Uppdatering \u00e4r inte tillg\u00e4nglig"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Varaktighet"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} uppdateringstillg\u00e4nglighet \u00e4ndrad",
+            "turned_off": "{entity_name} blev uppdaterad",
+            "turned_on": "{entity_name} fick en uppdatering tillg\u00e4nglig"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Uppdatering",
+            "state": {
+                "off": "Uppdaterad",
+                "on": "Uppdatering tillg\u00e4nglig"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Uppdatera automatiskt",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "in_progress": {
+                    "name": "P\u00e5g\u00e5ende",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "installed_version": {
+                    "name": "Installerad version"
+                },
+                "latest_version": {
+                    "name": "Senaste version"
+                },
+                "release_summary": {
+                    "name": "Versionssammanfattning"
+                },
+                "release_url": {
+                    "name": "Version URL"
+                },
+                "skipped_version": {
+                    "name": "\u00d6verhoppad version"
+                },
+                "title": {
+                    "name": "Titel"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmware"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "S\u00e4kerhetskopiering st\u00f6ds inte f\u00f6r {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "Det g\u00e5r inte att rensa den \u00f6verhoppade uppdateringen f\u00f6r {entity_id}."
+        },
+        "no_update_available": {
+            "message": "Det finns ingen tillg\u00e4nglig uppdatering f\u00f6r {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "Det finns ingen tillg\u00e4nglig uppdatering att hoppa \u00f6ver f\u00f6r {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "Det g\u00e5r inte att hoppa \u00f6ver uppdateringen f\u00f6r {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "Det g\u00e5r inte att installera en specifik version f\u00f6r {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "Det g\u00e5r inte att hoppa \u00f6ver en ok\u00e4nd version f\u00f6r {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "Installation av uppdateringen f\u00f6r {entity_id} p\u00e5g\u00e5r redan."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Tar bort markeringen f\u00f6r \u00f6verhoppad version fr\u00e5n en uppdatering.",
+            "name": "Rensa \u00f6verhoppad uppdatering"
+        },
+        "install": {
+            "description": "Installerar en uppdatering f\u00f6r en enhet eller tj\u00e4nst.",
+            "fields": {
+                "backup": {
+                    "description": "Om det st\u00f6ds av integrationen kommer en s\u00e4kerhetskopia att skapas innan uppdateringen p\u00e5b\u00f6rjas.",
+                    "name": "S\u00e4kerhetskopiering"
+                },
+                "version": {
+                    "description": "Den version som ska installeras. Om den utel\u00e4mnas kommer den senaste versionen att installeras.",
+                    "name": "Version"
+                }
+            },
+            "name": "Installera uppdatering"
+        },
+        "skip": {
+            "description": "Markerar en tillg\u00e4nglig uppdatering som \u00f6verhoppad.",
+            "name": "Hoppa \u00f6ver uppdatering"
+        }
+    },
+    "title": "Uppdatering",
+    "triggers": {
+        "became_available": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera uppdateringar blir tillg\u00e4ngliga.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Uppdatering blev tillg\u00e4nglig"
+        }
+    }
+}

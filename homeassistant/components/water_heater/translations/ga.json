@@ -1,0 +1,187 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil t\u00e9itheoir uisce amh\u00e1in n\u00f3 n\u00edos m\u00f3 m\u00fachta.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an t\u00e9itheoir uisce m\u00fachta"
+        },
+        "is_on": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil t\u00e9itheoir uisce amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar si\u00fal.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an t\u00e9itheoir uisce ar si\u00fal"
+        },
+        "is_operation_mode": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil t\u00e9itheoir uisce amh\u00e1in n\u00f3 n\u00edos m\u00f3 socraithe i m\u00f3d oibr\u00edochta ar leith.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "operation_mode": {
+                    "description": "An modh oibr\u00edochta le seice\u00e1il.",
+                    "name": "M\u00f3d oibr\u00edochta"
+                }
+            },
+            "name": "M\u00f3d oibr\u00edochta t\u00e9itheoir uisce"
+        },
+        "is_target_temperature": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il ar shocra\u00edocht teochta t\u00e9itheoir uisce amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Teocht sprice t\u00e9itheoir uisce"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "M\u00fach {entity_name}",
+            "turn_on": "Cas ar {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "T\u00e9itheoir uisce",
+            "state": {
+                "eco": "\u00c9icea",
+                "electric": "Leictreach",
+                "gas": "G\u00e1s",
+                "heat_pump": "Caid\u00e9al teasa",
+                "high_demand": "\u00c9ileamh ard",
+                "off": "As",
+                "performance": "Feidhm\u00edocht"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "M\u00f3d as baile",
+                    "state": {
+                        "off": "As",
+                        "on": "Ar si\u00fal"
+                    }
+                },
+                "current_operation": {
+                    "name": "Oibr\u00edocht reatha"
+                },
+                "current_temperature": {
+                    "name": "Teocht reatha"
+                },
+                "max_temp": {
+                    "name": "Teocht sprice uasta"
+                },
+                "min_temp": {
+                    "name": "Teocht sprice \u00edosta"
+                },
+                "operation_mode": {
+                    "name": "M\u00f3d oibr\u00edochta",
+                    "state": {
+                        "eco": "\u00c9icea",
+                        "electric": "Leictreach",
+                        "gas": "G\u00e1s",
+                        "heat_pump": "Caid\u00e9al teasa",
+                        "high_demand": "\u00c9ileamh ard",
+                        "off": "As",
+                        "performance": "Feidhm\u00edocht"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "Teocht sprice uachtarach"
+                },
+                "target_temp_low": {
+                    "name": "Teocht sprice n\u00edos \u00edsle"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "N\u00edl an modh oibr\u00edochta {operation_mode} bail\u00ed do {entity_id}. Is iad na modhanna oibr\u00edochta bail\u00ed n\u00e1: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "N\u00edl an modh oibr\u00edochta {operation_mode} bail\u00ed do {entity_id}. N\u00edl an liosta oibr\u00edochta sainmh\u00ednithe."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "fields": {
+                "away_mode": {
+                    "description": "Luach nua don mhodh as baile.",
+                    "name": "M\u00f3d as baile"
+                }
+            }
+        },
+        "set_operation_mode": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Luach nua an mhodha oibr\u00edochta. Le haghaidh liosta de na modhanna f\u00e9ideartha, f\u00e9ach ar an doicim\u00e9adacht chomhth\u00e1thaithe.",
+                    "name": "M\u00f3d oibr\u00edochta"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "operation_mode": {
+                    "description": "Luach nua an mhodha oibr\u00edochta. Le haghaidh liosta de na modhanna f\u00e9ideartha, f\u00e9ach ar an doicim\u00e9adacht chomhth\u00e1thaithe.",
+                    "name": "M\u00f3d oibr\u00edochta"
+                },
+                "temperature": {
+                    "description": "Teocht sprice nua don t\u00e9itheoir uisce.",
+                    "name": "Teocht"
+                }
+            }
+        }
+    },
+    "title": "T\u00e9itheoir uisce",
+    "triggers": {
+        "operation_mode_changed": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "operation_mode": {
+                    "description": "Na modhanna oibr\u00edochta le spreagadh orthu.",
+                    "name": "M\u00f3d oibr\u00edochta"
+                }
+            },
+            "name": "Athra\u00edodh modh oibri\u00fach\u00e1in an t\u00e9itheoir uisce"
+        },
+        "target_temperature_changed": {
+            "name": "Athra\u00edodh teocht sprioc an t\u00e9itheoir uisce"
+        },
+        "target_temperature_crossed_threshold": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Teocht sprice t\u00e9itheoir uisce thar an tairseach"
+        },
+        "turned_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e9itheoir uisce m\u00fachta"
+        },
+        "turned_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e9itheoir uisce casta air"
+        }
+    }
+}

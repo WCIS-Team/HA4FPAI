@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Comprueba si uno o m\u00e1s robots aspiradores est\u00e1n limpiando.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador est\u00e1 limpiando"
+        },
+        "is_docked": {
+            "description": "Comprueba si uno o m\u00e1s robots aspiradores est\u00e1n en la base.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador est\u00e1 en la base"
+        },
+        "is_encountering_an_error": {
+            "description": "Comprueba si uno o m\u00e1s robots aspiradores est\u00e1n detectando un error.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador est\u00e1 detectando un error"
+        },
+        "is_paused": {
+            "description": "Comprueba si uno o m\u00e1s robots aspiradores est\u00e1n en pausa.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador est\u00e1 en pausa"
+        },
+        "is_returning": {
+            "description": "Comprueba si uno o m\u00e1s robots aspiradores est\u00e1n regresando a la base.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador est\u00e1 regresando"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Dejar que {entity_name} limpie",
+            "dock": "Dejar que {entity_name} regrese a la base"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} est\u00e1 limpiando",
+            "is_docked": "{entity_name} en la base"
+        },
+        "extra_fields": {
+            "for": "Duraci\u00f3n"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} empez\u00f3 a limpiar",
+            "docked": "{entity_name} en la base"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Aspiradora",
+            "state": {
+                "cleaning": "Limpiando",
+                "docked": "En la base",
+                "error": "Error",
+                "idle": "Inactivo",
+                "off": "Apagado",
+                "on": "Encendido",
+                "paused": "En pausa",
+                "returning": "Volviendo a la base"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "El mapeo de \u00e1rea no est\u00e1 configurado para `{entity_id}`. Configura la asignaci\u00f3n de segmento a \u00e1rea antes de usar esta acci\u00f3n."
+        },
+        "areas_not_mapped": {
+            "message": "Las siguientes \u00e1reas no est\u00e1n asignadas a ning\u00fan segmento de aspiradora espec\u00edficos: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Los segmentos de aspirado han cambiado para {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "Indica a un robot aspirador que limpie una o m\u00e1s \u00e1reas.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "\u00c1reas a limpiar.",
+                    "name": "\u00c1reas"
+                }
+            },
+            "name": "Limpiar \u00e1rea con robot aspirador"
+        },
+        "clean_spot": {
+            "description": "Le dice a un aspirador que haga una limpieza puntual.",
+            "name": "Limpiar punto con robot aspirador"
+        },
+        "locate": {
+            "description": "Localiza un robot aspirador.",
+            "name": "Localizar robot aspirador"
+        },
+        "pause": {
+            "description": "Pausa la tarea de limpieza de un robot aspirador.",
+            "name": "Pausar robot aspirador"
+        },
+        "return_to_base": {
+            "description": "Env\u00eda un robot aspirador de vuelta a su base.",
+            "name": "Regresar robot aspirador a la base"
+        },
+        "send_command": {
+            "description": "Env\u00eda una orden a un aspirador.",
+            "fields": {
+                "command": {
+                    "description": "Comando a ejecutar. Los comandos son espec\u00edficos de la integraci\u00f3n.",
+                    "name": "Comando"
+                },
+                "params": {
+                    "description": "Par\u00e1metros para el comando. Los par\u00e1metros son espec\u00edficos de la integraci\u00f3n.",
+                    "name": "Par\u00e1metros"
+                }
+            },
+            "name": "Enviar orden a robot aspirador"
+        },
+        "set_fan_speed": {
+            "description": "Ajusta la velocidad del ventilador de un aspirador.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Velocidad del ventilador. El valor depende de la integraci\u00f3n. Algunas integraciones tienen pasos de velocidad, como 'medio'. Algunos usan un porcentaje, entre 0 y 100.",
+                    "name": "Velocidad del ventilador"
+                }
+            },
+            "name": "Establecer velocidad del ventilador de robot aspirador"
+        },
+        "start": {
+            "description": "Inicia o reanuda la tarea de limpieza de un robot aspirador.",
+            "name": "Iniciar robot aspirador"
+        },
+        "start_pause": {
+            "description": "Inicia, pausa o reanuda la tarea de limpieza de un robot aspirador.",
+            "name": "Iniciar/pausar robot aspirador"
+        },
+        "stop": {
+            "description": "Detiene la tarea de limpieza actual de un robot aspirador.",
+            "name": "Detener robot aspirador"
+        },
+        "toggle": {
+            "description": "Enciende o apaga un aspirador.",
+            "name": "Alternar robot aspirador"
+        },
+        "turn_off": {
+            "description": "Apaga un robot aspirador",
+            "name": "Apagar robot aspirador"
+        },
+        "turn_on": {
+            "description": "Enciende un robot aspirador",
+            "name": "Encender robot aspirador"
+        }
+    },
+    "title": "Aspiradora",
+    "triggers": {
+        "errored": {
+            "description": "Se dispara cuando uno o m\u00e1s robots aspiradores detectan un error.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador encontr\u00f3 un error"
+        },
+        "paused_cleaning": {
+            "description": "Se dispara cuando uno o m\u00e1s robots aspiradores pausan la limpieza.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador dej\u00f3 de limpiar"
+        },
+        "returned_to_dock": {
+            "description": "Se dispara cuando uno o m\u00e1s robots aspiradores han regresado a la base.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador se acopl\u00f3 a la base"
+        },
+        "started_cleaning": {
+            "description": "Se dispara cuando uno o m\u00e1s robots aspiradores empiezan a limpiar.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador comenz\u00f3 a limpiar"
+        },
+        "started_returning": {
+            "description": "Se dispara cuando uno o m\u00e1s robots aspiradores comienzan a regresar a la base.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El robot aspirador comenz\u00f3 a regresar a la base"
+        }
+    }
+}

@@ -1,0 +1,245 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "condition_threshold_name": "Tip grani\u010dne vrednosti",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje",
+        "trigger_threshold_name": "Tip grani\u010dne vrednosti"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Proverava da li je jedan ili vi\u0161e bojlera isklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Bojler isklju\u010den"
+        },
+        "is_on": {
+            "description": "Proverava da li je jedan ili vi\u0161e bojlera uklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Bojler uklju\u010den"
+        },
+        "is_operation_mode": {
+            "description": "Proverava da li je jedan ili vi\u0161e bojlera pode\u0161eno na odre\u0111eni re\u017eim rada.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "operation_mode": {
+                    "description": "Re\u017eim rada koji se proverava.",
+                    "name": "Re\u017eim rada"
+                }
+            },
+            "name": "Re\u017eim rada bojlera"
+        },
+        "is_target_temperature": {
+            "description": "Proverava zadatu temperaturu na jednom ili vi\u0161e bojlera.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna temperatura bojlera"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "Isklju\u010di {entity_name}",
+            "turn_on": "Uklju\u010di {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Bojler",
+            "state": {
+                "eco": "Eko re\u017eim",
+                "electric": "Struja",
+                "gas": "Gas",
+                "heat_pump": "Toplotna pumpa",
+                "high_demand": "Brzo grejanje",
+                "off": "Isklju\u010deno",
+                "performance": "Performanse"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "Re\u017eim odsustva",
+                    "state": {
+                        "off": "Isklju\u010deno",
+                        "on": "Uklju\u010deno"
+                    }
+                },
+                "current_operation": {
+                    "name": "Trenutni rad"
+                },
+                "current_temperature": {
+                    "name": "Trenutna temperatura"
+                },
+                "max_temp": {
+                    "name": "Maksimalna ciljna temperatura"
+                },
+                "min_temp": {
+                    "name": "Minimalna ciljna temperatura"
+                },
+                "operation_mode": {
+                    "name": "Re\u017eimi rada",
+                    "state": {
+                        "eco": "Eko re\u017eim",
+                        "electric": "Struja",
+                        "gas": "Gas",
+                        "heat_pump": "Toplotna pumpa",
+                        "high_demand": "Brzo grejanje",
+                        "off": "Isklju\u010deno",
+                        "performance": "Performanse"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "Gornja ciljna temperatura"
+                },
+                "target_temp_low": {
+                    "name": "Ni\u017ea ciljna temperatura"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "Re\u017eim rada {operation_mode} nije ispravan za {entity_id}. Ispravni re\u017eimi rada su: {operation_list}."
+        },
+        "operation_list_not_defined": {
+            "message": "Re\u017eim rada {operation_mode} nije ispravan za {entity_id}. Lista re\u017eima nije definisana."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "description": "Aktivira ili deaktivira re\u017eim rada tokom odsustva.",
+            "fields": {
+                "away_mode": {
+                    "description": "Nova vrednost re\u017eima odsustva.",
+                    "name": "Re\u017eim odsustva"
+                }
+            },
+            "name": "Podesi re\u017eim odsustva na bojleru"
+        },
+        "set_operation_mode": {
+            "description": "Pode\u0161ava \u017eeljeni re\u017eim rada bojlera.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Izbor dostupnih re\u017eima rada zavisno od integracije. Spisak podr\u017eanih re\u017eima mo\u017eete prona\u0107i u dokumentaciji integracije.",
+                    "name": "Re\u017eim rada"
+                }
+            },
+            "name": "Podesi re\u017eim rada bojlera"
+        },
+        "set_temperature": {
+            "description": "Pode\u0161ava \u017eeljenu temperaturu vode u bojleru.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Izbor dostupnih re\u017eima rada zavisno od integracije. Spisak podr\u017eanih re\u017eima mo\u017eete prona\u0107i u dokumentaciji integracije.",
+                    "name": "Re\u017eim rada"
+                },
+                "temperature": {
+                    "description": "Vrednost \u017eeljene temperature izra\u017eena u stepenima Celzijusa (\u00b0C).",
+                    "name": "Temperatura"
+                }
+            },
+            "name": "Podesi ciljanu temperaturu bojlera"
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje izabrani bojler.",
+            "name": "Isklju\u010di bojler"
+        },
+        "turn_on": {
+            "description": "Uklju\u010duje izabrani bojler.",
+            "name": "Uklju\u010di bojler"
+        }
+    },
+    "title": "Bojler",
+    "triggers": {
+        "operation_mode_changed": {
+            "description": "Pokre\u0107e se nakon \u0161to se re\u017eim rada jednog ili vi\u0161e bojlera promeni u odre\u0111eni re\u017eim.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "operation_mode": {
+                    "description": "Re\u017eimi rada koji slu\u017ee kao pokreta\u010di.",
+                    "name": "Re\u017eim rada"
+                }
+            },
+            "name": "Re\u017eim rada bojlera promenjen"
+        },
+        "target_temperature_changed": {
+            "description": "Pokre\u0107e se nakon \u0161to se promeni pode\u0161ena temperatura jednog ili vi\u0161e bojlera.",
+            "fields": {
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Promenjena ciljna temperatura bojlera"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Pokre\u0107e se nakon \u0161to pode\u0161ena temperatura jednog ili vi\u0161e bojlera pre\u0111e grani\u010dnu vrednost.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljna temperatura bojlera je pre\u0161la grani\u010dnu vrednost."
+        },
+        "turned_off": {
+            "description": "Pokre\u0107e se nakon \u0161to se jedan ili vi\u0161e bojlera isklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Bojler isklju\u010den"
+        },
+        "turned_on": {
+            "description": "Pokre\u0107e se nakon \u0161to se jedan ili vi\u0161e bojlera uklju\u010de, bez obzira na re\u017eim rada.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Bojler uklju\u010den"
+        }
+    }
+}

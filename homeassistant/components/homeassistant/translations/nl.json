@@ -1,0 +1,319 @@
+{
+    "config": {
+        "abort": {
+            "already_in_progress": "Dit wordt momenteel al geconfigureerd. Rond de huidige configuratie eerst af voordat je opnieuw begint.",
+            "authorize_url_timeout": "Time-out bij het genereren van een autorisatie-URL.",
+            "cloud_not_connected": "Niet verbonden met Home Assistant Cloud.",
+            "missing_credentials": "Voor deze integratie zijn applicatie inloggegevens vereist.",
+            "no_devices_found": "Geen apparaten gevonden op het netwerk",
+            "no_url_available": "Geen URL beschikbaar. Voor informatie over deze fout, [raadpleeg de documentatie]({docs_url})",
+            "oauth_error": "Ongeldige tokengegevens ontvangen.",
+            "oauth_failed": "Fout bij het verkrijgen van toegangstoken.",
+            "oauth_implementation_unavailable": "Er zijn momenteel geen OAuth2-implementaties beschikbaar.",
+            "oauth_timeout": "Time-out opgetreden tijdens het ophalen van het OAuth-token.",
+            "oauth_unauthorized": "OAuth autorisatiefout tijdens het verkrijgen van een toegangstoken.",
+            "reauth_successful": "Herauthenticatie geslaagd",
+            "reconfigure_successful": "De herconfiguratie is gelukt",
+            "single_instance_allowed": "Al geconfigureerd. Er is slechts \u00e9\u00e9n configuratie mogelijk.",
+            "user_rejected_authorize": "Accountkoppeling geweigerd: {error}"
+        }
+    },
+    "exceptions": {
+        "component_import_err": {
+            "message": "Importeren {domain} niet mogelijk: {error}"
+        },
+        "config_platform_import_err": {
+            "message": "Fout bij het importeren van configuratieplatform {domain}: {error}"
+        },
+        "config_schema_unknown_err": {
+            "message": "Onbekende fout bij het aanroepen van {domain} CONFIG_SCHEMA - {error}."
+        },
+        "config_validation_err": {
+            "message": "Ongeldige configuratie voor informatie {domain} in {config_file}, regel {line}: {error}."
+        },
+        "config_validator_unknown_err": {
+            "message": "Onbekende fout bij het aanroepen van de config-validator voor {domain} - {error}."
+        },
+        "core_config_reload_failed": {
+            "message": "Het herladen van de Home Assistant Core-configuratie is mislukt - {error}"
+        },
+        "max_length_exceeded": {
+            "message": "Waarde {value} voor eigenschap {property_name} heeft een maximum lengte van {max_length} tekens."
+        },
+        "multiple_integration_config_errors": {
+            "message": "Het verwerken van de configuratie voor integratie {domain} is niet gelukt als gevolg van meerdere ({errors}) fouten."
+        },
+        "oauth2_helper_reauth_required": {
+            "message": "De inloggegevens zijn ongeldig, opnieuw authenticeren is vereist."
+        },
+        "oauth2_helper_refresh_failed": {
+            "message": "OAuth2 token verversen mislukt voor {domain}"
+        },
+        "oauth2_helper_refresh_transient": {
+            "message": "Tijdelijke fout bij het verversen van inloggegevens voor {domain}, probeer het later opnieuw"
+        },
+        "oauth2_implementation_unavailable": {
+            "message": "OAuth2-implementatie niet beschikbaar, wordt opnieuw geprobeerd."
+        },
+        "platform_component_load_err": {
+            "message": "Platformfout: {domain} - {error}."
+        },
+        "platform_component_load_exc": {
+            "message": "Platformfout: {domain} - {error}."
+        },
+        "platform_config_validation_err": {
+            "message": "Ongeldige configuratie voor {domain} van informatie {p_name} in bestand {config_file}, regel {line}: {error}. Controleer het logboek voor meer informatie."
+        },
+        "platform_schema_validator_err": {
+            "message": "Onbekende fout bij het valideren van configuratie voor {domain} van integratie {p_name} - {error}."
+        },
+        "scene_config_reload_failed": {
+            "message": "Het herladen van de configuratie van het Home Assistant-sc\u00e8neplatform is mislukt - {error}"
+        },
+        "service_config_entry_not_found": {
+            "message": "Integratie {domain} configuratie-item met ID {entry_id} werd niet gevonden."
+        },
+        "service_config_entry_not_loaded": {
+            "message": "Configuratie-item {entry_title} voor integratie {domain} is niet geladen."
+        },
+        "service_config_entry_wrong_domain": {
+            "message": "Configuratie-item {entry_title} hoort niet bij integratie {domain}."
+        },
+        "service_does_not_support_response": {
+            "message": "Een actie die geen reacties teruggeeft, kan niet worden aangeroepen met {return_response}."
+        },
+        "service_lacks_response_request": {
+            "message": "De actie vereist reacties en moet worden aangeroepen met {return_response}."
+        },
+        "service_not_found": {
+            "message": "Actie {domain}.{service} niet gevonden."
+        },
+        "service_not_supported": {
+            "message": "Entiteit {entity_id} ondersteunt de actie {domain}.{service} niet."
+        },
+        "service_reponse_invalid": {
+            "message": "De geretourneerde gegevens van de actierespons zijn niet verwerkt; verwachtte een dictionary, maar kreeg {response_data_type}."
+        },
+        "service_should_be_blocking": {
+            "message": "Een niet-blokkerende actieoproep met argument {non_blocking_argument} kan niet samen met argument {return_response} worden gebruikt."
+        }
+    },
+    "issues": {
+        "config_entry_only": {
+            "description": "De {domain}-integratie ondersteunt geen configuratie via een YAML-bestand. Je merkt misschien geen duidelijke problemen met de integratie, maar eventuele configuratie-instellingen die in YAML zijn gedefinieerd, worden niet daadwerkelijk toegepast. \n\n Om dit op te lossen: \n\n 1. Als je dit nog niet hebt gedaan, [stel de integratie in]({add_integration}). \n\n 2. Verwijder `{domain}:` uit jouw YAML-configuratiebestand. \n\n 3. Start Home Assistant opnieuw.",
+            "title": "De {domain}-integratie ondersteunt geen YAML-configuratie"
+        },
+        "config_entry_reauth": {
+            "description": "Herauthenticatie is nodig",
+            "title": "Authenticatie is verlopen voor {name}"
+        },
+        "config_entry_unique_id_collision": {
+            "description": "Er zijn meerdere {domain} config entries met dezelfde unieke ID.\nDe config entries hebben de naam {titles}.\n\nOm deze fout op te lossen, [configureer je de integratie]({configure_url}) en verwijder je alle behalve \u00e9\u00e9n van de duplicaten.\n\nOpmerking: Een andere groep duplicaten kan zichtbaar worden na het verwijderen van deze duplicaten.",
+            "title": "Meerdere {domain} config entries met dezelfde unieke ID"
+        },
+        "config_entry_unique_id_collision_many": {
+            "description": "Er zijn meerdere ({number_of_entries}) {domain} config entries met dezelfde unieke ID.\nDe eerste {title_limit} config entries hebben de naam {titles}.\n\nOm deze fout op te lossen, [configureer je de integratie]({configure_url}) en verwijder je alle behalve \u00e9\u00e9n van de duplicaten.\n\nOpmerking: Een andere groep duplicaten kan zichtbaar worden na het verwijderen van deze duplicaten.",
+            "title": "Meerdere {domain} config entries met dezelfde unieke ID"
+        },
+        "country_not_configured": {
+            "title": "Het land is niet geconfigureerd"
+        },
+        "deprecated_architecture": {
+            "description": "Dit systeem maakt gebruik van 32-bits hardware (`{arch}`), die verouderd is en na de release van Home Assistant 2025.12 geen updates meer zal ontvangen. Omdat je hardware niet langer geschikt is voor nieuwere versies van Home Assistant, moet je migreren naar nieuwe hardware.",
+            "title": "Waarschuwing: verouderde 32-bit architectuur"
+        },
+        "deprecated_container": {
+            "description": "Dit systeem draait op een 32-bits besturingssysteem (`{arch}`), die verouderd is en na de release van Home Assistant 2025.12 geen updates meer ontvangt. Controleer of je systeem een 64-bits besturingssysteem ondersteunt. Zo niet, dan moet je overstappen op nieuwe hardware.",
+            "title": "Waarschuwing: verouderde 32-bit architectuur"
+        },
+        "deprecated_method": {
+            "description": "Dit systeem gebruikt het {installation_type} installatiemethode, dat niet meer wordt ondersteund sinds Home Assistant 2025.12. Om updates en ondersteuning te blijven ontvangen, moet je migreren naar een ondersteunde installatiemethode.",
+            "title": "Niet-ondersteunde installatiemethode"
+        },
+        "deprecated_method_architecture": {
+            "description": "Dit systeem maakt gebruik van het {installation_type} installatietype en 32-bits hardware (`{arch}`), die beide sinds Home Assistant 2025.12 niet meer worden ondersteund. Om updates en ondersteuning te blijven ontvangen, moet je overstappen naar ondersteunde hardware en een ondersteunde installatiemethode gebruiken.",
+            "title": "Niet-ondersteunde installatiemethode en architectuur"
+        },
+        "deprecated_os_aarch64": {
+            "description": "Dit systeem draait op een 32-bits besturingssysteem (`armv7`), dat verouderd is en geen updates meer zal ontvangen na de release van Home Assistant 2025.12. Om Home Assistant op deze hardware te kunnen blijven gebruiken, moet je een 64-bits besturingssysteem installeren. Raadpleeg hiervoor onze [installatiegids]({installation_guide}).",
+            "title": "Waarschuwing: verouderde 32-bit architectuur"
+        },
+        "deprecated_os_armv7": {
+            "description": "Dit systeem gebruikt een 32-bits besturingssysteem (`armv7`), dat niet langer wordt ondersteund en zal na Home Assistant 2025.12 geen updates meer krijgt. Omdat je hardware niet geschikt is voor toekomstige versies van Home Assistant, dien je over te stappen op andere hardware.",
+            "title": "Waarschuwing: verouderde 32-bit architectuur"
+        },
+        "deprecated_system_packages_config_flow_integration": {
+            "description": "De {integration_title} integratie wordt verwijderd omdat deze afhankelijk is van systeempakketten die alleen ge\u00efnstalleerd kunnen worden op systemen met een verouderde architectuur. Om dit op te lossen, verwijder je alle \"{integration_title}\" config entries.",
+            "title": "De {integration_title} integratie wordt verwijderd"
+        },
+        "deprecated_system_packages_yaml_integration": {
+            "description": "De {integration_title} integratie wordt verwijderd omdat deze afhankelijk is van systeempakketten die alleen ge\u00efnstalleerd kunnen worden op systemen met een verouderde architectuur. Om dit op te lossen, verwijder je de {domain} entry uit je configuration.yaml bestand en herstart je Home Assistant.",
+            "title": "De {integration_title} integratie wordt verwijderd"
+        },
+        "deprecated_yaml": {
+            "description": "Het configureren van {integration_title} met behulp van YAML wordt verwijderd.\n\nJe bestaande YAML configuratie is automatisch ge\u00efmporteerd in de UI.\n\nVerwijder de `{domain}` configuratie uit je configuration.yaml bestand en herstart Home Assistant om dit probleem op te lossen.",
+            "title": "De {integration_title} YAML configuratie wordt verwijderd"
+        },
+        "historic_currency": {
+            "description": "De valuta {currency} wordt niet langer gebruikt. Configureer de valuta opnieuw.",
+            "title": "De geconfigureerde valuta is niet meer in gebruik"
+        },
+        "imperial_unit_system": {
+            "description": "Het imperiale eenheidssysteem is verouderd en je systeem gebruikt momenteel het Amerikaanse gebruikelijke. Werk je configuratie bij om het Amerikaanse gebruikelijke eenheidssysteem te gebruiken en laad de Core-configuratie opnieuw om dit probleem op te lossen.",
+            "title": "Het imperiale eenheidssysteem is verouderd"
+        },
+        "integration_not_found": {
+            "fix_flow": {
+                "step": {
+                    "init": {
+                        "menu_options": {
+                            "confirm": "Eerdere configuraties verwijderen",
+                            "ignore": "Negeer"
+                        },
+                        "title": "Integratie {domain} niet gevonden"
+                    }
+                }
+            },
+            "title": "Integratie {domain} niet gevonden"
+        },
+        "legacy_templates_false": {
+            "description": "Er verandert niets aan je templates.\n\nVerwijder de 'legacy_templates'-toets uit de 'homeassistant'-configuratie in je configuration.yaml-bestand en start Home Assistant opnieuw om dit probleem op te lossen.",
+            "title": "legacy_templates config key wordt verwijderd"
+        },
+        "legacy_templates_true": {
+            "description": "Voer de volgende stappen uit:\n- Pas de configuratie aan om het renderen van templates naar native python types te ondersteunen.\n- Verwijder de `legacy_templates` sleutel uit de `homeassistant` configuratie in je configuration.yaml bestand.\n- Herstart Home Assistant om dit probleem op te lossen.",
+            "title": "De ondersteuning voor verouderde templates wordt verwijderd"
+        },
+        "orphaned_ignored_config_entry": {
+            "fix_flow": {
+                "abort": {
+                    "issue_ignored": "Niet-bestaande integratie {domain} genegeerd."
+                },
+                "step": {
+                    "init": {
+                        "description": "Er is een genegeerde, achtergebleven configuratie-item voor de `{domain}`integratie. Dit kan gebeuren wanneer een integratie wordt verwijderd, maar de configuratie-instelling nog steeds aanwezig is in Home Assistant.\n\nOm dit op te lossen, druk je op **Verwijderen** om het achtergebleven configuratie-item op te ruimen.",
+                        "menu_options": {
+                            "confirm": "Verwijderen",
+                            "ignore": "Negeer"
+                        },
+                        "title": "Achtergebleven genegeerde configuratie-item voor {domain}"
+                    }
+                }
+            },
+            "title": "Achtergebleven genegeerde configuratie-item voor {domain}"
+        },
+        "platform_config_not_supported": {
+            "description": "De configuratie van de {integration_domain} integratie door het toevoegen van `{platform_key} onder `{platform_domain}:` wordt niet ondersteund. De {integration_domain} integratie moet in plaats daarvan onder een eigen `{integration_domain}:` worden geplaatst.\n\nOm dit op te lossen:\n\n1. Verwijder het volgende uit je YAML-configuratiebestand:\n\n{yaml_example}\n\n2. Verplaats de configuratie naar `{integration_domain}:`.\n\n3. Start Home Assistant opnieuw op.\n\nKies 'Meer informatie' om gedetailleerde documentatie te bekijken.",
+            "title": "Niet-ondersteunde YAML-configuratie voor de {integration_domain}-integratie"
+        },
+        "platform_only": {
+            "description": "De {domain}-integratie ondersteunt geen configuratie onder zijn eigen sleutel, deze moet worden geconfigureerd onder de ondersteunde platformen. \n\n Om dit op te lossen: \n\n 1. Verwijder `{domain}:` uit jouw YAML-configuratiebestand.\n\n 2. Start Home Assistant opnieuw.",
+            "title": "De {domain}-integratie ondersteunt geen YAML-configuratie onder zijn eigen sleutel"
+        },
+        "platform_setup_not_supported": {
+            "description": "Het is niet mogelijk om {integration_domain} {platform_domain} te configureren door `{platform_key}` toe te voegen aan de {platform_domain} configuratie. Raadpleeg de documentatie voor meer informatie over het instellen van deze integratie.\n\nOm dit op te lossen:\n\n1. Verwijder de `{platform_key}` vermeldingen uit de `{platform_domain}:` configuratie in je YAML-configuratiebestand.\n\n2. Start Home Assistant opnieuw op.",
+            "title": "Ongebruikte YAML-configuratie voor de {integration_domain}-integratie"
+        },
+        "storage_corruption": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "title": "Opslag corruptie gedetecteerd voor {storage_key}"
+                    }
+                }
+            },
+            "title": "Opslag corruptie gedetecteerd voor {storage_key}"
+        },
+        "unsupported_local_deps": {
+            "description": "Dit systeem draait Home Assistant buiten een virtuele omgeving of een Docker-container. Dit wordt niet ondersteund en zal na de release van Home Assistant 2026.11 niet meer werken.",
+            "title": "Waarschuwing: verouderde installatiemethode"
+        }
+    },
+    "services": {
+        "check_config": {
+            "description": "Controleert de Home Assistant YAML-configuratiebestanden op fouten. Fouten worden getoond in de Home Assistant logboeken."
+        },
+        "reload_config_entry": {
+            "fields": {
+                "entry_id": {
+                    "name": "Config-entry ID"
+                }
+            },
+            "name": "Herladen config-entry"
+        },
+        "reload_custom_templates": {
+            "description": "Herlaadt Jinja2 templates die in de `custom_templates` map in van je configuratie zitten. Nieuwe waarden worden toegepast bij de volgende render van het template.",
+            "name": "Herlaad aangepaste Jinja2-templates"
+        },
+        "restart": {
+            "description": "Herstart Home Assistant.",
+            "fields": {
+                "safe_mode": {
+                    "description": "Aangepaste integraties en aangepaste kaarten uitschakelen.",
+                    "name": "Veilige modus"
+                }
+            },
+            "name": "Home Assistant opnieuw opstarten"
+        },
+        "save_persistent_states": {
+            "description": "Slaat de blijvende toestanden onmiddellijk op. Handhaaft het normale periodieke opslaginterval.",
+            "name": "Blijvende toestanden opslaan"
+        },
+        "set_location": {
+            "description": "Werkt de Home Assistant locatie bij.",
+            "fields": {
+                "elevation": {
+                    "description": "Hoogte van je locatie boven zeeniveau.",
+                    "name": "Hoogte"
+                },
+                "latitude": {
+                    "description": "Breedtegraad van je locatie.",
+                    "name": "Breedtegraad"
+                },
+                "longitude": {
+                    "description": "Lengtegraad van je locatie.",
+                    "name": "Lengtegraad"
+                }
+            }
+        },
+        "stop": {
+            "description": "Stopt Home Assistant.",
+            "name": "Home Assistant stoppen"
+        },
+        "toggle": {
+            "name": "Generiek omschaken"
+        },
+        "turn_off": {
+            "name": "Generiek uitschakelen"
+        },
+        "turn_on": {
+            "name": "Generiek inschakelen"
+        },
+        "update_entity": {
+            "fields": {
+                "entity_id": {
+                    "description": "Lijst van entiteiten die geforceerd moeten worden bijgewerkt.",
+                    "name": "Entiteiten om bij te werken"
+                }
+            },
+            "name": "Bijwerken entiteit"
+        }
+    },
+    "system_health": {
+        "info": {
+            "arch": "CPU-architectuur",
+            "container_arch": "Containerarchitectuur",
+            "dev": "Ontwikkeling",
+            "docker": "Docker",
+            "hassio": "Supervisor",
+            "installation_type": "Type installatie",
+            "os_name": "Besturingssysteem",
+            "os_version": "Versie van het besturingssysteem",
+            "python_version": "Python versie",
+            "timezone": "Tijdzone",
+            "user": "Gebruiker",
+            "version": "Versie",
+            "virtualenv": "Virtuele omgeving"
+        }
+    }
+}

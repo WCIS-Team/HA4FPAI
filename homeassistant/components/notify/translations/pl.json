@@ -1,0 +1,88 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Powiadomienia"
+        }
+    },
+    "issues": {
+        "migrate_notify": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Akcja(e) {integration_title} \u201enotify\u201d zosta\u0142a zmigrowana. Nowa encja \u201enotify\u201d jest teraz dost\u0119pna aby zast\u0105pi\u0107 ka\u017cd\u0105 starsz\u0105 akcj\u0119 \u201enotify\u201d.\n\nZaktualizuj wszystkie automatyzacje, aby u\u017cywa\u0142y nowej akcji \u201enotify.send_message\u201d udost\u0119pnionej przez encj\u0119. Gdy to zrobisz, napraw ten problem i uruchom ponownie Home Assistant.",
+                        "title": "Migruj starsz\u0105 akcj\u0119 powiadamiania {integration_title} dla domeny \u201e{domain}\u201d"
+                    }
+                }
+            },
+            "title": "Migracja akcji powiadamiania {integration_title}"
+        },
+        "migrate_notify_service": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Akcja {integration_title} `notify.{service_name}` zosta\u0142a przeniesiona, ale wygl\u0105da na to, \u017ce stara akcja `notify` wci\u0105\u017c jest u\u017cywana.\n\nNowa encja `notify` jest teraz dost\u0119pna, aby zast\u0105pi\u0107 ka\u017cd\u0105 star\u0105 akcj\u0119 `notify`.\n\nZaktualizuj wszystkie automatyzacje lub skrypty, aby u\u017cywa\u0142y nowej akcji `notify.send_message` udost\u0119pnionej przez t\u0105 now\u0105 encj\u0119. Gdy to zrobisz, wybierz opcj\u0119 \"Wy\u015blij\" i zrestartuj Home Assistant.",
+                        "title": "Migruj przestarza\u0142\u0105 akcj\u0119 powiadamiania {integration_title} dla domeny \u201e{domain}\u201d"
+                    }
+                }
+            },
+            "title": "Przestarza\u0142a akcja notify.{service_name} jest nadal u\u017cywana"
+        }
+    },
+    "services": {
+        "notify": {
+            "description": "Wysy\u0142a powiadomienia do wybranych cel\u00f3w.",
+            "fields": {
+                "data": {
+                    "description": "Niekt\u00f3re integracje zapewniaj\u0105 rozszerzon\u0105 funkcjonalno\u015b\u0107 za po\u015brednictwem tego pola. Wi\u0119cej informacji mo\u017cna znale\u017a\u0107 w dokumentacji integracji.",
+                    "name": "Dane"
+                },
+                "message": {
+                    "description": "Tre\u015b\u0107 powiadomienia.",
+                    "name": "Wiadomo\u015b\u0107"
+                },
+                "target": {
+                    "description": "Niekt\u00f3re integracje pozwalaj\u0105 okre\u015bli\u0107 cele, kt\u00f3re otrzymaj\u0105 powiadomienie. Wi\u0119cej informacji mo\u017cna znale\u017a\u0107 w dokumentacji integracji.",
+                    "name": "Cel"
+                },
+                "title": {
+                    "description": "Tytu\u0142 powiadomienia.",
+                    "name": "Tytu\u0142"
+                }
+            },
+            "name": "Wy\u015blij powiadomienie"
+        },
+        "persistent_notification": {
+            "description": "Wysy\u0142a powiadomienie widoczne w panelu powiadomie\u0144.",
+            "fields": {
+                "data": {
+                    "description": "Niekt\u00f3re integracje zapewniaj\u0105 rozszerzon\u0105 funkcjonalno\u015b\u0107 za po\u015brednictwem tego pola. Wi\u0119cej informacji mo\u017cna znale\u017a\u0107 w dokumentacji integracji.",
+                    "name": "Dane"
+                },
+                "message": {
+                    "description": "Tre\u015b\u0107 powiadomienia.",
+                    "name": "Wiadomo\u015b\u0107"
+                },
+                "title": {
+                    "description": "Tytu\u0142 powiadomienia.",
+                    "name": "Tytu\u0142"
+                }
+            },
+            "name": "Wy\u015blij trwa\u0142e powiadomienie"
+        },
+        "send_message": {
+            "description": "Wysy\u0142a powiadomienie.",
+            "fields": {
+                "message": {
+                    "description": "Wiadomo\u015b\u0107 w Twoim powiadomieniu.",
+                    "name": "Wiadomo\u015b\u0107"
+                },
+                "title": {
+                    "description": "Tytu\u0142 twojego powiadomienia.",
+                    "name": "Tytu\u0142"
+                }
+            },
+            "name": "Wy\u015blij powiadomienie"
+        }
+    },
+    "title": "Powiadomienia"
+}

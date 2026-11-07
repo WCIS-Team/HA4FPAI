@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "Podm\u00ednka je spln\u011bna, kdy\u017e",
+        "condition_for_name": "Alespo\u0148 na",
+        "trigger_behavior_name": "Spustit, kdy\u017e",
+        "trigger_for_name": "Alespo\u0148 na"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Otestuje, zda nen\u00ed jeden nebo v\u00edce pl\u00e1n\u016f aktivn\u00edch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Pl\u00e1n je vypnut\u00fd"
+        },
+        "is_on": {
+            "description": "Otestuje, zda je jeden nebo v\u00edce pl\u00e1n\u016f aktivn\u00edch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Pl\u00e1n je zapnut\u00fd"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Pl\u00e1n",
+            "state": {
+                "off": "Vypnuto",
+                "on": "Zapnuto"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "Spravov\u00e1no p\u0159es u\u017eivatelsk\u00e9 rozhran\u00ed",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Ano"
+                    }
+                },
+                "next_event": {
+                    "name": "Dal\u0161\u00ed ud\u00e1lost"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "Na\u010dte nastaven\u00e9 \u010dasov\u00e9 rozsahy jednoho nebo v\u00edce pl\u00e1n\u016f.",
+            "name": "Z\u00edskat pl\u00e1n"
+        },
+        "reload": {
+            "description": "Znovu na\u010dte pl\u00e1ny z YAML konfigurace.",
+            "name": "Znovu na\u010d\u00edst pl\u00e1ny"
+        }
+    },
+    "title": "Pl\u00e1n",
+    "triggers": {
+        "block_ended": {
+            "description": "Spust\u00ed se, kdy\u017e skon\u010d\u00ed jeden nebo v\u00edce blok\u016f pl\u00e1nu.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Blok pl\u00e1nu ukon\u010den"
+        },
+        "block_started": {
+            "description": "Spust\u00ed se p\u0159i spu\u0161t\u011bn\u00ed jednoho nebo v\u00edce blok\u016f pl\u00e1nu.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Blok pl\u00e1nu spu\u0161t\u011bn"
+        }
+    }
+}

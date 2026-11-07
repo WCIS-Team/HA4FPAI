@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Paslauga jau sukonfig\u016bruota",
+            "no_adapters": "Nerasta joki\u0173 nesukonfig\u016bruot\u0173 Bluetooth adapteri\u0173."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "Ar norite nustatyti {name} ?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adapteris"
+                },
+                "description": "Pasirinkite Bluetooth adapter\u012f, kur\u012f norite nustatyti"
+            },
+            "single_adapter": {
+                "description": "Ar norite nustatyti \u201eBluetooth\u201c adapter\u012f {name} {manufacturer} {model} ?"
+            },
+            "user": {
+                "data": {
+                    "address": "Prietaisas"
+                },
+                "description": "Pasirinkite prietais\u0105, kur\u012f norite nustatyti"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "Bluetooth\u201c adapteris ** {adapter} ** ( {model} ) veikia suma\u017e\u0117jusiu re\u017eimu, nes j\u016bs\u0173 konteineriui reikia papildom\u0173 leidim\u0173, kad b\u016bt\u0173 galima visapusi\u0161kai pasiekti Bluetooth aparatin\u0119 \u012frang\u0105. \n \n Vadovaukit\u0117s m\u016bs\u0173 dokumentacijoje pateiktomis instrukcijomis, kad prid\u0117tum\u0117te reikiamus leidimus: \n [Bluetooth leidimai, skirti Docker]( {docs_url} ) \n \n Prid\u0117j\u0119 \u0161iuos leidimus, paleiskite Home Assistant konteiner\u012f i\u0161 naujo, kad pakeitimai \u012fsigaliot\u0173.",
+            "title": "Bluetooth adapteriui reikalingi papildomi leidimai"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "Bluetooth adapteris ** {adapter} ** ( {model} ) u\u017estrigo pasyvaus nuskaitymo re\u017eime, nepaisant to, kad buvo pateikta u\u017eklausa d\u0117l aktyvaus nuskaitymo re\u017eimo. **Buvo bandyta automati\u0161kai atkurti, bet nepavyko.** Tai grei\u010diausiai yra branduolio, programin\u0117s \u012frangos arba operacin\u0117s sistemos problema, ir sistemai reikia visi\u0161kai i\u0161jungti ir i\u0161jungti maitinim\u0105, kad b\u016bt\u0173 atkurtas adapteris. \n \n Pasyviu re\u017eimu adapteris gali gauti tik reklamas, bet negali pra\u0161yti papildom\u0173 duomen\u0173 i\u0161 \u012frengini\u0173, o tai tur\u0117s \u012ftakos \u012frengini\u0173 aptikimui ir veikimui. \n \n **Reikalingas rankinis \u012fsiki\u0161imas:** \n 1. **Visi\u0161kai i\u0161junkite sistem\u0105** (ne tik paleiskite j\u0105 i\u0161 naujo) \n 2. **Atjunkite maitinim\u0105** (atjunkite arba i\u0161junkite jungikl\u012f) \n 3. Palaukite 10 sekund\u017ei\u0173 \n 4. Atkurkite maitinim\u0105 ir paleiskite sistem\u0105 \n \n Jei problema i\u0161lieka po maitinimo \u012fjungimo ir i\u0161jungimo: \n - Patikrinkite, ar n\u0117ra branduolio / programin\u0117s \u012frangos atnaujinim\u0173 \n - Gali b\u016bti, kad integruotame Bluetooth adapteryje yra aparatin\u0117s \u012frangos problem\u0173",
+            "title": "Bluetooth adapteriui reikalingas sistemos \u012fjungimas ir i\u0161jungimas"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "Bluetooth adapteris ** {adapter} ** ( {model} ) u\u017estrigo pasyvaus nuskaitymo re\u017eime, nepaisant to, kad buvo pateikta u\u017eklausa d\u0117l aktyvaus nuskaitymo re\u017eimo. **Buvo bandyta automati\u0161kai atkurti, bet nepavyko.** Tai grei\u010diausiai yra branduolio, programin\u0117s \u012frangos arba operacin\u0117s sistemos problema, tod\u0117l norint atkurti adapter\u012f, reikia rankiniu b\u016bdu \u012fjungti ir i\u0161jungti maitinim\u0105. \n \n Pasyviu re\u017eimu adapteris gali gauti tik reklamas, bet negali pra\u0161yti papildom\u0173 duomen\u0173 i\u0161 \u012frengini\u0173, o tai tur\u0117s \u012ftakos \u012frengini\u0173 aptikimui ir veikimui. \n \n **Reikalingas rankinis \u012fsiki\u0161imas:** \n 1. **Atjunkite USB adapter\u012f** \n 2. Palaukite 5 sekundes \n 3. **Prijunkite j\u012f atgal** \n 4. Palaukite, kol Home Assistant aptiks adapter\u012f \n \n Jei problema i\u0161lieka po maitinimo cikl\u0173: \n - Pabandykite kit\u0105 USB prievad\u0105 \n - Patikrinkite, ar n\u0117ra branduolio / programin\u0117s \u012frangos atnaujinim\u0173 \n - Apsvarstykite galimyb\u0119 naudoti kit\u0105 Bluetooth adapter\u012f",
+            "title": "Bluetooth USB adapteriui reikalingas rankinis \u012fjungimas ir i\u0161jungimas"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Vietini\u0173 Bluetooth adapteri\u0173, kurie nepalaiko pasyvaus nuskaitymo, konfig\u016bruoti negalima.",
+            "remote_adapters_not_supported": "Nuotolini\u0173 adapteri\u0173 Bluetooth konfig\u016bracija nepalaikoma."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Skenavimo re\u017eimas"
+                },
+                "data_description": {
+                    "mode": "Daugumai nustatym\u0173 rekomenduojamas automatinis re\u017eimas. Jis taupo Bluetooth \u012frengini\u0173 akumuliatoriaus energij\u0105 ir tuo pa\u010diu metu greitai aptinka naujus \u012frenginius bei atnaujinimus."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Aktyvus (naudoja daugiau \u012frenginio akumuliatoriaus, grei\u010diausi atnaujinimai)",
+                "auto": "Automatinis (rekomenduojama, taupo \u012frenginio akumuliatoriaus energij\u0105)",
+                "passive": "Pasyvus (ma\u017eiausiai \u012frenginio baterijos naudoja, gali tr\u016bkti kai kuri\u0173 duomen\u0173)"
+            }
+        }
+    }
+}

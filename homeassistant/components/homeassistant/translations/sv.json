@@ -1,0 +1,363 @@
+{
+    "config": {
+        "abort": {
+            "already_in_progress": "Detta konfigureras redan. Slutf\u00f6r den befintliga konfigurationen innan du b\u00f6rjar igen.",
+            "authorize_url_timeout": "Timeout vid generering av auktoriserings-URL.",
+            "cloud_not_connected": "Ej ansluten till Home Assistant Cloud.",
+            "missing_credentials": "Integrationen kr\u00e4ver autentiseringsuppgifter f\u00f6r appen.",
+            "no_devices_found": "Inga enheter hittades i n\u00e4tverket",
+            "no_url_available": "Ingen webbadress tillg\u00e4nglig. F\u00f6r information om detta fel, [se hj\u00e4lpavsnittet]({docs_url})",
+            "oauth_error": "Mottog ogiltiga tokendata.",
+            "oauth_failed": "Fel vid h\u00e4mtning av \u00e5tkomsttoken.",
+            "oauth_implementation_unavailable": "Inga OAuth2-implementeringar finns tillg\u00e4ngliga f\u00f6r n\u00e4rvarande.",
+            "oauth_timeout": "Timeout vid h\u00e4mtning av OAuth-token.",
+            "oauth_unauthorized": "OAuth-auktoriseringsfel vid h\u00e4mtning av \u00e5tkomsttoken.",
+            "reauth_successful": "\u00c5terautentisering lyckades",
+            "reconfigure_successful": "Omkonfigureringen lyckades",
+            "single_instance_allowed": "Redan konfigurerad. Endast en konfiguration \u00e4r m\u00f6jlig.",
+            "user_rejected_authorize": "Kontol\u00e4nkning avvisades: {error}"
+        }
+    },
+    "exceptions": {
+        "component_import_err": {
+            "message": "Det gick inte att importera {domain}: {error}"
+        },
+        "config_platform_import_err": {
+            "message": "Fel vid import av konfigurationsplattform {domain}: {error}"
+        },
+        "config_schema_unknown_err": {
+            "message": "Ok\u00e4nt fel vid anrop av {domain} CONFIG_SCHEMA - {error}"
+        },
+        "config_validation_err": {
+            "message": "Ogiltig konfiguration f\u00f6r integration {domain} p\u00e5 {config_file}, rad {line}: {error}. Kontrollera loggarna f\u00f6r mer information."
+        },
+        "config_validator_unknown_err": {
+            "message": "Ok\u00e4nt fel vid anrop av konfigurationsvalidatorn {domain} - {error}"
+        },
+        "core_config_reload_failed": {
+            "message": "Det gick inte att ladda om Home Assistant Core-konfigurationen - {error}"
+        },
+        "max_length_exceeded": {
+            "message": "V\u00e4rdet {value} f\u00f6r egenskapen {property_name} har en maximal l\u00e4ngd p\u00e5 {max_length} tecken."
+        },
+        "multiple_integration_config_errors": {
+            "message": "Misslyckades med att bearbeta konfigurationen f\u00f6r integration {domain} p\u00e5 grund av flera ({errors}) fel. Kontrollera loggarna f\u00f6r mer information."
+        },
+        "oauth2_helper_reauth_required": {
+            "message": "Inloggningsuppgifterna \u00e4r ogiltiga. \u00c5terinloggning kr\u00e4vs."
+        },
+        "oauth2_helper_refresh_failed": {
+            "message": "Uppdateringen av OAuth2-token misslyckades f\u00f6r {domain}"
+        },
+        "oauth2_helper_refresh_transient": {
+            "message": "Ett tillf\u00e4lligt fel uppstod vid uppdateringen av inloggningsuppgifterna f\u00f6r {domain}. F\u00f6rs\u00f6k igen senare."
+        },
+        "oauth2_implementation_unavailable": {
+            "message": "OAuth2-implementation kan ej n\u00e5s, f\u00f6rs\u00f6ker igen"
+        },
+        "oauth2_unknown_implementation": {
+            "message": "Den konfigurerade autentiseringsmetoden \u00e4r inte l\u00e4ngre tillg\u00e4nglig, omautentisering kr\u00e4vs"
+        },
+        "platform_component_load_err": {
+            "message": "Plattformsfel: {domain} - {error}."
+        },
+        "platform_component_load_exc": {
+            "message": "Plattformsfel: {domain} - {error}."
+        },
+        "platform_config_validation_err": {
+            "message": "Ogiltig konfiguration f\u00f6r {domain} fr\u00e5n integrationen {p_name} i filen {config_file}, rad {line}: {error}. Kontrollera loggarna f\u00f6r mer information."
+        },
+        "platform_schema_validator_err": {
+            "message": "Ok\u00e4nt fel vid validering av konfiguration f\u00f6r {domain} fr\u00e5n integrationen {p_name} - {error}"
+        },
+        "scene_config_reload_failed": {
+            "message": "Det gick inte att ladda om konfigurationen f\u00f6r Home Assistant-scenplattformen - {error}"
+        },
+        "service_config_entry_not_found": {
+            "message": "Konfigurationsposten f\u00f6r integrationen {domain} med ID {entry_id} hittades inte."
+        },
+        "service_config_entry_not_loaded": {
+            "message": "Konfigurationsposten {entry_title} f\u00f6r integrationen {domain} har inte laddats."
+        },
+        "service_config_entry_wrong_domain": {
+            "message": "Konfigurationsposten {entry_title} h\u00f6r inte till integrationen {domain}."
+        },
+        "service_device_not_found": {
+            "message": "Enhet med ID {device_id} hittades inte."
+        },
+        "service_device_wrong_domain": {
+            "message": "Enheten {device_name} ing\u00e5r inte i integrationen {domain}."
+        },
+        "service_does_not_support_response": {
+            "message": "En tj\u00e4nst som inte returnerar svar kan inte anropas med {return_response}."
+        },
+        "service_found_multiple_config_entry_for_domain": {
+            "message": "Hittade flera konfigurationsposter f\u00f6r integration {domain}."
+        },
+        "service_found_no_config_entry_for_domain": {
+            "message": "Kunde inte hitta n\u00e5gon konfigurationspost f\u00f6r integration {domain}."
+        },
+        "service_lacks_response_request": {
+            "message": "\u00c5tg\u00e4rden kr\u00e4ver svar och m\u00e5ste anropas med {return_response}."
+        },
+        "service_not_found": {
+            "message": "\u00c5tg\u00e4rd {domain}.{service} hittades inte."
+        },
+        "service_not_supported": {
+            "message": "Entiteten {entity_id} st\u00f6der inte \u00e5tg\u00e4rden {domain}.{service}."
+        },
+        "service_reponse_invalid": {
+            "message": "Misslyckades med att bearbeta de returnerade svarsdata f\u00f6r \u00e5tg\u00e4rden, f\u00f6rv\u00e4ntade sig en ordbok, men fick {response_data_type}."
+        },
+        "service_should_be_blocking": {
+            "message": "Ett icke-blockerande tj\u00e4nstanrop med argumentet {non_blocking_argument} kan inte anv\u00e4ndas tillsammans med argumentet {return_response}."
+        }
+    },
+    "issues": {
+        "config_entry_only": {
+            "description": "Integrationen {domain} st\u00f6der inte konfiguration via YAML-fil. Du kanske inte m\u00e4rker n\u00e5gra uppenbara problem med integrationen, men alla konfigurationsinst\u00e4llningar som definieras i YAML till\u00e4mpas inte.\n\nF\u00f6r att l\u00f6sa detta:\n\n1. Om du inte redan har gjort det, [konfigurera integrationen]({add_integration}).\n\n2. Ta bort `{domain}:` fr\u00e5n din YAML-konfigurationsfil.\n\n3. Starta om Home Assistant.",
+            "title": "{domain}-integrationen st\u00f6der inte YAML-konfiguration"
+        },
+        "config_entry_reauth": {
+            "description": "\u00c5terautentisering beh\u00f6vs",
+            "title": "Autentiseringen har upph\u00f6rt att g\u00e4lla f\u00f6r {name}"
+        },
+        "config_entry_unique_id_collision": {
+            "description": "Det finns flera {domain} konfigurationsposter med samma unika ID.\nKonfigurationsposterna har namnen {titles}.\n\nF\u00f6r att \u00e5tg\u00e4rda det h\u00e4r felet, [konfigurera integrationen]({configure_url}) och ta bort alla utom en av dubbletterna.\n\nObs! En annan grupp av dubbletter kan uppt\u00e4ckas efter att du tagit bort dessa dubbletter.",
+            "title": "Flera {domain}-konfigurationsposter med samma unika ID"
+        },
+        "config_entry_unique_id_collision_many": {
+            "description": "Det finns flera ({number_of_entries}) {domain} konfigurationsposter med samma unika ID.\nDe f\u00f6rsta {title_limit} konfigurationsposterna har namnen {titles}.\n\nF\u00f6r att \u00e5tg\u00e4rda detta fel, [konfigurera integrationen]({configure_url}) och ta bort alla utom en av dubbletterna.\n\nObs: En annan grupp av dubbletter kan uppt\u00e4ckas efter att du har tagit bort dessa dubbletter.",
+            "title": "Flera {domain}-konfigurationsposter med samma unika ID"
+        },
+        "country_not_configured": {
+            "title": "Landet har inte konfigurerats"
+        },
+        "deprecated_architecture": {
+            "description": "Det h\u00e4r systemet anv\u00e4nder 32-bitars h\u00e5rdvara (`{arch}`). System med 32-bitars arkitektur fasas ut och kommer inte att f\u00e5 uppdateringar efter Home Assistant version 2025.12. Eftersom din h\u00e5rdvara inte l\u00e4ngre kan k\u00f6ra nyare versioner av Home Assistant m\u00e5ste du d\u00e4rf\u00f6r byta till ny h\u00e5rdvara.",
+            "title": "Meddelande om utfasning: 32-bitars arkitektur"
+        },
+        "deprecated_container": {
+            "description": "Det h\u00e4r systemet k\u00f6rs p\u00e5 ett 32-bitars operativsystem (`{arch}`), vilket har fasats ut och inte l\u00e4ngre kommer att f\u00e5 uppdateringar efter lanseringen av Home Assistant 2025.12. Kontrollera om ditt system kan k\u00f6ra ett 64-bitars operativsystem. Om inte, m\u00e5ste du migrera till ny h\u00e5rdvara.",
+            "title": "Meddelande om utfasning: 32-bitars arkitektur"
+        },
+        "deprecated_method": {
+            "description": "Det h\u00e4r systemet anv\u00e4nder installationstypen {installation_type}. Denna installationsmetod fasas ut och kommer inte att st\u00f6djas efter Home Assistant version 2025.12. \u00c4ven om du kan forts\u00e4tta anv\u00e4nda din nuvarande installation efter den tidpunkten rekommenderar vi starkt att du migrerar till en installationsmetod som st\u00f6ds.",
+            "title": "Installationsmetoden st\u00f6ds inte"
+        },
+        "deprecated_method_architecture": {
+            "description": "Det h\u00e4r systemet anv\u00e4nder {installation_type} installationstyp och 32-bitars h\u00e5rdvara (`{arch}`), vilka b\u00e5da saknar st\u00f6d sedan Home Assistant 2025.12. F\u00f6r att forts\u00e4tta f\u00e5 uppdateringar och support, migrera till h\u00e5rdvara som st\u00f6ds och anv\u00e4nd en installationsmetod som st\u00f6ds.",
+            "title": "Installationsmetod och arkitektur som inte st\u00f6ds"
+        },
+        "deprecated_os_aarch64": {
+            "description": "Det h\u00e4r systemet k\u00f6rs p\u00e5 ett 32-bitars operativsystem (`armv7`). System med 32-bitars arkitektur fasas ut och kommer inte att f\u00e5 uppdateringar efter Home Assistant version 2025.12. F\u00f6r att forts\u00e4tta anv\u00e4nda Home Assistant p\u00e5 den h\u00e4r h\u00e5rdvaran m\u00e5ste du installera ett 64-bitars operativsystem. Se v\u00e5r [installationsguide]({installation_guide}).",
+            "title": "Meddelande om utfasning: 32-bitars arkitektur"
+        },
+        "deprecated_os_armv7": {
+            "description": "Det h\u00e4r systemet k\u00f6rs p\u00e5 ett 32-bitars operativsystem (`armv7`). System med 32-bitars arkitektur fasas ut och kommer inte att f\u00e5 uppdateringar efter Home Assistant version 2025.12. Eftersom din h\u00e5rdvara inte l\u00e4ngre kan k\u00f6ra nyare versioner av Home Assistant m\u00e5ste du byta till ny h\u00e5rdvara.",
+            "title": "Meddelande om utfasning: 32-bitars arkitektur"
+        },
+        "deprecated_system_packages_config_flow_integration": {
+            "description": "Integrationen {integration_title} tas bort eftersom den kr\u00e4ver ytterligare systempaket som bara kan installeras p\u00e5 \u00e4ldre versioner av HomeAssistant. Ta bort alla konfigurationsposter f\u00f6r \"{integration_title}\" f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "Integrationen {integration_title} h\u00e5ller p\u00e5 att tas bort"
+        },
+        "deprecated_system_packages_yaml_integration": {
+            "description": "Integrationen {integration_title} tas bort eftersom den kr\u00e4ver ytterligare systempaket som bara kan installeras p\u00e5 \u00e4ldre versioner av HomeAssistant. Ta bort alla konfigurationsposter f\u00f6r `{domain}`-konfigurationen fr\u00e5n din configuration.yaml-fil och starta om Home Assistant f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "Integrationen {integration_title} h\u00e5ller p\u00e5 att tas bort"
+        },
+        "deprecated_trigger_behavior": {
+            "title": "F\u00f6r\u00e5ldrat alternativ f\u00f6r utl\u00f6sarbeteende anv\u00e4nds"
+        },
+        "deprecated_yaml": {
+            "description": "Konfigurering av {integration_title} med hj\u00e4lp av YAML tas bort.\n\nDin befintliga YAML-konfiguration har importerats automatiskt till anv\u00e4ndargr\u00e4nssnittet.\n\nTa bort konfigurationen `{domain}` fr\u00e5n filen configuration.yaml och starta om Home Assistant f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "YAML-konfigurationen f\u00f6r {integration_title} tas bort"
+        },
+        "entity_own_area_without_own_name": {
+            "description": "Entiteten `{entity_id}` har inget eget namn. D\u00e4rf\u00f6r representerar den sin enhet och finns d\u00e4r enheten finns. Ett omr\u00e5de som angetts f\u00f6r sj\u00e4lva entiteten mots\u00e4ger detta och st\u00f6ds inte.\n\nF\u00f6r att l\u00f6sa detta \u00f6ppnar du [entitetsinst\u00e4llningarna]({entity_settings_url}) och tar antingen bort entitetens omr\u00e5de eller ger entiteten ett namn.",
+            "title": "Entiteten {entity_id} har ett omr\u00e5de men inget eget namn"
+        },
+        "historic_currency": {
+            "description": "Valutan {currency} anv\u00e4nds inte l\u00e4ngre, v\u00e4nligen konfigurera om valutakonfigurationen.",
+            "title": "Den konfigurerade valutan anv\u00e4nds inte l\u00e4ngre"
+        },
+        "imperial_unit_system": {
+            "description": "Det imperiala enhetssystemet \u00e4r utfasat och ditt system anv\u00e4nder f\u00f6r n\u00e4rvarande 'US customary'. Uppdatera din konfiguration f\u00f6r att anv\u00e4nda enhetssystemet 'US customary' och ladda sedan om Core-konfigurationen f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "Det imperiala enhetssystemet \u00e4r utfasat"
+        },
+        "integration_not_found": {
+            "fix_flow": {
+                "abort": {
+                    "issue_ignored": "Icke-befintlig integration {domain} ignorerad."
+                },
+                "step": {
+                    "init": {
+                        "description": "Integrationen `{domain}` kunde inte hittas. Detta h\u00e4nder n\u00e4r en (anpassad) integration har tagits bort fr\u00e5n Home Assistant, men det fortfarande finns konfigurationer f\u00f6r denna `integration`. Anv\u00e4nd knapparna nedan f\u00f6r att antingen ta bort de tidigare konfigurationerna f\u00f6r `{domain}` eller ignorera detta.",
+                        "menu_options": {
+                            "confirm": "Ta bort tidigare konfigurationer",
+                            "ignore": "Ignorera"
+                        },
+                        "title": "Integrationen {domain} hittades inte"
+                    }
+                }
+            },
+            "title": "Integrationen {domain} hittades inte"
+        },
+        "legacy_templates_false": {
+            "description": "Ingenting kommer att f\u00f6r\u00e4ndras med dina mallar.\n\nTa bort nyckeln `legacy_templates` fr\u00e5n konfigurationen `homeassistant` i filen configuration.yaml och starta om Home Assistant f\u00f6r att \u00e5tg\u00e4rda problemet.",
+            "title": "Konfigurationsnyckeln `legacy_templates` tas bort"
+        },
+        "legacy_templates_true": {
+            "description": "V\u00e4nligen g\u00f6r f\u00f6ljande steg:\n- Anpassa din konfiguration f\u00f6r att st\u00f6dja mallrendering till pythons inbyggda datatyper.\n- Ta bort nyckeln `legacy_templates` fr\u00e5n konfigurationen `homeassistant` i din configuration.yaml-fil.\n- Starta om Home Assistant f\u00f6r att \u00e5tg\u00e4rda detta problem.",
+            "title": "St\u00f6det f\u00f6r \u00e4ldre mallar tas bort"
+        },
+        "orphaned_ignored_config_entry": {
+            "fix_flow": {
+                "abort": {
+                    "issue_ignored": "Icke-existerande integration {domain} ignorerad."
+                },
+                "step": {
+                    "init": {
+                        "description": "Det finns en f\u00f6r\u00e5ldrad konfigurationspost f\u00f6r integrationen `{domain}`. Detta kan intr\u00e4ffa n\u00e4r en integration tas bort, men konfigurationsposten fortfarande finns kvar i Home Assistant.\n\nF\u00f6r att \u00e5tg\u00e4rda detta, klicka p\u00e5 **Ta bort** f\u00f6r att rensa bort den f\u00f6r\u00e5ldrade posten.",
+                        "menu_options": {
+                            "confirm": "Ta bort",
+                            "ignore": "Ignorera"
+                        },
+                        "title": "En f\u00f6r\u00e4ldral\u00f6s, ignorerad konfigurationspost f\u00f6r {domain}"
+                    }
+                }
+            },
+            "title": "En f\u00f6r\u00e4ldral\u00f6s, ignorerad konfigurationspost f\u00f6r {domain}"
+        },
+        "platform_config_not_supported": {
+            "description": "Det g\u00e5r inte att konfigurera {integration_domain} -integrationen genom att l\u00e4gga till `{platform_key}` under nyckeln `{platform_domain}:`. Integrationen {integration_domain} m\u00e5ste ist\u00e4llet konfigureras under sin egen nyckel `{integration_domain}:`. \n\nS\u00e5 h\u00e4r l\u00f6ser du detta: \n\n1. Ta bort f\u00f6ljande fr\u00e5n din YAML-konfigurationsfil:\n\n{yaml_example}\n\n2. Flytta konfigurationen under nyckeln `{integration_domain}:` ist\u00e4llet. \n\n3. Starta om Home Assistant. \n\nF\u00f6r att se den detaljerade dokumentationen, v\u00e4lj L\u00e4s mer.",
+            "title": "YAML-konfiguration som inte st\u00f6ds f\u00f6r {integration_domain} -integrationen"
+        },
+        "platform_only": {
+            "description": "Integrationen {domain} st\u00f6der inte konfiguration under sin egen nyckel, den m\u00e5ste konfigureras under de plattformar som st\u00f6ds.\n\nF\u00f6r att l\u00f6sa detta:\n\n1. Ta bort `{domain}:` fr\u00e5n din YAML-konfigurationsfil.\n\n2. Starta om Home Assistant.",
+            "title": "{domain}-integrationen st\u00f6der inte YAML-konfiguration under sin egen nyckel"
+        },
+        "platform_setup_not_supported": {
+            "description": "Det g\u00e5r inte att konfigurera {integration_domain} {platform_domain} genom att l\u00e4gga till `{platform_key}` i {platform_domain} -konfigurationen. Mer information om hur du konfigurerar den h\u00e4r integrationen finns i dokumentationen. \n\nS\u00e5 h\u00e4r l\u00f6ser du problemet: \n\n1. Ta bort f\u00f6rekomster av `{platform_key}` fr\u00e5n konfigurationen `{platform_domain}:` i din YAML-konfigurationsfil. \n\n2. Starta om Home Assistant.",
+            "title": "Oanv\u00e4nd YAML-konfiguration f\u00f6r integrationen {integration_domain}"
+        },
+        "storage_corruption": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Lagringen `{storage_key}` kunde inte analyseras och har bytt namn till `{corrupt_path}` s\u00e5 att Home Assistant kan forts\u00e4tta.\n\nEn standard `{storage_key}` kan ha skapats automatiskt.\n\nOm du gjorde manuella \u00e4ndringar i lagringsfilen, \u00e5tg\u00e4rda eventuella syntaxfel i `{corrupt_path}`, \u00e5terst\u00e4ll filen till den ursprungliga s\u00f6kv\u00e4gen `{original_path}`, och starta om Home Assistant. I annat fall \u00e5terst\u00e4ller du systemet fr\u00e5n en s\u00e4kerhetskopia.\n\nV\u00e4lj **Bekr\u00e4fta** nedan f\u00f6r att bekr\u00e4fta att du har reparerat filen eller \u00e5terst\u00e4llt fr\u00e5n en s\u00e4kerhetskopia.\n\nDet exakta felet var: {error}",
+                        "title": "Lagringsfel uppt\u00e4cktes f\u00f6r `{storage_key}`"
+                    }
+                }
+            },
+            "title": "Lagringsfel uppt\u00e4cktes f\u00f6r `{storage_key}`"
+        },
+        "unsupported_local_deps": {
+            "description": "Det h\u00e4r systemet k\u00f6r Home Assistant utanf\u00f6r en virtuell milj\u00f6 eller en Docker-container. Detta st\u00f6ds inte och kommer inte att fungera efter lanseringen av Home Assistant 2026.11.",
+            "title": "Meddelande om utfasning: Installationsmetod"
+        }
+    },
+    "services": {
+        "check_config": {
+            "description": "Kontrollerar om Home Assistants YAML-konfigurationsfiler inneh\u00e5ller fel. Fel visas i loggarna f\u00f6r Home Assistant.",
+            "name": "Kontrollera konfigurationen"
+        },
+        "reload_all": {
+            "description": "Laddar om all YAML-konfiguration som kan laddas om utan att starta om Home Assistant.",
+            "name": "Ladda om all Home Assistant-konfiguration"
+        },
+        "reload_config_entry": {
+            "description": "Laddar om konfigurationsposten f\u00f6r det angivna ID:t.",
+            "fields": {
+                "entry_id": {
+                    "description": "Den konfigurationspost som ska laddas om.",
+                    "name": "ID f\u00f6r konfigurationspost"
+                }
+            },
+            "name": "Ladda om konfigurationspost"
+        },
+        "reload_core_config": {
+            "description": "Laddar om Core-konfigurationen fr\u00e5n YAML-konfigurationen.",
+            "name": "Ladda om Core-konfigurationen"
+        },
+        "reload_custom_templates": {
+            "description": "Laddar om Jinja2-mallar som finns i mappen `custom_templates` i din konfiguration. Nya v\u00e4rden kommer att till\u00e4mpas vid n\u00e4sta rendering av mallen.",
+            "name": "Ladda om anpassade Jinja2-mallar"
+        },
+        "restart": {
+            "description": "Startar om Home Assistant.",
+            "fields": {
+                "safe_mode": {
+                    "description": "Inaktiverar anpassade integrationer och anpassade kort.",
+                    "name": "Fels\u00e4kert l\u00e4ge"
+                }
+            },
+            "name": "Starta om Home Assistant"
+        },
+        "save_persistent_states": {
+            "description": "Sparar de best\u00e4ndiga tillst\u00e5nden omedelbart. Bibeh\u00e5ller det normala periodiska sparintervallet.",
+            "name": "Spara best\u00e4ndiga tillst\u00e5nd"
+        },
+        "set_location": {
+            "description": "Uppdaterar Home Assistant-platsen.",
+            "fields": {
+                "elevation": {
+                    "description": "H\u00f6jd \u00f6ver havet f\u00f6r din plats.",
+                    "name": "H\u00f6jd \u00f6ver havet"
+                },
+                "latitude": {
+                    "description": "Latitud f\u00f6r din position.",
+                    "name": "Latitud"
+                },
+                "longitude": {
+                    "description": "Longitud f\u00f6r din position.",
+                    "name": "Longitud"
+                }
+            },
+            "name": "Ange plats"
+        },
+        "stop": {
+            "description": "Stoppar Home Assistant.",
+            "name": "Stoppa Home Assistant"
+        },
+        "toggle": {
+            "description": "Generisk \u00e5tg\u00e4rd f\u00f6r att v\u00e4xla enheter p\u00e5/av under valfri dom\u00e4n.",
+            "name": "Generell v\u00e4xel"
+        },
+        "turn_off": {
+            "description": "Generisk \u00e5tg\u00e4rd f\u00f6r att st\u00e4nga av enheter under valfri dom\u00e4n.",
+            "name": "Generell avst\u00e4ngning"
+        },
+        "turn_on": {
+            "description": "Generisk \u00e5tg\u00e4rd f\u00f6r att sl\u00e5 p\u00e5 enheter under valfri dom\u00e4n.",
+            "name": "Generell p\u00e5slagning"
+        },
+        "update_entity": {
+            "description": "Tvingar en eller flera entiteter att uppdatera sina data.",
+            "fields": {
+                "entity_id": {
+                    "description": "Lista \u00f6ver entiteter som ska tv\u00e5ngsuppdateras.",
+                    "name": "Entiteter som ska uppdateras"
+                }
+            },
+            "name": "Uppdatera entitet"
+        }
+    },
+    "system_health": {
+        "info": {
+            "arch": "Processorarkitektur",
+            "config_dir": "Konfigurationskatalog",
+            "container_arch": "Beh\u00e5llararkitektur",
+            "dev": "Utveckling",
+            "docker": "Docker",
+            "hassio": "Supervisor",
+            "installation_type": "Installationstyp",
+            "os_name": "Operativsystemfamilj",
+            "os_version": "Operativsystemversion",
+            "python_version": "Python-version",
+            "timezone": "Tidszon",
+            "user": "Anv\u00e4ndare",
+            "version": "Version",
+            "virtualenv": "Virtuell milj\u00f6"
+        }
+    }
+}

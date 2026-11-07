@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "Proverava da li je jedan ili vi\u0161e ventila zatvoreno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventil zatvoren"
+        },
+        "is_open": {
+            "description": "Proverava da li je jedan ili vi\u0161e ventila otvoreno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventil otvoren"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventil",
+            "state": {
+                "closed": "Zatvoreno",
+                "closing": "Zatvaranje",
+                "open": "Otvoreno",
+                "opening": "Otvaranje",
+                "stopped": "Zaustavljeno"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Polo\u017eaj"
+                }
+            }
+        },
+        "gas": {
+            "name": "Gas"
+        },
+        "water": {
+            "name": "Voda"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Zatvara ventil.",
+            "name": "Zatvori ventil"
+        },
+        "open_valve": {
+            "description": "Otvara ventil.",
+            "name": "Otvori ventil"
+        },
+        "set_valve_position": {
+            "description": "Pomera ventil na odre\u0111eni polo\u017eaj.",
+            "fields": {
+                "position": {
+                    "description": "\u017deljeni nivo otvorenosti.",
+                    "name": "Stepen otvaranja"
+                }
+            },
+            "name": "Podesi polo\u017eaj ventila"
+        },
+        "stop_valve": {
+            "description": "Zaustavlja ventil.",
+            "name": "Zaustavi kretanje ventila"
+        },
+        "toggle": {
+            "description": "Otvara ili zatvara ventil.",
+            "name": "Prebaci stanje ventila"
+        }
+    },
+    "title": "Ventil",
+    "triggers": {
+        "closed": {
+            "description": "Pokre\u0107e se nakon \u0161to se zatvori jedan ili vi\u0161e ventila.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventil zatvoren"
+        },
+        "opened": {
+            "description": "Pokre\u0107e se nakon \u0161to se otvori jedan ili vi\u0161e ventila.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ventil otvoren"
+        }
+    }
+}

@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "condition_threshold_name": "Tip grani\u010dne vrednosti",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "For at least"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "Proverava da li jedan ili vi\u0161e ovla\u017eiva\u010da isu\u0161uje.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d isu\u0161uje"
+        },
+        "is_humidifying": {
+            "description": "Proverava da li jedan ili vi\u0161e ovla\u017eiva\u010da ovla\u017euje.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d ovla\u017euje"
+        },
+        "is_mode": {
+            "description": "Proverava da li su jedan ili vi\u0161e ovla\u017eiva\u010da pode\u0161eni na odre\u0111eni re\u017eim.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "mode": {
+                    "description": "Re\u017eimi rada koje treba proveriti.",
+                    "name": "Re\u017eim"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d u re\u017eimu"
+        },
+        "is_off": {
+            "description": "Proverava da li je jedan ili vi\u0161e ovla\u017eiva\u010da isklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d isklju\u010den"
+        },
+        "is_on": {
+            "description": "Proverava da li je jedan ili vi\u0161e ovla\u017eiva\u010da uklju\u010deno.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d uklju\u010den"
+        },
+        "is_target_humidity": {
+            "description": "Proverava ciljanu vla\u017enost jednog ili vi\u0161e ovla\u017eiva\u010da.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                },
+                "threshold": {
+                    "name": "Tip grani\u010dne vrednosti"
+                }
+            },
+            "name": "Ciljana vla\u017enost ovla\u017eiva\u010da"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "Postavi vla\u017enost za {entity_name}",
+            "set_mode": "Promeni re\u017eim na {entity_name}",
+            "toggle": "Uklju\u010di/isklju\u010di {entity_name}",
+            "turn_off": "Isklju\u010di {entity_name}",
+            "turn_on": "Uklju\u010di {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} je postavljen na odre\u0111eni re\u017eim",
+            "is_off": "{entity_name} je isklju\u010deno",
+            "is_on": "{entity_name} je uklju\u010deno"
+        },
+        "extra_fields": {
+            "above": "Iznad",
+            "below": "Ispod",
+            "for": "Trajanje",
+            "humidity": "Vla\u017enost",
+            "mode": "Re\u017eim"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} je uklju\u010den ili isklju\u010den",
+            "target_humidity_changed": "Ciljna vla\u017enost za {entity_name} je promenjena",
+            "turned_off": "{entity_name} je isklju\u010den",
+            "turned_on": "{entity_name} je uklju\u010den"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ovla\u017eiva\u010d vazduha",
+            "state": {
+                "off": "Isklju\u010deno",
+                "on": "Uklju\u010deno"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Akcija",
+                    "state": {
+                        "drying": "Re\u017eim isu\u0161ivanja",
+                        "humidifying": "Re\u017eim ovla\u017eivanja",
+                        "idle": "Mirovanje",
+                        "off": "Isklju\u010deno"
+                    }
+                },
+                "available_modes": {
+                    "name": "Dostupni re\u017eimi"
+                },
+                "current_humidity": {
+                    "name": "Trenutna vla\u017enost"
+                },
+                "humidity": {
+                    "name": "Ciljna vla\u017enost"
+                },
+                "max_humidity": {
+                    "name": "Maksimalna ciljna vla\u017enost"
+                },
+                "min_humidity": {
+                    "name": "Minimalna ciljna vla\u017enost"
+                },
+                "mode": {
+                    "name": "Re\u017eim",
+                    "state": {
+                        "auto": "Automatski",
+                        "away": "Van ku\u0107e",
+                        "baby": "Re\u017eim za bebu",
+                        "boost": "Intenzivni re\u017eim",
+                        "comfort": "Re\u017eim komfora",
+                        "eco": "Eko re\u017eim",
+                        "home": "Kod ku\u0107e",
+                        "normal": "Normalno",
+                        "sleep": "Tihi rad"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "Odvla\u017eiva\u010d"
+        },
+        "humidifier": {
+            "name": "Ovla\u017eiva\u010d vazduha"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Uneta vla\u017enost vazduha {humidity} nije ispravna. Dozvoljeni opseg je od {min_humidity} do {max_humidity}."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "Postavlja ciljanu vla\u017enost vazduha.",
+            "fields": {
+                "humidity": {
+                    "description": "\u017deljeni procenat relativne vla\u017enosti vazduha koji sistem treba da odr\u017eava.",
+                    "name": "Nivo vla\u017enosti"
+                }
+            },
+            "name": "Podesi ciljanu vla\u017enost vazduha"
+        },
+        "set_mode": {
+            "description": "Postavlja re\u017eim rada ovla\u017eiva\u010da vazduha.",
+            "fields": {
+                "mode": {
+                    "description": "\u017deljeni re\u017eim rada ure\u0111aja (npr. normal, eco, away). Potpunu listu opcija potra\u017eite u dokumentaciji integracije.",
+                    "name": "Re\u017eim rada"
+                }
+            },
+            "name": "Podesi re\u017eim rada ovla\u017eiva\u010da"
+        },
+        "toggle": {
+            "description": "Uklju\u010duje ili isklju\u010duje ovla\u017eiva\u010d vazduha.",
+            "name": "Prebaci stanje ovla\u017eiva\u010da vazduha"
+        },
+        "turn_off": {
+            "description": "Isklju\u010duje ovla\u017eiva\u010d vazduha.",
+            "name": "Isklju\u010di ovla\u017eiva\u010d vazduha"
+        },
+        "turn_on": {
+            "description": "Uklju\u010duje ovla\u017eiva\u010d vazduha.",
+            "name": "Uklju\u010di ovla\u017eiva\u010d vazduha"
+        }
+    },
+    "title": "Ovla\u017eiva\u010d vazduha",
+    "triggers": {
+        "mode_changed": {
+            "description": "Pokre\u0107e se nakon promene re\u017eima rada jednog ili vi\u0161e ovla\u017eiva\u010da vazduha.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "For at least"
+                },
+                "mode": {
+                    "description": "Re\u017eimi rada koji slu\u017ee kao pokreta\u010di.",
+                    "name": "Re\u017eim"
+                }
+            },
+            "name": "Re\u017eim rada ovla\u017eiva\u010da promenjen"
+        },
+        "started_drying": {
+            "description": "Pokre\u0107e se nakon \u0161to jedan ili vi\u0161e ovla\u017eiva\u010da vazduha po\u010dnu sa isu\u0161ivanjem.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d po\u010deo sa isu\u0161ivanjem"
+        },
+        "started_humidifying": {
+            "description": "Pokre\u0107e se nakon \u0161to jedan ili vi\u0161e ovla\u017eiva\u010da vazduha po\u010dnu sa ovla\u017eivanjem.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d po\u010deo sa ovla\u017eivanjem"
+        },
+        "turned_off": {
+            "description": "Pokre\u0107e se nakon \u0161to se jedan ili vi\u0161e ovla\u017eiva\u010da vazduha isklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d isklju\u010den"
+        },
+        "turned_on": {
+            "description": "Pokre\u0107e se nakon \u0161to se jedan ili vi\u0161e ovla\u017eiva\u010da vazduha uklju\u010de.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Ovla\u017eiva\u010d uklju\u010den"
+        }
+    }
+}

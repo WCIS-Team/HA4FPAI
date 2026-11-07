@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Automaatne varundamine",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Varundamise etapp"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Edukalt l\u00f5petatud",
+                            "failed": "Nurjunud",
+                            "in_progress": "K\u00e4imas"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Nurjumise p\u00f5hjus",
+                        "state": {
+                            "backup_agent_error": "Varundusagendi t\u00f5rge",
+                            "backup_agent_unreachable": "Varundusagent pole k\u00e4ttesaadav",
+                            "backup_manager_error": "Varundushalduri t\u00f5rge",
+                            "backup_not_found": "Varukoopiat ei leitud",
+                            "backup_reader_writer_error": "Varukoopia lugeja/kirjutaja viga",
+                            "decrypt_on_download_not_supported": "Allalaadimise dekr\u00fcpteerimine pole toetatud",
+                            "invalid_backup_filename": "Kehtetu varukoopia failinimi",
+                            "multiple_errors": "Mitmed vead",
+                            "password_incorrect": "Salas\u00f5na on vale",
+                            "unknown_error": "Ootamatu t\u00f5rge",
+                            "upload_failed": "\u00dcleslaadimine nurjus"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Varundushalduri olek",
+                "state": {
+                    "blocked": "Blokeeritud",
+                    "create_backup": "Varukoopia loomine",
+                    "idle": "Ootel",
+                    "receive_backup": "Varukoopia vastuv\u00f5tmine",
+                    "restore_backup": "Varukoopia taastamine"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "Viimane automaatse varundamise katse"
+            },
+            "last_successful_automatic_backup": {
+                "name": "Viimane edukas automaatne varundamine"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "J\u00e4rgmine ajastatud automaatne varundamine"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "Varukoopia asukoht `{agent_id}` pole saadaval, kuid on siiski konfigureeritud automaatseks varundamiseks.\n\nK\u00fclasta [automaatse varundamise konfigureerimise lehte]({backup_settings}) varukoopiate asukohtade \u00fclevaatamiseks ja v\u00e4rskendamiseks. Varukoopiaid ei laadita \u00fcles valitud asukohtadesse, mis pole saadaval.",
+            "title": "Varukoopia asukoht {agent_id} pole saadaval"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Rakendusi {failed_addons} ei saanud automaatsesse varundusse lisada. Lisateabe saamiseks vaata Supervisori logisid. Kui varundusgraafik on konfigureeritud, tehakse j\u00e4rgmine katse j\u00e4rgmisel ajastatud ajal.",
+            "title": "K\u00f5iki rakendusi ei saanud automaatsesse varundusse lisada"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "Automaatne varukoopia loodi j\u00e4rgmiste vigadega: \n * Asukohad, kuhu varukoopiat ei \u00f5nnestunud \u00fcles laadida: {failed_agents} \n * Rakendused mida ei \u00f5nnestunud varundada: {failed_addons} \n * Kaustad, mida ei \u00f5nnestunud varundada: {failed_folders} \n \n Lisateabe saamiseks vaata p\u00f5hi- ja superviisori logisid. Kui varundamise ajakava on konfigureeritud, tehakse j\u00e4rgmine katse j\u00e4rgmisel ajastatud ajal.",
+            "title": "Automaatne varukoopia loodi vigadega"
+        },
+        "automatic_backup_failed_create": {
+            "description": "Automaatset varukoopiat ei \u00f5nnestunud luua. Vaata lisateabe saamiseks logisid. J\u00e4rgmine katse tehakse j\u00e4rgmisel planeeritud ajal kui on konfigureeritud varundamise ajakava.",
+            "title": "Automaatset varukoopiat ei saanud luua"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Kaustu {failed_folders} ei saanud lisada automaatsesse varundamisse. Lisateabe saamiseks vaata Supervisori logisid. J\u00e4rgmine katse tehakse j\u00e4rgmisel planeeritud ajal kui on konfigureeritud varundamise ajakava.",
+            "title": "K\u00f5iki kaustu ei saanud automaatsesse varundamisse kaasata"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "Automaatset varukoopiat ei \u00f5nnestunud \u00fcles laadida valitud asukohtadesse {failed_agents}. Vaata lisateabe saamiseks logisid. J\u00e4rgmine katse tehakse j\u00e4rgmisel planeeritud ajal kui on konfigureeritud varundamise ajakava.",
+            "title": "Automaatset varukoopiat ei saanud valitud asukohtadesse \u00fcles laadida"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Loob uue varukoopia.",
+            "name": "Loo varukoopia"
+        },
+        "create_automatic": {
+            "description": "Loob uue varukoopia automaatse varundamise s\u00e4tetega.",
+            "name": "Loo automaatne varukoopia"
+        }
+    }
+}

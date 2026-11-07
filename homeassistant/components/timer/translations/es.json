@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Comprueba si uno o m\u00e1s temporizadores est\u00e1n activos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El temporizador est\u00e1 activo"
+        },
+        "is_idle": {
+            "description": "Comprueba si uno o m\u00e1s temporizadores est\u00e1n inactivos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El temporizador est\u00e1 inactivo"
+        },
+        "is_paused": {
+            "description": "Comprueba si uno o m\u00e1s temporizadores est\u00e1n en pausa.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El temporizador est\u00e1 en pausa."
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Temporizador",
+            "state": {
+                "active": "Activo",
+                "idle": "Inactivo",
+                "paused": "En pausa"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Duraci\u00f3n"
+                },
+                "editable": {
+                    "name": "Gestionado a trav\u00e9s de la IU",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ed"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Acaba a las"
+                },
+                "last_transition": {
+                    "name": "\u00daltima transici\u00f3n",
+                    "state": {
+                        "cancelled": "Cancelado",
+                        "finished": "Finalizado",
+                        "paused": "En pausa",
+                        "restarted": "Reiniciado",
+                        "started": "Iniciado"
+                    }
+                },
+                "remaining": {
+                    "name": "Restantes"
+                },
+                "restore": {
+                    "name": "Restaurar"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "Restablece la duraci\u00f3n de un temporizador al \u00faltimo valor inicial conocido sin activar el evento de finalizaci\u00f3n del temporizador.",
+            "name": "Cancelar el temporizador"
+        },
+        "change": {
+            "description": "Cambia un temporizador a\u00f1adiendo o restando una duraci\u00f3n determinada.",
+            "fields": {
+                "duration": {
+                    "description": "Duraci\u00f3n que se a\u00f1adir\u00e1 o restar\u00e1 al temporizador en ejecuci\u00f3n.",
+                    "name": "Duraci\u00f3n"
+                }
+            },
+            "name": "Cambiar el temporizador"
+        },
+        "finish": {
+            "description": "Finaliza un temporizador en ejecuci\u00f3n antes de lo programado.",
+            "name": "Finalizar el temporizador"
+        },
+        "pause": {
+            "description": "Pausa un temporizador en ejecuci\u00f3n, reteniendo la duraci\u00f3n restante para continuar m\u00e1s tarde.",
+            "name": "Pausar el temporizador"
+        },
+        "reload": {
+            "description": "Recarga los temporizadores desde la configuraci\u00f3n YAML.",
+            "name": "Volver a cargar los temporizadores"
+        },
+        "start": {
+            "description": "Inicia un temporizador o lo reinicia con una duraci\u00f3n determinada.",
+            "fields": {
+                "duration": {
+                    "description": "Duraci\u00f3n personalizada para reiniciar el temporizador.",
+                    "name": "Duraci\u00f3n"
+                }
+            },
+            "name": "Iniciar temporizador"
+        }
+    },
+    "title": "Temporizador",
+    "triggers": {
+        "cancelled": {
+            "description": "Se dispara cuando uno o m\u00e1s temporizadores se cancelan.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Temporizador cancelado"
+        },
+        "finished": {
+            "description": "Se dispara cuando uno o m\u00e1s temporizadores finalizan.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Temporizador finalizado"
+        },
+        "paused": {
+            "description": "Se dispara cuando uno o m\u00e1s temporizadores est\u00e1n en pausa.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Temporizador en pausa"
+        },
+        "remaining_time_reached": {
+            "description": "Se dispara cuando uno o m\u00e1s temporizadores alcanzan un tiempo restante espec\u00edfico.",
+            "fields": {
+                "remaining": {
+                    "name": "Tiempo restante"
+                }
+            },
+            "name": "Se ha alcanzado el tiempo restante del temporizador"
+        },
+        "restarted": {
+            "description": "Se dispara cuando uno o m\u00e1s temporizadores se reinician.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Temporizador reiniciado"
+        },
+        "started": {
+            "description": "Se dispara cuando uno o m\u00e1s temporizadores se inician.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Temporizador iniciado"
+        }
+    }
+}

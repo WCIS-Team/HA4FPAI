@@ -1,0 +1,418 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "mount": {
+                "name": "Forbundet"
+            },
+            "state": {
+                "name": "K\u00f8rer"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "OS Agent-version"
+            },
+            "apparmor_version": {
+                "name": "AppArmor-version"
+            },
+            "cpu_percent": {
+                "name": "CPU-procent"
+            },
+            "disk_free": {
+                "name": "Disk fri"
+            },
+            "disk_total": {
+                "name": "Disk-total"
+            },
+            "disk_used": {
+                "name": "Disk-forbrug"
+            },
+            "memory_percent": {
+                "name": "Hukommelsesprocent"
+            },
+            "version": {
+                "name": "Version"
+            },
+            "version_latest": {
+                "name": "Nyeste version"
+            }
+        },
+        "update": {
+            "update": {
+                "name": "Opdatering"
+            }
+        }
+    },
+    "exceptions": {
+        "mount_reload_error": {
+            "message": "Kunne ikke genindl\u00e6se drevet {name}: {error}"
+        }
+    },
+    "issues": {
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "addon_disable_boot": "Deaktiv\u00e9r",
+                            "addon_execute_start": "Start"
+                        }
+                    }
+                }
+            },
+            "title": "Appen kunne ikke startes ved opstart"
+        },
+        "issue_addon_deprecated_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Det var ikke muligt at afinstallere appen. Se Supervisor-logfilerne for yderligere oplysninger."
+                }
+            },
+            "title": "Installeret app er udfaset"
+        },
+        "issue_addon_deprecated_arch_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Det var ikke muligt at afinstallere appen. Se Supervisor-logfilerne for yderligere oplysninger."
+                }
+            },
+            "title": "Den installerede app er udviklet til arkitekturer og/eller enheder, der ikke underst\u00f8ttes"
+        },
+        "issue_addon_detached_addon_missing": {
+            "title": "Manglende repositorie til en installeret app"
+        },
+        "issue_addon_detached_addon_removed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Det var ikke muligt at afinstallere appen. Se Supervisor-logfilerne for yderligere oplysninger."
+                }
+            },
+            "title": "Installeret app er blevet fjernet fra repositorie"
+        },
+        "issue_addon_pwned": {
+            "description": "Appen {addon} bruger hemmeligheder/adgangskoder i sin konfiguration, som er blevet identificeret som usikre. Se artiklen om [l\u00e6kede adgangskoder og hemmeligheder]({more_info_pwned}) for yderligere oplysninger om dette problem.",
+            "title": "Usikre hemmeligheder registreret i appkonfiguration"
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Kunne ikke anvende rettelsen. Tjek Supervisor-logfilerne for flere detaljer."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "mount_execute_reload": "Genindl\u00e6s",
+                            "mount_execute_remove": "Fjern"
+                        }
+                    }
+                }
+            },
+            "title": "Netv\u00e6rkslagringsenhed fejlede"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "En eller flere af genstarterne mislykkedes. Tjek Supervisor-logfilerne for flere detaljer."
+                },
+                "step": {
+                    "system_execute_rebuild": {
+                        "description": "Standardkonfigurationen for apps og Home Assistant er \u00e6ndret. For at opdatere konfigurationen med de nye standardindstillinger kr\u00e6ves en genstart af f\u00f8lgende:\n\n- {components}"
+                    }
+                }
+            },
+            "title": "Genstart(er) p\u00e5kr\u00e6vet"
+        },
+        "issue_system_free_space": {
+            "title": "Datadisken er ved at l\u00f8be t\u00f8r for ledig plads"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Kunne ikke omd\u00f8be filsystemet. Tjek Supervisor-logfilerne for flere detaljer."
+                },
+                "step": {
+                    "fix_menu": {
+                        "menu_options": {
+                            "system_adopt_data_disk": "Brug den fundne datadisk i stedet for det aktuelle system",
+                            "system_rename_data_disk": "Mark\u00e9r som inaktiv datadisk (omd\u00f8b filsystem)"
+                        }
+                    }
+                }
+            },
+            "title": "Der er fundet flere datadiske"
+        },
+        "issue_system_ntp_sync_failed": {
+            "title": "Problem med tidssynkronisering opdaget"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Kunne ikke genstarte systemet. Tjek supervisor-logfilerne for at f\u00e5 flere oplysninger."
+                },
+                "step": {
+                    "system_execute_reboot": {
+                        "description": "Der er foretaget \u00e6ndringer i indstillingerne, som kr\u00e6ver en genstart af systemet for at tr\u00e6de i kraft.\n\nV\u00e6lg **Genstart** for at genstarte systemet nu. Home Assistant og alle apps vil v\u00e6re utilg\u00e6ngelige i et kort \u00f8jeblik."
+                    }
+                }
+            },
+            "title": "Genstart n\u00f8dvendig"
+        },
+        "unhealthy": {
+            "description": "Systemet er i \u00f8jeblikket usundt pga. {reason}. For at f\u00e5 oplysninger om fejlfinding skal du v\u00e6lge L\u00e6s mere.",
+            "title": "Usundt system \u2013 {reason}"
+        },
+        "unhealthy_setup": {
+            "title": "Usundt system - Ops\u00e6tning mislykkedes"
+        },
+        "unhealthy_supervisor": {
+            "title": "Usundt system \u2013 Opdatering af supervisor mislykkedes"
+        },
+        "unsupported": {
+            "description": "Systemet underst\u00f8ttes ikke p\u00e5 grund af {reason}. V\u00e6lg L\u00e6s mere for at f\u00e5 oplysninger om fejlfinding.",
+            "title": "Ikke-underst\u00f8ttet system \u2013 {reason}"
+        },
+        "unsupported_dns_server": {
+            "title": "Ikke-underst\u00f8ttet system \u2013 Problemer med DNS-serveren"
+        },
+        "unsupported_docker_configuration": {
+            "title": "Ikke-underst\u00f8ttet system \u2013 Docker er konfigureret forkert"
+        },
+        "unsupported_docker_version": {
+            "description": "Systemet underst\u00f8ttes ikke, da Docker-versionen er for\u00e6ldet. V\u00e6lg L\u00e6s mere for at f\u00e5 oplysninger om den kr\u00e6vede version og hvordan du l\u00f8ser problemet.",
+            "title": "Ikke-underst\u00f8ttet system \u2013 Docker-version"
+        },
+        "unsupported_home_assistant_core_version": {
+            "description": "Systemet underst\u00f8ttes ikke, fordi den anvendte Home Assistant Core-version ikke underst\u00f8ttes. For at f\u00e5 oplysninger om fejlfinding skal du v\u00e6lge L\u00e6s mere.",
+            "title": "Ikke-underst\u00f8ttet system \u2013 Home Assistant Core-version"
+        },
+        "unsupported_os": {
+            "title": "Ikke-underst\u00f8ttet system \u2013 Operativsystem"
+        },
+        "unsupported_os_version": {
+            "title": "Ikke-underst\u00f8ttet system \u2013 Home Assistant OS-version"
+        },
+        "unsupported_software": {
+            "title": "Ikke-underst\u00f8ttet system \u2013 Ikke-underst\u00f8ttet software"
+        },
+        "unsupported_supervisor_version": {
+            "title": "Ikke-underst\u00f8ttet system - Supervisor-version"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Genstarter et add-on.",
+            "fields": {
+                "addon": {
+                    "description": "Det add-on, der skal genstartes.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Genstart add-on"
+        },
+        "addon_start": {
+            "description": "Starter et add-on.",
+            "fields": {
+                "addon": {
+                    "description": "Det add-on, du skal starte.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Start add-on"
+        },
+        "addon_stdin": {
+            "fields": {
+                "addon": {
+                    "description": "Det add-on, der skal skrives til.",
+                    "name": "Add-on"
+                }
+            }
+        },
+        "addon_stop": {
+            "description": "Stopper et add-on.",
+            "fields": {
+                "addon": {
+                    "description": "Add-on, der skal stoppes.",
+                    "name": "Add-on"
+                }
+            },
+            "name": "Stop add-on"
+        },
+        "app_restart": {
+            "description": "Genstarter en Home Assistant-app.",
+            "fields": {
+                "app": {
+                    "description": "Appen, der skal genstartes.",
+                    "name": "App"
+                }
+            },
+            "name": "Genstart app"
+        },
+        "app_start": {
+            "description": "Starter en Home Assistant-app.",
+            "fields": {
+                "app": {
+                    "description": "Appen der skal startes.",
+                    "name": "App"
+                }
+            },
+            "name": "Start app"
+        },
+        "app_stop": {
+            "description": "Stopper en Home Assistant-app.",
+            "fields": {
+                "app": {
+                    "description": "Appen der skal stoppes.",
+                    "name": "App"
+                }
+            },
+            "name": "Stop app"
+        },
+        "backup_full": {
+            "description": "Opretter en fuld sikkerhedskopi.",
+            "fields": {
+                "compressed": {
+                    "description": "Komprimerer sikkerhedskopifilerne.",
+                    "name": "Komprimeret"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Udelad Home Assistant-databasefilen fra sikkerhedskopien",
+                    "name": "Udelad Home Assistant-database"
+                },
+                "location": {
+                    "description": "Navn p\u00e5 et sikkerhedskopi-netv\u00e6rkslager til at hoste sikkerhedskopier.",
+                    "name": "Lokalitet"
+                },
+                "name": {
+                    "description": "Valgfri (standard = aktuel dato og klokkesl\u00e6t).",
+                    "name": "Navn"
+                },
+                "password": {
+                    "description": "Adgangskode til at beskytte sikkerhedskopien med.",
+                    "name": "Adgangskode"
+                }
+            },
+            "name": "Opret en fuld sikkerhedskopi."
+        },
+        "backup_partial": {
+            "description": "Opretter en delvis sikkerhedskopi.",
+            "fields": {
+                "addons": {
+                    "description": "Liste over apps (tidligere add-ons), der skal inkluderes i sikkerhedskopien. Brug slug'en for hver app. \u00c6ldre mulighed - brug apps i stedet.",
+                    "name": "Add-ons (udfaset)"
+                },
+                "apps": {
+                    "description": "Liste over apps, der skal inkluderes i sikkerhedskopien. Brug navn-slug p\u00e5 add-on.",
+                    "name": "Apps"
+                },
+                "compressed": {
+                    "description": "Komprimerer sikkerhedskopifilerne.",
+                    "name": "Komprimeret"
+                },
+                "folders": {
+                    "description": "Liste over mapper, der skal inkluderes i sikkerhedskopien.",
+                    "name": "Mapper"
+                },
+                "homeassistant": {
+                    "description": "Inkluderer Home Assistant-indstillinger i sikkerhedskopien.",
+                    "name": "Home Assistant-indstillinger"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Udelad Home Assistant-databasefilen fra sikkerhedskopien",
+                    "name": "Udelad Home Assistant-database"
+                },
+                "location": {
+                    "description": "Navn p\u00e5 et sikkerhedskopi-netv\u00e6rkslager til at hoste sikkerhedskopier.",
+                    "name": "Lokalitet"
+                },
+                "name": {
+                    "description": "Valgfri (standard = aktuel dato og klokkesl\u00e6t).",
+                    "name": "Navn"
+                },
+                "password": {
+                    "description": "Adgangskode til at beskytte sikkerhedskopien med.",
+                    "name": "Adgangskode"
+                }
+            },
+            "name": "Opret en delvis sikkerhedskopi."
+        },
+        "host_reboot": {
+            "description": "Genstarter v\u00e6rtssystemet.",
+            "name": "Genstart v\u00e6rtssystemet."
+        },
+        "host_shutdown": {
+            "description": "Slukker v\u00e6rtssystemet.",
+            "name": "Sluk for v\u00e6rtssystemet."
+        },
+        "mount_reload": {
+            "fields": {
+                "device_id": {
+                    "name": "Enheds-ID"
+                }
+            },
+            "name": "Genindl\u00e6s tilkobling af netv\u00e6rkslager"
+        },
+        "restore_full": {
+            "description": "Gendanner fra fuld sikkerhedskopi.",
+            "fields": {
+                "password": {
+                    "description": "Valgfri adgangskode.",
+                    "name": "Adgangskode"
+                },
+                "slug": {
+                    "description": "Slug p\u00e5 sikkerhedskopi til gendannelse.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Gendan fra fuld sikkerhedskopi."
+        },
+        "restore_partial": {
+            "description": "Gendanner fra en delvis sikkerhedskopi.",
+            "fields": {
+                "addons": {
+                    "description": "Liste over apps (tidligere add-ons), der skal gendannes fra sikkerhedskopien. Brug slug'en for hver app. \u00c6ldre mulighed - brug apps i stedet.",
+                    "name": "Add-ons (udfaset)"
+                },
+                "apps": {
+                    "description": "Liste over apps, der skal inkluderes i sikkerhedskopien. Brug navn-slug p\u00e5 add-on.",
+                    "name": "Apps"
+                },
+                "folders": {
+                    "description": "Liste over mapper, der skal gendannes fra sikkerhedskopien.",
+                    "name": "Mapper"
+                },
+                "homeassistant": {
+                    "description": "Gendanner Home Assistant.",
+                    "name": "Home Assistant-indstillinger"
+                },
+                "password": {
+                    "description": "Valgfri adgangskode.",
+                    "name": "Adgangskode"
+                },
+                "slug": {
+                    "description": "Slug p\u00e5 sikkerhedskopi til gendannelse.",
+                    "name": "Slug"
+                }
+            },
+            "name": "Gendan fra delvis sikkerhedskopi."
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Agent-version",
+            "board": "Kort",
+            "disk_life_time": "Diskens levetid",
+            "disk_total": "Disk-total",
+            "disk_used": "Disk-forbrug",
+            "docker_version": "Docker-version",
+            "healthy": "Sund",
+            "host_os": "V\u00e6rtsoperativsystem",
+            "installed_addons": "Installerede apps",
+            "nameservers": "Navneservere",
+            "supervisor_api": "Supervisor-API",
+            "supervisor_version": "Supervisor-version",
+            "supported": "Underst\u00f8ttet",
+            "update_channel": "Opdateringskanal",
+            "version_api": "Version-API"
+        }
+    }
+}

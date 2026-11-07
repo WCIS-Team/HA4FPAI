@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "\u015eart, e\u011fer sa\u011flan\u0131rsa",
+        "condition_for_name": "En az\u0131ndan",
+        "trigger_behavior_name": "Tetikleme zaman\u0131",
+        "trigger_for_name": "En az\u0131ndan"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesinin yerle\u015ftirilip yerle\u015ftirilmedi\u011fini test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi \u015farj istasyonuna yerle\u015ftirildi"
+        },
+        "is_encountering_an_error": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesinin bir hatayla kar\u015f\u0131la\u015f\u0131p kar\u015f\u0131la\u015fmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi bir hatayla kar\u015f\u0131la\u015f\u0131yor"
+        },
+        "is_idle": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesinin \u00e7al\u0131\u015fm\u0131yor olup olmad\u0131\u011f\u0131n\u0131 kontrol eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi \u00e7al\u0131\u015fm\u0131yor"
+        },
+        "is_mowing": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesinin bi\u00e7me yap\u0131p yapmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi bi\u00e7iyor"
+        },
+        "is_paused": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesinin duraklat\u0131l\u0131p duraklat\u0131lmad\u0131\u011f\u0131n\u0131 test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi duraklat\u0131ld\u0131"
+        },
+        "is_returning": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesinin iskeleye d\u00f6n\u00fcp d\u00f6nmedi\u011fini test eder.",
+            "fields": {
+                "behavior": {
+                    "name": "\u015eart, e\u011fer sa\u011flan\u0131rsa"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi geri d\u00f6n\u00fcyor"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u00c7im bi\u00e7me makinesi",
+            "state": {
+                "docked": "Dock'da",
+                "error": "Hata",
+                "idle": "Bo\u015fta",
+                "mowing": "Bi\u00e7me",
+                "paused": "Durduruldu",
+                "returning": "D\u00f6n\u00fc\u015f"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "\u00c7im bi\u00e7me makinesini yerine geri g\u00f6t\u00fcr\u00fcr.",
+            "name": "\u00c7im bi\u00e7me makinesini \u015farj istasyonuna geri g\u00f6t\u00fcr\u00fcn"
+        },
+        "pause": {
+            "description": "\u00c7im bi\u00e7me makinesinin mevcut g\u00f6revini duraklat\u0131r.",
+            "name": "\u00c7im bi\u00e7me makinesini duraklat"
+        },
+        "start_mowing": {
+            "description": "\u00c7im bi\u00e7me makinesinin bi\u00e7me i\u015flemini ba\u015flat\u0131r.",
+            "name": "\u00c7im bi\u00e7me makinesini \u00e7al\u0131\u015ft\u0131r\u0131n"
+        },
+        "stop": {
+            "description": "\u00c7im bi\u00e7me makinesinin mevcut g\u00f6revini durdurur.",
+            "name": "\u00c7im bi\u00e7me makinesini durdurun"
+        }
+    },
+    "title": "\u00c7im bi\u00e7me makinesi",
+    "triggers": {
+        "became_idle": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesi \u00e7al\u0131\u015fmaya durdu\u011funda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi durdu"
+        },
+        "errored": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesi hata verdi\u011finde tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi bir hatayla kar\u015f\u0131la\u015ft\u0131."
+        },
+        "paused_mowing": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesi bi\u00e7me i\u015flemine ara verdi\u011finde tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi bi\u00e7meyi durdurdu."
+        },
+        "returned_to_dock": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesinin istasyona geri d\u00f6nmesi durumunda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi iskeleye geri getirildi"
+        },
+        "started_mowing": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesi bi\u00e7meye ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi bi\u00e7meye ba\u015flad\u0131."
+        },
+        "started_returning": {
+            "description": "Bir veya daha fazla \u00e7im bi\u00e7me makinesi istasyona geri d\u00f6nmeye ba\u015flad\u0131\u011f\u0131nda tetiklenir.",
+            "fields": {
+                "behavior": {
+                    "name": "Tetikleme zaman\u0131"
+                },
+                "for": {
+                    "name": "En az\u0131ndan"
+                }
+            },
+            "name": "\u00c7im bi\u00e7me makinesi docka geri d\u00f6nmeye ba\u015flad\u0131"
+        }
+    }
+}

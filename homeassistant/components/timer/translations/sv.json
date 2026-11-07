@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Testar om en eller flera timers \u00e4r aktiva.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timer \u00e4r aktiv"
+        },
+        "is_idle": {
+            "description": "Testar om en eller flera timers \u00e4r inaktiva.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timer \u00e4r inaktiv"
+        },
+        "is_paused": {
+            "description": "Testar om en eller flera timers \u00e4r pausade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timer \u00e4r pausad"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Timer",
+            "state": {
+                "active": "Aktiv",
+                "idle": "Inaktiv",
+                "paused": "Pausad"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Varaktighet"
+                },
+                "editable": {
+                    "name": "Hanteras via anv\u00e4ndargr\u00e4nssnittet",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Avslutas vid"
+                },
+                "last_transition": {
+                    "name": "Senaste \u00f6verg\u00e5ngen",
+                    "state": {
+                        "cancelled": "Avbruten",
+                        "finished": "F\u00e4rdig",
+                        "paused": "Pausad",
+                        "restarted": "Omstartad",
+                        "started": "Startad"
+                    }
+                },
+                "remaining": {
+                    "name": "\u00c5terst\u00e5ende"
+                },
+                "restore": {
+                    "name": "\u00c5terst\u00e4ll"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "\u00c5terst\u00e4ller en timers varaktighet till det senast k\u00e4nda startv\u00e4rdet utan att utl\u00f6sa h\u00e4ndelsen Timer finished.",
+            "name": "Avbryt timern"
+        },
+        "change": {
+            "description": "\u00c4ndrar en timer genom att l\u00e4gga till eller dra ifr\u00e5n en viss tid.",
+            "fields": {
+                "duration": {
+                    "description": "Varaktighet som ska l\u00e4ggas till eller dras ifr\u00e5n den p\u00e5g\u00e5ende timern.",
+                    "name": "Varaktighet"
+                }
+            },
+            "name": "\u00c4ndra timern"
+        },
+        "finish": {
+            "description": "Avslutar en p\u00e5g\u00e5ende timer tidigare \u00e4n planerat.",
+            "name": "Avsluta timern"
+        },
+        "pause": {
+            "description": "Pausar en p\u00e5g\u00e5ende timer och beh\u00e5ller den \u00e5terst\u00e5ende tiden f\u00f6r senare forts\u00e4ttning.",
+            "name": "Pausa timern"
+        },
+        "reload": {
+            "description": "Laddar om timers fr\u00e5n YAML-konfigurationen.",
+            "name": "Ladda om timers"
+        },
+        "start": {
+            "description": "Startar en timer eller startar om den med en angiven varaktighet.",
+            "fields": {
+                "duration": {
+                    "description": "Anpassad varaktighet f\u00f6r att starta om timern med.",
+                    "name": "Varaktighet"
+                }
+            },
+            "name": "Starta timern"
+        }
+    },
+    "title": "Timer",
+    "triggers": {
+        "cancelled": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera timers avbryts.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timern har avbrutits"
+        },
+        "finished": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera timers \u00e4r klara.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timern \u00e4r klar"
+        },
+        "paused": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera timers \u00e4r pausade.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timern pausad"
+        },
+        "remaining_time_reached": {
+            "description": "Utl\u00f6ses n\u00e4r en eller fler timers n\u00e5r en specifik kvarvarande tid.",
+            "fields": {
+                "remaining": {
+                    "name": "\u00c5terst\u00e5ende tid"
+                }
+            },
+            "name": "Timer \u00e5terst\u00e5ende tid uppn\u00e5dd"
+        },
+        "restarted": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera timers startas om.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timern har startats om"
+        },
+        "started": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera timers startas.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Timern har startats"
+        }
+    }
+}

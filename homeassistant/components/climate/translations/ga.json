@@ -1,0 +1,378 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_cooling": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_drying": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_heating": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_hvac_mode": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "hvac_mode": {
+                    "description": "Na modhanna HVAC le t\u00e1st\u00e1il.",
+                    "name": "M\u00f3id"
+                }
+            }
+        },
+        "is_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_target_humidity": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il ar shocphointe taise teirmeastat amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Taise sprice teirmeastait"
+        },
+        "is_target_temperature": {
+            "description": "D\u00e9anann s\u00e9 t\u00e1st\u00e1il ar shocra\u00edocht teochta teirmeastat amh\u00e1in n\u00f3 n\u00edos m\u00f3.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "Teocht sprice teirmeastait"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Athraigh m\u00f3d HVAC ar {entity_name}",
+            "set_preset_mode": "Athraigh r\u00e9amhshocr\u00fa ar {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "T\u00e1 {entity_name} socraithe chuig modh HVAC ar leith",
+            "is_preset_mode": "T\u00e1 modh r\u00e9amhshocraithe ar leith socraithe ag {entity_name}"
+        },
+        "extra_fields": {
+            "above": "Thuas",
+            "below": "Th\u00edos",
+            "for": "Fad",
+            "hvac_mode": "M\u00f3d HVAC",
+            "preset_mode": "M\u00f3d r\u00e9amhshocraithe",
+            "to": "Chuig"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "Athra\u00edodh an taise tomhaiste ag {entity_name}",
+            "current_temperature_changed": "Athra\u00edodh an teocht a thomhas {entity_name}",
+            "hvac_mode_changed": "Athra\u00edodh m\u00f3d HVAC {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Teirmeastat",
+            "state": {
+                "auto": "Uath",
+                "cool": "Fionnuar",
+                "dry": "Tirim",
+                "fan_only": "Gaothr\u00e1n amh\u00e1in",
+                "heat": "Teas",
+                "heat_cool": "Teas/Fuar\u00fa",
+                "off": "As"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Taise reatha"
+                },
+                "current_temperature": {
+                    "name": "Teocht reatha"
+                },
+                "fan_mode": {
+                    "name": "M\u00f3d Fean",
+                    "state": {
+                        "auto": "Uath",
+                        "diffuse": "Scaipthe",
+                        "focus": "F\u00f3cas",
+                        "high": "Ard",
+                        "low": "\u00cdseal",
+                        "medium": "Me\u00e1nach",
+                        "middle": "L\u00e1r",
+                        "off": "As",
+                        "on": "Ar si\u00fal",
+                        "top": "Barr"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Modhanna fean"
+                },
+                "humidity": {
+                    "name": "Taise sprice"
+                },
+                "hvac_action": {
+                    "name": "Gn\u00edomh reatha",
+                    "state": {
+                        "cooling": "Fuar\u00fa",
+                        "defrosting": "D\u00edreoite",
+                        "drying": "Triom\u00fa",
+                        "fan": "Fean",
+                        "heating": "T\u00e9amh",
+                        "idle": "D\u00edomhaoin",
+                        "off": "As",
+                        "preheating": "R\u00e9amhth\u00e9amh"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "Modhanna HVAC"
+                },
+                "max_humidity": {
+                    "name": "Uasmh\u00e9id taise sprice"
+                },
+                "max_temp": {
+                    "name": "Teocht sprice uasta"
+                },
+                "min_humidity": {
+                    "name": "\u00cdosmh\u00e9id taise sprice"
+                },
+                "min_temp": {
+                    "name": "Teocht sprice \u00edosta"
+                },
+                "preset_mode": {
+                    "name": "R\u00e9amhshocr\u00fa",
+                    "state": {
+                        "activity": "Gn\u00edomha\u00edocht",
+                        "away": "Ar shi\u00fal",
+                        "boost": "Borradh",
+                        "comfort": "Chompord",
+                        "eco": "\u00c9icea",
+                        "home": "Baile",
+                        "none": "Dada",
+                        "sleep": "Codladh"
+                    }
+                },
+                "preset_modes": {
+                    "name": "R\u00e9amhshocruithe"
+                },
+                "swing_horizontal_mode": {
+                    "name": "M\u00f3d luasc\u00e1in chothrom\u00e1nach",
+                    "state": {
+                        "off": "As",
+                        "on": "Ar si\u00fal"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Modhanna luasc\u00e1in chothrom\u00e1nacha"
+                },
+                "swing_mode": {
+                    "name": "M\u00f3d luasc\u00e1in",
+                    "state": {
+                        "both": "An d\u00e1 cheann",
+                        "horizontal": "Cothrom\u00e1nach",
+                        "off": "As",
+                        "on": "Ar si\u00fal",
+                        "vertical": "Ingearach"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Modhanna luasc\u00e1in"
+                },
+                "target_temp_high": {
+                    "name": "Teocht sprice uachtarach"
+                },
+                "target_temp_low": {
+                    "name": "Teocht sprice n\u00edos \u00edsle"
+                },
+                "target_temp_step": {
+                    "name": "C\u00e9im teochta sprice"
+                },
+                "temperature": {
+                    "name": "Teocht sprice"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "N\u00edl an taise a chuirtear ar f\u00e1il {humidity} bail\u00ed. Is \u00e9 {min_humidity} go {max_humidity} an raon glactha."
+        },
+        "not_valid_fan_mode": {
+            "message": "N\u00edl m\u00f3d lucht lean\u00fana {mode} bail\u00ed. Is iad na modhanna lucht lean\u00fana bail\u00ed n\u00e1: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "N\u00edl an modh luasctha cothrom\u00e1nach {mode} bail\u00ed. Is iad na modhanna luasctha cothrom\u00e1nacha bail\u00ed n\u00e1: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "N\u00edl m\u00f3d HVAC {mode} bail\u00ed. Is iad na m\u00f3id HVAC bail\u00ed n\u00e1: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "N\u00edl an modh r\u00e9amhshocraithe {mode} bail\u00ed. Is iad na modhanna r\u00e9amhshocraithe bail\u00ed: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "N\u00edl m\u00f3d luasctha {mode} bail\u00ed. Is iad na modhanna luasctha bail\u00ed: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "N\u00edl an teocht a cuireadh ar f\u00e1il {check_temp} bail\u00ed. Is \u00e9 {min_temp} go {max_temp} an raon glactha."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "fields": {
+                "fan_mode": {
+                    "description": "M\u00f3d oibri\u00fach\u00e1in lucht lean\u00fana.",
+                    "name": "M\u00f3d fean"
+                }
+            }
+        },
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "Taise spriocdh\u00edrithe.",
+                    "name": "Taise"
+                }
+            }
+        },
+        "set_hvac_mode": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "M\u00f3d oibri\u00fach\u00e1in HVAC.",
+                    "name": "M\u00f3d HVAC"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "M\u00f3d r\u00e9amhshocraithe.",
+                    "name": "M\u00f3d r\u00e9amhshocraithe"
+                }
+            }
+        },
+        "set_swing_horizontal_mode": {
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "M\u00f3d oibr\u00edochta luasc\u00e1in chothrom\u00e1nach.",
+                    "name": "M\u00f3d luasc\u00e1in chothrom\u00e1nach"
+                }
+            }
+        },
+        "set_swing_mode": {
+            "fields": {
+                "swing_mode": {
+                    "description": "M\u00f3d oibr\u00edochta luasc\u00e1in.",
+                    "name": "M\u00f3d luasc\u00e1in"
+                }
+            }
+        },
+        "set_temperature": {
+            "fields": {
+                "hvac_mode": {
+                    "description": "M\u00f3d oibri\u00fach\u00e1in HVAC.",
+                    "name": "M\u00f3d HVAC"
+                },
+                "target_temp_high": {
+                    "description": "An pointe socraithe teochta uasta.",
+                    "name": "Teocht sprice uachtarach"
+                },
+                "target_temp_low": {
+                    "description": "An pointe socraithe teochta \u00edosta.",
+                    "name": "Teocht sprice n\u00edos \u00edsle"
+                },
+                "temperature": {
+                    "description": "An pointe socraithe teochta.",
+                    "name": "Teocht sprice"
+                }
+            },
+            "sections": {
+                "temperature_range": {
+                    "name": "Raon teochta"
+                }
+            }
+        }
+    },
+    "title": "Aer\u00e1id",
+    "triggers": {
+        "hvac_mode_changed": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                },
+                "hvac_mode": {
+                    "description": "Na modhanna HVAC le cur i ngn\u00edomh.",
+                    "name": "M\u00f3id"
+                }
+            }
+        },
+        "started_cooling": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "started_drying": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "started_heating": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "target_humidity_crossed_threshold": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "target_temperature_crossed_threshold": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "turned_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "turned_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,242 @@
+{
+    "common": {
+        "condition_threshold_name": "Type de seuil",
+        "trigger_for_name": "Pendant au moins",
+        "trigger_offset_name": "D\u00e9calage",
+        "trigger_offset_type_description": "Indique si le d\u00e9clenchement a lieu avant ou apr\u00e8s l'\u00e9v\u00e9nement solaire.",
+        "trigger_offset_type_name": "Type de d\u00e9calage",
+        "trigger_threshold_name": "Type de seuil",
+        "twilight_type_description": "La phase du cr\u00e9puscule.",
+        "twilight_type_name": "Type de cr\u00e9puscule"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "V\u00e9rifie l'\u00e9l\u00e9vation du soleil par rapport \u00e0 un seuil d\u00e9fini.",
+            "fields": {
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "\u00c9l\u00e9vation du soleil"
+        },
+        "is_ascending": {
+            "description": "V\u00e9rifie si le soleil est ascendant.",
+            "name": "Le soleil est ascendant"
+        },
+        "is_descending": {
+            "description": "V\u00e9rifie si le soleil est descendant.",
+            "name": "Le soleil est descendant"
+        },
+        "is_evening_twilight": {
+            "description": "V\u00e9rifie si c'est le cr\u00e9puscule du soir, \u00e9ventuellement d'un type sp\u00e9cifique.",
+            "fields": {
+                "type": {
+                    "description": "La phase du cr\u00e9puscule.",
+                    "name": "Type de cr\u00e9puscule"
+                }
+            },
+            "name": "C'est le cr\u00e9puscule du soir"
+        },
+        "is_morning_twilight": {
+            "description": "V\u00e9rifie si c'est le cr\u00e9puscule du matin, \u00e9ventuellement d'un type sp\u00e9cifique.",
+            "fields": {
+                "type": {
+                    "description": "La phase du cr\u00e9puscule.",
+                    "name": "Type de cr\u00e9puscule"
+                }
+            },
+            "name": "C'est le cr\u00e9puscule du matin"
+        },
+        "is_night": {
+            "description": "V\u00e9rifie si c'est la nuit.",
+            "name": "C'est la nuit"
+        },
+        "is_set": {
+            "description": "V\u00e9rifie si le soleil est couch\u00e9.",
+            "name": "Le soleil est couch\u00e9"
+        },
+        "is_up": {
+            "description": "V\u00e9rifie si le soleil est lev\u00e9.",
+            "name": "Le soleil est lev\u00e9"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Voulez-vous commencer la configuration\u00a0?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Lever du soleil",
+                "state": {
+                    "off": "Coucher",
+                    "on": "Lever"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "Prochaine aube"
+            },
+            "next_dusk": {
+                "name": "Prochain cr\u00e9puscule"
+            },
+            "next_midnight": {
+                "name": "Prochain minuit"
+            },
+            "next_noon": {
+                "name": "Prochain midi"
+            },
+            "next_rising": {
+                "name": "Prochain lever"
+            },
+            "next_setting": {
+                "name": "Prochain coucher"
+            },
+            "solar_azimuth": {
+                "name": "Azimut solaire"
+            },
+            "solar_elevation": {
+                "name": "\u00c9l\u00e9vation solaire"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Soleil",
+            "state": {
+                "above_horizon": "Au-dessus de l'horizon",
+                "below_horizon": "Sous l'horizon"
+            }
+        }
+    },
+    "selector": {
+        "trigger_offset_type": {
+            "options": {
+                "after": "Apr\u00e8s",
+                "before": "Avant"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "N'importe lequel",
+                "astronomical": "Astronomique",
+                "civil": "Civil",
+                "nautical": "Nautique"
+            }
+        }
+    },
+    "title": "Soleil",
+    "triggers": {
+        "dawn": {
+            "description": "Se d\u00e9clenche \u00e0 l'aube, au d\u00e9but du cr\u00e9puscule civil, nautique ou astronomique.",
+            "fields": {
+                "offset": {
+                    "name": "D\u00e9calage"
+                },
+                "offset_type": {
+                    "description": "Indique si le d\u00e9clenchement a lieu avant ou apr\u00e8s l'\u00e9v\u00e9nement solaire.",
+                    "name": "Type de d\u00e9calage"
+                },
+                "type": {
+                    "description": "La phase du cr\u00e9puscule.",
+                    "name": "Type de cr\u00e9puscule"
+                }
+            },
+            "name": "Aube"
+        },
+        "dusk": {
+            "description": "Se d\u00e9clenche au cr\u00e9puscule, \u00e0 la fin du cr\u00e9puscule civil, nautique ou astronomique.",
+            "fields": {
+                "offset": {
+                    "name": "D\u00e9calage"
+                },
+                "offset_type": {
+                    "description": "Indique si le d\u00e9clenchement a lieu avant ou apr\u00e8s l'\u00e9v\u00e9nement solaire.",
+                    "name": "Type de d\u00e9calage"
+                },
+                "type": {
+                    "description": "La phase du cr\u00e9puscule.",
+                    "name": "Type de cr\u00e9puscule"
+                }
+            },
+            "name": "Cr\u00e9puscule"
+        },
+        "elevation_changed": {
+            "description": "Se d\u00e9clenche quand l'\u00e9l\u00e9vation du soleil change, \u00e9ventuellement limit\u00e9 \u00e0 un seuil ou une plage d\u00e9finie.",
+            "fields": {
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "L'\u00e9l\u00e9vation du soleil a chang\u00e9"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Se d\u00e9clenche quand l'\u00e9l\u00e9vation du soleil franchit un seuil d\u00e9fini.",
+            "fields": {
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "L'\u00e9l\u00e9vation du soleil a franchi un seuil"
+        },
+        "solar_midnight": {
+            "description": "Se d\u00e9clenche quand le soleil atteint son point le plus bas.",
+            "fields": {
+                "offset": {
+                    "name": "D\u00e9calage"
+                },
+                "offset_type": {
+                    "description": "Indique si le d\u00e9clenchement a lieu avant ou apr\u00e8s l'\u00e9v\u00e9nement solaire.",
+                    "name": "Type de d\u00e9calage"
+                }
+            },
+            "name": "Minuit solaire"
+        },
+        "solar_noon": {
+            "description": "Se d\u00e9clenche quand le soleil atteint son point le plus haut.",
+            "fields": {
+                "offset": {
+                    "name": "D\u00e9calage"
+                },
+                "offset_type": {
+                    "description": "Indique si le d\u00e9clenchement a lieu avant ou apr\u00e8s l'\u00e9v\u00e9nement solaire.",
+                    "name": "Type de d\u00e9calage"
+                }
+            },
+            "name": "Midi solaire"
+        },
+        "sunrise": {
+            "description": "Se d\u00e9clenche quand le soleil se l\u00e8ve.",
+            "fields": {
+                "offset": {
+                    "name": "D\u00e9calage"
+                },
+                "offset_type": {
+                    "description": "Indique si le d\u00e9clenchement a lieu avant ou apr\u00e8s l'\u00e9v\u00e9nement solaire.",
+                    "name": "Type de d\u00e9calage"
+                }
+            },
+            "name": "Lever du soleil"
+        },
+        "sunset": {
+            "description": "Se d\u00e9clenche quand le soleil se couche.",
+            "fields": {
+                "offset": {
+                    "name": "D\u00e9calage"
+                },
+                "offset_type": {
+                    "description": "Indique si le d\u00e9clenchement a lieu avant ou apr\u00e8s l'\u00e9v\u00e9nement solaire.",
+                    "name": "Type de d\u00e9calage"
+                }
+            },
+            "name": "Coucher du soleil"
+        }
+    }
+}

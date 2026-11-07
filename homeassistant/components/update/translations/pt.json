@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se",
+        "condition_for_name": "Durante pelo menos",
+        "trigger_behavior_name": "Disparar quando",
+        "trigger_for_name": "Durante pelo menos"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Testa se uma ou mais atualiza\u00e7\u00f5es est\u00e3o dispon\u00edveis.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "A atualiza\u00e7\u00e3o est\u00e1 dispon\u00edvel"
+        },
+        "is_not_available": {
+            "description": "Testa se uma ou mais atualiza\u00e7\u00f5es n\u00e3o est\u00e3o dispon\u00edveis.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "A atualiza\u00e7\u00e3o n\u00e3o est\u00e1 dispon\u00edvel"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Dura\u00e7\u00e3o"
+        },
+        "trigger_type": {
+            "changed_states": "Disponibilidade de atualiza\u00e7\u00e3o de {entity_name} alterada",
+            "turned_off": "{entity_name} foi atualizado",
+            "turned_on": "{entity_name} tem uma atualiza\u00e7\u00e3o dispon\u00edvel"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Atualiza\u00e7\u00e3o",
+            "state": {
+                "off": "Atualizado",
+                "on": "Atualiza\u00e7\u00e3o dispon\u00edvel"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Auto atualizar",
+                    "state": {
+                        "false": "N\u00e3o",
+                        "true": "Sim"
+                    }
+                },
+                "in_progress": {
+                    "name": "Em curso",
+                    "state": {
+                        "false": "N\u00e3o",
+                        "true": "Sim"
+                    }
+                },
+                "installed_version": {
+                    "name": "Vers\u00e3o instalada"
+                },
+                "latest_version": {
+                    "name": "Vers\u00e3o mais recente"
+                },
+                "release_summary": {
+                    "name": "Resumo do lan\u00e7amento"
+                },
+                "release_url": {
+                    "name": "URL do lan\u00e7amento"
+                },
+                "skipped_version": {
+                    "name": "Vers\u00e3o pulada"
+                },
+                "title": {
+                    "name": "T\u00edtulo"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmware"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "O backup n\u00e3o \u00e9 suportado para o {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "A elimina\u00e7\u00e3o de atualiza\u00e7\u00f5es ignoradas n\u00e3o \u00e9 suportada no {entity_id}."
+        },
+        "no_update_available": {
+            "message": "N\u00e3o h\u00e1 atualiza\u00e7\u00f5es dispon\u00edveis para o {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "N\u00e3o h\u00e1 nenhuma atualiza\u00e7\u00e3o dispon\u00edvel para ignorar para o jogo {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "N\u00e3o \u00e9 poss\u00edvel ignorar a atualiza\u00e7\u00e3o no {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "A instala\u00e7\u00e3o de uma vers\u00e3o espec\u00edfica n\u00e3o \u00e9 suportada para {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "N\u00e3o \u00e9 poss\u00edvel ignorar uma vers\u00e3o desconhecida do {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "A instala\u00e7\u00e3o da atualiza\u00e7\u00e3o j\u00e1 est\u00e1 em curso para {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Remove o marcador de ignorar de uma atualiza\u00e7\u00e3o.",
+            "name": "Limpar atualiza\u00e7\u00f5es ignoradas"
+        },
+        "install": {
+            "description": "Instala uma atualiza\u00e7\u00e3o para o dispositivo ou servi\u00e7o.",
+            "fields": {
+                "backup": {
+                    "description": "Se suportado pela integra\u00e7\u00e3o, isto cria um backup antes de iniciar a atualiza\u00e7\u00e3o.",
+                    "name": "Backup"
+                },
+                "version": {
+                    "description": "A vers\u00e3o a instalar. Se omitido, ser\u00e1 instalada a vers\u00e3o mais recente.",
+                    "name": "Vers\u00e3o"
+                }
+            },
+            "name": "Instalar atualiza\u00e7\u00e3o"
+        },
+        "skip": {
+            "description": "Marca uma atualiza\u00e7\u00e3o atualmente dispon\u00edvel como ignorada.",
+            "name": "Ignorar atualiza\u00e7\u00e3o"
+        }
+    },
+    "title": "Atualiza\u00e7\u00e3o",
+    "triggers": {
+        "became_available": {
+            "description": "Dispara quando uma ou mais atualiza\u00e7\u00f5es ficam dispon\u00edveis.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar quando"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                }
+            },
+            "name": "A atualiza\u00e7\u00e3o ficou dispon\u00edvel"
+        }
+    }
+}

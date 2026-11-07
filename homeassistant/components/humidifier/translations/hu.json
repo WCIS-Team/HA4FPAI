@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "A felt\u00e9tel teljes\u00fcl, ha",
+        "condition_for_name": "Legal\u00e1bb",
+        "condition_threshold_name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa",
+        "trigger_behavior_name": "Aktiv\u00e1l\u00f3dik, amikor",
+        "trigger_for_name": "Legal\u00e1bb ennyi ideig"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 sz\u00e1r\u00edt-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A p\u00e1r\u00e1s\u00edt\u00f3 sz\u00e1r\u00edt"
+        },
+        "is_humidifying": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 p\u00e1r\u00e1s\u00edt-e.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A p\u00e1r\u00e1s\u00edt\u00f3 p\u00e1r\u00e1s\u00edt"
+        },
+        "is_mode": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 egy adott \u00fczemm\u00f3dra van-e \u00e1ll\u00edtva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                },
+                "mode": {
+                    "description": "Az ellen\u0151rizend\u0151 \u00fczemm\u00f3dok.",
+                    "name": "\u00dczemm\u00f3d"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 \u00fczemm\u00f3dja"
+        },
+        "is_off": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 ki van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A p\u00e1r\u00e1s\u00edt\u00f3 kikapcsolva"
+        },
+        "is_on": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 be van-e kapcsolva.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                }
+            },
+            "name": "A p\u00e1r\u00e1s\u00edt\u00f3 bekapcsolva"
+        },
+        "is_target_humidity": {
+            "description": "Ellen\u0151rzi, hogy egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 c\u00e9lp\u00e1ratartalma megfelel-e a felt\u00e9teleknek.",
+            "fields": {
+                "behavior": {
+                    "name": "A felt\u00e9tel teljes\u00fcl, ha"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb"
+                },
+                "threshold": {
+                    "name": "K\u00fcsz\u00f6b\u00e9rt\u00e9k t\u00edpusa"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 c\u00e9lp\u00e1ratartalma"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "{entity_name} p\u00e1ratartalom be\u00e1ll\u00edt\u00e1sa",
+            "set_mode": "{entity_name} m\u00f3d m\u00f3dos\u00edt\u00e1sa",
+            "toggle": "{entity_name} kapcsol\u00e1sa",
+            "turn_off": "{entity_name} kikapcsol\u00e1sa",
+            "turn_on": "{entity_name} bekapcsol\u00e1sa"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} egy adott m\u00f3dra van \u00e1ll\u00edtva",
+            "is_off": "{entity_name} ki van kapcsolva",
+            "is_on": "{entity_name} be van kapcsolva"
+        },
+        "extra_fields": {
+            "above": "Felett",
+            "below": "Alatt",
+            "for": "Id\u0151tartam",
+            "humidity": "P\u00e1ratartalom",
+            "mode": "\u00dczemm\u00f3d"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} be- vagy kikapcsolt",
+            "target_humidity_changed": "{entity_name} k\u00edv\u00e1nt p\u00e1ratartalom megv\u00e1ltozott",
+            "turned_off": "{entity_name} ki lett kapcsolva",
+            "turned_on": "{entity_name} be lett kapcsolva"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3",
+            "state": {
+                "off": "Ki",
+                "on": "Be"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "M\u0171velet",
+                    "state": {
+                        "drying": "P\u00e1r\u00e1tlan\u00edt\u00e1s",
+                        "humidifying": "P\u00e1r\u00e1s\u00edt\u00e1s",
+                        "idle": "T\u00e9tlen",
+                        "off": "Ki"
+                    }
+                },
+                "available_modes": {
+                    "name": "El\u00e9rhet\u0151 \u00fczemm\u00f3dok"
+                },
+                "current_humidity": {
+                    "name": "Aktu\u00e1lis p\u00e1ratartalom"
+                },
+                "humidity": {
+                    "name": "K\u00edv\u00e1nt p\u00e1ratartalom"
+                },
+                "max_humidity": {
+                    "name": "Maxim\u00e1lis c\u00e9l p\u00e1ratartalom"
+                },
+                "min_humidity": {
+                    "name": "Minim\u00e1lis c\u00e9l p\u00e1ratartalom"
+                },
+                "mode": {
+                    "name": "M\u00f3d",
+                    "state": {
+                        "auto": "Automatikus",
+                        "away": "T\u00e1vol",
+                        "baby": "Baba",
+                        "boost": "Turb\u00f3",
+                        "comfort": "Komfort",
+                        "eco": "Takar\u00e9kos",
+                        "home": "Otthon",
+                        "normal": "Norm\u00e1l",
+                        "sleep": "Alv\u00e1s"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "P\u00e1ramentes\u00edt\u0151"
+        },
+        "humidifier": {
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "A megadott p\u00e1ratartalom {humidity} \u00e9rv\u00e9nytelen. Az elfogadott tartom\u00e1ny {min_humidity} \u00e9s {max_humidity} k\u00f6z\u00f6tt van."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "Be\u00e1ll\u00edtja a p\u00e1r\u00e1s\u00edt\u00f3 c\u00e9lp\u00e1ratartalm\u00e1t.",
+            "fields": {
+                "humidity": {
+                    "description": "C\u00e9l p\u00e1ratartalom.",
+                    "name": "P\u00e1ratartalom"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 c\u00e9lp\u00e1ratartalom be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_mode": {
+            "description": "Be\u00e1ll\u00edtja a p\u00e1r\u00e1s\u00edt\u00f3 \u00fczemm\u00f3dj\u00e1t.",
+            "fields": {
+                "mode": {
+                    "description": "\u00dczemm\u00f3d. P\u00e9ld\u00e1ul \"normal\", \"eco\" vagy \"away\". A lehets\u00e9ges \u00e9rt\u00e9kek list\u00e1j\u00e1t az integr\u00e1ci\u00f3s dokument\u00e1ci\u00f3ban tal\u00e1lja.",
+                    "name": "\u00dczemm\u00f3d"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 \u00fczemm\u00f3d be\u00e1ll\u00edt\u00e1sa"
+        },
+        "toggle": {
+            "description": "Ki/bekapcsolja a p\u00e1r\u00e1s\u00edt\u00f3t.",
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 ki/bekapcsol\u00e1sa"
+        },
+        "turn_off": {
+            "description": "Kikapcsolja a p\u00e1r\u00e1s\u00edt\u00f3t.",
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 kikapcsol\u00e1sa"
+        },
+        "turn_on": {
+            "description": "Bekapcsolja a p\u00e1r\u00e1s\u00edt\u00f3t.",
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 bekapcsol\u00e1sa"
+        }
+    },
+    "title": "P\u00e1r\u00e1s\u00edt\u00f3",
+    "triggers": {
+        "mode_changed": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 \u00fczemm\u00f3dja megv\u00e1ltozik.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                },
+                "mode": {
+                    "description": "Az \u00fczemm\u00f3dok, amelyekre az esem\u00e9nyind\u00edt\u00f3 aktiv\u00e1l\u00f3dik.",
+                    "name": "\u00dczemm\u00f3d"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 \u00fczemm\u00f3d v\u00e1ltozott"
+        },
+        "started_drying": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 elkezdi a sz\u00e1r\u00edt\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 elkezdte a sz\u00e1r\u00edt\u00e1st"
+        },
+        "started_humidifying": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 elkezdi a p\u00e1r\u00e1s\u00edt\u00e1st.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 elkezdte a p\u00e1r\u00e1s\u00edt\u00e1st"
+        },
+        "turned_off": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 kikapcsol.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 kikapcsolt"
+        },
+        "turned_on": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy vagy t\u00f6bb p\u00e1r\u00e1s\u00edt\u00f3 bekapcsol.",
+            "fields": {
+                "behavior": {
+                    "name": "Aktiv\u00e1l\u00f3dik, amikor"
+                },
+                "for": {
+                    "name": "Legal\u00e1bb ennyi ideig"
+                }
+            },
+            "name": "P\u00e1r\u00e1s\u00edt\u00f3 bekapcsolt"
+        }
+    }
+}

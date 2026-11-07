@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "\u0110i\u1ec1u ki\u1ec7n th\u1ecfa n\u1ebfu",
+        "condition_for_name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u",
+        "trigger_behavior_name": "K\u00edch ho\u1ea1t khi",
+        "trigger_for_name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Ki\u1ec3m tra xem c\u00f3 m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111ang ho\u1ea1t \u0111\u1ed9ng hay kh\u00f4ng.",
+            "fields": {
+                "behavior": {
+                    "name": "\u0110i\u1ec1u ki\u1ec7n th\u1ecfa n\u1ebfu"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd \u0111ang ho\u1ea1t \u0111\u1ed9ng"
+        },
+        "is_idle": {
+            "description": "Ki\u1ec3m tra xem c\u00f3 m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111ang ch\u1edd hay kh\u00f4ng.",
+            "fields": {
+                "behavior": {
+                    "name": "\u0110i\u1ec1u ki\u1ec7n th\u1ecfa n\u1ebfu"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd \u0111ang ch\u1edd"
+        },
+        "is_paused": {
+            "description": "Ki\u1ec3m tra xem c\u00f3 m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111ang t\u1ea1m d\u1eebng hay kh\u00f4ng.",
+            "fields": {
+                "behavior": {
+                    "name": "\u0110i\u1ec1u ki\u1ec7n th\u1ecfa n\u1ebfu"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd t\u1ea1m d\u1eebng"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd",
+            "state": {
+                "active": "Ho\u1ea1t \u0111\u1ed9ng",
+                "idle": "Nh\u00e0n r\u1ed7i",
+                "paused": "\u0110\u00e3 t\u1ea1m d\u1eebng"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Th\u1eddi l\u01b0\u1ee3ng"
+                },
+                "editable": {
+                    "name": "Qu\u1ea3n l\u00fd qua giao di\u1ec7n ng\u01b0\u1eddi d\u00f9ng",
+                    "state": {
+                        "false": "Kh\u00f4ng",
+                        "true": "C\u00f3"
+                    }
+                },
+                "finishes_at": {
+                    "name": "K\u1ebft th\u00fac t\u1ea1i"
+                },
+                "last_transition": {
+                    "name": "Chuy\u1ec3n \u0111\u1ed5i cu\u1ed1i c\u00f9ng",
+                    "state": {
+                        "cancelled": "\u0110\u00e3 h\u1ee7y",
+                        "finished": "\u0110\u00e3 ho\u00e0n th\u00e0nh",
+                        "paused": "\u0110\u00e3 t\u1ea1m d\u1eebng",
+                        "restarted": "\u0110\u00e3 kh\u1edfi \u0111\u1ed9ng l\u1ea1i",
+                        "started": "\u0110\u00e3 b\u1eaft \u0111\u1ea7u"
+                    }
+                },
+                "remaining": {
+                    "name": "C\u00f2n l\u1ea1i"
+                },
+                "restore": {
+                    "name": "Kh\u00f4i ph\u1ee5c"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "\u0110\u1eb7t l\u1ea1i th\u1eddi l\u01b0\u1ee3ng c\u1ee7a b\u1ed9 \u0111\u1ebfm gi\u1edd v\u1ec1 gi\u00e1 tr\u1ecb ban \u0111\u1ea7u \u0111\u01b0\u1ee3c bi\u1ebft \u0111\u1ebfn g\u1ea7n \u0111\u00e2y nh\u1ea5t m\u00e0 kh\u00f4ng k\u00edch ho\u1ea1t s\u1ef1 ki\u1ec7n k\u1ebft th\u00fac b\u1ed9 \u0111\u1ebfm gi\u1edd.",
+            "name": "H\u1ee7y \u0111\u1ebfm gi\u1edd"
+        },
+        "change": {
+            "description": "Thay \u0111\u1ed5i b\u1ed9 \u0111\u1ebfm gi\u1edd b\u1eb1ng c\u00e1ch th\u00eam ho\u1eb7c b\u1edbt m\u1ed9t kho\u1ea3ng th\u1eddi gian nh\u1ea5t \u0111\u1ecbnh.",
+            "fields": {
+                "duration": {
+                    "description": "Th\u1eddi l\u01b0\u1ee3ng th\u00eam v\u00e0o ho\u1eb7c b\u1edbt \u0111i c\u1ee7a b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111ang ch\u1ea1y.",
+                    "name": "Th\u1eddi l\u01b0\u1ee3ng"
+                }
+            },
+            "name": "Thay \u0111\u1ed5i b\u1ed9 \u0111\u1ebfm gi\u1edd"
+        },
+        "finish": {
+            "description": "K\u1ebft th\u00fac b\u1ed9 \u0111\u1ebfm gi\u1edd s\u1edbm h\u01a1n d\u1ef1 ki\u1ebfn.",
+            "name": "K\u1ebft th\u00fac \u0111\u1ebfm gi\u1edd"
+        },
+        "pause": {
+            "description": "T\u1ea1m d\u1eebng b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111ang ch\u1ea1y, gi\u1eef l\u1ea1i th\u1eddi l\u01b0\u1ee3ng c\u00f2n l\u1ea1i \u0111\u1ec3 ti\u1ebfp t\u1ee5c sau.",
+            "name": "T\u1ea1m d\u1eebng \u0111\u1ebfm gi\u1edd"
+        },
+        "reload": {
+            "description": "T\u1ea3i l\u1ea1i b\u1ed9 \u0111\u1ebfm gi\u1edd t\u1eeb c\u1ea5u h\u00ecnh YAML.",
+            "name": "T\u1ea3i l\u1ea1i b\u1ed9 \u0111\u1ebfm gi\u1edd"
+        },
+        "start": {
+            "description": "B\u1eaft \u0111\u1ea7u b\u1ed9 \u0111\u1ebfm gi\u1edd ho\u1eb7c kh\u1edfi \u0111\u1ed9ng l\u1ea1i b\u1ed9 \u0111\u1ebfm gi\u1edd theo kho\u1ea3ng th\u1eddi gian \u0111\u01b0\u1ee3c cung c\u1ea5p.",
+            "fields": {
+                "duration": {
+                    "description": "T\u00f9y ch\u1ec9nh th\u1eddi l\u01b0\u1ee3ng \u0111\u1ec3 kh\u1edfi \u0111\u1ed9ng l\u1ea1i b\u1ed9 \u0111\u1ebfm gi\u1edd.",
+                    "name": "Th\u1eddi l\u01b0\u1ee3ng"
+                }
+            },
+            "name": "B\u1eaft \u0111\u1ea7u \u0111\u1ebfm gi\u1edd"
+        }
+    },
+    "title": "B\u1ed9 \u0111\u1ebfm gi\u1edd",
+    "triggers": {
+        "cancelled": {
+            "description": "K\u00edch ho\u1ea1t khi m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd b\u1ecb h\u1ee7y.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00edch ho\u1ea1t khi"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd b\u1ecb h\u1ee7y"
+        },
+        "finished": {
+            "description": "K\u00edch ho\u1ea1t khi m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd k\u1ebft th\u00fac.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00edch ho\u1ea1t khi"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd k\u1ebft th\u00fac"
+        },
+        "paused": {
+            "description": "K\u00edch ho\u1ea1t khi m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd b\u1ecb t\u1ea1m d\u1eebng.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00edch ho\u1ea1t khi"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd t\u1ea1m d\u1eebng"
+        },
+        "remaining_time_reached": {
+            "description": "K\u00edch ho\u1ea1t khi m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111\u1ea1t \u0111\u1ebfn m\u1ed9t kho\u1ea3ng th\u1eddi gian c\u00f2n l\u1ea1i c\u1ee5 th\u1ec3.",
+            "fields": {
+                "remaining": {
+                    "name": "Th\u1eddi gian c\u00f2n l\u1ea1i"
+                }
+            },
+            "name": "\u0110\u00e3 h\u1ebft th\u1eddi gian c\u00f2n l\u1ea1i c\u1ee7a b\u1ed9 \u0111\u1ebfm gi\u1edd"
+        },
+        "restarted": {
+            "description": "K\u00edch ho\u1ea1t khi m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111\u01b0\u1ee3c kh\u1edfi \u0111\u1ed9ng l\u1ea1i.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00edch ho\u1ea1t khi"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd \u0111\u01b0\u1ee3c kh\u1edfi \u0111\u1ed9ng l\u1ea1i"
+        },
+        "started": {
+            "description": "K\u00edch ho\u1ea1t khi m\u1ed9t ho\u1eb7c nhi\u1ec1u b\u1ed9 \u0111\u1ebfm gi\u1edd \u0111\u01b0\u1ee3c kh\u1edfi \u0111\u1ed9ng.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00edch ho\u1ea1t khi"
+                },
+                "for": {
+                    "name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u"
+                }
+            },
+            "name": "B\u1ed9 \u0111\u1ebfm gi\u1edd b\u1eaft \u0111\u1ea7u"
+        }
+    }
+}

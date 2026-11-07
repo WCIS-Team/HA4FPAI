@@ -1,0 +1,254 @@
+{
+    "common": {
+        "condition_behavior_name": "Podm\u00ednka je spln\u011bna, kdy\u017e",
+        "condition_for_name": "Alespo\u0148 na",
+        "trigger_behavior_name": "Spustit, kdy\u017e",
+        "trigger_for_name": "Alespo\u0148 na"
+    },
+    "conditions": {
+        "is_cleaning": {
+            "description": "Otestuje, zda jeden nebo v\u00edce vysava\u010d\u016f vys\u00e1v\u00e1.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d vys\u00e1v\u00e1"
+        },
+        "is_docked": {
+            "description": "Otestuje, zda je jeden nebo v\u00edce vysava\u010d\u016f v doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d je v doku"
+        },
+        "is_encountering_an_error": {
+            "description": "Otestuje, zda na jednom nebo v\u00edce vysava\u010d\u00edch doch\u00e1z\u00ed k chyb\u011b.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "U vysava\u010de doch\u00e1z\u00ed k chyb\u011b"
+        },
+        "is_paused": {
+            "description": "Testuje, zda je jeden nebo v\u00edce vysava\u010d\u016f pozastaveno.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d je pozastaven"
+        },
+        "is_returning": {
+            "description": "Otestuje, zda se jeden nebo v\u00edce vysava\u010d\u016f vrac\u00ed do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d se vrac\u00ed"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "clean": "Nechat {entity_name} ukl\u00edzet",
+            "dock": "Nechat {entity_name} vr\u00e1tit se do doku"
+        },
+        "condition_type": {
+            "is_cleaning": "{entity_name} ukl\u00edz\u00ed",
+            "is_docked": "{entity_name} je v doku"
+        },
+        "extra_fields": {
+            "for": "Doba trv\u00e1n\u00ed"
+        },
+        "trigger_type": {
+            "cleaning": "{entity_name} zah\u00e1jil \u00faklid",
+            "docked": "{entity_name} p\u0159ijel do doku"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vysava\u010d",
+            "state": {
+                "cleaning": "Ukl\u00edz\u00ed",
+                "docked": "V doku",
+                "error": "Chyba",
+                "idle": "Ne\u010dinn\u00e9",
+                "off": "Vypnuto",
+                "on": "Zapnuto",
+                "paused": "Pozastaveno",
+                "returning": "Vrac\u00ed se do doku"
+            }
+        }
+    },
+    "exceptions": {
+        "area_mapping_not_configured": {
+            "message": "Mapov\u00e1n\u00ed oblasti nen\u00ed pro \"{entity_id}\" nastaveno. P\u0159ed pou\u017eit\u00edm t\u00e9to akce nastavte mapov\u00e1n\u00ed segment\u016f na oblasti."
+        },
+        "areas_not_mapped": {
+            "message": "N\u00e1sleduj\u00edc\u00ed oblasti nejsou namapov\u00e1ny na \u017e\u00e1dn\u00e9 segmenty c\u00edlov\u00fdch vysava\u010d\u016f: {areas}"
+        }
+    },
+    "issues": {
+        "segments_changed": {
+            "title": "Segmenty vysava\u010de se zm\u011bnily pro {entity_id}"
+        }
+    },
+    "services": {
+        "clean_area": {
+            "description": "D\u00e1 vysava\u010di pokyn, aby uklidil jednu nebo v\u00edce oblast\u00ed.",
+            "fields": {
+                "cleaning_area_id": {
+                    "description": "Oblasti k \u00faklidu.",
+                    "name": "Oblasti"
+                }
+            },
+            "name": "Uklidit oblast vysava\u010dem"
+        },
+        "clean_spot": {
+            "description": "D\u00e1 vysava\u010di pokyn, aby provedl \u00faklid m\u00edsta.",
+            "name": "Uklidit m\u00edsto vysava\u010dem"
+        },
+        "locate": {
+            "description": "Najde vysava\u010d.",
+            "name": "Naj\u00edt vysava\u010d"
+        },
+        "pause": {
+            "description": "Pozastav\u00ed aktu\u00e1ln\u00ed \u00fakol vysava\u010de.",
+            "name": "Pozastavit vysava\u010d"
+        },
+        "return_to_base": {
+            "description": "Ode\u0161le vysava\u010d zp\u011bt do jeho doku.",
+            "name": "Vr\u00e1tit vysava\u010d do doku"
+        },
+        "send_command": {
+            "description": "Ode\u0161le p\u0159\u00edkaz do vysava\u010de.",
+            "fields": {
+                "command": {
+                    "description": "P\u0159\u00edkaz k proveden\u00ed. P\u0159\u00edkazy jsou specifick\u00e9 pro integraci.",
+                    "name": "P\u0159\u00edkaz"
+                },
+                "params": {
+                    "description": "Parametry pro p\u0159\u00edkaz. Parametry jsou specifick\u00e9 pro integraci.",
+                    "name": "Parametry"
+                }
+            },
+            "name": "Odeslat p\u0159\u00edkaz do vysava\u010de"
+        },
+        "set_fan_speed": {
+            "description": "Nastav\u00ed rychlost ventil\u00e1toru vysava\u010de.",
+            "fields": {
+                "fan_speed": {
+                    "description": "Rychlost ventil\u00e1toru. Hodnota z\u00e1vis\u00ed na integraci. N\u011bkter\u00e9 integrace maj\u00ed rychlostn\u00ed kroky, nap\u0159\u00edklad \"st\u0159edn\u00ed\". N\u011bkte\u0159\u00ed pou\u017e\u00edvaj\u00ed procento, mezi 0 a 100.",
+                    "name": "Rychlost ventil\u00e1toru"
+                }
+            },
+            "name": "Nastavit rychlost ventil\u00e1toru vysava\u010de"
+        },
+        "start": {
+            "description": "Spust\u00ed nebo obnov\u00ed \u00faklid vysava\u010dem.",
+            "name": "Spustit vysava\u010d"
+        },
+        "start_pause": {
+            "description": "Spust\u00ed, pozastav\u00ed nebo obnov\u00ed \u00faklid vysava\u010dem.",
+            "name": "Spustit/Pozastavit vysava\u010d"
+        },
+        "stop": {
+            "description": "Zastav\u00ed aktu\u00e1ln\u00ed \u00faklid vysava\u010dem.",
+            "name": "Zastavit vysava\u010d"
+        },
+        "toggle": {
+            "description": "Zap\u00edn\u00e1/Vyp\u00edn\u00e1 vysava\u010d.",
+            "name": "P\u0159epnout vysava\u010d"
+        },
+        "turn_off": {
+            "description": "Vypne vysava\u010d.",
+            "name": "Vypnout vysava\u010d"
+        },
+        "turn_on": {
+            "description": "Zapne vysava\u010d.",
+            "name": "Zapnout vysava\u010d"
+        }
+    },
+    "title": "Vysava\u010d",
+    "triggers": {
+        "errored": {
+            "description": "Spust\u00ed se, kdy\u017e se jeden nebo v\u00edce vysava\u010d\u016f pokaz\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "U vysava\u010de do\u0161lo k chyb\u011b"
+        },
+        "paused_cleaning": {
+            "description": "Spust\u00ed se, kdy\u017e jeden nebo v\u00edce vysava\u010d\u016f pozastav\u00ed \u00faklid.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d pozastavil \u00faklid"
+        },
+        "returned_to_dock": {
+            "description": "Spust\u00ed se, kdy\u017e se jeden nebo v\u00edce vysava\u010d\u016f vr\u00e1t\u00ed do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d se vr\u00e1til do doku"
+        },
+        "started_cleaning": {
+            "description": "Spust\u00ed se, kdy\u017e jeden nebo v\u00edce vysava\u010d\u016f za\u010dne ukl\u00edzet.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d za\u010dal ukl\u00edzet"
+        },
+        "started_returning": {
+            "description": "Spust\u00ed se, kdy\u017e se jeden nebo v\u00edce vysava\u010d\u016f za\u010dne vracet do doku.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Vysava\u010d se za\u010dal vracet do doku"
+        }
+    }
+}

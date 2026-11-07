@@ -1,0 +1,197 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "V\u00e9rifie si un ou plusieurs minuteurs sont actifs.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur est actif"
+        },
+        "is_idle": {
+            "description": "V\u00e9rifie si un ou plusieurs minuteurs sont inactifs.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur est inactif"
+        },
+        "is_paused": {
+            "description": "V\u00e9rifie si un ou plusieurs minuteurs sont en pause.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur est en pause"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Minuteur",
+            "state": {
+                "active": "Actif",
+                "idle": "Inactif",
+                "paused": "En pause"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Dur\u00e9e"
+                },
+                "editable": {
+                    "name": "G\u00e9r\u00e9 via l'interface utilisateur",
+                    "state": {
+                        "false": "Non",
+                        "true": "Oui"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Se termine \u00e0"
+                },
+                "last_transition": {
+                    "name": "Derni\u00e8re transition",
+                    "state": {
+                        "cancelled": "Annul\u00e9e",
+                        "finished": "Termin\u00e9",
+                        "paused": "En pause",
+                        "restarted": "Red\u00e9marr\u00e9",
+                        "started": "D\u00e9marr\u00e9"
+                    }
+                },
+                "remaining": {
+                    "name": "Restant"
+                },
+                "restore": {
+                    "name": "Restaurer"
+                }
+            }
+        }
+    },
+    "services": {
+        "cancel": {
+            "description": "R\u00e9initialise la dur\u00e9e d'un minuteur \u00e0 la derni\u00e8re valeur initiale connue sans d\u00e9clencher l'\u00e9v\u00e9nement de fin du minuteur.",
+            "name": "Annuler le minuteur"
+        },
+        "change": {
+            "description": "Modifie un minuteur en ajoutant ou en soustrayant une dur\u00e9e donn\u00e9e.",
+            "fields": {
+                "duration": {
+                    "description": "Dur\u00e9e \u00e0 ajouter ou \u00e0 soustraire au minuteur en cours d'ex\u00e9cution.",
+                    "name": "Dur\u00e9e"
+                }
+            },
+            "name": "Changer le minuteur"
+        },
+        "finish": {
+            "description": "Termine un minuteur en cours d'ex\u00e9cution plus t\u00f4t que pr\u00e9vu.",
+            "name": "Terminer le minuteur"
+        },
+        "pause": {
+            "description": "Met en pause un minuteur en cours d'ex\u00e9cution, conservant la dur\u00e9e restante pour une continuation ult\u00e9rieure.",
+            "name": "Mettre en pause le minuteur"
+        },
+        "reload": {
+            "description": "Recharge les minuteurs \u00e0 partir de la configuration YAML.",
+            "name": "Recharger les minuteurs"
+        },
+        "start": {
+            "description": "D\u00e9marre un minuteur ou le red\u00e9marre avec une dur\u00e9e fournie.",
+            "fields": {
+                "duration": {
+                    "description": "Dur\u00e9e personnalis\u00e9e pour red\u00e9marrer le minuteur.",
+                    "name": "Dur\u00e9e"
+                }
+            },
+            "name": "D\u00e9marrer le minuteur"
+        }
+    },
+    "title": "Minuteur",
+    "triggers": {
+        "cancelled": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs minuteurs sont annul\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur a \u00e9t\u00e9 annul\u00e9"
+        },
+        "finished": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs minuteurs sont termin\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur s'est termin\u00e9"
+        },
+        "paused": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs minuteurs sont en pause.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur a \u00e9t\u00e9 mis en pause"
+        },
+        "remaining_time_reached": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs minuteurs atteignent une dur\u00e9e restante sp\u00e9cifique.",
+            "fields": {
+                "remaining": {
+                    "name": "Temps restant"
+                }
+            },
+            "name": "Le minuteur a atteint la dur\u00e9e restante d\u00e9finie"
+        },
+        "restarted": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs minuteurs sont red\u00e9marr\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur a red\u00e9marr\u00e9"
+        },
+        "started": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs minuteurs sont d\u00e9marr\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le minuteur a d\u00e9marr\u00e9"
+        }
+    }
+}

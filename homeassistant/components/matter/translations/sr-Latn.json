@@ -1,0 +1,902 @@
+{
+    "config": {
+        "abort": {
+            "addon_get_discovery_info_failed": "Preuzimanje informacija o otkrivanju aplikacije Matter servera nije uspelo.",
+            "addon_info_failed": "Dobavljanje informacija o aplikaciji Matter Server nije uspelo.",
+            "addon_install_failed": "Instalacija aplikacije Matter Server nije uspela.",
+            "addon_start_failed": "Pokretanje aplikacije Matter Server nije uspelo.",
+            "already_configured": "Ure\u0111aj je ve\u0107 pode\u0161en",
+            "cannot_connect": "Povezivanje nije uspelo",
+            "not_matter_addon": "Otkrivena aplikacija nije zvani\u010dna Matter Server aplikacija.",
+            "reconfiguration_successful": "Matter integracija je uspe\u0161no ponovo konfigurisana."
+        },
+        "error": {
+            "cannot_connect": "Povezivanje nije uspelo",
+            "invalid_server_version": "Matter server nije odgovaraju\u0107e verzije",
+            "unknown": "Neo\u010dekivana gre\u0161ka"
+        },
+        "flow_title": "{name}",
+        "progress": {
+            "install_addon": "Molimo sa\u010dekajte dok se instalacija aplikacije Matter Server ne zavr\u0161i. Ovo mo\u017ee potrajati nekoliko minuta.",
+            "start_addon": "Molimo sa\u010dekajte dok se pokrene aplikacija Matter Server. Ova aplikacija je osnova za rad Matter ure\u0111aja u Home Assistant-u. Ovo mo\u017ee potrajati nekoliko sekundi."
+        },
+        "step": {
+            "hassio_confirm": {
+                "title": "Pode\u0161avanje Matter integracije pomo\u0107u aplikacije Matter Server"
+            },
+            "install_addon": {
+                "title": "Instalacija aplikacije je po\u010dela"
+            },
+            "manual": {
+                "data": {
+                    "url": "URL adresa"
+                }
+            },
+            "on_supervisor": {
+                "data": {
+                    "use_addon": "Koristi zvani\u010dnu Matter Server Supervisor aplikaciju"
+                },
+                "description": "\u017delite li da koristite zvani\u010dnu Matter Server Supervisor aplikaciju?\n\nUkoliko ve\u0107 imate pokrenut Matter Server na drugi na\u010din (npr. u zasebnom kontejneru ili lokalno), nemojte birati ovu opciju.",
+                "title": "Izbor na\u010dina povezivanja"
+            },
+            "start_addon": {
+                "title": "Pokretanje aplikacije."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "active_hardware_faults": {
+                "name": "Hardverske gre\u0161ke"
+            },
+            "active_network_faults": {
+                "name": "Mre\u017ene gre\u0161ke"
+            },
+            "active_radio_faults": {
+                "name": "Gre\u0161ke radio-modula"
+            },
+            "actuator": {
+                "name": "Aktuator"
+            },
+            "alarm_door": {
+                "name": "Alarm vrata"
+            },
+            "battery_alert": {
+                "name": "Upozorenje baterije"
+            },
+            "boost_state": {
+                "name": "Stanje poja\u010danja"
+            },
+            "config_status_operational": {
+                "name": "Status konfiguracije"
+            },
+            "dishwasher_alarm_inflow": {
+                "name": "Alarm dotoka"
+            },
+            "end_of_service": {
+                "name": "Kraj usluge"
+            },
+            "evse_charging_status": {
+                "name": "Status punjenja"
+            },
+            "evse_plug": {
+                "name": "Stanje priklju\u010dka"
+            },
+            "evse_supply_state": {
+                "name": "Stanje napajanja punja\u010da"
+            },
+            "hardware_fault": {
+                "name": "Hardverski kvar"
+            },
+            "interconnected_co_alarm": {
+                "name": "Povezani CO detektor"
+            },
+            "interconnected_smoke_alarm": {
+                "name": "Povezani detektor dima"
+            },
+            "muted": {
+                "name": "Bez zvuka"
+            },
+            "rain": {
+                "name": "Ki\u0161a"
+            },
+            "test_in_progress": {
+                "name": "Test u toku"
+            },
+            "thermostat_remote_sensing_local_temperature": {
+                "name": "Udaljeni senzor lokalne temperature"
+            },
+            "thermostat_remote_sensing_occupancy": {
+                "name": "Udaljeni senzor prisutnosti"
+            },
+            "thermostat_remote_sensing_outdoor_temperature": {
+                "name": "Daljinsko o\u010ditavanje spolja\u0161nje temperature"
+            },
+            "valve_fault_blocked": {
+                "name": "Ventil blokiran"
+            },
+            "valve_fault_general_fault": {
+                "name": "Op\u0161ta gre\u0161ka"
+            },
+            "valve_fault_leaking": {
+                "name": "Ventil propu\u0161ta"
+            },
+            "water_freeze": {
+                "name": "Smrzavanje vode"
+            },
+            "water_leak": {
+                "name": "Curenje vode"
+            }
+        },
+        "button": {
+            "cancel_boost": {
+                "name": "Otka\u017eite poja\u010danje"
+            },
+            "pause": {
+                "name": "Pauza"
+            },
+            "reset_filter_condition": {
+                "name": "Resetuj stanje filtera"
+            },
+            "resume": {
+                "name": "Nastavi"
+            },
+            "self_test_request": {
+                "name": "Samotest"
+            },
+            "start": {
+                "name": "Pokreni"
+            },
+            "stop": {
+                "name": "Zaustavi"
+            },
+            "temporary_mute_request": {
+                "name": "Privremeno uti\u0161avanje"
+            }
+        },
+        "climate": {
+            "thermostat": {
+                "name": "Termostat",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "going_to_sleep": "No\u0107ni re\u017eim",
+                            "vacation": "Re\u017eim odmora",
+                            "wake": "Dnevni re\u017eim"
+                        }
+                    }
+                }
+            }
+        },
+        "cover": {
+            "cover": {
+                "name": "Zastor"
+            }
+        },
+        "event": {
+            "button": {
+                "name": "Dugme",
+                "state_attributes": {
+                    "event_type": {
+                        "state": {
+                            "initial_press": "Pritisnuto",
+                            "long_press": "Dr\u017eano",
+                            "long_release": "Otpu\u0161teno nakon dr\u017eanja",
+                            "multi_press_1": "Pritisnuto 1 put",
+                            "multi_press_2": "Pritisnuto 2 puta",
+                            "multi_press_3": "Pritisnuto 3 puta",
+                            "multi_press_4": "Pritisnuto 4 puta",
+                            "multi_press_5": "Pritisnuto 5 puta",
+                            "multi_press_6": "Pritisnuto 6 puta",
+                            "multi_press_7": "Pritisnuto 7 puta",
+                            "multi_press_8": "Pritisnuto 8 puta",
+                            "short_release": "Otpustite nakon pritiska",
+                            "switch_latched": "Prekida\u010d zaklju\u010dan"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan": {
+                "name": "Ventilator",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Automatski",
+                            "high": "Visok",
+                            "low": "Nizak",
+                            "medium": "Srednji",
+                            "natural_wind": "Prirodni vetar",
+                            "sleep_wind": "No\u0107ni re\u017eim vetra"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "light": {
+                "name": "Svetlo"
+            }
+        },
+        "lock": {
+            "lock": {
+                "name": "Brava"
+            }
+        },
+        "number": {
+            "altitude": {
+                "name": "Nadmorska visina"
+            },
+            "auto_relock_timer": {
+                "name": "Automatsko zaklju\u010davanje (vreme)"
+            },
+            "cook_time": {
+                "name": "Vreme kuvanja"
+            },
+            "detection_delay": {
+                "name": "Ka\u0161njenje detekcije"
+            },
+            "detection_threshold": {
+                "name": "Prag detekcije"
+            },
+            "hold_time": {
+                "name": "Vreme zadr\u017eavanja"
+            },
+            "led_indicator_intensity_off": {
+                "name": "Intenzitet LED pri isklju\u010denju"
+            },
+            "led_indicator_intensity_on": {
+                "name": "Intenzitet LED pri uklju\u010denju"
+            },
+            "occupied_setback": {
+                "name": "Umanjenje tokom zauzetosti"
+            },
+            "off_transition_time": {
+                "name": "Vreme prelaza pri isklju\u010divanju"
+            },
+            "on_level": {
+                "name": "Nivo pri uklju\u010divanju"
+            },
+            "on_off_transition_time": {
+                "name": "Vreme prelaza uklju\u010deno/isklju\u010deno"
+            },
+            "on_transition_time": {
+                "name": "Na prelaznom vremenu"
+            },
+            "power_on_level": {
+                "name": "Nivo pri uklju\u010divanju"
+            },
+            "pump_setpoint": {
+                "name": "Ciljna vrednost"
+            },
+            "sensitivity_level": {
+                "name": "Osetljivost"
+            },
+            "slat_rotation_time": {
+                "name": "Vreme rotacije lamela"
+            },
+            "speaker_setpoint": {
+                "name": "Ja\u010dina zvuka"
+            },
+            "temperature_offset": {
+                "name": "Odstupanje temperature"
+            },
+            "temperature_setpoint": {
+                "name": "Ciljna vrednost temperature"
+            },
+            "travel_time_down": {
+                "name": "Vreme spu\u0161tanja"
+            },
+            "travel_time_up": {
+                "name": "Vreme podizanja"
+            },
+            "user_code_temporary_disable_time": {
+                "name": "Vreme privremene blokade korisni\u010dkog koda"
+            },
+            "valve_configuration_and_control_default_open_duration": {
+                "name": "Podrazumevano trajanje otvaranja"
+            },
+            "wrong_code_entry_limit": {
+                "name": "Prekora\u010den broj pogre\u0161nih kodova"
+            }
+        },
+        "select": {
+            "clean_mode": {
+                "name": "Re\u017eim \u010di\u0161\u0107enja"
+            },
+            "device_energy_management_mode": {
+                "name": "Re\u017eim upravljanja energijom"
+            },
+            "door_lock_operating_mode": {
+                "name": "Re\u017eim rada",
+                "state": {
+                    "no_remote_lock_unlock": "Nema daljinskog zaklju\u010davanja/otklju\u010davanja",
+                    "normal": "Normalno",
+                    "passage": "Prolaz",
+                    "privacy": "Privatnost",
+                    "vacation": "Odmor"
+                }
+            },
+            "door_lock_sound_volume": {
+                "name": "Ja\u010dina zvuka",
+                "state": {
+                    "high": "Visok",
+                    "low": "Nizak",
+                    "medium": "Srednji",
+                    "silent": "Ne\u010dujno"
+                }
+            },
+            "laundry_washer_number_of_rinses": {
+                "name": "Broj ispiranja",
+                "state": {
+                    "extra": "Ekstra",
+                    "max": "Maks",
+                    "normal": "Normalno",
+                    "off": "Isklju\u010deno"
+                }
+            },
+            "laundry_washer_spin_speed": {
+                "name": "Brzina centrifuge"
+            },
+            "mode": {
+                "name": "Re\u017eim"
+            },
+            "power_level": {
+                "name": "Nivo snage (W)"
+            },
+            "pump_operation_mode": {
+                "name": "re\u017eim",
+                "state": {
+                    "local": "Lokalno",
+                    "maximum": "Maksimum",
+                    "minimum": "Minimum",
+                    "normal": "Normalno"
+                }
+            },
+            "selected_chime": {
+                "name": "Zvuk zvona"
+            },
+            "sensitivity_level": {
+                "name": "Osetljivost",
+                "state": {
+                    "high": "Visok",
+                    "low": "Nizak",
+                    "standard": "Standard"
+                }
+            },
+            "startup_on_off": {
+                "name": "Pona\u0161anje nakon uklju\u010denja",
+                "state": {
+                    "off": "Isklju\u010deno",
+                    "on": "Uklju\u010deno",
+                    "previous": "Prethodno stanje",
+                    "toggle": "Promena stanja"
+                }
+            },
+            "switch_connection_mode": {
+                "name": "Re\u017eim povezivanja",
+                "state": {
+                    "directly_connected": "Direktno povezano",
+                    "matter_only": "Samo Matter"
+                }
+            },
+            "switch_type": {
+                "name": "Tip prekida\u010da",
+                "state": {
+                    "button": "Taster",
+                    "switch": "Prekida\u010d"
+                }
+            },
+            "temperature_display_mode": {
+                "name": "Re\u017eim prikaza temperature"
+            },
+            "temperature_level": {
+                "name": "Nivo temperature"
+            },
+            "water_heater_mode": {
+                "name": "Re\u017eim bojlera"
+            }
+        },
+        "sensor": {
+            "activated_carbon_filter_condition": {
+                "name": "Stanje filtera sa aktivnim ugljem"
+            },
+            "active_current": {
+                "name": "Struja"
+            },
+            "air_quality": {
+                "name": "Kvalitet vazduha",
+                "state": {
+                    "extremely_poor": "Ekstremno lo\u0161",
+                    "fair": "Osrednji",
+                    "good": "Dobar",
+                    "moderate": "Umeren",
+                    "poor": "Lo\u0161",
+                    "very_poor": "Veoma lo\u0161"
+                }
+            },
+            "apparent_current": {
+                "name": "Prividna struja"
+            },
+            "auto_close_time": {
+                "name": "Vreme automatskog zatvaranja"
+            },
+            "battery_charge_state": {
+                "name": "Stanje napunjenosti baterije",
+                "state": {
+                    "charging": "Punjenje",
+                    "full_charge": "Potpuno punjenje",
+                    "not_charging": "Ne puni se"
+                }
+            },
+            "battery_replacement_description": {
+                "name": "Tip baterije"
+            },
+            "battery_time_remaining": {
+                "name": "Preostalo vreme"
+            },
+            "battery_time_to_full_charge": {
+                "name": "Vreme do potpunog punjenja"
+            },
+            "battery_voltage": {
+                "name": "Napon bateije"
+            },
+            "boot_reason": {
+                "name": "Uzrok pokretanja",
+                "state": {
+                    "brown_out_reset": "Reset usled pada napona",
+                    "hardware_watchdog_reset": "Hardverski reset usled zamrzavanja",
+                    "power_on_reboot": "Pokretanje nakon uklju\u010denja struje",
+                    "software_reset": "Softversko ponovno pokretanje",
+                    "software_update_completed": "A\u017euriranje softvera je zavr\u0161eno",
+                    "software_watchdog_reset": "Softverski reset usled zamrzavanja",
+                    "unspecified": "Neodre\u0111eno"
+                }
+            },
+            "contamination_state": {
+                "name": "Stanje kontaminacije",
+                "state": {
+                    "critical": "Kriti\u010dan",
+                    "low": "Nizak",
+                    "normal": "Normalno",
+                    "warning": "Upozorenje"
+                }
+            },
+            "current_phase": {
+                "name": "Trenutna faza"
+            },
+            "door_closed_events": {
+                "name": "Doga\u0111aji zatvaranja vrata"
+            },
+            "door_open_events": {
+                "name": "Doga\u0111aji otvaranja vrata"
+            },
+            "energy_exported": {
+                "name": "Predata energija"
+            },
+            "esa_opt_out_state": {
+                "name": "Isklju\u010denje iz optimizacije energije",
+                "state": {
+                    "grid_opt_out": "Mre\u017ea",
+                    "local_opt_out": "Lokalno",
+                    "no_opt_out": "Isklju\u010deno",
+                    "opt_out": "Lokalno i mre\u017ea"
+                }
+            },
+            "esa_state": {
+                "name": "Energetsko stanje ure\u0111aja",
+                "state": {
+                    "fault": "Gre\u0161ka",
+                    "offline": "Van mre\u017ee",
+                    "online": "Na mre\u017ei",
+                    "paused": "Pauzirano",
+                    "power_adjust_active": "Power adjust"
+                }
+            },
+            "estimated_end_time": {
+                "name": "Procenjeno vreme zavr\u0161etka"
+            },
+            "estimated_heat_required": {
+                "name": "Potrebna energija za grejanje"
+            },
+            "eve_weather_trend": {
+                "name": "Vremenski trend",
+                "state": {
+                    "cloudy": "Obla\u010dno",
+                    "rainy": "Ki\u0161ovito",
+                    "stormy": "Olujno",
+                    "sunny": "Sun\u010dano"
+                }
+            },
+            "evse_charge_current": {
+                "name": "Struja punjenja"
+            },
+            "evse_circuit_capacity": {
+                "name": "Kapacitet strujnog kola"
+            },
+            "evse_fault_state": {
+                "name": "Stanje gre\u0161ke",
+                "state": {
+                    "contact_dry_failure": "Kvar suvo\u2011kontaktnog izlaza",
+                    "contact_wet_failure": "Kvar zbog vlage na kontaktu",
+                    "emergency_stop": "Hitno zaustavljanje",
+                    "ev_disconnected": "EV isklju\u010den",
+                    "live_neutral_swap": "Obrnuta faze i nule",
+                    "meter_failure": "Kvar brojila",
+                    "no_error": "U redu",
+                    "other": "Druga gre\u0161ka",
+                    "over_current": "Prekostrujna za\u0161tita",
+                    "over_temperature": "Previsoka temperatura",
+                    "over_voltage": "Prenapon",
+                    "pilot_short_circuit": "Kratak spoj pilotskog voda",
+                    "power_loss": "Gubitak napajanja",
+                    "power_quality": "Kvalitet napajanja",
+                    "under_voltage": "Nizak napon",
+                    "wrong_power_supply": "Neispravno napajanje"
+                }
+            },
+            "evse_max_charge_current": {
+                "name": "Maksimalna struja punjenja"
+            },
+            "evse_min_charge_current": {
+                "name": "Minimalna struja punjenja"
+            },
+            "evse_soc": {
+                "name": "Nivo napunjenosti"
+            },
+            "evse_user_max_charge_current": {
+                "name": "Maksimalna struja punjenja (korisni\u010dki pode\u0161ena)"
+            },
+            "expiry_date": {
+                "name": "Datum isteka"
+            },
+            "flow": {
+                "name": "Protok"
+            },
+            "hepa_filter_condition": {
+                "name": "Stanje HEPA filtera"
+            },
+            "nitrogen_dioxide": {
+                "name": "Azot-dioksid"
+            },
+            "operational_error": {
+                "name": "Operativna gre\u0161ka",
+                "state": {
+                    "brush_jammed": "\u010cetka je blokirana",
+                    "cannot_reach_target_area": "Nije mogu\u0107e do\u0107i do ciljne oblasti",
+                    "command_invalid_in_state": "Komanda nije va\u017ee\u0107a u trenutnom stanju",
+                    "dirty_water_tank_full": "Rezervoar za prljavu vodu je pun",
+                    "dirty_water_tank_missing": "Rezervoar za prljavu vodu nedostaje",
+                    "dust_bin_full": "Posuda za pra\u0161inu je puna",
+                    "dust_bin_missing": "Posuda za pra\u0161inu nedostaje",
+                    "failed_to_find_charging_dock": "Nije prona\u0111ena baza za punjenje",
+                    "low_battery": "Slaba baterija",
+                    "mop_cleaning_pad_missing": "Krpa za \u010di\u0161\u0107enje nedostaje",
+                    "navigation_sensor_obscured": "Senzor za navigaciju je zaklonjen",
+                    "no_error": "Bez gre\u0161ke",
+                    "stuck": "Zaglavljeno",
+                    "unable_to_complete_operation": "Nije mogu\u0107e dovr\u0161iti operaciju",
+                    "unable_to_start_or_resume": "Nije mogu\u0107e pokrenuti ili nastaviti",
+                    "water_tank_empty": "Rezervoar za vodu je prazan",
+                    "water_tank_lid_open": "Poklopac rezervoara za vodu je otvoren",
+                    "water_tank_missing": "Rezervoar za vodu nedostaje",
+                    "wheels_jammed": "To\u010dkovi blokirani"
+                }
+            },
+            "operational_state": {
+                "name": "Operativno stanje",
+                "state": {
+                    "charging": "Punjenje",
+                    "docked": "Na bazi",
+                    "error": "Gre\u0161ka",
+                    "paused": "Pauzirano",
+                    "running": "Pokrenuto",
+                    "seeking_charger": "Tra\u017ei punja\u010d",
+                    "stopped": "Zaustavljeno"
+                }
+            },
+            "outdoor_temperature": {
+                "name": "Spolja\u0161nja temperatura"
+            },
+            "pi_heating_demand": {
+                "name": "Zahtev za grejanje"
+            },
+            "pump_control_mode": {
+                "name": "Re\u017eim upravljanja",
+                "state": {
+                    "automatic": "Automatski",
+                    "constant_flow": "Stalni protok",
+                    "constant_pressure": "Stalni pritisak",
+                    "constant_speed": "Stalna brzina",
+                    "constant_temperature": "Stalna temperatura",
+                    "proportional_pressure": "Proporcionalni pritisak"
+                }
+            },
+            "pump_speed": {
+                "name": "Brzina rotacije"
+            },
+            "radon_concentration": {
+                "name": "Koncentracija radona"
+            },
+            "reactive_current": {
+                "name": "Reaktivna struja"
+            },
+            "reboot_count": {
+                "name": "Broj ponovnih pokretanja"
+            },
+            "rms_current": {
+                "name": "Efektivna struja"
+            },
+            "rms_voltage": {
+                "name": "Efektivni napon"
+            },
+            "switch_current_position": {
+                "name": "Trenutni polo\u017eaj prekida\u010d"
+            },
+            "tank_percentage": {
+                "name": "Nivo tople vode"
+            },
+            "tank_volume": {
+                "name": "Zapremina rezervoara"
+            },
+            "thread_channel": {
+                "name": "Thread kanal"
+            },
+            "thread_network_name": {
+                "name": "Naziv Thread mre\u017ee"
+            },
+            "thread_routing_role": {
+                "name": "Uloga u Thread rutiranju",
+                "state": {
+                    "end_device": "Krajnji ure\u0111aj",
+                    "leader": "Glavni \u010dvor",
+                    "reed": "Krajnji ure\u0111aj sa mogu\u0107no\u0161\u0107u rutiranja",
+                    "router": "Ruter",
+                    "sleepy_end_device": "Krajnji ure\u0111aj u stanju mirovanja",
+                    "unassigned": "Nedodeljeno",
+                    "unknown": "Nepoznato",
+                    "unspecified": "Neodre\u0111eno"
+                }
+            },
+            "tvoc_level": {
+                "name": "Nivo TVOC-a",
+                "state": {
+                    "critical": "Kriti\u010dno",
+                    "high": "Visok",
+                    "low": "Nizak",
+                    "medium": "Srednji"
+                }
+            },
+            "uptime": {
+                "name": "Vreme rada"
+            },
+            "valve_position": {
+                "name": "Polo\u017eaj ventila"
+            },
+            "voltage": {
+                "name": "Napon"
+            },
+            "wifi_rssi": {
+                "name": "Wi-Fi RSSI"
+            },
+            "window_covering_target_position": {
+                "name": "Ciljna pozicija otvaranja"
+            }
+        },
+        "siren": {
+            "siren": {
+                "name": "Sirena"
+            }
+        },
+        "switch": {
+            "audible_alarm_enabled": {
+                "name": "Zvu\u010dni alarm je omogu\u0107en"
+            },
+            "child_lock": {
+                "name": "De\u010dija za\u0161tita"
+            },
+            "display": {
+                "name": "Ekran"
+            },
+            "evse_charging_switch": {
+                "name": "Omogu\u0107i punjenje"
+            },
+            "one_touch_locking": {
+                "name": "Zaklju\u010davanje jednim dodirom"
+            },
+            "power": {
+                "name": "Snaga"
+            },
+            "privacy_mode_button": {
+                "name": "Dugme za re\u017eim privatnosti"
+            },
+            "speaker_mute": {
+                "name": "Isklju\u010di zvuk"
+            },
+            "switch": {
+                "name": "Prekida\u010d"
+            },
+            "visual_alarm_enabled": {
+                "name": "Vizuelni alarm je omogu\u0107en"
+            }
+        },
+        "vacuum": {
+            "vacuum": {
+                "name": "Usisiva\u010d"
+            }
+        },
+        "valve": {
+            "valve": {
+                "name": "Ventil"
+            }
+        },
+        "water_heater": {
+            "water_heater": {
+                "name": "Bojler"
+            }
+        }
+    },
+    "exceptions": {
+        "addon_not_installed": {
+            "message": "Aplikacija Matter Server jo\u0161 uvek nije instalirana."
+        },
+        "addon_not_ready": {
+            "message": "Aplikacija Matter Server jo\u0161 uvek nije spremna za rad."
+        },
+        "addon_not_running": {
+            "message": "Aplikacija Matter Server jo\u0161 uvek nije pokrenuta."
+        },
+        "credential_type_not_supported": {
+            "message": "Brava ne podr\u017eava tip pristupnih podataka {credential_type}."
+        },
+        "invalid_credential_data": {
+            "message": "Neispravni pristupni podaci: {reason}."
+        },
+        "set_credential_failed": {
+            "message": "Nije uspelo postavljanje pristupnih podataka: brava je vratila status `{status}`."
+        }
+    },
+    "issues": {
+        "ipv6_disabled": {
+            "description": "Matter se oslanja na IPv6 za komunikaciju sa pojedinim ure\u0111ajima, ali je IPv6 onemogu\u0107en na svim va\u0161im povezanim mre\u017enim interfejsima. Lokalno povezani Wi-Fi i Ethernet ure\u0111aji mo\u017eda i dalje rade, ali funkcije poput kori\u0161\u0107enja spoljnog Thread border rutera zahtevaju omogu\u0107en IPv6. Izaberite \u201eSaznajte vi\u0161e\u201c da biste otvorili mre\u017ena pode\u0161avanja.",
+            "title": "IPv6 je onemogu\u0107en, ali je neophodan za Matter"
+        },
+        "server_version_version_too_new": {
+            "description": "Verzija Matter Server\u2011a koju trenutno koristite je previ\u0161e nova za ovu verziju Home Assistant\u2011a. Molimo vas da a\u017eurirate Home Assistant ili vratite Matter Server na stariju verziju kako biste re\u0161ili ovaj problem.",
+            "title": "Potrebna je starija verzija Matter servera"
+        },
+        "server_version_version_too_old": {
+            "description": "Verzija Matter Server\u2011a koju trenutno koristite je previ\u0161e stara za ovu verziju Home Assistant\u2011a. Molimo vas da a\u017eurirate Matter Server na najnoviju verziju kako biste re\u0161ili ovaj problem.",
+            "title": "Potrebna je novija verzija Matter servera"
+        }
+    },
+    "services": {
+        "clear_lock_credential": {
+            "description": "Trajno brisanje specifi\u010dnog akreditiva (\u0161ifre ili kartice) iz memorije brave.",
+            "fields": {
+                "credential_index": {
+                    "description": "Identifikator pozicije akreditiva namenjenog za brisanje.",
+                    "name": "Pozicija u memoriji (Slot)"
+                },
+                "credential_type": {
+                    "description": "Definisanje kategorije akreditiva za brisanje (npr. PIN ili RFID).",
+                    "name": "Tip akreditiva (Tip)"
+                }
+            },
+            "name": "Obri\u0161i akreditiv brave"
+        },
+        "clear_lock_user": {
+            "description": "Trajno brisanje korisni\u010dkog profila i svih povezanih pristupnih podataka.",
+            "fields": {
+                "user_index": {
+                    "description": "Identifikator pozicije korisnika za brisanje. Unos vrednosti '65534' uzrokuje brisanje celokupne liste.",
+                    "name": "Pozicija u memoriji (Slot)"
+                }
+            },
+            "name": "Obri\u0161i korisnika brave"
+        },
+        "get_lock_credential_status": {
+            "description": "Prikaz trenutnog statusa specifi\u010dnog akreditiva na definisanoj poziciji u memoriji.",
+            "fields": {
+                "credential_index": {
+                    "description": "Identifikator pozicije akreditiva namenjenog za o\u010ditavanje statusa.",
+                    "name": "Pozicija u memoriji (Slot)"
+                },
+                "credential_type": {
+                    "description": "Definisanje kategorije akreditiva (npr. PIN ili RFID) za proveru statusa.",
+                    "name": "Tip akreditiva (Tip)"
+                }
+            },
+            "name": "O\u010ditaj status akreditiva"
+        },
+        "get_lock_info": {
+            "description": "Prikaz tehni\u010dkih mogu\u0107nosti brave, kapaciteta memorije i ograni\u010denja za PIN \u0161ifre.",
+            "name": "Preuzmi informacije o bravi"
+        },
+        "get_lock_users": {
+            "description": "Prikaz svih konfigurisanih korisnika i pripadaju\u0107ih akreditiva.",
+            "name": "Preuzmi korisnike brave"
+        },
+        "open_commissioning_window": {
+            "description": "Omogu\u0107avanje dodavanja ure\u0111aja u drugu Matter mre\u017eu otvaranjem prozora za uparivanje u trajanju od 60 sekundi.",
+            "fields": {
+                "device_id": {
+                    "description": "Matter ure\u0111aj koji se dodaje u drugu Matter mre\u017eu.",
+                    "name": "Ure\u0111aj"
+                }
+            },
+            "name": "Otvaranje prozora za uparivanje"
+        },
+        "set_lock_credential": {
+            "description": "Dodavanje ili izmena pristupnih podataka na bravi (\u0161ifra, RFID kartica ili otisak prsta).",
+            "fields": {
+                "credential_data": {
+                    "description": "Unesite \u0161ifru (isklju\u010divo cifre) ili heksadecimalni ID kartice.",
+                    "name": "Nova \u0161ifra ili ID kartice"
+                },
+                "credential_index": {
+                    "description": "Izaberite redni broj mesta (npr. 1, 2, 3) za novu \u0161ifru. Ostavite prazno za automatsko pronala\u017eenje slobodnog mesta.",
+                    "name": "Mesto u memoriji (Slot)"
+                },
+                "credential_type": {
+                    "description": "Vrsta pristupnih podataka (npr. PIN, RFID, otisak prsta).",
+                    "name": "Tip pristupa (PIN/RFID/Otisak)"
+                },
+                "user_index": {
+                    "description": "Izaberite redni broj mesta korisnika kojem dodeljujete ovu \u0161ifru. Ostavite prazno za automatsku dodelu.",
+                    "name": "Dodeli korisniku (Slot)"
+                },
+                "user_status": {
+                    "description": "Defini\u0161ite da li je novi korisni\u010dki nalog odmah aktivan ili onemogu\u0107en.",
+                    "name": "Status korisnika"
+                },
+                "user_type": {
+                    "description": "Odredite nivo dozvole (npr. stalni korisnik ili gost) za ovaj pristup.",
+                    "name": "Vrsta korisnika"
+                }
+            },
+            "name": "Podesi akreditiv brave"
+        },
+        "set_lock_user": {
+            "description": "Dodavanje ili a\u017euriranje korisni\u010dkih profila unutar memorije brave.",
+            "fields": {
+                "credential_rule": {
+                    "description": "Definisanje specifi\u010dnih prava ili vremenskih ograni\u010denja za odabranog korisnika.",
+                    "name": "Pravilo pristupa"
+                },
+                "user_index": {
+                    "description": "Numeri\u010dki identifikator pozicije u memoriji. Odsustvo vrednosti uzrokuje automatsku dodelu slobodnog mesta.",
+                    "name": "Pozicija u memoriji (Slot)."
+                },
+                "user_name": {
+                    "description": "Identifikacioni naziv korisnika namenjen prepoznavanju unutar liste.",
+                    "name": "Korisni\u010dko ime"
+                },
+                "user_type": {
+                    "description": "Definisanje uloge korisnika (npr. vlasnik, stanar ili privremeni gost).",
+                    "name": "Nivo pristupa (Tip)"
+                }
+            },
+            "name": "Podesi korisnika brave"
+        },
+        "water_heater_boost": {
+            "description": "Aktivacija re\u017eima maksimalne snage za ubrzano zagrevanje vode.",
+            "fields": {
+                "duration": {
+                    "description": "Vremenski period rada bojlera u re\u017eimu maksimalne snage (izra\u017een u sekundama).",
+                    "name": "Trajanje (sekunde)"
+                },
+                "emergency_boost": {
+                    "description": "Aktivacija re\u017eima za trenutno zagrevanje vode, nezavisno od pode\u0161avanja u\u0161tede.",
+                    "name": "Prioritetno zagrevanje (Boost)"
+                },
+                "temporary_setpoint": {
+                    "description": "Definisanje ciljne temperature vode tokom trajanja ubrzanog zagrevanja.",
+                    "name": "Privremena ciljna temperatura"
+                }
+            },
+            "name": "Ubrzano zagrevanje vode"
+        }
+    }
+}

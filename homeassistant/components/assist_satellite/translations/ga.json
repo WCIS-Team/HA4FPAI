@@ -1,0 +1,164 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_idle": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil satail\u00edt C\u00fanaimh amh\u00e1in n\u00f3 n\u00edos m\u00f3 d\u00edomhaoin.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_listening": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil satail\u00edt C\u00fanaimh amh\u00e1in n\u00f3 n\u00edos m\u00f3 ag \u00e9isteacht.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_processing": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil satail\u00edt C\u00fanaimh amh\u00e1in n\u00f3 n\u00edos m\u00f3 \u00e1 phr\u00f3ise\u00e1il.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_responding": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil satail\u00edt C\u00fanaimh amh\u00e1in n\u00f3 n\u00edos m\u00f3 ag freagairt.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Satail\u00edt c\u00fanaimh",
+            "state": {
+                "idle": "D\u00edomhaoin",
+                "listening": "Ag \u00e9isteacht",
+                "processing": "Pr\u00f3ise\u00e1il",
+                "responding": "Ag freagairt"
+            }
+        }
+    },
+    "selector": {
+        "answers": {
+            "fields": {
+                "id": "Aitheantas Freagra",
+                "sentences": "Abairt\u00ed"
+            }
+        }
+    },
+    "services": {
+        "announce": {
+            "fields": {
+                "media_id": {
+                    "description": "An t-aitheantas me\u00e1n le f\u00f3gairt in ionad t\u00e9acs-go-hurlabhra a \u00fas\u00e1id.",
+                    "name": "Aitheantas Me\u00e1n"
+                },
+                "message": {
+                    "description": "An teachtaireacht le f\u00f3gairt.",
+                    "name": "Teachtaireacht"
+                },
+                "preannounce": {
+                    "description": "Seinn fuaim roimh an bhf\u00f3gra.",
+                    "name": "R\u00e9amhfh\u00f3gra"
+                },
+                "preannounce_media_id": {
+                    "description": "Aitheantas me\u00e1n saincheaptha le seinm roimh an bhf\u00f3gra.",
+                    "name": "Aitheantas me\u00e1n r\u00e9amhfh\u00f3gartha"
+                }
+            }
+        },
+        "ask_question": {
+            "fields": {
+                "answers": {
+                    "description": "Freagra\u00ed f\u00e9ideartha ar an gceist.",
+                    "name": "Freagra\u00ed"
+                },
+                "entity_id": {
+                    "description": "Cabhraigh leis an eintiteas satail\u00edte an cheist a chur.",
+                    "name": "Eintiteas"
+                },
+                "preannounce": {
+                    "description": "Seinn fuaim roimh an teachtaireacht n\u00f3 na me\u00e1in tosaigh.",
+                    "name": "R\u00e9amhfh\u00f3gra"
+                },
+                "preannounce_media_id": {
+                    "description": "Aitheantas me\u00e1n saincheaptha le seinm roimh an teachtaireacht n\u00f3 na me\u00e1in tosaigh.",
+                    "name": "R\u00e9amhfh\u00f3gra ID me\u00e1n"
+                },
+                "question": {
+                    "description": "An cheist le cur.",
+                    "name": "Ceist"
+                },
+                "question_media_id": {
+                    "description": "Aitheantas me\u00e1n na ceiste le h\u00fas\u00e1id in ionad t\u00e9acs-go-hurlabhra.",
+                    "name": "Ceist ID me\u00e1n"
+                }
+            }
+        },
+        "start_conversation": {
+            "fields": {
+                "extra_system_prompt": {
+                    "description": "Cuir faisn\u00e9is ch\u00falra ar f\u00e1il don Intleacht Shaorga faoin iarratas.",
+                    "name": "Leid bhreise c\u00f3rais"
+                },
+                "preannounce": {
+                    "description": "Seinn fuaim roimh an teachtaireacht n\u00f3 na me\u00e1in tosaigh.",
+                    "name": "R\u00e9amhfh\u00f3gra"
+                },
+                "preannounce_media_id": {
+                    "description": "Aitheantas me\u00e1n saincheaptha le seinm roimh an teachtaireacht n\u00f3 na me\u00e1in tosaigh.",
+                    "name": "Aitheantas me\u00e1n r\u00e9amhfh\u00f3gartha"
+                },
+                "start_media_id": {
+                    "description": "An t-aitheantas me\u00e1n le tos\u00fa leis in ionad t\u00e9acs-go-hurlabhra a \u00fas\u00e1id.",
+                    "name": "Aitheantas Me\u00e1n"
+                },
+                "start_message": {
+                    "description": "An teachtaireacht le tos\u00fa leis.",
+                    "name": "Teachtaireacht"
+                }
+            }
+        }
+    },
+    "title": "Satail\u00edt c\u00fanaimh",
+    "triggers": {
+        "idle": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "listening": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "processing": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "responding": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        }
+    }
+}

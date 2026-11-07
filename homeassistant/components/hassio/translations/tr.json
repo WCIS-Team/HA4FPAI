@@ -1,0 +1,610 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "mount": {
+                "name": "Ba\u011fland\u0131"
+            },
+            "state": {
+                "name": "\u00c7al\u0131\u015f\u0131yor"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "\u0130\u015fletim Sistemi Arac\u0131s\u0131 s\u00fcr\u00fcm\u00fc"
+            },
+            "apparmor_version": {
+                "name": "AppArmor s\u00fcr\u00fcm\u00fc"
+            },
+            "cpu_percent": {
+                "name": "CPU y\u00fczdesi"
+            },
+            "disk_free": {
+                "name": "Disk bo\u015f"
+            },
+            "disk_total": {
+                "name": "Disk toplam\u0131"
+            },
+            "disk_used": {
+                "name": "Kullan\u0131lan disk"
+            },
+            "memory_percent": {
+                "name": "Bellek y\u00fczdesi"
+            },
+            "version": {
+                "name": "S\u00fcr\u00fcm"
+            },
+            "version_latest": {
+                "name": "En yeni s\u00fcr\u00fcm"
+            }
+        },
+        "update": {
+            "update": {
+                "name": "G\u00fcncelle"
+            }
+        }
+    },
+    "exceptions": {
+        "mount_reload_error": {
+            "message": "Ba\u011flant\u0131 yeniden y\u00fcklenemedi. {name}: {error}"
+        },
+        "mount_reload_invalid_device": {
+            "message": "Cihaz bir denetleyici ba\u011flant\u0131 noktas\u0131 de\u011fildir"
+        },
+        "supervisor_not_connected": {
+            "message": "Y\u00f6neticiyle ba\u011flant\u0131 kurulamad\u0131 / sistem \u00e7ok me\u015fgul"
+        },
+        "supervisor_update_pending": {
+            "message": "\u0130\u015fba\u015f\u0131 e\u011fitiminde denetleyici bilgileri g\u00fcncel de\u011fildi. G\u00fcncelleme tetiklendi, tamamland\u0131\u011f\u0131nda tekrar denenecek"
+        }
+    },
+    "issues": {
+        "issue_addon_app_port_conflict": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "D\u00fczeltme uygulanamad\u0131. Daha fazla ayr\u0131nt\u0131 i\u00e7in Denetleyici g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "addon_execute_start": {
+                        "description": "{addon} uygulamas\u0131nda {port} numaral\u0131 ba\u011flant\u0131 noktas\u0131nda bir ba\u011flant\u0131 noktas\u0131 \u00e7ak\u0131\u015fmas\u0131 var. Uygulama, ayarlardan bu durumu de\u011fi\u015ftiremiyor. L\u00fctfen uygulamay\u0131 kald\u0131r\u0131n ya da di\u011fer hizmeti durdurup {port} numaral\u0131 ba\u011flant\u0131 noktas\u0131n\u0131 kullanarak yeniden yap\u0131land\u0131r\u0131n. Engelleme kald\u0131r\u0131ld\u0131ktan sonra, uygulamay\u0131 ba\u015flatmak i\u00e7in bu se\u00e7ene\u011fi tekrar se\u00e7in."
+                    },
+                    "fix_menu": {
+                        "description": "{addon} uygulamas\u0131nda {port} numaral\u0131 ba\u011flant\u0131 noktas\u0131nda bir ba\u011flant\u0131 noktas\u0131 \u00e7ak\u0131\u015fmas\u0131 var. Bu sorunu otomatik olarak gidermek ve uygulamay\u0131 ba\u015flatmak i\u00e7in uygulama ayarlar\u0131ndan ba\u011flant\u0131 noktas\u0131 yap\u0131land\u0131rmas\u0131n\u0131 silebilirsiniz ya da bu ba\u011flant\u0131 noktas\u0131n\u0131 kullanan di\u011fer hizmeti durdurarak veya yeniden yap\u0131land\u0131rarak ba\u011flant\u0131 noktas\u0131n\u0131n engelini manuel olarak kald\u0131rabilirsiniz.",
+                        "menu_options": {
+                            "addon_clear_port_config": "Ba\u011flant\u0131 noktas\u0131 yap\u0131land\u0131rmas\u0131n\u0131 temizle",
+                            "addon_execute_start": "Manuel engellemeyi kald\u0131rd\u0131ktan sonra ba\u015flay\u0131n"
+                        }
+                    }
+                }
+            },
+            "title": "Uygulama ba\u011flant\u0131 noktas\u0131 \u00e7ak\u0131\u015fmas\u0131"
+        },
+        "issue_addon_boot_fail": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "D\u00fczeltme uygulanamad\u0131. Daha fazla ayr\u0131nt\u0131 i\u00e7in Denetleyici g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Uygulama {addon} Uygulama \u00f6ny\u00fckleme s\u0131ras\u0131nda ba\u015flat\u0131lacak \u015fekilde ayarlanm\u0131\u015f ancak ba\u015flat\u0131lamad\u0131. Bu genellikle yap\u0131land\u0131rman\u0131n yanl\u0131\u015f olmas\u0131 veya ayn\u0131 portun birden fazla uygulamada kullan\u0131lmas\u0131 durumunda ortaya \u00e7\u0131kar. Yap\u0131land\u0131rmay\u0131 ve g\u00fcnl\u00fckleri kontrol edin. {addon} ve Denetleyici. \n \n Tekrar denemek i\u00e7in Ba\u015flat'\u0131 kullan\u0131n veya \u00f6ny\u00fcklemede ba\u015flatma se\u00e7ene\u011fini kapatmak i\u00e7in Devre D\u0131\u015f\u0131 B\u0131rak'\u0131 kullan\u0131n.",
+                        "menu_options": {
+                            "addon_disable_boot": "Devre d\u0131\u015f\u0131 b\u0131rak",
+                            "addon_execute_start": "Ba\u015flat"
+                        }
+                    }
+                }
+            },
+            "title": "Uygulama a\u00e7\u0131l\u0131\u015fta ba\u015flat\u0131lamad\u0131"
+        },
+        "issue_addon_deprecated_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Uygulama kald\u0131r\u0131lamad\u0131. Daha fazla ayr\u0131nt\u0131 i\u00e7in Supervisor g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "Eklenti {addon} Geli\u015ftirici taraf\u0131ndan kullan\u0131mdan kald\u0131r\u0131lm\u0131\u015f olarak i\u015faretlenmi\u015ftir. Bu, art\u0131k bak\u0131m\u0131n\u0131n yap\u0131lmad\u0131\u011f\u0131 ve bu nedenle zamanla bozulabilece\u011fi veya g\u00fcvenlik sorunu olu\u015fturabilece\u011fi anlam\u0131na gelir.\n\n[readme] dosyas\u0131n\u0131 inceleyin.{addon_info}) ve [belgeleme]({addon_documentation} Eklentinin geli\u015ftiricisinin talimat verip vermedi\u011fine bakmak i\u00e7in uygulamay\u0131 kontrol edin.\n\n**G\u00f6nder** se\u00e7ene\u011fini belirlemek, bu kullan\u0131mdan kald\u0131r\u0131lm\u0131\u015f uygulamay\u0131 kald\u0131racak ve \u00f6zel veri klas\u00f6r\u00fcndeki her \u015feyi, veritabanlar\u0131, kimlik bilgileri ve orada saklad\u0131\u011f\u0131 di\u011fer dahili durumlar da dahil olmak \u00fczere kal\u0131c\u0131 olarak silecektir. Bir [yedek]( olu\u015fturun.{backup_url}\u00d6ncelikle, bu verilere daha sonra ihtiyac\u0131n\u0131z olabilece\u011fi ihtimaline kar\u015f\u0131 kontrol edin.\n\nAlternatif olarak, [Home Assistant yard\u0131m\u0131na]( bakabilirsiniz.{help_url}) ve [topluluk forumu]({community_url}(ge\u00e7i\u015f i\u00e7in alternatifler bulmak amac\u0131yla)."
+                    }
+                }
+            },
+            "title": "Y\u00fcklenen uygulama kullan\u0131mdan kald\u0131r\u0131ld\u0131"
+        },
+        "issue_addon_deprecated_arch_addon": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Uygulama kald\u0131r\u0131lamad\u0131. Daha fazla bilgi i\u00e7in Y\u00f6netici g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "{addon} eklentisi Yaln\u0131zca Home Assistant taraf\u0131ndan art\u0131k desteklenmeyen mimarileri ve/veya makineleri destekler. Gelecek bir s\u00fcr\u00fcmde \u00e7al\u0131\u015fmay\u0131 durduracakt\u0131r.\n\n**G\u00f6nder** se\u00e7ene\u011fini belirlemek, bu kullan\u0131mdan kald\u0131r\u0131lm\u0131\u015f uygulamay\u0131 kald\u0131racak ve \u00f6zel veri klas\u00f6r\u00fcndeki her \u015feyi, veritabanlar\u0131, kimlik bilgileri ve orada saklad\u0131\u011f\u0131 di\u011fer dahili durumlar da dahil olmak \u00fczere kal\u0131c\u0131 olarak silecektir. Bir [yedek]( olu\u015fturun.{backup_url} \u00d6ncelikle, bu verilere daha sonra ihtiyac\u0131n\u0131z olabilece\u011fi ihtimaline kar\u015f\u0131 kontrol edin.\n\nAlternatif olarak, [Home Assistant yard\u0131m\u0131na]( bakabilirsiniz.{help_url}) ve [topluluk forumu]({community_url}(ge\u00e7i\u015f i\u00e7in alternatifler bulmak amac\u0131yla)."
+                    }
+                }
+            },
+            "title": "Y\u00fcklenen uygulama, desteklenmeyen mimariler ve/veya makineler i\u00e7in geli\u015ftirilmi\u015ftir."
+        },
+        "issue_addon_detached_addon_missing": {
+            "description": "Uygulama deposu {addon} Eksik. Bu \n g\u00fcncellemeleri almayaca\u011f\u0131 ve Home Assistant Supervisor'\u0131n gerekli kaynaklar\u0131 olu\u015fturup indirememesi nedeniyle yedeklemelerin do\u011fru \u015fekilde geri y\u00fcklenemeyebilece\u011fi anlam\u0131na gelir. \n [uygulaman\u0131n belgelerini]({addon_url}Kurulum talimatlar\u0131 i\u00e7in (adresini inceleyin) ve depoyu ma\u011fazaya ekleyin.",
+            "title": "Y\u00fcklenen uygulama i\u00e7in depo eksik"
+        },
+        "issue_addon_detached_addon_removed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Uygulama kald\u0131r\u0131lamad\u0131. Daha fazla bilgi i\u00e7in Y\u00f6netici g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "addon_execute_remove": {
+                        "description": "{addon} eklentisi y\u00fcklendi\u011fi depodan kald\u0131r\u0131ld\u0131. Bu, g\u00fcncellemeleri almayaca\u011f\u0131 ve Home Assistant Supervisor'\u0131n gerekli kaynaklar\u0131 olu\u015fturup indirememesi nedeniyle yedeklerin do\u011fru \u015fekilde geri y\u00fcklenemeyebilece\u011fi anlam\u0131na gelir.\n\n**G\u00f6nder** se\u00e7ene\u011fini belirlemek, eklentiyi kald\u0131racak ve \u00f6zel veri klas\u00f6r\u00fcndeki her \u015feyi, veritabanlar\u0131, kimlik bilgileri ve orada saklad\u0131\u011f\u0131 di\u011fer dahili durumlar da dahil olmak \u00fczere kal\u0131c\u0131 olarak silecektir. Bir [yedek]( olu\u015fturun.{backup_url} \u00d6ncelikle, bu verilere daha sonra ihtiyac\u0131n\u0131z olabilece\u011fi ihtimaline kar\u015f\u0131 kontrol edin.\n\nAlternatif olarak, [Home Assistant yard\u0131m\u0131na]( bakabilirsiniz. {help_url}) ve [topluluk forumu]({community_url} (ge\u00e7i\u015f i\u00e7in alternatifler bulmak amac\u0131yla)."
+                    }
+                }
+            },
+            "title": "Y\u00fcklenen uygulama depodan kald\u0131r\u0131ld\u0131"
+        },
+        "issue_addon_pwned": {
+            "description": "Uygulama {addon} Yap\u0131land\u0131rmas\u0131nda g\u00fcvenli olmad\u0131\u011f\u0131 tespit edilen gizli bilgiler/parolalar kullan\u0131yor. [Pwned \u015fifreler ve gizli bilgiler] b\u00f6l\u00fcm\u00fcne bak\u0131n.{more_info_pwned}Bu konu hakk\u0131nda daha fazla bilgi i\u00e7in.",
+            "title": "Uygulama yap\u0131land\u0131rmas\u0131nda g\u00fcvensiz gizli bilgiler tespit edildi"
+        },
+        "issue_mount_mount_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "D\u00fczeltme uygulanamad\u0131. Daha fazla ayr\u0131nt\u0131 i\u00e7in G\u00f6zetmen g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "Kurulum yap\u0131lamad\u0131.{reference}Bu durum, depolama ayg\u0131t\u0131na eri\u015filemedi\u011finde veya yerel veriler ba\u011flama konumunu engelledi\u011finde meydana gelebilir. Daha fazla ayr\u0131nt\u0131 i\u00e7in, ba\u011flama hizmetinden gelen hatalar i\u00e7in ana bilgisayar g\u00fcnl\u00fcklerini kontrol edin.\n\nTekrar denemek i\u00e7in sayfay\u0131 yeniden y\u00fckleyin. G\u00fcncellemeniz gerekiyorsa `{reference}`, [depolama]( adresine git{storage_url}).",
+                        "menu_options": {
+                            "mount_execute_reload": "Tekrar y\u00fckle",
+                            "mount_execute_remove": "Kald\u0131r",
+                            "mount_move_local_data": "Yerel verileri engelleyen verileri ba\u015fka bir yere ta\u015f\u0131y\u0131n"
+                        }
+                    },
+                    "mount_execute_remove": {
+                        "description": "Home Assistant'tan `{reference}` a\u011f depolama alan\u0131n\u0131 kald\u0131rmak i\u00e7in **G\u00f6nder**'i se\u00e7in. Cihaz\u0131n kendisinde depolanan veriler bundan etkilenmez, ancak bu depolama alan\u0131na dayanan otomasyonlar, yedeklemeler veya uygulamalar art\u0131k bu alana eri\u015femeyecektir.\n\nA\u011f depolama alan\u0131n\u0131 daha sonra [depolama]({storage_url}) sayfas\u0131ndan tekrar ekleyebilirsiniz."
+                    },
+                    "mount_move_local_data": {
+                        "description": "**G\u00f6nder** se\u00e7ene\u011fini se\u00e7erek, `{reference}` adl\u0131 yerel veri engelleme dosyas\u0131n\u0131 `{reference}_local_recovery` klas\u00f6r\u00fcne ta\u015f\u0131y\u0131n ve ba\u011flamay\u0131 yeniden kurun.\n\nHi\u00e7bir dosya silinmez. Medya ve payla\u015f\u0131m ba\u011flamalar\u0131 i\u00e7in kurtarma klas\u00f6r\u00fc, ba\u011flaman\u0131n yan\u0131na olu\u015fturulur; buradan klas\u00f6r\u00fc inceleyebilir ve kald\u0131rabilirsiniz. Yedekleme ba\u011flamalar\u0131 i\u00e7in ise yerel yedekleme depolama alan\u0131na yerle\u015ftirilir."
+                    }
+                }
+            },
+            "title": "A\u011f depolama ayg\u0131t\u0131 ba\u015far\u0131s\u0131z oldu"
+        },
+        "issue_system_disk_lifetime": {
+            "description": "Veri diski, beklenen kullan\u0131m \u00f6mr\u00fcn\u00fcn %90'\u0131n\u0131 a\u015ft\u0131. Disk yak\u0131nda ar\u0131zalanabilir ve bu da veri kayb\u0131na yol a\u00e7abilir. Diski en k\u0131sa s\u00fcrede de\u011fi\u015ftirmeli ve verilerinizi ta\u015f\u0131mal\u0131s\u0131n\u0131z.",
+            "title": "Disk \u00f6mr\u00fc %90'\u0131 a\u015f\u0131yor"
+        },
+        "issue_system_docker_config": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Bir veya daha fazla yeniden ba\u015flatma ba\u015far\u0131s\u0131z oldu. Daha fazla ayr\u0131nt\u0131 i\u00e7in G\u00f6zetmen g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "system_execute_rebuild": {
+                        "description": "Uygulamalar ve Home Assistant i\u00e7in varsay\u0131lan yap\u0131land\u0131rma de\u011fi\u015fti. Yap\u0131land\u0131rmay\u0131 yeni varsay\u0131lanlarla g\u00fcncellemek i\u00e7in a\u015fa\u011f\u0131dakiler i\u00e7in yeniden ba\u015flatma gereklidir: \n \n - {components}"
+                    }
+                }
+            },
+            "title": "Yeniden ba\u015flatma(lar) gerekli"
+        },
+        "issue_system_free_space": {
+            "description": "Veri diskinde yaln\u0131zca \u015funlar var: {free_space}Kalan bo\u015f alan GB. Bu, sistem kararl\u0131l\u0131\u011f\u0131nda sorunlara neden olabilir ve yedekleme ve g\u00fcncellemeler gibi i\u015flevleri engelleyebilir. [depolama]( adresine gidin.{storage_url}) yer kaplayan \u015feyleri g\u00f6rmek veya [depolama alan\u0131n\u0131 temizlemek]({more_info_free_space}(Yer a\u00e7ma konusunda ipu\u00e7lar\u0131 i\u00e7in.)",
+            "title": "Veri diskinde bo\u015f alan azal\u0131yor"
+        },
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Dosya sistemi yeniden adland\u0131r\u0131lamad\u0131. Daha fazla ayr\u0131nt\u0131 i\u00e7in G\u00f6zetmen g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "fix_menu": {
+                        "description": "` {reference} ` konumunda, ba\u015fka bir etkin veri diski tespit ettik (ba\u015fka bir Home Assistant kurulumundan gelen `hassos-data` dosya sistemini i\u00e7eren). \n\n Bununla ne yapaca\u011f\u0131n\u0131za karar vermeniz gerekiyor. Aksi halde Home Assistant, sistem yeniden ba\u015flat\u0131ld\u0131\u011f\u0131nda yanl\u0131\u015f veri diskini se\u00e7ebilir. \n\n Bu veri diskini kullanmak istemiyorsan\u0131z sisteminizden \u00e7\u0131kar\u0131n. Fi\u015fi tak\u0131l\u0131 b\u0131rak\u0131rsan\u0131z a\u015fa\u011f\u0131daki se\u00e7eneklerden birini se\u00e7in:",
+                        "menu_options": {
+                            "system_adopt_data_disk": "Mevcut sistem yerine alg\u0131lanan veri diskini kullan",
+                            "system_rename_data_disk": "Etkin olmayan veri diski olarak i\u015faretle (dosya sistemini yeniden adland\u0131r\u0131n)"
+                        }
+                    },
+                    "system_adopt_data_disk": {
+                        "description": "` {reference} `'\u0131 etkin veri diski yapmak i\u00e7in **G\u00f6nder**'i se\u00e7in. Tek ve biricik. \n \n Mevcut Home Assistant verilerine art\u0131k eri\u015fiminiz olmayacak (etkin olmayan veri diski olarak i\u015faretlenecek). Sisteminiz yeniden ba\u015flat\u0131ld\u0131ktan sonra ` {reference} ` \u00fczerindeki Home Assistant verilerinin durumunda olacak."
+                    }
+                }
+            },
+            "title": "Birden \u00e7ok veri diski alg\u0131land\u0131"
+        },
+        "issue_system_ntp_sync_failed": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "NTP yeniden etkinle\u015ftirilemedi. Daha fazla bilgi i\u00e7in Denetleyici g\u00fcnl\u00fcklerini kontrol edin."
+                },
+                "step": {
+                    "system_enable_ntp": {
+                        "description": "Cihaz, yap\u0131land\u0131r\u0131lm\u0131\u015f zaman sunucular\u0131na (NTP) ba\u011flanamad\u0131. \u0130kinci bir \u00e7evrimi\u00e7i zaman kontrol\u00fc kullanarak, sistem saatinin 1 saatten fazla hatal\u0131 oldu\u011funu tespit ettik. Zaman d\u00fczeltildi ve d\u00fczeltmenin uygulanabilmesi i\u00e7in NTP hizmeti ge\u00e7ici olarak devre d\u0131\u015f\u0131 b\u0131rak\u0131ld\u0131. Sistem saatinin do\u011fru kalmas\u0131 i\u00e7in, NTP sunucular\u0131na eri\u015fimi engelleyen sorunu gidermenizi \u00f6neririz. **Ana bilgisayar g\u00fcnl\u00fcklerini** kontrol \n NTP sunucular\u0131na neden ula\u015f\u0131lamad\u0131\u011f\u0131n\u0131 ara\u015ft\u0131r\u0131n. Sorun \u00e7\u00f6z\u00fcld\u00fc\u011f\u00fcnde, NTP hizmetini yeniden etkinle\u015ftirmek i\u00e7in **G\u00f6nder**' \n se\u00e7in."
+                    }
+                }
+            },
+            "title": "Zaman senkronizasyon sorunu tespit edildi"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Sistem yeniden ba\u015flat\u0131lamad\u0131. Daha fazla ayr\u0131nt\u0131 i\u00e7in G\u00f6zetmen g\u00fcnl\u00fcklerini kontrol edin."
+                }
+            },
+            "title": "Yeniden ba\u015flatma gerekli"
+        },
+        "legacy_homeassistant_folder": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "`folders` i\u00e7inde `\"homeassistant\"` bulunan `hassio.backup_partial` veya `hassio.restore_partial` eylemini \u00e7a\u011f\u0131ran bir otomasyon veya komut dosyas\u0131. Bu, `homeassistant: true` se\u00e7ene\u011fi i\u00e7in eski bir takma add\u0131r ve gelecekteki bir s\u00fcr\u00fcmde kabul edilmeyecektir.\n\nEtkilenen otomasyonlar\u0131 ve komut dosyalar\u0131n\u0131 `homeassistant: true` olarak ayarlayacak \u015fekilde g\u00fcncelleyin ve `klas\u00f6rler` listesinden `\"homeassistant\"` \u00f6\u011fesini kald\u0131r\u0131n. Bu i\u015flem tamamland\u0131\u011f\u0131nda, sorunu \u00e7\u00f6z\u00fclm\u00fc\u015f olarak i\u015faretlemek i\u00e7in **G\u00f6nder**'i se\u00e7in.",
+                        "title": "K\u0131smi yedekleme/geri y\u00fcklemede kullan\u0131lan eski \"homeassistant\" klas\u00f6r\u00fc"
+                    }
+                }
+            },
+            "title": "K\u0131smi yedekleme/geri y\u00fcklemede kullan\u0131lan eski \"homeassistant\" klas\u00f6r\u00fc"
+        },
+        "unhealthy": {
+            "description": "Sistem \u015fu anda sa\u011fl\u0131ks\u0131z durumda, bunun nedeni ise \u015fudur: {reason}Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - {reason}"
+        },
+        "unhealthy_data_filesystem_check_error": {
+            "description": "Veri b\u00f6l\u00fcm\u00fcnde dosya sistemi b\u00fct\u00fcnl\u00fck denetimi ba\u015far\u0131s\u0131z oldu\u011fu i\u00e7in sistem \u015fu anda sa\u011fl\u0131ks\u0131z durumda. Bu durum beklenmedik g\u00fc\u00e7 kayb\u0131 veya depolama ar\u0131zas\u0131ndan kaynaklanabilir ve yap\u0131land\u0131rmay\u0131, uygulamalar\u0131 veya yedeklemeleri etkileyebilir. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - Veri b\u00f6l\u00fcm\u00fc dosya sistemi kontrol\u00fc ba\u015far\u0131s\u0131z oldu"
+        },
+        "unhealthy_docker": {
+            "description": "Docker'\u0131n yanl\u0131\u015f yap\u0131land\u0131r\u0131lmas\u0131 nedeniyle sistem \u015fu anda sa\u011fl\u0131ks\u0131z durumda. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - Docker yanl\u0131\u015f yap\u0131land\u0131r\u0131lm\u0131\u015f"
+        },
+        "unhealthy_docker_gateway_unprotected": {
+            "description": "Supervisor, Docker a\u011f ge\u00e7idi IP'si i\u00e7in g\u00fcvenlik duvar\u0131 korumas\u0131 uygulayamad\u0131\u011f\u0131ndan sistem \u015fu anda sa\u011fl\u0131ks\u0131z. Sorun giderme bilgileri i\u00e7in Daha fazla bilgi'yi se\u00e7in.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - Docker a\u011f ge\u00e7idi korumas\u0131z"
+        },
+        "unhealthy_duplicate_os_installation": {
+            "description": "Sistem \u015fu anda birden fazla Home Assistant i\u015fletim sistemi kurulumu alg\u0131lad\u0131\u011f\u0131 i\u00e7in sa\u011fl\u0131ks\u0131z durumda. Sorun giderme bilgileri i\u00e7in Daha fazla bilgi edinin'i se\u00e7in.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - Yinelenen Home Assistant i\u015fletim sistemi kurulumu"
+        },
+        "unhealthy_os_filesystem_check_error": {
+            "description": "\u0130\u015fletim sistemi b\u00f6l\u00fcm\u00fcnde bir dosya sistemi b\u00fct\u00fcnl\u00fc\u011f\u00fc denetimi ba\u015far\u0131s\u0131z oldu\u011fu i\u00e7in sistem \u015fu anda hatal\u0131 durumda. Bunun nedeni, beklenmedik bir g\u00fc\u00e7 kesintisi veya ar\u0131zal\u0131 bir depolama birimi olabilir. Sorun giderme bilgileri i\u00e7in \u201cDaha fazla bilgi\u201d se\u00e7ene\u011fini t\u0131klay\u0131n.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - \u0130\u015fletim sistemi b\u00f6l\u00fcm\u00fc dosya sistemi kontrol\u00fc ba\u015far\u0131s\u0131z oldu"
+        },
+        "unhealthy_oserror_bad_message": {
+            "description": "\u0130\u015fletim sistemi bir OS hatas\u0131 bildirdi\u011finden sistem \u015fu anda sa\u011fl\u0131ks\u0131z: Hatal\u0131 mesaj. Sorun giderme bilgileri i\u00e7in Daha fazla bilgi edinin'i se\u00e7in.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - \u0130\u015fletim Sistemi hatas\u0131: Hatal\u0131 mesaj"
+        },
+        "unhealthy_privileged": {
+            "description": "Sistem \u015fu anda sa\u011fl\u0131ks\u0131z durumda \u00e7\u00fcnk\u00fc Docker \u00e7al\u0131\u015fma ortam\u0131na ayr\u0131cal\u0131kl\u0131 eri\u015fimi yok. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - Ayr\u0131cal\u0131kl\u0131 de\u011fil"
+        },
+        "unhealthy_setup": {
+            "description": "Kurulum tamamlanamad\u0131\u011f\u0131 i\u00e7in sistem \u015fu anda sa\u011fl\u0131ks\u0131z durumda. Bunun bir\u00e7ok nedeni olabilir. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - Kurulum ba\u015far\u0131s\u0131z oldu"
+        },
+        "unhealthy_supervisor": {
+            "description": "Sistem \u015fu anda sa\u011fl\u0131ks\u0131z durumda \u00e7\u00fcnk\u00fc Supervisor'\u0131 en son s\u00fcr\u00fcme g\u00fcncelleme giri\u015fimi ba\u015far\u0131s\u0131z oldu. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - G\u00f6zetmen g\u00fcncellemesi ba\u015far\u0131s\u0131z oldu"
+        },
+        "unhealthy_untrusted": {
+            "description": "Sistem \u015fu anda g\u00fcvenilmeyen kod veya g\u00f6r\u00fcnt\u00fclerin kullan\u0131ld\u0131\u011f\u0131n\u0131 tespit etti\u011fi i\u00e7in sa\u011fl\u0131kl\u0131 de\u011fil. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Sa\u011fl\u0131ks\u0131z sistem - G\u00fcvenilmeyen kod"
+        },
+        "unsupported": {
+            "description": "Sistem \u015fu nedenlerden dolay\u0131 desteklenmiyor: {reason}Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - {reason}"
+        },
+        "unsupported_apparmor": {
+            "description": "AppArmor'\u0131n d\u00fczg\u00fcn \u00e7al\u0131\u015fmamas\u0131 ve uygulamalar\u0131n korumas\u0131z ve g\u00fcvensiz bir \u015fekilde \u00e7al\u0131\u015fmas\u0131 nedeniyle sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - AppArmor sorunlar\u0131"
+        },
+        "unsupported_cgroup_version": {
+            "description": "Docker CGroup'un yanl\u0131\u015f s\u00fcr\u00fcm\u00fc kullan\u0131mda oldu\u011fu i\u00e7in sistem desteklenmiyor. Do\u011fru s\u00fcr\u00fcm\u00fc ve bunu nas\u0131l d\u00fczeltece\u011finizi \u00f6\u011frenmek i\u00e7in ba\u011flant\u0131y\u0131 kullan\u0131n.",
+            "title": "Desteklenmeyen sistem - CGroup s\u00fcr\u00fcm\u00fc"
+        },
+        "unsupported_connectivity_check": {
+            "description": "Home Assistant internet ba\u011flant\u0131s\u0131n\u0131n ne zaman mevcut oldu\u011funu belirleyemedi\u011fi i\u00e7in sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Ba\u011flant\u0131 kontrol\u00fc devre d\u0131\u015f\u0131"
+        },
+        "unsupported_dbus": {
+            "description": "D-Bus'\u0131n d\u00fczg\u00fcn \u00e7al\u0131\u015fmamas\u0131 nedeniyle sistem desteklenmiyor. Bu durum, Denetleyicinin ana bilgisayarla ileti\u015fim kuramamas\u0131na ve bir\u00e7ok i\u015flemin ba\u015far\u0131s\u0131z olmas\u0131na neden oluyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - D-Bus sorunlar\u0131"
+        },
+        "unsupported_dns_server": {
+            "description": "Sa\u011flanan DNS sunucusu d\u00fczg\u00fcn \u00e7al\u0131\u015fmad\u0131\u011f\u0131 ve yedek DNS se\u00e7ene\u011fi devre d\u0131\u015f\u0131 b\u0131rak\u0131ld\u0131\u011f\u0131 i\u00e7in sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - DNS sunucusu sorunlar\u0131"
+        },
+        "unsupported_docker_configuration": {
+            "description": "Docker arka plan program\u0131n\u0131n beklenmedik bir \u015fekilde \u00e7al\u0131\u015fmas\u0131 nedeniyle sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Docker yanl\u0131\u015f yap\u0131land\u0131r\u0131lm\u0131\u015f"
+        },
+        "unsupported_docker_version": {
+            "description": "Docker s\u00fcr\u00fcm\u00fc g\u00fcncel olmad\u0131\u011f\u0131 i\u00e7in sistem desteklenmiyor. Gerekli s\u00fcr\u00fcm ve bu sorunun nas\u0131l \u00e7\u00f6z\u00fclece\u011fi hakk\u0131nda bilgi i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini se\u00e7in.",
+            "title": "Desteklenmeyen sistem - Docker s\u00fcr\u00fcm\u00fc"
+        },
+        "unsupported_home_assistant_core_version": {
+            "description": "Kullan\u0131lan Home Assistant Core s\u00fcr\u00fcm\u00fc desteklenmedi\u011finden sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in Daha fazla bilgi edinin'i se\u00e7in.",
+            "title": "Desteklenmeyen sistem - Home Assistant Core s\u00fcr\u00fcm\u00fc"
+        },
+        "unsupported_job_conditions": {
+            "description": "Sistem, beklenmedik ar\u0131zalara ve bozulmalara kar\u015f\u0131 koruma sa\u011flayan bir veya daha fazla i\u015f ko\u015fulu devre d\u0131\u015f\u0131 b\u0131rak\u0131ld\u0131\u011f\u0131 i\u00e7in desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Korumalar devre d\u0131\u015f\u0131 b\u0131rak\u0131ld\u0131"
+        },
+        "unsupported_lxc": {
+            "description": "Sistem, LXC sanal makinesinde \u00e7al\u0131\u015ft\u0131r\u0131ld\u0131\u011f\u0131 i\u00e7in desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - LXC alg\u0131land\u0131"
+        },
+        "unsupported_network_manager": {
+            "description": "A\u011f Y\u00f6neticisi eksik, etkin de\u011fil veya yanl\u0131\u015f yap\u0131land\u0131r\u0131lm\u0131\u015f oldu\u011fundan sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - A\u011f Y\u00f6neticisi sorunlar\u0131"
+        },
+        "unsupported_os": {
+            "description": "Kullan\u0131lan i\u015fletim sistemi Supervisor ile kullan\u0131m i\u00e7in test edilmedi\u011fi veya bak\u0131m\u0131 yap\u0131lmad\u0131\u011f\u0131 i\u00e7in sistem desteklenmiyor. Desteklenen i\u015fletim sistemleri ve bu sorunun nas\u0131l \u00e7\u00f6z\u00fclece\u011fi hakk\u0131nda bilgi i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - \u0130\u015fletim Sistemi"
+        },
+        "unsupported_os_agent": {
+            "description": "OS-Agent eksik, etkin de\u011fil veya yanl\u0131\u015f yap\u0131land\u0131r\u0131lm\u0131\u015f oldu\u011fu i\u00e7in sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - OS-Agent sorunlar\u0131"
+        },
+        "unsupported_os_version": {
+            "description": "Kullan\u0131lan Home Assistant i\u015fletim sistemi s\u00fcr\u00fcm\u00fc desteklenmedi\u011finden sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in Daha fazla bilgi edinin'i se\u00e7in.",
+            "title": "Desteklenmeyen sistem - Home Assistant i\u015fletim sistemi s\u00fcr\u00fcm\u00fc"
+        },
+        "unsupported_restart_policy": {
+            "description": "Docker kapsay\u0131c\u0131s\u0131nda ba\u015flatma s\u0131ras\u0131nda sorunlara neden olabilecek bir yeniden ba\u015flatma politikas\u0131 ayarland\u0131\u011f\u0131 i\u00e7in sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Konteyner yeniden ba\u015flatma politikas\u0131"
+        },
+        "unsupported_software": {
+            "description": "Home Assistant ekosisteminin d\u0131\u015f\u0131nda ek yaz\u0131l\u0131mlar tespit edildi\u011fi i\u00e7in sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Desteklenmeyen yaz\u0131l\u0131m"
+        },
+        "unsupported_supervisor_version": {
+            "description": "Sistem, eski bir Supervisor s\u00fcr\u00fcm\u00fc kullan\u0131ld\u0131\u011f\u0131 ve otomatik g\u00fcncelleme devre d\u0131\u015f\u0131 b\u0131rak\u0131ld\u0131\u011f\u0131 i\u00e7in desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Y\u00f6netici s\u00fcr\u00fcm\u00fc"
+        },
+        "unsupported_systemd": {
+            "description": "Sistem desteklenmiyor \u00e7\u00fcnk\u00fc Systemd eksik, etkin de\u011fil veya yanl\u0131\u015f yap\u0131land\u0131r\u0131lm\u0131\u015f. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Systemd sorunlar\u0131"
+        },
+        "unsupported_systemd_journal": {
+            "description": "Sistem, Systemd G\u00fcnl\u00fc\u011f\u00fc ve/veya a\u011f ge\u00e7idi hizmetinin eksik, etkin olmamas\u0131 veya yanl\u0131\u015f yap\u0131land\u0131r\u0131lmas\u0131 nedeniyle desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Systemd Journal sorunlar\u0131"
+        },
+        "unsupported_systemd_resolved": {
+            "description": "Sistem desteklenmiyor \u00e7\u00fcnk\u00fc Systemd Resolved eksik, etkin de\u011fil veya yanl\u0131\u015f yap\u0131land\u0131r\u0131lm\u0131\u015f. Sorun giderme bilgileri i\u00e7in Daha fazla bilgi edinin se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Systemd-\u00c7\u00f6z\u00fclm\u00fc\u015f sorunlar"
+        },
+        "unsupported_virtualization_image": {
+            "description": "Kullan\u0131lan Home Assistant i\u015fletim sistemi imaj\u0131 sanalla\u015ft\u0131r\u0131lm\u0131\u015f bir ortamda kullan\u0131lmak \u00fczere tasarlanmad\u0131\u011f\u0131ndan sistem desteklenmiyor. Sorun giderme bilgileri i\u00e7in \"Daha fazla bilgi edinin\" se\u00e7ene\u011fini belirleyin.",
+            "title": "Desteklenmeyen sistem - Sanalla\u015ft\u0131rma i\u00e7in yanl\u0131\u015f i\u015fletim sistemi g\u00f6r\u00fcnt\u00fcs\u00fc"
+        }
+    },
+    "services": {
+        "addon_restart": {
+            "description": "Bir eklentiyi yeniden ba\u015flat\u0131r.",
+            "fields": {
+                "addon": {
+                    "description": "Yeniden ba\u015flat\u0131lacak eklenti.",
+                    "name": "Eklenti"
+                }
+            },
+            "name": "Eklentiyi yeniden ba\u015flat"
+        },
+        "addon_start": {
+            "description": "Bir eklenti ba\u015flat\u0131r.",
+            "fields": {
+                "addon": {
+                    "description": "Ba\u015flamak i\u00e7in eklenti.",
+                    "name": "Eklenti"
+                }
+            },
+            "name": "Eklentiyi ba\u015flat"
+        },
+        "addon_stdin": {
+            "description": "Eklentinin standart girdisine veri yazar.",
+            "fields": {
+                "addon": {
+                    "description": "Yaz\u0131lacak eklenti.",
+                    "name": "Eklenti"
+                }
+            },
+            "name": "Verileri eklenti stdin'e yaz"
+        },
+        "addon_stop": {
+            "description": "Bir eklentiyi durdurur.",
+            "fields": {
+                "addon": {
+                    "description": "Durdurulacak eklenti.",
+                    "name": "Eklenti"
+                }
+            },
+            "name": "Eklentiyi durdur"
+        },
+        "app_restart": {
+            "description": "Home Assistant uygulamas\u0131n\u0131 yeniden ba\u015flat\u0131r.",
+            "fields": {
+                "app": {
+                    "description": "Uygulamay\u0131 yeniden ba\u015flat\u0131n.",
+                    "name": "Uygulama"
+                }
+            },
+            "name": "Uygulamay\u0131 yeniden ba\u015flat"
+        },
+        "app_start": {
+            "description": "Home Assistant uygulamas\u0131n\u0131 ba\u015flat\u0131r.",
+            "fields": {
+                "app": {
+                    "description": "Uygulamay\u0131 ba\u015flat\u0131n.",
+                    "name": "Uygulama"
+                }
+            },
+            "name": "Uygulamay\u0131 ba\u015flat"
+        },
+        "app_stdin": {
+            "description": "Home Assistant uygulamas\u0131n\u0131n standart giri\u015fine veri yazar.",
+            "fields": {
+                "app": {
+                    "description": "Mesaj yaz\u0131lacak uygulama.",
+                    "name": "Uygulama"
+                },
+                "input": {
+                    "description": "Yaz\u0131lacak veriler.",
+                    "name": "Giri\u015f"
+                }
+            },
+            "name": "Uygulama stdin'ine veri yaz"
+        },
+        "app_stop": {
+            "description": "Home Assistant uygulamas\u0131n\u0131 durdurur.",
+            "fields": {
+                "app": {
+                    "description": "Durdurulacak uygulama.",
+                    "name": "Uygulama"
+                }
+            },
+            "name": "Uygulamay\u0131 durdur"
+        },
+        "backup_full": {
+            "description": "Tam bir yedekleme olu\u015fturur.",
+            "fields": {
+                "compressed": {
+                    "description": "Yedekleme dosyalar\u0131n\u0131 s\u0131k\u0131\u015ft\u0131r\u0131r.",
+                    "name": "S\u0131k\u0131\u015ft\u0131r\u0131lm\u0131\u015f"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Home Assistant veritaban\u0131 dosyas\u0131n\u0131 yedeklemeden hari\u00e7 tutun.",
+                    "name": "Home Assistant veritaban\u0131n\u0131 hari\u00e7 tut"
+                },
+                "location": {
+                    "description": "Yedekleri bar\u0131nd\u0131racak yedekleme a\u011f depolama biriminin ad\u0131.",
+                    "name": "Konum"
+                },
+                "name": {
+                    "description": "\u0130ste\u011fe ba\u011fl\u0131 (varsay\u0131lan = ge\u00e7erli tarih ve saat).",
+                    "name": "Ad"
+                },
+                "password": {
+                    "description": "Yedeklemeyi korumak i\u00e7in parola.",
+                    "name": "\u015eifre"
+                }
+            },
+            "name": "Tam bir yedekleme olu\u015fturun"
+        },
+        "backup_partial": {
+            "description": "K\u0131smi bir yedekleme olu\u015fturur.",
+            "fields": {
+                "addons": {
+                    "description": "Yedeklemeye dahil edilecek uygulamalar\u0131n (eski ad\u0131yla eklentilerin) listesi. Her uygulaman\u0131n slug kodunu kullan\u0131n. Eski s\u00fcr\u00fcm se\u00e7ene\u011fi - bunun yerine uygulamalar\u0131 kullan\u0131n.",
+                    "name": "Eklentiler (eski s\u00fcr\u00fcm)"
+                },
+                "apps": {
+                    "description": "Yedeklemeye dahil edilecek uygulamalar\u0131n listesi. Her uygulaman\u0131n URL uzant\u0131s\u0131n\u0131 (slug) kullan\u0131n.",
+                    "name": "Uygulamalar"
+                },
+                "compressed": {
+                    "description": "Yedekleme dosyalar\u0131n\u0131 s\u0131k\u0131\u015ft\u0131r\u0131r.",
+                    "name": "S\u0131k\u0131\u015ft\u0131r\u0131lm\u0131\u015f"
+                },
+                "folders": {
+                    "description": "Yedeklemeye dahil edilecek dizinlerin listesi.",
+                    "name": "Klas\u00f6rler"
+                },
+                "homeassistant": {
+                    "description": "Yedeklemeye Home Asistan\u0131 ayarlar\u0131n\u0131 dahil eder.",
+                    "name": "Home Assistant ayarlar\u0131"
+                },
+                "homeassistant_exclude_database": {
+                    "description": "Home Assistant veritaban\u0131 dosyas\u0131n\u0131 yedeklemeden hari\u00e7 tutun.",
+                    "name": "Home Assistant veritaban\u0131n\u0131 hari\u00e7 tut"
+                },
+                "location": {
+                    "description": "Yedekleri bar\u0131nd\u0131racak yedekleme a\u011f depolama biriminin ad\u0131.",
+                    "name": "Konum"
+                },
+                "name": {
+                    "description": "\u0130ste\u011fe ba\u011fl\u0131 (varsay\u0131lan = ge\u00e7erli tarih ve saat).",
+                    "name": "Ad"
+                },
+                "password": {
+                    "description": "Yedeklemeyi korumak i\u00e7in parola.",
+                    "name": "\u015eifre"
+                }
+            },
+            "name": "K\u0131smi bir yedekleme olu\u015fturun"
+        },
+        "host_reboot": {
+            "description": "Ana bilgisayar sistemini yeniden ba\u015flat\u0131r.",
+            "name": "Ana bilgisayar\u0131 yeniden ba\u015flat\u0131n"
+        },
+        "host_shutdown": {
+            "description": "Ana bilgisayar sistemini kapat\u0131r.",
+            "name": "Ana bilgisayar sistemini kapat\u0131n"
+        },
+        "mount_reload": {
+            "description": "A\u011f depolama birimini yeniden y\u00fckler.",
+            "fields": {
+                "device_id": {
+                    "description": "Yeniden y\u00fcklenecek a\u011f depolama ayg\u0131t\u0131n\u0131n ayg\u0131t kimli\u011fi.",
+                    "name": "Cihaz Kimli\u011fi"
+                }
+            },
+            "name": "A\u011f depolama birimini yeniden y\u00fckle"
+        },
+        "restore_full": {
+            "description": "Tam yedeklemeden geri y\u00fckler.",
+            "fields": {
+                "password": {
+                    "description": "\u0130ste\u011fe ba\u011fl\u0131 \u015fifre.",
+                    "name": "\u015eifre"
+                },
+                "slug": {
+                    "description": "Geri y\u00fcklenecek yedekleme par\u00e7as\u0131.",
+                    "name": "K\u0131sa ad"
+                }
+            },
+            "name": "Tam yedeklemeden geri y\u00fckleme"
+        },
+        "restore_partial": {
+            "description": "K\u0131smi bir yedekten geri y\u00fckler.",
+            "fields": {
+                "addons": {
+                    "description": "Yedeklemeden geri y\u00fcklenecek uygulamalar\u0131n (eski eklentilerin) listesi. Her uygulaman\u0131n slug kodunu kullan\u0131n. Eski s\u00fcr\u00fcm se\u00e7ene\u011fi - bunun yerine uygulamalar\u0131 kullan\u0131n.",
+                    "name": "Eklentiler (eski s\u00fcr\u00fcm)"
+                },
+                "apps": {
+                    "description": "Yedeklemeden geri y\u00fcklenecek uygulamalar\u0131n listesi. Her uygulaman\u0131n slug kodunu kullan\u0131n.",
+                    "name": "Uygulamalar"
+                },
+                "folders": {
+                    "description": "Yedekten geri y\u00fcklenecek dizinlerin listesi.",
+                    "name": "Klas\u00f6rler"
+                },
+                "homeassistant": {
+                    "description": "Home Assistant'\u0131 geri y\u00fckler.",
+                    "name": "Home Assistant ayarlar\u0131"
+                },
+                "password": {
+                    "description": "\u0130ste\u011fe ba\u011fl\u0131 \u015fifre.",
+                    "name": "\u015eifre"
+                },
+                "slug": {
+                    "description": "Geri y\u00fcklenecek yedekleme par\u00e7as\u0131.",
+                    "name": "K\u0131sa ad"
+                }
+            },
+            "name": "K\u0131smi yedeklemeden geri y\u00fckleme"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Arac\u0131 s\u00fcr\u00fcm\u00fc",
+            "board": "Panel",
+            "disk_life_time": "Disk \u00f6mr\u00fc",
+            "disk_total": "Disk toplam\u0131",
+            "disk_used": "Kullan\u0131lan disk",
+            "docker_version": "Docker s\u00fcr\u00fcm\u00fc",
+            "healthy": "Sa\u011fl\u0131kl\u0131",
+            "host_os": "Ana bilgisayar i\u015fletim sistemi",
+            "installed_addons": "Y\u00fckl\u00fc uygulamalar",
+            "nameservers": "Ad Sunucular\u0131",
+            "supervisor_api": "Supervisor API",
+            "supervisor_version": "S\u00fcperviz\u00f6r versiyonu",
+            "supported": "Destekleniyor",
+            "update_channel": "Kanal\u0131 g\u00fcncelle",
+            "version_api": "S\u00fcr\u00fcm API"
+        }
+    }
+}

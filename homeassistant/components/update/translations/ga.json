@@ -1,0 +1,150 @@
+{
+    "common": {
+        "condition_behavior_name": "Gabhann an coinn\u00edoll m\u00e1",
+        "condition_for_name": "Ar a laghad",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil nuashonr\u00fa amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar f\u00e1il.",
+            "fields": {
+                "behavior": {
+                    "name": "Gabhann an coinn\u00edoll m\u00e1"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 nuashonr\u00fa ar f\u00e1il"
+        },
+        "is_not_available": {
+            "description": "D\u00e9anann t\u00e1st\u00e1lacha mura bhfuil nuashonr\u00fa amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar f\u00e1il.",
+            "fields": {
+                "behavior": {
+                    "name": "Gabhann an coinn\u00edoll m\u00e1"
+                },
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "N\u00edl an nuashonr\u00fa ar f\u00e1il"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Fad"
+        },
+        "trigger_type": {
+            "changed_states": "Athra\u00edodh infhaighteacht nuashonraithe {entity_name}",
+            "turned_off": "T\u00e1 {entity_name} cothrom le d\u00e1ta anois",
+            "turned_on": "T\u00e1 nuashonr\u00fa ar f\u00e1il ag {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Nuashonr\u00fa",
+            "state": {
+                "off": "Nuashonraithe",
+                "on": "Nuashonr\u00fa ar f\u00e1il"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Nuashonr\u00fa uathoibr\u00edoch",
+                    "state": {
+                        "false": "N\u00edl",
+                        "true": "T\u00e1"
+                    }
+                },
+                "in_progress": {
+                    "name": "Theip ar an ainm \u00f3stach a cuireadh ar f\u00e1il a phars\u00e1il",
+                    "state": {
+                        "false": "N\u00edl",
+                        "true": "T\u00e1"
+                    }
+                },
+                "installed_version": {
+                    "name": "Leagan suite\u00e1ilte"
+                },
+                "latest_version": {
+                    "name": "An leagan is d\u00e9ana\u00ed"
+                },
+                "release_summary": {
+                    "name": "Achoimre ar an scaoileadh"
+                },
+                "release_url": {
+                    "name": "URL Eisi\u00fana"
+                },
+                "skipped_version": {
+                    "name": "Leagan scipe\u00e1ilte"
+                },
+                "title": {
+                    "name": "Teideal"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Dochtearra\u00ed"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "N\u00ed thaca\u00edtear le c\u00faltaca do {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "N\u00ed thaca\u00edtear le glanadh nuashonraithe scipe\u00e1ilte do {entity_id}."
+        },
+        "no_update_available": {
+            "message": "N\u00edl aon nuashonr\u00fa ar f\u00e1il do {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "N\u00edl aon nuashonr\u00fa ar f\u00e1il le scipe\u00e1il do {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "N\u00ed thaca\u00edtear le nuashonr\u00fa a scipe\u00e1il do {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "N\u00ed thaca\u00edtear le leagan ar leith a shuite\u00e1il do {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "N\u00ed f\u00e9idir leagan anaithnid a scipe\u00e1il do {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "T\u00e1 suite\u00e1il nuashonraithe ar si\u00fal cheana f\u00e9in do {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Baintear an marc\u00f3ir leagan scipe\u00e1ilte as nuashonr\u00fa.",
+            "name": "Glan an nuashonr\u00fa a scipe\u00e1ladh"
+        },
+        "install": {
+            "description": "Suite\u00e1lann s\u00e9 nuashonr\u00fa do ghl\u00e9as n\u00f3 do sheirbh\u00eds.",
+            "fields": {
+                "backup": {
+                    "description": "M\u00e1 thaca\u00edonn an comhth\u00e1th\u00fa leis, crutha\u00edonn s\u00e9 seo c\u00faltaca sula dtosa\u00edonn an nuashonr\u00fa.",
+                    "name": "C\u00faltaca"
+                },
+                "version": {
+                    "description": "An leagan at\u00e1 le suite\u00e1il. Mura nd\u00e9antar \u00e9 seo, suite\u00e1lfar an leagan is d\u00e9ana\u00ed.",
+                    "name": "Leagan"
+                }
+            },
+            "name": "Suite\u00e1il nuashonr\u00fa"
+        },
+        "skip": {
+            "name": "Seachain an nuashonr\u00fa"
+        }
+    },
+    "title": "Nuashonr\u00fa",
+    "triggers": {
+        "became_available": {
+            "description": "Spreagtar \u00e9 nuair a bh\u00edonn nuashonr\u00fa amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar f\u00e1il.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            },
+            "name": "T\u00e1 an nuashonr\u00fa ar f\u00e1il"
+        }
+    }
+}

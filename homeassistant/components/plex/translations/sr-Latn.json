@@ -1,0 +1,89 @@
+{
+    "config": {
+        "abort": {
+            "all_configured": "Svi povezani serveri su ve\u0107 konfigurisani",
+            "already_configured": "Ovaj Plex server je ve\u0107 konfigurisan",
+            "reauth_successful": "Ponovna prijava je uspe\u0161na",
+            "token_request_timeout": "Vreme isteklo pri dobijanju tokena",
+            "unknown": "Neo\u010dekivana gre\u0161ka"
+        },
+        "error": {
+            "faulty_credentials": "Prijava nije uspela, proverite token.",
+            "host_or_token": "Morate navesti bar jedno: host ili token",
+            "no_servers": "Nijedan server nije povezan sa Plex nalogom",
+            "not_found": "Plex server nije prona\u0111en",
+            "ssl_error": "Problem sa SSL potvrdom"
+        },
+        "flow_title": "{name} ({host})",
+        "step": {
+            "manual_setup": {
+                "data": {
+                    "host": "Adresa hosta",
+                    "port": "Port",
+                    "ssl": "Koristi SSL potvrdu",
+                    "token": "Token (opciono)",
+                    "verify_ssl": "Proveri SSL potvrde"
+                },
+                "title": "Ru\u010dno pode\u0161avanje Plex-a"
+            },
+            "select_server": {
+                "data": {
+                    "server_id": "Server"
+                },
+                "description": "Dostupno je vi\u0161e servera, izaberite jedan:",
+                "title": "Izbor Plex servera"
+            },
+            "user": {
+                "description": "Plex server se mo\u017ee podesiti u Home Assistant\u2011u na dva na\u010dina.  \n\nMo\u017eete povezati va\u0161 Plex nalog prijavljivanjem preko plex.tv, \u0161to \u0107e automatski otkriti i povezati va\u0161e servere, ili mo\u017eete ru\u010dno uneti adresu servera i token.",
+                "menu_options": {
+                    "manual_setup": "Unesite ru\u010dno",
+                    "website_auth": "Pove\u017eite Plex nalog (preporu\u010deno)"
+                }
+            },
+            "website_auth": {
+                "description": "Do\u0161lo je do gre\u0161ke pri povezivanju sa Plex\u2011om. Poku\u0161ajte ponovo."
+            }
+        }
+    },
+    "entity": {
+        "button": {
+            "scan_clients": {
+                "name": "Skeniraj klijente"
+            }
+        },
+        "update": {
+            "server_update": {
+                "name": "A\u017euriranje"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "plex_mp_settings": {
+                "data": {
+                    "ignore_new_shared_users": "Zanemari nove upravljane/deljene korisnike",
+                    "ignore_plex_web_clients": "Zanemari Plex web klijente",
+                    "monitored_users": "Nadzirani korisnici",
+                    "use_episode_art": "Koristi sliku epizode"
+                },
+                "description": "Opcije za Plex medija plejere"
+            }
+        }
+    },
+    "services": {
+        "refresh_library": {
+            "description": "Osve\u017eava Plex biblioteku radi pronala\u017eenja novog i a\u017euriranog sadr\u017eaja.",
+            "fields": {
+                "library_name": {
+                    "description": "Naziv Plex biblioteke koju treba osve\u017eiti.",
+                    "name": "Naziv biblioteke"
+                },
+                "server_name": {
+                    "description": "Naziv Plex servera, ukoliko je konfigurisano vi\u0161e servera.",
+                    "name": "Naziv servera"
+                }
+            },
+            "name": "Osve\u017ei biblioteku"
+        }
+    }
+}

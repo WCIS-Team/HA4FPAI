@@ -1,0 +1,325 @@
+{
+    "common": {
+        "condition_behavior_name": "Podmienka splnen\u00e1, ak",
+        "condition_for_name": "Aspo\u0148",
+        "trigger_behavior_name": "Spusti\u0165, ke\u010f",
+        "trigger_for_name": "Aspo\u0148"
+    },
+    "conditions": {
+        "is_armed": {
+            "description": "Testuje, \u010di je zapnut\u00fd jeden alebo viac alarmov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm je zapnut\u00fd"
+        },
+        "is_armed_away": {
+            "description": "Testuje, \u010di je jeden alebo viac alarmov zapnut\u00fdch v re\u017eime Pre\u010d.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm je zapnut\u00fd mimo"
+        },
+        "is_armed_home": {
+            "description": "Testuje, \u010di je v dom\u00e1com re\u017eime zapnut\u00fd jeden alebo viac alarmov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm je zapnut\u00fd doma"
+        },
+        "is_armed_night": {
+            "description": "Testuje, \u010di je v no\u010dnom re\u017eime zapnut\u00fd jeden alebo viac alarmov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm je zapnut\u00fd v noci"
+        },
+        "is_armed_vacation": {
+            "description": "Testuje, \u010di je v re\u017eime dovolenky zapnut\u00fd jeden alebo viac alarmov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm je zapnut\u00fd v re\u017eime pr\u00e1zdnin"
+        },
+        "is_disarmed": {
+            "description": "Testuje, \u010di je jeden alebo viac alarmov deaktivovan\u00fdch.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm je deaktivovan\u00fd"
+        },
+        "is_triggered": {
+            "description": "Testuje, \u010di sa spustil jeden alebo viacero alarmov.",
+            "fields": {
+                "behavior": {
+                    "name": "Podmienka splnen\u00e1, ak"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm sa spustil"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "arm_away": "Aktivova\u0165 {entity_name} v re\u017eime nepr\u00edtomnos\u0165",
+            "arm_home": "Aktivova\u0165 {entity_name} v re\u017eime domov",
+            "arm_night": "Aktivova\u0165 {entity_name} v no\u010dnom re\u017eime",
+            "arm_vacation": "Aktivova\u0165 {entity_name} v re\u017eime dovolenka",
+            "disarm": "Deaktivova\u0165 {entity_name}",
+            "trigger": "Sp\u00fa\u0161\u0165a\u010d {entity_name}"
+        },
+        "condition_type": {
+            "is_armed_away": "{entity_name} je v re\u017eime nepr\u00edtomnosti",
+            "is_armed_home": "{entity_name} je v re\u017eime domov",
+            "is_armed_night": "{entity_name} je v no\u010dnom re\u017eime",
+            "is_armed_vacation": "{entity_name} je v re\u017eime dovolenka",
+            "is_disarmed": "{entity_name} nie je zabezpe\u010den\u00e9",
+            "is_triggered": "{entity_name} je spusten\u00e9"
+        },
+        "extra_fields": {
+            "code": "K\u00f3d",
+            "for": "Trvanie"
+        },
+        "trigger_type": {
+            "armed_away": "{entity_name} v re\u017eime nepr\u00edtomnos\u0165",
+            "armed_home": "{entity_name} v re\u017eime domov",
+            "armed_night": "{entity_name} v no\u010dnom re\u017eime",
+            "armed_vacation": "{entity_name} v re\u017eime dovolenka",
+            "disarmed": "{entity_name} nezabezpe\u010den\u00e9",
+            "triggered": "{entity_name} spusten\u00fd"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ovl\u00e1dac\u00ed panel alarmu",
+            "state": {
+                "armed": "Zabezpe\u010den\u00fd",
+                "armed_away": "Zabezpe\u010den\u00fd v nepr\u00edtomnosti",
+                "armed_custom_bypass": "Zak\u00f3dovan\u00e9 prisp\u00f4soben\u00e9 vyl\u00fa\u010denie",
+                "armed_home": "Zabezpe\u010den\u00fd doma",
+                "armed_night": "Zabezpe\u010den\u00fd v noci",
+                "armed_vacation": "Zabezpe\u010denie pozastaven\u00e9",
+                "arming": "Zabezpe\u010dovanie",
+                "disarmed": "Deaktivovan\u00e9",
+                "disarming": "Deaktivuje sa",
+                "pending": "\u010cak\u00e1 sa",
+                "triggered": "Spusten\u00fd"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Zmenil"
+                },
+                "code_arm_required": {
+                    "name": "K\u00f3d pre zabezpe\u010denie",
+                    "state": {
+                        "false": "Nevy\u017eaduje sa",
+                        "true": "Po\u017eadovan\u00e9"
+                    }
+                },
+                "code_format": {
+                    "name": "Form\u00e1t k\u00f3du",
+                    "state": {
+                        "number": "\u010c\u00edslo",
+                        "text": "Text"
+                    }
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "code_arm_required": {
+            "message": "Zapnutie str\u00e1\u017eenia vy\u017eaduje k\u00f3d, ale pre {entity_id} nebol zadan\u00fd \u017eiadny."
+        }
+    },
+    "services": {
+        "alarm_arm_away": {
+            "description": "Spust\u00ed alarm v re\u017eime nepr\u00edtomnosti.",
+            "fields": {
+                "code": {
+                    "description": "K\u00f3d na aktiv\u00e1ciu alarmu.",
+                    "name": "K\u00f3d"
+                }
+            },
+            "name": "Zak\u00f3dova\u0165 nepr\u00edtomnos\u0165"
+        },
+        "alarm_arm_custom_bypass": {
+            "description": "Spust\u00ed alarm a z\u00e1rove\u0148 umo\u017en\u00ed ob\u00eds\u0165 vlastn\u00fa oblas\u0165.",
+            "fields": {
+                "code": {
+                    "description": "K\u00f3d na aktiv\u00e1ciu alarmu.",
+                    "name": "K\u00f3d"
+                }
+            },
+            "name": "Aktiv\u00e1cia alarmu s vlastn\u00fdm ob\u00edden\u00edm"
+        },
+        "alarm_arm_home": {
+            "description": "Zapne alarm v dom\u00e1com re\u017eime.",
+            "fields": {
+                "code": {
+                    "description": "K\u00f3d na aktiv\u00e1ciu alarmu.",
+                    "name": "K\u00f3d"
+                }
+            },
+            "name": "Aktiv\u00e1cia alarmu doma"
+        },
+        "alarm_arm_night": {
+            "description": "Spust\u00ed alarm v no\u010dnom re\u017eime.",
+            "fields": {
+                "code": {
+                    "description": "K\u00f3d na aktiv\u00e1ciu alarmu.",
+                    "name": "K\u00f3d"
+                }
+            },
+            "name": "Aktiv\u00e1cia alarmu v noci"
+        },
+        "alarm_arm_vacation": {
+            "description": "Spust\u00ed alarm v re\u017eime dovolenky.",
+            "fields": {
+                "code": {
+                    "description": "K\u00f3d na aktiv\u00e1ciu alarmu.",
+                    "name": "K\u00f3d"
+                }
+            },
+            "name": "Aktiv\u00e1cia alarmu v re\u017eime dovolenky"
+        },
+        "alarm_disarm": {
+            "description": "Deaktivuje alarm.",
+            "fields": {
+                "code": {
+                    "description": "K\u00f3d na deaktiv\u00e1ciu alarmu.",
+                    "name": "K\u00f3d"
+                }
+            },
+            "name": "Vypnutie alarmu"
+        },
+        "alarm_trigger": {
+            "description": "Spust\u00ed alarm manu\u00e1lne.",
+            "fields": {
+                "code": {
+                    "description": "K\u00f3d na aktiv\u00e1ciu alarmu.",
+                    "name": "K\u00f3d"
+                }
+            },
+            "name": "Spusti\u0165 alarm"
+        }
+    },
+    "title": "Ovl\u00e1dac\u00ed panel alarmu",
+    "triggers": {
+        "armed": {
+            "description": "Spust\u00ed sa, ke\u010f sa aktivuje jeden alebo viac poplachov, bez oh\u013eadu na re\u017eim.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm zapnut\u00fd"
+        },
+        "armed_away": {
+            "description": "Spust\u00ed sa, ke\u010f sa v re\u017eime \u201emimo domu\u201c aktivuje jeden alebo viac poplachov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm odomknut\u00fd"
+        },
+        "armed_home": {
+            "description": "Spust\u00ed sa, ke\u010f sa v re\u017eime \u201eDomov\u201c aktivuje jeden alebo viac poplachov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Dom s alarmom"
+        },
+        "armed_night": {
+            "description": "Spust\u00ed sa, ke\u010f sa v no\u010dnom re\u017eime aktivuje jeden alebo viac poplachov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm zapnut\u00fd v noci"
+        },
+        "armed_vacation": {
+            "description": "Spust\u00ed sa, ke\u010f sa v re\u017eime dovolenky aktivuje jeden alebo viac poplachov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm zapnut\u00fd po\u010das dovolenky"
+        },
+        "disarmed": {
+            "description": "Spust\u00ed sa, ke\u010f sa deaktivuje jeden alebo viac poplachov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Alarm je deaktivovan\u00fd"
+        },
+        "triggered": {
+            "description": "Spust\u00ed sa, ke\u010f sa spust\u00ed jeden alebo viac alarmov.",
+            "fields": {
+                "behavior": {
+                    "name": "Spusti\u0165, ke\u010f"
+                },
+                "for": {
+                    "name": "Aspo\u0148"
+                }
+            },
+            "name": "Spusten\u00fd alarm"
+        }
+    }
+}

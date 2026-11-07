@@ -1,0 +1,43 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "assist_in_progress": {
+                "name": "Obrada asistenta u toku"
+            }
+        },
+        "select": {
+            "pipeline": {
+                "name": "Asistent",
+                "state": {
+                    "preferred": "Podrazumevani"
+                }
+            },
+            "pipeline_n": {
+                "name": "Asistent {index}",
+                "state": {
+                    "preferred": "Podrazumevani"
+                }
+            },
+            "vad_sensitivity": {
+                "name": "Detekcija zavr\u0161etka govora",
+                "state": {
+                    "aggressive": "Agresivno",
+                    "default": "Podrazumevano",
+                    "relaxed": "Opu\u0161teno"
+                }
+            }
+        }
+    },
+    "issues": {
+        "assist_in_progress_deprecated": {
+            "fix_flow": {
+                "step": {
+                    "confirm_disable_entity": {
+                        "description": "Binarni senzor toka izvr\u0161avanja `{entity_id}` za integraciju {integration_name} je zastareo.\n\nMigrirajte svoju konfiguraciju kako biste koristili odgovaraju\u0107i entitet `{assist_satellite_domain}`, a zatim izaberite **Potvrdi** da biste onemogu\u0107ili binarni senzor toka izvr\u0161avanja i re\u0161ili ovaj problem."
+                    }
+                }
+            },
+            "title": "Binarni senzori za procese integracije {integration_name} su zastareli."
+        }
+    }
+}

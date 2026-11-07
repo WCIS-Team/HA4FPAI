@@ -1,0 +1,262 @@
+{
+    "common": {
+        "condition_behavior_name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c",
+        "condition_for_name": "\u81f3\u5c11",
+        "condition_threshold_name": "\u9608\u503c\u7c7b\u578b",
+        "trigger_behavior_name": "\u89e6\u53d1\u6761\u4ef6",
+        "trigger_for_name": "\u81f3\u5c11"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u52a0\u6e7f\u5668\u662f\u5426\u6b63\u5728\u62bd\u6e7f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u6b63\u5728\u62bd\u6e7f"
+        },
+        "is_humidifying": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u52a0\u6e7f\u5668\u662f\u5426\u6b63\u5728\u52a0\u6e7f\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u6b63\u5728\u52a0\u6e7f"
+        },
+        "is_mode": {
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "mode": {
+                    "description": "\u8981\u68c0\u67e5\u7684\u8fd0\u884c\u6a21\u5f0f\u3002",
+                    "name": "\u6a21\u5f0f"
+                }
+            }
+        },
+        "is_off": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u52a0\u6e7f\u5668\u662f\u5426\u5173\u95ed\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u5df2\u5173\u95ed"
+        },
+        "is_on": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u52a0\u6e7f\u5668\u662f\u5426\u6b63\u5728\u8fd0\u884c\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u5df2\u5f00\u542f"
+        },
+        "is_target_humidity": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u52a0\u6e7f\u5668\u7684\u76ee\u6807\u6e7f\u5ea6\u3002",
+            "fields": {
+                "behavior": {
+                    "name": "\u6761\u4ef6\u901a\u8fc7\uff0c\u5982\u679c"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "threshold": {
+                    "name": "\u9608\u503c\u7c7b\u578b"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u76ee\u6807\u6e7f\u5ea6"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "\u8bbe\u7f6e {entity_name} \u7684\u6e7f\u5ea6",
+            "set_mode": "\u66f4\u6539 {entity_name} \u7684\u6a21\u5f0f",
+            "toggle": "\u5207\u6362 {entity_name}",
+            "turn_off": "\u5173\u95ed {entity_name}",
+            "turn_on": "\u5f00\u542f {entity_name}"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} \u5904\u4e8e\u6307\u5b9a\u6a21\u5f0f",
+            "is_off": "{entity_name} \u5df2\u5173\u95ed",
+            "is_on": "{entity_name} \u5df2\u5f00\u542f"
+        },
+        "extra_fields": {
+            "above": "\u9ad8\u4e8e",
+            "below": "\u4f4e\u4e8e",
+            "for": "\u65f6\u957f",
+            "humidity": "\u6e7f\u5ea6",
+            "mode": "\u6a21\u5f0f"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} \u88ab\u5f00\u542f\u6216\u5173\u95ed",
+            "target_humidity_changed": "{entity_name} \u76ee\u6807\u6e7f\u5ea6\u5df2\u53d8\u5316",
+            "turned_off": "{entity_name} \u88ab\u5173\u95ed",
+            "turned_on": "{entity_name} \u88ab\u5f00\u542f"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u52a0\u6e7f\u5668",
+            "state": {
+                "off": "\u5173\u95ed",
+                "on": "\u5f00\u542f"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "\u52a8\u4f5c",
+                    "state": {
+                        "drying": "\u9664\u6e7f",
+                        "humidifying": "\u52a0\u6e7f",
+                        "idle": "\u7a7a\u95f2",
+                        "off": "\u5173\u95ed"
+                    }
+                },
+                "available_modes": {
+                    "name": "\u53ef\u7528\u6a21\u5f0f"
+                },
+                "current_humidity": {
+                    "name": "\u5f53\u524d\u6e7f\u5ea6"
+                },
+                "humidity": {
+                    "name": "\u8bbe\u5b9a\u6e7f\u5ea6"
+                },
+                "max_humidity": {
+                    "name": "\u6700\u5927\u8bbe\u5b9a\u6e7f\u5ea6"
+                },
+                "min_humidity": {
+                    "name": "\u6700\u5c0f\u8bbe\u5b9a\u6e7f\u5ea6"
+                },
+                "mode": {
+                    "name": "\u6a21\u5f0f",
+                    "state": {
+                        "auto": "\u81ea\u52a8",
+                        "away": "\u79bb\u5bb6",
+                        "baby": "\u5a74\u513f",
+                        "boost": "\u5f3a\u52b2",
+                        "comfort": "\u8212\u9002",
+                        "eco": "\u8282\u80fd",
+                        "home": "\u5728\u5bb6",
+                        "normal": "\u6b63\u5e38",
+                        "sleep": "\u7761\u7720"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "\u9664\u6e7f\u5668"
+        },
+        "humidifier": {
+            "name": "\u52a0\u6e7f\u5668"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "\u63d0\u4f9b\u7684\u6e7f\u5ea6 {humidity} \u65e0\u6548\u3002\u53ef\u63a5\u53d7\u7684\u8303\u56f4\u662f {min_humidity} \u81f3 {max_humidity} \u3002"
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "fields": {
+                "humidity": {
+                    "description": "\u76ee\u6807\u6e7f\u5ea6\u3002",
+                    "name": "\u6e7f\u5ea6"
+                }
+            }
+        },
+        "set_mode": {
+            "fields": {
+                "mode": {
+                    "description": "\u64cd\u4f5c\u6a21\u5f0f\u3002\u4f8b\u5982\uff1a\u201c\u6b63\u5e38\u201d\u3001\u201c\u8282\u80fd\u201d\u6216\u201c\u79bb\u5f00\u201d\u3002\u6709\u5173\u53ef\u80fd\u503c\u7684\u5217\u8868\uff0c\u8bf7\u53c2\u8003\u96c6\u6210\u6587\u6863\u3002",
+                    "name": "\u6a21\u5f0f"
+                }
+            }
+        },
+        "toggle": {
+            "name": "\u5207\u6362\u52a0\u6e7f\u5668"
+        },
+        "turn_off": {
+            "name": "\u5173\u95ed\u52a0\u6e7f\u5668"
+        },
+        "turn_on": {
+            "name": "\u6253\u5f00\u52a0\u6e7f\u5668"
+        }
+    },
+    "title": "\u52a0\u6e7f\u5668",
+    "triggers": {
+        "mode_changed": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                },
+                "mode": {
+                    "name": "\u6a21\u5f0f"
+                }
+            }
+        },
+        "started_drying": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u5f00\u59cb\u5e72\u71e5"
+        },
+        "started_humidifying": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u5f00\u59cb\u52a0\u6e7f"
+        },
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u5df2\u5173\u95ed"
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u52a0\u6e7f\u5668\u5df2\u5f00\u542f"
+        }
+    }
+}

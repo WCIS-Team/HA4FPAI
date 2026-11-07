@@ -1,0 +1,158 @@
+{
+    "common": {
+        "trigger_for_name": "Per almeno",
+        "trigger_offset_name": "Scostamento",
+        "trigger_offset_type_description": "Se attivare prima o dopo l'evento solare.",
+        "trigger_offset_type_name": "Tipo di scostamento"
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "Vuoi avviare la configurazione?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "name": "Sorgere del sole",
+                "state": {
+                    "off": "Tramontando",
+                    "on": "Nascente"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "Prossima alba"
+            },
+            "next_dusk": {
+                "name": "Prossimo crepuscolo"
+            },
+            "next_midnight": {
+                "name": "Prossima mezzanotte"
+            },
+            "next_noon": {
+                "name": "Prossimo mezzogiorno"
+            },
+            "next_rising": {
+                "name": "Prossima levata"
+            },
+            "next_setting": {
+                "name": "Prossimo tramonto"
+            },
+            "solar_azimuth": {
+                "name": "Azimut solare"
+            },
+            "solar_elevation": {
+                "name": "Elevazione solare"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sole",
+            "state": {
+                "above_horizon": "Sopra l'orizzonte",
+                "below_horizon": "Sotto l'orizzonte"
+            }
+        }
+    },
+    "selector": {
+        "trigger_offset_type": {
+            "options": {
+                "after": "Dopo",
+                "before": "Prima"
+            }
+        }
+    },
+    "title": "Sole",
+    "triggers": {
+        "dawn": {
+            "fields": {
+                "offset": {
+                    "name": "Scostamento"
+                },
+                "offset_type": {
+                    "description": "Se attivare prima o dopo l'evento solare.",
+                    "name": "Tipo di scostamento"
+                }
+            }
+        },
+        "dusk": {
+            "fields": {
+                "offset": {
+                    "name": "Scostamento"
+                },
+                "offset_type": {
+                    "description": "Se attivare prima o dopo l'evento solare.",
+                    "name": "Tipo di scostamento"
+                }
+            }
+        },
+        "elevation_changed": {
+            "description": "Si attiva quando l'altezza del sole cambia, opzionalmente limitato a una soglia che hai impostato"
+        },
+        "elevation_crossed_threshold": {
+            "description": "Si attiva quando l'altezza del sole supera una soglia che hai impostato",
+            "fields": {
+                "for": {
+                    "name": "Per almeno"
+                }
+            },
+            "name": "L'altezza del sole ha passato il limite"
+        },
+        "solar_midnight": {
+            "description": "Si attiva quando il sole raggiunge il punto pi\u00f9 basso",
+            "fields": {
+                "offset": {
+                    "name": "Scostamento"
+                },
+                "offset_type": {
+                    "description": "Se attivare prima o dopo l'evento solare.",
+                    "name": "Tipo di scostamento"
+                }
+            },
+            "name": "Mezzanotte solare"
+        },
+        "solar_noon": {
+            "description": "Si attiva quando il sole raggiunge il punto pi\u00f9 alto",
+            "fields": {
+                "offset": {
+                    "name": "Scostamento"
+                },
+                "offset_type": {
+                    "description": "Se attivare prima o dopo l'evento solare.",
+                    "name": "Tipo di scostamento"
+                }
+            },
+            "name": "Mezzogiorno solare"
+        },
+        "sunrise": {
+            "description": "Si attiva all'alba",
+            "fields": {
+                "offset": {
+                    "name": "Scostamento"
+                },
+                "offset_type": {
+                    "description": "Se attivare prima o dopo l'evento solare.",
+                    "name": "Tipo di scostamento"
+                }
+            },
+            "name": "Alba"
+        },
+        "sunset": {
+            "description": "Si attiva quando il sole tramonta",
+            "fields": {
+                "offset": {
+                    "name": "Scostamento"
+                },
+                "offset_type": {
+                    "description": "Se attivare prima o dopo l'evento solare.",
+                    "name": "Tipo di scostamento"
+                }
+            },
+            "name": "Tramonto"
+        }
+    }
+}

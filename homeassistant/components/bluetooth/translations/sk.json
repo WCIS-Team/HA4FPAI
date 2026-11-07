@@ -1,0 +1,68 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Slu\u017eba u\u017e je nakonfigurovan\u00e1",
+            "no_adapters": "Nena\u0161li sa \u017eiadne nenakonfigurovan\u00e9 adapt\u00e9ry Bluetooth."
+        },
+        "flow_title": "{name} {manufacturer} {model}",
+        "step": {
+            "bluetooth_confirm": {
+                "description": "Chcete nastavi\u0165 {name}?"
+            },
+            "multiple_adapters": {
+                "data": {
+                    "adapter": "Adapt\u00e9r"
+                },
+                "description": "Vyberte adapt\u00e9r Bluetooth, ktor\u00fd chcete nastavi\u0165"
+            },
+            "single_adapter": {
+                "description": "Chcete nastavi\u0165 adapt\u00e9r Bluetooth {name} {manufacturer} {model}?"
+            },
+            "user": {
+                "data": {
+                    "address": "Zariadenie"
+                },
+                "description": "Vyberte zariadenie, ktor\u00e9 chcete nastavi\u0165"
+            }
+        }
+    },
+    "issues": {
+        "bluetooth_adapter_missing_permissions": {
+            "description": "Adapt\u00e9r Bluetooth **{adapter}** ({model}) pracuje v zhor\u0161enom re\u017eime, preto\u017ee v\u00e1\u0161 kontajner potrebuje dodato\u010dn\u00e9 opr\u00e1vnenia na pln\u00fd pr\u00edstup k hardv\u00e9ru Bluetooth. \n\nPri prid\u00e1van\u00ed po\u017eadovan\u00fdch opr\u00e1vnen\u00ed postupujte pod\u013ea pokynov v na\u0161ej dokument\u00e1cii: [Bluetooth povolenia pre Docker]({docs_url}) \n\nPo pridan\u00ed t\u00fdchto opr\u00e1vnen\u00ed re\u0161tartujte kontajner Home Assistant, aby sa zmeny prejavili.",
+            "title": "Adapt\u00e9r Bluetooth vy\u017eaduje \u010fal\u0161ie povolenia"
+        },
+        "bluetooth_adapter_passive_mode_uart": {
+            "description": "Adapt\u00e9r Bluetooth **{adapter}** ({model}) je zaseknut\u00fd v pas\u00edvnom re\u017eime skenovania napriek \u017eiadosti o akt\u00edvny re\u017eim skenovania. **Pok\u00fa\u0161al sa o automatick\u00e9 obnovenie, ale zlyhal.** Pravdepodobne ide o probl\u00e9m jadra, firmv\u00e9ru alebo opera\u010dn\u00e9ho syst\u00e9mu a na obnovenie adapt\u00e9ra je potrebn\u00fd \u00fapln\u00fd cyklus nap\u00e1jania syst\u00e9mu. \n\nV pas\u00edvnom re\u017eime m\u00f4\u017ee adapt\u00e9r prij\u00edma\u0165 iba reklamy, ale nem\u00f4\u017ee si vy\u017eiada\u0165 \u010fal\u0161ie \u00fadaje od zariaden\u00ed, \u010do ovplyvn\u00ed zis\u0165ovanie zariaden\u00ed a ich funk\u010dnos\u0165. \n\n**Potrebn\u00fd je manu\u00e1lny z\u00e1sah:** \n1. **\u00dapln\u00e9 vypnutie syst\u00e9mu** (nielen re\u0161tartovanie) \n2. **Vypnite nap\u00e1janie** (odpojte z\u00e1str\u010dku alebo vypnite na vyp\u00edna\u010di) \n3. Po\u010dkajte 10 sek\u00fand \n4. Obnovte nap\u00e1janie a spustite syst\u00e9m \n\nAk probl\u00e9m pretrv\u00e1va aj po vypnut\u00ed: \n- Skontrolujte, \u010di nie s\u00fa k dispoz\u00edcii aktualiz\u00e1cie jadra/firmv\u00e9ru \n- Vstavan\u00fd adapt\u00e9r Bluetooth m\u00f4\u017ee ma\u0165 hardv\u00e9rov\u00e9 probl\u00e9my",
+            "title": "Adapt\u00e9r Bluetooth vy\u017eaduje vypnutie syst\u00e9mu a zapnutie"
+        },
+        "bluetooth_adapter_passive_mode_usb": {
+            "description": "Adapt\u00e9r Bluetooth **{adapter}** ({model}) je zaseknut\u00fd v pas\u00edvnom re\u017eime skenovania napriek \u017eiadosti o akt\u00edvny re\u017eim skenovania. **Pok\u00fa\u0161al sa o automatick\u00e9 obnovenie, ale zlyhal.** Pravdepodobne ide o probl\u00e9m jadra, firmv\u00e9ru alebo opera\u010dn\u00e9ho syst\u00e9mu a adapt\u00e9r si na obnovenie vy\u017eaduje manu\u00e1lny cyklus nap\u00e1jania. \n\nV pas\u00edvnom re\u017eime m\u00f4\u017ee adapt\u00e9r prij\u00edma\u0165 iba reklamy, ale nem\u00f4\u017ee si vy\u017eiada\u0165 \u010fal\u0161ie \u00fadaje od zariaden\u00ed, \u010do ovplyvn\u00ed zis\u0165ovanie zariaden\u00ed a ich funk\u010dnos\u0165. \n\n**Potrebn\u00fd manu\u00e1lny z\u00e1sah:** \n1. **Odpojte adapt\u00e9r USB** \n2. Po\u010dkajte 5 sek\u00fand \n3. **Zapojte ho sp\u00e4\u0165** \n4. Po\u010dkajte, k\u00fdm Home Assistant zist\u00ed adapt\u00e9r \n\nAk probl\u00e9m pretrv\u00e1va aj po prepnut\u00ed nap\u00e1jania: \n- Sk\u00faste pou\u017ei\u0165 in\u00fd port USB \n- Skontrolujte, \u010di nie s\u00fa k dispoz\u00edcii aktualiz\u00e1cie jadra/firmv\u00e9ru \n- Zv\u00e1\u017ete pou\u017eitie in\u00e9ho adapt\u00e9ra Bluetooth",
+            "title": "Adapt\u00e9r Bluetooth USB vy\u017eaduje manu\u00e1lne zapnutie a vypnutie"
+        }
+    },
+    "options": {
+        "abort": {
+            "local_adapters_no_passive_support": "Miestne adapt\u00e9ry Bluetooth, ktor\u00e9 nepodporuj\u00fa pas\u00edvne skenovanie, nie je mo\u017en\u00e9 nakonfigurova\u0165.",
+            "remote_adapters_not_supported": "Konfigur\u00e1cia Bluetooth pre vzdialen\u00e9 adapt\u00e9ry nie je podporovan\u00e1."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "mode": "Re\u017eim skenovania"
+                },
+                "data_description": {
+                    "mode": "Pre v\u00e4\u010d\u0161inu nastaven\u00ed sa odpor\u00fa\u010da automatick\u00fd re\u017eim. \u0160etr\u00ed bat\u00e9riu zariaden\u00ed Bluetooth a z\u00e1rove\u0148 r\u00fdchlo zachyt\u00e1va nov\u00e9 zariadenia a aktualiz\u00e1cie."
+                }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "active": "Akt\u00edvne (vyu\u017e\u00edva viac bat\u00e9rie zariadenia, najr\u00fdchlej\u0161ie aktualiz\u00e1cie)",
+                "auto": "Auto (odpor\u00fa\u010dan\u00e9, \u0161etr\u00ed bat\u00e9riu zariadenia)",
+                "passive": "Pas\u00edvne (najni\u017e\u0161ia spotreba bat\u00e9rie zariadenia, niektor\u00e9 \u00fadaje m\u00f4\u017eu ch\u00fdba\u0165)"
+            }
+        }
+    }
+}

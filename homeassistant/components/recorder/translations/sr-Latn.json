@@ -1,0 +1,109 @@
+{
+    "issues": {
+        "backup_failed_out_of_resources": {
+            "description": "Bekap baze pokrenut u {start_time} nije uspeo zbog nedostatka resursa. Bekap nije pouzdan i mora se ponovo pokrenuti. Do ovoga mo\u017ee do\u0107i ako je baza prevelika ili ako je sistem pod velikim optere\u0107enjem. Razmotrite nadogradnju hardvera sistema ili smanjenje veli\u010dine baze smanjenjem broja dana istorije za \u010duvanje ili kreiranjem filtera.",
+            "title": "Bekap baze nije uspeo zbog nedostatka resursa"
+        },
+        "database_engine_not_supported_lts": {
+            "description": "Verzija {server_version} baze {database_engine} nije podr\u017eano izdanje sa dugotrajnom podr\u0161kom (LTS). Podr\u0161ka za kratkotrajna izdanja i LTS izdanja kojima je istekao vek trajanja bi\u0107e uklonjena; molimo nadogradite na jednu od podr\u017eanih LTS verzija ({lts_versions}) i ponovo pokrenite Home Assistant da biste nastavili sa bele\u017eenjem podataka.",
+            "title": "Potrebno je a\u017euriranje {database_engine} na podr\u017eanu LTS verziju za nastavak bele\u017eenja podataka"
+        },
+        "database_engine_too_old": {
+            "description": "Podr\u0161ka za verziju {server_version} baze {database_engine} prestaje; minimalna podr\u017eana verzija bi\u0107e {min_version}. Molimo nadogradite softver baze podataka i ponovo pokrenite Home Assistant.",
+            "title": "Potrebno je a\u017euriranje {database_engine} na verziju {min_version} ili noviju za nastavak bele\u017eenja podataka"
+        },
+        "maria_db_range_index_regression": {
+            "description": "Starije verzije MariaDB baze podataka imaju zna\u010dajan pad performansi prilikom u\u010ditavanja istorije ili \u010di\u0161\u0107enja baze. A\u017eurirajte MariaDB na verziju {min_version} ili noviju i ponovo pokrenite Home Assistant. Ako koristite MariaDB Core dodatak, proverite da li je a\u017euriran na najnoviju verziju.",
+            "title": "A\u017euriranje MariaDB-a na {min_version} ili noviju da biste re\u0161ili zna\u010dajan problem sa performansama"
+        }
+    },
+    "services": {
+        "disable": {
+            "description": "Obustavlja proces upisivanja sistemskih doga\u0111aja i promena stanja u Recorder bazu.",
+            "name": "Onemogu\u0107i bele\u017eenje"
+        },
+        "enable": {
+            "description": "Aktivira proces upisivanja sistemskih doga\u0111aja i promena stanja u Recorder bazu.",
+            "name": "Omogu\u0107i bele\u017eenje"
+        },
+        "get_statistics": {
+            "description": "Preuzima statisti\u010dke zapise za izabrane entitete u definisanom vremenskom intervalu.",
+            "fields": {
+                "end_time": {
+                    "description": "Vreme zavr\u0161etka za upit o statistici. Ako se izostavi, prikazuju se svi statisti\u010dki podaci od vremena po\u010detka pa nadalje.",
+                    "name": "Vreme zavr\u0161etka"
+                },
+                "period": {
+                    "description": "Vremenski period po kojem se grupi\u0161e statistika.",
+                    "name": "Interval grupisanja"
+                },
+                "start_time": {
+                    "description": "Vreme po\u010detka za upit o statistici.",
+                    "name": "Vreme po\u010detka"
+                },
+                "statistic_ids": {
+                    "description": "Identifikatori entiteta za koje se preuzimaju podaci.",
+                    "name": "Identifikatori statistike"
+                },
+                "types": {
+                    "description": "Vrste statisti\u010dkih vrednosti koje se vra\u0107aju.",
+                    "name": "Vrste statisti\u010dkih vrednosti"
+                },
+                "units": {
+                    "description": "Opciona tabela za pretvaranje mernih jedinica.",
+                    "name": "Jedinice"
+                }
+            },
+            "name": "Preuzmi statistiku bele\u017eenja"
+        },
+        "purge": {
+            "description": "Pokre\u0107e postupak trajnog uklanjanja istorijskih zapisa iz Recorder baze podataka.",
+            "fields": {
+                "apply_filter": {
+                    "description": "Primenite entity_id i event_type filtere pored vremenskog \u010di\u0161\u0107enja.",
+                    "name": "Primena definisanih filtera"
+                },
+                "keep_days": {
+                    "description": "Koliko dana \u010duvati podatke. Sve starije od toga bi\u0107e obrisano.",
+                    "name": "Period zadr\u017eavanja podataka"
+                },
+                "repack": {
+                    "description": "Vr\u0161i kompresiju i reorganizaciju podataka radi smanjenja veli\u010dine datoteke (Repack).",
+                    "name": "Optimizacija baze podataka"
+                }
+            },
+            "name": "O\u010disti bazu podataka"
+        },
+        "purge_entities": {
+            "description": "Trajno uklanja istorijske zapise izabranih entiteta iz baze podataka.",
+            "fields": {
+                "domains": {
+                    "description": "Lista domena \u010diji se podaci uklanjaju iz Recorder baze podataka.",
+                    "name": "Domeni entiteta"
+                },
+                "entity_globs": {
+                    "description": "Lista grupnih obrazaca koji se koriste za odabir entiteta \u010diji se podaci uklanjaju iz Recorder baze podataka.",
+                    "name": "Filteri grupnih obrazaca"
+                },
+                "entity_id": {
+                    "description": "Lista entiteta \u010diju istoriju \u017eelite da obri\u0161ete iz baze.",
+                    "name": "Identifikatori entiteta"
+                },
+                "keep_days": {
+                    "description": "Koliko dana \u010duvati podatke. Sve starije od toga bi\u0107e obrisano.",
+                    "name": "Period zadr\u017eavanja podataka"
+                }
+            },
+            "name": "O\u010disti entitete iz bele\u017eenja"
+        }
+    },
+    "system_health": {
+        "info": {
+            "current_recorder_run": "Vreme trenutne sesije",
+            "database_engine": "Verzija baze podataka",
+            "database_version": "Verzija baze podataka",
+            "estimated_db_size": "Procenjena veli\u010dina baze podataka (MiB)",
+            "oldest_recorder_run": "Vreme najstarijeg zapisa"
+        }
+    }
+}

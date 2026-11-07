@@ -1,0 +1,593 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "condition_threshold_name": "Tr\u00f6skelv\u00e4rde",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone",
+        "trigger_threshold_name": "Tr\u00f6skelv\u00e4rde"
+    },
+    "conditions": {
+        "is_muted": {
+            "description": "Testar om en eller flera mediaspelare \u00e4r tystade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare \u00e4r tystad"
+        },
+        "is_not_playing": {
+            "description": "Testar om en eller flera mediaspelare inte spelar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare spelar inte"
+        },
+        "is_off": {
+            "description": "Testar om en eller flera mediaspelare \u00e4r avst\u00e4ngda.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare \u00e4r avst\u00e4ngd"
+        },
+        "is_on": {
+            "description": "Testar om en eller flera mediaspelare \u00e4r p\u00e5slagna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare \u00e4r p\u00e5slagen"
+        },
+        "is_paused": {
+            "description": "Testar om en eller flera mediespelare \u00e4r pausade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare \u00e4r pausad"
+        },
+        "is_playing": {
+            "description": "Testar om en eller flera mediaspelare spelar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare spelar"
+        },
+        "is_unmuted": {
+            "description": "Testar om en eller flera mediaspelare inte \u00e4r tystade.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare \u00e4r inte tystad"
+        },
+        "is_volume": {
+            "description": "Testar volymen p\u00e5 en eller flera mediaspelare.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rde"
+                }
+            },
+            "name": "Mediaspelares volym"
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "{entity_name} buffrar",
+            "is_idle": "{entity_name} \u00e4r inaktiv",
+            "is_off": "{entity_name} \u00e4r av",
+            "is_on": "{entity_name} \u00e4r p\u00e5",
+            "is_paused": "{entity_name} \u00e4r pausad",
+            "is_playing": "{entity_name} spelar"
+        },
+        "extra_fields": {
+            "for": "Varaktighet"
+        },
+        "trigger_type": {
+            "buffering": "{entity_name} b\u00f6rjar buffra",
+            "changed_states": "{entity_name} slogs p\u00e5 eller av",
+            "idle": "{entity_name} blir inaktiv",
+            "paused": "{entity_name} pausad",
+            "playing": "{entity_name} b\u00f6rjar spela",
+            "turned_off": "{entity_name} slogs av",
+            "turned_on": "{entity_name} slogs p\u00e5"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Mediaspelare",
+            "state": {
+                "buffering": "Buffrar",
+                "idle": "Inaktiv",
+                "off": "Av",
+                "on": "P\u00e5",
+                "paused": "Pausad",
+                "playing": "Spelar",
+                "standby": "Vilol\u00e4ge"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "App-ID"
+                },
+                "app_name": {
+                    "name": "App"
+                },
+                "entity_picture_local": {
+                    "name": "Lokalt tillg\u00e4nglig entitetsbild"
+                },
+                "groups_members": {
+                    "name": "Gruppmedlemmar"
+                },
+                "is_volume_muted": {
+                    "name": "Tystad",
+                    "state": {
+                        "false": "Nej",
+                        "true": "Ja"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Albumartist"
+                },
+                "media_album_name": {
+                    "name": "Album"
+                },
+                "media_artist": {
+                    "name": "Artist"
+                },
+                "media_channel": {
+                    "name": "Kanal"
+                },
+                "media_content_id": {
+                    "name": "Inneh\u00e5lls-ID"
+                },
+                "media_content_type": {
+                    "name": "Inneh\u00e5llstyp",
+                    "state": {
+                        "album": "Album",
+                        "app": "App",
+                        "artist": "Artist",
+                        "channel": "Kanal",
+                        "channels": "Kanaler",
+                        "composer": "Komposit\u00f6r",
+                        "contributing_artist": "Medverkande artist",
+                        "episode": "Avsnitt",
+                        "game": "Spel",
+                        "genre": "Genre",
+                        "image": "Bild",
+                        "movie": "Film",
+                        "music": "Musik",
+                        "playlist": "Spellista",
+                        "podcast": "Podcast",
+                        "season": "S\u00e4song",
+                        "track": "Sp\u00e5r",
+                        "tvshow": "TV-program",
+                        "url": "URL",
+                        "video": "Video"
+                    }
+                },
+                "media_duration": {
+                    "name": "Varaktighet"
+                },
+                "media_episode": {
+                    "name": "Avsnitt"
+                },
+                "media_playlist": {
+                    "name": "Spellista"
+                },
+                "media_position": {
+                    "name": "Position"
+                },
+                "media_position_updated_at": {
+                    "name": "Position uppdaterad"
+                },
+                "media_season": {
+                    "name": "S\u00e4song"
+                },
+                "media_series_title": {
+                    "name": "Serie"
+                },
+                "media_title": {
+                    "name": "Titel"
+                },
+                "media_track": {
+                    "name": "Sp\u00e5r"
+                },
+                "repeat": {
+                    "name": "Repetera",
+                    "state": {
+                        "all": "Alla",
+                        "off": "Av",
+                        "one": "En"
+                    }
+                },
+                "shuffle": {
+                    "name": "Blanda",
+                    "state": {
+                        "false": "Av",
+                        "true": "P\u00e5"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Ljudl\u00e4ge"
+                },
+                "sound_mode_list": {
+                    "name": "Tillg\u00e4ngliga ljudl\u00e4gen"
+                },
+                "source": {
+                    "name": "K\u00e4lla"
+                },
+                "source_list": {
+                    "name": "Tillg\u00e4ngliga k\u00e4llor"
+                },
+                "volume_level": {
+                    "name": "Volym"
+                }
+            }
+        },
+        "projector": {
+            "name": "Projektor"
+        },
+        "receiver": {
+            "name": "Mottagare"
+        },
+        "speaker": {
+            "name": "H\u00f6gtalare"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "L\u00e4gg till i k\u00f6",
+                "next": "Spela n\u00e4sta",
+                "play": "Spela",
+                "replace": "T\u00f6mmer k\u00f6n och spelar nu"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "Upprepa alla",
+                "off": "Av",
+                "one": "Upprepa en"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Bl\u00e4ddrar bland tillg\u00e4ngliga media.",
+            "fields": {
+                "media_content_id": {
+                    "description": "ID:t f\u00f6r inneh\u00e5llet att bl\u00e4ddra bland. Integrationsberoende.",
+                    "name": "Inneh\u00e5lls-ID"
+                },
+                "media_content_type": {
+                    "description": "Typen av inneh\u00e5ll att bl\u00e4ddra bland, t.ex. bild, musik, tv-program, video, avsnitt, kanal eller spellista.",
+                    "name": "Inneh\u00e5llstyp"
+                }
+            },
+            "name": "Bl\u00e4ddra bland media"
+        },
+        "clear_playlist": {
+            "description": "Tar bort alla objekt fr\u00e5n spellistan.",
+            "name": "Rensa spellista"
+        },
+        "join": {
+            "description": "Grupperar mediaspelare f\u00f6r synkroniserad uppspelning. Fungerar endast p\u00e5 de multiroom-ljudsystem som st\u00f6ds.",
+            "fields": {
+                "group_members": {
+                    "description": "De spelare som kommer att synkroniseras med den uppspelning som anges i `Targets`.",
+                    "name": "Gruppmedlemmar"
+                }
+            },
+            "name": "Anslut mediaspelare"
+        },
+        "media_next_track": {
+            "description": "V\u00e4ljer n\u00e4sta sp\u00e5r.",
+            "name": "N\u00e4sta"
+        },
+        "media_pause": {
+            "description": "Pausar.",
+            "name": "Pausa media"
+        },
+        "media_play": {
+            "description": "Startar uppspelning p\u00e5 en mediaspelare.",
+            "name": "Spela media"
+        },
+        "media_play_pause": {
+            "description": "V\u00e4xlar mellan uppspelning/paus p\u00e5 en mediespelare.",
+            "name": "Spela/Pausa media"
+        },
+        "media_previous_track": {
+            "description": "V\u00e4ljer f\u00f6reg\u00e5ende sp\u00e5r p\u00e5 en mediaspelare.",
+            "name": "F\u00f6reg\u00e5ende sp\u00e5r"
+        },
+        "media_seek": {
+            "description": "G\u00f6r att du kan hoppa till en annan del av det media som f\u00f6r n\u00e4rvarande spelas upp i en mediaspelare.",
+            "fields": {
+                "seek_position": {
+                    "description": "M\u00e5lposition i det media som f\u00f6r n\u00e4rvarande spelas upp. Formatet \u00e4r plattformsberoende.",
+                    "name": "Position"
+                }
+            },
+            "name": "S\u00f6k media"
+        },
+        "media_stop": {
+            "description": "Stoppar uppspelning p\u00e5 en mediaspelare.",
+            "name": "Stoppa media"
+        },
+        "play_media": {
+            "description": "Startar uppspelning av angivet media.",
+            "fields": {
+                "announce": {
+                    "description": "Om mediet ska spelas upp som ett tillk\u00e4nnagivande.",
+                    "name": "Meddela"
+                },
+                "enqueue": {
+                    "description": "Om inneh\u00e5llet ska spelas upp nu eller l\u00e4ggas till i k\u00f6n.",
+                    "name": "K\u00f6a"
+                },
+                "media": {
+                    "description": "Det media som valts att spelas upp.",
+                    "name": "Media"
+                }
+            },
+            "name": "Spela upp angiven media"
+        },
+        "repeat_set": {
+            "description": "St\u00e4ller in repeat-l\u00e4ge.",
+            "fields": {
+                "repeat": {
+                    "description": "Anger om media (en eller alla) ska spelas upp i en loop eller inte.",
+                    "name": "Upprepningsl\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in repeat"
+        },
+        "search_media": {
+            "description": "S\u00f6ker bland tillg\u00e4ngliga medier.",
+            "fields": {
+                "media_content_id": {
+                    "description": "ID:t f\u00f6r inneh\u00e5llet att bl\u00e4ddra bland. Integrationsberoende.",
+                    "name": "Inneh\u00e5lls-ID"
+                },
+                "media_content_type": {
+                    "description": "Typen av inneh\u00e5ll att bl\u00e4ddra bland, t.ex. bild, musik, tv-program, video, avsnitt, kanal eller spellista.",
+                    "name": "Inneh\u00e5llstyp"
+                },
+                "media_filter_classes": {
+                    "description": "Lista \u00f6ver medieklasser som s\u00f6kresultaten ska filtreras efter.",
+                    "name": "Medieklassfilter"
+                },
+                "search_query": {
+                    "description": "Termen att s\u00f6ka efter.",
+                    "name": "S\u00f6kfras"
+                }
+            },
+            "name": "S\u00f6k media"
+        },
+        "select_sound_mode": {
+            "description": "V\u00e4ljer ett ljudl\u00e4ge.",
+            "fields": {
+                "sound_mode": {
+                    "description": "Namn p\u00e5 det ljudl\u00e4ge som du vill v\u00e4xla till.",
+                    "name": "Ljudl\u00e4ge"
+                }
+            },
+            "name": "V\u00e4lj ljudl\u00e4ge"
+        },
+        "select_source": {
+            "description": "Skickar ett kommando till mediaspelaren om att byta ing\u00e5ngsk\u00e4lla.",
+            "fields": {
+                "source": {
+                    "description": "Namnet p\u00e5 k\u00e4llan som du vill v\u00e4xla till. Plattformsberoende.",
+                    "name": "K\u00e4lla"
+                }
+            },
+            "name": "V\u00e4lj k\u00e4lla"
+        },
+        "shuffle_set": {
+            "description": "Aktiverar eller avaktiverar slumpvis uppspelning.",
+            "fields": {
+                "shuffle": {
+                    "description": "Anger om media ska spelas upp i slumpm\u00e4ssig ordning eller inte.",
+                    "name": "Shuffle-l\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in slumpvis uppspelning"
+        },
+        "toggle": {
+            "description": "Sl\u00e5r p\u00e5/av en mediaspelare.",
+            "name": "V\u00e4xla mediaspelare"
+        },
+        "turn_off": {
+            "description": "St\u00e4nger av mediaspelaren",
+            "name": "Sl\u00e5 av mediaspelare"
+        },
+        "turn_on": {
+            "description": "Sl\u00e5r p\u00e5 mediaspelaren",
+            "name": "Sl\u00e5 p\u00e5 mediaspelare"
+        },
+        "unjoin": {
+            "description": "Tar bort spelaren fr\u00e5n en grupp. Fungerar endast p\u00e5 plattformar som st\u00f6der spelargrupper.",
+            "name": "Avgruppera mediaspelare"
+        },
+        "volume_down": {
+            "description": "S\u00e4nker volymen.",
+            "name": "S\u00e4nk volym"
+        },
+        "volume_mute": {
+            "description": "Sl\u00e5r p\u00e5 eller st\u00e4nger av ljudet f\u00f6r mediaspelaren.",
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Anger om ljudet \u00e4r p\u00e5slaget eller avst\u00e4ngt.",
+                    "name": "Ljud avst\u00e4ngt"
+                }
+            },
+            "name": "Ljud av/p\u00e5"
+        },
+        "volume_set": {
+            "description": "St\u00e4ller in volymniv\u00e5n.",
+            "fields": {
+                "volume_level": {
+                    "description": "Volymen. 0 \u00e4r oh\u00f6rbart, 1 \u00e4r maximal volym.",
+                    "name": "Niv\u00e5"
+                }
+            },
+            "name": "St\u00e4ll in volym"
+        },
+        "volume_up": {
+            "description": "H\u00f6jer volymen.",
+            "name": "H\u00f6j volym"
+        }
+    },
+    "title": "Mediaspelare",
+    "triggers": {
+        "muted": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera mediaspelare tystas.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare har tystats"
+        },
+        "paused_playing": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera mediespelare pausar uppspelningen.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare pausade uppspelningen"
+        },
+        "started_playing": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera mediespelare b\u00f6rjar spela.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare b\u00f6rjade spela"
+        },
+        "stopped_playing": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera mediespelare stoppar uppspelningen.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare slutade spela"
+        },
+        "turned_off": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera mediespelare st\u00e4ngs av.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare st\u00e4ngdes av"
+        },
+        "turned_on": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera mediespelare sl\u00e5s p\u00e5.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare slogs p\u00e5"
+        },
+        "unmuted": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera mediespelare avtystas.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Mediaspelare har avtystats"
+        },
+        "volume_changed": {
+            "description": "Utl\u00f6ses n\u00e4r volymen p\u00e5 en eller flera mediespelare f\u00f6r\u00e4ndras.",
+            "fields": {
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rde"
+                }
+            },
+            "name": "Mediaspelares volym har f\u00f6r\u00e4ndrats"
+        },
+        "volume_crossed_threshold": {
+            "description": "Utl\u00f6ses n\u00e4r volymen p\u00e5 en eller flera mediespelare passerar ett tr\u00f6skelv\u00e4rde.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rde"
+                }
+            },
+            "name": "Mediaspelares volym har passerat tr\u00f6skelv\u00e4rdet"
+        }
+    }
+}

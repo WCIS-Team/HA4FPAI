@@ -1,0 +1,89 @@
+{
+    "config": {
+        "abort": {
+            "all_configured": "Tous les serveurs li\u00e9s sont d\u00e9j\u00e0 configur\u00e9s",
+            "already_configured": "Ce serveur Plex est d\u00e9j\u00e0 configur\u00e9",
+            "reauth_successful": "La r\u00e9authentification a r\u00e9ussi",
+            "token_request_timeout": "Expiration du d\u00e9lai d'obtention du jeton",
+            "unknown": "Erreur inattendue"
+        },
+        "error": {
+            "faulty_credentials": "L'autorisation a \u00e9chou\u00e9, v\u00e9rifiez le jeton",
+            "host_or_token": "Vous devez fournir au moins un h\u00f4te ou un jeton",
+            "no_servers": "Aucun serveur li\u00e9 au compte Plex",
+            "not_found": "Serveur Plex introuvable",
+            "ssl_error": "Probl\u00e8me de certificat SSL"
+        },
+        "flow_title": "{name} ({host})",
+        "step": {
+            "manual_setup": {
+                "data": {
+                    "host": "H\u00f4te",
+                    "port": "Port",
+                    "ssl": "Utilise un certificat SSL",
+                    "token": "Jeton (facultatif)",
+                    "verify_ssl": "V\u00e9rifier le certificat SSL"
+                },
+                "title": "Configuration manuelle de Plex"
+            },
+            "select_server": {
+                "data": {
+                    "server_id": "Serveur"
+                },
+                "description": "Plusieurs serveurs disponibles, s\u00e9lectionnez-en un\u00a0:",
+                "title": "S\u00e9lectionner le serveur Plex"
+            },
+            "user": {
+                "description": "Un serveur Plex peut \u00eatre configur\u00e9 dans Home Assistant de deux mani\u00e8res diff\u00e9rentes.\n\nVous pouvez lier votre compte Plex en vous connectant via plex.tv, qui d\u00e9tectera et connectera automatiquement vos serveurs, ou vous pouvez saisir manuellement l'adresse du serveur et le jeton.",
+                "menu_options": {
+                    "manual_setup": "Saisir manuellement",
+                    "website_auth": "Lier le compte Plex (recommand\u00e9)"
+                }
+            },
+            "website_auth": {
+                "description": "Un probl\u00e8me est survenu lors de la connexion \u00e0 Plex. Veuillez r\u00e9essayer."
+            }
+        }
+    },
+    "entity": {
+        "button": {
+            "scan_clients": {
+                "name": "Scanner les clients"
+            }
+        },
+        "update": {
+            "server_update": {
+                "name": "Mise \u00e0 jour"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "plex_mp_settings": {
+                "data": {
+                    "ignore_new_shared_users": "Ignorer les nouveaux utilisateurs g\u00e9r\u00e9s/partag\u00e9s",
+                    "ignore_plex_web_clients": "Ignorer les clients web Plex",
+                    "monitored_users": "Utilisateurs surveill\u00e9s",
+                    "use_episode_art": "Utiliser l'illustration de l'\u00e9pisode"
+                },
+                "description": "Options pour les lecteurs multim\u00e9dias Plex"
+            }
+        }
+    },
+    "services": {
+        "refresh_library": {
+            "description": "Actualise une biblioth\u00e8que Plex pour rechercher des m\u00e9dias nouveaux et mis \u00e0 jour.",
+            "fields": {
+                "library_name": {
+                    "description": "Nom de la biblioth\u00e8que Plex \u00e0 actualiser.",
+                    "name": "Nom de la biblioth\u00e8que"
+                },
+                "server_name": {
+                    "description": "Nom d'un serveur Plex si plusieurs serveurs Plex sont configur\u00e9s.",
+                    "name": "Nom du serveur"
+                }
+            },
+            "name": "Actualiser la biblioth\u00e8que"
+        }
+    }
+}

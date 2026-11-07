@@ -1,0 +1,92 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Patikrina, ar vienas ar keli tvarkara\u0161\u010dio blokai \u0161iuo metu neaktyv\u016bs.",
+            "fields": {
+                "behavior": {
+                    "name": "Elgesys"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Tvarkara\u0161tis neveikia"
+        },
+        "is_on": {
+            "description": "Patikrina, ar \u0161iuo metu aktyvus vienas ar keli tvarkara\u0161\u010dio blokai.",
+            "fields": {
+                "behavior": {
+                    "name": "Elgesys"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Tvarkara\u0161tis \u012fjungtas"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Tvarkara\u0161tis",
+            "state": {
+                "off": "I\u0161jungta",
+                "on": "\u012ejungta"
+            },
+            "state_attributes": {
+                "editable": {
+                    "name": "Tvarkoma per naudotojo s\u0105saj\u0105",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Taip"
+                    }
+                },
+                "next_event": {
+                    "name": "Kitas renginys"
+                }
+            }
+        }
+    },
+    "services": {
+        "get_schedule": {
+            "description": "Nuskaito sukonfig\u016bruotus vieno ar keli\u0173 tvarkara\u0161\u010di\u0173 laiko intervalus.",
+            "name": "Gaukite tvarkara\u0161t\u012f"
+        },
+        "reload": {
+            "description": "I\u0161 naujo \u012fkelia tvarkara\u0161\u010dius i\u0161 YAML konfig\u016bracijos.",
+            "name": "\u012ekelti tvarkara\u0161\u010dius i\u0161 naujo"
+        }
+    },
+    "title": "Tvarkara\u0161tis",
+    "triggers": {
+        "block_ended": {
+            "description": "Suveikia, kai baigiasi vienas ar keli tvarkara\u0161\u010dio blokai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Tvarkara\u0161\u010dio blokavimas baig\u0117si"
+        },
+        "block_started": {
+            "description": "Suveikia, kai prasideda vienas ar keli tvarkara\u0161\u010dio blokai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Prad\u0117tas tvarkara\u0161\u010dio blokavimas"
+        }
+    }
+}

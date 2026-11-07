@@ -1,0 +1,245 @@
+{
+    "common": {
+        "condition_behavior_name": "S\u0105lyga i\u0161laikoma, jei",
+        "condition_for_name": "Bent jau",
+        "condition_threshold_name": "Slenks\u010dio tipas",
+        "trigger_behavior_name": "Suaktyvinti, kai",
+        "trigger_for_name": "Bent jau",
+        "trigger_threshold_name": "Slenks\u010dio tipas"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Patikrina, ar i\u0161jungtas vienas ar keli vandens \u0161ildytuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vandens \u0161ildytuvas i\u0161jungtas"
+        },
+        "is_on": {
+            "description": "Patikrina, ar \u012fjungtas vienas ar keli vandens \u0161ildytuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vandens \u0161ildytuvas \u012fjungtas"
+        },
+        "is_operation_mode": {
+            "description": "Patikrina, ar vienas ar keli vandens \u0161ildytuvai nustatyti konkre\u010diam veikimo re\u017eimui.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "operation_mode": {
+                    "description": "Veikimo re\u017eimas, kur\u012f reikia patikrinti.",
+                    "name": "Veikimo re\u017eimas"
+                }
+            },
+            "name": "Vandens \u0161ildytuvo veikimo re\u017eimas"
+        },
+        "is_target_temperature": {
+            "description": "I\u0161bando vieno ar keli\u0173 vandens \u0161ildytuv\u0173 temperat\u016bros nustatym\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "S\u0105lyga i\u0161laikoma, jei"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "threshold": {
+                    "name": "Slenks\u010dio tipas"
+                }
+            },
+            "name": "Vandens \u0161ildytuvo tikslin\u0117 temperat\u016bra"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "turn_off": "I\u0161jungti {entity_name}",
+            "turn_on": "\u012ejungti {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Vandens \u0161ildytuvas",
+            "state": {
+                "eco": "Eco",
+                "electric": "Elektrinis",
+                "gas": "Dujos",
+                "heat_pump": "\u0160ilumos siurblys",
+                "high_demand": "Didel\u0117 paklausa",
+                "off": "I\u0161jungta",
+                "performance": "Spektaklis"
+            },
+            "state_attributes": {
+                "away_mode": {
+                    "name": "I\u0161vykimo re\u017eimas",
+                    "state": {
+                        "off": "I\u0161jungta",
+                        "on": "\u012ejungta"
+                    }
+                },
+                "current_operation": {
+                    "name": "Dabartin\u0117 operacija"
+                },
+                "current_temperature": {
+                    "name": "Dabartin\u0117 temperat\u016bra"
+                },
+                "max_temp": {
+                    "name": "Maksimali tikslin\u0117 temperat\u016bra"
+                },
+                "min_temp": {
+                    "name": "Minimali tikslin\u0117 temperat\u016bra"
+                },
+                "operation_mode": {
+                    "name": "Veikimo re\u017eimas",
+                    "state": {
+                        "eco": "Eco",
+                        "electric": "Elektrinis",
+                        "gas": "Dujos",
+                        "heat_pump": "\u0160ilumos siurblys",
+                        "high_demand": "Didel\u0117 paklausa",
+                        "off": "I\u0161jungta",
+                        "performance": "Spektaklis"
+                    }
+                },
+                "target_temp_high": {
+                    "name": "Vir\u0161utin\u0117 tikslin\u0117 temperat\u016bra"
+                },
+                "target_temp_low": {
+                    "name": "\u017demesn\u0117 tikslin\u0117 temperat\u016bra"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_operation_mode": {
+            "message": "Veikimo re\u017eimas {operation_mode} negalioja {entity_id} . Tinkami veikimo re\u017eimai: {operation_list} ."
+        },
+        "operation_list_not_defined": {
+            "message": "Veikimo re\u017eimas {operation_mode} negalioja {entity_id} . Operacij\u0173 s\u0105ra\u0161as neapibr\u0117\u017etas."
+        }
+    },
+    "services": {
+        "set_away_mode": {
+            "description": "Nustato vandens \u0161ildytuvo i\u0161vykimo re\u017eim\u0105.",
+            "fields": {
+                "away_mode": {
+                    "description": "Nauja i\u0161vykimo re\u017eimo vert\u0117.",
+                    "name": "I\u0161vykimo re\u017eimas"
+                }
+            },
+            "name": "Nustatykite vandens \u0161ildytuvo i\u0161jungimo re\u017eim\u0105"
+        },
+        "set_operation_mode": {
+            "description": "Nustato vandens \u0161ildytuvo veikimo re\u017eim\u0105.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nauja darbo re\u017eimo reik\u0161m\u0117. Galim\u0173 re\u017eim\u0173 s\u0105ra\u0161\u0105 rasite integracijos dokumentacijoje.",
+                    "name": "Veikimo re\u017eimas"
+                }
+            },
+            "name": "Nustatykite vandens \u0161ildytuvo veikimo re\u017eim\u0105"
+        },
+        "set_temperature": {
+            "description": "Nustato tikslin\u0119 vandens \u0161ildytuvo temperat\u016br\u0105.",
+            "fields": {
+                "operation_mode": {
+                    "description": "Nauja darbo re\u017eimo reik\u0161m\u0117. Galim\u0173 re\u017eim\u0173 s\u0105ra\u0161\u0105 rasite integracijos dokumentacijoje.",
+                    "name": "Veikimo re\u017eimas"
+                },
+                "temperature": {
+                    "description": "Nauja tikslin\u0117 vandens \u0161ildytuvo temperat\u016bra.",
+                    "name": "Temperat\u016bra"
+                }
+            },
+            "name": "Nustatykite vandens \u0161ildytuvo tikslin\u0119 temperat\u016br\u0105"
+        },
+        "turn_off": {
+            "description": "I\u0161jungia vandens \u0161ildytuv\u0105.",
+            "name": "I\u0161junkite vandens \u0161ildytuv\u0105"
+        },
+        "turn_on": {
+            "description": "\u012ejungia vandens \u0161ildytuv\u0105.",
+            "name": "\u012ejunkite vandens \u0161ildytuv\u0105"
+        }
+    },
+    "title": "Vandens \u0161ildytuvas",
+    "triggers": {
+        "operation_mode_changed": {
+            "description": "Suveikia, kai vieno ar keli\u0173 vandens \u0161ildytuv\u0173 veikimo re\u017eimas pasikei\u010dia \u012f konkret\u0173 re\u017eim\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "operation_mode": {
+                    "description": "\u012ejungiami veikimo re\u017eimai.",
+                    "name": "Veikimo re\u017eimas"
+                }
+            },
+            "name": "Pakeistas vandens \u0161ildytuvo veikimo re\u017eimas"
+        },
+        "target_temperature_changed": {
+            "description": "Suveikia, kai pasikei\u010dia vieno ar keli\u0173 vandens \u0161ildytuv\u0173 temperat\u016bros nuostatis.",
+            "fields": {
+                "threshold": {
+                    "name": "Slenks\u010dio tipas"
+                }
+            },
+            "name": "Vandens \u0161ildytuvo tikslin\u0117 temperat\u016bra pakeista"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Suveikia, kai vieno ar keli\u0173 vandens \u0161ildytuv\u0173 temperat\u016bros nustatymas vir\u0161ija rib\u0105.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                },
+                "threshold": {
+                    "name": "Slenks\u010dio tipas"
+                }
+            },
+            "name": "Vandens \u0161ildytuvo tikslin\u0117 temperat\u016bra vir\u0161ijo rib\u0105"
+        },
+        "turned_off": {
+            "description": "Suveikia, kai i\u0161sijungia vienas ar keli vandens \u0161ildytuvai.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "Vandens \u0161ildytuvas i\u0161jungtas"
+        },
+        "turned_on": {
+            "description": "Suveikia, kai \u012fsijungia vienas ar keli vandens \u0161ildytuvai, nepriklausomai nuo veikimo re\u017eimo.",
+            "fields": {
+                "behavior": {
+                    "name": "Suaktyvinti, kai"
+                },
+                "for": {
+                    "name": "Bent jau"
+                }
+            },
+            "name": "\u012ejungtas vandens \u0161ildytuvas"
+        }
+    }
+}

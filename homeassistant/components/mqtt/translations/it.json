@@ -1,0 +1,406 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Il servizio \u00e8 gi\u00e0 configurato"
+        },
+        "error": {
+            "bad_birth": "Argomento di nascita non valido",
+            "bad_certificate": "Il certificato CA non \u00e8 valido",
+            "bad_client_cert_key": "Il certificato client e la chiave privata non sono una coppia valida",
+            "bad_discovery_prefix": "Prefisso di rilevamento non valido",
+            "bad_will": "Argomento testamento non valido",
+            "bad_ws_headers": "Fornisci intestazioni HTTP valide come oggetto JSON",
+            "cannot_connect": "Impossibile connettersi",
+            "client_key_error": "File della chiave privata non valido o password fornita non valida",
+            "invalid_auth": "Autenticazione non valida"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Broker",
+                    "password": "Password",
+                    "port": "Porta",
+                    "protocol": "protocollo MQTT",
+                    "username": "Nome utente"
+                },
+                "data_description": {
+                    "broker": "Il nome host o l'indirizzo IP del tuo broker MQTT.",
+                    "password": "La password per accedere al tuo broker MQTT.",
+                    "port": "La porta su cui il tuo broker MQTT \u00e8 in ascolto. Ad esempio, la porta 1883.",
+                    "protocol": "La versione del protocollo MQTT utilizzata. Nota che Home Assistant passer\u00e0 automaticamente alla versione 5 se il tuo broker la supporta.",
+                    "username": "Il nome utente per accedere al tuo broker MQTT."
+                },
+                "description": "Inserisci le informazioni di connessione del tuo broker MQTT."
+            },
+            "hassio_confirm": {
+                "description": "Vuoi configurare Home Assistant per connettersi al broker MQTT fornito dal componente aggiuntivo: {addon}?"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Password",
+                    "username": "Nome utente"
+                },
+                "data_description": {
+                    "password": "La password per accedere al tuo broker MQTT.",
+                    "username": "Il nome utente per accedere al tuo broker MQTT."
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "error": {
+                "fan_preset_mode_reset_in_preset_modes_list": "Il payload \"reset modalit\u00e0 preimpostata\" non \u00e8 una modalit\u00e0 preimpostata valida",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "L'intervallo di velocit\u00e0 max deve essere maggiore dell'intervallo di velocit\u00e0 min",
+                "invalid_uom_for_state_class": "L'unit\u00e0 di misura \"{unit_of_measurement}\" non \u00e8 supportata dalla classe di stato selezionata. Rimuovi la classe di stato, seleziona una classe di stato che supporti \"{unit_of_measurement}\" oppure scegli un'unit\u00e0 di misura supportata dall'elenco."
+            },
+            "step": {
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Modalit\u00e0 di convalida del codice di allarme",
+                        "entity_category": "Categoria dell'entit\u00e0",
+                        "fan_feature_direction": "Funzione direzione",
+                        "fan_feature_oscillation": "Funzione oscillazione",
+                        "fan_feature_preset_modes": "Modalit\u00e0 predefinite supportate",
+                        "fan_feature_speed": "Supporto alla velocit\u00e0",
+                        "supported_features": "Funzionalit\u00e0 supportate"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Configura come il pannello di controllo dell'allarme valida il codice. Un codice locale viene configurato con l'entit\u00e0 e viene validato da Home Assistant. Un codice remoto viene inviato al dispositivo e validato da remoto. [Per saperne di pi\u00f9.]({url}#code)",
+                        "fan_feature_direction": "Il ventilatore supporta la direzione.",
+                        "fan_feature_oscillation": "Il ventilatore \u00e8 dotato di funzione oscillante.",
+                        "fan_feature_preset_modes": "Il ventilatore offre modalit\u00e0 predefinite.",
+                        "fan_feature_speed": "Il ventilatore offre diverse velocit\u00e0.",
+                        "supported_features": "Funzionalit\u00e0 supportate dall'entit\u00e0."
+                    }
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "code": "Codice di allarme",
+                        "code_arm_required": "Codice di attivazione richiesto",
+                        "code_disarm_required": "Codice di disattivazione richiesto",
+                        "code_trigger_required": "Codice di innesco richiesto"
+                    },
+                    "data_description": {
+                        "code": "Specifica un codice per abilitare o disabilitare l'allarme nell'interfaccia frontend. Nota che questo blocca l'invio di comandi tramite messaggi MQTT al dispositivo remoto se la convalida del codice fallisce. [Per saperne di pi\u00f9.]({url}#code)",
+                        "code_arm_required": "Se impostato, il codice \u00e8 richiesto per inserire l'allarme. Se non impostato, il codice non viene verificato.",
+                        "code_disarm_required": "Se impostato, il codice \u00e8 richiesto per disattivare l'allarme. Se non impostato, il codice non viene verificato.",
+                        "code_trigger_required": "Se impostato, \u00e8 necessario inserire il codice manualmente per attivare l'allarme. Se non impostato, il codice non viene verificato."
+                    },
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Payload \"attiva fuori casa\"",
+                                "payload_arm_custom_bypass": "Payload \"attiva con esclusione personalizzata\"",
+                                "payload_arm_disarm": "Payload \"disattiva\"",
+                                "payload_arm_home": "Payload \"attiva in casa\"",
+                                "payload_arm_night": "Payload \"attiva notte\"",
+                                "payload_arm_vacation": "Payload \"attiva in vacanza\"",
+                                "payload_trigger": "Payload \"attiva allarme\""
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Il payload inviato quando viene emesso un comando di \"Attiva Fuori Casa\".",
+                                "payload_arm_custom_bypass": "Il payload inviato quando viene emesso un comando di \"Attiva con esclusione personalizzata\".",
+                                "payload_arm_disarm": "Il payload inviato quando viene emesso un comando di \"Disattivazione\".",
+                                "payload_arm_home": "Il payload inviato quando viene emesso un comando \"Attiva In casa\".",
+                                "payload_arm_night": "Il payload inviato quando viene emesso un comando \"Attiva notte\".",
+                                "payload_arm_vacation": "Il payload inviato quando viene emesso un comando di \"Attiva in vacanza\".",
+                                "payload_trigger": "Il payload inviato quando viene emesso un comando di \"Attivazione allarme\"."
+                            },
+                            "name": "Impostazioni del payload del pannello di controllo dell'allarme"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "Modello di comando modalit\u00e0 preimpostata",
+                                "preset_mode_command_topic": "Argomento del comando modalit\u00e0 preimpostata",
+                                "preset_mode_state_topic": "Argomento dello stato della modalit\u00e0 preimpostata",
+                                "preset_mode_value_template": "Modello del valore della modalit\u00e0 predefinita",
+                                "preset_modes": "Modalit\u00e0 preimpostate"
+                            },
+                            "data_description": {
+                                "preset_mode_state_topic": "L'argomento MQTT a cui sottoscriversi per ricevere la modalit\u00e0 preimpostata della ventola. [Scopri di pi\u00f9.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definisce un [modello]({value_templating_url}) per estrarre il valore della modalit\u00e0 preimpostata della ventola."
+                            },
+                            "name": "Impostazioni modalit\u00e0 predefinita"
+                        },
+                        "cover_tilt_settings": {
+                            "data_description": {
+                                "tilt_status_topic": "L'argomento MQTT a cui sottoscriversi per ricevere gli aggiornamenti sullo stato dell'inclinazione. [Scopri di pi\u00f9.]({url}#tilt_status_topic)"
+                            },
+                            "name": "Impostazioni di inclinazione"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "Modello del comando di direzione",
+                                "direction_command_topic": "Argomento del comando di direzione",
+                                "direction_state_topic": "Argomento dello stato della direzione",
+                                "direction_value_template": "Modello del valore della direzione"
+                            },
+                            "data_description": {
+                                "direction_state_topic": "L'argomento MQTT a cui sottoscriversi per ricevere lo stato della direzione del ventilatore. I payload di stato accettati sono `forward` o `reverse`. [Scopri di pi\u00f9.]({url}#direction_state_topic)"
+                            },
+                            "name": "Impostazioni di direzione"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "Modello del comando di oscillazione",
+                                "oscillation_command_topic": "Argomento del comando di oscillazione",
+                                "oscillation_state_topic": "Argomento dello stato di oscillazione",
+                                "oscillation_value_template": "Modello del valore di oscillazione",
+                                "payload_oscillation_off": "Payload \"oscillazione disattivata\"",
+                                "payload_oscillation_on": "Payload \"oscillazione attivata\""
+                            },
+                            "data_description": {
+                                "oscillation_command_topic": "L'argomento MQTT per pubblicare comandi per modificare lo stato di oscillazione del ventilatore. [Scopri di pi\u00f9.]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "L'argomento MQTT a cui sottoscriversi per ricevere lo stato di oscillazione del ventilatore. [Scopri di pi\u00f9.]({url}#oscillation_state_topic)",
+                                "payload_oscillation_off": "Il payload che rappresenta lo stato di oscillazione \"acceso\".",
+                                "payload_oscillation_on": "Il payload che rappresenta lo stato di oscillazione \"acceso\"."
+                            },
+                            "name": "Impostazioni di oscillazione"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Payload \"reimposta modalit\u00e0 predefinita\"",
+                                "preset_mode_command_template": "Modello di comando modalit\u00e0 preimpostata",
+                                "preset_mode_command_topic": "Argomento del comando modalit\u00e0 preimpostata",
+                                "preset_mode_state_topic": "Argomento dello stato della modalit\u00e0 preimpostata",
+                                "preset_mode_value_template": "Modello del valore della modalit\u00e0 predefinita",
+                                "preset_modes": "Modalit\u00e0 preimpostate"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Un payload speciale che reimposta l'attributo dello stato della modalit\u00e0 preimpostata della ventola su sconosciuto quando viene ricevuto sul topic dello stato della modalit\u00e0 preimpostata.",
+                                "preset_mode_command_topic": "L'argomento MQTT per pubblicare comandi per cambiare la modalit\u00e0 preimpostata della ventola. [Scopri di pi\u00f9.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "L'argomento MQTT a cui sottoscriversi per ricevere la modalit\u00e0 preimpostata della ventola. [Scopri di pi\u00f9.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Definisce un [modello]({value_templating_url}) per estrarre il valore della modalit\u00e0 preimpostata della ventola.",
+                                "preset_modes": "Elenco delle modalit\u00e0 predefinite disponibili per questo ventilatore. Alcuni esempi comuni sono auto, smart, whoosh, eco e breeze."
+                            },
+                            "name": "Impostazioni modalit\u00e0 predefinita"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Payload \"ripristina percentuale\"",
+                                "percentage_command_template": "Modello del comando percentuale",
+                                "percentage_command_topic": "Argomento del comando percentuale",
+                                "percentage_state_topic": "Argomento dello stato percentuale",
+                                "percentage_value_template": "Modello di valore percentuale",
+                                "speed_range_max": "Intervallo di velocit\u00e0 massimo",
+                                "speed_range_min": "Intervallo di velocit\u00e0 minimo"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Un payload speciale che reimposta l'attributo dello stato percentuale della velocit\u00e0 della ventola su sconosciuto quando ricevuto sull'argomento dello stato percentuale."
+                            },
+                            "name": "Impostazioni di velocit\u00e0"
+                        },
+                        "target_temperature_settings": {
+                            "data_description": {
+                                "temperature_low_state_template": "Un [modello]({value_templating_url}) con cui visualizzare il valore ricevuto sull'argomento dello stato della temperatura pi\u00f9 bassa.",
+                                "temperature_low_state_topic": "L'argomento MQTT a cui iscriversi per le modifiche della temperatura selezionata inferiore. [Scopri di pi\u00f9.]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "Un [modello]({value_templating_url}) con cui rendere il valore ricevuto sull'argomento dello stato della temperatura.",
+                                "temperature_state_topic": "L'argomento MQTT a cui iscriversi per le modifiche della temperatura selezionata. [Ulteriori informazioni.]({url}#temperature_state_topic)"
+                            },
+                            "name": "Impostazioni della temperatura selezionata"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Primo pulsante",
+            "button_2": "Secondo pulsante",
+            "button_3": "Terzo pulsante",
+            "button_4": "Quarto pulsante",
+            "button_5": "Quinto pulsante",
+            "button_6": "Sesto pulsante",
+            "turn_off": "Spegni",
+            "turn_on": "Accendi"
+        },
+        "trigger_type": {
+            "button_double_press": "\"{subtype}\" cliccato due volte",
+            "button_long_press": "\"{subtype}\" premuto continuamente",
+            "button_long_release": "\"{subtype}\" rilasciato dopo una lunga pressione",
+            "button_quadruple_press": "\"{subtype}\" cliccato quattro volte",
+            "button_quintuple_press": "\"{subtype}\" cliccato cinque volte",
+            "button_short_press": "\"{subtype}\" premuto",
+            "button_short_release": "\"{subtype}\" rilasciato",
+            "button_triple_press": "\"{subtype}\" cliccato tre volte"
+        }
+    },
+    "exceptions": {
+        "mqtt_broker_error": {
+            "message": "Errore durante la comunicazione con MQTT: {error_message}."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Impossibile pubblicare sull'argomento \"{topic}\", assicurati che MQTT sia configurato correttamente."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Impossibile sottoscriversi all'argomento \"{topic}\", assicurati che MQTT sia configurato correttamente."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "Impossibile annullare l'iscrizione all'argomento \"{topic}\" due volte."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "L'argomento deve essere una stringa! Ottenuto: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Non \u00e8 possibile rimuovere l'innesco due volte."
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Argomento di nascita non valido",
+            "bad_certificate": "Il certificato CA non \u00e8 valido",
+            "bad_client_cert_key": "Il certificato client e la chiave privata non sono una coppia valida",
+            "bad_discovery_prefix": "Prefisso di rilevamento non valido",
+            "bad_will": "Argomento testamento non valido",
+            "bad_ws_headers": "Fornisci intestazioni HTTP valide come oggetto JSON",
+            "cannot_connect": "Impossibile connettersi",
+            "client_key_error": "File della chiave privata non valido o password fornita non valida"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Abilita messaggio di nascita",
+                    "birth_payload": "Payload del messaggio birth",
+                    "birth_qos": "QoS del messaggio birth",
+                    "birth_retain": "Persistenza del messaggio birth",
+                    "birth_topic": "Argomento del messaggio birth",
+                    "discovery": "Abilita il rilevamento",
+                    "discovery_prefix": "Rileva prefisso",
+                    "will_enable": "Abilita il messaggio testamento",
+                    "will_payload": "Payload del messaggio testamento",
+                    "will_qos": "QoS del messaggio testamento",
+                    "will_retain": "Persistenza del messaggio will",
+                    "will_topic": "Argomento del messaggio will"
+                },
+                "data_description": {
+                    "birth_enable": "Una volta configurato, Home Assistant pubblicher\u00e0 un messaggio online sul tuo broker MQTT quando MQTT sar\u00e0 pronto.",
+                    "birth_payload": "Il messaggio di \"nascita\" che viene pubblicato quando MQTT \u00e8 pronto e connesso.",
+                    "birth_qos": "La qualit\u00e0 del servizio del messaggio \"nascita\" che viene pubblicato quando MQTT \u00e8 pronto e connesso",
+                    "birth_retain": "Una volta impostato, Home Assistant conserver\u00e0 il messaggio di \"nascita\" pubblicato sul tuo broker MQTT.",
+                    "birth_topic": "L'argomento MQTT in cui Home Assistant pubblicher\u00e0 un messaggio di \"nascita\".",
+                    "discovery": "Opzione per abilitare il rilevamento automatico MQTT.",
+                    "discovery_prefix": "Il prefisso degli argomenti di configurazione a cui l'integrazione MQTT si iscriver\u00e0.",
+                    "will_enable": "Una volta configurato, Home Assistant chieder\u00e0 al tuo broker di pubblicare un messaggio \"will\" quando MQTT viene interrotto o quando perde la connessione con il broker.",
+                    "will_payload": "Il messaggio \"will\" che il tuo broker MQTT pubblicher\u00e0 quando l'integrazione MQTT viene interrotta o quando la connessione viene persa.",
+                    "will_qos": "La qualit\u00e0 del servizio del messaggio \"will\" pubblicato dal tuo broker MQTT.",
+                    "will_retain": "Una volta impostato, il tuo broker MQTT manterr\u00e0 il messaggio \"will\".",
+                    "will_topic": "L'argomento MQTT su cui il tuo broker MQTT pubblicher\u00e0 un messaggio \"will\"."
+                },
+                "description": "Rilevamento - Se il rilevamento \u00e8 abilitato (consigliato), Home Assistant rilever\u00e0 automaticamente i dispositivi e le entit\u00e0 che pubblicano la loro configurazione sul broker MQTT. Se il rilevamento \u00e8 disabilitato, tutta la configurazione deve essere fatta manualmente.\nPrefisso di rilevamento - Il prefisso con cui deve iniziare un argomento di configurazione per il rilevamento automatico.\nMessaggio di nascita - Il messaggio di nascita viene inviato ogni volta che Home Assistant si (ri)connette al broker MQTT.\nMessaggio di testamento - Il messaggio di testamento verr\u00e0 inviato ogni volta che Home Assistant perde la connessione al broker, sia in caso di disconnessione pulita (ad esempio, Home Assistant si spegne) sia in caso di disconnessione non pulita (ad esempio, Home Assistant si blocca o perde la connessione di rete).",
+                "title": "Opzioni MQTT"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Convalida del codice locale",
+                "remote_code": "Convalida numerica del codice remoto",
+                "remote_code_text": "Convalida testuale del codice remoto"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Automatico",
+                "cool": "Freddo",
+                "dry": "Deumidificazione",
+                "fan_only": "Ventilazione",
+                "heat": "Riscaldamento",
+                "heat_cool": "Caldo/Freddo",
+                "off": "Spento"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Configurazione",
+                "diagnostic": "Diagnostica"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Pannello di controllo degli allarmi",
+                "binary_sensor": "Sensore binario",
+                "climate": "Climatizzatore",
+                "fan": "Ventilatore",
+                "text": "Testo"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automatico",
+                "custom": "Personalizzato",
+                "off": "Spento"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "Temperatura selezionata superiore/inferiore",
+                "none": "Nessuna temperatura selezionata",
+                "single": "Temperatura selezionata singola"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Password",
+                "text": "Testo"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Scrive tutti i messaggi su un argomento specifico nel file `mqtt_dump.txt` nella cartella di configurazione.",
+            "fields": {
+                "duration": {
+                    "description": "Durata dell'ascolto dei messaggi in secondi.",
+                    "name": "Durata"
+                },
+                "topic": {
+                    "description": "Argomento da ascoltare.",
+                    "name": "Argomento"
+                }
+            },
+            "name": "Esporta"
+        },
+        "publish": {
+            "description": "Pubblica un messaggio in un argomento MQTT.",
+            "fields": {
+                "payload": {
+                    "name": "Payload"
+                },
+                "qos": {
+                    "description": "Qualit\u00e0 del servizio da utilizzare. 0: Al massimo una volta. 1: Almeno una volta. 2: Esattamente una volta.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Se il messaggio deve avere il flag di conservazione impostato. Se impostato, il broker memorizza il messaggio pi\u00f9 recente su un argomento.",
+                    "name": "Conserva"
+                },
+                "topic": {
+                    "description": "Argomento in cui pubblicare.",
+                    "name": "Argomento"
+                }
+            },
+            "name": "Pubblica"
+        },
+        "reload": {
+            "description": "Ricarica le entit\u00e0 MQTT dalla configurazione YAML.",
+            "name": "Ricarica"
+        }
+    },
+    "triggers": {
+        "_": {
+            "fields": {
+                "payload": {
+                    "description": "Il dato del messaggio che determina l'attivazione.",
+                    "name": "Dati del messaggio"
+                },
+                "topic": {
+                    "description": "Argomento MQTT da ascoltare.",
+                    "name": "Argomento"
+                }
+            }
+        }
+    }
+}

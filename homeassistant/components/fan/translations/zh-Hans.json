@@ -1,0 +1,207 @@
+{
+    "common": {
+        "condition_for_name": "\u81f3\u5c11",
+        "section_additional_fields_name": "\u5176\u4ed6\u9009\u9879",
+        "trigger_behavior_name": "\u89e6\u53d1\u6761\u4ef6",
+        "trigger_for_name": "\u81f3\u5c11"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u98ce\u6247\u662f\u5426\u505c\u6b62\u8fd0\u8f6c\u3002",
+            "fields": {
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u98ce\u6247\u5173\u95ed"
+        },
+        "is_on": {
+            "description": "\u6d4b\u8bd5\u4e00\u4e2a\u6216\u591a\u4e2a\u98ce\u6247\u662f\u5426\u6b63\u5728\u8fd0\u884c\u3002",
+            "fields": {
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u98ce\u6247\u5f00\u542f"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "\u5207\u6362 {entity_name}",
+            "turn_off": "\u5173\u95ed {entity_name}",
+            "turn_on": "\u5f00\u542f {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} \u5df2\u5173\u95ed",
+            "is_on": "{entity_name} \u5df2\u5f00\u542f"
+        },
+        "extra_fields": {
+            "for": "\u65f6\u957f"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} \u88ab\u5f00\u542f\u6216\u5173\u95ed",
+            "turned_off": "{entity_name} \u88ab\u5173\u95ed",
+            "turned_on": "{entity_name} \u88ab\u5f00\u542f"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u98ce\u6247",
+            "state": {
+                "off": "\u5173\u95ed",
+                "on": "\u5f00\u542f"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "\u65b9\u5411",
+                    "state": {
+                        "forward": "\u5411\u524d",
+                        "reverse": "\u53cd\u5411"
+                    }
+                },
+                "oscillating": {
+                    "name": "\u6447\u5934",
+                    "state": {
+                        "false": "\u5426",
+                        "true": "\u662f"
+                    }
+                },
+                "percentage": {
+                    "name": "\u901f\u5ea6"
+                },
+                "percentage_step": {
+                    "name": "\u901f\u5ea6\u6b65\u8fdb"
+                },
+                "preset_mode": {
+                    "name": "\u9884\u8bbe\u6a21\u5f0f"
+                },
+                "preset_modes": {
+                    "name": "\u53ef\u7528\u7684\u9884\u8bbe\u6a21\u5f0f"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "\u9884\u8bbe\u6a21\u5f0f\"{preset_mode}\"\u65e0\u6548\uff0c\u6709\u6548\u7684\u9884\u8bbe\u6a21\u5f0f\u6709\uff1a{preset_modes} \u3002"
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "\u5411\u524d",
+                "reverse": "\u53cd\u8f6c"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "\u964d\u4f4e\u98ce\u6247\u901f\u5ea6\u3002",
+            "fields": {
+                "percentage_step": {
+                    "description": "\u901f\u5ea6\u5e94\u964d\u4f4e\u7684\u767e\u5206\u6bd4\u3002",
+                    "name": "\u51cf\u5c11"
+                }
+            },
+            "sections": {
+                "additional_fields": {
+                    "name": "\u5176\u4ed6\u9009\u9879"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "\u63d0\u9ad8\u98ce\u6247\u901f\u5ea6\u3002",
+            "fields": {
+                "percentage_step": {
+                    "description": "\u5c06\u901f\u5ea6\u63d0\u9ad8\u4e00\u4e2a\u767e\u5206\u6bd4\u3002",
+                    "name": "\u589e\u52a0"
+                }
+            },
+            "sections": {
+                "additional_fields": {
+                    "name": "\u5176\u4ed6\u9009\u9879"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "\u63a7\u5236\u98ce\u6247\u7684\u6446\u52a8\u3002",
+            "fields": {
+                "oscillating": {
+                    "description": "\u6253\u5f00/\u5173\u95ed\u6446\u52a8\u3002",
+                    "name": "\u6447\u5934"
+                }
+            }
+        },
+        "set_direction": {
+            "description": "\u8bbe\u7f6e\u98ce\u6247\u7684\u65cb\u8f6c\u65b9\u5411\u3002",
+            "fields": {
+                "direction": {
+                    "description": "\u98ce\u6247\u65cb\u8f6c\u7684\u65b9\u5411\u3002",
+                    "name": "\u65b9\u5411"
+                }
+            }
+        },
+        "set_percentage": {
+            "description": "\u8bbe\u7f6e\u98ce\u6247\u7684\u901f\u5ea6\u3002",
+            "fields": {
+                "percentage": {
+                    "description": "\u98ce\u6247\u7684\u901f\u5ea6\u3002",
+                    "name": "\u767e\u5206\u6bd4"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "\u9884\u8bbe\u98ce\u6247\u6a21\u5f0f\u3002",
+                    "name": "\u9884\u8bbe\u6a21\u5f0f"
+                }
+            }
+        },
+        "toggle": {
+            "description": "\u5207\u6362\u98ce\u6247\u7684\u6253\u5f00/\u5173\u95ed\u72b6\u6001\u3002",
+            "name": "\u5207\u6362\u98ce\u6247"
+        },
+        "turn_off": {
+            "name": "\u5173\u95ed\u98ce\u6247"
+        },
+        "turn_on": {
+            "fields": {
+                "percentage": {
+                    "description": "\u98ce\u6247\u7684\u901f\u5ea6\u3002",
+                    "name": "\u767e\u5206\u6bd4"
+                },
+                "preset_mode": {
+                    "description": "\u9884\u8bbe\u98ce\u6247\u6a21\u5f0f\u3002",
+                    "name": "\u9884\u8bbe\u6a21\u5f0f"
+                }
+            },
+            "name": "\u6253\u5f00\u98ce\u6247"
+        }
+    },
+    "title": "\u98ce\u6247",
+    "triggers": {
+        "turned_off": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u98ce\u6247\u5173\u95ed\u65f6"
+        },
+        "turned_on": {
+            "fields": {
+                "behavior": {
+                    "name": "\u89e6\u53d1\u6761\u4ef6"
+                },
+                "for": {
+                    "name": "\u81f3\u5c11"
+                }
+            },
+            "name": "\u98ce\u6247\u5f00\u542f\u65f6"
+        }
+    }
+}

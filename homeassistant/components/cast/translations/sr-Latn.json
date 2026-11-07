@@ -1,0 +1,72 @@
+{
+    "config": {
+        "error": {
+            "invalid_known_hosts": "Poznati hostovi moraju biti lista hostova razdvojena zarezima."
+        },
+        "step": {
+            "config": {
+                "data": {
+                    "known_hosts": "Dodajte poznati host"
+                },
+                "data_description": {
+                    "known_hosts": "Nazivi hostova ili IP adrese Cast ure\u0111aja; koristiti ako mDNS otkrivanje ne radi"
+                },
+                "title": "Google Cast konfiguracija"
+            },
+            "confirm": {
+                "description": "Pokretanje pode\u0161avanja?"
+            }
+        }
+    },
+    "exceptions": {
+        "app_not_supported": {
+            "message": "Aplikacija {app_name} nije podr\u017eana"
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "known_hosts": "Dodajte poznati host"
+                },
+                "data_description": {
+                    "known_hosts": "Nazivi hostova ili IP adrese Cast ure\u0111aja; koristiti ako mDNS otkrivanje ne radi"
+                },
+                "sections": {
+                    "more_options": {
+                        "data": {
+                            "ignore_cec": "Ignori\u0161i CEC",
+                            "uuid": "Dozvoljeni UUID-ovi"
+                        },
+                        "data_description": {
+                            "ignore_cec": "Zarezom odvojena lista Chromecast ure\u0111aja koji treba da ignori\u0161u CEC podatke za odre\u0111ivanje aktivnog ulaza. Ovo \u0107e biti prosle\u0111eno u pychromecast.IGNORE_CEC.",
+                            "uuid": "Zarezom odvojena lista UUID-ova Cast ure\u0111aja za dodavanje u Home Assistant. Koristite samo ako ne \u017eelite da dodate sve dostupne Cast ure\u0111aje."
+                        },
+                        "name": "Vi\u0161e opcija"
+                    }
+                },
+                "title": "Google Cast konfiguracija"
+            }
+        }
+    },
+    "services": {
+        "show_lovelace_view": {
+            "description": "Prikazivanje izabrane kontrolne table na Google Cast kompatibilnom ure\u0111aju.",
+            "fields": {
+                "dashboard_path": {
+                    "description": "Sistemska URL putanja do kontrolne table. Ukoliko nije navedena, podrazumeva se \u201elovelace\u201c.",
+                    "name": "Identifikator kontrolne table"
+                },
+                "entity_id": {
+                    "description": "Google Cast ure\u0111aj (npr. Nest Hub ili TV) predvi\u0111en za prikaz sadr\u017eaja.",
+                    "name": "Identifikator Cast ure\u0111aja"
+                },
+                "view_path": {
+                    "description": "Jedinstveni identifikator specifi\u010dnog prikaza (View ID) unutar kontrolne table.",
+                    "name": "Identifikator prikaza"
+                }
+            },
+            "name": "Prika\u017ei prikaz kontrolne table preko Google Cast-a"
+        }
+    }
+}

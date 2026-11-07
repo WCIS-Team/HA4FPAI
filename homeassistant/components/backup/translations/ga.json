@@ -1,0 +1,88 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "C\u00faltaca uathoibr\u00edoch",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "C\u00e9im ch\u00faltaca"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Cr\u00edochnaithe go rath\u00fail",
+                            "failed": "Theip air",
+                            "in_progress": "Ar si\u00fal"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "C\u00fais teipe",
+                        "state": {
+                            "backup_agent_error": "Earr\u00e1id gn\u00edomhaire c\u00faltaca",
+                            "backup_agent_unreachable": "N\u00ed f\u00e9idir teacht ar ghn\u00edomhaire c\u00faltaca",
+                            "backup_manager_error": "Earr\u00e1id bainisteoir c\u00faltaca",
+                            "backup_not_found": "N\u00edor aims\u00edodh c\u00faltaca",
+                            "backup_reader_writer_error": "Earr\u00e1id l\u00e9itheoir/scr\u00edbhneora c\u00faltaca",
+                            "decrypt_on_download_not_supported": "N\u00ed thaca\u00edtear le d\u00edchripti\u00fa ar \u00edosl\u00f3d\u00e1il",
+                            "invalid_backup_filename": "Ainm comhaid ch\u00faltaca neamhbhail\u00ed",
+                            "multiple_errors": "Il-earr\u00e1id\u00ed",
+                            "password_incorrect": "Pasfhocal m\u00edcheart",
+                            "unknown_error": "Earr\u00e1id anaithnid",
+                            "upload_failed": "Theip ar an uasl\u00f3d\u00e1il"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "St\u00e1das an Bhainisteora C\u00faltaca",
+                "state": {
+                    "blocked": "Bloc\u00e1ilte",
+                    "create_backup": "C\u00faltaca \u00e1 chruth\u00fa",
+                    "idle": "D\u00edomhaoin",
+                    "receive_backup": "Ag f\u00e1il c\u00faltaca",
+                    "restore_backup": "C\u00faltaca a athch\u00f3iri\u00fa"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "An iarracht dheireanach ar ch\u00faltaca uathoibr\u00edoch"
+            },
+            "last_successful_automatic_backup": {
+                "name": "C\u00faltaca uathoibr\u00edoch rath\u00fail deireanach"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "An ch\u00e9ad ch\u00faltaca uathoibr\u00edoch sceidealaithe eile"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "N\u00edl an su\u00edomh c\u00faltaca `{agent_id}` ar f\u00e1il ach t\u00e1 s\u00e9 cumraithe f\u00f3s le haghaidh c\u00faltaca\u00ed uathoibr\u00edocha.\n\nTabhair cuairt ar an [leathanach cumra\u00edochta c\u00faltaca uathoibr\u00edoch]({backup_settings}) le do shu\u00edomhanna c\u00faltaca a athbhreithni\u00fa agus a nuashonr\u00fa. N\u00ed uasl\u00f3d\u00e1lfar c\u00faltaca\u00ed chuig su\u00edomhanna roghnaithe nach bhfuil ar f\u00e1il.",
+            "title": "N\u00edl an su\u00edomh c\u00faltaca {agent_id} ar f\u00e1il"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "title": "Crutha\u00edodh c\u00faltaca uathoibr\u00edoch le hearr\u00e1id\u00ed"
+        },
+        "automatic_backup_failed_create": {
+            "description": "N\u00edorbh fh\u00e9idir an c\u00faltaca uathoibr\u00edoch a chruth\u00fa. Seice\u00e1il na loga\u00ed le haghaidh tuilleadh eolais. D\u00e9anfar iarracht eile ag an gc\u00e9ad am sceidealaithe eile m\u00e1 t\u00e1 sceideal c\u00faltaca cumraithe.",
+            "title": "N\u00edorbh fh\u00e9idir c\u00faltaca uathoibr\u00edoch a chruth\u00fa"
+        },
+        "automatic_backup_failed_folders": {
+            "title": "N\u00edorbh fh\u00e9idir gach fillte\u00e1n a \u00e1ireamh sa ch\u00faltaca uathoibr\u00edoch"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "N\u00edorbh fh\u00e9idir an c\u00faltaca uathoibr\u00edoch a uasl\u00f3d\u00e1il chuig na su\u00edomhanna cumraithe {failed_agents}. Seice\u00e1il na loga\u00ed le haghaidh tuilleadh eolais. D\u00e9anfar iarracht eile ag an gc\u00e9ad am sceidealaithe eile m\u00e1 t\u00e1 sceideal c\u00faltaca cumraithe.",
+            "title": "N\u00edorbh fh\u00e9idir c\u00faltaca uathoibr\u00edoch a uasl\u00f3d\u00e1il chuig na su\u00edomhanna cumraithe"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Crutha\u00edonn s\u00e9 c\u00faltaca nua.",
+            "name": "Cruthaigh c\u00faltaca"
+        },
+        "create_automatic": {
+            "description": "Crutha\u00edonn s\u00e9 c\u00faltaca nua le socruithe c\u00faltaca uathoibr\u00edocha.",
+            "name": "Cruthaigh c\u00faltaca uathoibr\u00edoch"
+        }
+    }
+}

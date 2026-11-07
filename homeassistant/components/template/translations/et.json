@@ -1,0 +1,1067 @@
+{
+    "common": {
+        "additional_options": "Lisavalikud",
+        "availability_description": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`.",
+        "code_format": "Koodi vorming",
+        "device_class": "Seadmeklass",
+        "device_id_description": "Vali seade mida selle \u00fcksusega siduda.",
+        "state": "Olek",
+        "turn_off": "Toimingud mida teha v\u00e4ljal\u00fclitamisel",
+        "turn_on": "Toimingud mida teha sissel\u00fclitamisel",
+        "unit_of_measurement": "M\u00f5\u00f5t\u00fchik"
+    },
+    "config": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Valvesta eemal toimingud",
+                    "arm_custom_bypass": "Kohandatud m\u00f6\u00f6daviigu toimingud",
+                    "arm_home": "Valvesta kodusl toimingud",
+                    "arm_night": "\u00d6ise valvestuse toimingud",
+                    "arm_vacation": "Valvesta puhkuse re\u017eiimis toimingud",
+                    "code_arm_required": "Vajalik on koodiga valvestamine",
+                    "code_format": "Koodi vorming",
+                    "device_id": "Seade",
+                    "disarm": "Valvest maha toimingud",
+                    "name": "Nimi",
+                    "trigger": "P\u00e4\u00e4stiku toimingud",
+                    "value_template": "Olek"
+                },
+                "data_description": {
+                    "arm_away": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud \"arm_away\". Saab muutuja `code`.",
+                    "arm_custom_bypass": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse kui h\u00e4irejuhtimispaneel on aktiveeritud `arm_custom_bypass`. Saab muutuja `code`.",
+                    "arm_home": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud `arm_home`. Saab muutuja `code`.",
+                    "arm_night": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud \"arm_night\". Saab muutuja `code`.",
+                    "arm_vacation": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud `arm_vacation`. Saab muutuja `code`.",
+                    "code_arm_required": "Kui see on t\u00f5si, on h\u00e4ire aktiveerimiseks vaja koodi.",
+                    "code_format": "\u00dcks j\u00e4rgmistest: \"number\", \"tekst\" v\u00f5i \"no_code\". H\u00e4ire aktiveerimiseks/deaktiveerimiseks kasutatava koodi vorming.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "disarm": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispult on desarmeeritud. Saab muutuja `kood`.",
+                    "trigger": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivituvad, kui h\u00e4irejuhtimispaneel k\u00e4ivitub. Saab muutuja `code`.",
+                    "value_template": "M\u00e4\u00e4ratleb malli valvepaneeli oleku m\u00e4\u00e4ramiseks. Malli kehtivad v\u00e4ljundv\u00e4\u00e4rtused on `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` ja `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malliga alarmi juhtpaneel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "state": "Olek"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "state": "Andur on \"sisse l\u00fclitatud\", kui malli v\u00e4\u00e4rtuseks on \"t\u00f5ene\", \"jah\", \"sisse l\u00fclitatud\", \"lubatud\" v\u00f5i positiivne arv. Mis tahes muu v\u00e4\u00e4rtus muudab selle `off`-ks."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "delay_off": "Viivitus v\u00e4lja",
+                            "delay_on": "Viivitus sisse"
+                        },
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`.",
+                            "delay_off": "Aeg, mille jooksul malliseisund ei tohi olla t\u00e4idetud, enne kui see andur l\u00fclitub seisundisse `off`.",
+                            "delay_on": "Aeg, mille jooksul malli olek peab olema t\u00e4idetud, enne kui see andur l\u00fclitub sisse."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Binaarse anduri mall"
+            },
+            "button": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "press": "Toiming vajutusel"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "press": "M\u00e4\u00e4ratleb nupu vajutamisel k\u00e4ivitatavad tegevused."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli nupp"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Toimingud sulgemisel",
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "open_cover": "Toimingud avamisel",
+                    "position": "Asend",
+                    "set_cover_position": "Toimingud asendi m\u00e4\u00e4ramisel",
+                    "state": "Olek",
+                    "stop_cover": "Toimingud peatumisel"
+                },
+                "data_description": {
+                    "close_cover": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse kui avakate suletakse.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "open_cover": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse kui avakate avatakse.",
+                    "position": "M\u00e4\u00e4ratleb malli, et saada avakatte asend. V\u00e4\u00e4rtused on arvud vahemikus `0` (suletud) ja `100` (avatud).",
+                    "set_cover_position": "M\u00e4\u00e4rab toimingud, mis k\u00e4ivitatakse, kui avakattele antakse k\u00e4sk `set_cover_position`. Vastu v\u00f5tab muutuja `position`.",
+                    "stop_cover": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse avakatte peatamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Avakatte mall"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Seade",
+                    "in_zones": "Tsoonid",
+                    "latitude": "Laiuskraad",
+                    "longitude": "Pikkuskraad",
+                    "name": "Nimi"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "in_zones": "M\u00e4\u00e4rab malli, mis tagastab tsoonide loendi, milles seadme j\u00e4lgija hetkel asub. Mall peaks tagastama tsooni \u00fcksuste ID-de loendi. Kui seadme j\u00e4lgija ei asu \u00fcheski tsoonis, peaks mall tagastama t\u00fchja loendi.",
+                    "latitude": "M\u00e4\u00e4rab malli seadme j\u00e4lgija laiuskraadi saamiseks. Lubatud v\u00e4\u00e4rtused on numbrid vahemikus `-90` kuni `90`.",
+                    "longitude": "M\u00e4\u00e4rab malli seadme j\u00e4lgija pikkuskraadi saamiseks. Lubatud v\u00e4\u00e4rtused on numbrid vahemikus `-180` kuni `180`.",
+                    "name": "Nimi"
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Asukoha t\u00e4psus"
+                        },
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`.",
+                            "location_accuracy": "M\u00e4\u00e4rab malli seadme j\u00e4lgija asukoha t\u00e4psuse saamiseks meetrites. Lubatud v\u00e4\u00e4rtused on numbrid, mis on suuremad v\u00f5i v\u00f5rdsed nulliga."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli seadme j\u00e4lgija"
+            },
+            "event": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "event_type": "Viimati k\u00e4ivitatud s\u00fcndmuse t\u00fc\u00fcp",
+                    "event_types": "S\u00fcndmuste t\u00fc\u00fcbid",
+                    "name": "Nimi"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "event_type": "M\u00e4\u00e4rab s\u00fcndmuse t\u00fc\u00fcbi malli.",
+                    "event_types": "M\u00e4\u00e4rab malli saadaolevate s\u00fcndmuset\u00fc\u00fcpide loendile."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli s\u00fcndmus"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "percentage": "Protsent",
+                    "set_percentage": "Toimingud m\u00e4\u00e4ratud protsendi alusel",
+                    "speed_count": "Kiiruste loendur",
+                    "state": "Olek",
+                    "turn_off": "Toimingud mida teha v\u00e4ljal\u00fclitamisel",
+                    "turn_on": "Toimingud mida teha sissel\u00fclitamisel"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "percentage": "M\u00e4\u00e4rab malli ventilaatori kiiruse protsendi saamiseks.",
+                    "speed_count": "Ventilaatori toetatavate kiiruste arv. Kasutatakse toimingute \"fan.increase_speed\" ja \"fan.decrease_speed\" protsendisammu arvutamiseks.",
+                    "state": "Ventilaator on sees kui malli v\u00e4\u00e4rtus on \"T\u00f5ene\", \"jah\", \"sees\", \"luba\" v\u00f5i positiivne arv. Mis tahes muu v\u00e4\u00e4rtus muudab selle olekuks \"v\u00e4ljas\".",
+                    "turn_off": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse ventilaatori v\u00e4ljal\u00fclitamisel.",
+                    "turn_on": "M\u00e4\u00e4ratleb toimingud, mida tuleb k\u00e4ivitada, kui ventilaator on sisse l\u00fclitatud. Saab muutujad `percentage` ja/v\u00f5i `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Ventilaatori mall"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "url": "URL",
+                    "verify_ssl": "Kontrolli SSL sertifikaati"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "url": "M\u00e4\u00e4ratleb malli, et saada URL, millel pilti esitatakse.",
+                    "verify_ssl": "SSL-sertifikaadi kontrollimise lubamine v\u00f5i keelamine. L\u00fclita v\u00e4lja, kui soovid kasutada http-URL-i v\u00f5i kui sul on isesigneeritud SSL-sertifikaat ja sa ei ole paigaldanud CA-sertifikaati, et v\u00f5imaldada verifitseerimist."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Pildi mall"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Seade",
+                    "hs": "HS v\u00e4rv",
+                    "level": "Heleduse tase",
+                    "name": "Nimi",
+                    "set_hs": "Toimingud seatud HS v\u00e4rviga",
+                    "set_level": "Toimingud m\u00e4\u00e4ratud tasemel",
+                    "set_temperature": "Toimingud m\u00e4\u00e4ratud v\u00e4rvitemperatuuril",
+                    "state": "Olek",
+                    "temperature": "V\u00e4rvustemperatuur",
+                    "turn_off": "Toimingud mida teha v\u00e4ljal\u00fclitamisel",
+                    "turn_on": "Toimingud mida teha sissel\u00fclitamisel"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "hs": "M\u00e4\u00e4ratleb malli, et saada valguse HS-v\u00e4rvi. Peab esitama tupli (v\u00e4rvitoon, k\u00fcllastus).",
+                    "level": "M\u00e4\u00e4ratleb malli valguse heleduse saamiseks. Kehtivad v\u00e4\u00e4rtused on 0 kuni 255.",
+                    "set_hs": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse kui valgusele antakse HS-v\u00e4rvik\u00e4sk. Saadaolevad muutujad: `hs` kui tupel, `h` ja `s`.",
+                    "set_level": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse, kui valgusele antakse heleduse k\u00e4sk. Skripti kutsutakse ainult siis, kui `turn_on`-kutses on ainult `brightness` ja valikuliselt `transition`. Saab muutujad `brightness` ja valikuliselt `transition`.",
+                    "set_temperature": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse, kui valgusele antakse v\u00e4rvitemperatuuri k\u00e4sk. Saab muutuja `color_temp_kelvin`. V\u00f5ib vastu v\u00f5tta ka muutujaid `brightness` ja/v\u00f5i `transition`.",
+                    "state": "Valgus on \"sisse l\u00fclitatud\" kui malli v\u00e4\u00e4rtuseks on \"T\u00f5si\", \"Jah\", \"sisse\", \"Lubatud\" v\u00f5i positiivne arv. Mis tahes muu v\u00e4\u00e4rtus muudab selle `off`-ks.",
+                    "temperature": "M\u00e4\u00e4rab malli valguse v\u00e4rvitemperatuuri saamiseks.",
+                    "turn_off": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse valgusti v\u00e4ljal\u00fclitamisel.",
+                    "turn_on": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse valgusti sissel\u00fclitamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Valguse mall"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Koodi vorming",
+                    "device_id": "Seade",
+                    "lock": "Toimingud lukustamisel",
+                    "name": "Nimi",
+                    "open": "Toimingud avamisel",
+                    "state": "Olek",
+                    "unlock": "Toimingud avamisel"
+                },
+                "data_description": {
+                    "code_format": "M\u00e4\u00e4rab malli luku atribuudi `code_format` saamiseks.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "lock": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse luku lukustamisel.",
+                    "open": "M\u00e4\u00e4rab luku avamisel k\u00e4ivitatavad toimingud.",
+                    "unlock": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse luku avamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Luku mall"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "max": "Maksimaalne v\u00e4\u00e4rtus",
+                    "min": "Minimaalne v\u00e4\u00e4rtus",
+                    "name": "Nimi",
+                    "set_value": "Toimingud seatud v\u00e4\u00e4rtusele",
+                    "state": "Olek",
+                    "step": "Sammu v\u00e4\u00e4rtus",
+                    "unit_of_measurement": "M\u00f5\u00f5t\u00fchik"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "max": "M\u00e4\u00e4rab arvu maksimaalse v\u00e4\u00e4rtuse.",
+                    "min": "M\u00e4\u00e4rab arvu minimaalse v\u00e4\u00e4rtuse.",
+                    "set_value": "M\u00e4\u00e4rab toimingud, mis k\u00e4ivitatakse kui arvule m\u00e4\u00e4ratakse v\u00e4\u00e4rtus. Saab muutuja `v\u00e4\u00e4rtus`.",
+                    "state": "Numbri praeguse v\u00e4\u00e4rtuse mall.",
+                    "step": "M\u00e4\u00e4rab arvu suurendamise/v\u00e4hendamise sammu.",
+                    "unit_of_measurement": "M\u00e4\u00e4rab arvu m\u00f5\u00f5t\u00fchiku kui see on olemas."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli number"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "options": "Saadaolevad valikud",
+                    "select_option": "Valitavad toimingud",
+                    "state": "Olek"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "options": "Valikuanduri saadaolevate valikute mall.",
+                    "select_option": "M\u00e4\u00e4rab toimingud, mis k\u00e4ivitatakse, kui loendist \u201evalikud\u201d valitakse \u201evalikud\u201d. Saab muutuja \u201evalikud\u201d.",
+                    "state": "Valiku praeguse v\u00e4\u00e4rtuse mall."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli valimine"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "state": "Olek",
+                    "state_class": "Oleku klass",
+                    "unit_of_measurement": "M\u00f5\u00f5t\u00fchik"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "state": "M\u00e4\u00e4ratleb malli anduri oleku saamiseks. Kui andur on numbriline, st tal on `state_class` v\u00f5i `unit_of_measurement`, siis peab olekumall n\u00e4itama numbrit v\u00f5i `none`. Seisundimall ei tohi esitada stringi, sealhulgas `tundmatu` v\u00f5i `unavailable`. Staatuse malli \"k\u00e4ttesaadavus\" v\u00f5ib m\u00e4\u00e4ratleda, et peatada selle esitamine.",
+                    "unit_of_measurement": "M\u00e4\u00e4ratleb anduri m\u00f5\u00f5t\u00fchiku kui see on olemas. See kuvab ka v\u00e4\u00e4rtuse vastavalt kasutaja profiili arvvormingu seadistusele ja m\u00f5jutab graafilist esitust ajaloo visualiseerimisel pideva v\u00e4\u00e4rtusena."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli andur"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "turn_off": "Toimingud mida teha v\u00e4ljal\u00fclitamisel",
+                    "turn_on": "Toimingud mida teha sissel\u00fclitamisel",
+                    "value_template": "Olek"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "turn_off": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse l\u00fcliti v\u00e4ljal\u00fclitamisel.",
+                    "turn_on": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse l\u00fcliti sissel\u00fclitamisel.",
+                    "value_template": "M\u00e4\u00e4rab malli l\u00fcliti oleku m\u00e4\u00e4ramiseks. Kui seda pole m\u00e4\u00e4ratletud, eeldab l\u00fcliti optimistlikult, et k\u00f5ik k\u00e4sud on edukad."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malliga l\u00fcliti"
+            },
+            "update": {
+                "data": {
+                    "backup": "Varukoopia",
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "in_progress": "K\u00e4imas",
+                    "install": "Toimingud installimisel",
+                    "installed_version": "Paigaldatud versioon",
+                    "latest_version": "Uusim versioon",
+                    "name": "Nimi",
+                    "release_summary": "V\u00e4ljalaske kokkuv\u00f5te",
+                    "release_url": "V\u00e4ljalaske URL",
+                    "specific_version": "Konkreetne versioon",
+                    "title": "Nimetus",
+                    "update_percentage": "Uuendamise protsent"
+                },
+                "data_description": {
+                    "backup": "Luba v\u00f5i keela v\u00e4rskenduste parandamises valik \u201eautomaatne varundamine enne v\u00e4rskendamist\u201d. Kui see on keelatud, annab muutuja \u201evarundamine\u201d installimise ajal alati v\u00e4\u00e4rtuseks \u201eV\u00e4\u00e4r\u201d ja see ei aktsepteeri varundamise valikut.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "in_progress": "M\u00e4\u00e4rab malli poolelioleva oleku saamiseks.",
+                    "install": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse v\u00e4rskenduse installimisel. Lubamisel saab muutujad `specific_version` ja `backup`.",
+                    "installed_version": "M\u00e4\u00e4rab malli installitud versiooni saamiseks.",
+                    "latest_version": "M\u00e4\u00e4rab malli uusima versiooni saamiseks.",
+                    "release_summary": "M\u00e4\u00e4rab malli v\u00e4ljalaske kokkuv\u00f5tte saamiseks.",
+                    "release_url": "M\u00e4\u00e4rab malli v\u00e4ljalaske URL-i saamiseks.",
+                    "specific_version": "Luba v\u00f5i keela muutuja `version` toimingu `install` abil. Kui see on keelatud, annab muutuja `specific_version` toimingutes `install` alati v\u00e4\u00e4rtuseks `None`.",
+                    "title": "M\u00e4\u00e4rab malli v\u00e4rskenduse pealkirja saamiseks.",
+                    "update_percentage": "M\u00e4\u00e4ratleb malli, et saada uuenduse l\u00f5petamise protsent."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli v\u00e4rskendus"
+            },
+            "user": {
+                "description": "See abimees v\u00f5imaldab luua abistajaid, mis m\u00e4\u00e4ravad malli abil oma oleku. Missugune mall luua?",
+                "menu_options": {
+                    "alarm_control_panel": "Valvekeskuse juhtpaneel",
+                    "binary_sensor": "Binaarne andur",
+                    "button": "Nupp",
+                    "cover": "Kardin",
+                    "device_tracker": "Seadme tr\u00e4kker",
+                    "event": "S\u00fcndmus",
+                    "fan": "Ventilaator",
+                    "image": "Pilt",
+                    "light": "Valgus",
+                    "lock": "Lukk",
+                    "number": "Number",
+                    "select": "Vali",
+                    "sensor": "Andur",
+                    "switch": "L\u00fcliti",
+                    "update": "uuendus",
+                    "vacuum": "Tolmuimeja",
+                    "weather": "Ilm"
+                },
+                "title": "Malli abimees"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Toimingud punktpuhastusel",
+                    "device_id": "Seade",
+                    "fan_speed": "Ventilaatori kiirus",
+                    "fan_speeds": "Ventilaatori kiirused",
+                    "locate": "Toimingud asukoha m\u00e4\u00e4ramisel",
+                    "name": "Nimi",
+                    "pause": "Toimingud pausil",
+                    "return_to_base": "Toimingud dokki naasmisel",
+                    "set_fan_speed": "Toimingud ventilaatori kiiruse seadistamisel",
+                    "start": "Toimingud k\u00e4ivitamisel",
+                    "state": "Olek",
+                    "stop": "Toimingud peatumisel"
+                },
+                "data_description": {
+                    "clean_spot": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk \u201ePuhasta koht\u201d.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "fan_speed": "M\u00e4\u00e4rab malli tolmuimeja ventilaatori kiiruse saamiseks.",
+                    "fan_speeds": "Tolmuimeja toetatud ventilaatori kiiruste loend.",
+                    "locate": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk \u201eLocate\u201d (leia).",
+                    "pause": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse tolmuimeja peatamise ajal.",
+                    "return_to_base": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk \u201eNaase dokki\u201d.",
+                    "set_fan_speed": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk ventilaatori kiiruse m\u00e4\u00e4ramiseks. Vastuv\u00f5tab muutuja `fan_speed`.",
+                    "start": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse tolmuimeja k\u00e4ivitamisel.",
+                    "state": "M\u00e4\u00e4ratleb malli tolmuimeja seisundi saamiseks. Kehtivad v\u00e4\u00e4rtused on `cleaning`, `docked`, `idle`, `paused`, `returning` ja `error`.",
+                    "stop": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse tolmuimeja peatamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Tolmuimeja mall"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Seisund",
+                    "device_id": "Seade",
+                    "forecast_daily": "P\u00e4evap\u00f5hine ennustus",
+                    "forecast_hourly": "Tunnip\u00f5hine ennustus",
+                    "humidity": "Niiskus",
+                    "name": "Nimi",
+                    "temperature": "Temperatuur"
+                },
+                "data_description": {
+                    "condition": "M\u00e4\u00e4rab malli praeguste ilmastikuolude saamiseks",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "forecast_daily": "M\u00e4\u00e4rab malli [p\u00e4evaprognoosi andmete] saamiseks ({daily_link})",
+                    "forecast_hourly": "M\u00e4\u00e4rab malli [tunnip\u00f5hise prognoosi andmete] saamiseks ({hourly_link})",
+                    "humidity": "M\u00e4\u00e4rab malli praeguse \u00f5huniiskuse saamiseks",
+                    "temperature": "M\u00e4\u00e4rab malli praeguse temperatuuri saamiseks"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Ilmastiku mall"
+            }
+        }
+    },
+    "exceptions": {
+        "code_format_template_error": {
+            "message": "Viga {entity_id} koodivormingu malli \" {code_format_template} \" hindamisel: {cause}"
+        },
+        "failed_to_reload_template_entities": {
+            "message": "T\u00f5rge malli\u00fcksuste uuesti laadimisel: {error}"
+        }
+    },
+    "issues": {
+        "composite_device_id": {
+            "fix_flow": {
+                "abort": {
+                    "entry_removed": "Malli abimees on eemaldatud"
+                },
+                "error": {
+                    "invalid_device": "Valitud seade ei ole enam olemas"
+                },
+                "step": {
+                    "select_device": {
+                        "data": {
+                            "device_id": "Seade"
+                        },
+                        "data_description": {
+                            "device_id": "Seade millega see malliabiline peaks olema lingitud."
+                        },
+                        "description": "Malli abimees {name} oli lingitud seadmega, mis on jagatud mitmeks seadmeks. Kuni seadet pole valitud, pole abimees \u00fchegi seadmega lingitud.\n\nVali seade, millega see abimees peaks olema lingitud, v\u00f5i j\u00e4ta t\u00fchjaks, kui seda seadmega ei lingi.",
+                        "title": "Vali seade {name}"
+                    }
+                }
+            },
+            "title": "Malli abistaja seade {name} tuleb uuesti valida"
+        },
+        "config_format_actions": {
+            "title": "Malli toimingute valik n\u00f5uab p\u00e4\u00e4stikut"
+        },
+        "config_format_triggers": {
+            "title": "Ebat\u00e4ielik malli konfiguratsioon"
+        }
+    },
+    "options": {
+        "step": {
+            "alarm_control_panel": {
+                "data": {
+                    "arm_away": "Valvesta eemal toimingud",
+                    "arm_custom_bypass": "Kohandatud m\u00f6\u00f6daviigu toimingud",
+                    "arm_home": "Valvesta kodusl toimingud",
+                    "arm_night": "\u00d6ise valvestuse toimingud",
+                    "arm_vacation": "Valvesta puhkuse re\u017eiimis toimingud",
+                    "code_arm_required": "Vajalik on koodiga valvestamine",
+                    "code_format": "Koodi vorming",
+                    "device_id": "Seade",
+                    "disarm": "Valvest maha toimingud",
+                    "trigger": "P\u00e4\u00e4stiku toimingud",
+                    "value_template": "Olek"
+                },
+                "data_description": {
+                    "arm_away": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud \"arm_away\". Saab muutuja `code`.",
+                    "arm_custom_bypass": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse kui h\u00e4irejuhtimispaneel on aktiveeritud `arm_custom_bypass`. Saab muutuja `code`.",
+                    "arm_home": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud `arm_home`. Saab muutuja `code`.",
+                    "arm_night": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud \"arm_night\". Saab muutuja `code`.",
+                    "arm_vacation": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispaneel on aktiveeritud `arm_vacation`. Saab muutuja `code`.",
+                    "code_arm_required": "Kui see on t\u00f5si, on h\u00e4ire aktiveerimiseks vaja koodi.",
+                    "code_format": "\u00dcks j\u00e4rgmistest: \"number\", \"tekst\" v\u00f5i \"no_code\". H\u00e4ire aktiveerimiseks/deaktiveerimiseks kasutatava koodi vorming.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "disarm": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse, kui h\u00e4irejuhtimispult on desarmeeritud. Saab muutuja `kood`.",
+                    "trigger": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivituvad, kui h\u00e4irejuhtimispaneel k\u00e4ivitub. Saab muutuja `code`.",
+                    "value_template": "M\u00e4\u00e4ratleb malli valvepaneeli oleku m\u00e4\u00e4ramiseks. Malli kehtivad v\u00e4ljundv\u00e4\u00e4rtused on `armed_away`, `armed_home`, `armed_night`, `armed_vacation`, `arming`, `disarmed`, `pending` ja `triggered`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malliga alarmi juhtpaneel"
+            },
+            "binary_sensor": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "state": "Olek"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "state": "Andur on \"sisse l\u00fclitatud\", kui malli v\u00e4\u00e4rtuseks on \"t\u00f5ene\", \"jah\", \"sisse l\u00fclitatud\", \"lubatud\" v\u00f5i positiivne arv. Mis tahes muu v\u00e4\u00e4rtus muudab selle `off`-ks."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "delay_off": "Viivitus v\u00e4lja",
+                            "delay_on": "Viivitus sisse"
+                        },
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`.",
+                            "delay_off": "Aeg, mille jooksul malliseisund ei tohi olla t\u00e4idetud, enne kui see andur l\u00fclitub seisundisse `off`.",
+                            "delay_on": "Aeg, mille jooksul malli olek peab olema t\u00e4idetud, enne kui see andur l\u00fclitub sisse."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Binaarse anduri mall"
+            },
+            "button": {
+                "data": {
+                    "device_id": "Seade",
+                    "press": "Toiming vajutusel"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "press": "M\u00e4\u00e4ratleb nupu vajutamisel k\u00e4ivitatavad tegevused."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli nupp"
+            },
+            "cover": {
+                "data": {
+                    "close_cover": "Toimingud sulgemisel",
+                    "device_id": "Seade",
+                    "open_cover": "Toimingud avamisel",
+                    "position": "Asend",
+                    "set_cover_position": "Toimingud asendi m\u00e4\u00e4ramisel",
+                    "state": "Olek",
+                    "stop_cover": "Toimingud peatumisel"
+                },
+                "data_description": {
+                    "close_cover": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse kui avakate suletakse.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "open_cover": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse kui avakate avatakse.",
+                    "position": "M\u00e4\u00e4ratleb malli, et saada avakatte asend. V\u00e4\u00e4rtused on arvud vahemikus `0` (suletud) ja `100` (avatud).",
+                    "set_cover_position": "M\u00e4\u00e4rab toimingud, mis k\u00e4ivitatakse, kui avakattele antakse k\u00e4sk `set_cover_position`. Vastu v\u00f5tab muutuja `position`.",
+                    "stop_cover": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse avakatte peatamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Avakatte mall"
+            },
+            "device_tracker": {
+                "data": {
+                    "device_id": "Seade",
+                    "in_zones": "Tsoonid",
+                    "latitude": "Laiuskraad",
+                    "longitude": "Pikkuskraad"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "in_zones": "M\u00e4\u00e4rab malli, mis tagastab tsoonide loendi, milles seadme j\u00e4lgija hetkel asub. Mall peaks tagastama tsooni \u00fcksuste ID-de loendi. Kui seadme j\u00e4lgija ei asu \u00fcheski tsoonis, peaks mall tagastama t\u00fchja loendi.",
+                    "latitude": "M\u00e4\u00e4rab malli seadme j\u00e4lgija laiuskraadi saamiseks. Lubatud v\u00e4\u00e4rtused on numbrid vahemikus `-90` kuni `90`.",
+                    "longitude": "M\u00e4\u00e4rab malli seadme j\u00e4lgija pikkuskraadi saamiseks. Lubatud v\u00e4\u00e4rtused on numbrid vahemikus `-180` kuni `180`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data": {
+                            "location_accuracy": "Asukoha t\u00e4psus"
+                        },
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`.",
+                            "location_accuracy": "M\u00e4\u00e4rab malli seadme j\u00e4lgija asukoha t\u00e4psuse saamiseks meetrites. Lubatud v\u00e4\u00e4rtused on numbrid, mis on suuremad v\u00f5i v\u00f5rdsed nulliga."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli seadme j\u00e4lgija"
+            },
+            "event": {
+                "data": {
+                    "device_id": "Seade",
+                    "event_type": "Viimati k\u00e4ivitatud s\u00fcndmuse t\u00fc\u00fcp",
+                    "event_types": "S\u00fcndmuste t\u00fc\u00fcbid",
+                    "name": "Nimi"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "event_type": "M\u00e4\u00e4rab s\u00fcndmuse t\u00fc\u00fcbi malli.",
+                    "event_types": "M\u00e4\u00e4rab malli saadaolevate s\u00fcndmuset\u00fc\u00fcpide loendile."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli s\u00fcndmus"
+            },
+            "fan": {
+                "data": {
+                    "device_id": "Seade",
+                    "percentage": "Protsent",
+                    "set_percentage": "Toimingud m\u00e4\u00e4ratud protsendi alusel",
+                    "speed_count": "Kiiruste loendur",
+                    "state": "Olek",
+                    "turn_off": "Toimingud mida teha v\u00e4ljal\u00fclitamisel",
+                    "turn_on": "Toimingud mida teha sissel\u00fclitamisel"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "percentage": "M\u00e4\u00e4rab malli ventilaatori kiiruse protsendi saamiseks.",
+                    "speed_count": "Ventilaatori toetatavate kiiruste arv. Kasutatakse toimingute \"fan.increase_speed\" ja \"fan.decrease_speed\" protsendisammu arvutamiseks.",
+                    "state": "Ventilaator on sees kui malli v\u00e4\u00e4rtus on \"T\u00f5ene\", \"jah\", \"sees\", \"luba\" v\u00f5i positiivne arv. Mis tahes muu v\u00e4\u00e4rtus muudab selle olekuks \"v\u00e4ljas\".",
+                    "turn_off": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse ventilaatori v\u00e4ljal\u00fclitamisel.",
+                    "turn_on": "M\u00e4\u00e4ratleb toimingud, mida tuleb k\u00e4ivitada, kui ventilaator on sisse l\u00fclitatud. Saab muutujad `percentage` ja/v\u00f5i `preset_mode`."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Ventilaatori mall"
+            },
+            "image": {
+                "data": {
+                    "device_id": "Seade",
+                    "url": "URL",
+                    "verify_ssl": "Kontrolli SSL sertifikaati"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "url": "M\u00e4\u00e4ratleb malli, et saada URL, millel pilti esitatakse.",
+                    "verify_ssl": "SSL-sertifikaadi kontrollimise lubamine v\u00f5i keelamine. L\u00fclita v\u00e4lja, kui soovid kasutada http-URL-i v\u00f5i kui sul on isesigneeritud SSL-sertifikaat ja sa ei ole paigaldanud CA-sertifikaati, et v\u00f5imaldada verifitseerimist."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Pildi mall"
+            },
+            "light": {
+                "data": {
+                    "device_id": "Seade",
+                    "hs": "HS v\u00e4rv",
+                    "level": "Heleduse tase",
+                    "name": "Nimi",
+                    "set_hs": "Toimingud seatud HS v\u00e4rviga",
+                    "set_level": "Toimingud m\u00e4\u00e4ratud tasemel",
+                    "set_temperature": "Toimingud m\u00e4\u00e4ratud v\u00e4rvitemperatuuril",
+                    "state": "Olek",
+                    "temperature": "V\u00e4rvustemperatuur",
+                    "turn_off": "Toimingud mida teha v\u00e4ljal\u00fclitamisel",
+                    "turn_on": "Toimingud mida teha sissel\u00fclitamisel"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "hs": "M\u00e4\u00e4ratleb malli, et saada valguse HS-v\u00e4rvi. Peab esitama tupli (v\u00e4rvitoon, k\u00fcllastus).",
+                    "level": "M\u00e4\u00e4ratleb malli valguse heleduse saamiseks. Kehtivad v\u00e4\u00e4rtused on 0 kuni 255.",
+                    "set_hs": "M\u00e4\u00e4ratleb tegevused, mis k\u00e4ivitatakse kui valgusele antakse HS-v\u00e4rvik\u00e4sk. Saadaolevad muutujad: `hs` kui tupel, `h` ja `s`.",
+                    "set_level": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse, kui valgusele antakse heleduse k\u00e4sk. Skripti kutsutakse ainult siis, kui `turn_on`-kutses on ainult `brightness` ja valikuliselt `transition`. Saab muutujad `brightness` ja valikuliselt `transition`.",
+                    "set_temperature": "M\u00e4\u00e4ratleb toimingud, mis k\u00e4ivitatakse, kui valgusele antakse v\u00e4rvitemperatuuri k\u00e4sk. Saab muutuja `color_temp_kelvin`. V\u00f5ib vastu v\u00f5tta ka muutujaid `brightness` ja/v\u00f5i `transition`.",
+                    "state": "Valgus on \"sisse l\u00fclitatud\" kui malli v\u00e4\u00e4rtuseks on \"T\u00f5si\", \"Jah\", \"sisse\", \"Lubatud\" v\u00f5i positiivne arv. Mis tahes muu v\u00e4\u00e4rtus muudab selle `off`-ks.",
+                    "temperature": "M\u00e4\u00e4rab malli valguse v\u00e4rvitemperatuuri saamiseks.",
+                    "turn_off": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse valgusti v\u00e4ljal\u00fclitamisel.",
+                    "turn_on": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse valgusti sissel\u00fclitamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Valguse mall"
+            },
+            "lock": {
+                "data": {
+                    "code_format": "Koodi vorming",
+                    "device_id": "Seade",
+                    "lock": "Toimingud lukustamisel",
+                    "open": "Toimingud avamisel",
+                    "state": "Olek",
+                    "unlock": "Toimingud avamisel"
+                },
+                "data_description": {
+                    "code_format": "M\u00e4\u00e4rab malli luku atribuudi `code_format` saamiseks.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "lock": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse luku lukustamisel.",
+                    "open": "M\u00e4\u00e4rab luku avamisel k\u00e4ivitatavad toimingud.",
+                    "unlock": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse luku avamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Luku mall"
+            },
+            "number": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "max": "Maksimaalne v\u00e4\u00e4rtus",
+                    "min": "Minimaalne v\u00e4\u00e4rtus",
+                    "name": "Nimi",
+                    "set_value": "Toimingud seatud v\u00e4\u00e4rtusele",
+                    "state": "Olek",
+                    "step": "Sammu v\u00e4\u00e4rtus"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "max": "M\u00e4\u00e4rab arvu maksimaalse v\u00e4\u00e4rtuse.",
+                    "min": "M\u00e4\u00e4rab arvu minimaalse v\u00e4\u00e4rtuse.",
+                    "set_value": "M\u00e4\u00e4rab toimingud, mis k\u00e4ivitatakse kui arvule m\u00e4\u00e4ratakse v\u00e4\u00e4rtus. Saab muutuja `v\u00e4\u00e4rtus`.",
+                    "state": "Numbri praeguse v\u00e4\u00e4rtuse mall.",
+                    "step": "M\u00e4\u00e4rab arvu suurendamise/v\u00e4hendamise sammu."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli number"
+            },
+            "select": {
+                "data": {
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "options": "Saadaolevad valikud",
+                    "select_option": "Valitavad toimingud",
+                    "state": "Olek"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "options": "Valikuanduri saadaolevate valikute mall.",
+                    "select_option": "M\u00e4\u00e4rab toimingud, mis k\u00e4ivitatakse, kui loendist \u201evalikud\u201d valitakse \u201evalikud\u201d. Saab muutuja \u201evalikud\u201d.",
+                    "state": "Valiku praeguse v\u00e4\u00e4rtuse mall."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli valimine"
+            },
+            "sensor": {
+                "data": {
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "state": "Olek",
+                    "state_class": "Oleku klass",
+                    "unit_of_measurement": "M\u00f5\u00f5t\u00fchik"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "state": "M\u00e4\u00e4ratleb malli anduri oleku saamiseks. Kui andur on numbriline, st tal on `state_class` v\u00f5i `unit_of_measurement`, siis peab olekumall n\u00e4itama numbrit v\u00f5i `none`. Seisundimall ei tohi esitada stringi, sealhulgas `tundmatu` v\u00f5i `unavailable`. Staatuse malli \"k\u00e4ttesaadavus\" v\u00f5ib m\u00e4\u00e4ratleda, et peatada selle esitamine.",
+                    "unit_of_measurement": "M\u00e4\u00e4ratleb anduri m\u00f5\u00f5t\u00fchiku kui see on olemas. See kuvab ka v\u00e4\u00e4rtuse vastavalt kasutaja profiili arvvormingu seadistusele ja m\u00f5jutab graafilist esitust ajaloo visualiseerimisel pideva v\u00e4\u00e4rtusena."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli andur"
+            },
+            "switch": {
+                "data": {
+                    "device_id": "Seade",
+                    "name": "Nimi",
+                    "turn_off": "Toimingud mida teha v\u00e4ljal\u00fclitamisel",
+                    "turn_on": "Toimingud mida teha sissel\u00fclitamisel",
+                    "value_template": "Olek"
+                },
+                "data_description": {
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "turn_off": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse l\u00fcliti v\u00e4ljal\u00fclitamisel.",
+                    "turn_on": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse l\u00fcliti sissel\u00fclitamisel.",
+                    "value_template": "M\u00e4\u00e4rab malli l\u00fcliti oleku m\u00e4\u00e4ramiseks. Kui seda pole m\u00e4\u00e4ratletud, eeldab l\u00fcliti optimistlikult, et k\u00f5ik k\u00e4sud on edukad."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malliga l\u00fcliti"
+            },
+            "update": {
+                "data": {
+                    "backup": "Varukoopia",
+                    "device_class": "Seadmeklass",
+                    "device_id": "Seade",
+                    "in_progress": "K\u00e4imas",
+                    "install": "Toimingud installimisel",
+                    "installed_version": "Paigaldatud versioon",
+                    "latest_version": "Uusim versioon",
+                    "name": "Nimi",
+                    "release_summary": "V\u00e4ljalaske kokkuv\u00f5te",
+                    "release_url": "V\u00e4ljalaske URL",
+                    "specific_version": "Konkreetne versioon",
+                    "title": "Nimetus",
+                    "update_percentage": "Uuendamise protsent"
+                },
+                "data_description": {
+                    "backup": "Luba v\u00f5i keela v\u00e4rskenduste parandamises valik \u201eautomaatne varundamine enne v\u00e4rskendamist\u201d. Kui see on keelatud, annab muutuja \u201evarundamine\u201d installimise ajal alati v\u00e4\u00e4rtuseks \u201eV\u00e4\u00e4r\u201d ja see ei aktsepteeri varundamise valikut.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "in_progress": "M\u00e4\u00e4rab malli poolelioleva oleku saamiseks.",
+                    "install": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse v\u00e4rskenduse installimisel. Lubamisel saab muutujad `specific_version` ja `backup`.",
+                    "installed_version": "M\u00e4\u00e4rab malli installitud versiooni saamiseks.",
+                    "latest_version": "M\u00e4\u00e4rab malli uusima versiooni saamiseks.",
+                    "release_summary": "M\u00e4\u00e4rab malli v\u00e4ljalaske kokkuv\u00f5tte saamiseks.",
+                    "release_url": "M\u00e4\u00e4rab malli v\u00e4ljalaske URL-i saamiseks.",
+                    "specific_version": "Luba v\u00f5i keela muutuja `version` toimingu `install` abil. Kui see on keelatud, annab muutuja `specific_version` toimingutes `install` alati v\u00e4\u00e4rtuseks `None`.",
+                    "title": "M\u00e4\u00e4rab malli v\u00e4rskenduse pealkirja saamiseks.",
+                    "update_percentage": "M\u00e4\u00e4ratleb malli, et saada uuenduse l\u00f5petamise protsent."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Malli v\u00e4rskendus"
+            },
+            "vacuum": {
+                "data": {
+                    "clean_spot": "Toimingud punktpuhastusel",
+                    "device_id": "Seade",
+                    "fan_speed": "Ventilaatori kiirus",
+                    "fan_speeds": "Ventilaatori kiirused",
+                    "locate": "Toimingud asukoha m\u00e4\u00e4ramisel",
+                    "name": "Nimi",
+                    "pause": "Toimingud pausil",
+                    "return_to_base": "Toimingud dokki naasmisel",
+                    "set_fan_speed": "Toimingud ventilaatori kiiruse seadistamisel",
+                    "start": "Toimingud k\u00e4ivitamisel",
+                    "state": "Olek",
+                    "stop": "Toimingud peatumisel"
+                },
+                "data_description": {
+                    "clean_spot": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk \u201ePuhasta koht\u201d.",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "fan_speed": "M\u00e4\u00e4rab malli tolmuimeja ventilaatori kiiruse saamiseks.",
+                    "fan_speeds": "Tolmuimeja toetatud ventilaatori kiiruste loend.",
+                    "locate": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk \u201eLocate\u201d (leia).",
+                    "pause": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse tolmuimeja peatamise ajal.",
+                    "return_to_base": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk \u201eNaase dokki\u201d.",
+                    "set_fan_speed": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse kui tolmuimejale antakse k\u00e4sk ventilaatori kiiruse m\u00e4\u00e4ramiseks. Vastuv\u00f5tab muutuja `fan_speed`.",
+                    "start": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse tolmuimeja k\u00e4ivitamisel.",
+                    "state": "M\u00e4\u00e4ratleb malli tolmuimeja seisundi saamiseks. Kehtivad v\u00e4\u00e4rtused on `cleaning`, `docked`, `idle`, `paused`, `returning` ja `error`.",
+                    "stop": "M\u00e4\u00e4rab toimingud mis k\u00e4ivitatakse tolmuimeja peatamisel."
+                },
+                "sections": {
+                    "additional_options": {
+                        "data_description": {
+                            "availability": "M\u00e4\u00e4ratleb malli, et saada \u00fcksuse \"k\u00e4ttesaadav\" olek. Kui malli ei \u00f5nnestu esitada v\u00f5i see tagastab `True`, `\"1\"`, `\"true\"`, `\"yes\"`, `\"on\"`, `\"enable\"` v\u00f5i mingi muu kui nullinumber, siis on \u00fcksus `available`. Kui mall tagastab mis tahes muu v\u00e4\u00e4rtuse, on \u00fcksus \"mitte k\u00e4ttesaadav\". Kui seda ei ole konfigureeritud, on \u00fcksus alati \"saadaval\". Pange t\u00e4hele, et stringide v\u00f5rdlemine ei s\u00f5ltu suur- ja v\u00e4iket\u00e4hest; lubatud on `\"TrUe\"` ja `\"yEs\"`."
+                        },
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Tolmuimeja mall"
+            },
+            "weather": {
+                "data": {
+                    "condition": "Seisund",
+                    "device_id": "Seade",
+                    "forecast_daily": "P\u00e4evap\u00f5hine ennustus",
+                    "forecast_hourly": "Tunnip\u00f5hine ennustus",
+                    "humidity": "Niiskus",
+                    "name": "Nimi",
+                    "temperature": "Temperatuur"
+                },
+                "data_description": {
+                    "condition": "M\u00e4\u00e4rab malli praeguste ilmastikuolude saamiseks",
+                    "device_id": "Vali seade mida selle \u00fcksusega siduda.",
+                    "forecast_daily": "M\u00e4\u00e4rab malli [p\u00e4evaprognoosi andmete] saamiseks ({daily_link})",
+                    "forecast_hourly": "M\u00e4\u00e4rab malli [tunnip\u00f5hise prognoosi andmete] saamiseks ({hourly_link})",
+                    "humidity": "M\u00e4\u00e4rab malli praeguse \u00f5huniiskuse saamiseks",
+                    "temperature": "M\u00e4\u00e4rab malli praeguse temperatuuri saamiseks"
+                },
+                "sections": {
+                    "additional_options": {
+                        "name": "Lisavalikud"
+                    }
+                },
+                "title": "Ilmastiku mall"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_format": {
+            "options": {
+                "no_code": "Koodivorming puudub",
+                "number": "Arvv\u00e4\u00e4rtus",
+                "text": "Tekst"
+            }
+        },
+        "sensor_unit_of_measurement": {
+            "options": {
+                "none": "M\u00f5\u00f5t\u00fchik puudub"
+            }
+        },
+        "update_device_class": {
+            "options": {
+                "firmware": "P\u00fcsivara"
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "description": "Laeb malli olemid YAML-konfiguratsioonist uuesti.",
+            "name": "Malli olemite taaslaadimine"
+        }
+    }
+}

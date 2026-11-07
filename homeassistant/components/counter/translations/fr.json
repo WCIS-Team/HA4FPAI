@@ -1,0 +1,121 @@
+{
+    "common": {
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_value": {
+            "description": "V\u00e9rifie la valeur d'un ou plusieurs compteurs.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie si"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                },
+                "threshold": {
+                    "name": "Type de seuil"
+                }
+            },
+            "name": "Valeur du compteur"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Compteur",
+            "state_attributes": {
+                "editable": {
+                    "name": "G\u00e9r\u00e9 via l'interface utilisateur",
+                    "state": {
+                        "false": "Non",
+                        "true": "Oui"
+                    }
+                },
+                "initial": {
+                    "name": "Valeur initiale"
+                },
+                "maximum": {
+                    "name": "Maximum"
+                },
+                "minimum": {
+                    "name": "Minimum"
+                },
+                "step": {
+                    "name": "Pas"
+                }
+            }
+        }
+    },
+    "services": {
+        "decrement": {
+            "description": "D\u00e9cr\u00e9mente un compteur en fonction de sa taille de pas.",
+            "name": "D\u00e9cr\u00e9menter le compteur"
+        },
+        "increment": {
+            "description": "Incr\u00e9mente un compteur en fonction de sa taille de pas.",
+            "name": "Incr\u00e9menter le compteur"
+        },
+        "reset": {
+            "description": "R\u00e9initialise un compteur \u00e0 sa valeur initiale.",
+            "name": "R\u00e9initialiser le compteur"
+        },
+        "set_value": {
+            "description": "D\u00e9finit un compteur sur une valeur sp\u00e9cifique.",
+            "fields": {
+                "value": {
+                    "description": "La nouvelle valeur de compteur \u00e0 laquelle l'entit\u00e9 doit \u00eatre d\u00e9finie.",
+                    "name": "Valeur"
+                }
+            },
+            "name": "D\u00e9finir la valeur du compteur"
+        }
+    },
+    "title": "Compteur",
+    "triggers": {
+        "decremented": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs compteurs sont d\u00e9cr\u00e9ment\u00e9s.",
+            "name": "Le compteur a \u00e9t\u00e9 d\u00e9cr\u00e9ment\u00e9"
+        },
+        "incremented": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs compteurs sont incr\u00e9ment\u00e9s.",
+            "name": "Le compteur a \u00e9t\u00e9 incr\u00e9ment\u00e9"
+        },
+        "maximum_reached": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs compteurs atteignent leur valeur maximale.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le compteur a atteint sa valeur maximale"
+        },
+        "minimum_reached": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs compteurs atteignent leur valeur minimale.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le compteur a atteint sa valeur minimale"
+        },
+        "reset": {
+            "description": "Se d\u00e9clenche lorsqu'un ou plusieurs compteurs sont r\u00e9initialis\u00e9s.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "Le compteur a \u00e9t\u00e9 r\u00e9initialis\u00e9"
+        }
+    }
+}

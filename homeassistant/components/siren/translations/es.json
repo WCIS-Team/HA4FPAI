@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Comprueba si una o m\u00e1s sirenas est\u00e1n apagadas.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "La sirena est\u00e1 apagada."
+        },
+        "is_on": {
+            "description": "Comprueba si una o m\u00e1s sirenas est\u00e1n encendidas.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "La sirena est\u00e1 encendida."
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sirena",
+            "state": {
+                "off": "Apagado",
+                "on": "Encendido"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "Tonos disponibles"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Enciende o apaga una sirena",
+            "name": "Alternar sirena"
+        },
+        "turn_off": {
+            "description": "Apaga una sirena.",
+            "name": "Apagar sirena"
+        },
+        "turn_on": {
+            "description": "Enciende una sirena.",
+            "fields": {
+                "duration": {
+                    "description": "N\u00famero de segundos que se reproduce el sonido. Debe ser compatible con la integraci\u00f3n.",
+                    "name": "Duraci\u00f3n"
+                },
+                "tone": {
+                    "description": "El tono a emitir. Cuando la propiedad `disponible_tonos` es un mapa, se puede usar la clave o el valor. Debe ser compatible con la integraci\u00f3n.",
+                    "name": "Tono"
+                },
+                "volume_level": {
+                    "description": "El volumen. 0 es inaudible, 1 es el volumen m\u00e1ximo. Debe ser compatible con la integraci\u00f3n.",
+                    "name": "Volumen"
+                }
+            },
+            "name": "Encender sirena"
+        }
+    },
+    "title": "Sirena",
+    "triggers": {
+        "turned_off": {
+            "description": "Se dispara cuando una o m\u00e1s sirenas se apagan.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sirena apagada"
+        },
+        "turned_on": {
+            "description": "Se dispara cuando se encienden una o m\u00e1s sirenas.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "Sirena encendida"
+        }
+    }
+}

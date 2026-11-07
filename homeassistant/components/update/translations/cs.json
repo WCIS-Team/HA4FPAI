@@ -1,0 +1,155 @@
+{
+    "common": {
+        "condition_behavior_name": "Podm\u00ednka je spln\u011bna, kdy\u017e",
+        "condition_for_name": "Alespo\u0148 na",
+        "trigger_behavior_name": "Spustit, kdy\u017e",
+        "trigger_for_name": "Alespo\u0148 na"
+    },
+    "conditions": {
+        "is_available": {
+            "description": "Otestuje, zda je dostupn\u00e1 jedna nebo v\u00edce aktualizac\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Aktualizace je dostupn\u00e1"
+        },
+        "is_not_available": {
+            "description": "Otestuje, zda nen\u00ed dostupn\u00e1 jedna nebo v\u00edce aktualizac\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Podm\u00ednka je spln\u011bna, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Aktualizace nen\u00ed dostupn\u00e1"
+        }
+    },
+    "device_automation": {
+        "extra_fields": {
+            "for": "Doba trv\u00e1n\u00ed"
+        },
+        "trigger_type": {
+            "changed_states": "Dostupnost aktualizace {entity_name} zm\u011bn\u011bna",
+            "turned_off": "{entity_name} se stal aktu\u00e1ln\u00edm",
+            "turned_on": "Aktualizace dostupn\u00e1 pro {entity_name}"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Aktualizace",
+            "state": {
+                "off": "Aktu\u00e1ln\u00ed",
+                "on": "Aktualizace dostupn\u00e1"
+            },
+            "state_attributes": {
+                "auto_update": {
+                    "name": "Automatick\u00e1 aktualizace",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Ano"
+                    }
+                },
+                "in_progress": {
+                    "name": "Prob\u00edh\u00e1",
+                    "state": {
+                        "false": "Ne",
+                        "true": "Ano"
+                    }
+                },
+                "installed_version": {
+                    "name": "Nainstalovan\u00e1 verze"
+                },
+                "latest_version": {
+                    "name": "Nejnov\u011bj\u0161\u00ed verze"
+                },
+                "release_summary": {
+                    "name": "P\u0159ehled vyd\u00e1n\u00ed"
+                },
+                "release_url": {
+                    "name": "URL vyd\u00e1n\u00ed"
+                },
+                "skipped_version": {
+                    "name": "P\u0159esko\u010den\u00e1 verze"
+                },
+                "title": {
+                    "name": "N\u00e1zev"
+                }
+            }
+        },
+        "firmware": {
+            "name": "Firmware"
+        }
+    },
+    "exceptions": {
+        "backup_not_supported": {
+            "message": "Z\u00e1lohov\u00e1n\u00ed nen\u00ed podporov\u00e1no pro {entity_id}."
+        },
+        "clear_skipped_not_supported": {
+            "message": "Vymaz\u00e1n\u00ed p\u0159esko\u010den\u00e9 aktualizace nen\u00ed podporov\u00e1no pro {entity_id}."
+        },
+        "no_update_available": {
+            "message": "Nen\u00ed k dispozici \u017e\u00e1dn\u00e1 aktualizace pro {entity_id}."
+        },
+        "no_update_available_to_skip": {
+            "message": "Nen\u00ed k dispozici \u017e\u00e1dn\u00e1 aktualizace k p\u0159esko\u010den\u00ed pro {entity_id}."
+        },
+        "skip_not_supported": {
+            "message": "P\u0159esko\u010den\u00ed aktualizace nen\u00ed podporov\u00e1no pro {entity_id}."
+        },
+        "specific_version_not_supported": {
+            "message": "Instalace konkr\u00e9tn\u00ed verze nen\u00ed podporov\u00e1na pro {entity_id}."
+        },
+        "unknown_version_to_skip": {
+            "message": "Nelze p\u0159esko\u010dit nezn\u00e1mou verzi pro {entity_id}."
+        },
+        "update_in_progress": {
+            "message": "Instalace aktualizace ji\u017e prob\u00edh\u00e1 pro {entity_id}."
+        }
+    },
+    "services": {
+        "clear_skipped": {
+            "description": "Odebere zna\u010dku p\u0159esko\u010den\u00e9 verze z aktualizace.",
+            "name": "Vymazat p\u0159esko\u010denou aktualizaci"
+        },
+        "install": {
+            "description": "Nainstaluje aktualizaci pro za\u0159\u00edzen\u00ed nebo slu\u017ebu.",
+            "fields": {
+                "backup": {
+                    "description": "Pokud to integrace podporuje, vytvo\u0159\u00ed se p\u0159ed zah\u00e1jen\u00edm aktualizace z\u00e1loha.",
+                    "name": "Z\u00e1lohovat"
+                },
+                "version": {
+                    "description": "Verze k instalaci. Pokud je vynech\u00e1na, nainstaluje se nejnov\u011bj\u0161\u00ed verze.",
+                    "name": "Verze"
+                }
+            },
+            "name": "Nainstalovat aktualizaci"
+        },
+        "skip": {
+            "description": "Ozna\u010d\u00ed aktu\u00e1ln\u011b dostupnou aktualizaci jako p\u0159esko\u010denou.",
+            "name": "P\u0159esko\u010dit aktualizaci"
+        }
+    },
+    "title": "Aktualizace",
+    "triggers": {
+        "became_available": {
+            "description": "Spust\u00ed se, kdy\u017e je k dostupn\u00e1 jedna nebo v\u00edce aktualizac\u00ed.",
+            "fields": {
+                "behavior": {
+                    "name": "Spustit, kdy\u017e"
+                },
+                "for": {
+                    "name": "Alespo\u0148 na"
+                }
+            },
+            "name": "Je dostupn\u00e1 aktualizace"
+        }
+    }
+}

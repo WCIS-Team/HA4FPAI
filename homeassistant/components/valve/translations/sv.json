@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "Testar om en eller flera ventiler \u00e4r st\u00e4ngda.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Ventil \u00e4r st\u00e4ngd"
+        },
+        "is_open": {
+            "description": "Testar om en eller flera ventiler \u00e4r \u00f6ppna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Ventil \u00e4r \u00f6ppen"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventil",
+            "state": {
+                "closed": "St\u00e4ngd",
+                "closing": "St\u00e4nger",
+                "open": "\u00d6ppen",
+                "opening": "\u00d6ppnar",
+                "stopped": "Stoppad"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Position"
+                }
+            }
+        },
+        "gas": {
+            "name": "Gas"
+        },
+        "water": {
+            "name": "Vatten"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "St\u00e4nger en ventil.",
+            "name": "St\u00e4ng ventil"
+        },
+        "open_valve": {
+            "description": "\u00d6ppnar en ventil.",
+            "name": "\u00d6ppna ventil"
+        },
+        "set_valve_position": {
+            "description": "Flyttar en ventil till en specifik position.",
+            "fields": {
+                "position": {
+                    "description": "M\u00e5lposition.",
+                    "name": "Position"
+                }
+            },
+            "name": "S\u00e4tt position"
+        },
+        "stop_valve": {
+            "description": "Stoppar ventilens r\u00f6relse.",
+            "name": "Stoppa ventil"
+        },
+        "toggle": {
+            "description": "\u00d6ppnar/st\u00e4nger en ventil.",
+            "name": "V\u00e4xla ventil"
+        }
+    },
+    "title": "Ventil",
+    "triggers": {
+        "closed": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera ventiler st\u00e4ngs.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Ventil st\u00e4ngdes"
+        },
+        "opened": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera ventiler \u00f6ppnas.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Ventil \u00f6ppnad"
+        }
+    }
+}

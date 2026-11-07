@@ -1,0 +1,1428 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "Nem siker\u00fclt csatlakozni a(z) {addon} alkalmaz\u00e1shoz. Ellen\u0151rizze az alkalmaz\u00e1s \u00e1llapot\u00e1t, \u00e9s pr\u00f3b\u00e1lja meg k\u00e9s\u0151bb \u00fajra.",
+            "addon_info_failed": "Nem siker\u00fclt lek\u00e9rdezni a(z) {addon} alkalmaz\u00e1s adatait.",
+            "addon_install_failed": "Nem siker\u00fclt telep\u00edteni a(z) {addon} alkalmaz\u00e1st.",
+            "addon_start_failed": "Nem siker\u00fclt elind\u00edtani a(z) {addon} alkalmaz\u00e1st.",
+            "already_configured": "A szolg\u00e1ltat\u00e1s m\u00e1r konfigur\u00e1lva van"
+        },
+        "error": {
+            "bad_birth": "\u00c9rv\u00e9nytelen sz\u00fclet\u00e9si \"birth\" t\u00e9mak\u00f6r",
+            "bad_certificate": "A CA-tan\u00fas\u00edtv\u00e1ny \u00e9rv\u00e9nytelen",
+            "bad_client_cert": "\u00c9rv\u00e9nytelen kliens tan\u00fas\u00edtv\u00e1ny, ellen\u0151rizze, hogy \u00e9rv\u00e9nyes f\u00e1jlt adott meg",
+            "bad_client_cert_key": "Az \u00fcgyf\u00e9ltan\u00fas\u00edtv\u00e1ny \u00e9s a priv\u00e1t kulcs nem \u00e9rv\u00e9nyes p\u00e1r",
+            "bad_discovery_prefix": "\u00c9rv\u00e9nytelen felfedez\u00e9si el\u0151tag",
+            "bad_will": "\u00c9rv\u00e9nytelen b\u00facs\u00fa \"will\" t\u00e9mak\u00f6r",
+            "bad_ws_headers": "\u00c9rv\u00e9nyes HTTP-fejl\u00e9cek megad\u00e1sa JSON-objektumk\u00e9nt",
+            "cannot_connect": "Sikertelen csatlakoz\u00e1s",
+            "client_key_error": "\u00c9rv\u00e9nytelen priv\u00e1t kulcsf\u00e1jl vagy helytelen jelsz\u00f3 lett megadva",
+            "invalid_auth": "\u00c9rv\u00e9nytelen hiteles\u00edt\u00e9s",
+            "invalid_inclusion": "Az \u00fcgyf\u00e9l tan\u00fas\u00edtv\u00e1nyt \u00e9s a priv\u00e1t kulcsot egy\u00fctt kell konfigur\u00e1lni"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Br\u00f3ker",
+                    "password": "Jelsz\u00f3",
+                    "port": "Port",
+                    "protocol": "MQTT protokoll",
+                    "username": "Felhaszn\u00e1l\u00f3n\u00e9v"
+                },
+                "data_description": {
+                    "broker": "Az MQTT broker hosztneve vagy IP-c\u00edme.",
+                    "password": "A jelsz\u00f3 az MQTT brokerhez val\u00f3 bejelentkez\u00e9shez.",
+                    "port": "Az MQTT broker \u00e1ltal haszn\u00e1lt port. P\u00e9ld\u00e1ul 1883.",
+                    "protocol": "A haszn\u00e1lt MQTT protokoll verzi\u00f3ja. Megjegyz\u00e9s: a Home Assistant automatikusan az 5-\u00f6s verzi\u00f3ra v\u00e1lt, ha a br\u00f3ker t\u00e1mogatja azt.",
+                    "username": "A felhaszn\u00e1l\u00f3n\u00e9v az MQTT brokerhez val\u00f3 bejelentkez\u00e9shez."
+                },
+                "description": "K\u00e9rem, adja meg az MQTT br\u00f3ker kapcsol\u00f3d\u00e1si adatait.",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "Egy\u00e9ni CA-tan\u00fas\u00edtv\u00e1ny f\u00e1jl felt\u00f6lt\u00e9se",
+                            "client_cert": "Kliens tan\u00fas\u00edtv\u00e1ny f\u00e1jl felt\u00f6lt\u00e9se",
+                            "client_id": "Kliens azonos\u00edt\u00f3 (hagyja \u00fcresen a v\u00e9letlenszer\u0171 gener\u00e1l\u00e1shoz)",
+                            "client_key": "Priv\u00e1t kulcs f\u00e1jl felt\u00f6lt\u00e9se",
+                            "client_key_password": "Jelsz\u00f3",
+                            "keepalive": "Az \u00e9letjelz\u00e9sek k\u00fcld\u00e9se k\u00f6z\u00f6tti id\u0151k\u00f6z",
+                            "set_ca_cert": "Br\u00f3ker tan\u00fas\u00edtv\u00e1ny \u00e9rv\u00e9nyes\u00edt\u00e9se",
+                            "set_client_cert": "Kliens tan\u00fas\u00edtv\u00e1ny haszn\u00e1lata",
+                            "tls_insecure": "Br\u00f3ker tan\u00fas\u00edtv\u00e1ny \u00e9rv\u00e9nyes\u00edt\u00e9s\u00e9nek mell\u0151z\u00e9se",
+                            "transport": "MQTT \u00e1tviteli protokoll",
+                            "ws_headers": "WebSocket fejl\u00e9cek JSON form\u00e1tumban",
+                            "ws_path": "WebSocket el\u00e9r\u00e9si \u00fatvonal"
+                        },
+                        "data_description": {
+                            "certificate": "Az egy\u00e9ni CA-tan\u00fas\u00edtv\u00e1ny f\u00e1jl, amellyel az MQTT br\u00f3ker tan\u00fas\u00edtv\u00e1nya ellen\u0151rizhet\u0151.",
+                            "client_cert": "A kliens tan\u00fas\u00edtv\u00e1ny az MQTT br\u00f3kerrel t\u00f6rt\u00e9n\u0151 hiteles\u00edt\u00e9shez.",
+                            "client_id": "Az egyedi azonos\u00edt\u00f3, amellyel a Home Assistant MQTT API MQTT kliensk\u00e9nt azonos\u00edtja mag\u00e1t. Javasolt ezt a mez\u0151t \u00fcresen hagyni.",
+                            "client_key": "A kliens tan\u00fas\u00edtv\u00e1nyhoz tartoz\u00f3 priv\u00e1t kulcs f\u00e1jl.",
+                            "client_key_password": "A priv\u00e1t kulcs f\u00e1jl jelszava (ha be van \u00e1ll\u00edtva).",
+                            "keepalive": "90 m\u00e1sodpercn\u00e9l kisebb \u00e9rt\u00e9ket javasolt megadni. Alap\u00e9rtelmez\u00e9s: 60 m\u00e1sodperc.",
+                            "set_ca_cert": "Ha m\u00e1r **Egy\u00e9ni** \u00e9rt\u00e9kre van \u00e1ll\u00edtva, akkor egy\u00e9ni CA-\u00e9rv\u00e9nyes\u00edt\u00e9si tan\u00fas\u00edtv\u00e1ny van be\u00e1ll\u00edtva. V\u00e1lassza az **Automatikus** lehet\u0151s\u00e9get az automatikus CA-\u00e9rv\u00e9nyes\u00edt\u00e9shez, vagy t\u00f6lts\u00f6n fel egy\u00e9ni CA-tan\u00fas\u00edtv\u00e1nyt az MQTT br\u00f3ker tan\u00fas\u00edtv\u00e1ny\u00e1nak ellen\u0151rz\u00e9s\u00e9hez.",
+                            "set_client_cert": "Ha m\u00e1r be van jel\u00f6lve, a kliens tan\u00fas\u00edtv\u00e1nyos hiteles\u00edt\u00e9s enged\u00e9lyezve van. Az enged\u00e9lyez\u00e9shez t\u00f6lts\u00f6n fel kliens tan\u00fas\u00edtv\u00e1nyt \u00e9s kulcsot.",
+                            "tls_insecure": "Lehet\u0151s\u00e9g az MQTT br\u00f3ker tan\u00fas\u00edtv\u00e1ny\u00e9rv\u00e9nyes\u00edt\u00e9s\u00e9nek mell\u0151z\u00e9s\u00e9re.",
+                            "transport": "Az MQTT br\u00f3kerhez val\u00f3 csatlakoz\u00e1shoz haszn\u00e1lt \u00e1tviteli protokoll.",
+                            "ws_headers": "A WebSocket fejl\u00e9cek, amelyek a WebSocket alap\u00fa kapcsolaton kereszt\u00fcl ker\u00fclnek tov\u00e1bb\u00edt\u00e1sra az MQTT br\u00f3ker fel\u00e9.",
+                            "ws_path": "Az MQTT br\u00f3kerhez val\u00f3 WebSocket kapcsolathoz haszn\u00e1lt el\u00e9r\u00e9si \u00fatvonal."
+                        },
+                        "name": "Egy\u00e9b be\u00e1ll\u00edt\u00e1sok"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "Szeretn\u00e9 be\u00e1ll\u00edtani a Home Assistantot, hogy csatlakozzon a {addon} alkalmaz\u00e1s \u00e1ltal biztos\u00edtott MQTT br\u00f3kerhez?",
+                "title": "MQTT br\u00f3ker a Home Assistant alkalmaz\u00e1son kereszt\u00fcl"
+            },
+            "install_addon": {
+                "title": "Alkalmaz\u00e1s telep\u00edt\u00e9se"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Jelsz\u00f3",
+                    "username": "Felhaszn\u00e1l\u00f3n\u00e9v"
+                },
+                "data_description": {
+                    "password": "A jelsz\u00f3 az MQTT brokerhez val\u00f3 bejelentkez\u00e9shez.",
+                    "username": "A felhaszn\u00e1l\u00f3n\u00e9v az MQTT brokerhez val\u00f3 bejelentkez\u00e9shez."
+                },
+                "description": "Az MQTT br\u00f3ker hiteles\u00edt\u00e9si hib\u00e1t jelzett. K\u00e9rj\u00fck, er\u0151s\u00edtse meg a br\u00f3ker helyes felhaszn\u00e1l\u00f3nev\u00e9t \u00e9s jelszav\u00e1t.",
+                "title": "\u00dajb\u00f3li hiteles\u00edt\u00e9s sz\u00fcks\u00e9ges az MQTT br\u00f3kern\u00e9l"
+            },
+            "start_addon": {
+                "title": "Alkalmaz\u00e1s ind\u00edt\u00e1sa"
+            },
+            "user": {
+                "description": "K\u00e9rj\u00fck, v\u00e1lassza ki, hogyan szeretne csatlakozni az MQTT br\u00f3kerhez:",
+                "menu_options": {
+                    "addon": "A hivatalos {addon} alkalmaz\u00e1s haszn\u00e1lata.",
+                    "broker": "K\u00e9rj\u00fck, adja meg az MQTT br\u00f3ker kapcsolat adatait"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "A(z) {platform} entit\u00e1ssal rendelkez\u0151 MQTT eszk\u00f6z \"{entity}\" sikeresen be\u00e1ll\u00edtva.\n\nMegjegyz\u00e9s: Az MQTT eszk\u00f6z b\u00e1rmikor \u00fajrakonfigur\u00e1lhat\u00f3, p\u00e9ld\u00e1ul tov\u00e1bbi entit\u00e1sok hozz\u00e1ad\u00e1s\u00e1hoz."
+            },
+            "entry_type": "MQTT eszk\u00f6z",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "A lek\u00e9rdez\u00e9si \u00e9s be\u00e1ll\u00edt\u00e1si poz\u00edci\u00f3 t\u00e9mak\u00f6r\u00f6ket egy\u00fctt kell megadni",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "A poz\u00edci\u00f3 \u00e9rt\u00e9k\u00e9nek sablonj\u00e1t egy\u00fctt kell haszn\u00e1lni a poz\u00edci\u00f3 \u00e1llapot\u00e1nak t\u00e9mak\u00f6r\u00e9vel",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "A poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1s\u00e1ra szolg\u00e1l\u00f3 sablont a poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1si t\u00e9mak\u00f6r\u00e9vel egy\u00fctt kell haszn\u00e1lni",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "A billent\u00e9si parancs sablonj\u00e1t a billent\u00e9si parancs t\u00e9mak\u00f6r\u00e9vel egy\u00fctt kell haszn\u00e1lni",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "A billent\u00e9si \u00e9rt\u00e9k sablonj\u00e1t a billent\u00e9si \u00e1llapot t\u00e9mak\u00f6r\u00e9vel egy\u00fctt kell haszn\u00e1lni",
+                "cover_value_template_must_be_used_with_state_topic": "Az \u00e9rt\u00e9k sablont az \u00e1llapot t\u00e9mak\u00f6r opci\u00f3val egy\u00fctt kell haszn\u00e1lni",
+                "empty_list_not_allowed": "Az \u00fcres lista nem megengedett. Adjon hozz\u00e1 legal\u00e1bb egy elemet.",
+                "fan_preset_mode_reset_in_preset_modes_list": "Az \"el\u0151re be\u00e1ll\u00edtott m\u00f3d vissza\u00e1ll\u00edt\u00e1sa\" adatcsomag nem \u00e9rv\u00e9nyes el\u0151re be\u00e1ll\u00edtott \u00fczemm\u00f3dk\u00e9nt",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "A sebess\u00e9gtartom\u00e1ny maximum \u00e9rt\u00e9k\u00e9nek nagyobbnak kell lennie a minimum \u00e9rt\u00e9kn\u00e9l",
+                "invalid_input": "\u00c9rv\u00e9nytelen \u00e9rt\u00e9k",
+                "invalid_regular_expression": "\u00c9rv\u00e9nyes regul\u00e1ris kifejez\u00e9st kell megadni",
+                "invalid_subscribe_topic": "\u00c9rv\u00e9nytelen feliratkoz\u00e1si \"subscribe\" t\u00e9ma",
+                "invalid_supported_color_modes": "\u00c9rv\u00e9nytelen sz\u00edns\u00e9ma-be\u00e1ll\u00edt\u00e1s",
+                "invalid_template": "\u00c9rv\u00e9nytelen sablon",
+                "invalid_uom": "A(z) \"{unit_of_measurement}\" m\u00e9rt\u00e9kegys\u00e9g nem t\u00e1mogatott a kiv\u00e1lasztott eszk\u00f6zoszt\u00e1lyhoz. K\u00e9rj\u00fck, t\u00e1vol\u00edtsa el az eszk\u00f6zoszt\u00e1lyt, v\u00e1lasszon egy olyan eszk\u00f6zoszt\u00e1lyt, amely t\u00e1mogatja a(z) \"{unit_of_measurement}\" m\u00e9rt\u00e9kegys\u00e9get vagy v\u00e1lasszon egy t\u00e1mogatott m\u00e9rt\u00e9kegys\u00e9get a list\u00e1b\u00f3l",
+                "invalid_uom_for_state_class": "A(z) \"{unit_of_measurement}\" m\u00e9rt\u00e9kegys\u00e9g nem t\u00e1mogatott a kiv\u00e1lasztott \u00e1llapot oszt\u00e1ly \u00e1ltal. T\u00e1vol\u00edtsa el az \u00e1llapot oszt\u00e1lyt, v\u00e1lasszon olyat, amely t\u00e1mogatja a(z) \"{unit_of_measurement}\" m\u00e9rt\u00e9kegys\u00e9get vagy v\u00e1lasszon egy t\u00e1mogatott m\u00e9rt\u00e9kegys\u00e9get a list\u00e1b\u00f3l",
+                "invalid_url": "\u00c9rv\u00e9nytelen URL",
+                "last_reset_not_with_state_class_total": "A last reset \u00e9rt\u00e9ksablon csak a 'Total' \u00e1llapotoszt\u00e1llyal haszn\u00e1lhat\u00f3",
+                "max_below_min": "A maxim\u00e1lis \u00e9rt\u00e9knek nagyobbnak vagy egyenl\u0151nek kell lennie a minim\u00e1lis \u00e9rt\u00e9kn\u00e9l",
+                "max_below_min_humidity": "A maxim\u00e1lis p\u00e1ratartalom \u00e9rt\u00e9knek nagyobbnak kell lennie a minim\u00e1lisn\u00e1l",
+                "max_below_min_kelvin": "A maxim\u00e1lis Kelvin \u00e9rt\u00e9knek nagyobbnak kell lennie a minim\u00e1lisn\u00e1l",
+                "max_below_min_temperature": "A maxim\u00e1lis h\u0151m\u00e9rs\u00e9klet \u00e9rt\u00e9knek nagyobbnak kell lennie a minim\u00e1lisn\u00e1l",
+                "options_device_class_enum": "Az 'Opci\u00f3k' be\u00e1ll\u00edt\u00e1st az Enumer\u00e1ci\u00f3 eszk\u00f6zoszt\u00e1llyal kell haszn\u00e1lni. Ha folytatja, a megl\u00e9v\u0151 opci\u00f3k vissza\u00e1llnak.",
+                "options_not_allowed_with_state_class_or_uom": "Az 'Opci\u00f3k' be\u00e1ll\u00edt\u00e1s nem enged\u00e9lyezett, ha az \"\u00c1llapot oszt\u00e1ly\" vagy a \"M\u00e9rt\u00e9kegys\u00e9g\" meg van adva.",
+                "options_with_enum_device_class": "\u00c1ll\u00edtsa be az enumer\u00e1ci\u00f3s \u00e9rz\u00e9kel\u0151 opci\u00f3it",
+                "preset_mode_none_not_allowed": "A \"none\" el\u0151be\u00e1ll\u00edt\u00e1s nem \u00e9rv\u00e9nyes el\u0151be\u00e1ll\u00edt\u00e1si m\u00f3d",
+                "uom_required_for_device_class": "A kiv\u00e1lasztott eszk\u00f6zoszt\u00e1lyhoz m\u00e9rt\u00e9kegys\u00e9g sz\u00fcks\u00e9ges"
+            },
+            "initiate_flow": {
+                "reconfigure": "MQTT-eszk\u00f6z \u00fajrakonfigur\u00e1l\u00e1sa",
+                "user": "MQTT-eszk\u00f6z hozz\u00e1ad\u00e1sa"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "El\u00e9rhet\u0151s\u00e9gi sablon",
+                        "availability_topic": "El\u00e9rhet\u0151s\u00e9gi t\u00e9ma",
+                        "payload_available": "El\u00e9rhet\u0151 adatcsomag",
+                        "payload_not_available": "Nem el\u00e9rhet\u0151 adatcsomag"
+                    },
+                    "data_description": {
+                        "availability_template": "Egy [sablon]({value_templating_url}) az el\u00e9rhet\u0151s\u00e9gi topikon \u00e9rkez\u0151 adatcsomag feldolgoz\u00e1s\u00e1hoz.",
+                        "availability_topic": "Az az \u00fczenett\u00e9ma, amelyen az el\u00e9rhet\u0151s\u00e9gi \u00e1llapot \u00e9rkezik",
+                        "payload_available": "Az az adatcsomag (payload), amely jelzi, hogy az eszk\u00f6z el\u00e9rhet\u0151 (alap\u00e9rtelmezett: \u201eonline\u201d).",
+                        "payload_not_available": "Az az adatcsomag (payload), amely jelzi, hogy az eszk\u00f6z nem el\u00e9rhet\u0151 (alap\u00e9rtelmezett: \u201eoffline\u201d)."
+                    },
+                    "description": "Az el\u00e9rhet\u0151s\u00e9g funkci\u00f3 lehet\u0151v\u00e9 teszi, hogy az eszk\u00f6z jelentse az el\u00e9rhet\u0151s\u00e9g\u00e9t.",
+                    "title": "El\u00e9rhet\u0151s\u00e9gi be\u00e1ll\u00edt\u00e1sok"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "Entit\u00e1s"
+                    },
+                    "data_description": {
+                        "component": "V\u00e1lassza ki a t\u00f6r\u00f6lni k\u00edv\u00e1nt entit\u00e1st. Legal\u00e1bb egy entit\u00e1snak maradnia kell."
+                    },
+                    "description": "Egy entit\u00e1s t\u00f6rl\u00e9se. Az entit\u00e1s el lesz t\u00e1vol\u00edtva az eszk\u00f6zr\u0151l. Az entit\u00e1s t\u00f6rl\u00e9se megszak\u00edthatja az azt haszn\u00e1l\u00f3 automatizmusokat vagy szkripteket.",
+                    "title": "Entit\u00e1s t\u00f6rl\u00e9se"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "Konfigur\u00e1ci\u00f3s URL",
+                        "manufacturer": "Gy\u00e1rt\u00f3",
+                        "model": "Modell",
+                        "model_id": "Modell azonos\u00edt\u00f3",
+                        "name": "Elnevez\u00e9s"
+                    },
+                    "data_description": {
+                        "configuration_url": "Egy weboldal linkje, amely ezen eszk\u00f6z konfigur\u00e1ci\u00f3j\u00e1t kezeli. Lehet \u201ehttp://\u201d, \u201ehttps://\u201d vagy egy bels\u0151 \u201ehomeassistant://\u201d URL.",
+                        "manufacturer": "Pl. Cleanmaster Kft.",
+                        "model": "Pl. 'Cleanmaster Pro'.",
+                        "model_id": "P\u00e9ld\u00e1ul '123NK2PRO'.",
+                        "name": "A manu\u00e1lisan hozz\u00e1adott MQTT eszk\u00f6z neve."
+                    },
+                    "description": "Adja meg az MQTT eszk\u00f6z adatait:",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "\u00dczenet-lej\u00e1rati intervallum",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "A k\u00f6zz\u00e9tett \u00fczenet meg\u0151rz\u00e9si id\u0151intervalluma.",
+                                "qos": "A Quality of Service (QoS) \u00e9rt\u00e9k, amelyet az eszk\u00f6z entit\u00e1sainak haszn\u00e1lniuk kell."
+                            },
+                            "name": "MQTT be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "Hardververzi\u00f3",
+                                "sw_version": "Szoftververzi\u00f3"
+                            },
+                            "data_description": {
+                                "hw_version": "Az eszk\u00f6z hardververzi\u00f3ja. Pl.: 'v1.0 rev a'.",
+                                "sw_version": "Az eszk\u00f6z szoftververzi\u00f3ja. Pl.: '2025.1.0'."
+                            },
+                            "name": "Egy\u00e9b eszk\u00f6zbe\u00e1ll\u00edt\u00e1sok"
+                        }
+                    },
+                    "title": "MQTT eszk\u00f6z r\u00e9szleteinek konfigur\u00e1l\u00e1sa"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "Entit\u00e1s k\u00e9pe",
+                        "name": "Entit\u00e1s neve",
+                        "platform": "Entit\u00e1s t\u00edpusa"
+                    },
+                    "data_description": {
+                        "entity_picture": "URL egy hozz\u00e1rendelhet\u0151 k\u00e9phez.",
+                        "name": "Az entit\u00e1s neve. Hagyja \u00fcresen, ha `None` \u00e9rt\u00e9kre szeretn\u00e9 \u00e1ll\u00edtani, \u00edgy [az MQTT-eszk\u00f6z f\u0151 funkci\u00f3jak\u00e9nt jel\u00f6lhet\u0151]({naming_entities_url}).",
+                        "platform": "A konfigur\u00e1land\u00f3 entit\u00e1s t\u00edpusa."
+                    },
+                    "description": "A(z) {platform_label}entit\u00e1s alapbe\u00e1ll\u00edt\u00e1sainak konfigur\u00e1l\u00e1sa {entity_name_label}",
+                    "title": "MQTT eszk\u00f6z \"{mqtt_device}\" konfigur\u00e1l\u00e1sa"
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "Riaszt\u00f3k\u00f3d ellen\u0151rz\u00e9si m\u00f3d",
+                        "climate_feature_action": "Aktu\u00e1lis m\u0171velet t\u00e1mogat\u00e1sa",
+                        "climate_feature_current_humidity": "Jelenlegi p\u00e1ratartalom t\u00e1mogat\u00e1sa",
+                        "climate_feature_current_temperature": "Jelenlegi h\u0151m\u00e9rs\u00e9klet t\u00e1mogat\u00e1sa",
+                        "climate_feature_fan_modes": "Ventil\u00e1tor m\u00f3dok t\u00e1mogat\u00e1sa",
+                        "climate_feature_power": "Be-/kikapcsol\u00e1s t\u00e1mogat\u00e1sa",
+                        "climate_feature_preset_modes": "El\u0151re be\u00e1ll\u00edtott \u00fczemm\u00f3dok t\u00e1mogat\u00e1sa",
+                        "climate_feature_swing_horizontal_modes": "V\u00edzszintes leng\u00e9si m\u00f3d t\u00e1mogat\u00e1sa",
+                        "climate_feature_swing_modes": "Leng\u00e9si m\u00f3d t\u00e1mogat\u00e1sa",
+                        "climate_feature_target_humidity": "C\u00e9l p\u00e1ratartalom t\u00e1mogat\u00e1sa",
+                        "climate_feature_target_temperature": "C\u00e9l h\u0151m\u00e9rs\u00e9klet t\u00e1mogat\u00e1sa",
+                        "device_class": "Eszk\u00f6z oszt\u00e1ly",
+                        "entity_category": "Entit\u00e1skateg\u00f3ria",
+                        "fan_feature_direction": "Ir\u00e1nyv\u00e1lt\u00e1s t\u00e1mogat\u00e1sa",
+                        "fan_feature_oscillation": "Leng\u00e9s t\u00e1mogat\u00e1sa",
+                        "fan_feature_preset_modes": "El\u0151re be\u00e1ll\u00edtott \u00fczemm\u00f3dok t\u00e1mogat\u00e1sa",
+                        "fan_feature_speed": "Sebess\u00e9g t\u00e1mogat\u00e1sa",
+                        "image_processing_mode": "K\u00e9pfeldolgoz\u00e1si m\u00f3d",
+                        "options": "Opci\u00f3 hozz\u00e1ad\u00e1sa",
+                        "reports_position": "Poz\u00edci\u00f3 jelent\u00e9se",
+                        "schema": "S\u00e9ma",
+                        "state_class": "\u00c1llapot oszt\u00e1ly",
+                        "suggested_display_precision": "Javasolt megjelen\u00edt\u00e9si pontoss\u00e1g",
+                        "supported_features": "T\u00e1mogatott funkci\u00f3k",
+                        "temperature_unit": "H\u0151m\u00e9rs\u00e9klet egys\u00e9g",
+                        "unit_of_measurement": "M\u00e9rt\u00e9kegys\u00e9g",
+                        "water_heater_feature_current_temperature": "Jelenlegi h\u0151m\u00e9rs\u00e9klet t\u00e1mogat\u00e1sa",
+                        "water_heater_feature_power": "Be-/kikapcsol\u00e1s t\u00e1mogat\u00e1sa"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "Be\u00e1ll\u00edtja, hogyan ellen\u0151rizze a riaszt\u00f3 vez\u00e9rl\u0151panel a k\u00f3dot. A helyi k\u00f3d az entit\u00e1ssal van be\u00e1ll\u00edtva, \u00e9s a Home Assistant ellen\u0151rzi. A t\u00e1voli k\u00f3dot az eszk\u00f6z kapja meg, \u00e9s az v\u00e9gzi az ellen\u0151rz\u00e9st. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#code)",
+                        "climate_feature_action": "A kl\u00edma t\u00e1mogatja az aktu\u00e1lis m\u0171velet jelent\u00e9s\u00e9t.",
+                        "climate_feature_current_humidity": "A kl\u00edma t\u00e1mogatja a jelenlegi p\u00e1ratartalom jelent\u00e9s\u00e9t.",
+                        "climate_feature_current_temperature": "A kl\u00edma t\u00e1mogatja a jelenlegi h\u0151m\u00e9rs\u00e9klet jelent\u00e9s\u00e9t.",
+                        "climate_feature_fan_modes": "A kl\u00edma t\u00e1mogatja a ventil\u00e1tor m\u00f3dokat.",
+                        "climate_feature_power": "A kl\u00edma t\u00e1mogatja a be- \u00e9s kikapcsol\u00e1si parancsokat.",
+                        "climate_feature_preset_modes": "A kl\u00edma t\u00e1mogatja az el\u0151be\u00e1ll\u00edt\u00e1si m\u00f3dokat.",
+                        "climate_feature_swing_horizontal_modes": "A kl\u00edma t\u00e1mogatja a v\u00edzszintes leng\u00e9si m\u00f3dokat.",
+                        "climate_feature_swing_modes": "A kl\u00edma t\u00e1mogatja a leng\u00e9si m\u00f3dokat.",
+                        "climate_feature_target_humidity": "A kl\u00edma t\u00e1mogatja a c\u00e9l p\u00e1ratartalom be\u00e1ll\u00edt\u00e1s\u00e1t.",
+                        "climate_feature_target_temperature": "A kl\u00edma t\u00e1mogatja a c\u00e9l h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1s\u00e1t.",
+                        "device_class": "A(z) {platform} entit\u00e1s eszk\u00f6zoszt\u00e1lya. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#device_class)",
+                        "entity_category": "Lehet\u0151v\u00e9 teszi, hogy az entit\u00e1st eszk\u00f6zkonfigur\u00e1ci\u00f3 vagy diagnosztika kateg\u00f3ri\u00e1ba sorolja. A kateg\u00f3ri\u00e1val rendelkez\u0151 entit\u00e1s nem ker\u00fcl kiexpon\u00e1l\u00e1sra felh\u0151n, az Alexa vagy a Google Seg\u00e9d komponenseken kereszt\u00fcl, \u00e9s k\u00f6zvetett m\u0171veleth\u00edv\u00e1sokn\u00e1l sem lesz haszn\u00e1lva eszk\u00f6z\u00f6kre vagy ter\u00fcletekre. Szenzor entit\u00e1sokhoz nem adhat\u00f3 eszk\u00f6zkonfigur\u00e1ci\u00f3 kateg\u00f3ria. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({registry_properties_url})",
+                        "fan_feature_direction": "A ventil\u00e1tor t\u00e1mogatja az ir\u00e1nyv\u00e1lt\u00e1st.",
+                        "fan_feature_oscillation": "A ventil\u00e1tor t\u00e1mogatja a leng\u00e9st.",
+                        "fan_feature_preset_modes": "A ventil\u00e1tor t\u00e1mogatja az el\u0151re be\u00e1ll\u00edtott \u00fczemm\u00f3dokat.",
+                        "fan_feature_speed": "A ventil\u00e1tor t\u00f6bbf\u00e9le sebess\u00e9get t\u00e1mogat.",
+                        "image_processing_mode": "V\u00e1lassza ki, hogyan \u00e9rkezik a k\u00e9padat.",
+                        "options": "Az enged\u00e9lyezett \u00e9rz\u00e9kel\u0151\u00e1llapot-\u00e9rt\u00e9kekhez tartoz\u00f3 be\u00e1ll\u00edt\u00e1sok. Az \u00e9rz\u00e9kel\u0151 eszk\u00f6zoszt\u00e1ly\u00e1t 'Felsorol\u00e1s'-ra kell \u00e1ll\u00edtani. Az 'Opci\u00f3k' be\u00e1ll\u00edt\u00e1s nem haszn\u00e1lhat\u00f3 egy\u00fctt az \u00c1llapot oszt\u00e1llyal vagy a M\u00e9rt\u00e9kegys\u00e9ggel.",
+                        "reports_position": "\u00c1ll\u00edtsa be ezt a be\u00e1ll\u00edt\u00e1st, ha a szelep jelenti a poz\u00edci\u00f3t vagy t\u00e1mogatja a poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1s\u00e1t. Ennek a be\u00e1ll\u00edt\u00e1snak az enged\u00e9lyez\u00e9se azt eredm\u00e9nyezi, hogy a poz\u00edci\u00f3 ker\u00fcl k\u00f6zz\u00e9t\u00e9telre a \"nyit\u00e1s\", \"z\u00e1r\u00e1s\" vagy \"le\u00e1ll\u00edt\u00e1s\" adatcsomag \u00e1ltal meghat\u00e1rozott adatcsomag helyett. \u00dczenetek fogad\u00e1sakor az \u00e1llapot t\u00e9mak\u00f6r numerikus adatcsomagokat vagy a konfigur\u00e1lt \u00e1llapot\u00fczenetek egyik\u00e9t fogadja el.",
+                        "schema": "A haszn\u00e1land\u00f3 s\u00e9ma. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#comparison-of-light-mqtt-schemas)",
+                        "state_class": "Az \u00e9rz\u00e9kel\u0151 [\u00e1llapotoszt\u00e1lya]({available_state_classes_url}). [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#state_class)",
+                        "suggested_display_precision": "A kerek\u00edt\u00e9s ut\u00e1n megjelen\u00edtend\u0151 tizedesjegyek sz\u00e1ma a(z) {platform} entit\u00e1s \u00e1llapot\u00e1ban. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#suggested_display_precision)",
+                        "supported_features": "Az entit\u00e1s \u00e1ltal t\u00e1mogatott funkci\u00f3k.",
+                        "temperature_unit": "Ez hat\u00e1rozza meg azt a nat\u00edv m\u00e9rt\u00e9kegys\u00e9get, amellyel az MQTT eszk\u00f6z m\u0171k\u00f6dik.",
+                        "unit_of_measurement": "Meghat\u00e1rozza a m\u00e9rt\u00e9kegys\u00e9get, ha van ilyen.",
+                        "water_heater_feature_current_temperature": "A v\u00edzmeleg\u00edt\u0151 t\u00e1mogatja a jelenlegi h\u0151m\u00e9rs\u00e9klet jelent\u00e9s\u00e9t.",
+                        "water_heater_feature_power": "A v\u00edzmeleg\u00edt\u0151 t\u00e1mogatja a \"be\" \u00e9s \"ki\" energia parancsokat."
+                    },
+                    "description": "K\u00e9rj\u00fck, adja meg a(z) {platform} entit\u00e1s \"{entity}\" r\u00e9szleteit.",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "Javasolt megjelen\u00edt\u00e9si pontoss\u00e1g"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "A tizedesjegyek sz\u00e1ma, amelyet a(z) {platform} entit\u00e1s \u00e1llapot\u00e1nak megjelen\u00edt\u00e9sekor kell haszn\u00e1lni kerek\u00edt\u00e9s ut\u00e1n. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#suggested_display_precision)"
+                            },
+                            "name": "Egy\u00e9b be\u00e1ll\u00edt\u00e1sok"
+                        }
+                    },
+                    "title": "MQTT-eszk\u00f6z konfigur\u00e1l\u00e1sa: \"{mqtt_device}\""
+                },
+                "export": {
+                    "description": "Az export\u00e1l\u00e1s lehet\u0151v\u00e9 teszi az MQTT-eszk\u00f6z konfigur\u00e1ci\u00f3j\u00e1nak YAML-alap\u00fa konfigur\u00e1ci\u00f3v\u00e1 vagy MQTT-felismer\u00e9ss\u00e9 t\u00f6rt\u00e9n\u0151 migr\u00e1l\u00e1s\u00e1t. Az export\u00e1lt konfigur\u00e1ci\u00f3 hibakeres\u00e9shez is hasznos lehet.",
+                    "menu_options": {
+                        "export_discovery": "MQTT-felismer\u00e9si adatok export\u00e1l\u00e1sa",
+                        "export_yaml": "Export\u00e1l\u00e1s YAML-konfigur\u00e1ci\u00f3k\u00e9nt"
+                    },
+                    "title": "MQTT-eszk\u00f6z konfigur\u00e1ci\u00f3j\u00e1nak export\u00e1l\u00e1sa"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "Felismer\u00e9si adatok:",
+                        "discovery_topic": "Felismer\u00e9si t\u00e9mak\u00f6r"
+                    },
+                    "data_description": {
+                        "discovery_payload": "A JSON [felismer\u00e9si adatcsomag]({url}#device-discovery-payload), amely az MQTT-eszk\u00f6z adatait tartalmazza.",
+                        "discovery_topic": "A [felismer\u00e9si topic]({url}#discovery-topic), ahov\u00e1 a felismer\u00e9si adatcsomagot kell k\u00f6zz\u00e9tenni az MQTT-felismer\u00e9s elind\u00edt\u00e1s\u00e1hoz. Egy \u00fcres adatcsomag k\u00f6zz\u00e9t\u00e9tele ezen a topicon elt\u00e1vol\u00edtja az eszk\u00f6zt \u00e9s a felismer\u00e9ssel l\u00e9trehozott entit\u00e1sokat."
+                    },
+                    "description": "Az MQTT [felismer\u00e9s]({url}#device-discovery-payload) alap\u00fa be\u00e1ll\u00edt\u00e1shoz a felismer\u00e9si adatcsomagot k\u00f6zz\u00e9 kell tenni a felismer\u00e9si topicban. M\u00e1solja ki az al\u00e1bbi mez\u0151k tartalm\u00e1t. A Home Assistant automatikusan \u00e9rz\u00e9keli, ha az MQTT-eszk\u00f6z be\u00e1ll\u00edt\u00e1sa felismer\u00e9sen kereszt\u00fcl t\u00f6rt\u00e9nt, \u00e9s lehet\u0151s\u00e9get k\u00edn\u00e1l a felesleges albejegyz\u00e9s elt\u00e1vol\u00edt\u00e1s\u00e1ra. Ha nem szeretn\u00e9 elt\u00e1vol\u00edtani az albejegyz\u00e9st, m\u00f3dos\u00edthatja az azonos\u00edt\u00f3kat is.",
+                    "title": "MQTT-eszk\u00f6z konfigur\u00e1ci\u00f3j\u00e1nak export\u00e1l\u00e1sa"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "M\u00e1solja ki az al\u00e1bbi YAML-konfigur\u00e1ci\u00f3t:"
+                    },
+                    "data_description": {
+                        "yaml": "Helyezze el a YAML-konfigur\u00e1ci\u00f3t a [configuration.yaml]({url}#yaml-configuration-listed-per-item) f\u00e1jlban."
+                    },
+                    "description": "Az al\u00e1bbi konfigur\u00e1ci\u00f3 kim\u00e1solhat\u00f3 \u00e9s elhelyezhet\u0151 a configuration.yaml f\u00e1jlban. A Home Assistant automatikusan \u00e9rz\u00e9keli, ha az MQTT-eszk\u00f6z be\u00e1ll\u00edt\u00e1sa YAML-on kereszt\u00fcl t\u00f6rt\u00e9nt, \u00e9s lehet\u0151s\u00e9get k\u00edn\u00e1l a felesleges albejegyz\u00e9s elt\u00e1vol\u00edt\u00e1s\u00e1ra. Ha nem szeretn\u00e9 elt\u00e1vol\u00edtani az albejegyz\u00e9st, m\u00f3dos\u00edthatja az azonos\u00edt\u00f3kat is.",
+                    "title": "MQTT-eszk\u00f6z konfigur\u00e1ci\u00f3j\u00e1nak export\u00e1l\u00e1sa"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "El\u00e9rhet\u0151 hangok",
+                        "blue_template": "K\u00e9k sablon",
+                        "brightness_template": "F\u00e9nyer\u0151 sablon",
+                        "code": "Riaszt\u00f3k\u00f3d",
+                        "code_arm_required": "K\u00f3d sz\u00fcks\u00e9ges az \u00e9les\u00edt\u00e9shez",
+                        "code_disarm_required": "K\u00f3d sz\u00fcks\u00e9ges a hat\u00e1stalan\u00edt\u00e1shoz",
+                        "code_format": "K\u00f3dform\u00e1tum",
+                        "code_trigger_required": "K\u00f3d sz\u00fcks\u00e9ges a riaszt\u00e1s kiv\u00e1lt\u00e1s\u00e1hoz",
+                        "color_temp_template": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet sablon",
+                        "command_off_template": "\"Off\" (ki) parancs sablon",
+                        "command_on_template": "\"On\" (be) parancs sablon",
+                        "command_template": "Parancs sablon",
+                        "command_topic": "Parancs t\u00e9ma",
+                        "content_type": "Tartalomt\u00edpus",
+                        "force_update": "Friss\u00edt\u00e9s k\u00e9nyszer\u00edt\u00e9se",
+                        "green_template": "Z\u00f6ld sablon",
+                        "image_encoding": "K\u00e9pk\u00f3dol\u00e1s",
+                        "image_topic": "K\u00e9p t\u00e9mak\u00f6r",
+                        "last_reset_value_template": "Utols\u00f3 vissza\u00e1ll\u00edt\u00e1s \u00e9rt\u00e9ksablon",
+                        "max": "Maximum",
+                        "min": "Minimum",
+                        "mode": "M\u00f3d",
+                        "mode_command_template": "\u00dczemm\u00f3d parancs sablonja",
+                        "mode_command_topic": "\u00dczemm\u00f3d parancs t\u00e9mak\u00f6r",
+                        "mode_state_template": "\u00dczemm\u00f3d \u00e9rt\u00e9k sablonja",
+                        "mode_state_topic": "\u00dczemm\u00f3d \u00e1llapot t\u00e9mak\u00f6r",
+                        "modes": "T\u00e1mogatott \u00fczemm\u00f3dok",
+                        "on_command_type": "\"On\" parancs t\u00edpusa",
+                        "optimistic": "Optimista",
+                        "options": "Opci\u00f3k be\u00e1ll\u00edt\u00e1sa",
+                        "payload_off": "\"Off\" adatcsomag",
+                        "payload_on": "\"On\" adatcsomag",
+                        "payload_press": "\u201epress\u201d adatcsomag",
+                        "payload_reset": "\u201ereset\u201d adatcsomag",
+                        "position_closed": "\"Z\u00e1rt\" poz\u00edci\u00f3",
+                        "position_open": "\"Nyitott\" poz\u00edci\u00f3",
+                        "qos": "QoS",
+                        "red_template": "Piros sablon",
+                        "retain": "Meg\u0151rz\u00e9s",
+                        "state_off": "\u00c1llapot: \u201ekikapcsolva\u201d",
+                        "state_on": "\u00c1llapot: \u201ebekapcsolva\u201d",
+                        "state_template": "\u00c1llapot sablon",
+                        "state_topic": "\u00c1llapot t\u00e9mak\u00f6r",
+                        "state_value_template": "\u00c1llapot\u00e9rt\u00e9k sablon",
+                        "step": "L\u00e9pt\u00e9k",
+                        "support_duration": "Id\u0151tartam t\u00e1mogat\u00e1s",
+                        "support_volume_set": "Hanger\u0151 be\u00e1ll\u00edt\u00e1s t\u00e1mogat\u00e1s",
+                        "supported_color_modes": "T\u00e1mogatott sz\u00edns\u00e9m\u00e1k",
+                        "timezone": "Id\u0151z\u00f3na",
+                        "url_template": "URL sablon",
+                        "url_topic": "URL t\u00e9mak\u00f6r",
+                        "value_template": "\u00c9rt\u00e9ksablon"
+                    },
+                    "data_description": {
+                        "available_tones": "A szir\u00e9na t\u00e1mogatja a hangokat. A `tone` v\u00e1ltoz\u00f3 el\u00e9rhet\u0151v\u00e9 v\u00e1lik a \"Parancs sablon\" be\u00e1ll\u00edt\u00e1sban val\u00f3 haszn\u00e1latra. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#available_tones)",
+                        "blue_template": "Egy [sablon]({value_templating_url}) a k\u00e9k sz\u00edn kinyer\u00e9s\u00e9hez az \u00e1llapot adatcsomagj\u00e1nak \u00e9rt\u00e9k\u00e9b\u0151l. A sablon eredm\u00e9ny\u00e9nek 0 \u00e9s 255 k\u00f6z\u00f6tti eg\u00e9sz sz\u00e1mnak kell lennie.",
+                        "brightness_template": "Egy [sablon]({value_templating_url}) a f\u00e9nyer\u0151 kinyer\u00e9s\u00e9hez az \u00e1llapot adatcsomagj\u00e1nak \u00e9rt\u00e9k\u00e9b\u0151l. A sablon eredm\u00e9ny\u00e9nek 0 \u00e9s 255 k\u00f6z\u00f6tti eg\u00e9sz sz\u00e1mnak kell lennie.",
+                        "code": "Megadja azt a k\u00f3dot, amellyel a riaszt\u00f3 be- vagy kikapcsolhat\u00f3 a fel\u00fcleten. Ha a k\u00f3dellen\u0151rz\u00e9s sikertelen, az MQTT-parancs nem ker\u00fcl elk\u00fcld\u00e9sre a t\u00e1voli eszk\u00f6zre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#code)",
+                        "code_arm_required": "Ha be van \u00e1ll\u00edtva, a k\u00f3d megad\u00e1sa k\u00f6telez\u0151 a riaszt\u00f3 \u00e9les\u00edt\u00e9s\u00e9hez. Ha nincs be\u00e1ll\u00edtva, a k\u00f3d nem ker\u00fcl ellen\u0151rz\u00e9sre.",
+                        "code_disarm_required": "Ha be van \u00e1ll\u00edtva, a k\u00f3d megad\u00e1sa k\u00f6telez\u0151 a riaszt\u00f3 hat\u00e1stalan\u00edt\u00e1s\u00e1hoz. Ha nincs be\u00e1ll\u00edtva, a k\u00f3d nem ker\u00fcl ellen\u0151rz\u00e9sre.",
+                        "code_format": "Regul\u00e1ris kifejez\u00e9s a k\u00f3d form\u00e1tum\u00e1nak ellen\u0151rz\u00e9s\u00e9re a nyit\u00e1s, z\u00e1r\u00e1s vagy felold\u00e1s m\u0171velet v\u00e9grehajt\u00e1sakor. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#code_format)",
+                        "code_trigger_required": "Ha be van \u00e1ll\u00edtva, a riaszt\u00e1s k\u00e9zi kiv\u00e1lt\u00e1s\u00e1hoz k\u00f3d sz\u00fcks\u00e9ges. Ha nincs be\u00e1ll\u00edtva, a k\u00f3d nem ker\u00fcl ellen\u0151rz\u00e9sre.",
+                        "color_temp_template": "Egy [sablon]({value_templating_url}) a sz\u00ednh\u0151m\u00e9rs\u00e9klet (Kelvin) kinyer\u00e9s\u00e9hez az \u00e1llapot adatcsomagj\u00e1nak \u00e9rt\u00e9k\u00e9b\u0151l. A sablon eredm\u00e9ny\u00e9nek eg\u00e9sz sz\u00e1mnak kell lennie.",
+                        "command_off_template": "A [sablon]({command_templating_url}) a \"ki\" \u00e1llapot v\u00e1lt\u00e1s\u00e1hoz. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3k: `state` \u00e9s `transition`.",
+                        "command_on_template": "A [sablon]({command_templating_url}) a \"be\" \u00e1llapot v\u00e1lt\u00e1s\u00e1hoz. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3k: `state`, `brightness`, `color_temp`, `red`, `green`, `blue`, `hue`, `sat`, `flash`, `transition` \u00e9s `effect`. A `red`, `green`, `blue` \u00e9s `brightness` \u00e9rt\u00e9kek 0\u2013255 k\u00f6z\u00f6tti eg\u00e9szek. A `hue` 0\u2013360 k\u00f6z\u00f6tti lebeg\u0151pontos sz\u00e1m, a `sat` 0\u2013100 k\u00f6z\u00f6tti lebeg\u0151pontos sz\u00e1m, a `color_temp` pedig eg\u00e9sz sz\u00e1m Kelvinben.",
+                        "command_template": "[Sablon]({command_templating_url}), amely el\u0151\u00e1ll\u00edtja a parancs t\u00e9mak\u00f6r\u00e9re k\u00fcldend\u0151 adatcsomagot. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#command_template)",
+                        "command_topic": "Az a k\u00f6zz\u00e9t\u00e9teli t\u00e9ma, amelyet a(z) {platform} entit\u00e1s vez\u00e9rl\u00e9s\u00e9re haszn\u00e1lnak. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#command_topic)",
+                        "content_type": "A tartalomt\u00edpus vagy a k\u00e9p adatai, amelyeket a k\u00e9p t\u00e9mak\u00f6r\u00e9n kereszt\u00fcl kapunk.",
+                        "force_update": "Friss\u00edt\u00e9si esem\u00e9nyeket k\u00fcld akkor is, ha az \u00e9rt\u00e9k nem v\u00e1ltozott. Hasznos, ha az el\u0151zm\u00e9nyekben \u00e9rtelmezhet\u0151 \u00e9rt\u00e9kgrafikonokat szeretne megjelen\u00edteni. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#force_update)",
+                        "green_template": "Egy [sablon]({value_templating_url}) a z\u00f6ld sz\u00edn kinyer\u00e9s\u00e9hez az \u00e1llapot adatcsomagj\u00e1nak \u00e9rt\u00e9k\u00e9b\u0151l. A sablon eredm\u00e9ny\u00e9nek 0 \u00e9s 255 k\u00f6z\u00f6tti eg\u00e9sz sz\u00e1mnak kell lennie.",
+                        "image_encoding": "V\u00e1laszd ki a fogadott k\u00e9padatok k\u00f3dol\u00e1s\u00e1t.",
+                        "image_topic": "Az MQTT t\u00e9mak\u00f6r, amelyen a k\u00e9padatokat tartalmaz\u00f3 \u00fczenetek \u00e9rkeznek. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#image_topic)",
+                        "last_reset_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az utols\u00f3 vissza\u00e1ll\u00edt\u00e1s kinyer\u00e9s\u00e9hez. Ha az \u201eUtols\u00f3 vissza\u00e1ll\u00edt\u00e1s\u201d sablon be van \u00e1ll\u00edtva, az \u201e\u00c1llapotoszt\u00e1ly\u201d opci\u00f3nak `total` \u00e9rt\u00e9k\u0171nek kell lennie. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#last_reset_value_template)",
+                        "max": "Maxim\u00e1lis \u00e9rt\u00e9k. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#max)",
+                        "min": "Minim\u00e1lis \u00e9rt\u00e9k. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#min)",
+                        "mode": "Meghat\u00e1rozza, hogyan jelenjen meg a sz\u00e1m a felhaszn\u00e1l\u00f3i fel\u00fcleten. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#mode)",
+                        "mode_command_template": "[Sablon]({command_templating_url}) az \u00fczemm\u00f3d parancs t\u00e9mak\u00f6r\u00e9re k\u00fcldend\u0151 \u00fczemm\u00f3d meghat\u00e1roz\u00e1s\u00e1hoz. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#mode_command_template)",
+                        "mode_command_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre az \u00fczemm\u00f3d v\u00e1lt\u00e1s\u00e1hoz sz\u00fcks\u00e9ges parancsok ker\u00fclnek k\u00f6zz\u00e9t\u00e9telre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#mode_command_topic)",
+                        "mode_state_template": "Egy [Sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az \u00fczemm\u00f3d \u00e1llapot\u00e1nak kinyer\u00e9s\u00e9hez. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#mode_state_template)",
+                        "mode_state_topic": "Az MQTT t\u00e9mak\u00f6r, amelyen az \u00fczemm\u00f3d \u00e1llapot\u00fczeneteit v\u00e1rjuk. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#mode_state_topic)",
+                        "modes": "A t\u00e1mogatott \u00fczemm\u00f3dok list\u00e1ja. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#modes)",
+                        "on_command_type": "Meghat\u00e1rozza, mikor ker\u00fclj\u00f6n kik\u00fcld\u00e9sre az \"on\" be adatcsomag. A \"Last\" (alap\u00e9rtelmezett) eset\u00e9n el\u0151sz\u00f6r a st\u00edlus (f\u00e9nyer\u0151, sz\u00edn stb.) adatok, majd az \"on\" parancs ker\u00fcl kik\u00fcld\u00e9sre. A \"First\" eset\u00e9n el\u0151bb az \"on\" adatcsomag, majd a st\u00edlus adatok. A \"Brightness\" csak f\u00e9nyer\u0151 adatokat k\u00fcld, nem haszn\u00e1l \"on\" parancsot.",
+                        "optimistic": "Az a jelz\u0151, amely meghat\u00e1rozza, hogy a(z) {platform} entit\u00e1s optimista m\u00f3dban m\u0171k\u00f6dik-e [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#optimistic)",
+                        "options": "A kiv\u00e1laszthat\u00f3 opci\u00f3k list\u00e1ja.",
+                        "payload_off": "Az adatcsomag, amely az \"off\" \u00e1llapotot jelenti.",
+                        "payload_on": "Az adatcsomag, amely az \"on\" \u00e1llapotot jelenti.",
+                        "payload_press": "A gomb aktiv\u00e1l\u00e1sakor elk\u00fcldend\u0151 adatcsomag (payload).",
+                        "payload_reset": "Az \u00e1llapot t\u00e9mak\u00f6r\u00f6n \u00e9rkez\u0151 adatcsomag, amely vissza\u00e1ll\u00edtja az eszk\u00f6z \u00e1llapot\u00e1t ismeretlenre.",
+                        "position_closed": "A z\u00e1rt poz\u00edci\u00f3t jel\u00f6l\u0151 sz\u00e1m. A szelep poz\u00edci\u00f3ja a (\"z\u00e1rt\" poz\u00edci\u00f3...\"nyitott\" poz\u00edci\u00f3) tartom\u00e1nyra lesz sk\u00e1l\u00e1zva m\u0171velet v\u00e9grehajt\u00e1sakor, \u00e9s visszask\u00e1l\u00e1zva \u00e9rt\u00e9k fogad\u00e1sakor.",
+                        "position_open": "A nyitott poz\u00edci\u00f3t jel\u00f6l\u0151 sz\u00e1m. A szelep poz\u00edci\u00f3ja a (\"z\u00e1rt\" poz\u00edci\u00f3...\"nyitott\" poz\u00edci\u00f3) tartom\u00e1nyra lesz sk\u00e1l\u00e1zva m\u0171velet v\u00e9grehajt\u00e1sakor, \u00e9s visszask\u00e1l\u00e1zva \u00e9rt\u00e9k fogad\u00e1sakor.",
+                        "qos": "A QoS \u00e9rt\u00e9k, amelyet a(z) {platform} entit\u00e1s haszn\u00e1ljon.",
+                        "red_template": "Egy [sablon]({value_templating_url}) a piros sz\u00edn kinyer\u00e9s\u00e9hez az \u00e1llapot adatcsomagj\u00e1nak \u00e9rt\u00e9k\u00e9b\u0151l. A sablon eredm\u00e9ny\u00e9nek 0 \u00e9s 255 k\u00f6z\u00f6tti eg\u00e9sz sz\u00e1mnak kell lennie.",
+                        "retain": "Adja meg, hogy a(z) {platform} entit\u00e1s \u00e1ltal k\u00fcld\u00f6tt \u00e9rt\u00e9keket meg kell-e \u0151rizni az MQTT brokerben.",
+                        "state_off": "A bej\u00f6v\u0151 \u00fczenet \u00e9rt\u00e9ke, amely a \u201ekikapcsolt\u201d \u00e1llapotot jelzi. Csak akkor haszn\u00e1lja, ha a \u201ekikapcsolt\u201d \u00e1llapotot jelz\u0151 \u00e9rt\u00e9k a st\u00e1tusz t\u00e9m\u00e1ban elt\u00e9r att\u00f3l az \u00e9rt\u00e9kt\u0151l, amit a parancs t\u00e9m\u00e1ra kell k\u00fcldeni az eszk\u00f6z kikapcsol\u00e1s\u00e1hoz.",
+                        "state_on": "A bej\u00f6v\u0151 \u00fczenet \u00e9rt\u00e9ke, amely a \u201ebekapcsolt\u201d \u00e1llapotot jelzi. Csak akkor haszn\u00e1lja, ha a \u201ebekapcsolt\u201d \u00e1llapotot jelz\u0151 \u00e9rt\u00e9k a st\u00e1tusz t\u00e9m\u00e1ban elt\u00e9r att\u00f3l az \u00e9rt\u00e9kt\u0151l, amit a parancs t\u00e9m\u00e1ra kell k\u00fcldeni az eszk\u00f6z bekapcsol\u00e1s\u00e1hoz.",
+                        "state_template": "Egy [sablon]({value_templating_url}) az \u00e1llapot kinyer\u00e9s\u00e9hez az \u00e1llapot adatcsomagj\u00e1nak \u00e9rt\u00e9k\u00e9b\u0151l.",
+                        "state_topic": "Az MQTT t\u00e9ma, amelyre feliratkozva a(z) {platform} \u00e1llapot\u00e9rt\u00e9kei fogadhat\u00f3k. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#state_topic)",
+                        "step": "L\u00e9p\u00e9sk\u00f6z \u00e9rt\u00e9k. A legkisebb megengedett: 0.001.",
+                        "support_duration": "A szir\u00e9na t\u00e1mogatja az id\u0151tartam be\u00e1ll\u00edt\u00e1s\u00e1t m\u00e1sodpercben. A `duration` v\u00e1ltoz\u00f3 el\u00e9rhet\u0151v\u00e9 v\u00e1lik a \"Parancs sablon\" be\u00e1ll\u00edt\u00e1sban val\u00f3 haszn\u00e1latra. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#support_duration)",
+                        "support_volume_set": "A szir\u00e9na t\u00e1mogatja a hanger\u0151 be\u00e1ll\u00edt\u00e1s\u00e1t. A `volume_level` v\u00e1ltoz\u00f3 el\u00e9rhet\u0151v\u00e9 v\u00e1lik a \"Parancs sablon\" be\u00e1ll\u00edt\u00e1sban val\u00f3 haszn\u00e1latra. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#support_volume_set)",
+                        "supported_color_modes": "A l\u00e1mpa \u00e1ltal t\u00e1mogatott sz\u00edns\u00e9m\u00e1k list\u00e1ja. Lehets\u00e9ges sz\u00edns\u00e9m\u00e1k: Be/Ki, F\u00e9nyer\u0151, Sz\u00ednh\u0151m\u00e9rs\u00e9klet, HS, XY, RGB, RGBW, RGBWW, Feh\u00e9r. Fontos: ha a Be/Ki vagy a F\u00e9nyer\u0151 szerepel, akkor az legyen az egyetlen \u00e9rt\u00e9k a list\u00e1ban. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#supported_color_modes)",
+                        "timezone": "Adjon meg egy \u00e9rv\u00e9nyes [IANA id\u0151z\u00f3na-azonos\u00edt\u00f3t]({tz_abbr_url}). Ne \u00e1ll\u00edtsa be ezt a lehet\u0151s\u00e9get, ha a d\u00e1tum/id\u0151 szerkezet az \u00e1llapotfriss\u00edt\u00e9sen kereszt\u00fcl biztos\u00edt id\u0151z\u00f3na-inform\u00e1ci\u00f3t.",
+                        "url_template": "[Sablon]({value_templating_url}) egy URL kinyer\u00e9s\u00e9hez a kapott URL-topik adatcsomagj\u00e1nak \u00e9rt\u00e9k\u00e9b\u0151l. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#url_template)",
+                        "url_topic": "Az MQTT t\u00e9mak\u00f6r, amely a k\u00e9p URL-j\u00e9t tartalmaz\u00f3 \u00fczeneteket fogadja. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#url_topic)",
+                        "value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a(z) {platform} entit\u00e1s \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#value_template)"
+                    },
+                    "description": "Adja meg az MQTT-specifikus r\u00e9szleteket a(z) {platform} entit\u00e1s \"{entity}\" sz\u00e1m\u00e1ra:",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Adatcsomag: \u201et\u00e1voll\u00e9t alatti \u00e9les\u00edt\u00e9s\u201d",
+                                "payload_arm_custom_bypass": "Adatcsomag: \u201eegy\u00e9ni \u00e9les\u00edt\u00e9s megker\u00fcl\u00e9ssel\u201d",
+                                "payload_arm_disarm": "Adatcsomag: \u201ekikapcsol\u00e1s\u201d",
+                                "payload_arm_home": "Adatcsomag: \u201eotthoni \u00e9les\u00edt\u00e9s\u201d",
+                                "payload_arm_night": "Adatcsomag: \u201e\u00e9jszakai \u00e9les\u00edt\u00e9s\u201d",
+                                "payload_arm_vacation": "Adatcsomag: \u201evak\u00e1ci\u00f3 alatti \u00e9les\u00edt\u00e9s\u201d",
+                                "payload_trigger": "Adatcsomag: \u201eriaszt\u00e1s ind\u00edt\u00e1sa\u201d"
+                            },
+                            "data_description": {
+                                "payload_arm_away": "Az adatcsomag, amelyet \u201et\u00e1voll\u00e9t alatti \u00e9les\u00edt\u00e9s\u201d parancs kiad\u00e1sa eset\u00e9n k\u00fcld a rendszer.",
+                                "payload_arm_custom_bypass": "Az adatcsomag, amelyet \u201eegy\u00e9ni \u00e9les\u00edt\u00e9s megker\u00fcl\u00e9ssel\u201d parancs kiad\u00e1sa eset\u00e9n k\u00fcld a rendszer.",
+                                "payload_arm_disarm": "Az adatcsomag, amely \u201ekikapcsol\u00e1s\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre.",
+                                "payload_arm_home": "Az adatcsomag, amely \u201eotthoni \u00e9les\u00edt\u00e9s\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre.",
+                                "payload_arm_night": "Az adatcsomag, amely \u201e\u00e9jszakai \u00e9les\u00edt\u00e9s\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre.",
+                                "payload_arm_vacation": "Az adatcsomag, amely \u201enyaral\u00e1s alatti \u00e9les\u00edt\u00e9s\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre.",
+                                "payload_trigger": "Az adatcsomag, amely \u201eriaszt\u00e1s ind\u00edt\u00e1sa\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre."
+                            },
+                            "name": "Riaszt\u00f3 vez\u00e9rl\u0151panel \u2013 adatcsomag be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "M\u0171k\u00f6d\u00e9si m\u00f3d sablon",
+                                "action_topic": "M\u0171k\u00f6d\u00e9si m\u00f3d t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "action_template": "Egy [Sablon]({value_templating_url}) az action topikon \u00e9rkez\u0151 \u00e9rt\u00e9k megjelen\u00edt\u00e9s\u00e9hez.",
+                                "action_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre feliratkozva k\u00f6vethet\u0151k a jelenlegi m\u0171velet v\u00e1ltoz\u00e1sai. Ha meg van adva, a kl\u00edmagrafikon az itt kapott \u00e9rt\u00e9ket haszn\u00e1lja adatforr\u00e1sk\u00e9nt. A \"None\" adatcsomag vissza\u00e1ll\u00edtja a jelenlegi m\u0171velet \u00e1llapot\u00e1t. Az \u00fcres adatcsomag figyelmen k\u00edv\u00fcl marad. \u00c9rv\u00e9nyes m\u0171velet\u00e9rt\u00e9kek: \"off\", \"heating\", \"cooling\", \"drying\", \"idle\" \u00e9s \"fan\". [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#action_topic)"
+                            },
+                            "name": "Aktu\u00e1lis m\u0171k\u00f6d\u00e9si m\u00f3d be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "Ventil\u00e1tor m\u00f3d parancssablon",
+                                "fan_mode_command_topic": "Ventil\u00e1tor m\u00f3d parancs t\u00e9mak\u00f6r",
+                                "fan_mode_state_template": "Ventil\u00e1tor m\u00f3d \u00e1llapot sablon",
+                                "fan_mode_state_topic": "Ventil\u00e1tor m\u00f3d \u00e1llapot t\u00e9mak\u00f6r",
+                                "fan_modes": "Ventil\u00e1tor m\u00f3dok"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "[Sablon]({command_templating_url}) a ventil\u00e1tor m\u00f3d parancs t\u00e9mak\u00f6r\u00e9re k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz.",
+                                "fan_mode_command_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a kl\u00edma ventil\u00e1tor m\u00f3dv\u00e1lt\u00f3 parancsait k\u00fcldi a rendszer. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "Egy [Sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a kl\u00edma ventil\u00e1torm\u00f3d \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez.",
+                                "fan_mode_state_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a kl\u00edma ventil\u00e1tor m\u00f3dj\u00e1nak \u00e9rt\u00e9kei \u00e9rkeznek. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#fan_mode_state_topic)",
+                                "fan_modes": "A kl\u00edma \u00e1ltal t\u00e1mogatott ventil\u00e1tor m\u00f3dok list\u00e1ja. Gyakori, ford\u00edt\u00e1sra el\u0151k\u00e9sz\u00edtett \u00e9rt\u00e9kek: `off`, `on`, `auto`, `low`, `medium`, `high`, `middle`, `focus`, `diffuse`."
+                            },
+                            "name": "Ventil\u00e1tor m\u00f3d be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "\"Off\" adatcsomag",
+                                "payload_on": "\"On\" adatcsomag",
+                                "power_command_template": "Bekapcsol\u00e1si parancs sablon",
+                                "power_command_topic": "Bekapcsol\u00e1si parancs t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "payload_off": "Az adatcsomag, amely az \"off\" \u00e1llapotot jelenti.",
+                                "payload_on": "Az adatcsomag, amely az \"on\" \u00e1llapotot jelenti.",
+                                "power_command_template": "[Sablon]({command_templating_url}) a bekapcsol\u00e1si parancs t\u00e9mak\u00f6r\u00e9re k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz. A `value` param\u00e9ter az \"on\" vagy \"off\" adatcsomaghoz be\u00e1ll\u00edtott \u00e9rt\u00e9k.",
+                                "power_command_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a kl\u00edma be-/kikapcsol\u00e1si parancsai ker\u00fclnek elk\u00fcld\u00e9sre. Az elk\u00fcld\u00f6tt adatcsomag a \u201eon\u201d vagy \u201eoff\u201d \u00e9rt\u00e9k lesz. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#power_command_topic)"
+                            },
+                            "name": "T\u00e1pell\u00e1t\u00e1s be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "El\u0151re be\u00e1ll\u00edtott m\u00f3d parancs sablon",
+                                "preset_mode_command_topic": "El\u0151re be\u00e1ll\u00edtott m\u00f3d parancs t\u00e9mak\u00f6r",
+                                "preset_mode_state_topic": "El\u0151re be\u00e1ll\u00edtott m\u00f3d \u00e1llapot t\u00e9mak\u00f6r",
+                                "preset_mode_value_template": "El\u0151re be\u00e1ll\u00edtott m\u00f3d \u00e9rt\u00e9k sablon",
+                                "preset_modes": "El\u0151re be\u00e1ll\u00edtott m\u00f3dok"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az adatcsomagot az el\u0151be\u00e1ll\u00edtott m\u00f3d parancs t\u00e9mak\u00f6rhez.",
+                                "preset_mode_command_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a kl\u00edma el\u0151be\u00e1ll\u00edt\u00e1s m\u00f3dv\u00e1lt\u00e1si parancsait k\u00fcldi. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre a ventil\u00e1tor el\u0151re be\u00e1ll\u00edtott m\u00f3dj\u00e1nak fogad\u00e1s\u00e1ra van feliratkozva. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a ventil\u00e1tor el\u0151re be\u00e1ll\u00edtott m\u00f3dj\u00e1nak \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez.",
+                                "preset_modes": "Az el\u0151re be\u00e1ll\u00edtott m\u00f3dok list\u00e1ja, amelyeken ez a kl\u00edmaberendez\u00e9s k\u00e9pes m\u0171k\u00f6dni. Gyakori el\u0151re be\u00e1ll\u00edtott m\u00f3dok, amelyek ford\u00edt\u00e1st k\u00edn\u00e1lnak: `none`, `away`, `eco`, `boost`, `comfort`, `home`, `sleep` \u00e9s `activity`."
+                            },
+                            "name": "El\u0151re be\u00e1ll\u00edtott m\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "V\u00edzszintes leng\u00e9sm\u00f3d parancs sablon",
+                                "swing_horizontal_mode_command_topic": "V\u00edzszintes leng\u00e9sm\u00f3d parancs t\u00e9mak\u00f6r",
+                                "swing_horizontal_mode_state_template": "V\u00edzszintes leng\u00e9sm\u00f3d \u00e1llapot sablon",
+                                "swing_horizontal_mode_state_topic": "V\u00edzszintes leng\u00e9sm\u00f3d \u00e1llapot t\u00e9mak\u00f6r",
+                                "swing_horizontal_modes": "V\u00edzszintes leng\u00e9sm\u00f3dok"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "[Sablon]({command_templating_url}) a v\u00edzszintes leng\u00e9sm\u00f3d parancs t\u00e9mak\u00f6r\u00e9re k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz.",
+                                "swing_horizontal_mode_command_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a kl\u00edma v\u00edzszintes leng\u00e9sm\u00f3d v\u00e1lt\u00f3 parancsait k\u00fcldi. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "Egy [Sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a kl\u00edma v\u00edzszintes leng\u00e9sm\u00f3d \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez.",
+                                "swing_horizontal_mode_state_topic": "Az MQTT t\u00e9mak\u00f6r, amely a kl\u00edma v\u00edzszintes leng\u00e9sm\u00f3d \u00e1llapot\u00e1t k\u00f6zli. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "A kl\u00edma \u00e1ltal t\u00e1mogatott v\u00edzszintes leng\u00e9sm\u00f3dok list\u00e1ja. Gyakori \u00e9rt\u00e9kek: `off`, `on`."
+                            },
+                            "name": "V\u00edzszintes leng\u00e9sm\u00f3d be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "Leng\u00e9sm\u00f3d parancs sablon",
+                                "swing_mode_command_topic": "Leng\u00e9sm\u00f3d parancs t\u00e9mak\u00f6r",
+                                "swing_mode_state_template": "Leng\u00e9sm\u00f3d \u00e1llapot sablon",
+                                "swing_mode_state_topic": "Leng\u00e9sm\u00f3d \u00e1llapot t\u00e9mak\u00f6r",
+                                "swing_modes": "Leng\u00e9sm\u00f3dok"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "[Sablon]({command_templating_url}) a leng\u00e9sm\u00f3d parancs t\u00e9mak\u00f6r\u00e9re k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz.",
+                                "swing_mode_command_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a kl\u00edma leng\u00e9sm\u00f3d v\u00e1lt\u00e1si parancsait k\u00fcldj\u00fck. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "Egy [Sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a kl\u00edma leng\u00e9sm\u00f3d \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez.",
+                                "swing_mode_state_topic": "Az MQTT t\u00e9mak\u00f6r, amelyr\u0151l a kl\u00edma leng\u00e9sm\u00f3d \u00e1llapot\u00e1t olvassuk be. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#swing_mode_state_topic)",
+                                "swing_modes": "A kl\u00edma \u00e1ltal t\u00e1mogatott leng\u00e9sm\u00f3dok list\u00e1ja. Gyakori \u00e9rt\u00e9kek: `off`, `on`, `vertical`, `horizontal`, `both`."
+                            },
+                            "name": "Leng\u00e9sm\u00f3d be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Adatcsomag: \"z\u00e1r\u00e1s\"",
+                                "payload_open": "Adatcsomag: \"nyit\u00e1s\"",
+                                "payload_stop": "Adatcsomag: \"le\u00e1ll\u00edt\u00e1s\"",
+                                "payload_stop_tilt": "Adatcsomag: \"billent\u00e9s le\u00e1ll\u00edt\u00e1sa\"",
+                                "state_closed": "\u00c1llapot: \"z\u00e1rva\"",
+                                "state_closing": "\u00c1llapot: \"z\u00e1r\u00f3dik\"",
+                                "state_open": "\u00c1llapot: \"nyitva\"",
+                                "state_opening": "\u00c1llapot: \"ny\u00edlik\"",
+                                "state_stopped": "\u00c1llapot: \"le\u00e1ll\u00edtva\""
+                            },
+                            "data_description": {
+                                "payload_close": "A \"z\u00e1r\u00e1s\" parancs kiad\u00e1sakor elk\u00fcld\u00f6tt adatcsomag.",
+                                "payload_open": "A \"nyit\u00e1s\" parancs kiad\u00e1sakor elk\u00fcld\u00f6tt adatcsomag.",
+                                "payload_stop": "A \"le\u00e1ll\u00edt\u00e1s\" parancs kiad\u00e1sakor elk\u00fcld\u00f6tt adatcsomag. Hagyja \u00fcresen a \"le\u00e1ll\u00edt\u00e1s\" funkci\u00f3 letilt\u00e1s\u00e1hoz.",
+                                "payload_stop_tilt": "A \"billent\u00e9s le\u00e1ll\u00edt\u00e1sa\" parancs kiad\u00e1sakor elk\u00fcld\u00f6tt adatcsomag.",
+                                "state_closed": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201ez\u00e1rva\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_closing": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201ez\u00e1r\u00f3dik\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_open": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201enyitva\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_opening": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201eny\u00edlik\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_stopped": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201ele\u00e1ll\u00edtva\u201d \u00e1llapotot jel\u00f6li. (olyan \u00e1rny\u00e9kol\u00f3k eset\u00e9n, amelyek nem jelentenek \"nyitva\"/\"z\u00e1rva\" \u00e1llapotot)."
+                            },
+                            "name": "Adatcsomag-be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "\"Z\u00e1rva\" poz\u00edci\u00f3t jel\u00f6l\u0151 sz\u00e1m",
+                                "position_open": "\"Nyitva\" poz\u00edci\u00f3t jel\u00f6l\u0151 sz\u00e1m",
+                                "position_template": "Poz\u00edci\u00f3 sablon",
+                                "position_topic": "Poz\u00edci\u00f3 \u00e1llapot t\u00e9mak\u00f6r",
+                                "set_position_template": "Poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1si sablon",
+                                "set_position_topic": "Poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1si t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "position_closed": "A \"z\u00e1rva\" poz\u00edci\u00f3t jel\u00f6l\u0151 sz\u00e1m\u00e9rt\u00e9k.",
+                                "position_open": "A \"nyitva\" poz\u00edci\u00f3t jel\u00f6l\u0151 sz\u00e1m\u00e9rt\u00e9k.",
+                                "position_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a poz\u00edci\u00f3 topik adatcsomagj\u00e1nak kinyer\u00e9s\u00e9hez. A sablonban a k\u00f6vetkez\u0151 v\u00e1ltoz\u00f3k is el\u00e9rhet\u0151k: `entity_id`, `position_open`, `position_closed`, `tilt_min` \u00e9s `tilt_max`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#position_template)",
+                                "position_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre az \u00e1rny\u00e9kol\u00f3 poz\u00edci\u00f3\u00e1llapot-\u00fczeneteinek fogad\u00e1s\u00e1ra iratkozik fel. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#position_topic)",
+                                "set_position_template": "[Sablon]({command_templating_url}), amely meghat\u00e1rozza a poz\u00edci\u00f3be\u00e1ll\u00edt\u00f3 t\u00e9mak\u00f6rre k\u00fcldend\u0151 poz\u00edci\u00f3\u00e9rt\u00e9ket. A sablonban az al\u00e1bbi v\u00e1ltoz\u00f3k \u00e9rhet\u0151k el: `value` (a sk\u00e1l\u00e1zott c\u00e9lpoz\u00edci\u00f3), `entity_id`, `position` (a c\u00e9lpoz\u00edci\u00f3 sz\u00e1zal\u00e9kban), `position_open`, `position_closed`, `tilt_min` \u00e9s `tilt_max`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#set_position_template)",
+                                "set_position_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyen kereszt\u00fcl a poz\u00edci\u00f3parancsokat kell elk\u00fcldeni. Ha haszn\u00e1lni k\u00edv\u00e1nja a poz\u00edci\u00f3 t\u00e9mak\u00f6rt, akkor a poz\u00edci\u00f3be\u00e1ll\u00edt\u00f3 t\u00e9mak\u00f6rt is meg kell adni. Haszn\u00e1ljon sablont, ha a poz\u00edci\u00f3 t\u00e9mak\u00f6r m\u00e1s \u00e9rt\u00e9keket ig\u00e9nyel, mint a \"z\u00e1rva\" \u2013 \"nyitva\" tartom\u00e1ny. Ha nincs sablon megadva, \u00e9s a \"z\u00e1rva\" \u2260 100 vagy a \"nyitva\" \u2260 0, akkor a rendszer a sz\u00e1zal\u00e9kos \u00e9rt\u00e9k alapj\u00e1n sz\u00e1molja ki a megfelel\u0151 poz\u00edci\u00f3t. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#set_position_topic)"
+                            },
+                            "name": "Poz\u00edci\u00f3 be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "Billent\u00e9s \"z\u00e1rva\" \u00e9rt\u00e9k",
+                                "tilt_command_template": "Billent\u00e9si parancs sablon",
+                                "tilt_command_topic": "Billent\u00e9si parancs t\u00e9mak\u00f6r",
+                                "tilt_max": "Billent\u00e9s maxim\u00e1lis \u00e9rt\u00e9ke",
+                                "tilt_min": "Billent\u00e9s minim\u00e1lis \u00e9rt\u00e9ke",
+                                "tilt_opened_value": "Billent\u00e9s \"nyitva\" \u00e9rt\u00e9k",
+                                "tilt_optimistic": "Billent\u00e9s optimista m\u00f3d",
+                                "tilt_status_template": "Billent\u00e9si \u00e9rt\u00e9k sablon",
+                                "tilt_status_topic": "Billent\u00e9si \u00e1llapot t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "Az az \u00e9rt\u00e9k, amely a \u201ed\u0151l\u00e9ssz\u00f6g parancs\u201d t\u00e9m\u00e1ra ker\u00fcl elk\u00fcld\u00e9sre, amikor a red\u0151ny d\u0151l\u00e9ssz\u00f6ge z\u00e1rt.",
+                                "tilt_command_template": "[Sablon]({command_templating_url}) a poz\u00edci\u00f3 meghat\u00e1roz\u00e1s\u00e1hoz, amely a d\u0151l\u00e9ssz\u00f6g parancs t\u00e9m\u00e1j\u00e1ra ker\u00fcl elk\u00fcld\u00e9sre. A sablonban az al\u00e1bbi v\u00e1ltoz\u00f3k \u00e9rhet\u0151k el: `entity_id`, `tilt_position` (a c\u00e9l d\u0151l\u00e9ssz\u00f6g sz\u00e1zal\u00e9kban), `position_open`, `position_closed`, `tilt_min` \u00e9s `tilt_max`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#tilt_command_template)",
+                                "tilt_command_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre a billent\u00e9s vez\u00e9rl\u0151parancsai ker\u00fclnek elk\u00fcld\u00e9sre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#tilt_command_topic)",
+                                "tilt_max": "A maxim\u00e1lis billent\u00e9si \u00e9rt\u00e9k.",
+                                "tilt_min": "A minim\u00e1lis billent\u00e9si \u00e9rt\u00e9k.",
+                                "tilt_opened_value": "Az az \u00e9rt\u00e9k, amely a \u201ed\u0151l\u00e9ssz\u00f6g parancs\u201d t\u00e9m\u00e1ra ker\u00fcl elk\u00fcld\u00e9sre, amikor a red\u0151ny d\u0151l\u00e9ssz\u00f6ge nyitott.",
+                                "tilt_optimistic": "Meghat\u00e1rozza, hogy a d\u00f6nt\u00e9s optimista m\u00f3dban m\u0171k\u00f6dj\u00f6n-e. Ha a d\u0151l\u00e9s \u00e1llapot t\u00e9mak\u00f6r nincs be\u00e1ll\u00edtva, az optimista m\u00f3d automatikusan enged\u00e9lyezett. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#tilt_optimistic)",
+                                "tilt_status_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a ventil\u00e1tor ir\u00e1ny\u00e1llapot\u00e1nak \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez. A sablonban a k\u00f6vetkez\u0151 v\u00e1ltoz\u00f3k haszn\u00e1lhat\u00f3k: `entity_id`, `position_open`, `position_closed`, `tilt_min` \u00e9s `tilt_max`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#tilt_status_template)",
+                                "tilt_status_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre az \u00e1rny\u00e9kol\u00f3 billent\u00e9si \u00e1llapotfriss\u00edt\u00e9seinek fogad\u00e1s\u00e1ra van feliratkozva. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#tilt_status_topic)"
+                            },
+                            "name": "Billent\u00e9si be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "Aktu\u00e1lis p\u00e1ratartalom sablon",
+                                "current_humidity_topic": "Aktu\u00e1lis p\u00e1ratartalom t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "Egy [Sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az aktu\u00e1lis p\u00e1ratartalom \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#current_humidity_template)",
+                                "current_humidity_topic": "Az MQTT t\u00e9mak\u00f6r, amelyr\u0151l az aktu\u00e1lis p\u00e1ratartalom \u00e9rt\u00e9k friss\u00edt\u00e9seit kapjuk. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#current_humidity_topic)"
+                            },
+                            "name": "Aktu\u00e1lis p\u00e1ratartalom be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "Aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet sablon",
+                                "current_temperature_topic": "Aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "[Sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#current_temperature_template)",
+                                "current_temperature_topic": "Az MQTT t\u00e9mak\u00f6r, amelyr\u0151l az aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet friss\u00edt\u00e9sek \u00e9rkeznek. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#current_temperature_topic)"
+                            },
+                            "name": "Aktu\u00e1lis h\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sai"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "Ir\u00e1nyvez\u00e9rl\u0151 parancs sablon",
+                                "direction_command_topic": "Ir\u00e1nyvez\u00e9rl\u0151 parancs t\u00e9mak\u00f6r",
+                                "direction_state_topic": "Ir\u00e1ny\u00e1llapot t\u00e9mak\u00f6r",
+                                "direction_value_template": "Ir\u00e1ny\u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "direction_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az adatcsomagot az ir\u00e1nyvez\u00e9rl\u0151 t\u00e9mak\u00f6rhez. A sablonv\u00e1ltoz\u00f3 `value` \u00e9rt\u00e9ke `forward` vagy `reverse` lehet.",
+                                "direction_command_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a ventil\u00e1tor ir\u00e1ny\u00e1nak v\u00e1ltoztat\u00e1si parancsait k\u00fcldi. Az adatcsomag \u00e9rt\u00e9ke `forward` vagy `reverse` lesz, amely sablonnal testreszabhat\u00f3. [Tov\u00e1bbi inform\u00e1ci\u00f3]({url}#direction_command_topic)",
+                                "direction_state_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre az ir\u00e1ny\u00e1llapot fogad\u00e1s\u00e1ra van feliratkozva. Elfogadott adatcsomagok: `forward` vagy `reverse`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#direction_state_topic)",
+                                "direction_value_template": "Egy [Sablon]({value_templating_url}) a ventil\u00e1tor ir\u00e1ny\u00e1llapot\u00e1nak \u00e9rtelmez\u00e9s\u00e9hez. A sablonnak `forward` vagy `reverse` \u00e9rt\u00e9ket kell visszaadnia. Ha a sablon \u00fcres karakterl\u00e1ncot ad vissza, az ir\u00e1ny figyelmen k\u00edv\u00fcl lesz hagyva."
+                            },
+                            "name": "Ir\u00e1nybe\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "Oszcill\u00e1l\u00e1s parancs sablon",
+                                "oscillation_command_topic": "Oszcill\u00e1l\u00e1s parancs t\u00e9mak\u00f6r",
+                                "oscillation_state_topic": "Oszcill\u00e1l\u00e1s \u00e1llapot t\u00e9mak\u00f6r",
+                                "oscillation_value_template": "Oszcill\u00e1l\u00e1s \u00e9rt\u00e9k sablon",
+                                "payload_oscillation_off": "Adatcsomag: \"oszcill\u00e1l\u00e1s kikapcsolva\"",
+                                "payload_oscillation_on": "Adatcsomag: \"oszcill\u00e1l\u00e1s bekapcsolva\""
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az adatcsomagot az oszcill\u00e1l\u00e1s parancs t\u00e9mak\u00f6rhez.",
+                                "oscillation_command_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyen kereszt\u00fcl a ventil\u00e1tor oszcill\u00e1l\u00e1s\u00e1nak vez\u00e9rl\u00e9s\u00e9re szolg\u00e1l\u00f3 parancsokat lehet elk\u00fcldeni. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre a ventil\u00e1tor oszcill\u00e1l\u00e1si \u00e1llapot\u00e1nak fogad\u00e1s\u00e1ra van feliratkozva. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a ventil\u00e1tor oszcill\u00e1l\u00e1si \u00e1llapot\u00e1nak \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez.",
+                                "payload_oscillation_off": "Az adatcsomag, amely az oszcill\u00e1l\u00e1s \u201ekikapcsolva\u201d \u00e1llapot\u00e1t jel\u00f6li.",
+                                "payload_oscillation_on": "Az adatcsomag, amely az oszcill\u00e1l\u00e1s \u201ebekapcsolva\u201d \u00e1llapot\u00e1t jel\u00f6li."
+                            },
+                            "name": "Oszcill\u00e1l\u00e1s be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "Adatcsomag: \"el\u0151re be\u00e1ll\u00edtott m\u00f3d vissza\u00e1ll\u00edt\u00e1sa\"",
+                                "preset_mode_command_template": "El\u0151re be\u00e1ll\u00edtott m\u00f3d parancs sablon",
+                                "preset_mode_command_topic": "El\u0151re be\u00e1ll\u00edtott m\u00f3d parancs t\u00e9mak\u00f6r",
+                                "preset_mode_state_topic": "El\u0151re be\u00e1ll\u00edtott m\u00f3d \u00e1llapot t\u00e9mak\u00f6r",
+                                "preset_mode_value_template": "El\u0151re be\u00e1ll\u00edtott m\u00f3d \u00e9rt\u00e9k sablon",
+                                "preset_modes": "El\u0151re be\u00e1ll\u00edtott m\u00f3dok"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "Egy speci\u00e1lis adatcsomag, amely az el\u0151re be\u00e1ll\u00edtott ventil\u00e1tor m\u00f3d \u00e1llapot\u00e1t \u201eismeretlen\u201d \u00e9rt\u00e9kre \u00e1ll\u00edtja vissza, amikor be\u00e9rkezik az el\u0151re be\u00e1ll\u00edtott m\u00f3d \u00e1llapot t\u00e9mak\u00f6r\u00e9re.",
+                                "preset_mode_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az adatcsomagot az el\u0151be\u00e1ll\u00edtott m\u00f3d parancs t\u00e9mak\u00f6rhez.",
+                                "preset_mode_command_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyen kereszt\u00fcl a ventil\u00e1tor el\u0151re be\u00e1ll\u00edtott m\u00f3dj\u00e1t lehet m\u00f3dos\u00edtani. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyre a ventil\u00e1tor el\u0151re be\u00e1ll\u00edtott m\u00f3dj\u00e1nak fogad\u00e1s\u00e1ra van feliratkozva. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a ventil\u00e1tor el\u0151re be\u00e1ll\u00edtott m\u00f3dj\u00e1nak \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez.",
+                                "preset_modes": "Az el\u0151re be\u00e1ll\u00edtott m\u00f3dok list\u00e1ja, amelyeken ez a ventil\u00e1tor k\u00e9pes m\u0171k\u00f6dni. Gyakori p\u00e9ld\u00e1k: auto, smart, whoosh, eco \u00e9s breeze."
+                            },
+                            "name": "El\u0151re be\u00e1ll\u00edtott m\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "Adatcsomag: \"sz\u00e1zal\u00e9k vissza\u00e1ll\u00edt\u00e1sa\"",
+                                "percentage_command_template": "Sz\u00e1zal\u00e9kos parancs sablon",
+                                "percentage_command_topic": "Sz\u00e1zal\u00e9kos parancs t\u00e9mak\u00f6r",
+                                "percentage_state_topic": "Sz\u00e1zal\u00e9kos \u00e1llapot t\u00e9mak\u00f6r",
+                                "percentage_value_template": "Sz\u00e1zal\u00e9kos \u00e9rt\u00e9k sablon",
+                                "speed_range_max": "Sebess\u00e9gtartom\u00e1ny maximum",
+                                "speed_range_min": "Sebess\u00e9gtartom\u00e1ny minimum"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "Egy speci\u00e1lis adatcsomag, amely a ventil\u00e1tor sebess\u00e9g sz\u00e1zal\u00e9kos \u00e1llapot\u00e1t \u201eismeretlen\u201d \u00e9rt\u00e9kre \u00e1ll\u00edtja vissza, amikor be\u00e9rkezik a sz\u00e1zal\u00e9kos \u00e1llapot t\u00e9mak\u00f6rre.",
+                                "percentage_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az adatcsomagot a sz\u00e1zal\u00e9kos parancs t\u00e9mak\u00f6rhez.",
+                                "percentage_command_topic": "Az MQTT-t\u00e9mak\u00f6r, amelyen kereszt\u00fcl a ventil\u00e1tor sebess\u00e9g\u00e9nek sz\u00e1zal\u00e9kos alap\u00fa \u00e1llapota m\u00f3dos\u00edthat\u00f3. Az \u00e9rt\u00e9knek a \"sebess\u00e9g tartom\u00e1ny minimum\" \u00e9s \"sebess\u00e9g tartom\u00e1ny maximum\" k\u00f6z\u00e9 kell esnie. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "Az MQTT t\u00e9mak\u00f6r, amelyre a ventil\u00e1tor sebess\u00e9g\u00e9nek \u00e1llapot\u00e1nak fogad\u00e1s\u00e1hoz iratkozik fel. Ez egy \u00e9rt\u00e9k a \"sebess\u00e9g tartom\u00e1ny minimum\" \u00e9s \"sebess\u00e9g tartom\u00e1ny maximum\" k\u00f6z\u00f6tti tartom\u00e1nyban. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#percentage_state_topic)",
+                                "percentage_value_template": "Egy [Sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a sebess\u00e9g sz\u00e1zal\u00e9kos \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez.",
+                                "speed_range_max": "A numerikus kimeneti tartom\u00e1ny fels\u0151 hat\u00e1ra (ez k\u00e9pviseli a 100%-ot). A sz\u00e1zal\u00e9kos l\u00e9p\u00e9s \u00e9rt\u00e9ke: 100 / a \u201esebess\u00e9gtartom\u00e1nyon\u201d bel\u00fcli sebess\u00e9gek sz\u00e1ma.",
+                                "speed_range_min": "A numerikus kimeneti tartom\u00e1ny als\u00f3 hat\u00e1ra (a kikapcsolt \u00e1llapot nem r\u00e9sze; \u00edgy a speed_range_min - 1 k\u00e9pviseli a 0%-ot). A sz\u00e1zal\u00e9kos l\u00e9p\u00e9s \u00e9rt\u00e9ke: 100 / a \u201esebess\u00e9gtartom\u00e1nyon\u201d bel\u00fcli sebess\u00e9gek sz\u00e1ma."
+                            },
+                            "name": "Sebess\u00e9g be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "K\u00fcl\u00f6n f\u00e9nyer\u0151",
+                                "brightness_command_template": "F\u00e9nyer\u0151 parancs sablon",
+                                "brightness_command_topic": "F\u00e9nyer\u0151 parancs t\u00e9m\u00e1ja",
+                                "brightness_scale": "F\u00e9nyer\u0151 sk\u00e1la",
+                                "brightness_state_topic": "F\u00e9nyer\u0151 \u00e1llapot t\u00e9m\u00e1ja",
+                                "brightness_value_template": "F\u00e9nyer\u0151 \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "brightness": "Jelz\u0151, amely megadja, hogy a l\u00e1mpa t\u00e1mogatja-e a f\u00e9nyer\u0151t RGB, RGBW vagy RGBWW sz\u00edns\u00e9ma eset\u00e9n.",
+                                "brightness_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja a f\u00e9nyer\u0151 parancs t\u00e9m\u00e1j\u00e1ra k\u00fcldend\u0151 adatcsomagot.",
+                                "brightness_command_topic": "A k\u00f6zz\u00e9t\u00e9telhez haszn\u00e1lt t\u00e9ma, amely vez\u00e9rli a f\u00e9nyer\u0151t. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#brightness_command_topic)",
+                                "brightness_scale": "A maxim\u00e1lis f\u00e9nyer\u0151 \u00e9rt\u00e9ket (azaz 100%) meghat\u00e1roz\u00f3 sk\u00e1la.",
+                                "brightness_state_topic": "Az MQTT-t\u00e9ma, amelyre a f\u00e9nyer\u0151 \u00e1llapot\u00e9rt\u00e9kei \u00e9rkeznek. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#brightness_state_topic)",
+                                "brightness_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a f\u00e9nyer\u0151 \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "F\u00e9nyer\u0151 be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "Sz\u00ednm\u00f3d \u00e1llapot t\u00e9m\u00e1ja",
+                                "color_mode_value_template": "Sz\u00ednm\u00f3d \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "Az MQTT-t\u00e9ma, amelyre a sz\u00ednm\u00f3d friss\u00edt\u00e9sei \u00e9rkeznek. Ha nincs be\u00e1ll\u00edtva, akkor a legut\u00f3bb fogadott \u00e9rv\u00e9nyes sz\u00edn vagy sz\u00ednh\u0151m\u00e9rs\u00e9klet alapj\u00e1n ker\u00fcl meghat\u00e1roz\u00e1sra.",
+                                "color_mode_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a sz\u00ednm\u00f3d \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "Sz\u00ednm\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet parancs sablon",
+                                "color_temp_command_topic": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet parancs t\u00e9m\u00e1ja",
+                                "color_temp_state_topic": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet \u00e1llapot t\u00e9m\u00e1ja",
+                                "color_temp_value_template": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja a sz\u00ednh\u0151m\u00e9rs\u00e9klet parancs t\u00e9m\u00e1j\u00e1ra k\u00fcldend\u0151 adatcsomagot.",
+                                "color_temp_command_topic": "A k\u00f6zz\u00e9t\u00e9teli t\u00e9ma, amely a sz\u00ednh\u0151m\u00e9rs\u00e9klet vez\u00e9rl\u00e9s\u00e9re szolg\u00e1l. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "Az MQTT-t\u00e9ma, amelyen a sz\u00ednh\u0151m\u00e9rs\u00e9klet \u00e1llapotfriss\u00edt\u00e9sek \u00e9rkeznek. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a sz\u00ednh\u0151m\u00e9rs\u00e9klet \u00e9rt\u00e9k\u00e9nek kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "Hat\u00e1s",
+                                "effect_command_template": "Hat\u00e1s parancs sablon",
+                                "effect_command_topic": "Hat\u00e1s parancs t\u00e9m\u00e1ja",
+                                "effect_list": "Hat\u00e1slista",
+                                "effect_state_topic": "Hat\u00e1s \u00e1llapot t\u00e9m\u00e1ja",
+                                "effect_template": "Hat\u00e1s sablon",
+                                "effect_value_template": "Hat\u00e1s \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "effect": "Jelz\u0151, amely meghat\u00e1rozza, hogy a l\u00e1mpa t\u00e1mogatja-e a hat\u00e1sokat.",
+                                "effect_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja a hat\u00e1s parancs t\u00e9m\u00e1j\u00e1ra k\u00fcldend\u0151 adatcsomagot.",
+                                "effect_command_topic": "A k\u00f6zz\u00e9t\u00e9teli t\u00e9ma, amely a hat\u00e1s vez\u00e9rl\u00e9s\u00e9re szolg\u00e1l. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#effect_command_topic)",
+                                "effect_list": "A hat\u00e1sok list\u00e1ja, amelyeket a l\u00e1mpa t\u00e1mogat.",
+                                "effect_state_topic": "Az MQTT-t\u00e9ma, amelyen hat\u00e1s \u00e1llapotfriss\u00edt\u00e9sek \u00e9rkeznek. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#effect_state_topic)"
+                            },
+                            "name": "Hat\u00e1s be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "HS parancs sablon",
+                                "hs_command_topic": "HS parancs t\u00e9m\u00e1ja",
+                                "hs_state_topic": "HS \u00e1llapot t\u00e9m\u00e1ja",
+                                "hs_value_template": "HS \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "hs_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az \u00fczenetet, amely a HS parancs t\u00e9m\u00e1j\u00e1ra ker\u00fcl elk\u00fcld\u00e9sre. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3k: `hue` \u00e9s `sat`.",
+                                "hs_command_topic": "Az MQTT-t\u00e9ma, amelyre a HS (\u00e1rnyalat \u00e9s tel\u00edtetts\u00e9g) sz\u00edn\u00e1llapot m\u00f3dos\u00edt\u00e1s\u00e1hoz sz\u00fcks\u00e9ges parancsok ker\u00fclnek k\u00f6zz\u00e9t\u00e9telre. \u00c1rnyalat tartom\u00e1nya: 0\u00b0\u2013360\u00b0, Tel\u00edtetts\u00e9g tartom\u00e1nya: 0\u2013100. Megjegyz\u00e9s: a f\u00e9nyer\u0151 k\u00fcl\u00f6n t\u00e9m\u00e1ban ker\u00fcl elk\u00fcld\u00e9sre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#hs_command_topic)",
+                                "hs_state_topic": "Az MQTT-t\u00e9ma, amelyen HS form\u00e1tum\u00fa sz\u00edn\u00e1llapot-friss\u00edt\u00e9sek \u00e9rkeznek. Az elv\u00e1rt form\u00e1tum: \u00e1rnyalat \u00e9s tel\u00edtetts\u00e9g \u00e9rt\u00e9kek vessz\u0151vel elv\u00e1lasztva, pl. `359.5,100.0`. Megjegyz\u00e9s: a f\u00e9nyer\u0151 k\u00fcl\u00f6n a f\u00e9nyer\u0151 \u00e1llapot t\u00e9m\u00e1n kereszt\u00fcl \u00e9rkezik. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#hs_state_topic)",
+                                "hs_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa a HS \u00e9rt\u00e9k kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "HS sz\u00ednm\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "RGB parancs sablon",
+                                "rgb_command_topic": "RGB parancs t\u00e9m\u00e1ja",
+                                "rgb_state_topic": "RGB \u00e1llapot t\u00e9m\u00e1ja",
+                                "rgb_value_template": "RGB \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az RGB parancs t\u00e9m\u00e1j\u00e1ra k\u00fcldend\u0151 \u00fczenetet. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3k: `red`, `green` \u00e9s `blue`.",
+                                "rgb_command_topic": "Az MQTT-t\u00e9ma, amelyre az RGB \u00e1llapot m\u00f3dos\u00edt\u00e1s\u00e1hoz sz\u00fcks\u00e9ges parancsok ker\u00fclnek k\u00f6zz\u00e9t\u00e9telre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#rgb_command_topic)",
+                                "rgb_state_topic": "Az MQTT-t\u00e9ma, amelyen az RGB \u00e1llapotfriss\u00edt\u00e9sek \u00e9rkeznek. Az elv\u00e1rt form\u00e1tum RGB \u00e9rt\u00e9kek vessz\u0151vel elv\u00e1lasztva, p\u00e9ld\u00e1ul: `255,0,127`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#rgb_state_topic)",
+                                "rgb_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az RGB \u00e9rt\u00e9k kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "RGB sz\u00ednm\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "RGBW parancs sablon",
+                                "rgbw_command_topic": "RGBW parancs t\u00e9m\u00e1ja",
+                                "rgbw_state_topic": "RGBW \u00e1llapot t\u00e9m\u00e1ja",
+                                "rgbw_value_template": "RGBW \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az RGBW parancs t\u00e9m\u00e1j\u00e1ra k\u00fcldend\u0151 \u00fczenetet. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3k: `red`, `green`, `blue` \u00e9s `white`.",
+                                "rgbw_command_topic": "Az MQTT-t\u00e9ma, amelyre az RGBW \u00e1llapot m\u00f3dos\u00edt\u00e1s\u00e1hoz sz\u00fcks\u00e9ges parancsok ker\u00fclnek elk\u00fcld\u00e9sre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#rgbw_command_topic)",
+                                "rgbw_state_topic": "Az MQTT-t\u00e9ma, amelyen RGBW \u00e1llapotfriss\u00edt\u00e9sek \u00e9rkeznek. Az elv\u00e1rt form\u00e1tum RGBW \u00e9rt\u00e9kek vessz\u0151vel elv\u00e1lasztva, pl. `255,0,127,64`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az RGBW \u00e9rt\u00e9k kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "RGBW sz\u00ednm\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "RGBWW parancs sablon",
+                                "rgbww_command_topic": "RGBWW parancs t\u00e9m\u00e1ja",
+                                "rgbww_state_topic": "RGBWW \u00e1llapot t\u00e9m\u00e1ja",
+                                "rgbww_value_template": "RGBWW \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az RGBWW parancs t\u00e9m\u00e1j\u00e1ra k\u00fcldend\u0151 \u00fczenetet. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3k: `red`, `green`, `blue`, `cold_white` \u00e9s `warm_white`.",
+                                "rgbww_command_topic": "Az MQTT-t\u00e9ma, amelyre az RGBWW \u00e1llapot m\u00f3dos\u00edt\u00e1s\u00e1hoz sz\u00fcks\u00e9ges parancsok ker\u00fclnek elk\u00fcld\u00e9sre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "Az MQTT-t\u00e9ma, amelyen RGBWW \u00e1llapotfriss\u00edt\u00e9sek \u00e9rkeznek. Az elv\u00e1rt form\u00e1tum RGBWW \u00e9rt\u00e9kek vessz\u0151vel elv\u00e1lasztva, pl. `255,0,127,64,32`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az RGBWW \u00e9rt\u00e9k kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "RGBWW sz\u00ednm\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "Feh\u00e9r parancs t\u00e9m\u00e1ja",
+                                "white_scale": "Feh\u00e9r sk\u00e1la"
+                            },
+                            "data_description": {
+                                "white_command_topic": "Az MQTT-t\u00e9ma, amelyre a l\u00e1mpa feh\u00e9r m\u00f3dba \u00e1ll\u00edt\u00e1s\u00e1hoz sz\u00fcks\u00e9ges parancs ker\u00fcl elk\u00fcld\u00e9sre adott f\u00e9nyer\u0151vel. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#white_command_topic)",
+                                "white_scale": "A maxim\u00e1lis feh\u00e9rszintet (azaz 100%) meghat\u00e1roz\u00f3 sk\u00e1la."
+                            },
+                            "name": "Feh\u00e9r sz\u00ednm\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "XY parancs sablon",
+                                "xy_command_topic": "XY parancs t\u00e9m\u00e1ja",
+                                "xy_state_topic": "XY \u00e1llapot t\u00e9m\u00e1ja",
+                                "xy_value_template": "XY \u00e9rt\u00e9k sablon"
+                            },
+                            "data_description": {
+                                "xy_command_template": "[Sablon]({command_templating_url}), amely \u00f6ssze\u00e1ll\u00edtja az XY parancs t\u00e9m\u00e1j\u00e1ra k\u00fcldend\u0151 \u00fczenetet. El\u00e9rhet\u0151 v\u00e1ltoz\u00f3k: `x` \u00e9s `y`.",
+                                "xy_command_topic": "Az MQTT-t\u00e9ma, amelyre az XY \u00e1llapot v\u00e1ltoztat\u00e1s\u00e1hoz sz\u00fcks\u00e9ges parancsok ker\u00fclnek k\u00f6zz\u00e9t\u00e9telre. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#xy_command_topic)",
+                                "xy_state_topic": "Az MQTT-t\u00e9ma, amelyen XY \u00e1llapotfriss\u00edt\u00e9sek \u00e9rkeznek. Az elv\u00e1rt form\u00e1tum X \u00e9s Y \u00e9rt\u00e9kek vessz\u0151vel elv\u00e1lasztva, pl. `0.675,0.322`. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#xy_state_topic)",
+                                "xy_value_template": "Egy [sablon]({value_templating_url}) meghat\u00e1roz\u00e1sa az XY \u00e9rt\u00e9k kinyer\u00e9s\u00e9hez."
+                            },
+                            "name": "XY sz\u00ednm\u00f3d be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "\u201ez\u00e1r\u00e1s\u201d adatcsomag",
+                                "payload_open": "\u201enyit\u00e1s\u201d adatcsomag",
+                                "payload_reset": "\u201ereset\u201d adatcsomag",
+                                "payload_unlock": "\u201enyit\u00e1s (z\u00e1r felold\u00e1sa)\u201d adatcsomag",
+                                "state_jammed": "\u201eelakadt\u201d adatcsomag",
+                                "state_locked": "\u201ez\u00e1rolva\u201d adatcsomag",
+                                "state_locking": "\u201ez\u00e1rol\u00e1s alatt\u201d adatcsomag",
+                                "state_unlocked": "\u201enyitva\u201d adatcsomag",
+                                "state_unlocking": "\u201enyit\u00e1s alatt\u201d adatcsomag"
+                            },
+                            "data_description": {
+                                "payload_lock": "Az adatcsomag, amely \u201ez\u00e1r\u00e1s\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre.",
+                                "payload_open": "Az adatcsomag, amely \u201enyit\u00e1s\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre. Csak akkor \u00e1ll\u00edtsa be, ha a z\u00e1r t\u00e1mogatja a \u201enyit\u00e1s\u201d m\u0171veletet.",
+                                "payload_reset": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6r\u00f6n kereszt\u00fcl \u00e9rkezik, \u00e9s a z\u00e1r \u00e1llapot\u00e1t ismeretlenre \u00e1ll\u00edtja vissza.",
+                                "payload_unlock": "Az adatcsomag, amely \u201enyit\u00e1s\u201d parancs kiad\u00e1sakor ker\u00fcl elk\u00fcld\u00e9sre.",
+                                "state_jammed": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben az \u201eelakadt\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_locked": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201elez\u00e1rt\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_locking": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201ez\u00e1rol\u00e1s alatt\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_unlocked": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201efeloldva\u201d \u00e1llapotot jel\u00f6li.",
+                                "state_unlocking": "Az adatcsomag, amely az \u00e1llapot t\u00e9mak\u00f6rben a \u201efelold\u00e1s\u201d \u00e1llapotot jel\u00f6li."
+                            },
+                            "name": "Z\u00e1r adatcsomag be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "Lej\u00e1rat ut\u00e1n",
+                                "flash": "Villog\u00e1s t\u00e1mogat\u00e1s",
+                                "flash_time_long": "Hossz\u00fa villog\u00e1si id\u0151",
+                                "flash_time_short": "R\u00f6vid villog\u00e1si id\u0151",
+                                "max_kelvin": "Maxim\u00e1lis Kelvin",
+                                "min_kelvin": "Minim\u00e1lis Kelvin",
+                                "off_delay": "KI k\u00e9sleltet\u00e9s",
+                                "transition": "\u00c1tmenet t\u00e1mogat\u00e1sa"
+                            },
+                            "data_description": {
+                                "expire_after": "Ha be van \u00e1ll\u00edtva, meghat\u00e1rozza azt a m\u00e1sodpercben m\u00e9rt id\u0151tartamot, amely ut\u00e1n a szenzor \u00e1llapota lej\u00e1r, ha nem friss\u00fcl. A lej\u00e1rat ut\u00e1n a szenzor \u00e1llapota nem el\u00e9rhet\u0151v\u00e9 v\u00e1lik. Ha nincs be\u00e1ll\u00edtva, a szenzor \u00e1llapota soha nem j\u00e1r le. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#expire_after)",
+                                "flash": "Villog\u00e1s funkci\u00f3 enged\u00e9lyez\u00e9se enn\u00e9l a l\u00e1mp\u00e1n\u00e1l",
+                                "flash_time_long": "A \"hossz\u00fa\" villog\u00e1s id\u0151tartama m\u00e1sodpercben.",
+                                "flash_time_short": "A \"r\u00f6vid\" villog\u00e1s id\u0151tartama m\u00e1sodpercben.",
+                                "max_kelvin": "A maxim\u00e1lis sz\u00ednh\u0151m\u00e9rs\u00e9klet Kelvinben.",
+                                "min_kelvin": "A minim\u00e1lis sz\u00ednh\u0151m\u00e9rs\u00e9klet Kelvinben.",
+                                "off_delay": "Azon szenzorokn\u00e1l, amelyek csak \"be\" \u00e1llapotfriss\u00edt\u00e9st k\u00fcldenek (pl. PIR \u00e9rz\u00e9kel\u0151k), ez a be\u00e1ll\u00edt\u00e1s meghat\u00e1rozza azt a k\u00e9sleltet\u00e9st m\u00e1sodpercben, amely ut\u00e1n a szenzor \u00e1llapota vissza\u00e1ll \"ki\" \u00e9rt\u00e9kre.",
+                                "transition": "\u00c1tmenet funkci\u00f3 enged\u00e9lyez\u00e9se enn\u00e9l a l\u00e1mp\u00e1n\u00e1l"
+                            },
+                            "name": "Egy\u00e9b be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "\"Ki\" parancs sablonja"
+                            },
+                            "data_description": {
+                                "command_off_template": "A \"ki\" \u00e1llapotv\u00e1ltoz\u00e1sokhoz haszn\u00e1lt [sablon]({command_templating_url}). Alap\u00e9rtelmez\u00e9s szerint a \"[Parancssablon]({url}#command_template)\" ker\u00fcl felhaszn\u00e1l\u00e1sra. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#command_off_template)"
+                            },
+                            "name": "Egy\u00e9b szir\u00e9na be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "Maxim\u00e1lis p\u00e1ratartalom",
+                                "min_humidity": "Minim\u00e1lis p\u00e1ratartalom",
+                                "target_humidity_command_template": "C\u00e9l p\u00e1ratartalom parancs sablon",
+                                "target_humidity_command_topic": "C\u00e9l p\u00e1ratartalom parancs t\u00e9ma",
+                                "target_humidity_state_template": "C\u00e9l p\u00e1ratartalom \u00e1llapot sablon",
+                                "target_humidity_state_topic": "C\u00e9l p\u00e1ratartalom \u00e1llapot t\u00e9ma"
+                            },
+                            "data_description": {
+                                "max_humidity": "A be\u00e1ll\u00edthat\u00f3 maxim\u00e1lis c\u00e9l p\u00e1ratartalom.",
+                                "min_humidity": "A be\u00e1ll\u00edthat\u00f3 minim\u00e1lis c\u00e9l p\u00e1ratartalom.",
+                                "target_humidity_command_template": "[Sablon]({command_templating_url}) a c\u00e9l p\u00e1ratartalom parancs t\u00e9m\u00e1ban k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz.",
+                                "target_humidity_command_topic": "Az MQTT t\u00e9ma parancsok k\u00f6zz\u00e9t\u00e9tel\u00e9hez a kl\u00edmaberendez\u00e9s c\u00e9l p\u00e1ratartalm\u00e1nak m\u00f3dos\u00edt\u00e1s\u00e1hoz. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "[Sablon]({value_templating_url}) a c\u00e9l p\u00e1ratartalom \u00e1llapot t\u00e9m\u00e1ban kapott \u00e9rt\u00e9k megjelen\u00edt\u00e9s\u00e9hez.",
+                                "target_humidity_state_topic": "Az MQTT t\u00e9ma a c\u00e9l p\u00e1ratartalom v\u00e1ltoz\u00e1sainak feliratkoz\u00e1s\u00e1hoz. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#humidity_state_topic)"
+                            },
+                            "name": "C\u00e9l p\u00e1ratartalom be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "Kezdeti h\u0151m\u00e9rs\u00e9klet",
+                                "max_temp": "Maxim\u00e1lis h\u0151m\u00e9rs\u00e9klet",
+                                "min_temp": "Minim\u00e1lis h\u0151m\u00e9rs\u00e9klet",
+                                "precision": "Pontoss\u00e1g",
+                                "temp_step": "H\u0151m\u00e9rs\u00e9klet l\u00e9p\u00e9sk\u00f6z",
+                                "temperature_command_template": "H\u0151m\u00e9rs\u00e9klet parancs sablon",
+                                "temperature_command_topic": "H\u0151m\u00e9rs\u00e9klet parancs t\u00e9ma",
+                                "temperature_high_command_template": "Fels\u0151 h\u0151m\u00e9rs\u00e9klet parancs sablon",
+                                "temperature_high_command_topic": "Fels\u0151 h\u0151m\u00e9rs\u00e9klet parancs t\u00e9ma",
+                                "temperature_high_state_template": "Fels\u0151 h\u0151m\u00e9rs\u00e9klet \u00e1llapot sablon",
+                                "temperature_high_state_topic": "Fels\u0151 h\u0151m\u00e9rs\u00e9klet \u00e1llapot t\u00e9ma",
+                                "temperature_low_command_template": "Als\u00f3 h\u0151m\u00e9rs\u00e9klet parancs sablon",
+                                "temperature_low_command_topic": "Als\u00f3 h\u0151m\u00e9rs\u00e9klet parancs t\u00e9mak\u00f6r",
+                                "temperature_low_state_template": "Als\u00f3 h\u0151m\u00e9rs\u00e9klet \u00e1llapot sablon",
+                                "temperature_low_state_topic": "Als\u00f3 h\u0151m\u00e9rs\u00e9klet \u00e1llapot t\u00e9mak\u00f6r",
+                                "temperature_state_template": "H\u0151m\u00e9rs\u00e9klet \u00e1llapot sablon",
+                                "temperature_state_topic": "H\u0151m\u00e9rs\u00e9klet \u00e1llapot t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "initial": "Az eszk\u00f6z ezzel a c\u00e9lh\u0151m\u00e9rs\u00e9klettel indul.",
+                                "max_temp": "A(z) be\u00e1ll\u00edthat\u00f3 maxim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet.",
+                                "min_temp": "A(z) be\u00e1ll\u00edthat\u00f3 minim\u00e1lis c\u00e9lh\u0151m\u00e9rs\u00e9klet.",
+                                "precision": "A(z) termoszt\u00e1t pontoss\u00e1ga fokokban.",
+                                "temp_step": "A(z) c\u00e9lh\u0151m\u00e9rs\u00e9klet l\u00e9p\u00e9sk\u00f6ze Celsius vagy Fahrenheit fokban.",
+                                "temperature_command_template": "Egy [sablon]({command_templating_url}) a h\u0151m\u00e9rs\u00e9klet parancs t\u00e9m\u00e1ban k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz.",
+                                "temperature_command_topic": "Az MQTT t\u00e9mak\u00f6r parancsok k\u00f6zz\u00e9t\u00e9tel\u00e9hez a c\u00e9lh\u0151m\u00e9rs\u00e9klet m\u00f3dos\u00edt\u00e1s\u00e1ra. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#temperature_command_topic)",
+                                "temperature_high_command_template": "Egy [sablon]({command_templating_url}) a fels\u0151 h\u0151m\u00e9rs\u00e9klet parancs t\u00e9mak\u00f6rben k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz.",
+                                "temperature_high_command_topic": "Az MQTT t\u00e9mak\u00f6r parancsok k\u00f6zz\u00e9t\u00e9tel\u00e9hez a kl\u00edmaberendez\u00e9s fels\u0151 c\u00e9lh\u0151m\u00e9rs\u00e9klet\u00e9nek m\u00f3dos\u00edt\u00e1s\u00e1ra. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "Egy [sablon]({value_templating_url}) a fels\u0151 h\u0151m\u00e9rs\u00e9klet \u00e1llapot t\u00e9mak\u00f6rben fogadott \u00e9rt\u00e9k megjelen\u00edt\u00e9s\u00e9hez.",
+                                "temperature_high_state_topic": "Az MQTT t\u00e9mak\u00f6r feliratkoz\u00e1s\u00e1hoz a fels\u0151 c\u00e9lh\u0151m\u00e9rs\u00e9klet v\u00e1ltoz\u00e1saira. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "Egy [sablon]({command_templating_url}) az alacsonyabb h\u0151m\u00e9rs\u00e9klet parancs t\u00e9mak\u00f6rben k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz.",
+                                "temperature_low_command_topic": "Az MQTT t\u00e9mak\u00f6r parancsok k\u00f6zz\u00e9t\u00e9tel\u00e9hez a kl\u00edmaberendez\u00e9s als\u00f3 c\u00e9lh\u0151m\u00e9rs\u00e9klet\u00e9nek m\u00f3dos\u00edt\u00e1s\u00e1ra. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "Egy [sablon]({value_templating_url}) az als\u00f3 h\u0151m\u00e9rs\u00e9klet \u00e1llapot t\u00e9mak\u00f6rben fogadott \u00e9rt\u00e9k megjelen\u00edt\u00e9s\u00e9hez.",
+                                "temperature_low_state_topic": "Az MQTT t\u00e9mak\u00f6r feliratkoz\u00e1s\u00e1hoz az als\u00f3 c\u00e9lh\u0151m\u00e9rs\u00e9klet v\u00e1ltoz\u00e1saira. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "Egy [sablon]({value_templating_url}) a h\u0151m\u00e9rs\u00e9klet \u00e1llapot t\u00e9mak\u00f6rben fogadott \u00e9rt\u00e9k megjelen\u00edt\u00e9s\u00e9hez.",
+                                "temperature_state_topic": "Az MQTT t\u00e9mak\u00f6r feliratkoz\u00e1s\u00e1hoz a c\u00e9lh\u0151m\u00e9rs\u00e9klet v\u00e1ltoz\u00e1saira. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#temperature_state_topic)"
+                            },
+                            "name": "C\u00e9lh\u0151m\u00e9rs\u00e9klet be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "Maxim\u00e1lis hossz",
+                                "min": "Minim\u00e1lis hossz",
+                                "mode": "M\u00f3d",
+                                "pattern": "Minta"
+                            },
+                            "data_description": {
+                                "max": "A sz\u00f6vegbeviteli mez\u0151 maxim\u00e1lis hossza",
+                                "min": "A sz\u00f6vegbeviteli mez\u0151 minim\u00e1lis hossza",
+                                "mode": "A sz\u00f6vegbeviteli mez\u0151 m\u00f3dja",
+                                "pattern": "\u00c9rv\u00e9nyes regul\u00e1ris kifejez\u00e9s minta"
+                            },
+                            "name": "Egy\u00e9b sz\u00f6veges entit\u00e1s be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "\"Z\u00e1r\u00e1s\" adatcsomag",
+                                "payload_open": "\"Nyit\u00e1s\" adatcsomag",
+                                "payload_stop": "\"\u00c1llj\" adatcsomag",
+                                "state_closed": "\"Z\u00e1rt\" \u00e1llapot",
+                                "state_closing": "\"Z\u00e1r\u00f3dik\" \u00e1llapot",
+                                "state_open": "\"Nyitott\" \u00e1llapot",
+                                "state_opening": "\"Ny\u00edlik\" \u00e1llapot"
+                            },
+                            "data_description": {
+                                "payload_close": "A \"z\u00e1r\u00e1s\" parancs kiad\u00e1sakor k\u00fcld\u00f6tt adatcsomag.",
+                                "payload_open": "A \"nyit\u00e1s\" parancs kiad\u00e1sakor k\u00fcld\u00f6tt adatcsomag.",
+                                "payload_stop": "Az \"\u00e1llj\" parancs kiad\u00e1sakor k\u00fcld\u00f6tt adatcsomag. Csak akkor \u00e1ll\u00edtsa be ezt az adatcsomagot, ha a szelep t\u00e1mogatja az \"\u00e1llj\" m\u0171veletet.",
+                                "state_closed": "Az \u00e1llapott\u00e9m\u00e1ban fogadott adatcsomag, amely a \"z\u00e1rt\" \u00e1llapotot jel\u00f6li.",
+                                "state_closing": "Az \u00e1llapott\u00e9m\u00e1ban fogadott adatcsomag, amely a \"z\u00e1r\u00f3dik\" \u00e1llapotot jel\u00f6li.",
+                                "state_open": "Az \u00e1llapott\u00e9m\u00e1ban fogadott adatcsomag, amely a \"nyitott\" \u00e1llapotot jel\u00f6li.",
+                                "state_opening": "Az \u00e1llapott\u00e9m\u00e1ban fogadott adatcsomag, amely a \"ny\u00edlik\" \u00e1llapotot jel\u00f6li."
+                            },
+                            "name": "Szelep adatcsomag be\u00e1ll\u00edt\u00e1sok"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "\"Off\" adatcsomag",
+                                "payload_on": "\"On\" adatcsomag",
+                                "power_command_template": "Bekapcsol\u00e1si parancs sablon",
+                                "power_command_topic": "Bekapcsol\u00e1si parancs t\u00e9mak\u00f6r"
+                            },
+                            "data_description": {
+                                "payload_off": "Az adatcsomag, amely az \"off\" \u00e1llapotot jelenti.",
+                                "payload_on": "Az adatcsomag, amely az \"on\" \u00e1llapotot jelenti.",
+                                "power_command_template": "[Sablon]({command_templating_url}) a bekapcsol\u00e1si parancs t\u00e9mak\u00f6r\u00e9re k\u00f6zz\u00e9teend\u0151 adatcsomag \u00f6ssze\u00e1ll\u00edt\u00e1s\u00e1hoz. A `value` param\u00e9ter az \"on\" vagy \"off\" adatcsomaghoz be\u00e1ll\u00edtott \u00e9rt\u00e9k.",
+                                "power_command_topic": "Az MQTT t\u00e9ma parancsok k\u00f6zz\u00e9t\u00e9tel\u00e9hez a v\u00edzmeleg\u00edt\u0151 energia\u00e1llapot\u00e1nak megv\u00e1ltoztat\u00e1s\u00e1hoz. A \"be\" vagy \"ki\" adatcsomaggal konfigur\u00e1lt adatcsomagot k\u00fcldi. [Tov\u00e1bbi inform\u00e1ci\u00f3.]({url}#power_command_topic)"
+                            },
+                            "name": "Teljes\u00edtm\u00e9nybe\u00e1ll\u00edt\u00e1sok"
+                        }
+                    },
+                    "title": "MQTT eszk\u00f6z konfigur\u00e1l\u00e1sa: \"{mqtt_device}\""
+                },
+                "summary_menu": {
+                    "description": "Be\u00e1ll\u00edtott entit\u00e1sok:\n{mqtt_items}\n\nV\u00e1lassza ki a k\u00f6vetkez\u0151 l\u00e9p\u00e9st:",
+                    "menu_options": {
+                        "availability": "El\u00e9rhet\u0151s\u00e9g be\u00e1ll\u00edt\u00e1sa",
+                        "delete_entity": "Entit\u00e1s t\u00f6rl\u00e9se",
+                        "device": "Eszk\u00f6z tulajdons\u00e1gainak friss\u00edt\u00e9se",
+                        "entity": "\u00daj entit\u00e1s hozz\u00e1ad\u00e1sa a(z) \"{mqtt_device}\" eszk\u00f6zh\u00f6z",
+                        "export": "MQTT eszk\u00f6z konfigur\u00e1ci\u00f3 export\u00e1l\u00e1sa",
+                        "save_changes": "V\u00e1ltoz\u00e1sok ment\u00e9se",
+                        "update_entity": "Entit\u00e1s tulajdons\u00e1gainak friss\u00edt\u00e9se"
+                    },
+                    "title": "\"{mqtt_device}\" \u00fajrakonfigur\u00e1l\u00e1sa"
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "Entit\u00e1s"
+                    },
+                    "data_description": {
+                        "component": "V\u00e1lassza ki a friss\u00edteni k\u00edv\u00e1nt entit\u00e1st"
+                    },
+                    "description": "V\u00e1lassza ki a friss\u00edteni k\u00edv\u00e1nt entit\u00e1st",
+                    "title": "Entit\u00e1s kiv\u00e1laszt\u00e1sa"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "Els\u0151 gomb",
+            "button_2": "M\u00e1sodik gomb",
+            "button_3": "Harmadik gomb",
+            "button_4": "Negyedik gomb",
+            "button_5": "\u00d6t\u00f6dik gomb",
+            "button_6": "Hatodik gomb",
+            "turn_off": "Kikapcsol\u00e1s",
+            "turn_on": "Bekapcsol\u00e1s"
+        },
+        "trigger_type": {
+            "button_double_press": "\"{subtype}\" dupla kattint\u00e1s",
+            "button_long_press": "\"{subtype}\" folyamatosan nyomva tartva",
+            "button_long_release": "\"{subtype}\" nyomva tart\u00e1s ut\u00e1n felengedve",
+            "button_quadruple_press": "\"{subtype}\" n\u00e9gyszeres kattint\u00e1s",
+            "button_quintuple_press": "\"{subtype}\" \u00f6tsz\u00f6r\u00f6s kattint\u00e1s",
+            "button_short_press": "\"{subtype}\" lenyomva",
+            "button_short_release": "\"{subtype}\" felengedve",
+            "button_triple_press": "\"{subtype}\" tripla kattint\u00e1s"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "Nem siker\u00fclt megfelel\u0151en elind\u00edtani a(z) {addon} alkalmaz\u00e1st."
+        },
+        "command_template_error": {
+            "message": "A(z) `{entity_id}` entit\u00e1s `{command_template}` sablonj\u00e1nak elemz\u00e9se sikertelen volt, a k\u00f6vetkez\u0151 hib\u00e1val: {error}."
+        },
+        "invalid_platform_config_message": {
+            "message": "A k\u00e9zzel konfigur\u00e1lt MQTT `{domain}` elem YAML-konfigur\u00e1ci\u00f3j\u00e1nak \u00fajrat\u00f6lt\u00e9se sikertelen. \u00dczenet: {message}"
+        },
+        "invalid_publish_topic": {
+            "message": "A k\u00f6zz\u00e9t\u00e9tel nem siker\u00fclt: a `{topic_template}` t\u00e9maminta \u00e9rv\u00e9nytelen `{topic}` t\u00e9m\u00e1t gener\u00e1lt a renderel\u00e9s ut\u00e1n ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "Hiba az MQTT-vel val\u00f3 kommunik\u00e1ci\u00f3 sor\u00e1n: {error_message}."
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "Az MQTT feliratkoz\u00e1si azonos\u00edt\u00f3k korl\u00e1tja el\u00e9rve. Nem lehet t\u00f6bb azonos\u00edt\u00f3t l\u00e9trehozni a feliratkoz\u00e1shoz."
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "A(z) {topic} t\u00e9mak\u00f6rbe val\u00f3 k\u00f6zz\u00e9t\u00e9tel \u00dczenet-lej\u00e1rati intervallummal nem t\u00e1mogatott a(z) {protocol} protokollverzi\u00f3hoz."
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "Nem lehet feliratkozni a(z) \"{topic}\" t\u00e9mak\u00f6rre, mert az MQTT nincs enged\u00e9lyezve. K\u00e9rj\u00fck, gy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy az MQTT megfelel\u0151en van be\u00e1ll\u00edtva."
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "Nem lehet k\u00f6zz\u00e9tenni a(z) \"{topic}\" t\u00e9m\u00e1ban. Gy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy az MQTT megfelel\u0151en van be\u00e1ll\u00edtva."
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "Nem lehet feliratkozni a(z) \"{topic}\" t\u00e9m\u00e1ra. Gy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy az MQTT megfelel\u0151en van be\u00e1ll\u00edtva."
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "A(z) \"{topic}\" t\u00e9mak\u00f6rb\u0151l nem lehet k\u00e9tszer leiratkozni."
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "A t\u00e9mak\u00f6rt sz\u00f6vegk\u00e9nt kell megadni! Kapott \u00e9rt\u00e9k: {topic}."
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "Az esem\u00e9nyind\u00edt\u00f3 nem t\u00e1vol\u00edthat\u00f3 el k\u00e9tszer."
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "A Home Assistant \u00e9rv\u00e9nytelen konfigur\u00e1ci\u00f3t \u00e9szlelt egy k\u00e9zzel konfigur\u00e1lt elemn\u00e9l.\n\nPlatform domain: **{domain}**\nKonfigur\u00e1ci\u00f3s f\u00e1jl: **{config_file}**\nA hiba k\u00f6zel\u00e9ben l\u00e9v\u0151 sor: **{line}**\nTal\u00e1lt konfigur\u00e1ci\u00f3:\n```yaml\n{config}\n```\nHiba: **{error}**.\n\nGy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy a konfigur\u00e1ci\u00f3 \u00e9rv\u00e9nyes, majd [t\u00f6ltse \u00fajra](/config/tools/yaml) a k\u00e9zzel konfigur\u00e1lt MQTT-elemeket, vagy ind\u00edtsa \u00fajra a Home Assistantot a probl\u00e9ma megold\u00e1s\u00e1hoz.",
+            "title": "\u00c9rv\u00e9nytelen konfigur\u00e1ci\u00f3 tal\u00e1lhat\u00f3 az MQTT {domain} elemhez"
+        },
+        "protocol_5_migration": {
+            "description": "Az MQTT protokoll 5-\u00f6s verzi\u00f3j\u00e1ra val\u00f3 automatikus migr\u00e1l\u00e1s sikertelen. A(z) {broker} MQTT k\u00f6zvet\u00edt\u0151h\u00f6z jelenleg be\u00e1ll\u00edtott protokollverzi\u00f3: {protocol}, azonban ez a protokollverzi\u00f3 elavult, \u00e9s a t\u00e1mogat\u00e1sa hamarosan megsz\u0171nik.\n\nGy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy a k\u00f6zvet\u00edt\u0151 t\u00e1mogatja az 5-\u00f6s protokollverzi\u00f3t. Friss\u00edtse az MQTT k\u00f6zvet\u00edt\u0151 kapcsolati be\u00e1ll\u00edt\u00e1sait, majd ind\u00edtsa \u00fajra a Home Assistantt a probl\u00e9ma megold\u00e1s\u00e1hoz.",
+            "title": "MQTT protokoll migr\u00e1l\u00e1sa sikertelen"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Export\u00e1lt MQTT eszk\u00f6z \"{name}\" azonos\u00edtva MQTT felder\u00edt\u00e9sen kereszt\u00fcl. V\u00e1lassza a **Mehet** gombot annak meger\u0151s\u00edt\u00e9s\u00e9hez, hogy az MQTT eszk\u00f6zt \u00e1t k\u00edv\u00e1nja helyezni a f\u0151 MQTT konfigur\u00e1ci\u00f3ba, \u00e9s el szeretn\u00e9 t\u00e1vol\u00edtani a megl\u00e9v\u0151 MQTT eszk\u00f6z albejegyz\u00e9st. Gy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy a felder\u00edt\u00e9s megmaradjon az MQTT br\u00f3kerben vagy \u00fajra k\u00fcldje el az albejegyz\u00e9s elt\u00e1vol\u00edt\u00e1sa ut\u00e1n, hogy az MQTT eszk\u00f6z megfelel\u0151en legyen be\u00e1ll\u00edtva. Alternat\u00edvak\u00e9nt m\u00f3dos\u00edthatja az eszk\u00f6zazonos\u00edt\u00f3kat \u00e9s az entit\u00e1s egyedi azonos\u00edt\u00f3kat az MQTT felder\u00edt\u00e9si konfigur\u00e1ci\u00f3s adatcsomagban, \u00e9s megszak\u00edthatja ezt a jav\u00edt\u00e1st, ha meg szeretn\u00e9 tartani az MQTT eszk\u00f6z albejegyz\u00e9st.",
+                        "title": "\"{name}\" MQTT eszk\u00f6z albejegyz\u00e9s \u00e1tk\u00f6lt\u00f6ztet\u00e9se MQTT felder\u00edt\u00e9sbe"
+                    }
+                }
+            },
+            "title": "\"{name}\" MQTT eszk\u00f6z albejegyz\u00e9s \u00e1tk\u00f6lt\u00f6ztet\u00e9se MQTT felder\u00edt\u00e9sbe"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Export\u00e1lt MQTT eszk\u00f6z \"{name}\" azonos\u00edtva YAML konfigur\u00e1ci\u00f3ban. V\u00e1lassza a **Mehet** gombot annak meger\u0151s\u00edt\u00e9s\u00e9hez, hogy az MQTT eszk\u00f6zt \u00e1t k\u00edv\u00e1nja helyezni a f\u0151 MQTT konfigur\u00e1ci\u00f3s bejegyz\u00e9sbe, \u00e9s el szeretn\u00e9 t\u00e1vol\u00edtani a megl\u00e9v\u0151 MQTT eszk\u00f6z albejegyz\u00e9st. Alternat\u00edvak\u00e9nt m\u00f3dos\u00edthatja az eszk\u00f6zazonos\u00edt\u00f3kat \u00e9s az entit\u00e1s egyedi azonos\u00edt\u00f3kat a configuration.yaml f\u00e1jlban, \u00e9s megszak\u00edthatja ezt a jav\u00edt\u00e1st, ha meg szeretn\u00e9 tartani az MQTT eszk\u00f6z albejegyz\u00e9st.",
+                        "title": "\"{name}\" MQTT eszk\u00f6z albejegyz\u00e9s \u00e1tk\u00f6lt\u00f6ztet\u00e9se YAML-be"
+                    }
+                }
+            },
+            "title": "\"{name}\" MQTT eszk\u00f6z albejegyz\u00e9s \u00e1tk\u00f6lt\u00f6ztet\u00e9se YAML-be"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "A Home Assistant manu\u00e1lisan konfigur\u00e1lt MQTT elemeket \u00e9szlelt, de ezek az elemek nem t\u00f6lthet\u0151k be, mert az MQTT nincs megfelel\u0151en be\u00e1ll\u00edtva. Gy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy az MQTT br\u00f3ker megfelel\u0151en van be\u00e1ll\u00edtva, vagy t\u00e1vol\u00edtsa el az MQTT konfigur\u00e1ci\u00f3t a `configuration.yaml` f\u00e1jlb\u00f3l, \u00e9s ind\u00edtsa \u00fajra a Home Assistant alkalmaz\u00e1st a probl\u00e9ma megold\u00e1s\u00e1hoz.",
+            "title": "Az MQTT nincs megfelel\u0151en be\u00e1ll\u00edtva"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "\u00c9rv\u00e9nytelen sz\u00fclet\u00e9si \"birth\" t\u00e9mak\u00f6r",
+            "bad_certificate": "A CA-tan\u00fas\u00edtv\u00e1ny \u00e9rv\u00e9nytelen",
+            "bad_client_cert": "\u00c9rv\u00e9nytelen kliens tan\u00fas\u00edtv\u00e1ny, ellen\u0151rizze, hogy \u00e9rv\u00e9nyes f\u00e1jlt adott meg",
+            "bad_client_cert_key": "Az \u00fcgyf\u00e9ltan\u00fas\u00edtv\u00e1ny \u00e9s a priv\u00e1t kulcs nem \u00e9rv\u00e9nyes p\u00e1r",
+            "bad_discovery_prefix": "\u00c9rv\u00e9nytelen felfedez\u00e9si el\u0151tag",
+            "bad_will": "\u00c9rv\u00e9nytelen b\u00facs\u00fa \"will\" t\u00e9mak\u00f6r",
+            "bad_ws_headers": "\u00c9rv\u00e9nyes HTTP-fejl\u00e9cek megad\u00e1sa JSON-objektumk\u00e9nt",
+            "cannot_connect": "Sikertelen csatlakoz\u00e1s",
+            "client_key_error": "\u00c9rv\u00e9nytelen priv\u00e1t kulcsf\u00e1jl vagy helytelen jelsz\u00f3 lett megadva",
+            "invalid_inclusion": "Az \u00fcgyf\u00e9l tan\u00fas\u00edtv\u00e1nyt \u00e9s a priv\u00e1t kulcsot egy\u00fctt kell konfigur\u00e1lni"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "Sz\u00fclet\u00e9si \"Birth\" \u00fczenet enged\u00e9lyez\u00e9se",
+                    "birth_payload": "Sz\u00fclet\u00e9si \"Birth\" \u00fczenet tartalma",
+                    "birth_qos": "Sz\u00fclet\u00e9si \"Birth\" \u00fczenet QoS",
+                    "birth_retain": "Sz\u00fclet\u00e9si \"Birth\" \u00fczenet megtart\u00e1sa",
+                    "birth_topic": "Sz\u00fclet\u00e9si \"Birth\" \u00fczenet t\u00e9m\u00e1ja",
+                    "discovery": "Felfedez\u00e9s enged\u00e9lyez\u00e9se",
+                    "discovery_prefix": "Felfedez\u00e9s el\u0151tag",
+                    "discovery_qos": "Felder\u00edt\u00e9si QoS",
+                    "will_enable": "B\u00facs\u00fa \"Will\" \u00fczenet enged\u00e9lyez\u00e9se",
+                    "will_payload": "B\u00facs\u00fa \"Will\" \u00fczenet tartalma",
+                    "will_qos": "B\u00facs\u00fa \"Will\" \u00fczenet QoS",
+                    "will_retain": "B\u00facs\u00fa \"Will\" \u00fczenet megtart\u00e1sa",
+                    "will_topic": "B\u00facs\u00fa \"Will\" \u00fczenet t\u00e9m\u00e1ja"
+                },
+                "data_description": {
+                    "birth_enable": "Ha be van \u00e1ll\u00edtva, a Home Assistant online \u00fczenetet tesz k\u00f6zz\u00e9 az MQTT broker sz\u00e1m\u00e1ra, amikor az MQTT k\u00e9szen \u00e1ll.",
+                    "birth_payload": "A \u201ebirth\u201d (\u00e9letjel) \u00fczenet, amely akkor ker\u00fcl k\u00f6zz\u00e9t\u00e9telre, amikor az MQTT k\u00e9szen \u00e1ll \u00e9s csatlakozott.",
+                    "birth_qos": "A \u201ebirth\u201d (\u00e9letjel) \u00fczenet szolg\u00e1ltat\u00e1si min\u0151s\u00e9ge, amely akkor ker\u00fcl k\u00f6zz\u00e9t\u00e9telre, amikor az MQTT k\u00e9szen \u00e1ll \u00e9s csatlakozott.",
+                    "birth_retain": "Ha be van \u00e1ll\u00edtva, a Home Assistant megtartja a \u201ebirth\u201d (\u00e9letjel) \u00fczenetet, amelyet az MQTT-br\u00f3ker fel\u00e9 k\u00fcld.",
+                    "birth_topic": "Az MQTT-t\u00e9ma, amelyre a Home Assistant \u201ebirth\u201d (\u00e9letjel) \u00fczenetet fog k\u00f6zz\u00e9tenni.",
+                    "discovery": "Az MQTT automatikus felfedez\u00e9s\u00e9nek bekapcsol\u00e1si lehet\u0151s\u00e9ge.",
+                    "discovery_prefix": "Az MQTT integr\u00e1ci\u00f3 \u00e1ltal feliratkozott konfigur\u00e1ci\u00f3s t\u00e9mak\u00f6r\u00f6k el\u0151tagja.",
+                    "discovery_qos": "A szolg\u00e1ltat\u00e1smin\u0151s\u00e9g szintje az MQTT k\u00f6zvet\u00edt\u0151 felder\u00edt\u00e9si feliratkoz\u00e1saihoz.",
+                    "will_enable": "Ha be van \u00e1ll\u00edtva, a Home Assistant k\u00e9ri a br\u00f3kert, hogy tegyen k\u00f6zz\u00e9 \u201ewill\u201d (b\u00facs\u00fa) \u00fczenetet, amikor az MQTT le\u00e1ll vagy megszakad a kapcsolat.",
+                    "will_payload": "Az \u00fczenet, amelyet az MQTT-br\u00f3ker akkor tesz k\u00f6zz\u00e9, ha az MQTT integr\u00e1ci\u00f3 le\u00e1ll vagy a kapcsolat megszakad.",
+                    "will_qos": "A \u201ewill\u201d (b\u00facs\u00fa) \u00fczenet szolg\u00e1ltat\u00e1si min\u0151s\u00e9ge (QoS), amelyet az MQTT-br\u00f3ker tesz k\u00f6zz\u00e9.",
+                    "will_retain": "Ha be van \u00e1ll\u00edtva, az MQTT-br\u00f3ker megtartja a \u201ewill\u201d (b\u00facs\u00fa) \u00fczenetet.",
+                    "will_topic": "Az MQTT-t\u00e9ma, amelyre a br\u00f3ker \u201ewill\u201d (b\u00facs\u00fa) \u00fczenetet fog k\u00f6zz\u00e9tenni."
+                },
+                "description": "Discovery - Ha a felfedez\u00e9s enged\u00e9lyezve van (aj\u00e1nlott), akkor Home Assistant automatikusan felfedezi azokat az eszk\u00f6z\u00f6ket \u00e9s entit\u00e1sokat, amelyek k\u00f6zz\u00e9teszik konfigur\u00e1ci\u00f3jukat az MQTT br\u00f3keren. Ha a felfedez\u00e9s le van tiltva, minden konfigur\u00e1ci\u00f3t manu\u00e1lisan kell elv\u00e9gezni.\nSz\u00fclet\u00e9si \"Birth\" \u00fczenet - A sz\u00fclet\u00e9si \u00fczenet minden alkalommal el lesz k\u00fcldve, amikor Home Assistant (\u00fajra) csatlakozik az MQTT br\u00f3kerhez.\nB\u00facs\u00fa \"Will\" \u00fczenet - Az akarat\u00fczenet minden alkalommal el lesz k\u00fcldve, amikor Home Assistant elvesz\u00edti a kapcsolatot a k\u00f6zvet\u00edt\u0151vel, mind tiszta esetben (pl. Home Assistant le\u00e1ll\u00edt\u00e1sa), mind rendelenes helyzetben (pl. Home Assistant lefagy vagy megszakad a h\u00e1l\u00f3zati kapcsolata).",
+                "title": "MQTT opci\u00f3k"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "Helyi k\u00f3d ellen\u0151rz\u00e9s",
+                "remote_code": "Numerikus t\u00e1voli k\u00f3d ellen\u0151rz\u00e9s",
+                "remote_code_text": "Sz\u00f6veges t\u00e1voli k\u00f3d ellen\u0151rz\u00e9s"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "Riaszt\u00f3 \u00e9les\u00edt\u00e9se t\u00e1voli m\u00f3dban",
+                "arm_custom_bypass": "Riaszt\u00f3 \u00e9les\u00edt\u00e9se egy\u00e9ni \u00e1thidal\u00e1ssal",
+                "arm_home": "Riaszt\u00f3 \u00e9les\u00edt\u00e9se otthoni m\u00f3dban",
+                "arm_night": "Riaszt\u00f3 \u00e9les\u00edt\u00e9se \u00e9jszakai m\u00f3dban",
+                "arm_vacation": "Riaszt\u00f3 \u00e9les\u00edt\u00e9se vak\u00e1ci\u00f3 m\u00f3dban",
+                "trigger": "Riaszt\u00f3 aktiv\u00e1l\u00e1sa"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "Automatikus",
+                "cool": "H\u0171t\u00e9s",
+                "dry": "P\u00e1r\u00e1tlan\u00edt\u00e1s",
+                "fan_only": "Csak ventil\u00e1tor",
+                "heat": "F\u0171t\u00e9s",
+                "heat_cool": "F\u0171t\u00e9s/H\u0171t\u00e9s",
+                "off": "Ki"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "Konfigur\u00e1ci\u00f3",
+                "diagnostic": "Diagnosztika"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64 k\u00f3dol\u00e1s",
+                "raw": "Nyers adat"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "K\u00e9padat \u00e9rkezik",
+                "image_url": "K\u00e9p URL \u00e9rkezik"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "Alap\u00e9rtelmezett s\u00e9ma",
+                "json": "JSON",
+                "template": "Sablon"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "Automatikus",
+                "box": "Beviteli mez\u0151",
+                "slider": "Cs\u00faszka"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "Csak f\u00e9nyer\u0151",
+                "first": "Els\u0151k\u00e9nt",
+                "last": "Utols\u00f3k\u00e9nt"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "Riaszt\u00f3 k\u00f6zpont",
+                "binary_sensor": "Bin\u00e1ris \u00e9rz\u00e9kel\u0151",
+                "button": "Gomb",
+                "climate": "Kl\u00edma",
+                "cover": "\u00c1rny\u00e9kol\u00f3",
+                "date": "D\u00e1tum",
+                "datetime": "D\u00e1tum/Id\u0151",
+                "fan": "Ventil\u00e1tor",
+                "image": "K\u00e9p",
+                "light": "Vil\u00e1g\u00edt\u00e1s",
+                "lock": "Z\u00e1r",
+                "notify": "\u00c9rtes\u00edt\u00e9sek",
+                "number": "Sz\u00e1m",
+                "select": "Kiv\u00e1laszt\u00e1s",
+                "sensor": "\u00c9rz\u00e9kel\u0151",
+                "siren": "Szir\u00e9na",
+                "switch": "Kapcsol\u00f3",
+                "text": "Sz\u00f6veg",
+                "time": "Id\u0151",
+                "valve": "Szelep",
+                "water_heater": "V\u00edzmeleg\u00edt\u0151"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "Automatikus",
+                "custom": "Egy\u00e9ni",
+                "off": "Ki"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "Csak f\u00e9nyer\u0151",
+                "color_temp": "Sz\u00ednh\u0151m\u00e9rs\u00e9klet",
+                "hs": "HS",
+                "onoff": "Be/Ki",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "Feh\u00e9r",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "Fels\u0151/als\u00f3 c\u00e9lh\u0151m\u00e9rs\u00e9klet",
+                "none": "Nincs c\u00e9lh\u0151m\u00e9rs\u00e9klet",
+                "single": "Egyetlen c\u00e9lh\u0151m\u00e9rs\u00e9klet"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "Jelsz\u00f3",
+                "text": "Sz\u00f6veg"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "Automatikus",
+                "eco": "Takar\u00e9kos",
+                "electric": "Elektromoss\u00e1g",
+                "gas": "G\u00e1z",
+                "heat_pump": "H\u0151szivatty\u00fa",
+                "high_demand": "Magas ig\u00e9nybev\u00e9tel",
+                "off": "Ki",
+                "performance": "Teljes\u00edtm\u00e9ny"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "Egy adott t\u00e9mak\u00f6rra \u00e9rkez\u0151 \u00f6sszes \u00fczenetet be\u00edrja a konfigur\u00e1ci\u00f3s mapp\u00e1ban tal\u00e1lhat\u00f3 `mqtt_dump.txt` f\u00e1jlba.",
+            "fields": {
+                "duration": {
+                    "description": "Mennyi ideig kell figyeln\u00fcnk az \u00fczenetekre m\u00e1sodpercekben.",
+                    "name": "Id\u0151tartam"
+                },
+                "topic": {
+                    "description": "A figyelend\u0151 t\u00e9mak\u00f6r.",
+                    "name": "t\u00e9mak\u00f6r"
+                }
+            },
+            "name": "Export\u00e1l\u00e1s"
+        },
+        "publish": {
+            "description": "K\u00f6zz\u00e9tesz egy \u00fczenetet egy MQTT t\u00e9m\u00e1ban.",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "Ha az `adatcsomag` (payload) egy Python b\u00e1jt konstans, \u00e9rt\u00e9kelje ki a b\u00e1jt liter\u00e1lt \u00e9s tegye k\u00f6zz\u00e9 a nyers adatokat.",
+                    "name": "Adatcsomag ki\u00e9rt\u00e9kel\u00e9se"
+                },
+                "message_expiry_interval": {
+                    "description": "A k\u00f6zz\u00e9tett \u00fczenetet lej\u00e1ratja a megadott intervallum ut\u00e1n, ha az eszk\u00f6z el\u0151fizet\u0151je \u00e1tmenetileg offline volt, vagy az \u00fczenet megtartott \u00fczenetk\u00e9nt lett be\u00e1ll\u00edtva. Csak az MQTT protokoll 5.0-s verzi\u00f3j\u00e1val t\u00e1mogatott.",
+                    "name": "\u00dczenet-lej\u00e1rati intervallum"
+                },
+                "payload": {
+                    "description": "A k\u00f6zz\u00e9teend\u0151 adatcsomag. Ha nincs megadva, \u00fcres \u00fczenetet k\u00fcld.",
+                    "name": "Adatcsomag"
+                },
+                "qos": {
+                    "description": "A haszn\u00e1land\u00f3 szolg\u00e1ltat\u00e1s min\u0151s\u00e9ge. 0: Legfeljebb egyszer. 1: Legal\u00e1bb egyszer. 2: Pontosan egyszer.",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "Ha az \u00fczenetnek be kell \u00e1ll\u00edtani a retain jelz\u0151t. Ha be van \u00e1ll\u00edtva, a br\u00f3ker a legut\u00f3bbi \u00fczenetet t\u00e1rolja a t\u00e9m\u00e1ban.",
+                    "name": "Tart\u00e1s (retain)"
+                },
+                "topic": {
+                    "description": "Mely t\u00e9mak\u00f6rba menjen a publik\u00e1l\u00e1s.",
+                    "name": "t\u00e9mak\u00f6r"
+                }
+            },
+            "name": "Publik\u00e1l\u00e1s",
+            "sections": {
+                "publish_options": {
+                    "name": "K\u00f6zz\u00e9t\u00e9teli be\u00e1ll\u00edt\u00e1sok"
+                }
+            }
+        },
+        "reload": {
+            "description": "\u00dajrat\u00f6lti az MQTT entit\u00e1sokat a YAML-konfigur\u00e1ci\u00f3b\u00f3l.",
+            "name": "\u00dajrat\u00f6lt\u00e9s"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "Esem\u00e9nyind\u00edt\u00f3, amikor egy adott MQTT t\u00e9mak\u00f6rben \u00e9rkezett \u00fczenet ut\u00e1n.",
+            "fields": {
+                "payload": {
+                    "description": "Az adatcsomag, amelyre reag\u00e1ljon.",
+                    "name": "Adatcsomag"
+                },
+                "topic": {
+                    "description": "A figyelend\u0151 MQTT t\u00e9ma.",
+                    "name": "T\u00e9ma"
+                }
+            },
+            "name": "MQTT \u00fczenet \u00e9rkezett"
+        }
+    }
+}

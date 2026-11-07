@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "La condici\u00f3n se cumple si",
+        "condition_for_name": "Durante al menos",
+        "condition_threshold_name": "Tipo de umbral",
+        "trigger_behavior_name": "Disparar cuando",
+        "trigger_for_name": "Durante al menos",
+        "trigger_threshold_name": "Tipo de umbral"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Comprueba si uno o m\u00e1s termostatos est\u00e1n enfriando.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato est\u00e1 enfriando"
+        },
+        "is_drying": {
+            "description": "Comprueba si uno o m\u00e1s termostatos est\u00e1n secando.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato est\u00e1 secando"
+        },
+        "is_heating": {
+            "description": "Comprueba si uno o m\u00e1s termostatos est\u00e1n calentando.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato est\u00e1 calentando"
+        },
+        "is_hvac_mode": {
+            "description": "Comprueba si uno o m\u00e1s termostatos est\u00e1n configurados en un modo HVAC espec\u00edfico.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "hvac_mode": {
+                    "description": "Los modos HVAC que hay que comprobar.",
+                    "name": "Modos"
+                }
+            },
+            "name": "Modo HVAC del termostato"
+        },
+        "is_off": {
+            "description": "Comprueba si uno o m\u00e1s termostatos est\u00e1n apagados.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato est\u00e1 apagado"
+        },
+        "is_on": {
+            "description": "Comprueba si uno o m\u00e1s termostatos est\u00e1n encendidos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato est\u00e1 encendido"
+        },
+        "is_target_humidity": {
+            "description": "Comprueba la consigna de humedad de uno o m\u00e1s termostatos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "Humedad deseada del termostato"
+        },
+        "is_target_temperature": {
+            "description": "Comprueba la consigna de temperatura de uno o m\u00e1s termostatos.",
+            "fields": {
+                "behavior": {
+                    "name": "La condici\u00f3n se cumple si"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "Temperatura deseada del termostato"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "Cambiar el modo HVAC de {entity_name}.",
+            "set_preset_mode": "Cambiar la configuraci\u00f3n preestablecida de {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} est\u00e1 configurado en un modo HVAC espec\u00edfico",
+            "is_preset_mode": "{entity_name} se establece en un modo preestablecido espec\u00edfico"
+        },
+        "extra_fields": {
+            "above": "Por encima de",
+            "below": "Por debajo de",
+            "for": "Duraci\u00f3n",
+            "hvac_mode": "Modo del HVAC",
+            "preset_mode": "Modo preestablecido",
+            "to": "A"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "La humedad medida por {entity_name} cambi\u00f3",
+            "current_temperature_changed": "La temperatura medida por {entity_name} cambi\u00f3",
+            "hvac_mode_changed": "El modo HVAC de {entity_name} cambi\u00f3"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostato",
+            "state": {
+                "auto": "Auto",
+                "cool": "Fr\u00edo",
+                "dry": "Deshumidificar",
+                "fan_only": "Solo ventilador",
+                "heat": "Calor",
+                "heat_cool": "Calor/Fr\u00edo",
+                "off": "Apagado"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Humedad actual"
+                },
+                "current_temperature": {
+                    "name": "Temperatura actual"
+                },
+                "fan_mode": {
+                    "name": "Modo de ventilador",
+                    "state": {
+                        "auto": "Auto",
+                        "diffuse": "Difuso",
+                        "focus": "Enfoque",
+                        "high": "Alto",
+                        "low": "Bajo",
+                        "medium": "Medio",
+                        "middle": "Moderado",
+                        "off": "Apagado",
+                        "on": "Encendido",
+                        "top": "Parte superior"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Modos de ventilador"
+                },
+                "humidity": {
+                    "name": "Humedad objetivo"
+                },
+                "hvac_action": {
+                    "name": "Acci\u00f3n en curso",
+                    "state": {
+                        "cooling": "Refrigeraci\u00f3n",
+                        "defrosting": "Antihielo",
+                        "drying": "Secando",
+                        "fan": "Ventilador",
+                        "heating": "Calefacci\u00f3n",
+                        "idle": "Inactivo",
+                        "off": "Apagado",
+                        "preheating": "Precalentamiento"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "Modos del HVAC"
+                },
+                "max_humidity": {
+                    "name": "Humedad objetivo m\u00e1xima"
+                },
+                "max_temp": {
+                    "name": "Temperatura deseada m\u00e1xima"
+                },
+                "min_humidity": {
+                    "name": "Humedad objetivo m\u00ednima"
+                },
+                "min_temp": {
+                    "name": "Temperatura deseada m\u00ednima"
+                },
+                "preset_mode": {
+                    "name": "Preestablecido",
+                    "state": {
+                        "activity": "Actividad",
+                        "away": "Fuera",
+                        "boost": "Impulso",
+                        "comfort": "Confort",
+                        "eco": "Eco",
+                        "home": "En casa",
+                        "none": "Ninguno",
+                        "sleep": "Dormir"
+                    }
+                },
+                "preset_modes": {
+                    "name": "Preajustes"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Modo de oscilaci\u00f3n horizontal",
+                    "state": {
+                        "off": "Apagado",
+                        "on": "Encendido"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Modos de oscilaci\u00f3n horizontal"
+                },
+                "swing_mode": {
+                    "name": "Modo de oscilaci\u00f3n",
+                    "state": {
+                        "both": "Ambos",
+                        "horizontal": "Horizontal",
+                        "off": "Apagado",
+                        "on": "Encendido",
+                        "vertical": "Vertical"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Modos de oscilaci\u00f3n"
+                },
+                "target_temp_high": {
+                    "name": "Temperatura deseada superior"
+                },
+                "target_temp_low": {
+                    "name": "Temperatura deseada m\u00e1s baja"
+                },
+                "target_temp_step": {
+                    "name": "Paso de temperatura deseada"
+                },
+                "temperature": {
+                    "name": "Temperatura deseada"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "La humedad proporcionada {humidity} no es v\u00e1lida. El rango aceptado es de {min_humidity} a {max_humidity}."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "La \"temperatura deseada inferior\" no puede ser superior a la \"temperatura deseada superior\"."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "Se utiliz\u00f3 la acci\u00f3n de temperatura establecida con el par\u00e1metro 'Temperatura deseada', pero la entidad no lo admite."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "Se utiliz\u00f3 la acci\u00f3n de temperatura establecida con el par\u00e1metro 'Temperatura deseada inferior/superior', pero la entidad no lo admite."
+        },
+        "not_valid_fan_mode": {
+            "message": "El modo ventilador {mode} no es v\u00e1lido. Los modos de ventilador v\u00e1lidos son: {modes}."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "El modo de oscilaci\u00f3n horizontal {mode} no es v\u00e1lido. Los modos de oscilaci\u00f3n horizontal v\u00e1lidos son: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "El modo HVAC {mode} no es v\u00e1lido. Los modos HVAC v\u00e1lidos son: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "El modo preestablecido {mode} no es v\u00e1lido. Los modos preestablecidos v\u00e1lidos son: {modes}."
+        },
+        "not_valid_swing_mode": {
+            "message": "El modo de oscilaci\u00f3n {mode} no es v\u00e1lido. Los modos de oscilaci\u00f3n v\u00e1lidos son: {modes}."
+        },
+        "temp_out_of_range": {
+            "message": "La temperatura proporcionada {check_temp} no es v\u00e1lida. El rango aceptado es de {min_temp} a {max_temp}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "Establece el modo de ventilador de un termostato.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Modo de funcionamiento del ventilador.",
+                    "name": "Modo del ventilador"
+                }
+            },
+            "name": "Establecer modo de ventilador de termostato"
+        },
+        "set_humidity": {
+            "description": "Establece la humedad objetivo de un termostato.",
+            "fields": {
+                "humidity": {
+                    "description": "Humedad objetivo.",
+                    "name": "Humedad"
+                }
+            },
+            "name": "Establecer humedad objetivo de termostato"
+        },
+        "set_hvac_mode": {
+            "description": "Establece el modo HVAC de un termostato.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Modo de funcionamiento HVAC.",
+                    "name": "Modo del HVAC"
+                }
+            },
+            "name": "Establecer modo HVAC de termostato"
+        },
+        "set_preset_mode": {
+            "description": "Establece el modo de preajuste de un termostato.",
+            "fields": {
+                "preset_mode": {
+                    "description": "Modo preestablecido.",
+                    "name": "Modo preestablecido"
+                }
+            },
+            "name": "Establecer modo de preajuste de termostato"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "Establece el modo de oscilaci\u00f3n horizontal de un termostato.",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Modo de funcionamiento de oscilaci\u00f3n horizontal.",
+                    "name": "Modo de oscilaci\u00f3n horizontal"
+                }
+            },
+            "name": "Establecer el modo de oscilaci\u00f3n horizontal del termostato"
+        },
+        "set_swing_mode": {
+            "description": "Establece el modo de funcionamiento de oscilaci\u00f3n de un termostato.",
+            "fields": {
+                "swing_mode": {
+                    "description": "Modo de funcionamiento oscilante.",
+                    "name": "Modo de oscilaci\u00f3n"
+                }
+            },
+            "name": "Establecer modo de oscilaci\u00f3n en termostato"
+        },
+        "set_temperature": {
+            "description": "Establece la temperatura deseada de un termostato.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Modo de funcionamiento HVAC.",
+                    "name": "Modo del HVAC"
+                },
+                "target_temp_high": {
+                    "description": "La consigna de temperatura m\u00e1xima.",
+                    "name": "Temperatura deseada superior"
+                },
+                "target_temp_low": {
+                    "description": "La consigna de temperatura m\u00ednima.",
+                    "name": "Temperatura deseada m\u00e1s baja"
+                },
+                "temperature": {
+                    "description": "La consigna de temperatura.",
+                    "name": "Temperatura deseada"
+                }
+            },
+            "name": "Establecer temperatura deseada en termostato",
+            "sections": {
+                "temperature_range": {
+                    "name": "Rango de temperatura"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Enciende o apaga un termostato.",
+            "name": "Alternar termostato"
+        },
+        "turn_off": {
+            "description": "Apaga un termostato.",
+            "name": "Apagar termostato"
+        },
+        "turn_on": {
+            "description": "Enciende un termostato.",
+            "name": "Encender termostato"
+        }
+    },
+    "title": "Climatizaci\u00f3n",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Se dispara cuando el modo de uno o m\u00e1s termostatos cambia.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "hvac_mode": {
+                    "description": "Los modos HVAC para que se dispare.",
+                    "name": "Modos"
+                }
+            },
+            "name": "El modo del termostato cambi\u00f3."
+        },
+        "started_cooling": {
+            "description": "Se dispara cuando uno o m\u00e1s termostatos comiencen a enfriar.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato comenz\u00f3 a enfriar"
+        },
+        "started_drying": {
+            "description": "Se dispara cuando uno o m\u00e1s termostatos comienzan a secar.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato comenz\u00f3 a secar."
+        },
+        "started_heating": {
+            "description": "Se dispara cuando uno o m\u00e1s termostatos empiezan a calentar.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato empez\u00f3 a calentar"
+        },
+        "target_humidity_changed": {
+            "description": "Se dispara cuando la consigna de humedad de uno o m\u00e1s termostatos cambia.",
+            "fields": {
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "El nivel de humedad deseada del termostato cambi\u00f3."
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Se dispara cuando la consigna de humedad de uno o m\u00e1s termostatos cruza un umbral.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "El termostato super\u00f3 el umbral de humedad deseada."
+        },
+        "target_temperature_changed": {
+            "description": "Se dispara cuando la consigna de temperatura de uno o m\u00e1s termostatos cambia.",
+            "fields": {
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "La temperatura deseada del termostato cambi\u00f3."
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Se dispara cuando la consigna de temperatura de uno o m\u00e1s termostatos cruza un umbral.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                },
+                "threshold": {
+                    "name": "Tipo de umbral"
+                }
+            },
+            "name": "La temperatura deseada del termostato cruz\u00f3 el umbral."
+        },
+        "turned_off": {
+            "description": "Se dispara cuando uno o m\u00e1s termostatos se apagan.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato se apaga"
+        },
+        "turned_on": {
+            "description": "Se dispara cuando uno o m\u00e1s termostatos se encienden, independientemente del modo.",
+            "fields": {
+                "behavior": {
+                    "name": "Disparar cuando"
+                },
+                "for": {
+                    "name": "Durante al menos"
+                }
+            },
+            "name": "El termostato se enciende"
+        }
+    }
+}

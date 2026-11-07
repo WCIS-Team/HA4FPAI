@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "Uslov je ispunjen ako je",
+        "condition_for_name": "U trajanju od najmanje",
+        "trigger_behavior_name": "Pokreni kada",
+        "trigger_for_name": "U trajanju od najmanje"
+    },
+    "conditions": {
+        "is_docked": {
+            "description": "Proverava da li je jedna ili vi\u0161e kosilica na bazi.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica na bazi"
+        },
+        "is_encountering_an_error": {
+            "description": "Proverava da li je jedna ili vi\u0161e kosilica nai\u0161la na gre\u0161ku.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Gre\u0161ka na kosilici"
+        },
+        "is_idle": {
+            "description": "Proverava da li su jedna ili vi\u0161e kosa\u010dica neaktivne.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosa\u010dica neaktivna"
+        },
+        "is_mowing": {
+            "description": "Proverava da li jedna ili vi\u0161e kosilica kosi.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica kosi"
+        },
+        "is_paused": {
+            "description": "Proverava da li je jedna ili vi\u0161e kosilica pauzirano.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica pauzirana"
+        },
+        "is_returning": {
+            "description": "Proverava da li se jedna ili vi\u0161e kosilica vra\u0107a na bazu.",
+            "fields": {
+                "behavior": {
+                    "name": "Uslov je ispunjen ako je"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica u povratku"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Kosilica",
+            "state": {
+                "docked": "Na bazi",
+                "error": "Gre\u0161ka",
+                "idle": "Mirovanje",
+                "mowing": "Ko\u0161enje",
+                "paused": "Pauzirano",
+                "returning": "Povratak na bazu"
+            }
+        }
+    },
+    "services": {
+        "dock": {
+            "description": "Vra\u0107a kosilicu na bazu.",
+            "name": "Vrati kosilicu na bazu"
+        },
+        "pause": {
+            "description": "Pauzira trenutni zadatak kosilice.",
+            "name": "Pauziraj kosilicu"
+        },
+        "start_mowing": {
+            "description": "Pokre\u0107e ko\u0161enje kosilice.",
+            "name": "Pokreni kosilicu"
+        },
+        "stop": {
+            "description": "Zaustavlja trenutni zadatak kosa\u010dice.",
+            "name": "Zaustavi kosa\u010dicu"
+        }
+    },
+    "title": "Kosilica",
+    "triggers": {
+        "became_idle": {
+            "description": "Pokre\u0107e se kada jedna ili vi\u0161e kosa\u010dica postanu neaktivne.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosa\u010dica postala neaktivna"
+        },
+        "errored": {
+            "description": "Pokre\u0107e se nakon \u0161to jedna ili vi\u0161e kosa\u010dica prijave gre\u0161ku.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica prijavila gre\u0161ku"
+        },
+        "paused_mowing": {
+            "description": "Pokre\u0107e se nakon \u0161to jedna ili vi\u0161e kosa\u010dica pauziraju ko\u0161enje.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica pauzirala ko\u0161enje"
+        },
+        "returned_to_dock": {
+            "description": "Pokre\u0107e se nakon \u0161to se jedna ili vi\u0161e kosa\u010dica vrate na bazu.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica vra\u0107ena na bazu"
+        },
+        "started_mowing": {
+            "description": "Pokre\u0107e se nakon \u0161to jedna ili vi\u0161e kosa\u010dica po\u010dnu sa ko\u0161enjem.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica zapo\u010dela ko\u0161enje"
+        },
+        "started_returning": {
+            "description": "Pokre\u0107e se nakon \u0161to jedna ili vi\u0161e kosa\u010dica po\u010dnu da se vra\u0107aju na bazu.",
+            "fields": {
+                "behavior": {
+                    "name": "Pokreni kada"
+                },
+                "for": {
+                    "name": "U trajanju od najmanje"
+                }
+            },
+            "name": "Kosilica po\u010dela da se vra\u0107a na bazu"
+        }
+    }
+}

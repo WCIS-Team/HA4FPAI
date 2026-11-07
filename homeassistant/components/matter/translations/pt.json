@@ -1,0 +1,902 @@
+{
+    "config": {
+        "abort": {
+            "addon_get_discovery_info_failed": "Falha ao obter informa\u00e7\u00f5es de descoberta da app Matter Server.",
+            "addon_info_failed": "Falha ao obter informa\u00e7\u00f5es da app Matter Server.",
+            "addon_install_failed": "Falha ao instalar a app Matter Server.",
+            "addon_start_failed": "Falha ao iniciar a aplica\u00e7\u00e3o Matter Server.",
+            "already_configured": "Dispositivo j\u00e1 configurado",
+            "cannot_connect": "A liga\u00e7\u00e3o falhou",
+            "not_matter_addon": "A app descoberta n\u00e3o \u00e9 a oficial do Matter Server.",
+            "reconfiguration_successful": "Reconfigurou com \u00eaxito a integra\u00e7\u00e3o do Matter."
+        },
+        "error": {
+            "cannot_connect": "A liga\u00e7\u00e3o falhou",
+            "invalid_server_version": "O Servidor Matter n\u00e3o est\u00e1 na vers\u00e3o correta",
+            "unknown": "Erro inesperado"
+        },
+        "flow_title": "{name}",
+        "progress": {
+            "install_addon": "Aguarde enquanto a instala\u00e7\u00e3o da app Matter Server \u00e9 conclu\u00edda. Isto pode demorar alguns minutos.",
+            "start_addon": "Aguarde enquanto a app Matter Server \u00e9 iniciada. Esta app \u00e9 o que alimenta o Matter no Home Assistant. Isto pode demorar alguns segundos."
+        },
+        "step": {
+            "hassio_confirm": {
+                "title": "Configurar a integra\u00e7\u00e3o do Matter com a aplica\u00e7\u00e3o Matter Server"
+            },
+            "install_addon": {
+                "title": "A instala\u00e7\u00e3o da app foi iniciada"
+            },
+            "manual": {
+                "data": {
+                    "url": "URL"
+                }
+            },
+            "on_supervisor": {
+                "data": {
+                    "use_addon": "Utilizar a app oficial Matter Server Supervisor"
+                },
+                "description": "Pretende utilizar o app oficial do Supervisor Servidor Matter?\n\nSe j\u00e1 estiver a executar o Servidor Matter noutra app, num contentor personalizado, nativamente, etc., n\u00e3o selecione esta op\u00e7\u00e3o.",
+                "title": "Selecione o m\u00e9todo de liga\u00e7\u00e3o"
+            },
+            "start_addon": {
+                "title": "A iniciar a app."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "active_hardware_faults": {
+                "name": "Falhas de hardware"
+            },
+            "active_network_faults": {
+                "name": "Falhas na rede"
+            },
+            "active_radio_faults": {
+                "name": "Falhas de r\u00e1dio"
+            },
+            "actuator": {
+                "name": "Atuador"
+            },
+            "alarm_door": {
+                "name": "Alarme de porta"
+            },
+            "battery_alert": {
+                "name": "Alerta de bateria"
+            },
+            "boost_state": {
+                "name": "Estado do turbo"
+            },
+            "config_status_operational": {
+                "name": "Estado da configura\u00e7\u00e3o"
+            },
+            "dishwasher_alarm_inflow": {
+                "name": "Alarme de entrada"
+            },
+            "end_of_service": {
+                "name": "Fim de servi\u00e7o"
+            },
+            "evse_charging_status": {
+                "name": "Estado do carregamento"
+            },
+            "evse_plug": {
+                "name": "Estado da ficha"
+            },
+            "evse_supply_state": {
+                "name": "Estado de alimenta\u00e7\u00e3o do carregador"
+            },
+            "hardware_fault": {
+                "name": "Falha no hardware"
+            },
+            "interconnected_co_alarm": {
+                "name": "Alarme de CO interligado"
+            },
+            "interconnected_smoke_alarm": {
+                "name": "Alarme de fumo interligado"
+            },
+            "muted": {
+                "name": "Silenciado"
+            },
+            "rain": {
+                "name": "Chuva"
+            },
+            "test_in_progress": {
+                "name": "Teste em curso"
+            },
+            "thermostat_remote_sensing_local_temperature": {
+                "name": "Dete\u00e7\u00e3o remota da temperatura local"
+            },
+            "thermostat_remote_sensing_occupancy": {
+                "name": "Dete\u00e7\u00e3o remota de ocupa\u00e7\u00e3o"
+            },
+            "thermostat_remote_sensing_outdoor_temperature": {
+                "name": "Dete\u00e7\u00e3o remota da temperatura exterior"
+            },
+            "valve_fault_blocked": {
+                "name": "V\u00e1lvula bloqueada"
+            },
+            "valve_fault_general_fault": {
+                "name": "Falha geral"
+            },
+            "valve_fault_leaking": {
+                "name": "V\u00e1lvula com fugas"
+            },
+            "water_freeze": {
+                "name": "Congela\u00e7\u00e3o da \u00e1gua"
+            },
+            "water_leak": {
+                "name": "Fuga de \u00e1gua"
+            }
+        },
+        "button": {
+            "cancel_boost": {
+                "name": "Cancelar refor\u00e7o"
+            },
+            "pause": {
+                "name": "Pausar"
+            },
+            "reset_filter_condition": {
+                "name": "Repor a condi\u00e7\u00e3o do filtro"
+            },
+            "resume": {
+                "name": "Continuar"
+            },
+            "self_test_request": {
+                "name": "Auto teste"
+            },
+            "start": {
+                "name": "Iniciar"
+            },
+            "stop": {
+                "name": "Parar"
+            },
+            "temporary_mute_request": {
+                "name": "Sil\u00eancio tempor\u00e1rio"
+            }
+        },
+        "climate": {
+            "thermostat": {
+                "name": "Term\u00f3stato",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "going_to_sleep": "A adormecer",
+                            "vacation": "F\u00e9rias",
+                            "wake": "Acordar"
+                        }
+                    }
+                }
+            }
+        },
+        "cover": {
+            "cover": {
+                "name": "Cobertura"
+            }
+        },
+        "event": {
+            "button": {
+                "name": "Bot\u00e3o",
+                "state_attributes": {
+                    "event_type": {
+                        "state": {
+                            "initial_press": "Premido",
+                            "long_press": "Mantido premido",
+                            "long_release": "Libertado ap\u00f3s ser mantido premido",
+                            "multi_press_1": "Premido uma vez",
+                            "multi_press_2": "Pressionado duas vezes",
+                            "multi_press_3": "Pressionado 3 vezes",
+                            "multi_press_4": "Pressionado 4 vezes",
+                            "multi_press_5": "Pressionado 5 vezes",
+                            "multi_press_6": "Pressionado 6 vezes",
+                            "multi_press_7": "Pressionado 7 vezes",
+                            "multi_press_8": "Pressionado 8 vezes",
+                            "short_release": "Libertado ap\u00f3s ser pressionado",
+                            "switch_latched": "Interruptor ligado"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan": {
+                "name": "Ventoinha",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "high": "Alto",
+                            "low": "Baixo",
+                            "medium": "M\u00e9dio",
+                            "natural_wind": "Vento natural",
+                            "sleep_wind": "Vento de dormir"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "light": {
+                "name": "Luz"
+            }
+        },
+        "lock": {
+            "lock": {
+                "name": "Fechadura"
+            }
+        },
+        "number": {
+            "altitude": {
+                "name": "Altitude acima do n\u00edvel do mar"
+            },
+            "auto_relock_timer": {
+                "name": "Hora para voltar a trancar automaticamente"
+            },
+            "cook_time": {
+                "name": "Tempo de cozedura"
+            },
+            "detection_delay": {
+                "name": "Atraso na dete\u00e7\u00e3o"
+            },
+            "detection_threshold": {
+                "name": "Limiar de dete\u00e7\u00e3o"
+            },
+            "hold_time": {
+                "name": "Tempo de espera"
+            },
+            "led_indicator_intensity_off": {
+                "name": "Intensidade do LED desligado"
+            },
+            "led_indicator_intensity_on": {
+                "name": "Intensidade do LED aceso"
+            },
+            "occupied_setback": {
+                "name": "Recuo ocupado"
+            },
+            "off_transition_time": {
+                "name": "Tempo de transi\u00e7\u00e3o ao desligar"
+            },
+            "on_level": {
+                "name": "N\u00edvel quando ligado"
+            },
+            "on_off_transition_time": {
+                "name": "Tempo de transi\u00e7\u00e3o ao ligar/desligar"
+            },
+            "on_transition_time": {
+                "name": "Tempo de transi\u00e7\u00e3o ao ligar"
+            },
+            "power_on_level": {
+                "name": "N\u00edvel de arranque"
+            },
+            "pump_setpoint": {
+                "name": "Ponto de ajuste"
+            },
+            "sensitivity_level": {
+                "name": "Sensibilidade"
+            },
+            "slat_rotation_time": {
+                "name": "Tempo de rota\u00e7\u00e3o das l\u00e2minas"
+            },
+            "speaker_setpoint": {
+                "name": "Volume"
+            },
+            "temperature_offset": {
+                "name": "Desvio de temperatura"
+            },
+            "temperature_setpoint": {
+                "name": "Ponto de regula\u00e7\u00e3o da temperatura"
+            },
+            "travel_time_down": {
+                "name": "Tempo de viagem descer"
+            },
+            "travel_time_up": {
+                "name": "Tempo de viagem subir"
+            },
+            "user_code_temporary_disable_time": {
+                "name": "Tempo de desativa\u00e7\u00e3o tempor\u00e1ria do c\u00f3digo de utilizador"
+            },
+            "valve_configuration_and_control_default_open_duration": {
+                "name": "Dura\u00e7\u00e3o por defeito da abertura"
+            },
+            "wrong_code_entry_limit": {
+                "name": "Limite de c\u00f3digo incorreto"
+            }
+        },
+        "select": {
+            "clean_mode": {
+                "name": "Modo simples"
+            },
+            "device_energy_management_mode": {
+                "name": "Modo de gest\u00e3o de energia"
+            },
+            "door_lock_operating_mode": {
+                "name": "Modo de funcionamento",
+                "state": {
+                    "no_remote_lock_unlock": "Sem trancar/destrancar remoto",
+                    "normal": "Normal",
+                    "passage": "Passagem",
+                    "privacy": "Privacidade",
+                    "vacation": "F\u00e9rias"
+                }
+            },
+            "door_lock_sound_volume": {
+                "name": "Volume do som",
+                "state": {
+                    "high": "Alto",
+                    "low": "Baixo",
+                    "medium": "M\u00e9dio",
+                    "silent": "Silencioso"
+                }
+            },
+            "laundry_washer_number_of_rinses": {
+                "name": "N\u00famero de enxaguamentos",
+                "state": {
+                    "extra": "Extra",
+                    "max": "M\u00e1x",
+                    "normal": "Normal",
+                    "off": "Desligado"
+                }
+            },
+            "laundry_washer_spin_speed": {
+                "name": "Velocidade de rota\u00e7\u00e3o"
+            },
+            "mode": {
+                "name": "Modo"
+            },
+            "power_level": {
+                "name": "N\u00edvel de pot\u00eancia (W)"
+            },
+            "pump_operation_mode": {
+                "name": "modo",
+                "state": {
+                    "local": "Local",
+                    "maximum": "M\u00e1ximo",
+                    "minimum": "M\u00ednimo",
+                    "normal": "Normal"
+                }
+            },
+            "selected_chime": {
+                "name": "Som da campainha"
+            },
+            "sensitivity_level": {
+                "name": "Sensibilidade",
+                "state": {
+                    "high": "Alto",
+                    "low": "Baixo",
+                    "standard": "Padr\u00e3o"
+                }
+            },
+            "startup_on_off": {
+                "name": "Comportamento de arranque",
+                "state": {
+                    "off": "Desligado",
+                    "on": "Ligado",
+                    "previous": "Estado anterior",
+                    "toggle": "Alternar"
+                }
+            },
+            "switch_connection_mode": {
+                "name": "Modo de liga\u00e7\u00e3o",
+                "state": {
+                    "directly_connected": "Diretamente ligado",
+                    "matter_only": "Apenas Matter"
+                }
+            },
+            "switch_type": {
+                "name": "Trocar tipo",
+                "state": {
+                    "button": "Bot\u00e3o",
+                    "switch": "Interruptor"
+                }
+            },
+            "temperature_display_mode": {
+                "name": "Modo de visualiza\u00e7\u00e3o da temperatura"
+            },
+            "temperature_level": {
+                "name": "N\u00edvel de temperatura"
+            },
+            "water_heater_mode": {
+                "name": "Modo da caldeira"
+            }
+        },
+        "sensor": {
+            "activated_carbon_filter_condition": {
+                "name": "Estado do filtro de carv\u00e3o ativado"
+            },
+            "active_current": {
+                "name": "Corrente ativa"
+            },
+            "air_quality": {
+                "name": "Qualidade do ar",
+                "state": {
+                    "extremely_poor": "Extramamente m\u00e1",
+                    "fair": "Razo\u00e1vel",
+                    "good": "Boa",
+                    "moderate": "Moderada",
+                    "poor": "M\u00e1",
+                    "very_poor": "Muito m\u00e1"
+                }
+            },
+            "apparent_current": {
+                "name": "Corrente aparente"
+            },
+            "auto_close_time": {
+                "name": "Tempo de fecho autom\u00e1tico"
+            },
+            "battery_charge_state": {
+                "name": "Estado de carga da bateria",
+                "state": {
+                    "charging": "A carregar",
+                    "full_charge": "Carga completa",
+                    "not_charging": "N\u00e3o est\u00e1 a carregar"
+                }
+            },
+            "battery_replacement_description": {
+                "name": "Tipo de bateria"
+            },
+            "battery_time_remaining": {
+                "name": "Tempo restante"
+            },
+            "battery_time_to_full_charge": {
+                "name": "Tempo at\u00e9 \u00e0 carga completa"
+            },
+            "battery_voltage": {
+                "name": "Tens\u00e3o da bateria"
+            },
+            "boot_reason": {
+                "name": "Motivo do arranque",
+                "state": {
+                    "brown_out_reset": "Reposi\u00e7\u00e3o de Brownout",
+                    "hardware_watchdog_reset": "Reposi\u00e7\u00e3o do hardware watchdog",
+                    "power_on_reboot": "Reinicializa\u00e7\u00e3o",
+                    "software_reset": "Reinicializa\u00e7\u00e3o do software",
+                    "software_update_completed": "Atualiza\u00e7\u00e3o de software conclu\u00edda",
+                    "software_watchdog_reset": "Reinicializa\u00e7\u00e3o do software watchdog",
+                    "unspecified": "N\u00e3o especificado"
+                }
+            },
+            "contamination_state": {
+                "name": "Estado da contamina\u00e7\u00e3o",
+                "state": {
+                    "critical": "Cr\u00edtico",
+                    "low": "Baixo",
+                    "normal": "Normal",
+                    "warning": "Aviso"
+                }
+            },
+            "current_phase": {
+                "name": "Corrente fase"
+            },
+            "door_closed_events": {
+                "name": "Eventos de fecho de portas"
+            },
+            "door_open_events": {
+                "name": "Eventos de abertura de portas"
+            },
+            "energy_exported": {
+                "name": "Energia exportada"
+            },
+            "esa_opt_out_state": {
+                "name": "N\u00e3o optar pela otimiza\u00e7\u00e3o energ\u00e9tica",
+                "state": {
+                    "grid_opt_out": "Rede",
+                    "local_opt_out": "Local",
+                    "no_opt_out": "Desligado",
+                    "opt_out": "Local e rede"
+                }
+            },
+            "esa_state": {
+                "name": "Estado energ\u00e9tico do aparelho",
+                "state": {
+                    "fault": "Avaria",
+                    "offline": "Desligado",
+                    "online": "Online",
+                    "paused": "Em pausa",
+                    "power_adjust_active": "Ajuste de pot\u00eancia"
+                }
+            },
+            "estimated_end_time": {
+                "name": "Hora de fim prevista"
+            },
+            "estimated_heat_required": {
+                "name": "Energia de aquecimento necess\u00e1ria"
+            },
+            "eve_weather_trend": {
+                "name": "Tend\u00eancia meteorol\u00f3gica",
+                "state": {
+                    "cloudy": "Nublado",
+                    "rainy": "Chuvoso",
+                    "stormy": "Tempestade",
+                    "sunny": "Ensolarado"
+                }
+            },
+            "evse_charge_current": {
+                "name": "Corrente de carga"
+            },
+            "evse_circuit_capacity": {
+                "name": "Capacidade do circuito"
+            },
+            "evse_fault_state": {
+                "name": "Estado de falha",
+                "state": {
+                    "contact_dry_failure": "Falha de contacto seco",
+                    "contact_wet_failure": "Falha de contacto molhado",
+                    "emergency_stop": "Paragem de emerg\u00eancia",
+                    "ev_disconnected": "VE desligado",
+                    "live_neutral_swap": "Troca de fase/neutro",
+                    "meter_failure": "Falha do contador",
+                    "no_error": "",
+                    "other": "Outra falha",
+                    "over_current": "Sobrecorrente",
+                    "over_temperature": "Sobreaquecimento",
+                    "over_voltage": "Sobretens\u00e3o",
+                    "pilot_short_circuit": "Curto-circuito do piloto",
+                    "power_loss": "Perda de pot\u00eancia",
+                    "power_quality": "Qualidade da energia",
+                    "under_voltage": "Subtens\u00e3o",
+                    "wrong_power_supply": "Fonte de alimenta\u00e7\u00e3o errada"
+                }
+            },
+            "evse_max_charge_current": {
+                "name": "Corrente de carga m\u00e1xima"
+            },
+            "evse_min_charge_current": {
+                "name": "Corrente de carga m\u00ednima"
+            },
+            "evse_soc": {
+                "name": "Estado de carga"
+            },
+            "evse_user_max_charge_current": {
+                "name": "Corrente de carga m\u00e1xima do utilizador"
+            },
+            "expiry_date": {
+                "name": "Data em que expira"
+            },
+            "flow": {
+                "name": "Fluxo"
+            },
+            "hepa_filter_condition": {
+                "name": "Estado do filtro Hepa"
+            },
+            "nitrogen_dioxide": {
+                "name": "Di\u00f3xido de azoto"
+            },
+            "operational_error": {
+                "name": "Erro operacional",
+                "state": {
+                    "brush_jammed": "Escova encravada",
+                    "cannot_reach_target_area": "N\u00e3o \u00e9 poss\u00edvel alcan\u00e7ar a \u00e1rea alvo",
+                    "command_invalid_in_state": "Comando inv\u00e1lido no estado atual",
+                    "dirty_water_tank_full": "Dep\u00f3sito de \u00e1gua suja cheio",
+                    "dirty_water_tank_missing": "Falta o dep\u00f3sito de \u00e1gua suja",
+                    "dust_bin_full": "Dep\u00f3sito do p\u00f3 cheio",
+                    "dust_bin_missing": "Falta o dep\u00f3sito de p\u00f3",
+                    "failed_to_find_charging_dock": "N\u00e3o foi poss\u00edvel encontrar a base de carregamento",
+                    "low_battery": "Bateria fraca",
+                    "mop_cleaning_pad_missing": "Falta o disco de limpeza da mopa",
+                    "navigation_sensor_obscured": "Sensor de navega\u00e7\u00e3o obscurecido",
+                    "no_error": "Nenhum erro",
+                    "stuck": "Preso",
+                    "unable_to_complete_operation": "N\u00e3o \u00e9 poss\u00edvel concluir a opera\u00e7\u00e3o",
+                    "unable_to_start_or_resume": "N\u00e3o \u00e9 poss\u00edvel iniciar ou retomar",
+                    "water_tank_empty": "Dep\u00f3sito de \u00e1gua vazio",
+                    "water_tank_lid_open": "Tampa do dep\u00f3sito de \u00e1gua aberta",
+                    "water_tank_missing": "Falta o dep\u00f3sito de \u00e1gua",
+                    "wheels_jammed": "Rodas encravadas"
+                }
+            },
+            "operational_state": {
+                "name": "Estado operacional",
+                "state": {
+                    "charging": "A carregar",
+                    "docked": "Na doca",
+                    "error": "Erro",
+                    "paused": "Em pausa",
+                    "running": "Em execu\u00e7\u00e3o",
+                    "seeking_charger": "Procurar carregador",
+                    "stopped": "Parado"
+                }
+            },
+            "outdoor_temperature": {
+                "name": "Temperatura exterior"
+            },
+            "pi_heating_demand": {
+                "name": "Procura de aquecimento"
+            },
+            "pump_control_mode": {
+                "name": "Modo de controlo",
+                "state": {
+                    "automatic": "Autom\u00e1tico",
+                    "constant_flow": "Fluxo constante",
+                    "constant_pressure": "Press\u00e3o constante",
+                    "constant_speed": "Velocidade constante",
+                    "constant_temperature": "Temperatura constante",
+                    "proportional_pressure": "Press\u00e3o proporcional"
+                }
+            },
+            "pump_speed": {
+                "name": "Velocidade de rota\u00e7\u00e3o"
+            },
+            "radon_concentration": {
+                "name": "Concentra\u00e7\u00e3o de r\u00e1don"
+            },
+            "reactive_current": {
+                "name": "Corrente reativa"
+            },
+            "reboot_count": {
+                "name": "Reiniciar contagem"
+            },
+            "rms_current": {
+                "name": "Corrente efetiva"
+            },
+            "rms_voltage": {
+                "name": "Tens\u00e3o efetiva"
+            },
+            "switch_current_position": {
+                "name": "Posi\u00e7\u00e3o atual do interruptor"
+            },
+            "tank_percentage": {
+                "name": "N\u00edvel de \u00e1gua quente"
+            },
+            "tank_volume": {
+                "name": "Volume do dep\u00f3sito"
+            },
+            "thread_channel": {
+                "name": "Canal do fio"
+            },
+            "thread_network_name": {
+                "name": "Nome da rede de discuss\u00e3o"
+            },
+            "thread_routing_role": {
+                "name": "Fun\u00e7\u00e3o de encaminhamento de t\u00f3picos",
+                "state": {
+                    "end_device": "Dispositivo terminal",
+                    "leader": "L\u00edder",
+                    "reed": "Dispositivo terminal eleg\u00edvel para router",
+                    "router": "Router",
+                    "sleepy_end_device": "Dispositivo terminal adormecido",
+                    "unassigned": "N\u00e3o atribu\u00eddo",
+                    "unknown": "Desconhecido",
+                    "unspecified": "N\u00e3o especificado"
+                }
+            },
+            "tvoc_level": {
+                "name": "N\u00edvel de COVT",
+                "state": {
+                    "critical": "Cr\u00edtico",
+                    "high": "Alto",
+                    "low": "Baixo",
+                    "medium": "M\u00e9dio"
+                }
+            },
+            "uptime": {
+                "name": "Tempo de atividade"
+            },
+            "valve_position": {
+                "name": "Posi\u00e7\u00e3o da v\u00e1lvula"
+            },
+            "voltage": {
+                "name": "Tens\u00e3o"
+            },
+            "wifi_rssi": {
+                "name": ""
+            },
+            "window_covering_target_position": {
+                "name": "Posi\u00e7\u00e3o de abertura do objetivo"
+            }
+        },
+        "siren": {
+            "siren": {
+                "name": "Sirene"
+            }
+        },
+        "switch": {
+            "audible_alarm_enabled": {
+                "name": "Alarme sonoro ativado"
+            },
+            "child_lock": {
+                "name": "Bloqueio infantil"
+            },
+            "display": {
+                "name": "Ecr\u00e3"
+            },
+            "evse_charging_switch": {
+                "name": "Ativar carregamento"
+            },
+            "one_touch_locking": {
+                "name": "Bloqueio com um toque"
+            },
+            "power": {
+                "name": "Pot\u00eancia"
+            },
+            "privacy_mode_button": {
+                "name": "Bot\u00e3o de modo de privacidade"
+            },
+            "speaker_mute": {
+                "name": "Silenciar"
+            },
+            "switch": {
+                "name": "Interruptor"
+            },
+            "visual_alarm_enabled": {
+                "name": "Alarme visual ativado"
+            }
+        },
+        "vacuum": {
+            "vacuum": {
+                "name": "Aspirador"
+            }
+        },
+        "valve": {
+            "valve": {
+                "name": "V\u00e1lvula"
+            }
+        },
+        "water_heater": {
+            "water_heater": {
+                "name": "Caldeira"
+            }
+        }
+    },
+    "exceptions": {
+        "addon_not_installed": {
+            "message": "A app Matter Server ainda n\u00e3o est\u00e1 instalada."
+        },
+        "addon_not_ready": {
+            "message": "A app Matter Server ainda n\u00e3o est\u00e1 pronta."
+        },
+        "addon_not_running": {
+            "message": "A app Matter Server ainda n\u00e3o est\u00e1 a funcionar."
+        },
+        "credential_type_not_supported": {
+            "message": "O cadeado n\u00e3o \u00e9 compat\u00edvel com o tipo de credencial `{credential_type}`."
+        },
+        "invalid_credential_data": {
+            "message": "Dados de credenciais inv\u00e1lidos: {reason}."
+        },
+        "set_credential_failed": {
+            "message": "Falha ao definir a credencial: o bloqueio devolveu o estado `{status}`."
+        }
+    },
+    "issues": {
+        "ipv6_disabled": {
+            "description": "O Matter utiliza o IPv6 para comunicar com alguns dispositivos, mas o IPv6 est\u00e1 desativado em todas as suas interfaces de rede ligadas. Os dispositivos ligados localmente por Wi-Fi e Ethernet podem continuar a funcionar, mas funcionalidades como a utiliza\u00e7\u00e3o de um router de borda Thread externo requerem que o IPv6 esteja ativado. Selecione \"Saiba mais\" para abrir as defini\u00e7\u00f5es de rede.",
+            "title": "O IPv6 est\u00e1 desativado, mas \u00e9 exigido pelo Matter"
+        },
+        "server_version_version_too_new": {
+            "description": "A vers\u00e3o do Matter Server que est\u00e1 a utilizar \u00e9 demasiado recente para esta vers\u00e3o do Home Assistant. Por favor, atualize o Home Assistant ou fa\u00e7a o downgrade do Matter Server para uma vers\u00e3o mais antiga para resolver este problema.",
+            "title": "\u00c9 necess\u00e1ria uma vers\u00e3o mais antiga do Servidor Matter"
+        },
+        "server_version_version_too_old": {
+            "description": "A vers\u00e3o do Matter Server que est\u00e1 a utilizar \u00e9 demasiado antiga para esta vers\u00e3o do Home Assistant. Por favor, atualize o Matter Server para a vers\u00e3o mais recente para resolver este problema.",
+            "title": "\u00c9 necess\u00e1ria uma vers\u00e3o mais recente do Servidor Matter"
+        }
+    },
+    "services": {
+        "clear_lock_credential": {
+            "description": "Remove uma credencial de uma fechadura.",
+            "fields": {
+                "credential_index": {
+                    "description": "O \u00edndice do slot da credencial a limpar.",
+                    "name": "\u00cdndice de credenciais"
+                },
+                "credential_type": {
+                    "description": "O tipo de credencial a apagar.",
+                    "name": "Tipo de credencial"
+                }
+            },
+            "name": "Limpar credencial da fechadura"
+        },
+        "clear_lock_user": {
+            "description": "Elimina um utilizador da fechadura e todas as credenciais associadas. Utilize o \u00edndice 65534 para apagar todos os utilizadores.",
+            "fields": {
+                "user_index": {
+                    "description": "O \u00edndice do slot do utilizador (baseado em 1) a limpar, ou 65534 para limpar tudo.",
+                    "name": "\u00cdndice de utilizadores"
+                }
+            },
+            "name": "Remover utilizador da fechadura"
+        },
+        "get_lock_credential_status": {
+            "description": "Devolve o estado de um slot de credencial numa fechadura.",
+            "fields": {
+                "credential_index": {
+                    "description": "O \u00edndice da ranhura da credencial a consultar.",
+                    "name": "\u00cdndice de credenciais"
+                },
+                "credential_type": {
+                    "description": "O tipo de credencial a consultar.",
+                    "name": "Tipo de credencial"
+                }
+            },
+            "name": "Obter o estado das credenciais da fechadura"
+        },
+        "get_lock_info": {
+            "description": "Devolve as caracter\u00edsticas da fechadura, incluindo os tipos de credenciais suportados, o n\u00famero m\u00e1ximo de utilizadores e o comprimento m\u00e1ximo do PIN.",
+            "name": "Obter informa\u00e7\u00f5es da fechadura"
+        },
+        "get_lock_users": {
+            "description": "Devolve todos os utilizadores configurados numa fechadura com as respetivas credenciais.",
+            "name": "Obter utilizadores da fechadura"
+        },
+        "open_commissioning_window": {
+            "description": "Permite adicionar um dos seus dispositivos a outra rede Matter, abrindo a janela de ativa\u00e7\u00e3o para este dispositivo Matter durante 60 segundos.",
+            "fields": {
+                "device_id": {
+                    "description": "O dispositivo Matter a adicionar a outra rede Matter.",
+                    "name": "Dispositivo"
+                }
+            },
+            "name": "Abrir janela de comissionamento"
+        },
+        "set_lock_credential": {
+            "description": "Adiciona ou atualiza uma credencial numa fechadura.",
+            "fields": {
+                "credential_data": {
+                    "description": "Os dados da credencial. Para PIN: apenas d\u00edgitos. Para RFID: cadeia hexadecimal.",
+                    "name": "Dados de credenciais"
+                },
+                "credential_index": {
+                    "description": "O \u00edndice da ranhura da credencial. Deixar vazio para procurar automaticamente uma ranhura dispon\u00edvel.",
+                    "name": "\u00cdndice de credenciais"
+                },
+                "credential_type": {
+                    "description": "O tipo de credencial (por exemplo, pin, rfid, impress\u00e3o digital).",
+                    "name": "Tipo de credencial"
+                },
+                "user_index": {
+                    "description": "O \u00edndice de utilizadores ao qual associar a credencial. Deixar vazio para atribui\u00e7\u00e3o autom\u00e1tica.",
+                    "name": "\u00cdndice de utilizadores"
+                },
+                "user_status": {
+                    "description": "O estado do utilizador a definir ao criar um novo utilizador para esta credencial.",
+                    "name": "Estado do utilizador"
+                },
+                "user_type": {
+                    "description": "O tipo de utilizador a definir ao criar um novo utilizador para esta credencial.",
+                    "name": "Tipo de utilizador"
+                }
+            },
+            "name": "Definir credencial de fechadura"
+        },
+        "set_lock_user": {
+            "description": "Cria ou atualiza um utilizador de fechadura.",
+            "fields": {
+                "credential_rule": {
+                    "description": "A regra de credenciais para o utilizador.",
+                    "name": "Regra das credenciais"
+                },
+                "user_index": {
+                    "description": "O \u00edndice de slot do utilizador (baseado em 1). Deixar vazio para procurar automaticamente um slot dispon\u00edvel.",
+                    "name": "\u00cdndice de utilizadores"
+                },
+                "user_name": {
+                    "description": "O nome do utilizador.",
+                    "name": "Nome do utilizador"
+                },
+                "user_type": {
+                    "description": "O tipo de utilizador a criar.",
+                    "name": "Tipo de utilizador"
+                }
+            },
+            "name": "Definir utilizador da fechadura"
+        },
+        "water_heater_boost": {
+            "description": "Ativa o refor\u00e7o do aquecedor de \u00e1gua durante um per\u00edodo espec\u00edfico.",
+            "fields": {
+                "duration": {
+                    "description": "Dura\u00e7\u00e3o do impulso em segundos.",
+                    "name": "Dura\u00e7\u00e3o"
+                },
+                "emergency_boost": {
+                    "description": "Se deve ativar o modo de refor\u00e7o de emerg\u00eancia.",
+                    "name": "Refor\u00e7o de emerg\u00eancia"
+                },
+                "temporary_setpoint": {
+                    "description": "Temperatura tempor\u00e1ria do ponto de regula\u00e7\u00e3o em graus Celsius durante o per\u00edodo de refor\u00e7o.",
+                    "name": "Ponto de regula\u00e7\u00e3o tempor\u00e1rio"
+                }
+            },
+            "name": "Refor\u00e7ar o aquecedor de \u00e1gua"
+        }
+    }
+}

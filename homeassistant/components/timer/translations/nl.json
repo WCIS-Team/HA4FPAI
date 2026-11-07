@@ -1,0 +1,139 @@
+{
+    "common": {
+        "condition_behavior_name": "De voorwaarde is voldaan als",
+        "condition_for_name": "Voor minstens",
+        "trigger_behavior_name": "Activeer wanneer"
+    },
+    "conditions": {
+        "is_active": {
+            "description": "Test of een of meer timers actief zijn.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Timer is actief"
+        },
+        "is_idle": {
+            "description": "Test of een of meer timers inactief zijn.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Timer is inactief"
+        },
+        "is_paused": {
+            "description": "Test of een of meer timers zijn gepauzeerd.",
+            "fields": {
+                "behavior": {
+                    "name": "De voorwaarde is voldaan als"
+                },
+                "for": {
+                    "name": "Voor minstens"
+                }
+            },
+            "name": "Timer is gepauzeerd"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Timer",
+            "state": {
+                "active": "Actief",
+                "idle": "Inactief",
+                "paused": "Gepauzeerd"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Duur"
+                },
+                "editable": {
+                    "name": "Beheerd via UI",
+                    "state": {
+                        "false": "Nee",
+                        "true": "Ja"
+                    }
+                },
+                "finishes_at": {
+                    "name": "Eindigt om"
+                },
+                "remaining": {
+                    "name": "Resterend"
+                },
+                "restore": {
+                    "name": "Herstellen"
+                }
+            }
+        }
+    },
+    "services": {
+        "change": {
+            "fields": {
+                "duration": {
+                    "name": "Duur"
+                }
+            }
+        },
+        "pause": {
+            "name": "Timer pauzeren"
+        },
+        "reload": {
+            "description": "Herlaadt timers vanaf de YAML-configuratie.",
+            "name": "Timers opnieuw laden"
+        },
+        "start": {
+            "fields": {
+                "duration": {
+                    "description": "Duur die de timer nodig heeft om te voltooien. [optioneel].",
+                    "name": "Duur"
+                }
+            },
+            "name": "Timer starten"
+        }
+    },
+    "title": "Timer",
+    "triggers": {
+        "cancelled": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                }
+            }
+        },
+        "finished": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                }
+            }
+        },
+        "paused": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                }
+            }
+        },
+        "restarted": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                }
+            }
+        },
+        "started": {
+            "fields": {
+                "behavior": {
+                    "name": "Activeer wanneer"
+                }
+            }
+        }
+    }
+}

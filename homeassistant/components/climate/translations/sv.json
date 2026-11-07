@@ -1,0 +1,523 @@
+{
+    "common": {
+        "condition_behavior_name": "Villkoret uppfylls om",
+        "condition_for_name": "I \u00e5tminstone",
+        "condition_threshold_name": "Tr\u00f6skelv\u00e4rdestyp",
+        "trigger_behavior_name": "Utl\u00f6s n\u00e4r",
+        "trigger_for_name": "I \u00e5tminstone",
+        "trigger_threshold_name": "Tr\u00f6skelv\u00e4rdestyp"
+    },
+    "conditions": {
+        "is_cooling": {
+            "description": "Testar om en eller flera termostater kyler.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostaten kyler"
+        },
+        "is_drying": {
+            "description": "Testar om en eller flera termostater avfuktar.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostaten avfuktar"
+        },
+        "is_heating": {
+            "description": "Testar om en eller flera termostater v\u00e4rmer.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostaten v\u00e4rmer"
+        },
+        "is_hvac_mode": {
+            "description": "Testar om en eller flera termostater \u00e4r inst\u00e4llda p\u00e5 ett specifikt HVAC-l\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "hvac_mode": {
+                    "description": "De HVAC-l\u00e4gen som ska testas.",
+                    "name": "L\u00e4gen"
+                }
+            },
+            "name": "Termostat HVAC-l\u00e4ge"
+        },
+        "is_off": {
+            "description": "Testar om en eller flera termostater \u00e4r avst\u00e4ngda.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostaten \u00e4r avst\u00e4ngd"
+        },
+        "is_on": {
+            "description": "Testar om en eller flera termostater \u00e4r p\u00e5slagna.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostaten \u00e4r p\u00e5slagen"
+        },
+        "is_target_humidity": {
+            "description": "Testar b\u00f6rv\u00e4rdet f\u00f6r luftfuktighet f\u00f6r en eller flera termostater.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Termostatens m\u00e5lfuktighet"
+        },
+        "is_target_temperature": {
+            "description": "Testar b\u00f6rv\u00e4rdet f\u00f6r temperaturen f\u00f6r en eller flera termostater.",
+            "fields": {
+                "behavior": {
+                    "name": "Villkoret uppfylls om"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Termostatens m\u00e5ltemperatur"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_hvac_mode": "\u00c4ndra HVAC-l\u00e4ge p\u00e5 {entity_name}",
+            "set_preset_mode": "\u00c4ndra f\u00f6rinst\u00e4llning p\u00e5 {entity_name}"
+        },
+        "condition_type": {
+            "is_hvac_mode": "{entity_name} \u00e4r inst\u00e4lld p\u00e5 ett specifikt HVAC-l\u00e4ge",
+            "is_preset_mode": "{entity_name} \u00e4r inst\u00e4lld p\u00e5 ett specifikt f\u00f6rinst\u00e4llt l\u00e4ge"
+        },
+        "extra_fields": {
+            "above": "\u00d6ver",
+            "below": "Under",
+            "for": "Varaktighet",
+            "hvac_mode": "HVAC-l\u00e4ge",
+            "preset_mode": "F\u00f6rinst\u00e4llt l\u00e4ge",
+            "to": "Till"
+        },
+        "trigger_type": {
+            "current_humidity_changed": "{entity_name} uppm\u00e4tt fuktighet f\u00f6r\u00e4ndrad",
+            "current_temperature_changed": "{entity_name} uppm\u00e4tt temperatur f\u00f6r\u00e4ndrad",
+            "hvac_mode_changed": "{entity_name} HVAC-l\u00e4ge har \u00e4ndrats"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Termostat",
+            "state": {
+                "auto": "Auto",
+                "cool": "Kyla",
+                "dry": "Avfukta",
+                "fan_only": "Endast fl\u00e4kt",
+                "heat": "V\u00e4rme",
+                "heat_cool": "V\u00e4rme/Kyla",
+                "off": "Av"
+            },
+            "state_attributes": {
+                "current_humidity": {
+                    "name": "Aktuell luftfuktighet"
+                },
+                "current_temperature": {
+                    "name": "Aktuell temperatur"
+                },
+                "fan_mode": {
+                    "name": "Fl\u00e4ktl\u00e4ge",
+                    "state": {
+                        "auto": "Auto",
+                        "diffuse": "Diffus",
+                        "focus": "Fokus",
+                        "high": "H\u00f6g",
+                        "low": "L\u00e5g",
+                        "medium": "Medel",
+                        "middle": "Mellan",
+                        "off": "Av",
+                        "on": "P\u00e5",
+                        "top": "Topp"
+                    }
+                },
+                "fan_modes": {
+                    "name": "Fl\u00e4ktl\u00e4gen"
+                },
+                "humidity": {
+                    "name": "M\u00e5lluftfuktighet"
+                },
+                "hvac_action": {
+                    "name": "Aktuell \u00e5tg\u00e4rd",
+                    "state": {
+                        "cooling": "Kyler",
+                        "defrosting": "Avfrostar",
+                        "drying": "Avfuktar",
+                        "fan": "Fl\u00e4kt",
+                        "heating": "V\u00e4rmer",
+                        "idle": "Inaktiv",
+                        "off": "Av",
+                        "preheating": "F\u00f6rv\u00e4rmer"
+                    }
+                },
+                "hvac_modes": {
+                    "name": "HVAC-l\u00e4gen"
+                },
+                "max_humidity": {
+                    "name": "H\u00f6gsta m\u00e5lluftfuktighet"
+                },
+                "max_temp": {
+                    "name": "H\u00f6gsta m\u00e5ltemperatur"
+                },
+                "min_humidity": {
+                    "name": "L\u00e4gsta m\u00e5lluftfuktighet"
+                },
+                "min_temp": {
+                    "name": "L\u00e4gsta m\u00e5ltemperatur"
+                },
+                "preset_mode": {
+                    "name": "F\u00f6rinst\u00e4llning",
+                    "state": {
+                        "activity": "Aktivitet",
+                        "away": "Borta",
+                        "boost": "Boost",
+                        "comfort": "Komfort",
+                        "eco": "Eko",
+                        "home": "Hemma",
+                        "none": "Inget",
+                        "sleep": "Vilol\u00e4ge"
+                    }
+                },
+                "preset_modes": {
+                    "name": "F\u00f6rinst\u00e4llningar"
+                },
+                "swing_horizontal_mode": {
+                    "name": "Horisontellt svepl\u00e4ge",
+                    "state": {
+                        "off": "Av",
+                        "on": "P\u00e5"
+                    }
+                },
+                "swing_horizontal_modes": {
+                    "name": "Horisontella svepl\u00e4gen"
+                },
+                "swing_mode": {
+                    "name": "Svepl\u00e4ge",
+                    "state": {
+                        "both": "B\u00e5da",
+                        "horizontal": "Horisontellt",
+                        "off": "Av",
+                        "on": "P\u00e5",
+                        "vertical": "Vertikalt"
+                    }
+                },
+                "swing_modes": {
+                    "name": "Svepl\u00e4gen"
+                },
+                "target_temp_high": {
+                    "name": "\u00d6vre m\u00e5ltemperatur"
+                },
+                "target_temp_low": {
+                    "name": "Undre m\u00e5ltemperatur"
+                },
+                "target_temp_step": {
+                    "name": "Steg f\u00f6r m\u00e5ltemperatur"
+                },
+                "temperature": {
+                    "name": "M\u00e5ltemperatur"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Angiven fuktighet {humidity} \u00e4r inte giltig. Accepterat intervall \u00e4r {min_humidity} till {max_humidity}."
+        },
+        "low_temp_higher_than_high_temp": {
+            "message": "L\u00e4gsta m\u00e5ltemperaturen kan inte vara h\u00f6gre \u00e4n den h\u00f6gsta m\u00e5ltemperaturen."
+        },
+        "missing_target_temperature_entity_feature": {
+            "message": "\u00c5tg\u00e4rden Ange temperatur anv\u00e4ndes med m\u00e5ltemperaturparametern, men entiteten st\u00f6der den inte."
+        },
+        "missing_target_temperature_range_entity_feature": {
+            "message": "\u00c5tg\u00e4rden Ange temperatur anv\u00e4ndes med parametern f\u00f6r l\u00e5g/h\u00f6g m\u00e5ltemperatur, men entiteten st\u00f6der den inte."
+        },
+        "not_valid_fan_mode": {
+            "message": "Fl\u00e4ktl\u00e4get {mode} \u00e4r inte giltigt. Giltiga fl\u00e4ktl\u00e4gen \u00e4r: {modes} ."
+        },
+        "not_valid_horizontal_swing_mode": {
+            "message": "Horisontellt sv\u00e4ngl\u00e4ge {mode} \u00e4r inte giltigt. Giltiga horisontella sv\u00e4ngningsl\u00e4gen \u00e4r: {modes}."
+        },
+        "not_valid_hvac_mode": {
+            "message": "HVAC-l\u00e4ge {mode} \u00e4r inte giltigt. Giltiga HVAC-l\u00e4gen \u00e4r: {modes}."
+        },
+        "not_valid_preset_mode": {
+            "message": "F\u00f6rinst\u00e4llt l\u00e4ge {mode} \u00e4r inte giltigt. Giltiga f\u00f6rinst\u00e4llda l\u00e4gen \u00e4r: {modes} ."
+        },
+        "not_valid_swing_mode": {
+            "message": "Sv\u00e4ngl\u00e4get {mode} \u00e4r inte giltigt. Giltiga sv\u00e4ngl\u00e4gen \u00e4r: {modes} ."
+        },
+        "temp_out_of_range": {
+            "message": "Angiven temperatur {check_temp} \u00e4r inte giltig. Accepterat intervall \u00e4r {min_temp} till {max_temp}."
+        }
+    },
+    "services": {
+        "set_fan_mode": {
+            "description": "St\u00e4ller in fl\u00e4ktl\u00e4ge f\u00f6r en termostat.",
+            "fields": {
+                "fan_mode": {
+                    "description": "Fl\u00e4ktens driftl\u00e4ge.",
+                    "name": "Fl\u00e4ktl\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in termostatens fl\u00e4ktl\u00e4ge"
+        },
+        "set_humidity": {
+            "description": "St\u00e4ller in \u00f6nskad luftfuktighet f\u00f6r en termostat.",
+            "fields": {
+                "humidity": {
+                    "description": "\u00d6nskad luftfuktighet.",
+                    "name": "Luftfuktighet"
+                }
+            },
+            "name": "St\u00e4ll in termostatens m\u00e5lfuktighet"
+        },
+        "set_hvac_mode": {
+            "description": "St\u00e4ller in HVAC-l\u00e4ge f\u00f6r en termostat.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "HVAC-driftl\u00e4ge.",
+                    "name": "HVAC-l\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in termostatens HVAC-l\u00e4ge"
+        },
+        "set_preset_mode": {
+            "description": "St\u00e4ller in ett f\u00f6rinst\u00e4llt l\u00e4ge f\u00f6r en termostat.",
+            "fields": {
+                "preset_mode": {
+                    "description": "F\u00f6rinst\u00e4llt l\u00e4ge.",
+                    "name": "F\u00f6rinst\u00e4llt l\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in termostatens f\u00f6rinst\u00e4llda l\u00e4ge"
+        },
+        "set_swing_horizontal_mode": {
+            "description": "St\u00e4ller in det horisontella sv\u00e4ngl\u00e4get f\u00f6r en termostat.",
+            "fields": {
+                "swing_horizontal_mode": {
+                    "description": "Driftl\u00e4ge f\u00f6r horisontell sv\u00e4ngning.",
+                    "name": "Horisontellt sv\u00e4ngl\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in termostatens horisontella sv\u00e4ngl\u00e4ge"
+        },
+        "set_swing_mode": {
+            "description": "St\u00e4ller in sv\u00e4ngl\u00e4get f\u00f6r en termostat.",
+            "fields": {
+                "swing_mode": {
+                    "description": "Sv\u00e4ngningsl\u00e4ge.",
+                    "name": "Sv\u00e4ngl\u00e4ge"
+                }
+            },
+            "name": "St\u00e4ll in termostatens sv\u00e4ngl\u00e4ge"
+        },
+        "set_temperature": {
+            "description": "St\u00e4ller in \u00f6nskad temperatur f\u00f6r en termostat.",
+            "fields": {
+                "hvac_mode": {
+                    "description": "Driftl\u00e4ge f\u00f6r HVAC.",
+                    "name": "HVAC-l\u00e4ge"
+                },
+                "target_temp_high": {
+                    "description": "B\u00f6rv\u00e4rdet f\u00f6r maxtemperaturen.",
+                    "name": "\u00d6vre m\u00e5ltemperatur"
+                },
+                "target_temp_low": {
+                    "description": "B\u00f6rv\u00e4rdet f\u00f6r minimumtemperaturen.",
+                    "name": "Undre m\u00e5ltemperatur"
+                },
+                "temperature": {
+                    "description": "B\u00f6rv\u00e4rdet f\u00f6r temperaturen.",
+                    "name": "M\u00e5ltemperatur"
+                }
+            },
+            "name": "St\u00e4ll in termostatens m\u00e5ltemperatur",
+            "sections": {
+                "temperature_range": {
+                    "name": "Temperaturintervall"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Sl\u00e5r av/p\u00e5 en termostat.",
+            "name": "V\u00e4xla termostat"
+        },
+        "turn_off": {
+            "description": "St\u00e4nger av en termostat.",
+            "name": "St\u00e4ng av termostat"
+        },
+        "turn_on": {
+            "description": "Sl\u00e5r p\u00e5 en termostat.",
+            "name": "Sl\u00e5 p\u00e5 termostat"
+        }
+    },
+    "title": "Klimat",
+    "triggers": {
+        "hvac_mode_changed": {
+            "description": "Utl\u00f6ses n\u00e4r l\u00e4get f\u00f6r en eller flera termostater f\u00f6r\u00e4ndras.",
+            "fields": {
+                "behavior": {
+                    "name": "Beteende"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "hvac_mode": {
+                    "description": "De HVAC-l\u00e4gen att utl\u00f6sa p\u00e5.",
+                    "name": "L\u00e4gen"
+                }
+            },
+            "name": "Termostatl\u00e4ge \u00e4ndrat"
+        },
+        "started_cooling": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera termostater b\u00f6rjar kyla.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostat b\u00f6rjade kyla"
+        },
+        "started_drying": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera termostater b\u00f6rjar avfukta.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostat b\u00f6rjade avfukta"
+        },
+        "started_heating": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera termostater b\u00f6rjar v\u00e4rma.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostat b\u00f6rjade v\u00e4rma"
+        },
+        "target_humidity_changed": {
+            "description": "Utl\u00f6ses n\u00e4r b\u00f6rv\u00e4rdet f\u00f6r luftfuktighet f\u00f6r en eller flera termostater f\u00f6r\u00e4ndras.",
+            "fields": {
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Termostatens m\u00e5lfuktighet har \u00e4ndrats"
+        },
+        "target_humidity_crossed_threshold": {
+            "description": "Utl\u00f6ses n\u00e4r b\u00f6rv\u00e4rdet f\u00f6r luftfuktighet f\u00f6r en eller flera termostater passerar ett tr\u00f6skelv\u00e4rde.",
+            "fields": {
+                "behavior": {
+                    "name": "Beteende"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Klimatkontrollenhetens m\u00e5lfuktighet har passerat tr\u00f6skelv\u00e4rdet"
+        },
+        "target_temperature_changed": {
+            "description": "Utl\u00f6ses n\u00e4r temperaturb\u00f6rv\u00e4rdet f\u00f6r en eller flera termostater f\u00f6r\u00e4ndras.",
+            "fields": {
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Termostatens m\u00e5ltemperatur har \u00e4ndrats"
+        },
+        "target_temperature_crossed_threshold": {
+            "description": "Utl\u00f6ses n\u00e4r temperaturenb\u00f6rv\u00e4rdet f\u00f6r en eller flera termostater passerar ett tr\u00f6skelv\u00e4rde.",
+            "fields": {
+                "behavior": {
+                    "name": "Beteende"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                },
+                "threshold": {
+                    "name": "Tr\u00f6skelv\u00e4rdestyp"
+                }
+            },
+            "name": "Klimatkontrollenhetens m\u00e5ltemperatur har passerat tr\u00f6skelv\u00e4rdet"
+        },
+        "turned_off": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera termostater st\u00e4ngs av.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostat avst\u00e4ngd"
+        },
+        "turned_on": {
+            "description": "Utl\u00f6ses n\u00e4r en eller flera termostater sl\u00e5s p\u00e5, oavsett l\u00e4ge.",
+            "fields": {
+                "behavior": {
+                    "name": "Utl\u00f6s n\u00e4r"
+                },
+                "for": {
+                    "name": "I \u00e5tminstone"
+                }
+            },
+            "name": "Termostat p\u00e5slagen"
+        }
+    }
+}

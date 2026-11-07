@@ -1,0 +1,62 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Ajastin",
+            "state": {
+                "active": "Aktiivinen",
+                "idle": "Toimeton",
+                "paused": "Pys\u00e4ytetty"
+            },
+            "state_attributes": {
+                "duration": {
+                    "name": "Kesto"
+                },
+                "editable": {
+                    "name": "Hallinnoitu k\u00e4ytt\u00f6liittym\u00e4n kautta",
+                    "state": {
+                        "false": "Ei",
+                        "true": "Kyll\u00e4"
+                    }
+                },
+                "finishes_at": {
+                    "name": "P\u00e4\u00e4ttyy"
+                },
+                "remaining": {
+                    "name": "J\u00e4ljell\u00e4"
+                },
+                "restore": {
+                    "name": "Palauta"
+                }
+            }
+        }
+    },
+    "services": {
+        "change": {
+            "fields": {
+                "duration": {
+                    "name": "Kesto"
+                }
+            }
+        },
+        "reload": {
+            "description": "Lataa ajastimet uudelleen YAML-konfiguraatiosta."
+        },
+        "start": {
+            "fields": {
+                "duration": {
+                    "name": "Kesto"
+                }
+            }
+        }
+    },
+    "triggers": {
+        "remaining_time_reached": {
+            "fields": {
+                "remaining": {
+                    "name": "J\u00e4ljell\u00e4 oleva aika"
+                }
+            },
+            "name": "Ajastimen j\u00e4ljell\u00e4 oleva aika on saavutettu"
+        }
+    }
+}

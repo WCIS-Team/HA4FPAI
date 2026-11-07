@@ -1,0 +1,1428 @@
+{
+    "config": {
+        "abort": {
+            "addon_connection_failed": "\u9023\u7dda\u81f3 {addon} \u61c9\u7528\u7a0b\u5f0f\u5931\u6557\u3001\u8acb\u6aa2\u67e5\u61c9\u7528\u7a0b\u5f0f\u72c0\u614b\u4e26\u7a0d\u5f8c\u518d\u8a66\u3002",
+            "addon_info_failed": "\u53d6\u5f97 {addon} \u61c9\u7528\u7a0b\u5f0f\u8cc7\u8a0a\u5931\u6557\u3002",
+            "addon_install_failed": "\u5b89\u88dd {addon} \u61c9\u7528\u7a0b\u5f0f\u5931\u6557\u3002",
+            "addon_start_failed": "\u555f\u52d5 {addon} \u61c9\u7528\u7a0b\u5f0f\u5931\u6557\u3002",
+            "already_configured": "\u670d\u52d9\u5df2\u7d93\u8a2d\u5b9a\u5b8c\u6210"
+        },
+        "error": {
+            "bad_birth": "Birth \u4e3b\u984c\u7121\u6548",
+            "bad_certificate": "CA \u8a8d\u8b49\u7121\u6548",
+            "bad_client_cert": "\u5ba2\u6236\u7aef\u6191\u8b49\u7121\u6548\u3001\u8acb\u78ba\u5b9a\u63d0\u4f9b\u70ba\u6709\u6548\u78bc\u6a94\u6848",
+            "bad_client_cert_key": "\u5ba2\u6236\u7aef\u6191\u8b49\u8207\u79c1\u9470\u4e0d\u7b26\u5408",
+            "bad_discovery_prefix": "\u641c\u7d22\u4e3b\u984c prefix \u7121\u6548",
+            "bad_will": "Will \u4e3b\u984c\u7121\u6548",
+            "bad_ws_headers": "\u63d0\u4f9b\u6709\u6548\u7684 HTTP header \u4f5c\u70ba JSON \u7269\u4ef6",
+            "cannot_connect": "\u9023\u7dda\u5931\u6557",
+            "client_key_error": "\u6240\u63d0\u4f9b\u7684\u79c1\u9470\u6a94\u6848\u7121\u6548\u6216\u5bc6\u78bc\u7121\u6548",
+            "invalid_auth": "\u8eab\u4efd\u9a57\u8b49\u7121\u6548",
+            "invalid_inclusion": "\u5ba2\u6236\u7aef\u6191\u8b49\u8207\u79c1\u9470\u5fc5\u9808\u4e00\u8d77\u8a2d\u5b9a"
+        },
+        "step": {
+            "broker": {
+                "data": {
+                    "broker": "Broker",
+                    "password": "\u5bc6\u78bc",
+                    "port": "\u901a\u8a0a\u57e0",
+                    "protocol": "MQTT \u901a\u8a0a\u5354\u5b9a",
+                    "username": "\u4f7f\u7528\u8005\u540d\u7a31"
+                },
+                "data_description": {
+                    "broker": "MQTT broker \u7684\u4e3b\u6a5f\u540d\u7a31\u6216 IP \u4f4d\u5740\u3002",
+                    "password": "\u767b\u5165 MQTT broker \u7684\u5bc6\u78bc\u3002",
+                    "port": "MQTT broker \u6240\u76e3\u807d\u7684\u901a\u8a0a\u57e0\u3001\u4f8b\u5982 1883\u3002",
+                    "protocol": "\u6240\u4f7f\u7528\u7684 MQTT \u5354\u5b9a\u7248\u672c\u3002\u8acb\u6ce8\u610f\uff0c\u5982\u679c\u4ee3\u7406\u4f3a\u670d\u5668\u652f\u63f4\u7248\u672c 5\uff0cHome Assistant \u5c07\u81ea\u52d5\u5207\u63db\u5230\u7248\u672c 5\u3002",
+                    "username": "\u767b\u5165 MQTT broker \u7684\u4f7f\u7528\u8005\u540d\u7a31\u3002"
+                },
+                "description": "\u8acb\u8f38\u5165 MQTT Broker \u9023\u7dda\u8cc7\u8a0a\u3002",
+                "sections": {
+                    "other_settings": {
+                        "data": {
+                            "certificate": "\u4e0a\u50b3\u81ea\u8a02 CA \u6191\u8b49\u6a94\u6848",
+                            "client_cert": "\u4e0a\u50b3\u5ba2\u6236\u7aef\u6191\u8b49\u6a94\u6848",
+                            "client_id": "\u5ba2\u6236\u7aef ID (\u4fdd\u6301\u7a7a\u767d\u5c07\u96a8\u6a5f\u7522\u751f)",
+                            "client_key": "\u4e0a\u50b3\u79c1\u9470\u6a94\u6848",
+                            "client_key_password": "\u5bc6\u78bc",
+                            "keepalive": "\u50b3\u9001\u4fdd\u6301\u6d3b\u52d5\u8a0a\u606f\u9593\u9694\u6642\u9593",
+                            "set_ca_cert": "\u4ee3\u7406\u4f3a\u670d\u5668\u6191\u8b49\u9a57\u8b49",
+                            "set_client_cert": "\u4f7f\u7528\u5ba2\u6236\u7aef\u6191\u8b49",
+                            "tls_insecure": "\u5ffd\u7565\u4ee3\u7406\u4f3a\u670d\u5668\u6191\u8b49\u9a57\u8b49",
+                            "transport": "MQTT \u50b3\u8f38",
+                            "ws_headers": "JSON \u683c\u5f0f\u7684 WebSocket header",
+                            "ws_path": "WebSocket \u8def\u5f91"
+                        },
+                        "data_description": {
+                            "certificate": "\u8a8d\u8b49 MQTT Broker \u6191\u8b49\u7684\u81ea\u8a02 CA \u6191\u8b49\u3002",
+                            "client_cert": "\u8a8d\u8b49 MQTT broker \u7684\u5ba2\u6236\u7aef\u6191\u8b49\u3002",
+                            "client_id": "\u7528\u65bc\u8b58\u5225 Home Assistant MQTT API \u4f5c\u70ba MQTT \u5ba2\u6236\u7aef\u7684\u552f\u4e00 ID\u3002\u5efa\u8b70\u4fdd\u6301\u6b64\u9078\u9805\u7a7a\u767d\u3002",
+                            "client_key": "\u5c6c\u65bc\u5ba2\u6236\u7aef\u6191\u8b49\u7684\u79c1\u9470\u6a94\u6848\u3002",
+                            "client_key_password": "\u79c1\u9470\u6a94\u6848\u5bc6\u78bc\uff08\u5982\u679c\u6709\u8a2d\u5b9a\uff09\u3002",
+                            "keepalive": "\u5efa\u8b70\u503c\u5c0f\u65bc 90 \u79d2\u3002\u9810\u8a2d\u70ba 60 \u79d2\u3002",
+                            "set_ca_cert": "\u7576\u5df2\u8a2d\u5b9a\u70ba**\u81ea\u8a02**\u6642\uff0c\u8868\u793a\u5df2\u8a2d\u5b9a\u81ea\u8a02 CA \u9a57\u8b49\u6191\u8b49\u3002\u8acb\u9078\u53d6**\u81ea\u52d5**\u4ee5\u9032\u884c\u81ea\u52d5 CA \u9a57\u8b49\uff0c\u6216\u4e0a\u50b3\u81ea\u8a02 CA \u6191\u8b49\uff0c\u4ee5\u9a57\u8b49 MQTT \u4ee3\u7406\u4f3a\u670d\u5668\u6191\u8b49\u3002",
+                            "set_client_cert": "\u5df2\u9078\u53d6\u6642\uff0c\u7528\u6236\u7aef\u6191\u8b49\u9a57\u8b49\u5373\u555f\u7528\u3002\u8acb\u4e0a\u50b3\u7528\u6236\u7aef\u6191\u8b49\u548c\u91d1\u9470\u4ee5\u555f\u7528\u3002",
+                            "tls_insecure": "\u5ffd\u7565\u9a57\u8b49 MQTT broker \u6191\u8b49\u9078\u9805\u3002",
+                            "transport": "\u7528\u4ee5\u9023\u7dda\u81f3 MQTT broker \u7684\u50b3\u8f38\u901a\u8a0a\u57e0\u3002",
+                            "ws_headers": "\u7528\u4ee5\u57fa\u65bc WebSocket \u9023\u7dda\u50b3\u905e\u81f3 MQTT broker \u7684 WebSocket header\u3002",
+                            "ws_path": "\u7528\u4ee5\u9023\u7dda\u81f3 MQTT broker \u7684 WebSocket \u8def\u5f91\u3002"
+                        },
+                        "name": "\u5176\u4ed6\u8a2d\u5b9a"
+                    }
+                }
+            },
+            "hassio_confirm": {
+                "description": "\u662f\u5426\u8981\u8a2d\u5b9a Home Assistant \u4ee5\u9023\u7dda\u81f3\u61c9\u7528\u7a0b\u5f0f {addon} \u6240\u63d0\u4f9b MQTT broker\uff1f",
+                "title": "\u4f7f\u7528 Home Assistant \u61c9\u7528\u7a0b\u5f0f MQTT broker"
+            },
+            "install_addon": {
+                "title": "\u6b63\u5728\u5b89\u88dd\u61c9\u7528\u7a0b\u5f0f"
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "\u5bc6\u78bc",
+                    "username": "\u4f7f\u7528\u8005\u540d\u7a31"
+                },
+                "data_description": {
+                    "password": "\u767b\u5165 MQTT broker \u7684\u5bc6\u78bc\u3002",
+                    "username": "\u767b\u5165 MQTT broker \u7684\u4f7f\u7528\u8005\u540d\u7a31\u3002"
+                },
+                "description": "MQTT broker \u56de\u5831\u8a8d\u8b49\u932f\u8aa4\u3002\u8acb\u78ba\u8a8d Broker \u7684\u4f7f\u7528\u8005\u540d\u7a31\u8207\u5bc6\u78bc\u6b63\u78ba\u3002",
+                "title": "MQTT broker \u9700\u8981\u91cd\u65b0\u8a8d\u8b49"
+            },
+            "start_addon": {
+                "title": "\u555f\u52d5\u61c9\u7528\u7a0b\u5f0f"
+            },
+            "user": {
+                "description": "\u8acb\u9078\u64c7\u9023\u7dda\u81f3 MQTT broker \u7684\u65b9\u5f0f\uff1a",
+                "menu_options": {
+                    "addon": "\u4f7f\u7528\u5b98\u65b9 {addon} \u61c9\u7528\u7a0b\u5f0f\u3002",
+                    "broker": "\u624b\u52d5\u8f38\u5165 MQTT broker \u9023\u7dda\u8cc7\u8a0a"
+                }
+            }
+        }
+    },
+    "config_subentries": {
+        "device": {
+            "create_entry": {
+                "default": "\u5df2\u6210\u529f\u8a2d\u5b9a\u5177\u6709 {platform} \u5be6\u9ad4 \"{entity}\" \u7684 MQTT \u88dd\u7f6e\u3002\n\n\u8acb\u6ce8\u610f\uff0c\u53ef\u4ee5\u96a8\u6642\u91cd\u65b0\u8a2d\u5b9a MQTT \u88dd\u7f6e\uff0c\u4f8b\u5982\u65b0\u589e\u66f4\u591a\u5be6\u9ad4\u3002"
+            },
+            "entry_type": "MQTT \u88dd\u7f6e",
+            "error": {
+                "cover_get_and_set_position_must_be_set_together": "\u53d6\u5f97\u4f4d\u7f6e\u548c\u8a2d\u5b9a\u4f4d\u7f6e\u4e3b\u984c\u9078\u9805\u5fc5\u9808\u4e00\u8d77\u8a2d\u5b9a",
+                "cover_get_position_template_must_be_used_with_get_position_topic": "\u4f4d\u7f6e\u6578\u503c\u6a21\u677f\u5fc5\u9808\u8207\u4f4d\u7f6e\u72c0\u614b\u4e3b\u984c\u4e00\u8d77\u4f7f\u7528",
+                "cover_set_position_template_must_be_used_with_set_position_topic": "\u8a2d\u5b9a\u4f4d\u7f6e\u6a21\u677f\u5fc5\u9808\u8207\u8a2d\u5b9a\u4f4d\u7f6e\u4e3b\u984c\u4e00\u8d77\u4f7f\u7528",
+                "cover_tilt_command_template_must_be_used_with_tilt_command_topic": "\u50be\u659c\u547d\u4ee4\u6a21\u677f\u5fc5\u9808\u8207\u50be\u659c\u547d\u4ee4\u4e3b\u984c\u4e00\u8d77\u4f7f\u7528",
+                "cover_tilt_status_template_must_be_used_with_tilt_status_topic": "\u50be\u659c\u6578\u503c\u6a21\u677f\u5fc5\u9808\u8207\u50be\u659c\u72c0\u614b\u4e3b\u984c\u4e00\u8d77\u4f7f\u7528",
+                "cover_value_template_must_be_used_with_state_topic": "\u6578\u503c\u6a21\u677f\u5fc5\u9808\u8207\u72c0\u614b\u4e3b\u984c\u9078\u9805\u4e00\u8d77\u4f7f\u7528",
+                "empty_list_not_allowed": "\u4e0d\u5141\u8a31\u5217\u8868\u70ba\u7a7a\u767d\u3002\u8acb\u81f3\u5c11\u6dfb\u52a0\u4e00\u9805",
+                "fan_preset_mode_reset_in_preset_modes_list": "Payload \u9810\u7f6e\u6a21\u5f0f\u91cd\u7f6e \"reset preset mode\" \u4e26\u975e\u662f\u6709\u6548\u7684\u9810\u7f6e\u6a21\u5f0f",
+                "fan_speed_range_max_must_be_greater_than_speed_range_min": "\u6700\u5927\u901f\u5ea6\u7bc4\u570d\u5fc5\u9808\u5927\u65bc\u6700\u5c0f\u901f\u5ea6\u7bc4\u570d",
+                "invalid_input": "\u6578\u503c\u7121\u6548",
+                "invalid_regular_expression": "\u5fc5\u9808\u662f\u6709\u6548\u7684\u6b63\u898f\u8868\u793a\u5f0f",
+                "invalid_subscribe_topic": "\u8a02\u95b1\u4e3b\u984c\u7121\u6548",
+                "invalid_supported_color_modes": "\u652f\u63f4\u7684\u984f\u8272\u6a21\u5f0f\u9078\u64c7\u7121\u6548",
+                "invalid_template": "\u6a21\u677f\u7121\u6548",
+                "invalid_uom": "\u6240\u9078\u7684\u88dd\u7f6e\u985e\u5225\u4e0d\u652f\u63f4\u6e2c\u91cf\u55ae\u4f4d \"{unit_of_measurement}\"\uff0c\u8acb\u79fb\u9664\u88dd\u7f6e\u985e\u5225\uff0c\u9078\u64c7\u652f\u63f4 \"{unit_of_measurement}\" \u7684\u88dd\u7f6e\u985e\u5225\uff0c\u6216\u5f9e\u5217\u8868\u4e2d\u9078\u64c7\u652f\u63f4\u7684\u6e2c\u91cf\u55ae\u4f4d\u3002",
+                "invalid_uom_for_state_class": "\u6240\u9078\u7684\u72c0\u614b\u985e\u5225\u4e0d\u652f\u63f4\u6e2c\u91cf\u55ae\u4f4d \"{unit_of_measurement}\"\uff0c\u8acb\u79fb\u9664\u88dd\u7f6e\u985e\u5225\uff0c\u9078\u64c7\u652f\u63f4 \"{unit_of_measurement}\" \u7684\u72c0\u614b\u985e\u5225\uff0c\u6216\u5f9e\u5217\u8868\u4e2d\u9078\u64c7\u652f\u63f4\u7684\u6e2c\u91cf\u55ae\u4f4d\u3002",
+                "invalid_url": "\u7db2\u5740\u7121\u6548",
+                "last_reset_not_with_state_class_total": "\u6700\u5f8c\u7684\u91cd\u7f6e\u503c\u6a21\u677f\u9078\u9805\u61c9\u50c5\u8207\u72c0\u614b\u985e\u5225 '\u7e3d\u8a08' \u4e00\u8d77\u4f7f\u7528",
+                "max_below_min": "\u6700\u5927\u503c\u61c9\u5927\u65bc\u6216\u7b49\u65bc\u6700\u5c0f\u503c",
+                "max_below_min_humidity": "\u6700\u5927\u6fd5\u5ea6\u503c\u61c9\u5927\u65bc\u6700\u5c0f\u6fd5\u5ea6\u503c",
+                "max_below_min_kelvin": "\u6700\u5927\u514b\u8033\u6587\u503c\u61c9\u5927\u65bc\u6700\u5c0f\u514b\u8033\u6587\u503c",
+                "max_below_min_temperature": "\u6700\u5927\u6eab\u5ea6\u503c\u61c9\u5927\u65bc\u6700\u5c0f\u6eab\u5ea6\u503c",
+                "options_device_class_enum": "\u2018\u9078\u9805\u2019 \u8a2d\u5b9a\u5fc5\u9808\u8207\u5217\u8209\u88dd\u7f6e\u985e\u5225\u4e00\u8d77\u4f7f\u7528\u3002\u5982\u679c\u7e7c\u7e8c\uff0c\u73fe\u6709\u9078\u9805\u5c07\u88ab\u91cd\u7f6e",
+                "options_not_allowed_with_state_class_or_uom": "\u7576\u4f7f\u7528\u72c0\u614b\u985e\u5225\u6216\u8a08\u91cf\u55ae\u4f4d\u6642\u4e0d\u5141\u8a31\u8a2d\u5b9a '\u9078\u9805'",
+                "options_with_enum_device_class": "\u8a2d\u5b9a\u5217\u8209\u611f\u6e2c\u5668\u9078\u9805",
+                "preset_mode_none_not_allowed": "\u9810\u7f6e\u503c \"none\" \u4e26\u975e\u6548\u7684\u9810\u7f6e\u6a21\u5f0f",
+                "uom_required_for_device_class": "\u6240\u9078\u88dd\u7f6e\u985e\u5225\u9700\u8981\u55ae\u5143"
+            },
+            "initiate_flow": {
+                "reconfigure": "\u91cd\u65b0\u8a2d\u5b9a MQTT \u88dd\u7f6e",
+                "user": "\u65b0\u589e MQTT \u88dd\u7f6e"
+            },
+            "step": {
+                "availability": {
+                    "data": {
+                        "availability_template": "\u53ef\u7528\u6027\u6a21\u677f",
+                        "availability_topic": "\u53ef\u7528\u6027\u4e3b\u984c",
+                        "payload_available": "\u8ca0\u8f09 Payload \u53ef\u7528",
+                        "payload_not_available": "\u8ca0\u8f09 Payload \u4e0d\u53ef\u7528"
+                    },
+                    "data_description": {
+                        "availability_template": "\u7528\u65bc\u5448\u73fe\u53ef\u7528\u6027\u4e3b\u984c\u4e0a\u63a5\u6536\u5230\u7684\u53ef\u7528\u6027\u8ca0\u8f09 Payload [\u6a21\u677f] ({value_templating_url}) ",
+                        "availability_topic": "\u63a5\u6536\u53ef\u7528\u6027\u6709\u6548\u8ca0\u8f09 Payload \u7684\u4e3b\u984c",
+                        "payload_available": "\u6307\u793a\u88dd\u7f6e\u53ef\u7528\u7684\u6709\u6548\u8ca0\u8f09 Payload\uff08\u9ed8\u8a8d\u70ba 'online'\uff09",
+                        "payload_not_available": "\u6307\u793a\u88dd\u7f6e\u4e0d\u53ef\u7528\u7684\u6709\u6548\u8ca0\u8f09 Payload\uff08\u9ed8\u8a8d\u70ba 'offline'\uff09"
+                    },
+                    "description": "\u53ef\u7528\u6027\u529f\u80fd\u5141\u8a31\u88dd\u7f6e\u56de\u5831\u5176\u53ef\u7528\u6027\u3002",
+                    "title": "\u53ef\u7528\u6027\u9078\u9805"
+                },
+                "delete_entity": {
+                    "data": {
+                        "component": "\u5be6\u9ad4"
+                    },
+                    "data_description": {
+                        "component": "\u9078\u64c7\u6240\u8981\u522a\u9664\u7684\u5be6\u9ad4\u3002\u81f3\u5c11\u9700\u8981\u4e00\u500b\u5be6\u9ad4\u3002"
+                    },
+                    "description": "\u522a\u9664\u5be6\u9ad4\u3002\u8a72\u5be6\u9ad4\u5c07\u5f9e\u88dd\u7f6e\u4e2d\u79fb\u9664\u3002\u79fb\u9664\u5be6\u9ad4\u5c07\u6703\u7834\u58de\u4efb\u4f55\u4f9d\u8cf4\u65bc\u8a72\u5be6\u9ad4\u7684\u81ea\u52d5\u5316\u6216\u8173\u672c\u3002",
+                    "title": "\u522a\u9664\u5be6\u9ad4"
+                },
+                "device": {
+                    "data": {
+                        "configuration_url": "\u8a2d\u5b9a\u7db2\u5740",
+                        "manufacturer": "\u88fd\u9020\u5546",
+                        "model": "\u578b\u865f",
+                        "model_id": "\u578b\u865f ID",
+                        "name": "\u540d\u7a31"
+                    },
+                    "data_description": {
+                        "configuration_url": "\u7ba1\u7406\u6b64\u88dd\u7f6e\u8a2d\u5b9a\u7684\u7db2\u9801\u9023\u7d50\u3002\u53ef\u4ee5\u70ba  'http://', 'https://' \u6216\u5167\u90e8 'homeassistant://' \u7db2\u5740\u3002",
+                        "manufacturer": "\u4f8b\u5982\uff1aCleanmaster Ltd.",
+                        "model": "\u4f8b\u5982\uff1a'Cleanmaster Pro'\u3002",
+                        "model_id": "\u4f8b\u5982\uff1a'123NK2PRO'\u3002",
+                        "name": "\u624b\u52d5\u65b0\u589e\u7684 MQTT \u88dd\u7f6e\u540d\u7a31\u3002"
+                    },
+                    "description": "\u8f38\u5165 MQTT \u88dd\u7f6e\u8a73\u7d30\u8cc7\u6599\uff1a",
+                    "sections": {
+                        "mqtt_settings": {
+                            "data": {
+                                "message_expiry_interval": "\u8a0a\u606f\u904e\u671f\u9593\u9694",
+                                "qos": "QoS"
+                            },
+                            "data_description": {
+                                "message_expiry_interval": "\u5df2\u767c\u5e03\u8a0a\u606f\u7684\u4fdd\u7559\u6642\u9593\u9593\u9694\u3002",
+                                "qos": "\u88dd\u7f6e\u5be6\u9ad4\u61c9\u4f7f\u7528\u7684\u670d\u52d9\u54c1\u8cea\u6578\u503c\u3002"
+                            },
+                            "name": "MQTT \u8a2d\u5b9a"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "hw_version": "\u786c\u9ad4\u7248\u672c",
+                                "sw_version": "\u8edf\u9ad4\u7248\u672c"
+                            },
+                            "data_description": {
+                                "hw_version": "\u88dd\u7f6e\u786c\u9ad4\u7248\u672c\u3002\u4f8b\u5982\uff1a'v1.0 rev a'\u3002",
+                                "sw_version": "\u88dd\u7f6e\u8edf\u9ad4\u7248\u672c\u3002\u4f8b\u5982\uff1a'2025.1.0'\u3002"
+                            },
+                            "name": "\u5176\u4ed6\u88dd\u7f6e\u8a2d\u5b9a"
+                        }
+                    },
+                    "title": "\u8a2d\u5b9a MQTT \u88dd\u7f6e\u8a73\u7d30\u8cc7\u6599"
+                },
+                "entity": {
+                    "data": {
+                        "entity_picture": "\u5be6\u9ad4\u5716\u7247",
+                        "name": "\u5be6\u9ad4\u540d\u7a31",
+                        "platform": "\u5be6\u9ad4\u985e\u578b"
+                    },
+                    "data_description": {
+                        "entity_picture": "\u6307\u5b9a\u7684\u5716\u7247\u7db2\u5740\u3002",
+                        "name": "\u5be6\u9ad4\u540d\u7a31\u3002\u7559\u7a7a\u4ee5\u8a2d\u5b9a\u70ba `None`\u3001\u4ee5 [\u6a19\u8a18\u70ba MQTT \u88dd\u7f6e\u7684\u4e3b\u8981\u529f\u80fd]({naming_entities_url})\u3002",
+                        "platform": "\u6240\u8981\u8a2d\u5b9a\u7684\u5be6\u9ad4\u985e\u578b\u3002"
+                    },
+                    "description": "\u8a2d\u5b9a\u57fa\u672c {platform_label}\u5be6\u9ad4\u8a2d\u5b9a {entity_name_label}",
+                    "title": "\u8a2d\u5b9a MQTT \u88dd\u7f6e \"{mqtt_device}\""
+                },
+                "entity_platform_config": {
+                    "data": {
+                        "alarm_control_panel_code_mode": "\u8b66\u5831\u4ee3\u78bc\u9a57\u8b49\u6a21\u5f0f",
+                        "climate_feature_action": "\u76ee\u524d\u52d5\u4f5c\u652f\u63f4",
+                        "climate_feature_current_humidity": "\u76ee\u524d\u6fd5\u5ea6\u652f\u63f4",
+                        "climate_feature_current_temperature": "\u76ee\u524d\u6eab\u5ea6\u652f\u63f4",
+                        "climate_feature_fan_modes": "\u98a8\u6247\u6a21\u5f0f\u652f\u63f4",
+                        "climate_feature_power": "\u96fb\u6e90\u958b/\u95dc\u652f\u63f4",
+                        "climate_feature_preset_modes": "\u9810\u7f6e\u6a21\u5f0f\u652f\u63f4",
+                        "climate_feature_swing_horizontal_modes": "\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u652f\u63f4",
+                        "climate_feature_swing_modes": "\u64fa\u52d5\u6a21\u5f0f\u652f\u63f4",
+                        "climate_feature_target_humidity": "\u76ee\u6a19\u6fd5\u5ea6\u652f\u63f4",
+                        "climate_feature_target_temperature": "\u76ee\u6a19\u6eab\u5ea6\u652f\u63f4",
+                        "device_class": "\u88dd\u7f6e\u985e\u5225",
+                        "entity_category": "\u5be6\u9ad4\u985e\u5225",
+                        "fan_feature_direction": "\u65b9\u5411\u652f\u63f4",
+                        "fan_feature_oscillation": "\u64fa\u52d5\u652f\u63f4",
+                        "fan_feature_preset_modes": "\u9810\u7f6e\u6a21\u5f0f\u652f\u63f4",
+                        "fan_feature_speed": "\u901f\u5ea6\u652f\u63f4",
+                        "image_processing_mode": "\u5f71\u50cf\u8655\u7406\u6a21\u5f0f",
+                        "options": "\u65b0\u589e\u9078\u9805",
+                        "reports_position": "\u56de\u5831\u4f4d\u7f6e",
+                        "schema": "\u67b6\u69cb",
+                        "state_class": "\u72c0\u614b\u985e\u5225",
+                        "suggested_display_precision": "\u5efa\u8b70\u986f\u793a\u7cbe\u6e96\u5ea6",
+                        "supported_features": "\u652f\u63f4\u529f\u80fd",
+                        "temperature_unit": "\u6eab\u5ea6\u55ae\u4f4d",
+                        "unit_of_measurement": "\u6e2c\u91cf\u55ae\u4f4d",
+                        "water_heater_feature_current_temperature": "\u76ee\u524d\u6eab\u5ea6\u652f\u63f4",
+                        "water_heater_feature_power": "\u96fb\u6e90\u958b/\u95dc\u652f\u63f4"
+                    },
+                    "data_description": {
+                        "alarm_control_panel_code_mode": "\u8a2d\u5b9a\u8b66\u5831\u63a7\u5236\u9762\u677f\u5982\u4f55\u9a57\u8b49\u4ee3\u78bc\u3002\u672c\u5730\u4ee3\u78bc\u6703\u8207\u5be6\u9ad4\u4e00\u8d77\u8a2d\u5b9a\uff0c\u4e26\u7531 Home Assistant \u9032\u884c\u9a57\u8b49\u3002\u9060\u7aef\u4ee3\u78bc\u6703\u50b3\u9001\u5230\u88dd\u7f6e\u4e26\u9032\u884c\u9060\u7aef\u9a57\u8b49\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#code)",
+                        "climate_feature_action": "\u7a7a\u8abf\u652f\u63f4\u56de\u5831\u76ee\u524d\u52d5\u4f5c\u3002",
+                        "climate_feature_current_humidity": "\u7a7a\u8abf\u652f\u63f4\u56de\u5831\u76ee\u524d\u6fd5\u5ea6\u3002",
+                        "climate_feature_current_temperature": "\u7a7a\u8abf\u652f\u63f4\u56de\u5831\u76ee\u524d\u6eab\u5ea6\u3002",
+                        "climate_feature_fan_modes": "\u7a7a\u8abf\u652f\u63f4\u98a8\u6247\u6a21\u5f0f\u3002",
+                        "climate_feature_power": "\u7a7a\u8abf\u652f\u63f4\u96fb\u6e90\u958b\u555f \"on\" \u8207\u95dc\u9589 \"off\" \u547d\u4ee4\u3002",
+                        "climate_feature_preset_modes": "\u7a7a\u8abf\u652f\u63f4\u9810\u7f6e\u6a21\u5f0f\u3002",
+                        "climate_feature_swing_horizontal_modes": "\u7a7a\u8abf\u652f\u63f4\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u3002",
+                        "climate_feature_swing_modes": "\u7a7a\u8abf\u652f\u63f4\u64fa\u52d5\u6a21\u5f0f\u3002",
+                        "climate_feature_target_humidity": "\u7a7a\u8abf\u652f\u63f4\u8a2d\u5b9a\u76ee\u6a19\u6fd5\u5ea6\u3002",
+                        "climate_feature_target_temperature": "\u7a7a\u8abf\u652f\u63f4\u8a2d\u5b9a\u76ee\u6a19\u6eab\u5ea6\u3002",
+                        "device_class": "{platform}\u5be6\u9ad4\u7684\u88dd\u7f6e\u985e\u5225\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002 ]( {url} #device_class)",
+                        "entity_category": "\u5141\u8a31\u5c07\u5be6\u9ad4\u6a19\u8a18\u70ba\u88dd\u7f6e\u8a2d\u5b9a\u6216\u8a3a\u65b7\u8cc7\u6599\u3002\u5177\u6709\u985e\u5225\u7684\u5be6\u9ad4\u5c07\u4e0d\u6703\u9023\u7d50\u81f3\u96f2\u7aef\u3001Alexa \u6216 Google Assistant \u5143\u4ef6\uff0c\u4e5f\u4e0d\u6703\u5305\u542b\u5728\u5c0d\u88dd\u7f6e\u6216\u5340\u57df\u7684\u9593\u63a5\u64cd\u4f5c\u547c\u53eb\u4e2d\u3002\u611f\u6e2c\u5668\u5be6\u9ad4\u7121\u6cd5\u6307\u6d3e\u70ba\u88dd\u7f6e\u8a2d\u5b9a\u985e\u5225\u3002[\u8a73\u7d30\u8cc7\u8a0a\u3002]({registry_properties_url})",
+                        "fan_feature_direction": "\u98a8\u6247\u652f\u63f4\u65b9\u5411\u3002",
+                        "fan_feature_oscillation": "\u98a8\u6247\u652f\u63f4\u64fa\u52d5\u3002",
+                        "fan_feature_preset_modes": "\u98a8\u6247\u652f\u63f4\u9810\u7f6e\u6a21\u5f0f\u3002",
+                        "fan_feature_speed": "\u98a8\u6247\u652f\u63f4\u591a\u7a2e\u901f\u5ea6\u3002",
+                        "image_processing_mode": "\u9078\u64c7\u5982\u4f55\u63a5\u6536\u5f71\u50cf\u8cc7\u6599\u3002",
+                        "options": "\u5141\u8a31\u7684\u611f\u6e2c\u5668\u72c0\u614b\u6578\u503c\u9078\u9805\u3002\u611f\u6e2c\u5668\u7684\u88dd\u7f6e\u985e\u5225\u5fc5\u9808\u8a2d\u5b9a\u70ba\u5217\u8209 Enumeration\u3002\u9078\u9805\u4e0d\u80fd\u8207\u72c0\u614b\u985e\u5225\u6216\u6e2c\u91cf\u55ae\u4f4d\u4e00\u8d77\u4f7f\u7528\u3002",
+                        "reports_position": "\u5982\u679c\u95a5\u9580\u56de\u5831\u4f4d\u7f6e\u6216\u652f\u63f4\u8a2d\u5b9a\u4f4d\u7f6e\uff0c\u8acb\u8a2d\u5b9a\u6b64\u9078\u9805\u3002\u555f\u7528\u6b64\u9078\u9805\u5c07\u6539\u70ba\u767c\u5e03\u4f4d\u7f6e\uff0c\u800c\u4e0d\u662f\u7531 Payload \u958b\u555f \"open\"\u3001Payload \u95dc\u9589 \"close\" \u6216 Payload \u505c\u6b62 \"stop\" \u5b9a\u7fa9 Payload\u3002\u63a5\u6536\u8a0a\u606f\u6642\uff0c\u72c0\u614b\u4e3b\u984c\u5c07\u63a5\u53d7\u6578\u503c Payload \u6216\u5176\u4e2d\u4e00\u500b\u5df2\u8a2d\u5b9a\u7684\u72c0\u614b\u8a0a\u606f\u3002",
+                        "schema": "\u8981\u4f7f\u7528\u7684\u67b6\u69cb\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002 ]\uff08 {url} #comparison-of-light-mqtt-schemas\uff09",
+                        "state_class": "\u611f\u6e2c\u5668\u7684[\u72c0\u614b\u985e\u5225]({available_state_classes_url})\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#state_class)",
+                        "suggested_display_precision": "\u5728\u56db\u6368\u4e94\u5165\u5f8c\uff0c{platform}\u5be6\u9ad4\u72c0\u614b\u61c9\u4f7f\u7528\u7684\u5c0f\u6578\u4f4d\u6578\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#suggested_display_precision)",
+                        "supported_features": "\u5be6\u9ad4\u652f\u63f4\u7684\u529f\u80fd\u3002",
+                        "temperature_unit": "\u6c7a\u5b9a MQTT \u6eab\u63a7\u5668\u88dd\u7f6e\u6240\u4f7f\u7528\u7684\u672c\u6a5f\u6e2c\u91cf\u55ae\u4f4d\u3002",
+                        "unit_of_measurement": "\u5b9a\u7fa9\u6e2c\u91cf\u55ae\u4f4d\uff08\u5982\u679c\u6709\uff09\u3002",
+                        "water_heater_feature_current_temperature": "\u71b1\u6c34\u5668\u652f\u63f4\u56de\u5831\u76ee\u524d\u6eab\u5ea6\u3002",
+                        "water_heater_feature_power": "\u71b1\u6c34\u5668\u652f\u63f4\u96fb\u6e90\u958b\u555f \"on\" \u8207\u95dc\u9589 \"off\" \u547d\u4ee4\u3002"
+                    },
+                    "description": "\u8acb\u8a2d\u5b9a {platform} \u5be6\u9ad4 \"{entity}\" \u7684\u5177\u9ad4\u8a73\u7d30\u8cc7\u6599\uff1a",
+                    "sections": {
+                        "other_settings": {
+                            "data": {
+                                "suggested_display_precision": "\u5efa\u8b70\u986f\u793a\u7cbe\u6e96\u5ea6"
+                            },
+                            "data_description": {
+                                "suggested_display_precision": "\u5728\u56db\u6368\u4e94\u5165\u5f8c\uff0c{platform}\u5be6\u9ad4\u72c0\u614b\u61c9\u4f7f\u7528\u7684\u5c0f\u6578\u4f4d\u6578\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#suggested_display_precision)"
+                            },
+                            "name": "\u5176\u4ed6\u8a2d\u5b9a"
+                        }
+                    },
+                    "title": "\u8a2d\u5b9a MQTT \u88dd\u7f6e \"{mqtt_device}\""
+                },
+                "export": {
+                    "description": "\u532f\u51fa\u529f\u80fd\u5141\u8a31\u60a8\u5c07 MQTT \u88dd\u7f6e\u8a2d\u5b9a\u9077\u79fb\u81f3\u57fa\u65bc YAML \u7684\u8a2d\u5b9a\u6216 MQTT \u63a2\u7d22\u3002\u8a2d\u5b9a\u532f\u51fa\u4e5f\u6709\u52a9\u65bc\u6545\u969c\u6392\u9664\u3002",
+                    "menu_options": {
+                        "export_discovery": "\u532f\u51fa MQTT \u63a2\u7d22\u8cc7\u8a0a",
+                        "export_yaml": "\u532f\u51fa\u81f3 YAML \u8a2d\u5b9a"
+                    },
+                    "title": "\u532f\u51fa MQTT \u63a2\u7d22\u8a2d\u5b9a"
+                },
+                "export_discovery": {
+                    "data": {
+                        "discovery_payload": "\u63a2\u7d22 payload\uff1a",
+                        "discovery_topic": "\u63a2\u7d22\u4e3b\u984c"
+                    },
+                    "data_description": {
+                        "discovery_payload": "\u5305\u542b\u6709\u95dc MQTT \u88dd\u7f6e\u8cc7\u8a0a\u7684 JSON [\u63a2\u7d22 Payload]( {url} #device-discovery-payload)\u3002",
+                        "discovery_topic": "\u7528\u65bc\u767c\u5e03\u767c\u73fe Payload \u7684 [\u63a2\u7d22\u4e3b\u984c]( {url} #discovery-topic)\uff0c\u7528\u65bc\u89f8\u767c MQTT \u767c\u73fe\u3002\u767c\u4f48\u5230\u6b64\u4e3b\u984c\u7684\u7a7a Payload \u5c07\u522a\u9664\u88dd\u7f6e\u548c\u5df2\u767c\u73fe\u7684\u5be6\u9ad4\u3002"
+                    },
+                    "description": "\u5141\u8a31\u900f\u904e MQTT [\u63a2\u7d22]({url}#device-discovery-payload) \u9032\u884c\u8a2d\u5b9a\uff0c\u9700\u8981\u5c07\u63a2\u7d22 Payload \u767c\u5e03\u81f3\u63a2\u7d22\u4e3b\u984c\u3002\u8acb\u8907\u88fd\u4e0b\u65b9\u6b04\u4f4d\u8cc7\u8a0a\uff0cHome Assistant \u6703\u5075\u6e2c\u662f\u5426\u5df2\u900f\u904e MQTT \u63a2\u7d22\u4f86\u8a2d\u5b9a MQTT \u88dd\u7f6e\uff0c\u4e26\u63d0\u4f9b\u4fee\u5fa9\u6d41\u7a0b\u4ee5\u6e05\u7406\u591a\u9918\u7684\u5b50\u9805\u76ee\u3002\u5982\u679c\u4e0d\u60f3\u79fb\u9664\u5b50\u9805\u76ee\uff0c\u4e5f\u53ef\u4ee5\u9078\u64c7\u8b8a\u66f4\u8b58\u5225\u78bc\u3002",
+                    "title": "\u532f\u51fa MQTT \u63a2\u7d22\u8a2d\u5b9a"
+                },
+                "export_yaml": {
+                    "data": {
+                        "yaml": "\u8907\u88fd\u4ee5\u4e0b YAML \u8a2d\u5b9a\uff1a"
+                    },
+                    "data_description": {
+                        "yaml": "\u5c07 YAML \u8a2d\u5b9a\u8f38\u5165\u65bc [configuration.yaml]({url}#yaml-configuration-listed-per-item) \u4e2d\u3002"
+                    },
+                    "description": "\u60a8\u53ef\u4ee5\u8907\u88fd\u4e0b\u65b9\u7684\u8a2d\u5b9a\u4e26\u653e\u5165 configuration.yaml \u6a94\u6848\u3002Home Assistant \u6703\u5075\u6e2c\u662f\u5426\u5df2\u900f\u904e YAML \u8a2d\u5b9a MQTT \u88dd\u7f6e\uff0c\u4e26\u63d0\u4f9b\u4fee\u5fa9\u6d41\u7a0b\u4ee5\u6e05\u7406\u591a\u9918\u7684\u5b50\u9805\u76ee\u3002\u5982\u679c\u4e0d\u60f3\u79fb\u9664\u5b50\u9805\u76ee\uff0c\u4e5f\u53ef\u4ee5\u9078\u64c7\u8b8a\u66f4\u8b58\u5225\u78bc\u3002",
+                    "title": "\u532f\u51fa MQTT \u63a2\u7d22\u8a2d\u5b9a"
+                },
+                "mqtt_platform_config": {
+                    "data": {
+                        "available_tones": "\u53ef\u7528\u97f3\u8abf",
+                        "blue_template": "\u85cd\u8272\u6a21\u677f",
+                        "brightness_template": "\u4eae\u5ea6\u6a21\u677f",
+                        "code": "\u8b66\u5831\u4ee3\u78bc",
+                        "code_arm_required": "\u9700\u8981\u8b66\u6212\u4ee3\u78bc",
+                        "code_disarm_required": "\u9700\u8981\u89e3\u9664\u8b66\u6212\u4ee3\u78bc",
+                        "code_format": "\u7a0b\u5f0f\u78bc\u683c\u5f0f",
+                        "code_trigger_required": "\u9700\u8981\u89f8\u767c\u4ee3\u78bc",
+                        "color_temp_template": "\u8272\u6eab\u6a21\u677f",
+                        "command_off_template": "\u547d\u4ee4 \"\u95dc\u9589\" \u6a21\u677f",
+                        "command_on_template": "\u547d\u4ee4 \"\u958b\u555f\" \u6a21\u677f",
+                        "command_template": "\u547d\u4ee4\u6a21\u677f",
+                        "command_topic": "\u547d\u4ee4\u4e3b\u984c",
+                        "content_type": "\u5167\u5bb9\u985e\u578b",
+                        "force_update": "\u5f37\u5236\u66f4\u65b0",
+                        "green_template": "\u7da0\u8272\u6a21\u677f",
+                        "image_encoding": "\u5f71\u50cf\u7de8\u78bc",
+                        "image_topic": "\u5f71\u50cf\u4e3b\u984c",
+                        "last_reset_value_template": "\u6700\u5f8c\u91cd\u7f6e\u6578\u503c\u6a21\u677f",
+                        "max": "\u6700\u5927\u503c",
+                        "min": "\u6700\u5c0f\u503c",
+                        "mode": "\u6a21\u5f0f",
+                        "mode_command_template": "\u64cd\u4f5c\u6a21\u5f0f\u547d\u4ee4\u6a21\u677f",
+                        "mode_command_topic": "\u64cd\u4f5c\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c",
+                        "mode_state_template": "\u64cd\u4f5c\u6a21\u5f0f\u6578\u503c\u6a21\u677f",
+                        "mode_state_topic": "\u64cd\u4f5c\u6a21\u5f0f\u72c0\u614b\u4e3b\u984c",
+                        "modes": "\u652f\u63f4\u7684\u64cd\u4f5c\u6a21\u5f0f",
+                        "on_command_type": "ON \u547d\u4ee4\u985e\u578b",
+                        "optimistic": "\u6a02\u89c0\u9810\u4f30",
+                        "options": "\u8a2d\u5b9a\u9078\u9805",
+                        "payload_off": "Payload \"off\"",
+                        "payload_on": "Payload \"on\"",
+                        "payload_press": "Payload \u6309\u4e0b \"press\"",
+                        "payload_reset": "Payload \u91cd\u7f6e \"reset\"",
+                        "position_closed": "\u4f4d\u7f6e\u95dc\u9589 \"closed\"",
+                        "position_open": "\u4f4d\u7f6e\u958b\u555f \"open\"",
+                        "qos": "QoS",
+                        "red_template": "\u7d05\u8272\u6a21\u677f",
+                        "retain": "\u4fdd\u7559",
+                        "state_off": "\u72c0\u614b\u95dc\u9589 \"off\"",
+                        "state_on": "\u72c0\u614b\u958b\u555f \"on\"",
+                        "state_template": "\u72c0\u614b\u6a21\u677f",
+                        "state_topic": "\u72c0\u614b\u4e3b\u984c",
+                        "state_value_template": "\u72c0\u614b\u503c\u6a21\u677f",
+                        "step": "\u6b65\u9032",
+                        "support_duration": "\u6301\u7e8c\u6642\u9593\u652f\u63f4",
+                        "support_volume_set": "\u8a2d\u5b9a\u97f3\u91cf\u652f\u63f4",
+                        "supported_color_modes": "\u652f\u63f4\u984f\u8272\u6a21\u5f0f",
+                        "timezone": "\u6642\u5340",
+                        "url_template": "\u7db2\u5740\u6a21\u677f",
+                        "url_topic": "\u7db2\u5740\u4e3b\u984c",
+                        "value_template": "\u6578\u503c\u6a21\u677f"
+                    },
+                    "data_description": {
+                        "available_tones": "\u8b66\u5831\u652f\u63f4\u97f3\u8abf\u3002`tone` \u8b8a\u6578\u5c07\u53ef\u65bc\u547d\u4ee4\u6a21\u677f \"Command template\" \u8a2d\u5b9a\u4e2d\u4f7f\u7528\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#available_tones)",
+                        "blue_template": "[\u6a21\u677f]({value_templating_url}) \u5f9e\u72c0\u614b\u6709\u6548\u8ca0\u8f09 Payload \u503c\u4e2d\u63d0\u53d6\u85cd\u8272\u3002\u6a21\u677f\u7684\u9810\u671f\u7d50\u679c\u662f 0-255 \u7bc4\u570d\u5167\u7684\u6574\u6578\u3002",
+                        "brightness_template": "[\u6a21\u677f]({value_templating_url}) \u5f9e\u72c0\u614b\u6709\u6548\u8ca0\u8f09 Payload \u503c\u4e2d\u63d0\u53d6\u4eae\u5ea6\u3002\u6a21\u677f\u7684\u9810\u671f\u7d50\u679c\u662f 0-255 \u7bc4\u570d\u5167\u7684\u6574\u6578\u3002",
+                        "code": "\u6307\u5b9a\u4e00\u500b\u4ee3\u78bc\u4f86\u555f\u7528\u6216\u505c\u7528\u524d\u7aef\u7684\u8b66\u5831\u3002\u8acb\u6ce8\u610f\uff0c\u5982\u679c\u4ee3\u78bc\u9a57\u8b49\u5931\u6557\uff0c\u5c07\u6703\u963b\u6b62\u5411\u9060\u7aef\u88dd\u7f6e\u767c\u9001 MQTT \u8a0a\u606f\u6307\u4ee4\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#code)",
+                        "code_arm_required": "\u5982\u679c\u8a2d\u5b9a\uff0c\u5247\u9700\u8981\u4ee3\u78bc\u4f86\u555f\u52d5\u8b66\u5831\u3002\u5047\u5982\u679c\u672a\u8a2d\u5b9a\uff0c\u5247\u4e0d\u6703\u9a57\u8b49\u4ee3\u78bc\u3002",
+                        "code_disarm_required": "\u5982\u679c\u8a2d\u5b9a\uff0c\u5247\u9700\u8981\u4ee3\u78bc\u4f86\u89e3\u9664\u8b66\u5831\u3002\u5047\u5982\u679c\u672a\u8a2d\u5b9a\uff0c\u5247\u4e0d\u6703\u9a57\u8b49\u4ee3\u78bc\u3002",
+                        "code_format": "\u7528\u65bc\u5728\u57f7\u884c\u958b\u555f\u3001\u9396\u5b9a\u6216\u89e3\u9396 MQTT \u9580\u9396\u64cd\u4f5c\u6642\uff0c\u9a57\u8b49\u6240\u63d0\u4f9b\u4ee3\u78bc\u7684\u6b63\u898f\u8868\u793a\u5f0f\u3002[\u8a73\u7d30\u8cc7\u8a0a\u3002]({url}#code_format)",
+                        "code_trigger_required": "\u5982\u679c\u8a2d\u5b9a\uff0c\u5247\u9700\u8981\u4ee3\u78bc\u4f86\u624b\u52d5\u89f8\u767c\u8b66\u5831\u3002\u5047\u5982\u679c\u672a\u8a2d\u5b9a\uff0c\u5247\u4e0d\u6703\u9a57\u8b49\u4ee3\u78bc\u3002",
+                        "color_temp_template": "[\u6a21\u677f]({value_templating_url}) \u5f9e\u72c0\u614b\u6709\u6548\u8ca0\u8f09 Payload \u503c\u4e2d\u63d0\u53d6\u514b\u8033\u6587\u8272\u6eab\u3002\u6a21\u677f\u7684\u9810\u671f\u7d50\u679c\u662f\u6574\u6578\u3002",
+                        "command_off_template": "\"\u95dc\u9589\" \u72c0\u614b\u8b8a\u66f4\u7684[\u6a21\u677f]({command_templating_url})\u3002\u53ef\u7528\u8b8a\u6578\u70ba\uff1a`state` \u8207 `transition`\u3002",
+                        "command_on_template": "\u300c\u958b\u555f\u300d\u72c0\u614b\u8b8a\u66f4\u7684[\u6a21\u677f]({command_templating_url})\u3002\u53ef\u7528\u8b8a\u6578\uff1a`state`\u3001`brightness`\u3001`color_temp`\u3001`red`\u3001`green`\u3001`blue`\u3001`hue`\u3001`sat`\u3001`flash`\u3001`transition` \u548c `effect`\u3002`red`\u3001`green`\u3001`blue` \u548c `brightness` \u7684\u503c\u4ee5 0-255 \u7bc4\u570d\u5167\u7684\u6574\u6578\u63d0\u4f9b\u3002`hue` \u7684\u503c\u4ee5 0-360 \u7bc4\u570d\u5167\u7684\u6d6e\u9ede\u6578\u63d0\u4f9b\u3002`sat` \u7684\u503c\u4ee5 0-100 \u7bc4\u570d\u5167\u7684\u6d6e\u9ede\u6578\u63d0\u4f9b\u3002`color_temp` \u7684\u503c\u4ee5\u8868\u793a\u514b\u8033\u6587\u55ae\u4f4d\u7684\u6574\u6578\u63d0\u4f9b\u3002",
+                        "command_template": "\u5728\u547d\u4ee4\u4e3b\u984c\u4e2d\u7528\u65bc\u8f49\u8b6f\u8981\u767c\u5e03 Payload \u7684 [\u6a21\u677f]({command_templating_url})\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#command_template)",
+                        "command_topic": "\u7528\u65bc\u63a7\u5236 {platform} \u5be6\u9ad4\u7684\u767c\u5e03\u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#command_topic)",
+                        "content_type": "\u5728\u5f71\u50cf\u4e3b\u984c\u63a5\u6536\u5230\u7684\u5167\u5bb9\u985e\u578b\u6216\u5f71\u50cf\u8cc7\u6599\u3002",
+                        "force_update": "\u5373\u4f7f\u6578\u503c\u6c92\u6709\u6539\u8b8a\u3001\u4e5f\u6703\u50b3\u9001\u66f4\u65b0\u4e8b\u4ef6\u3002\u5982\u679c\u5e0c\u671b\u5728\u6b77\u53f2\u8a18\u9304\u4e2d\u7d00\u9304\u6709\u610f\u7fa9\u7684\u6578\u503c\u5716\u8868\uff0c\u5c07\u975e\u5e38\u6709\u7528\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#force_update)",
+                        "green_template": "[\u6a21\u677f]({value_templating_url}) \u5f9e\u72c0\u614b\u6709\u6548\u8ca0\u8f09 Payload \u503c\u4e2d\u63d0\u53d6\u7da0\u8272\u3002\u6a21\u677f\u7684\u9810\u671f\u7d50\u679c\u662f 0-255 \u7bc4\u570d\u5167\u7684\u6574\u6578\u3002",
+                        "image_encoding": "\u9078\u64c7\u5df2\u63a5\u6536\u5f71\u50cf\u8cc7\u6599\u7684\u7de8\u78bc",
+                        "image_topic": "\u8a02\u95b1\u7528\u65bc\u63a5\u6536\u5305\u542b\u5f71\u50cf\u8cc7\u6599\u8a0a\u606f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#image_topic)",
+                        "last_reset_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u6700\u5f8c\u91cd\u7f6e\u3002\u7576\u8a2d\u5b9a\u70ba\u6700\u5f8c\u91cd\u7f6e\u6642\u3001\u72c0\u614b\u985e\u5225\u9078\u9805\u5fc5\u9808\u70ba\u7e3d\u8a08\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#last_reset_value_template)",
+                        "max": "\u6700\u5927\u503c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#max)",
+                        "min": "\u6700\u5c0f\u503c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#min)",
+                        "mode": "\u63a7\u5236\u6578\u5b57\u5728 UI \u4e2d\u7684\u986f\u793a\u65b9\u5f0f\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#mode)",
+                        "mode_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u5b9a\u7fa9\u767c\u9001\u81f3\u64cd\u4f5c\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c\u7684\u64cd\u4f5c\u6a21\u5f0f\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#mode_command_template)",
+                        "mode_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u64cd\u4f5c\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#mode_command_topic)",
+                        "mode_state_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u64cd\u4f5c\u6a21\u5f0f\u72c0\u614b\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#mode_state_template)",
+                        "mode_state_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536\u64cd\u4f5c\u6a21\u5f0f\u72c0\u614b\u8a0a\u606f\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#mode_state_topic)",
+                        "modes": "\u652f\u63f4\u7684\u64cd\u4f5c\u6a21\u5f0f\u5217\u8868\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#modes)",
+                        "on_command_type": "\u5b9a\u7fa9\u4f55\u6642\u50b3\u9001 Payload \"on\"\u3002\u4f7f\u7528 \"Last\"\uff08\u9810\u8a2d\u503c\uff09\u6642\uff0c\u6703\u5148\u50b3\u9001\u6240\u6709\u6a23\u5f0f\uff08\u4eae\u5ea6\u3001\u984f\u8272\u7b49\uff09\u4e3b\u984c\uff0c\u7136\u5f8c\u518d\u5c07 Payload \"on\" \u50b3\u9001\u81f3\u547d\u4ee4\u4e3b\u984c\u3002\u4f7f\u7528 \"First\" \u6642\uff0c\u6703\u5148\u50b3\u9001 Payload \"on\"\uff0c\u7136\u5f8c\u518d\u50b3\u9001\u6240\u6709\u6a23\u5f0f\u4e3b\u984c\u3002\u4f7f\u7528 \"Brightness\" \u6642\uff0c\u50c5\u6703\u50b3\u9001\u4eae\u5ea6\u6307\u4ee4\u4f86\u958b\u555f\u71c8\u5149\uff0c\u800c\u4e0d\u6703\u50b3\u9001 Payload \"on\"\u3002",
+                        "optimistic": "\u5b9a\u7fa9{platform}\u5be6\u9ad4\u662f\u5426\u4ee5\u6a02\u89c0\u6a21\u5f0f\u5de5\u4f5c\u6a19\u8a8c\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002 ]( {url} #optimistic)",
+                        "options": "\u53ef\u9078\u64c7\u7684\u9078\u9805\u5217\u8868\u3002",
+                        "payload_off": "\u8868\u793a \"off\" \u72c0\u614b\u7684 Payload\u3002",
+                        "payload_on": "\u8868\u793a \"on\" \u72c0\u614b\u7684 Payload\u3002",
+                        "payload_press": "\u89f8\u767c\u6309\u9215\u6642\u50b3\u9001\u7684 Payload\u3002",
+                        "payload_reset": "\u5728\u72c0\u614b\u4e3b\u984c\u63a5\u6536\u5230\u7684\u6709\u6548\u8ca0\u8f09  Payload\uff0c\u6703\u5c07\u5be6\u9ad4\u91cd\u7f6e\u70ba\u672a\u77e5\u72c0\u614b\u3002",
+                        "position_closed": "\u4ee3\u8868\u95dc\u9589\u4f4d\u7f6e\u7684\u6578\u503c\u3002\u7576\u57f7\u884c\u64cd\u4f5c\u6642\u3001\u95a5\u9580\u7684\u4f4d\u7f6e\u5c07\u88ab\u7e2e\u6e1b\u81f3\uff08\u4f4d\u7f6e\u95dc\u9589 \"closed\"\u2026\u4f4d\u7f6e\u958b\u555f \"open\"\uff09\u7bc4\u570d\u3002\u800c\u7576\u63a5\u6536\u5230\u6578\u503c\u6642\u5247\u6703\u7e2e\u6e1b\u56de\u4f86\u3002",
+                        "position_open": "\u4ee3\u8868\u958b\u555f\u4f4d\u7f6e\u7684\u6578\u503c\u3002\u7576\u57f7\u884c\u64cd\u4f5c\u6642\u3001\u95a5\u9580\u7684\u4f4d\u7f6e\u5c07\u88ab\u7e2e\u6e1b\u81f3\uff08\u4f4d\u7f6e\u95dc\u9589 \"closed\"\u2026\u4f4d\u7f6e\u958b\u555f \"open\"\uff09\u7bc4\u570d\u3002\u800c\u7576\u63a5\u6536\u5230\u6578\u503c\u6642\u5247\u6703\u7e2e\u6e1b\u56de\u4f86\u3002",
+                        "qos": "{platform} \u5be6\u9ad4\u61c9\u4f7f\u7528\u4e4b QoS \u503c\u3002",
+                        "red_template": "[\u6a21\u677f]({value_templating_url}) \u5f9e\u72c0\u614b\u6709\u6548\u8ca0\u8f09 Payload \u503c\u4e2d\u63d0\u53d6\u7d05\u8272\u3002\u6a21\u677f\u7684\u9810\u671f\u7d50\u679c\u662f 0-255 \u7bc4\u570d\u5167\u7684\u6574\u6578\u3002",
+                        "retain": "\u9078\u64c7\u662f\u5426\u61c9\u5728 MQTT Broker \u4fdd\u7559\u7531 {platform} \u5be6\u9ad4\u767c\u5e03\u7684\u6578\u503c\u3002",
+                        "state_off": "\u8868\u793a\u95dc\u9589 \"off\" \u72c0\u614b\u7684\u50b3\u5165 Payload\u3002\u50c5\u7576\u72c0\u614b\u4e3b\u984c\u4e2d\u4ee3\u8868\u95dc\u9589 \"off\" \u72c0\u614b\u6578\u503c\u8207\u50b3\u9001\u81f3\u547d\u4ee4\u4e3b\u984c\u4ee5\u95dc\u9589\u88dd\u7f6e\u7684\u6578\u503c\u4e0d\u540c\u6642\u4f7f\u7528\u3002",
+                        "state_on": "\u8868\u793a\u958b\u555f \"on\" \u72c0\u614b\u7684\u50b3\u5165 Payload\u3002\u50c5\u7576\u72c0\u614b\u4e3b\u984c\u4e2d\u4ee3\u8868\u958b\u555f \"on\" \u72c0\u614b\u6578\u503c\u8207\u50b3\u9001\u81f3\u547d\u4ee4\u4e3b\u984c\u4ee5\u958b\u555f\u88dd\u7f6e\u7684\u6578\u503c\u4e0d\u540c\u6642\u4f7f\u7528\u3002",
+                        "state_template": "[\u6a21\u677f]({value_templating_url}) \u5f9e\u72c0\u614b\u8ca0\u8f09 Payload \u503c\u4e2d\u64f7\u53d6\u72c0\u614b\u3002",
+                        "state_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536{platform}\u72c0\u614b\u6578\u503c\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#state_topic)",
+                        "step": "\u6b65\u9032\u503c\u3002\u6700\u5c0f\u503c 0.001\u3002",
+                        "support_duration": "\u8b66\u5831\u652f\u63f4\u8a2d\u5b9a\u6301\u7e8c\u6642\u9593\uff08\u79d2\uff09`duration` \u8b8a\u6578\u5c07\u53ef\u65bc\u547d\u4ee4\u6a21\u677f \"Command template\" \u8a2d\u5b9a\u4e2d\u4f7f\u7528\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#support_duration)",
+                        "support_volume_set": "\u8b66\u5831\u652f\u63f4\u8a2d\u5b9a\u97f3\u91cf\u3002`volume_level` \u8b8a\u6578\u5c07\u53ef\u65bc\u547d\u4ee4\u6a21\u677f \"Command template\" \u8a2d\u5b9a\u4e2d\u4f7f\u7528\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#support_volume_set)",
+                        "supported_color_modes": "\u71c8\u5149\u652f\u63f4\u7684\u8272\u5f69\u6a21\u5f0f\u6e05\u55ae\u3002\u53ef\u80fd\u7684\u8272\u5f69\u6a21\u5f0f\u6709\u958b/\u95dc\u3001\u4eae\u5ea6\u3001\u8272\u6eab\u3001HS\u3001XY\u3001RGB\u3001RGBW\u3001RGBWW\u3001\u767d\u8272\u3002\u8acb\u6ce8\u610f\uff0c\u5982\u679c\u4f7f\u7528\u4e86\u958b\u95dc\u6216\u4eae\u5ea6\uff0c\u5247\u5fc5\u9808\u662f\u5217\u8868\u4e2d\u7684\u552f\u4e00\u503c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#supported_color_modes)",
+                        "timezone": "\u8a2d\u5b9a\u70ba\u6709\u6548\u7684 [IANA \u6642\u5340\u8b58\u5225\u78bc]({tz_abbr_url})\u3002\u5982\u679c\u65e5\u671f/\u6642\u9593\u7d50\u69cb\u5df2\u900f\u904e\u72c0\u614b\u66f4\u65b0\u63d0\u4f9b\u6642\u5340\u8cc7\u8a0a\uff0c\u8acb\u52ff\u8a2d\u5b9a\u6b64\u9078\u9805\u3002",
+                        "url_template": "[\u6a21\u677f]({value_templating_url}) \u5f9e\u63a5\u6536\u7684\u7db2\u5740\u4e3b\u984c Payload \u503c\u4e2d\u64f7\u53d6\u7db2\u5740\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#url_template)",
+                        "url_topic": "\u8a02\u95b1\u7528\u65bc\u63a5\u6536\u5305\u542b\u5f71\u50cf\u7db2\u5740\u8a0a\u606f\u7684 MQTT \u4e3b\u984c\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#url_topic)",
+                        "value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6{platform}\u5be6\u9ad4\u6578\u503c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#value_template)"
+                    },
+                    "description": "\u8acb\u8a2d\u5b9a {platform} \u5be6\u9ad4 \"{entity}\" \u7684 MQTT \u5177\u9ad4\u8a73\u7d30\u8cc7\u6599\uff1a",
+                    "sections": {
+                        "alarm_control_panel_payload_settings": {
+                            "data": {
+                                "payload_arm_away": "Payload \u96e2\u5bb6\u8b66\u6212 \"arm away\"",
+                                "payload_arm_custom_bypass": "Payload \u5ffd\u7565\u81ea\u8a02\u8b66\u6212 \"arm custom bypass\"",
+                                "payload_arm_disarm": "Payload \u89e3\u9664\u8b66\u6212 \"disarm\"",
+                                "payload_arm_home": "Payload \u5c45\u5bb6\u8b66\u6212 \"arm home\"",
+                                "payload_arm_night": "Payload \u591c\u9593\u8b66\u6212 \"arm night\"",
+                                "payload_arm_vacation": "Payload \u5ea6\u5047\u8b66\u6212 \"arm vacation\"",
+                                "payload_trigger": "Payload \u89f8\u767c\u8b66\u5831 \"trigger alarm\""
+                            },
+                            "data_description": {
+                                "payload_arm_away": "\u767c\u51fa\u96e2\u5bb6\u8b66\u6212 \"arm away\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_arm_custom_bypass": "\u767c\u51fa\u5ffd\u7565\u81ea\u8a02\u8b66\u6212 \"arm custom bypass\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_arm_disarm": "\u767c\u51fa\u89e3\u9664\u8b66\u6212 \"disarm\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_arm_home": "\u767c\u51fa\u5c45\u5bb6\u8b66\u6212 \"arm home\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_arm_night": "\u767c\u51fa\u591c\u9593\u8b66\u6212 \"arm night\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_arm_vacation": "\u767c\u51fa\u5ea6\u5047\u8b66\u6212 \"arm vacation\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_trigger": "\u767c\u51fa\u8b66\u5831\u89f8\u767c \"trigger alarm\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684\u6709\u6548\u8ca0\u8f09  Payload\u3002"
+                            },
+                            "name": "\u8b66\u5831\u63a7\u5236\u9762\u677f Payload \u8a2d\u5b9a"
+                        },
+                        "climate_action_settings": {
+                            "data": {
+                                "action_template": "\u52d5\u4f5c\u6a21\u677f",
+                                "action_topic": "\u52d5\u4f5c\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "action_template": "[\u6a21\u677f]({value_templating_url}) \u7528\u65bc\u6e32\u67d3\u5728\u64cd\u4f5c\u4e3b\u984c\u4e0a\u63a5\u6536\u5230\u7684\u6578\u503c\u3002",
+                                "action_topic": "\u8a02\u95b1\u76ee\u524d\u64cd\u4f5c\u8b8a\u66f4\u7684 MQTT \u4e3b\u984c\u3002\u5047\u5982\u8a2d\u5b9a\u6b64\u4e3b\u984c\uff0c\u7a7a\u8abf\u5716\u8868\u5c07\u6703\u4f7f\u7528\u6536\u5230\u7684\u6578\u503c\u4f5c\u70ba\u8cc7\u6599\u4f86\u6e90\u3002\"None\" Payload \u5c07\u6703\u91cd\u7f6e\u76ee\u524d\u64cd\u4f5c\u72c0\u614b\u3001\u7a7a\u767d Payload \u5c07\u6703\u906d\u5230\u5ffd\u7565\u3002\u6709\u6548\u7684\u64cd\u4f5c\u6578\u503c\u70ba\uff1a\u95dc\u9589 \"off\"\u3001\u6696\u6c23 \"heating\"\u3001\u5236\u51b7 \"cooling\"\u3001\u9664\u6fd5 \"drying\"\u3001\u9592\u7f6e \"idle\" \u8207\u9001\u98a8 \"fan\"\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#action_topic)"
+                            },
+                            "name": "\u76ee\u524d\u52d5\u4f5c\u8a2d\u5b9a"
+                        },
+                        "climate_fan_mode_settings": {
+                            "data": {
+                                "fan_mode_command_template": "\u98a8\u6247\u6a21\u5f0f\u547d\u4ee4\u6a21\u677f",
+                                "fan_mode_command_topic": "\u98a8\u6247\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c",
+                                "fan_mode_state_template": "\u98a8\u6247\u6a21\u5f0f\u72c0\u614b\u6a21\u677f",
+                                "fan_mode_state_topic": "\u98a8\u6247\u6a21\u5f0f\u72c0\u614b\u4e3b\u984c",
+                                "fan_modes": "\u98a8\u901f\u6a21\u5f0f"
+                            },
+                            "data_description": {
+                                "fan_mode_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u98a8\u6247\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "fan_mode_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u98a8\u6247\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#fan_mode_command_topic)",
+                                "fan_mode_state_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u7a7a\u8abf\u98a8\u6247\u6a21\u5f0f\u6578\u503c\u3002",
+                                "fan_mode_state_topic": "\u8a02\u95b1\u7528\u65bc\u63a5\u6536\u7a7a\u8abf\u98a8\u6247\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#fan_mode_state_topic)",
+                                "fan_modes": "\u7a7a\u8abf\u53ef\u57f7\u884c\u7684\u98a8\u6247\u6a21\u5f0f\u5217\u8868\u3002\u5e38\u898b\u7684\u98a8\u6247\u6a21\u5f0f\u53ca\u7ffb\u8b6f\u5305\u62ec\u95dc\u9589 `off`\u3001\u958b\u555f `on`\u3001\u81ea\u52d5 `auto`\u3001\u4f4e\u98a8\u901f `low`\u3001\u4e2d\u98a8\u901f `medium`\u3001\u9ad8\u98a8\u901f\u3001\u4e2d\u9593 `middle`\u3001\u96c6\u4e2d `focus`\u8207\u64f4\u6563 `diffuse`\u3002"
+                            },
+                            "name": "\u98a8\u6247\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "climate_power_settings": {
+                            "data": {
+                                "payload_off": "Payload \"off\"",
+                                "payload_on": "Payload \"on\"",
+                                "power_command_template": "\u96fb\u6e90\u547d\u4ee4\u6a21\u677f",
+                                "power_command_topic": "\u96fb\u6e90\u547d\u4ee4\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "payload_off": "\u8868\u793a \"off\" \u72c0\u614b\u7684 Payload\u3002",
+                                "payload_on": "\u8868\u793a \"on\" \u72c0\u614b\u7684 Payload\u3002",
+                                "power_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u96fb\u6e90\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002`value`\u53c3\u6578\u70ba Payload \u958b\u555f \"on\" \u6216 Payload \u95dc\u9589 \"off\" \u8a2d\u5b9a\u7684 Payload\u3002",
+                                "power_command_topic": "\u7528\u4ee5\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u64cd\u4f5c\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002\u50b3\u9001\u8a2d\u5b9a\u70ba Payload \u958b\u555f \"on\" \u6216 Payload \u95dc\u9589 \"off\" \u7684 Payload\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#power_command_topic)"
+                            },
+                            "name": "\u96fb\u6e90\u8a2d\u5b9a"
+                        },
+                        "climate_preset_mode_settings": {
+                            "data": {
+                                "preset_mode_command_template": "\u9810\u7f6e\u6a21\u5f0f\u547d\u4ee4\u6a21\u677f",
+                                "preset_mode_command_topic": "\u9810\u7f6e\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c",
+                                "preset_mode_state_topic": "\u9810\u7f6e\u6a21\u5f0f\u72c0\u614b\u4e3b\u984c",
+                                "preset_mode_value_template": "\u9810\u7f6e\u6a21\u5f0f\u6578\u503c\u6a21\u677f",
+                                "preset_modes": "\u9810\u7f6e\u6a21\u5f0f"
+                            },
+                            "data_description": {
+                                "preset_mode_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u9810\u7f6e\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "preset_mode_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u9810\u7f6e\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "\u8a02\u95b1\u7528\u65bc\u63a5\u6536\u98a8\u6247\u9810\u8a2d\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u98a8\u6247\u9810\u7f6e\u6a21\u5f0f\u6578\u503c\u3002",
+                                "preset_modes": "\u7a7a\u8abf\u53ef\u57f7\u884c\u7684\u9810\u7f6e\u6a21\u5f0f\u5217\u8868\u3002\u5e38\u898b\u9810\u7f6e\u6a21\u5f0f\u53ca\u7ffb\u8b6f\u5305\u62ec\u7121 `none`\u3001\u96e2\u5bb6 `away`\u3001\u7bc0\u80fd `eco`\u3001\u5168\u901f `boost`\u3001\u8212\u9069 `comfort`\u3001\u5728\u5bb6 `home`\u3001\u7761\u7720 `sleep` \u53ca\u6d3b\u52d5 `activity`\u3002"
+                            },
+                            "name": "\u9810\u7f6e\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "climate_swing_horizontal_mode_settings": {
+                            "data": {
+                                "swing_horizontal_mode_command_template": "\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u547d\u4ee4\u6a21\u677f",
+                                "swing_horizontal_mode_command_topic": "\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c",
+                                "swing_horizontal_mode_state_template": "\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u72c0\u614b\u6a21\u677f",
+                                "swing_horizontal_mode_state_topic": "\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u72c0\u614b\u4e3b\u984c",
+                                "swing_horizontal_modes": "\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f"
+                            },
+                            "data_description": {
+                                "swing_horizontal_mode_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u65bc\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "swing_horizontal_mode_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#swing_horizontal_mode_command_topic)",
+                                "swing_horizontal_mode_state_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url})  \u4ee5\u64f7\u53d6\u7a7a\u8abf\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u6578\u503c\u3002",
+                                "swing_horizontal_mode_state_topic": "\u8a02\u95b1\u7528\u65bc\u63a5\u6536\u7a7a\u8abf\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#swing_horizontal_mode_state_topic)",
+                                "swing_horizontal_modes": "\u7a7a\u8abf\u53ef\u57f7\u884c\u7684\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u5217\u8868\u3002\u5e38\u898b\u7684\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u53ca\u7ffb\u8b6f\u5305\u62ec\u95dc\u9589 `off` \u8207\u958b\u555f `on`\u3002"
+                            },
+                            "name": "\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "climate_swing_mode_settings": {
+                            "data": {
+                                "swing_mode_command_template": "\u64fa\u52d5\u6a21\u5f0f\u547d\u4ee4\u6a21\u677f",
+                                "swing_mode_command_topic": "\u64fa\u52d5\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c",
+                                "swing_mode_state_template": "\u64fa\u52d5\u6a21\u5f0f\u72c0\u614b\u6a21\u677f",
+                                "swing_mode_state_topic": "\u64fa\u52d5\u6a21\u5f0f\u72c0\u614b\u4e3b\u984c",
+                                "swing_modes": "\u64fa\u52d5\u6a21\u5f0f"
+                            },
+                            "data_description": {
+                                "swing_mode_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u4ee5\u7d44\u6210\u8981\u5728\u6c34\u5e73\u64fa\u52d5\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "swing_mode_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u64fa\u52d5\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#swing_mode_command_topic)",
+                                "swing_mode_state_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url})  \u4ee5\u64f7\u53d6\u7a7a\u8abf\u64fa\u52d5\u6a21\u5f0f\u6578\u503c\u3002",
+                                "swing_mode_state_topic": "\u8a02\u95b1\u7528\u65bc\u63a5\u6536\u7a7a\u8abf\u64fa\u52d5\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#swing_mode_state_topic)",
+                                "swing_modes": "\u7a7a\u8abf\u53ef\u57f7\u884c\u7684\u64fa\u52d5\u6a21\u5f0f\u5217\u8868\u3002\u5e38\u898b\u7684\u64fa\u52d5\u6a21\u5f0f\u53ca\u7ffb\u8b6f\u5305\u62ec\u95dc\u9589 `off`\u3001\u958b\u555f `on`\u3001\u5782\u76f4\u64fa\u52d5 `vertical`\u3001\u6c34\u5e73\u64fa\u52d5 `horizontal` \u53ca\u5169\u8005 `both`\u3002"
+                            },
+                            "name": "\u64fa\u52d5\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "cover_payload_settings": {
+                            "data": {
+                                "payload_close": "Payload \u95dc\u9589 \"close\"",
+                                "payload_open": "Payload \u958b\u555f \"open\"",
+                                "payload_stop": "Payload \u505c\u6b62 \"stop\"",
+                                "payload_stop_tilt": "Payload \u505c\u6b62\u50be\u659c \"stop tilt\"",
+                                "state_closed": "\u72c0\u614b\u95dc\u9589 \"closed\"",
+                                "state_closing": "\u72c0\u614b\u95dc\u9589\u4e2d \"closing\"",
+                                "state_open": "\u72c0\u614b\u958b\u555f \"open\"",
+                                "state_opening": "\u72c0\u614b\u958b\u555f\u4e2d \"opening\"",
+                                "state_stopped": "\u72c0\u614b\u5df2\u505c\u6b62 \"stopped\""
+                            },
+                            "data_description": {
+                                "payload_close": "\u767c\u51fa\u95dc\u9589 \"close\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_open": "\u767c\u51fa\u958b\u555f \"open\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_stop": "\u767c\u51fa\u505c\u6b62 \"stop\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002\u4fdd\u7559\u7a7a\u767d\u4ee5\u505c\u7528\u505c\u6b62 \"stop\" \u529f\u80fd\u3002",
+                                "payload_stop_tilt": "\u767c\u51fa\u505c\u6b62\u50be\u659c \"stop tilt\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "state_closed": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u95dc\u9589 \"closed\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_closing": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u95dc\u9589\u4e2d \"closing\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_open": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u958b\u555f \"open\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_opening": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u958b\u555f\u4e2d \"opening\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_stopped": "\u5728\u72c0\u614b\u4e3b\u984c\u6536\u5230\u7684\u6709\u6548\u8ca0\u8f09 Payload\uff0c\u4ee3\u8868\u5df2\u505c\u6b62 \"stopped\" \u72c0\u614b\uff08\u9069\u7528\u65bc\u4e0d\u56de\u5831\u958b\u555f\u95dc\u9589 \"open\"/\"closed\" \u72c0\u614b\u7684\u9580\u7c3e\uff09\u3002"
+                            },
+                            "name": "\u8ca0\u8f09 Payload \u8a2d\u5b9a"
+                        },
+                        "cover_position_settings": {
+                            "data": {
+                                "position_closed": "\u4f4d\u7f6e\u95dc\u9589 \"closed\" \u6578\u503c",
+                                "position_open": "\u4f4d\u7f6e\u958b\u555f \"open\" \u6578\u503c",
+                                "position_template": "\u4f4d\u7f6e\u6578\u503c\u6a21\u677f",
+                                "position_topic": "\u4f4d\u7f6e\u72c0\u614b\u4e3b\u984c",
+                                "set_position_template": "\u8a2d\u5b9a\u4f4d\u7f6e\u6a21\u677f",
+                                "set_position_topic": "\u8a2d\u5b9a\u4f4d\u7f6e\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "position_closed": "\u8868\u793a\u5df2\u95dc\u9589 \"closed\" \u4f4d\u7f6e\u6578\u5b57\u3002",
+                                "position_open": "\u8868\u793a\u958b\u555f \"open\" \u4f4d\u7f6e\u6578\u5b57\u3002",
+                                "position_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url})  \u4f86\u63d0\u53d6\u4f4d\u7f6e\u4e3b\u984c\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002\u5728\u6a21\u677f\u4e2d\uff0c\u9084\u53ef\u4ee5\u4f7f\u7528\u4ee5\u4e0b\u8b8a\u6578\uff1a`entity_id`\u3001`position_open`\u3001`position_closed`\u3001`tilt_min` \u8207 `tilt_max`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#position_template)",
+                                "position_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536\u9580\u7c3e\u4f4d\u7f6e\u72c0\u614b\u8a0a\u606f\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#position_topic)",
+                                "set_position_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u5b9a\u7fa9\u8981\u50b3\u9001\u5230\u8a2d\u5b9a\u4f4d\u7f6e\u4e3b\u984c\u7684\u4f4d\u7f6e\u3002\u6a21\u677f\u4e2d\u53ef\u4ee5\u4f7f\u7528\u4ee5\u4e0b\u8b8a\u6578\uff1a`value` (\u7e2e\u653e\u76ee\u6a19\u4f4d\u7f6e)\u3001`entity_id`\u3001`position`\uff08\u76ee\u6a19\u4f4d\u7f6e\u767e\u5206\u6bd4\uff09\u3001`position_open`\u3001`position_closed`\u3001`tilt_min` \u8207 `tilt_max`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#set_position_template)",
+                                "set_position_topic": "\u7528\u65bc\u767c\u5e03\u4f4d\u7f6e\u547d\u4ee4\u7684 MQTT \u4e3b\u984c\u3002\u5047\u5982\u60f3\u4f7f\u7528\u4f4d\u7f6e\u4e3b\u984c\uff0c\u5247\u9084\u9700\u8981\u4f7f\u7528\u8a2d\u5b9a\u4f4d\u7f6e\u4e3b\u984c\u3002\u5982\u679c\u4f4d\u7f6e\u4e3b\u984c\u9700\u8981\u7684\u6578\u503c\u8207\u4f4d\u7f6e\u95dc\u9589 \"position closed\"\u3001\u4f4d\u7f6e\u958b\u555f \"position_open\" \u7bc4\u570d\u5167\u7684\u6578\u503c\u4e0d\u540c\uff0c\u8acb\u4f7f\u7528\u6a21\u677f\u3002\u5982\u679c\u672a\u5b9a\u7fa9\u6a21\u677f\uff0c\u4e14\u4f4d\u7f6e \"closed\" != 100 \u4e14\u4f4d\u7f6e \"open\" != 0\uff0c\u5247\u6703\u6839\u64da\u767e\u5206\u6bd4\u4f4d\u7f6e\u8a08\u7b97\u9069\u7576\u7684\u4f4d\u7f6e\u6578\u503c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#set_position_topic)"
+                            },
+                            "name": "\u4f4d\u7f6e\u8a2d\u5b9a"
+                        },
+                        "cover_tilt_settings": {
+                            "data": {
+                                "tilt_closed_value": "\u50be\u659c\u5df2\u95dc\u9589 \"closed\" \u6578\u503c",
+                                "tilt_command_template": "\u50be\u659c\u547d\u4ee4\u6a21\u677f",
+                                "tilt_command_topic": "\u50be\u659c\u547d\u4ee4\u4e3b\u984c",
+                                "tilt_max": "\u6700\u9ad8\u50be\u659c\u89d2",
+                                "tilt_min": "\u6700\u4f4e\u50be\u659c\u89d2",
+                                "tilt_opened_value": "\u50be\u659c\u5df2\u958b\u555f \"opened\" \u6578\u503c",
+                                "tilt_optimistic": "\u6a02\u89c0\u50be\u659c",
+                                "tilt_status_template": "\u50be\u659c\u6578\u503c\u6a21\u677f",
+                                "tilt_status_topic": "\u50be\u659c\u72c0\u614b\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "tilt_closed_value": "\u7576\u767e\u8449\u7a97\u8449\u7247\u50be\u659c\u95dc\u9589\u6642\uff0c\u5c07\u50b3\u9001\u81f3\u767e\u8449\u50be\u659c\u547d\u4ee4\u4e3b\u984c \"tilt command topic\" \u6578\u503c\u3002",
+                                "tilt_command_template": "[\u6a21\u677f({command_templating_url}) \u7528\u65bc\u5b9a\u7fa9\u8981\u50b3\u9001\u5230\u8a2d\u5b9a\u50be\u659c\u547d\u4ee4\u4e3b\u984c\u7684\u4f4d\u7f6e\u3002\u6a21\u677f\u4e2d\u53ef\u4ee5\u4f7f\u7528\u4ee5\u4e0b\u8b8a\u6578\uff1a`entity_id`\u3001`tilt_position`\uff08\u76ee\u6a19\u50be\u659c\u4f4d\u7f6e\u767e\u5206\u6bd4\uff09\u3001`position_open`\u3001`position_closed`\u3001`tilt_min` \u8207 `tilt_max`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#tilt_command_template)",
+                                "tilt_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u63a7\u5236\u9580\u7c3e\u8449\u7247\u50be\u659c\u89d2\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#tilt_command_topic)",
+                                "tilt_max": "\u6700\u5927\u50be\u659c\u6578\u503c\u3002",
+                                "tilt_min": "\u6700\u5c0f\u50be\u659c\u6578\u503c\u3002",
+                                "tilt_opened_value": "\u7576\u767e\u8449\u7a97\u8449\u7247\u50be\u659c\u958b\u555f\u6642\uff0c\u5c07\u50b3\u9001\u81f3\u767e\u8449\u50be\u659c\u547d\u4ee4\u4e3b\u984c \"tilt command topic\" \u6578\u503c\u3002",
+                                "tilt_optimistic": "\u5b9a\u7fa9\u50be\u659c\u529f\u80fd\u662f\u5426\u4ee5\u6a02\u89c0\u6a21\u5f0f\u904b\u4f5c\u7684\u6a19\u8a8c\u3002\u5982\u679c\u672a\u5b9a\u7fa9\u50be\u659c\u72c0\u614b\u4e3b\u984c\uff0c\u50be\u659c\u529f\u80fd\u9810\u8a2d\u6703\u4ee5\u6a02\u89c0\u6a21\u5f0f\u904b\u4f5c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#tilt_optimistic)",
+                                "tilt_status_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url})  \u4f86\u63d0\u53d6\u50be\u659c\u4e3b\u984c\u7684 Payload\u3002\u5728\u6a21\u677f\u4e2d\uff0c\u9084\u53ef\u4f7f\u7528\u4ee5\u4e0b\u8b8a\u6578\uff1a`entity_id`\u3001`position_open`\u3001`position_closed`\u3001`tilt_min` \u8207 `tilt_max`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#tilt_status_template)",
+                                "tilt_status_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536\u50be\u659c\u72c0\u614b\u66f4\u65b0\u6578\u503c\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#tilt_status_topic)"
+                            },
+                            "name": "\u50be\u659c\u8a2d\u5b9a"
+                        },
+                        "current_humidity_settings": {
+                            "data": {
+                                "current_humidity_template": "\u76ee\u524d\u6fd5\u5ea6\u6a21\u677f",
+                                "current_humidity_topic": "\u76ee\u524d\u6fd5\u5ea6\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "current_humidity_template": "\u5b9a\u7fa9[\u6a21\u677f] ({value_templating_url}) \u4ee5\u64f7\u53d6\u76ee\u524d\u6fd5\u5ea6\u6578\u503c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#current_humidity_template)",
+                                "current_humidity_topic": "\u7528\u65bc\u63a5\u6536\u76ee\u524d\u6fd5\u5ea6\u66f4\u65b0\u503c\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#current_humidity_topic)"
+                            },
+                            "name": "\u76ee\u524d\u6fd5\u5ea6\u8a2d\u5b9a"
+                        },
+                        "current_temperature_settings": {
+                            "data": {
+                                "current_temperature_template": "\u76ee\u524d\u6eab\u5ea6\u6a21\u677f",
+                                "current_temperature_topic": "\u76ee\u524d\u6eab\u5ea6\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "current_temperature_template": "\u5b9a\u7fa9[\u6a21\u677f] ({value_templating_url})  \u4ee5\u64f7\u53d6\u76ee\u524d\u6eab\u5ea6\u6578\u503c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#current_temperature_template)",
+                                "current_temperature_topic": "\u7528\u65bc\u63a5\u6536\u76ee\u524d\u6eab\u5ea6\u66f4\u65b0\u503c\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#current_temperature_topic)"
+                            },
+                            "name": "\u76ee\u524d\u6eab\u5ea6\u8a2d\u5b9a"
+                        },
+                        "fan_direction_settings": {
+                            "data": {
+                                "direction_command_template": "\u65b9\u5411\u547d\u4ee4\u6a21\u677f",
+                                "direction_command_topic": "\u65b9\u5411\u547d\u4ee4\u4e3b\u984c",
+                                "direction_state_topic": "\u65b9\u5411\u72c0\u614b\u4e3b\u984c",
+                                "direction_value_template": "\u65b9\u5411\u6578\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "direction_command_template": "[\u6a21\u677f]({command_templating_url})\uff0c\u7528\u65bc\u7d44\u5408\u8981\u767c\u4f48\u5230\u65b9\u5411\u547d\u4ee4\u4e3b\u984c\u7684 Payload\u3002\u6a21\u677f\u8b8a\u6578 `value` \u61c9\u8a72\u70ba\u6b63\u5411 `forward` \u6216\u53cd\u5411 `reverse`\u3002",
+                                "direction_command_topic": "\u7528\u4ee5\u767c\u5e03\u547d\u4ee4\u8b8a\u66f4\u98a8\u6247\u65b9\u5411\u547d\u4ee4\u7684 MQTT \u4e3b\u984c\u3002Payload \u53ef\u80fd\u70ba\u6b63\u5411 `forward` \u6216\u53cd\u5411 `reverse`\u3002\u4e26\u53ef\u900f\u904e\u65b9\u5411\u547d\u4ee4\u6a21\u677f\u9032\u884c\u81ea\u8a02\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#direction_command_topic)",
+                                "direction_state_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536\u98a8\u6247\u65b9\u5411\u72c0\u614b\u3002\u63a5\u6536\u7684\u72c0\u614b Payload \u70ba\u6b63\u5411 `forward` \u6216\u53cd\u5411 `reverse`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#oscillation_state_topic)",
+                                "direction_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u98a8\u6247\u65b9\u5411\u72c0\u614b\u6578\u503c\u3002\u6a21\u677f\u61c9\u8a72\u56de\u50b3\u6b63\u5411 `forward` \u6216\u53cd\u5411 `reverse`\u3002\u7576\u6a21\u677f\u56de\u50b3\u7a7a\u767d\u5b57\u4e32\u6642\uff0c\u5c07\u6703\u5ffd\u7565\u65b9\u5411\u3002"
+                            },
+                            "name": "\u65b9\u5411\u8a2d\u5b9a"
+                        },
+                        "fan_oscillation_settings": {
+                            "data": {
+                                "oscillation_command_template": "\u64fa\u52d5\u547d\u4ee4\u6a21\u677f",
+                                "oscillation_command_topic": "\u64fa\u52d5\u547d\u4ee4\u4e3b\u984c",
+                                "oscillation_state_topic": "\u64fa\u52d5\u72c0\u614b\u4e3b\u984c",
+                                "oscillation_value_template": "\u64fa\u52d5\u6578\u503c\u6a21\u677f",
+                                "payload_oscillation_off": "\u8ca0\u8f09 Payload \u64fa\u52d5\u95dc\u9589 \"oscillation off\"",
+                                "payload_oscillation_on": "\u8ca0\u8f09 Payload \u64fa\u52d5\u958b\u555f \"oscillation on\""
+                            },
+                            "data_description": {
+                                "oscillation_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u64fa\u52d5\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "oscillation_command_topic": "\u7528\u4ee5\u767c\u5e03\u547d\u4ee4\u8b8a\u66f4\u98a8\u6247\u64fa\u52d5\u72c0\u614b\u7684 MQTT \u4e3b\u984c\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#oscillation_command_topic)",
+                                "oscillation_state_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536\u98a8\u6247\u64fa\u52d5\u72c0\u614b\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#oscillation_state_topic)",
+                                "oscillation_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u98a8\u6247\u64fa\u52d5\u72c0\u614b\u6578\u503c\u3002",
+                                "payload_oscillation_off": "\u8868\u793a\u64fa\u52d5\u95dc\u9589 \"off\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "payload_oscillation_on": "\u8868\u793a\u64fa\u52d5\u958b\u555f \"on\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002"
+                            },
+                            "name": "\u64fa\u52d5\u8a2d\u5b9a"
+                        },
+                        "fan_preset_mode_settings": {
+                            "data": {
+                                "payload_reset_preset_mode": "\u8ca0\u8f09 Payload \u91cd\u7f6e\u9810\u7f6e\u6a21\u5f0f \"reset preset mode\"",
+                                "preset_mode_command_template": "\u9810\u7f6e\u6a21\u5f0f\u547d\u4ee4\u6a21\u677f",
+                                "preset_mode_command_topic": "\u9810\u7f6e\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c",
+                                "preset_mode_state_topic": "\u9810\u7f6e\u6a21\u5f0f\u72c0\u614b\u4e3b\u984c",
+                                "preset_mode_value_template": "\u9810\u7f6e\u6a21\u5f0f\u6578\u503c\u6a21\u677f",
+                                "preset_modes": "\u9810\u7f6e\u6a21\u5f0f"
+                            },
+                            "data_description": {
+                                "payload_reset_preset_mode": "\u7576\u5728\u767e\u5206\u6bd4\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u6642\uff0c\u6703\u5c07\u98a8\u6247\u9810\u7f6e\u6a21\u5f0f\u72c0\u614b\u5c6c\u6027\u91cd\u7f6e\u70ba\u672a\u77e5\u7684\u7279\u6b8a\u8ca0\u8f09 Payload\u3002",
+                                "preset_mode_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u9810\u7f6e\u6a21\u5f0f\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "preset_mode_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u98a8\u6247\u9810\u7f6e\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#preset_mode_command_topic)",
+                                "preset_mode_state_topic": "\u8a02\u95b1\u7528\u65bc\u63a5\u6536\u98a8\u6247\u9810\u8a2d\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#preset_mode_state_topic)",
+                                "preset_mode_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u98a8\u6247\u9810\u7f6e\u6a21\u5f0f\u6578\u503c\u3002",
+                                "preset_modes": "\u98a8\u6247\u53ef\u57f7\u884c\u7684\u9810\u7f6e\u6a21\u5f0f\u5217\u8868\u3002\u5e38\u898b\u7684\u4f8b\u5b50\u5305\u62ec\u81ea\u52d5\u3001\u667a\u80fd\u3001\u64fa\u98a8\u3001\u7bc0\u80fd\u8207\u5fae\u98a8\u7b49\u3002"
+                            },
+                            "name": "\u9810\u7f6e\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "fan_speed_settings": {
+                            "data": {
+                                "payload_reset_percentage": "\u8ca0\u8f09 Payload \u91cd\u7f6e\u767e\u5206\u6bd4 \"reset percentage\"",
+                                "percentage_command_template": "\u767e\u5206\u6bd4\u547d\u4ee4\u6a21\u677f",
+                                "percentage_command_topic": "\u767e\u5206\u6bd4\u547d\u4ee4\u4e3b\u984c",
+                                "percentage_state_topic": "\u767e\u5206\u6bd4\u72c0\u614b\u4e3b\u984c",
+                                "percentage_value_template": "\u767e\u5206\u6bd4\u503c\u6a21\u677f",
+                                "speed_range_max": "\u6700\u5927\u901f\u5ea6\u7bc4\u570d",
+                                "speed_range_min": "\u6700\u5c0f\u901f\u5ea6\u7bc4\u570d"
+                            },
+                            "data_description": {
+                                "payload_reset_percentage": "\u7576\u5728\u767e\u5206\u6bd4\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u6642\uff0c\u6703\u5c07\u98a8\u6247\u901f\u5ea6\u767e\u5206\u6bd4\u72c0\u614b\u5c6c\u6027\u91cd\u7f6e\u70ba\u672a\u77e5\u7684\u7279\u6b8a\u8ca0\u8f09 Payload\u3002",
+                                "percentage_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u767e\u5206\u6bd4\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "percentage_command_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u767c\u4f48\u547d\u4ee4\u4ee5\u57fa\u65bc\u767e\u5206\u6bd4\u8a2d\u5b9a\u8b8a\u66f4\u98a8\u6247\u8f49\u901f\u72c0\u614b\u3002\u8a72\u6578\u503c\u61c9\u8a72\u4ecb\u65bc \"\u901f\u5ea6\u7bc4\u570d\u6700\u5c0f\u503c\" \u8207 \"\u901f\u5ea6\u7bc4\u570d\u6700\u5927\u503c\"\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#percentage_command_topic)",
+                                "percentage_state_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536\u98a8\u6247\u8f49\u901f\u72c0\u614b\u3002\u8a72\u6578\u503c\u61c9\u8a72\u4ecb\u65bc \"\u901f\u5ea6\u7bc4\u570d\u6700\u5c0f\u503c\" \u8207 \"\u901f\u5ea6\u7bc4\u570d\u6700\u5927\u503c\"\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#percentage_state_topic)",
+                                "percentage_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u901f\u5ea6\u767e\u5206\u6bd4\u6578\u503c\u3002",
+                                "speed_range_max": "\u6578\u503c\u8f38\u51fa\u7bc4\u570d\u7684\u6700\u5927\u503c\uff08\u4ee3\u8868 100%\uff09\u3002\u767e\u5206\u6bd4\u6b65\u9032\u503c\u70ba 100 \u9664\u4ee5\u901f\u5ea6\u7bc4\u570d \"speed range\" \u5167\u7684\u901f\u5ea6\u6578\u503c\u3002",
+                                "speed_range_min": "\u6578\u503c\u8f38\u51fa\u7bc4\u570d\u7684\u6700\u5c0f\u503c\uff08\u4e0d\u5305\u62ec\u95dc\u9589\uff0c\u56e0\u6b64 speed_range_min - 1 \u4ee3\u8868 0%\uff09\u3002\u767e\u5206\u6bd4\u6b65\u9032\u503c\u70ba 100 \u9664\u4ee5\u901f\u5ea6\u7bc4\u570d \"speed range\" \u5167\u7684\u901f\u5ea6\u6578\u503c\u3002"
+                            },
+                            "name": "\u901f\u5ea6\u8a2d\u5b9a"
+                        },
+                        "light_brightness_settings": {
+                            "data": {
+                                "brightness": "\u5206\u96e2\u4eae\u5ea6",
+                                "brightness_command_template": "\u4eae\u5ea6\u547d\u4ee4\u6a21\u677f",
+                                "brightness_command_topic": "\u4eae\u5ea6\u547d\u4ee4\u4e3b\u984c",
+                                "brightness_scale": "\u4eae\u5ea6\u7b49\u7d1a",
+                                "brightness_state_topic": "\u4eae\u5ea6\u72c0\u614b\u4e3b\u984c",
+                                "brightness_value_template": "\u4eae\u5ea6\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "brightness": "\u5b9a\u7fa9\u7576\u652f\u63f4 RGB\u3001RGBW \u6216 RGBWW \u8272\u5f69\u6a21\u5f0f\u6642\uff0c\u71c8\u5149\u662f\u5426\u652f\u63f4\u4eae\u5ea6\u7684\u6a19\u8a8c\u3002",
+                                "brightness_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u4eae\u5ea6\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "brightness_command_topic": "\u5c07\u7528\u65bc\u63a7\u5236\u4eae\u5ea6\u7684\u767c\u5e03\u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#brightness_command_topic)",
+                                "brightness_scale": "\u5b9a\u7fa9\u6700\u9ad8\u4eae\u5ea6\u7684\u6700\u5927\u4eae\u5ea6\u503c\uff08\u5373 100%\uff09\u3002",
+                                "brightness_state_topic": "\u8a02\u95b1\u7684 MQTT \u4e3b\u984c\u4ee5\u63a5\u6536\u4eae\u5ea6\u72c0\u614b\u6578\u503c\u3002 [\u8a73\u7d30\u77ad\u89e3\u3002]({url}#brightness_state_topic)",
+                                "brightness_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u4eae\u5ea6\u6578\u503c\u3002"
+                            },
+                            "name": "\u4eae\u5ea6\u8a2d\u5b9a"
+                        },
+                        "light_color_mode_settings": {
+                            "data": {
+                                "color_mode_state_topic": "\u984f\u8272\u6a21\u5f0f\u72c0\u614b\u4e3b\u984c",
+                                "color_mode_value_template": "\u984f\u8272\u6a21\u5f0f\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "color_mode_state_topic": "\u8a02\u95b1\u63a5\u6536\u984f\u8272\u6a21\u5f0f\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002\u5982\u679c\u672a\u8a2d\u5b9a\u6b64\u9805\uff0c\u984f\u8272\u6a21\u5f0f\u5c07\u6839\u64da\u6700\u5f8c\u63a5\u6536\u5230\u7684\u6709\u6548\u984f\u8272\u6216\u8272\u6eab\u81ea\u52d5\u8a2d\u5b9a\u3002",
+                                "color_mode_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u8272\u5f69\u6a21\u5f0f\u6578\u503c\u3002"
+                            },
+                            "name": "\u984f\u8272\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "light_color_temp_settings": {
+                            "data": {
+                                "color_temp_command_template": "\u8272\u6eab\u547d\u4ee4\u6a21\u677f",
+                                "color_temp_command_topic": "\u8272\u6eab\u547d\u4ee4\u4e3b\u984c",
+                                "color_temp_state_topic": "\u8272\u6eab\u72c0\u614b\u4e3b\u984c",
+                                "color_temp_value_template": "\u8272\u6eab\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "color_temp_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u8272\u6eab\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "color_temp_command_topic": "\u5c07\u7528\u65bc\u63a7\u5236\u8272\u6eab\u7684\u767c\u5e03\u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#color_temp_command_topic)",
+                                "color_temp_state_topic": "\u8a02\u95b1\u4ee5\u63a5\u6536\u8272\u6eab\u72c0\u614b\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#color_temp_state_topic)",
+                                "color_temp_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6\u8272\u6eab\u6578\u503c\u3002"
+                            },
+                            "name": "\u8272\u6eab\u8a2d\u5b9a"
+                        },
+                        "light_effect_settings": {
+                            "data": {
+                                "effect": "\u7279\u6548",
+                                "effect_command_template": "\u7279\u6548\u547d\u4ee4\u6a21\u677f",
+                                "effect_command_topic": "\u7279\u6548\u547d\u4ee4\u4e3b\u984c",
+                                "effect_list": "\u7279\u6548\u5217\u8868",
+                                "effect_state_topic": "\u7279\u6548\u72c0\u614b\u4e3b\u984c",
+                                "effect_template": "\u7279\u6548\u6a21\u677f",
+                                "effect_value_template": "\u7279\u6548\u6578\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "effect": "\u5b9a\u7fa9\u71c8\u5149\u662f\u5426\u652f\u63f4\u7279\u6548\u7684\u6a19\u8a8c\u3002",
+                                "effect_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u7279\u6548\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "effect_command_topic": "\u7528\u65bc\u63a7\u5236\u71c8\u5149\u7279\u6548\u72c0\u614b\u7684\u767c\u5e03\u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#effect_command_topic)",
+                                "effect_list": "\u71c8\u5149\u652f\u63f4\u7684\u7279\u6548\u5217\u8868\u3002",
+                                "effect_state_topic": "\u8a02\u95b1\u4ee5\u63a5\u6536\u6548\u679c\u72c0\u614b\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#effect_state_topic)"
+                            },
+                            "name": "\u7279\u6548\u8a2d\u5b9a"
+                        },
+                        "light_hs_settings": {
+                            "data": {
+                                "hs_command_template": "HS \u547d\u4ee4\u6a21\u677f",
+                                "hs_command_topic": "HS \u547d\u4ee4\u4e3b\u984c",
+                                "hs_state_topic": "HS \u72c0\u614b\u4e3b\u984c",
+                                "hs_value_template": "HS \u6578\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "hs_command_template": "\u5b9a\u7fa9[\u6a21\u677f]({command_templating_url}) \u7d44\u6210\u5c07\u50b3\u9001\u5230 HS \u547d\u4ee4\u4e3b\u984c\u7684\u8a0a\u606f\u3002\u53ef\u7528\u8b8a\u6578\uff1a`hue` \u8207 `sat`\u3002",
+                                "hs_command_topic": "\u7528\u65bc\u767c\u4f48\u547d\u4ee4\u4ee5 HS \u683c\u5f0f\uff08\u8272\u8abf\u98fd\u548c\u5ea6\uff09\u66f4\u6539\u71c8\u5149\u984f\u8272\u72c0\u614b\u7684 MQTT \u4e3b\u984c\u3002\u8272\u8abf\u7bc4\u570d\uff1a0\u00b0 .. 360\u00b0\uff0c\u98fd\u548c\u5ea6\u7bc4\u570d\uff1a0..100\u3002\u6ce8\u610f\uff1a\u4eae\u5ea6\u662f\u5728\u4eae\u5ea6\u547d\u4ee4\u4e3b\u984c\u4e2d\u55ae\u7368\u50b3\u9001\u7684\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#hs_command_topic)",
+                                "hs_state_topic": "\u8a02\u95b1\u4ee5\u63a5\u6536 HS \u683c\u5f0f\u7684\u984f\u8272\u72c0\u614b\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002\u9810\u671f\u6709\u6548\u8ca0\u8f09 Payload \u662f\u4ee5\u9017\u865f\u5206\u9694\u7684\u8272\u8abf\u548c\u98fd\u548c\u5ea6\u503c\uff0c\u4f8b\u5982 `359.5,100.0`\u3002\u6ce8\u610f\uff1a\u4eae\u5ea6\u662f\u5728\u4eae\u5ea6\u72c0\u614b\u4e3b\u984c\u4e2d\u55ae\u7368\u63a5\u6536\u7684\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#hs_state_topic)",
+                                "hs_value_template": "\u5b9a\u7fa9[\u6a21\u677f] ({value_templating_url}) \u4ee5\u64f7\u53d6 HS \u6578\u503c\u3002"
+                            },
+                            "name": "HS \u8272\u5f69\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "light_rgb_settings": {
+                            "data": {
+                                "rgb_command_template": "RGB \u547d\u4ee4\u6a21\u677f",
+                                "rgb_command_topic": "RGB \u547d\u4ee4\u4e3b\u984c",
+                                "rgb_state_topic": "RGB \u72c0\u614b\u4e3b\u984c",
+                                "rgb_value_template": "RGB \u6578\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "rgb_command_template": "\u5b9a\u7fa9[\u6a21\u677f]({command_templating_url}) \u7d44\u6210\u5c07\u50b3\u9001\u5230 RGB \u547d\u4ee4\u4e3b\u984c\u7684\u8a0a\u606f\u3002\u53ef\u7528\u8b8a\u6578\uff1a`red`\u3001`green` \u8207 `blue`.\u3002",
+                                "rgb_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u71c8\u5149 RGB \u72c0\u614b\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#rgb_command_topic)",
+                                "rgb_state_topic": "\u8a02\u95b1\u4ee5\u63a5\u6536 RGB \u72c0\u614b\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002\u9810\u671f\u7684\u6709\u6548\u8ca0\u8f09 Payload \u662f\u4ee5\u9017\u865f\u5206\u9694\u7684 RGB \u503c\uff0c\u4f8b\u5982 `255,0,127`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#rgb_state_topic)",
+                                "rgb_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6 RGB \u6578\u503c\u3002"
+                            },
+                            "name": "RGB \u8272\u5f69\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "light_rgbw_settings": {
+                            "data": {
+                                "rgbw_command_template": "RGBW \u547d\u4ee4\u6a21\u677f",
+                                "rgbw_command_topic": "RGBW \u547d\u4ee4\u4e3b\u984c",
+                                "rgbw_state_topic": "RGBW \u72c0\u614b\u4e3b\u984c",
+                                "rgbw_value_template": "RGBW \u6578\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "rgbw_command_template": "\u5b9a\u7fa9[\u6a21\u677f]({command_templating_url}) \u7d44\u6210\u5c07\u50b3\u9001\u5230 RGBW \u547d\u4ee4\u4e3b\u984c\u7684\u8a0a\u606f\u3002\u53ef\u7528\u8b8a\u6578\uff1a`red`\u3001`green`\u3001`blue` \u8207 `white`.\u3002",
+                                "rgbw_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u71c8\u5149 RGBW \u72c0\u614b\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#rgbw_command_topic)",
+                                "rgbw_state_topic": "\u8a02\u95b1\u4ee5\u63a5\u6536 RGBW \u72c0\u614b\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002\u9810\u671f\u7684 Payload \u662f\u4ee5\u9017\u865f\u5206\u9694\u7684 RGBW \u503c\uff0c\u4f8b\u5982 `255,0,127,64`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#rgbw_state_topic)",
+                                "rgbw_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6 RGBW \u6578\u503c\u3002"
+                            },
+                            "name": "RGBW \u8272\u5f69\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "light_rgbww_settings": {
+                            "data": {
+                                "rgbww_command_template": "RGBWW \u547d\u4ee4\u6a21\u677f",
+                                "rgbww_command_topic": "RGBWW \u547d\u4ee4\u4e3b\u984c",
+                                "rgbww_state_topic": "RGBWW \u72c0\u614b\u4e3b\u984c",
+                                "rgbww_value_template": "RGBWW \u6578\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "rgbww_command_template": "\u5b9a\u7fa9[\u6a21\u677f]({command_templating_url}) \u7d44\u6210\u5c07\u50b3\u9001\u5230 RGBWW \u547d\u4ee4\u4e3b\u984c\u7684\u8a0a\u606f\u3002\u53ef\u7528\u8b8a\u6578\uff1a`red`\u3001`green`\u3001`blue`\u3001`cold_white` \u8207 `warm_white`.\u3002",
+                                "rgbww_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u71c8\u5149 RGBWW \u72c0\u614b\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#rgbww_command_topic)",
+                                "rgbww_state_topic": "\u8a02\u95b1\u4ee5\u63a5\u6536 RGBWW \u72c0\u614b\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002\u9810\u671f\u7684 Payload \u662f\u4ee5\u9017\u865f\u5206\u9694\u7684 RGBWW \u503c\uff0c\u4f8b\u5982 `255,0,127,64,32`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#rgbww_state_topic)",
+                                "rgbww_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6 RGBWW \u6578\u503c\u3002"
+                            },
+                            "name": "RGBWW \u8272\u5f69\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "light_white_settings": {
+                            "data": {
+                                "white_command_topic": "\u767d\u8272\u547d\u4ee4\u4e3b\u984c",
+                                "white_scale": "\u767d\u8272\u7b49\u7d1a"
+                            },
+                            "data_description": {
+                                "white_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u5c07\u71c8\u5149\u66f4\u6539\u70ba\u767d\u8272\u6a21\u5f0f\u4e26\u8a2d\u5b9a\u4eae\u5ea6\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#white_command_topic)",
+                                "white_scale": "\u5b9a\u7fa9\u6700\u5927\u503c\u7684\u6700\u5927\u767d\u8272\u7d1a\u5225\uff08\u5373 100%\uff09\u3002"
+                            },
+                            "name": "\u767d\u8272\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "light_xy_settings": {
+                            "data": {
+                                "xy_command_template": "XY \u547d\u4ee4\u6a21\u677f",
+                                "xy_command_topic": "XY \u547d\u4ee4\u4e3b\u984c",
+                                "xy_state_topic": "XY \u72c0\u614b\u4e3b\u984c",
+                                "xy_value_template": "XY \u6578\u503c\u6a21\u677f"
+                            },
+                            "data_description": {
+                                "xy_command_template": "\u5b9a\u7fa9[\u6a21\u677f]({command_templating_url}) \u7d44\u6210\u5c07\u50b3\u9001\u5230 XY \u547d\u4ee4\u4e3b\u984c\u7684\u8a0a\u606f\u3002\u53ef\u7528\u8b8a\u6578\uff1a`x` \u8207 `y`\u3002",
+                                "xy_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u71c8\u5149 XY \u72c0\u614b\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#xy_command_topic)",
+                                "xy_state_topic": "\u8a02\u95b1\u4ee5\u63a5\u6536 XY \u72c0\u614b\u66f4\u65b0\u7684 MQTT \u4e3b\u984c\u3002\u9810\u671f\u7684\u6709\u6548\u8ca0\u8f09 Payload \u662f\u4ee5\u9017\u865f\u5206\u9694\u7684 X \u548c Y \u984f\u8272\u503c\uff0c\u4f8b\u5982\uff0c`0.675,0.322`\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#xy_state_topic)",
+                                "xy_value_template": "\u5b9a\u7fa9[\u6a21\u677f]({value_templating_url}) \u4ee5\u64f7\u53d6 XY \u6578\u503c\u3002"
+                            },
+                            "name": "XY \u8272\u5f69\u6a21\u5f0f\u8a2d\u5b9a"
+                        },
+                        "lock_payload_settings": {
+                            "data": {
+                                "payload_lock": "Payload \u9396\u5b9a \"lock\"",
+                                "payload_open": "Payload \u958b\u555f \"open\"",
+                                "payload_reset": "Payload \u91cd\u7f6e \"reset\"",
+                                "payload_unlock": "Payload \u89e3\u9396 \"unlock\"",
+                                "state_jammed": "\u72c0\u614b\u5361\u4f4f \"jammed\"",
+                                "state_locked": "\u72c0\u614b\u5df2\u4e0a\u9396 \"locked\"",
+                                "state_locking": "\u72c0\u614b\u4e0a\u9396\u4e2d \"locking\"",
+                                "state_unlocked": "\u72c0\u614b\u5df2\u4e0a\u9396 \"unlocked\"",
+                                "state_unlocking": "\u72c0\u614b\u89e3\u9396\u4e2d \"unlocking\""
+                            },
+                            "data_description": {
+                                "payload_lock": "\u767c\u51fa\u4e0a\u9396 \"lock\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684\u6709\u6548\u8ca0\u8f09  Payload\u3002",
+                                "payload_open": "\u767c\u51fa\u958b\u555f \"open\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684\u6709\u6548\u8ca0\u8f09  Payload\u3002\u5047\u5982\u9580\u9396\u652f\u63f4\u958b\u555f \"open\" \u64cd\u4f5c\u3001\u8acb\u8a2d\u5b9a\u6b64 Payload\u3002",
+                                "payload_reset": "\u5728\u72c0\u614b\u4e3b\u984c\u63a5\u6536\u5230\u7684\u6709\u6548\u8ca0\u8f09  Payload\uff0c\u6703\u5c07\u9396\u91cd\u7f6e\u70ba\u672a\u77e5\u72c0\u614b\u3002",
+                                "payload_unlock": "\u767c\u51fa\u89e3\u9396 \"unlock\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684\u6709\u6548\u8ca0\u8f09  Payload\u3002",
+                                "state_jammed": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u5361\u4f4f \"jammed\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_locked": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u5df2\u4e0a\u9396 \"locked\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_locking": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u4e0a\u9396\u4e2d \"locking\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_unlocked": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u5df2\u89e3\u9396 \"unlocked\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_unlocking": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u89e3\u9396\u4e2d \"unlocking\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002"
+                            },
+                            "name": "\u9580\u9396 Payload \u8a2d\u5b9a"
+                        },
+                        "other_settings": {
+                            "data": {
+                                "expire_after": "\u904e\u671f\u6642\u9593\uff1a",
+                                "flash": "\u9583\u5149\u652f\u63f4",
+                                "flash_time_long": "\u9583\u5149\u6642\u9593\u9577",
+                                "flash_time_short": "\u9583\u5149\u6642\u9593\u77ed",
+                                "max_kelvin": "\u6700\u9ad8\u514b\u8033\u6587",
+                                "min_kelvin": "\u6700\u4f4e\u514b\u8033\u6587",
+                                "off_delay": "\u95dc\u9589\u5ef6\u9072",
+                                "transition": "\u8f49\u63db\u652f\u63f4"
+                            },
+                            "data_description": {
+                                "expire_after": "\u5047\u5982\u8a2d\u5b9a\u3001\u5c07\u5b9a\u7fa9\u611f\u6e2c\u5668\u72c0\u614b\u5728\u672a\u66f4\u65b0\u7684\u60c5\u6cc1\u4e0b\u904e\u671f\u7684\u79d2\u6578\u3002\u904e\u671f\u5f8c\uff0c\u611f\u6e2c\u5668\u72c0\u614b\u5c07\u8b8a\u70ba\u7121\u6cd5\u4f7f\u7528\u3002\u5982\u679c\u672a\u8a2d\u5b9a\uff0c\u611f\u6e2c\u5668\u72c0\u614b\u5247\u6c38\u9060\u4e0d\u6703\u904e\u671f\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#expire_after)",
+                                "flash": "\u555f\u7528\u71c8\u5149\u7684\u9583\u5149\u529f\u80fd",
+                                "flash_time_long": "\"\u9577\" \u9583\u5149\u7684\u6301\u7e8c\u6642\u9593\uff08\u79d2\uff09\u3002",
+                                "flash_time_short": "\"\u77ed\" \u9583\u5149\u7684\u6301\u7e8c\u6642\u9593\uff08\u79d2\uff09\u3002",
+                                "max_kelvin": "\u6700\u9ad8\u8272\u6eab\uff08\u514b\u8033\u6587\uff09",
+                                "min_kelvin": "\u6700\u4f4e\u8272\u6eab\uff08\u514b\u8033\u6587\uff09",
+                                "off_delay": "\u5c0d\u65bc\u53ea\u50b3\u9001 \"on\" \u72c0\u614b\u66f4\u65b0\u7684\u611f\u6e2c\u5668\uff08\u5982 PIR\uff09\uff0c\u6b64\u8b8a\u6578\u53ef\u8a2d\u5b9a\u5ef6\u9072\u79d2\u6578\uff0c\u611f\u6e2c\u5668\u7684\u72c0\u614b\u6703\u5728\u6b64\u5ef6\u9072\u5f8c\u81ea\u52d5\u66f4\u65b0\u56de \"off\"\u3002",
+                                "transition": "\u555f\u7528\u71c8\u5149\u7684\u8f49\u63db\u529f\u80fd"
+                            },
+                            "name": "\u5176\u4ed6\u8a2d\u5b9a"
+                        },
+                        "siren_other_settings": {
+                            "data": {
+                                "command_off_template": "\u547d\u4ee4 \"\u95dc\u9589\" \u6a21\u677f"
+                            },
+                            "data_description": {
+                                "command_off_template": "\u7528\u65bc\u95dc\u9589 \"off\" \u72c0\u614b\u8b8a\u66f4\u7684[\u6a21\u677f]({command_templating_url})\u3002\u9810\u8a2d\u4f7f\u7528\u547d\u4ee4\u6a21\u677f\"[Command template]({url}#command_template)\"\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#command_off_template)"
+                            },
+                            "name": "\u5176\u4ed6\u8b66\u5831\u8a2d\u5b9a"
+                        },
+                        "target_humidity_settings": {
+                            "data": {
+                                "max_humidity": "\u6700\u9ad8\u6fd5\u5ea6",
+                                "min_humidity": "\u6700\u4f4e\u6fd5\u5ea6",
+                                "target_humidity_command_template": "\u76ee\u6a19\u6fd5\u5ea6\u547d\u4ee4\u6a21\u677f",
+                                "target_humidity_command_topic": "\u76ee\u6a19\u6fd5\u5ea6\u547d\u4ee4\u4e3b\u984c",
+                                "target_humidity_state_template": "\u76ee\u6a19\u6fd5\u5ea6\u72c0\u614b\u6a21\u677f",
+                                "target_humidity_state_topic": "\u76ee\u6a19\u6fd5\u5ea6\u72c0\u614b\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "max_humidity": "\u53ef\u8a2d\u5b9a\u7684\u6700\u9ad8\u76ee\u6a19\u6fd5\u5ea6\u3002",
+                                "min_humidity": "\u53ef\u8a2d\u5b9a\u7684\u6700\u4f4e\u76ee\u6a19\u6fd5\u5ea6\u3002",
+                                "target_humidity_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u76ee\u6a19\u6fd5\u5ea6\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "target_humidity_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u76ee\u6a19\u6fd5\u5ea6\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#humidity_command_topic)",
+                                "target_humidity_state_template": "[\u6a21\u677f]({value_templating_url})  \u7528\u65bc\u6e32\u67d3\u5728\u76ee\u6a19\u6fd5\u5ea6\u72c0\u614b\u4e3b\u984c\u4e0a\u63a5\u6536\u5230\u7684\u6578\u503c\u3002",
+                                "target_humidity_state_topic": "\u8a02\u95b1\u76ee\u6a19\u6fd5\u5ea6\u8b8a\u66f4\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u4e86\u89e3\u3002]({url}#humidity_state_topic)"
+                            },
+                            "name": "\u76ee\u6a19\u6fd5\u5ea6\u8a2d\u5b9a"
+                        },
+                        "target_temperature_settings": {
+                            "data": {
+                                "initial": "\u521d\u59cb\u6eab\u5ea6",
+                                "max_temp": "\u6700\u9ad8\u6eab\u5ea6",
+                                "min_temp": "\u6700\u4f4e\u6eab\u5ea6",
+                                "precision": "\u7cbe\u6e96\u5ea6",
+                                "temp_step": "\u6eab\u5ea6\u6b65\u9032",
+                                "temperature_command_template": "\u6eab\u5ea6\u547d\u4ee4\u6a21\u677f",
+                                "temperature_command_topic": "\u6eab\u5ea6\u6307\u4ee4\u4e3b\u984c",
+                                "temperature_high_command_template": "\u4e0a\u9650\u6eab\u5ea6\u547d\u4ee4\u6a21\u677f",
+                                "temperature_high_command_topic": "\u4e0a\u9650\u6eab\u5ea6\u547d\u4ee4\u4e3b\u984c",
+                                "temperature_high_state_template": "\u4e0a\u9650\u6eab\u5ea6\u72c0\u614b\u6a21\u677f",
+                                "temperature_high_state_topic": "\u4e0a\u9650\u6eab\u5ea6\u72c0\u614b\u4e3b\u984c",
+                                "temperature_low_command_template": "\u4e0b\u9650\u6eab\u5ea6\u547d\u4ee4\u6a21\u677f",
+                                "temperature_low_command_topic": "\u4e0b\u9650\u6eab\u5ea6\u547d\u4ee4\u4e3b\u984c",
+                                "temperature_low_state_template": "\u4e0b\u9650\u6eab\u5ea6\u72c0\u614b\u6a21\u677f",
+                                "temperature_low_state_topic": "\u4e0b\u9650\u6eab\u5ea6\u72c0\u614b\u4e3b\u984c",
+                                "temperature_state_template": "\u6eab\u5ea6\u72c0\u614b\u6a21\u677f",
+                                "temperature_state_topic": "\u6eab\u5ea6\u72c0\u614b\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "initial": "\u88dd\u7f6e\u6703\u4ee5\u6b64\u76ee\u6a19\u6eab\u5ea6\u9032\u884c\u521d\u59cb\u5316\u3002",
+                                "max_temp": "\u53ef\u8a2d\u5b9a\u7684\u6700\u9ad8\u76ee\u6a19\u6eab\u5ea6\u3002",
+                                "min_temp": "\u53ef\u8a2d\u5b9a\u7684\u6700\u4f4e\u76ee\u6a19\u6eab\u5ea6\u3002",
+                                "precision": "\u6046\u6eab\u5668\u904b\u4f5c\u7684\u7cbe\u78ba\u5ea6\uff08\u4ee5\u5ea6\u70ba\u55ae\u4f4d\uff09\u3002",
+                                "temp_step": "\u76ee\u6a19\u6eab\u5ea6\u4ee5\u651d\u6c0f\u6216\u83ef\u6c0f\u70ba\u55ae\u4f4d\u7684\u6b65\u9032\u503c\u3002",
+                                "temperature_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u6eab\u5ea6\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "temperature_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u76ee\u6a19\u6eab\u5ea6\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#temperature_command_topic)",
+                                "temperature_high_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u4e0a\u9650\u6eab\u5ea6\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "temperature_high_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u4e0a\u9650\u76ee\u6a19\u6eab\u5ea6\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#temperature_high_command_topic)",
+                                "temperature_high_state_template": "[\u6a21\u677f]({value_templating_url}) \u7528\u65bc\u6e32\u67d3\u5728\u4e0a\u9650\u6eab\u5ea6\u72c0\u614b\u4e3b\u984c\u4e0a\u63a5\u6536\u5230\u7684\u6578\u503c\u3002",
+                                "temperature_high_state_topic": "\u8a02\u95b1\u4e0a\u9650\u76ee\u6a19\u6eab\u5ea6\u8b8a\u66f4\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u4e86\u89e3\u3002]({url}#temperature_high_state_topic)",
+                                "temperature_low_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u4e0b\u9650\u6eab\u5ea6\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002",
+                                "temperature_low_command_topic": "\u7528\u65bc\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u7a7a\u8abf\u4e0b\u9650\u76ee\u6a19\u6eab\u5ea6\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#temperature_low_command_topic)",
+                                "temperature_low_state_template": "[\u6a21\u677f]({value_templating_url}) \u7528\u65bc\u6e32\u67d3\u5728\u4e0b\u9650\u6eab\u5ea6\u72c0\u614b\u4e3b\u984c\u4e0a\u63a5\u6536\u5230\u7684\u6578\u503c\u3002",
+                                "temperature_low_state_topic": "\u8a02\u95b1\u4e0b\u9650\u76ee\u6a19\u6eab\u5ea6\u8b8a\u66f4\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u4e86\u89e3\u3002]({url}#temperature_low_state_topic)",
+                                "temperature_state_template": "[\u6a21\u677f]({value_templating_url})  \u7528\u65bc\u6e32\u67d3\u5728\u6eab\u5ea6\u72c0\u614b\u4e3b\u984c\u4e0a\u63a5\u6536\u5230\u7684\u6578\u503c\u3002",
+                                "temperature_state_topic": "\u8a02\u95b1\u76ee\u6a19\u6eab\u5ea6\u8b8a\u66f4\u7684 MQTT \u4e3b\u984c\u3002[\u8a73\u7d30\u4e86\u89e3\u3002]({url}#temperature_state_topic)"
+                            },
+                            "name": "\u76ee\u6a19\u6eab\u5ea6\u8a2d\u5b9a"
+                        },
+                        "text_other_settings": {
+                            "data": {
+                                "max": "\u6700\u5927\u9577\u5ea6",
+                                "min": "\u6700\u5c0f\u9577\u5ea6",
+                                "mode": "\u6a21\u5f0f",
+                                "pattern": "\u6a23\u5f0f"
+                            },
+                            "data_description": {
+                                "max": "\u6587\u5b57\u8f38\u5165\u7684\u6700\u5927\u9577\u5ea6",
+                                "min": "\u6587\u5b57\u8f38\u5165\u6700\u5c0f\u9577\u5ea6",
+                                "mode": "\u6587\u5b57\u8f38\u5165\u6a21\u5f0f",
+                                "pattern": "\u6709\u6548\u7684\u6b63\u898f\u8868\u793a\u5f0f\u6a21\u5f0f"
+                            },
+                            "name": "\u5176\u4ed6\u8a2d\u5b9a"
+                        },
+                        "valve_payload_settings": {
+                            "data": {
+                                "payload_close": "Payload \u95dc\u9589 \"close\"",
+                                "payload_open": "Payload \u958b\u555f \"open\"",
+                                "payload_stop": "Payload \u505c\u6b62 \"stop\"",
+                                "state_closed": "\u72c0\u614b\u95dc\u9589 \"closed\"",
+                                "state_closing": "\u72c0\u614b\u95dc\u9589\u4e2d \"closing\"",
+                                "state_open": "\u72c0\u614b\u958b\u555f \"open\"",
+                                "state_opening": "\u72c0\u614b\u958b\u555f\u4e2d \"opening\""
+                            },
+                            "data_description": {
+                                "payload_close": "\u767c\u51fa\u95dc\u9589 \"close\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_open": "\u767c\u51fa\u958b\u555f \"open\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684 Payload\u3002",
+                                "payload_stop": "\u767c\u51fa\u505c\u6b62 \"stop\" \u547d\u4ee4\u6642\u6240\u50b3\u9001\u7684\u6709\u6548\u8ca0\u8f09  Payload\u3002\u5047\u5982\u95a5\u9580\u50c5\u652f\u63f4\u505c\u6b62 \"stop\" \u64cd\u4f5c\u3001\u8acb\u8a2d\u5b9a\u6b64 Payload\u3002",
+                                "state_closed": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u95dc\u9589 \"closed\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_closing": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u95dc\u9589\u4e2d \"closing\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_open": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u958b\u555f \"open\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002",
+                                "state_opening": "\u5728\u72c0\u614b\u4e3b\u984c\u4e2d\u63a5\u6536\u5230\u7684\u8868\u793a\u958b\u555f\u4e2d \"opening\" \u72c0\u614b\u7684\u6709\u6548\u8ca0\u8f09 Payload\u3002"
+                            },
+                            "name": "\u95a5\u9580 Payload \u8a2d\u5b9a"
+                        },
+                        "water_heater_power_settings": {
+                            "data": {
+                                "payload_off": "Payload \"off\"",
+                                "payload_on": "Payload \"on\"",
+                                "power_command_template": "\u96fb\u6e90\u547d\u4ee4\u6a21\u677f",
+                                "power_command_topic": "\u96fb\u6e90\u547d\u4ee4\u4e3b\u984c"
+                            },
+                            "data_description": {
+                                "payload_off": "\u8868\u793a \"off\" \u72c0\u614b\u7684 Payload\u3002",
+                                "payload_on": "\u8868\u793a \"on\" \u72c0\u614b\u7684 Payload\u3002",
+                                "power_command_template": "[\u6a21\u677f]({command_templating_url}) \u7528\u65bc\u7d44\u6210\u8981\u5728\u96fb\u6e90\u547d\u4ee4\u4e3b\u984c\u4e0a\u767c\u5e03\u7684 Payload\u3002`value`\u53c3\u6578\u70ba Payload \u958b\u555f \"on\" \u6216 Payload \u95dc\u9589 \"off\" \u8a2d\u5b9a\u7684 Payload\u3002",
+                                "power_command_topic": "\u7528\u4ee5\u767c\u5e03\u547d\u4ee4\u4ee5\u66f4\u6539\u71b1\u6c34\u5668\u64cd\u4f5c\u6a21\u5f0f\u7684 MQTT \u4e3b\u984c\u3002\u50b3\u9001\u8a2d\u5b9a\u70ba Payload \u958b\u555f \"on\" \u6216 Payload \u95dc\u9589 \"off\" \u7684 Payload\u3002[\u8a73\u7d30\u77ad\u89e3\u3002]({url}#power_command_topic)"
+                            },
+                            "name": "\u96fb\u6e90\u8a2d\u5b9a"
+                        }
+                    },
+                    "title": "\u8a2d\u5b9a MQTT \u88dd\u7f6e \"{mqtt_device}\""
+                },
+                "summary_menu": {
+                    "description": "\u5be6\u9ad4\u8a2d\u5b9a\uff1a\n{mqtt_items}\n\n\u6c7a\u5b9a\u4e0b\u4e00\u6b65\uff1a",
+                    "menu_options": {
+                        "availability": "\u8a2d\u5b9a\u53ef\u7528\u6027",
+                        "delete_entity": "\u522a\u9664\u5be6\u9ad4",
+                        "device": "\u66f4\u65b0\u88dd\u7f6e\u5c6c\u6027",
+                        "entity": "\u65b0\u589e\u5176\u4ed6\u5be6\u9ad4\u81f3 \"{mqtt_device}\"",
+                        "export": "\u532f\u51fa MQTT \u88dd\u7f6e\u8a2d\u5b9a",
+                        "save_changes": "\u5132\u5b58\u8b8a\u66f4",
+                        "update_entity": "\u66f4\u65b0\u5be6\u9ad4\u5c6c\u6027"
+                    },
+                    "title": "\u91cd\u65b0\u8a2d\u5b9a \"{mqtt_device}\""
+                },
+                "update_entity": {
+                    "data": {
+                        "component": "\u5be6\u9ad4"
+                    },
+                    "data_description": {
+                        "component": "\u9078\u64c7\u6240\u8981\u66f4\u65b0\u7684\u5be6\u9ad4\u3002"
+                    },
+                    "description": "\u9078\u64c7\u6240\u8981\u66f4\u65b0\u7684\u5be6\u9ad4",
+                    "title": "\u9078\u64c7\u5be6\u9ad4"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "trigger_subtype": {
+            "button_1": "\u7b2c\u4e00\u500b\u6309\u9215",
+            "button_2": "\u7b2c\u4e8c\u500b\u6309\u9215",
+            "button_3": "\u7b2c\u4e09\u500b\u6309\u9215",
+            "button_4": "\u7b2c\u56db\u500b\u6309\u9215",
+            "button_5": "\u7b2c\u4e94\u500b\u6309\u9215",
+            "button_6": "\u7b2c\u516d\u500b\u6309\u9215",
+            "turn_off": "\u95dc\u9589",
+            "turn_on": "\u958b\u555f"
+        },
+        "trigger_type": {
+            "button_double_press": "\"{subtype}\" \u96d9\u64ca",
+            "button_long_press": "\"{subtype}\" \u6301\u7e8c\u6309\u4e0b",
+            "button_long_release": "\"{subtype}\" \u9577\u6309\u5f8c\u91cb\u653e",
+            "button_quadruple_press": "\"{subtype}\" \u56db\u9023\u64ca",
+            "button_quintuple_press": "\"{subtype}\" \u4e94\u9023\u64ca",
+            "button_short_press": "\"{subtype}\" \u6309\u4e0b",
+            "button_short_release": "\"{subtype}\" \u91cb\u653e",
+            "button_triple_press": "\"{subtype}\" \u4e09\u9023\u64ca"
+        }
+    },
+    "exceptions": {
+        "addon_start_failed": {
+            "message": "\u7121\u6cd5\u6b63\u78ba\u555f\u52d5 {addon} \u61c9\u7528\u7a0b\u5f0f\u3002"
+        },
+        "command_template_error": {
+            "message": "\u5be6\u9ad4 `{entity_id}` \u7684\u89e3\u6790\u6a21\u677f `{command_template}` \u5931\u6557\u3001\u932f\u8aa4\uff1a{error}\u3002"
+        },
+        "invalid_platform_config_message": {
+            "message": "\u91cd\u65b0\u8f09\u5165\u624b\u52d5\u8a2d\u5b9a\u7684 MQTT `{domain}` \u9805\u76ee\u7684 YAML \u8a2d\u5b9a\u5931\u6557\u3002\u8a0a\u606f\uff1a{message}"
+        },
+        "invalid_publish_topic": {
+            "message": "\u7121\u6cd5\u767c\u5e03\uff1a\u4e3b\u984c\u6a21\u677f `{topic_template}` \u65bc\u7b97\u7e6a\u5f8c\u7522\u751f\u7121\u6548\u4e3b\u984c `{topic}` ({error})"
+        },
+        "mqtt_broker_error": {
+            "message": "\u8207 MQTT \u901a\u8a0a\u6642\u51fa\u73fe\u932f\u8aa4\uff1a{error_message}\u3002"
+        },
+        "mqtt_max_subscription_id_reached": {
+            "message": "MQTT \u8a02\u95b1 ID \u5df2\u9054\u4e0a\u9650\uff0c\u7121\u6cd5\u7522\u751f\u66f4\u591a ID \u9032\u884c\u8a02\u95b1\u3002"
+        },
+        "mqtt_message_expiry_interval_not_supported": {
+            "message": "\u767c\u4f48\u5230\u4e3b\u984c {topic} \u5354\u5b9a\u7248\u672c\u4e0d\u652f\u63f4\u8a0a\u606f\u904e\u671f\u9593\u9694 {protocol}\u3002"
+        },
+        "mqtt_not_enabled_cannot_subscribe": {
+            "message": "\u7531\u65bc MQTT \u672a\u555f\u7528\uff0c\u7121\u6cd5\u8a02\u95b1\u4e3b\u984c \"{topic}\"\uff0c\u8acb\u78ba\u5b9a MQTT \u8a2d\u5b9a\u6b63\u78ba\u3002"
+        },
+        "mqtt_not_setup_cannot_publish": {
+            "message": "\u7121\u6cd5\u767c\u4f48\u4e3b\u984c \"{topic}\"\uff0c\u8acb\u78ba\u5b9a MQTT \u8a2d\u5b9a\u6b63\u78ba\u3002"
+        },
+        "mqtt_not_setup_cannot_subscribe": {
+            "message": "\u7121\u6cd5\u8a02\u95b1\u4e3b\u984c \"{topic}\"\uff0c\u8acb\u78ba\u5b9a MQTT \u8a2d\u5b9a\u6b63\u78ba\u3002"
+        },
+        "mqtt_not_setup_cannot_unsubscribe_twice": {
+            "message": "\u7121\u6cd5\u91cd\u8907\u53d6\u6d88\u4e3b\u984c \"{topic}\" \u8a02\u95b1\u3002"
+        },
+        "mqtt_topic_not_a_string": {
+            "message": "\u4e3b\u984c\u5fc5\u9808\u70ba\u5b57\u4e32\uff01\u8fd4\u56de\uff1a{topic}\u3002"
+        },
+        "mqtt_trigger_cannot_remove_twice": {
+            "message": "\u7121\u6cd5\u91cd\u8907\u79fb\u9664\u89f8\u767c"
+        }
+    },
+    "issues": {
+        "invalid_platform_config": {
+            "description": "Home Assistant \u5075\u6e2c\u5230\u624b\u52d5\u8a2d\u5b9a\u9805\u76ee\u5167\u6709\u7121\u6548\u7684\u8a2d\u5b9a\u3002\n\n\u5e73\u53f0 domain\uff1a**{domain}**\n\u8a2d\u5b9a\u6a94\uff1a**{config_file}**\n\u63a5\u8fd1\u884c\uff1a**{line}**\n\u627e\u5230\u7684\u8a2d\u5b9a\uff1a\n```yaml\n{config}\n```\n\u932f\u8aa4\uff1a**{error}**\u3002\n\n\u8acb\u78ba\u8a8d\u4fee\u6b63\u8a2d\u5b9a\u4e26\u624b\u52d5 [\u91cd\u65b0\u8f09\u5165](/config/tools/yaml) MQTT \u8a2d\u5b9a\u9805\u76ee\u6216\u91cd\u65b0\u555f\u52d5 Home Assistant \u4ee5\u4fee\u6b63\u6b64\u554f\u984c\u3002",
+            "title": "\u767c\u73fe MQTT {domain} \u9805\u76ee\u8a2d\u5b9a\u7121\u6548"
+        },
+        "protocol_5_migration": {
+            "description": "\u81ea\u52d5\u9077\u79fb\u81f3 MQTT \u5354\u5b9a\u7248\u672c 5 \u5931\u6557\u3002\u76ee\u524d MQTT \u4ee3\u7406\u5668 {broker} \u6240\u8a2d\u5b9a\u7684\u5354\u5b9a\u7248\u672c\u70ba {protocol}\uff0c\u4f46\u6b64\u5354\u5b9a\u7248\u672c\u5df2\u4e0d\u518d\u4f7f\u7528\uff0c\u4e14\u76f8\u95dc\u652f\u63f4\u5373\u5c07\u9032\u884c\u79fb\u9664\u3002\n\n\u8acb\u78ba\u8a8d\u4ee3\u7406\u5668\u652f\u63f4\u5354\u5b9a\u7248\u672c 5\u3002\u66f4\u65b0 MQTT \u4ee3\u7406\u5668\u9023\u7dda\u8a2d\u5b9a\uff0c\u4e26\u91cd\u65b0\u555f\u52d5 Home Assistant \u4ee5\u4fee\u6b63\u6b64\u554f\u984c\u3002",
+            "title": "MQTT \u5354\u5b9a\u9077\u79fb\u5931\u6557"
+        },
+        "subentry_migration_discovery": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "\u5df2\u532f\u51fa YAML \u8a2d\u5b9a\u4e2d\u8b58\u5225\u7684 MQTT \u88dd\u7f6e \"{name}\" \u3002\u9078\u64c7**\u50b3\u9001**\u4ee5\u78ba\u8a8d\u5c07 MQTT \u88dd\u7f6e\u9077\u79fb\u81f3\u4e3b\u8981 MQTT \u8a2d\u5b9a\uff0c\u4e26\u79fb\u9664\u73fe\u6709\u7684 MQTT \u88dd\u7f6e\u5b50\u9805\u76ee\u3002\u8acb\u78ba\u8a8d MQTT \u4ee3\u7406\u4f3a\u670d\u5668\u4fdd\u7559\u63a2\u7d22\u8cc7\u8a0a\uff0c\u6216\u5728\u5b50\u9805\u76ee\u79fb\u9664\u5f8c\u91cd\u65b0\u767c\u9001\u63a2\u7d22\u8cc7\u8a0a\uff0c\u4ee5\u4fbf\u6b63\u78ba\u8a2d\u5b9a MQTT \u88dd\u7f6e\u3002\u6216\u8005\uff0c\u53ef\u4ee5\u8b8a\u66f4 MQTT \u63a2\u7d22\u8a2d\u5b9a Payload \u4e2d\u7684\u88dd\u7f6e\u8b58\u5225\u78bc\u548c\u5be6\u9ad4\u552f\u4e00 ID\uff0c\u5982\u679c\u60f3\u4fdd\u7559 MQTT \u88dd\u7f6e\u5b50\u9805\u76ee\u7684\u8a71\u3001\u8acb\u53d6\u6d88\u6b64\u4fee\u5fa9\u3002",
+                        "title": "MQTT \u88dd\u7f6e \"{name}\" \u5b50\u9805\u76ee\u9077\u79fb\u81f3 MQTT \u63a2\u7d22"
+                    }
+                }
+            },
+            "title": "MQTT \u88dd\u7f6e \"{name}\" \u5b50\u9805\u76ee\u9077\u79fb\u81f3 MQTT \u63a2\u7d22"
+        },
+        "subentry_migration_yaml": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "\u5df2\u532f\u51fa YAML \u8a2d\u5b9a\u4e2d\u8b58\u5225\u7684 MQTT \u88dd\u7f6e \"{name}\" \u3002\u9078\u64c7**\u50b3\u9001**\u4ee5\u78ba\u8a8d\u5c07 MQTT \u88dd\u7f6e\u9077\u79fb\u81f3\u4e3b\u8981 MQTT \u8a2d\u5b9a\u689d\u76ee\u3001\u4e26\u79fb\u9664\u73fe\u6709\u7684 MQTT \u88dd\u7f6e\u5b50\u9805\u76ee\u3002\u6216\u8005\uff0c\u53ef\u4ee5\u65bc configuration.yaml \u6a94\u6848\u4e2d\u8b8a\u66f4\u88dd\u7f6e\u8b58\u5225\u78bc\u548c\u5be6\u9ad4\u552f\u4e00 ID\uff0c\u5982\u679c\u60f3\u4fdd\u7559 MQTT \u88dd\u7f6e\u5b50\u9805\u76ee\uff0c\u5247\u53ef\u4ee5\u53d6\u6d88\u6b64\u4fee\u5fa9\u3002",
+                        "title": "MQTT \u88dd\u7f6e \"{name}\" \u5b50\u9805\u76ee\u9077\u79fb\u81f3 YAML"
+                    }
+                }
+            },
+            "title": "MQTT \u88dd\u7f6e \"{name}\" \u5b50\u9805\u76ee\u9077\u79fb\u81f3 YAML"
+        },
+        "yaml_setup_without_active_setup": {
+            "description": "Home Assistant \u5075\u6e2c\u5230\u624b\u52d5\u8a2d\u5b9a\u7684 MQTT \u9805\u76ee\uff0c\u4f46\u7531\u65bc MQTT \u672a\u6b63\u78ba\u8a2d\u5b9a\uff0c\u9805\u76ee\u7121\u6cd5\u8f09\u5165\u3002\u8acb\u78ba\u8a8d MQTT \u4f3a\u670d\u5668\u5df2\u6b63\u78ba\u8a2d\u5b9a\uff0c\u6216\u5f9e\u60a8\u7684 `configuration.yaml` \u6a94\u6848\u4e2d\u79fb\u9664 MQTT \u8a2d\u5b9a\u4e26\u91cd\u65b0\u555f\u52d5 Home Assistant \u4ee5\u89e3\u6c7a\u6b64\u554f\u984c\u3002",
+            "title": "MQTT \u8a2d\u5b9a\u4e0d\u6b63\u78ba"
+        }
+    },
+    "options": {
+        "error": {
+            "bad_birth": "Birth \u4e3b\u984c\u7121\u6548",
+            "bad_certificate": "CA \u8a8d\u8b49\u7121\u6548",
+            "bad_client_cert": "\u5ba2\u6236\u7aef\u6191\u8b49\u7121\u6548\u3001\u8acb\u78ba\u5b9a\u63d0\u4f9b\u70ba\u6709\u6548\u78bc\u6a94\u6848",
+            "bad_client_cert_key": "\u5ba2\u6236\u7aef\u6191\u8b49\u8207\u79c1\u9470\u4e0d\u7b26\u5408",
+            "bad_discovery_prefix": "\u641c\u7d22\u4e3b\u984c prefix \u7121\u6548",
+            "bad_will": "Will \u4e3b\u984c\u7121\u6548",
+            "bad_ws_headers": "\u63d0\u4f9b\u6709\u6548\u7684 HTTP header \u4f5c\u70ba JSON \u7269\u4ef6",
+            "cannot_connect": "\u9023\u7dda\u5931\u6557",
+            "client_key_error": "\u6240\u63d0\u4f9b\u7684\u79c1\u9470\u6a94\u6848\u7121\u6548\u6216\u5bc6\u78bc\u7121\u6548",
+            "invalid_inclusion": "\u5ba2\u6236\u7aef\u6191\u8b49\u8207\u79c1\u9470\u5fc5\u9808\u4e00\u8d77\u8a2d\u5b9a"
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "birth_enable": "\u555f\u7528 Birth \u8a0a\u606f",
+                    "birth_payload": "Birth \u8a0a\u606f payload",
+                    "birth_qos": "Birth \u8a0a\u606f QoS",
+                    "birth_retain": "Birth \u8a0a\u606f Retain",
+                    "birth_topic": "Birth \u8a0a\u606f\u4e3b\u984c",
+                    "discovery": "\u555f\u7528\u63a2\u7d22",
+                    "discovery_prefix": "\u63a2\u7d22 prefix",
+                    "discovery_qos": "\u63a2\u7d22 QoS",
+                    "will_enable": "\u555f\u7528 Will \u8a0a\u606f",
+                    "will_payload": "Will \u8a0a\u606f payload",
+                    "will_qos": "Will \u8a0a\u606f QoS",
+                    "will_retain": "Will \u8a0a\u606f Retain",
+                    "will_topic": "Will \u8a0a\u606f\u4e3b\u984c"
+                },
+                "data_description": {
+                    "birth_enable": "\u8a2d\u5b9a\u5f8c\u3001\u7576 MQTT \u5c31\u7dd2\u5f8c\uff0cHome Assistant \u5c07\u767c\u4f48\u4e0a\u7dda\u8a0a\u606f\u81f3 MQTT broker\u3002",
+                    "birth_payload": "\u7576 MQTT \u5c31\u7dd2\u4e26\u9023\u7dda\u5f8c\u3001\u767c\u4f48\u7684 \"birth\" \u8a0a\u606f\u3002",
+                    "birth_qos": "\u7576 MQTT \u5c31\u7dd2\u4e26\u9023\u7dda\u5f8c\uff0c\u767c\u4f48\u7684 \"birth\" \u8a0a\u606f\u670d\u52d9\u54c1\u8cea\u3002",
+                    "birth_retain": "\u8a2d\u5b9a\u5f8c\u3001Home Assistant \u5c07\u6703\u4fdd\u7559\u767c\u4f48\u81f3 MQTT broker \u7684 \"birth\" \u8a0a\u606f\u3002",
+                    "birth_topic": "Home Assistant \u5c07\u65bc\u6b64 MQTT \u4e3b\u984c\u767c\u4f48 \"birth\" \u8a0a\u606f\u3002",
+                    "discovery": "\u555f\u7528 MQTT \u81ea\u52d5\u63a2\u7d22\u9078\u9805\u3002",
+                    "discovery_prefix": "MQTT \u6574\u8c6a\u5c07\u8a02\u95b1\u7684\u8a2d\u5b9a\u4e3b\u984c\u524d\u7db4\u3002",
+                    "discovery_qos": "MQTT \u4ee3\u7406\u5668\u63a2\u7d22\u8a02\u95b1\u7684\u670d\u52d9\u54c1\u8cea\u3002",
+                    "will_enable": "\u8a2d\u5b9a\u5f8c\u3001\u7576 MQTT \u505c\u6b62\u6216\u8207 Broker \u65b7\u7dda\u5f8c\uff0cHome Assistant \u5c07\u6703\u8a62\u554f Broker \u4ee5\u767c\u4f48 \"will\" \u8a0a\u606f\u3002",
+                    "will_payload": "\u7576\u9023\u7dda\u65b7\u7dda\u5f8c\u3001MQTT broker \u5c07\u767c\u4f48\u7684 \"will\" \u8a0a\u606f\u3002",
+                    "will_qos": "\u767c\u4f48\u81f3 MQTT broker \u7684\u670d\u52d9\u54c1\u8cea \"will\" \u8a0a\u606f\u3002",
+                    "will_retain": "\u8a2d\u5b9a\u5f8c\u3001MQTT broker \u5c07\u6703\u4fdd\u7559 \"will\" \u8a0a\u606f\u3002",
+                    "will_topic": "MQTT broker \u5c07\u767c\u4f48\u7684 \"will\" \u8a0a\u606f MQTT \u4e3b\u984c\u3002"
+                },
+                "description": "Discovery - \u5047\u5982\u641c\u7d22\uff08Discovery\uff09\u529f\u80fd\u5df2\u555f\u7528\uff08\u5efa\u8b70\uff09\uff0cHome Assistant \u5c07\u6703\u81ea\u52d5\u767c\u73fe\u88dd\u7f6e\u8207\u5be6\u9ad4\u3001\u4e26\u767c\u5e03\u5176\u8a2d\u5b9a\u81f3 MQTT \u4ee3\u7406\u4f3a\u670d\u5668\u3002\u5047\u5982\u505c\u7528\u641c\u7d22\u7684\u8a71\uff0c\u6240\u6709\u8a2d\u5b9a\u5fc5\u9808\u624b\u52d5\u9032\u884c\u3002\n\u63a2\u7d22 prefix - \u5fc5\u9808\u4f7f\u7528 prefix \u8a2d\u5b9a\u4e3b\u984c\u958b\u982d\u624d\u80fd\u88ab\u81ea\u52d5\u63a2\u7d22\u767c\u73fe\u3002\nBirth \u8a0a\u606f - Birth \u8a0a\u606f\u5c07\u6703\u65bc\u6bcf\u6b21 Home Assistant \u9023\u7dda\u81f3 MQTT \u4ee3\u7406\u4f3a\u670d\u5668\u6642\u50b3\u9001\u3002\nWill \u8a0a\u606f - Will \u8a0a\u606f\u5c07\u6703\u65bc\u6bcf\u6b21 Home Assistant \u81ea\u4ee3\u7406\u4f3a\u670d\u5668\u65b7\u7dda\u6642\u50b3\u9001\u3001\u540c\u6642\u5305\u542b\u5b89\u5168\u65b7\u7dda\uff08\u4f8b\u5982 Home Assistant \u95dc\u6a5f\uff09\u53ca\u975e\u5b89\u5168\u65b7\u7dda\uff08\u4f8b\u5982 Home Assistant \u7576\u6a5f\u6216\u65b7\u7dda\uff09\u72c0\u6cc1\u3002",
+                "title": "MQTT \u9078\u9805"
+            }
+        }
+    },
+    "selector": {
+        "alarm_control_panel_code_mode": {
+            "options": {
+                "local_code": "\u672c\u5730\u4ee3\u78bc\u9a57\u8b49",
+                "remote_code": "\u6578\u5b57\u9060\u7aef\u4ee3\u78bc\u9a57\u8b49",
+                "remote_code_text": "\u6587\u5b57\u9060\u7aef\u4ee3\u78bc\u9a57\u8b49"
+            }
+        },
+        "alarm_control_panel_features": {
+            "options": {
+                "arm_away": "\u8a2d\u5b9a\u96e2\u5bb6\u8b66\u6212",
+                "arm_custom_bypass": "\u8a2d\u5b9a\u81ea\u8a02\u5ffd\u7565\u8b66\u6212",
+                "arm_home": "\u8a2d\u5b9a\u5728\u5bb6\u8b66\u6212",
+                "arm_night": "\u8a2d\u5b9a\u591c\u9593\u8b66\u6212",
+                "arm_vacation": "\u8a2d\u5b9a\u5ea6\u5047\u8b66\u6212",
+                "trigger": "\u89f8\u767c\u8b66\u5831"
+            }
+        },
+        "climate_modes": {
+            "options": {
+                "auto": "\u81ea\u52d5",
+                "cool": "\u51b7\u6c23",
+                "dry": "\u9664\u6fd5",
+                "fan_only": "\u50c5\u9001\u98a8",
+                "heat": "\u6696\u6c23",
+                "heat_cool": "\u6696\u6c23/\u51b7\u6c23",
+                "off": "\u95dc\u9589"
+            }
+        },
+        "entity_category": {
+            "options": {
+                "config": "\u8a2d\u5b9a",
+                "diagnostic": "\u8a3a\u65b7\u8cc7\u6599"
+            }
+        },
+        "image_encoding": {
+            "options": {
+                "b64": "Base64 \u7de8\u78bc",
+                "raw": "\u539f\u59cb\u8cc7\u6599"
+            }
+        },
+        "image_processing_mode": {
+            "options": {
+                "image_data": "\u5df2\u63a5\u6536\u5f71\u50cf\u8cc7\u6599",
+                "image_url": "\u5df2\u6536\u5230\u5f71\u50cf\u7db2\u5740"
+            }
+        },
+        "light_schema": {
+            "options": {
+                "basic": "\u9810\u8a2d\u67b6\u69cb",
+                "json": "JSON",
+                "template": "\u6a21\u677f"
+            }
+        },
+        "number_mode": {
+            "options": {
+                "auto": "\u81ea\u52d5",
+                "box": "\u8f38\u5165\u6b04\u4f4d",
+                "slider": "\u6ed1\u687f"
+            }
+        },
+        "on_command_type": {
+            "options": {
+                "brightness": "\u4eae\u5ea6",
+                "first": "\u6700\u521d",
+                "last": "\u6700\u5f8c"
+            }
+        },
+        "platform": {
+            "options": {
+                "alarm_control_panel": "\u8b66\u6212\u63a7\u5236\u9762\u677f",
+                "binary_sensor": "\u4e8c\u9032\u4f4d\u611f\u6e2c\u5668",
+                "button": "\u6309\u9215",
+                "climate": "\u7a7a\u8abf",
+                "cover": "\u9580\u7c3e",
+                "date": "\u65e5\u671f",
+                "datetime": "\u65e5\u671f/\u6642\u9593",
+                "fan": "\u98a8\u6247",
+                "image": "\u5f71\u50cf",
+                "light": "\u71c8\u5149",
+                "lock": "\u9580\u9396",
+                "notify": "\u901a\u77e5",
+                "number": "\u6578\u5b57",
+                "select": "\u9078\u64c7",
+                "sensor": "\u611f\u6e2c\u5668",
+                "siren": "\u8b66\u5831",
+                "switch": "\u958b\u95dc",
+                "text": "\u6587\u5b57",
+                "time": "\u6642\u9593",
+                "valve": "\u95a5\u9580",
+                "water_heater": "\u71b1\u6c34\u5668"
+            }
+        },
+        "set_ca_cert": {
+            "options": {
+                "auto": "\u81ea\u52d5",
+                "custom": "\u81ea\u8a02",
+                "off": "\u95dc\u9589"
+            }
+        },
+        "supported_color_modes": {
+            "options": {
+                "brightness": "\u50c5\u4eae\u5ea6",
+                "color_temp": "\u8272\u6eab",
+                "hs": "HS",
+                "onoff": "\u958b/\u95dc",
+                "rgb": "RGB",
+                "rgbw": "RGBW",
+                "rgbww": "RGBWW",
+                "white": "\u767d\u8272",
+                "xy": "XY"
+            }
+        },
+        "target_temperature_feature": {
+            "options": {
+                "high_low": "\u4e0a\u9650/\u4e0b\u9650\u76ee\u6a19\u6eab\u5ea6",
+                "none": "\u7121\u76ee\u6a19\u6eab\u5ea6",
+                "single": "\u55ae\u76ee\u6a19\u6eab\u5ea6"
+            }
+        },
+        "text_mode": {
+            "options": {
+                "password": "\u5bc6\u78bc",
+                "text": "\u6587\u5b57"
+            }
+        },
+        "water_heater_modes": {
+            "options": {
+                "auto": "\u81ea\u52d5",
+                "eco": "\u7bc0\u80fd",
+                "electric": "\u96fb\u529b",
+                "gas": "\u74e6\u65af",
+                "heat_pump": "\u71b1\u6cf5",
+                "high_demand": "\u9ad8\u9700\u6c42",
+                "off": "\u95dc\u9589",
+                "performance": "\u6548\u80fd"
+            }
+        }
+    },
+    "services": {
+        "dump": {
+            "description": "\u5c07\u7279\u5b9a\u4e3b\u984c\u7684\u6240\u6709\u8a0a\u606f\u5beb\u5165\u4f4d\u65bc\u60a8\u7684\u8a2d\u5b9a\u8cc7\u6599\u593e\u4e2d\u7684 `mqtt_dump.txt` \u6a94\u6848\u3002",
+            "fields": {
+                "duration": {
+                    "description": "\u76e3\u807d\u8a0a\u606f\u6642\u9593\u9577\uff08\u4ee5\u79d2\u70ba\u55ae\u4f4d\uff09\u3002",
+                    "name": "\u6301\u7e8c\u6642\u9593"
+                },
+                "topic": {
+                    "description": "\u76e3\u807d\u7684\u4e3b\u984c\u3002",
+                    "name": "\u4e3b\u984c"
+                }
+            },
+            "name": "\u8f38\u51fa"
+        },
+        "publish": {
+            "description": "\u767c\u4f48\u8a0a\u606f\u81f3 MQTT \u4e3b\u984c\u3002",
+            "fields": {
+                "evaluate_payload": {
+                    "description": "\u5047\u5982 `Payload` \u70ba Python \u5b57\u7bc0\u5b57\u9762\u5e38\u6578\u6642\u3001\u8a55\u4f30\u5b57\u7bc0\u5b57\u9762\u5e38\u6578\u4e26\u767c\u5e03\u539f\u59cb\u8cc7\u6599\u3002",
+                    "name": "\u8a55\u4f30 Payload"
+                },
+                "message_expiry_interval": {
+                    "description": "\u5982\u679c\u88dd\u7f6e\u8a02\u95b1\u8005\u66ab\u6642\u96e2\u7dda\uff0c\u6216\u8a0a\u606f\u88ab\u8a2d\u5b9a\u70ba\u4fdd\u7559\u8a0a\u606f\uff0c\u5247\u5728\u6307\u5b9a\u6642\u9593\u9593\u9694\u5f8c\uff0c\u767c\u5e03\u7684\u8a0a\u606f\u5c07\u6703\u904e\u671f\u3002\u50c5\u652f\u63f4 MQTT \u5354\u5b9a\u7248\u672c 5.0\u3002",
+                    "name": "\u8a0a\u606f\u904e\u671f\u9593\u9694"
+                },
+                "payload": {
+                    "description": "\u8981\u767c\u4f48\u7684\u5167\u5bb9\u3002\u5982\u679c\u672a\u63d0\u4f9b\uff0c\u5247\u767c\u4f48\u7a7a\u6d88\u606f\u3002",
+                    "name": "\u5167\u5bb9"
+                },
+                "qos": {
+                    "description": "\u4f7f\u7528\u7684\u670d\u52d9\u54c1\u8cea\u30020\uff1a\u6700\u591a\u50b3\u9001\u4e00\u6b21\uff08At most once\uff09\u30021\uff1a\u81f3\u5c11\u50b3\u9001\u4e00\u6b21\uff08At least once\uff09\u30022\uff1a\u78ba\u5be6\u50b3\u9001\u4e00\u6b21\uff08Exactly once\uff09\u3002",
+                    "name": "QoS"
+                },
+                "retain": {
+                    "description": "\u6d88\u606f\u662f\u5426\u8a2d\u5b9a\u4fdd\u7559\u6a19\u8a8c\u3002\u5982\u679c\u8a2d\u5b9a\u3001\u5247 Broker \u4ee3\u7406\u6703\u5132\u5b58\u4e3b\u984c\u4e0a\u7684\u6700\u65b0\u6d88\u606f\u3002",
+                    "name": "\u4fdd\u7559"
+                },
+                "topic": {
+                    "description": "\u767c\u4f48\u7684\u4e3b\u984c\u3002",
+                    "name": "\u4e3b\u984c"
+                }
+            },
+            "name": "\u767c\u4f48",
+            "sections": {
+                "publish_options": {
+                    "name": "\u767c\u5e03\u9078\u9805"
+                }
+            }
+        },
+        "reload": {
+            "description": "\u91cd\u65b0\u8f09\u5165 YAML \u8a2d\u5b9a MQTT \u5be6\u9ad4\u3002",
+            "name": "\u91cd\u65b0\u8f09\u5165"
+        }
+    },
+    "triggers": {
+        "_": {
+            "description": "\u7576\u6307\u5b9a\u7684 MQTT \u4e3b\u984c\u63a5\u6536\u5230\u6307\u5b9a\u8a0a\u606f\u5f8c\u89f8\u767c\u3002",
+            "fields": {
+                "payload": {
+                    "description": "\u89f8\u767c\u7684 Payload\u3002",
+                    "name": "Payload"
+                },
+                "topic": {
+                    "description": "\u76e3\u807d\u7684 MQTT \u4e3b\u984c\u3002",
+                    "name": "\u4e3b\u984c"
+                }
+            },
+            "name": "\u63a5\u6536\u5230 MQTT \u8a0a\u606f\u6642"
+        }
+    }
+}

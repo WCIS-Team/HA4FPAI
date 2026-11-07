@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "event": {
+            "automatic_backup_event": {
+                "name": "Copia de seguridad autom\u00e1tica",
+                "state_attributes": {
+                    "backup_stage": {
+                        "name": "Etapa de la copia de seguridad"
+                    },
+                    "event_type": {
+                        "state": {
+                            "completed": "Completado con \u00e9xito",
+                            "failed": "Ha fallado",
+                            "in_progress": "En curso"
+                        }
+                    },
+                    "failed_reason": {
+                        "name": "Motivo del fallo",
+                        "state": {
+                            "backup_agent_error": "Error del agente de copia de seguridad",
+                            "backup_agent_unreachable": "Agente de copia de seguridad inaccesible",
+                            "backup_manager_error": "Error del administrador de copias de seguridad",
+                            "backup_not_found": "Copia de seguridad no encontrada",
+                            "backup_reader_writer_error": "Error del lector/escritor de copia de seguridad",
+                            "decrypt_on_download_not_supported": "No es posible descifrar al descargar",
+                            "invalid_backup_filename": "Nombre de archivo de copia de seguridad no v\u00e1lido",
+                            "multiple_errors": "M\u00faltiples errores",
+                            "password_incorrect": "Contrase\u00f1a incorrecta",
+                            "unknown_error": "Error desconocido",
+                            "upload_failed": "Error en la subida"
+                        }
+                    }
+                }
+            }
+        },
+        "sensor": {
+            "backup_manager_state": {
+                "name": "Estado del administrador de copias de seguridad",
+                "state": {
+                    "blocked": "Bloqueado",
+                    "create_backup": "Creando una copia de seguridad",
+                    "idle": "Inactivo",
+                    "receive_backup": "Recibir una copia de seguridad",
+                    "restore_backup": "Restaurar una copia de seguridad"
+                }
+            },
+            "last_attempted_automatic_backup": {
+                "name": "\u00daltimo intento de copia de seguridad autom\u00e1tica"
+            },
+            "last_successful_automatic_backup": {
+                "name": "\u00daltima copia de seguridad autom\u00e1tica realizada correctamente"
+            },
+            "next_scheduled_automatic_backup": {
+                "name": "Pr\u00f3xima copia de seguridad autom\u00e1tica programada"
+            }
+        }
+    },
+    "issues": {
+        "automatic_backup_agents_unavailable": {
+            "description": "La ubicaci\u00f3n de la copia de seguridad `{agent_id}` no est\u00e1 disponible, pero a\u00fan est\u00e1 configurada para copias de seguridad autom\u00e1ticas. \n \nPor favor, visita la [p\u00e1gina de configuraci\u00f3n de copias de seguridad autom\u00e1ticas]({backup_settings}) para revisar y actualizar tus ubicaciones de copia de seguridad. Las copias de seguridad no se cargar\u00e1n en las ubicaciones seleccionadas que no est\u00e9n disponibles.",
+            "title": "La ubicaci\u00f3n de la copia de seguridad {agent_id} no est\u00e1 disponible"
+        },
+        "automatic_backup_failed_addons": {
+            "description": "Las aplicaciones {failed_addons} no pudieron incluirse en la copia de seguridad autom\u00e1tica. Por favor, comprueba los registros del Supervisor para obtener m\u00e1s informaci\u00f3n. Se realizar\u00e1 otro intento a la siguiente hora programada si se ha configurado un programa de copia de seguridad.",
+            "title": "No todas las aplicaciones se pueden incluir en la copia de seguridad autom\u00e1tica"
+        },
+        "automatic_backup_failed_agents_addons_folders": {
+            "description": "La copia de seguridad autom\u00e1tica se cre\u00f3 con errores: \n* Ubicaciones en las que no se pudo cargar la copia de seguridad: {failed_agents}\n* Aplicaciones de las que no se pudo realizar una copia de seguridad: {failed_addons}\n* Carpetas de las que no se pudo realizar una copia de seguridad: {failed_folders}\n\nPor favor, comprueba los registros del n\u00facleo y del supervisor para obtener m\u00e1s informaci\u00f3n. Se realizar\u00e1 otro intento a la siguiente hora programada si se ha configurado un programa de copia de seguridad.",
+            "title": "Se cre\u00f3 una copia de seguridad autom\u00e1tica con errores"
+        },
+        "automatic_backup_failed_create": {
+            "description": "No se pudo crear la copia de seguridad autom\u00e1tica. Por favor, revisa los registros para obtener m\u00e1s informaci\u00f3n. Se realizar\u00e1 otro intento en la pr\u00f3xima hora programada si se configur\u00f3 un programa de copia de seguridad.",
+            "title": "No se pudo crear la copia de seguridad autom\u00e1tica"
+        },
+        "automatic_backup_failed_folders": {
+            "description": "Las carpetas {failed_folders} no se pudieron incluir en la copia de seguridad autom\u00e1tica. Por favor, consulta los registros del Supervisor para obtener m\u00e1s informaci\u00f3n. Se realizar\u00e1 otro intento en la pr\u00f3xima fecha programada si se ha configurado una copia de seguridad programada.",
+            "title": "No todas las carpetas se pudieron incluir en la copia de seguridad autom\u00e1tica"
+        },
+        "automatic_backup_failed_upload_agents": {
+            "description": "No se pudo cargar la copia de seguridad autom\u00e1tica en las ubicaciones configuradas {failed_agents}. Por favor, revisa los registros para obtener m\u00e1s informaci\u00f3n. Se realizar\u00e1 otro intento en la pr\u00f3xima hora programada si se configura un programa de copia de seguridad.",
+            "title": "No se pudo cargar la copia de seguridad autom\u00e1tica en las ubicaciones configuradas"
+        }
+    },
+    "services": {
+        "create": {
+            "description": "Crea una nueva copia de seguridad.",
+            "name": "Crear copia de seguridad"
+        },
+        "create_automatic": {
+            "description": "Crea una nueva copia de seguridad con configuraciones de copia de seguridad autom\u00e1tica.",
+            "name": "Crear copia de seguridad autom\u00e1tica"
+        }
+    }
+}

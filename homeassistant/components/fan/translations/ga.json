@@ -1,0 +1,191 @@
+{
+    "common": {
+        "condition_for_name": "Ar a laghad",
+        "section_additional_fields_name": "Roghanna breise",
+        "trigger_for_name": "Ar a laghad"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil lucht lean\u00fana amh\u00e1in n\u00f3 n\u00edos m\u00f3 m\u00fachta.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "is_on": {
+            "description": "D\u00e9anann t\u00e1st\u00e1il an bhfuil lucht lean\u00fana amh\u00e1in n\u00f3 n\u00edos m\u00f3 ar si\u00fal.",
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "toggle": "Scor\u00e1naigh {entity_name}",
+            "turn_off": "M\u00fach {entity_name}",
+            "turn_on": "Cas ar {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "T\u00e1 {entity_name} m\u00fachta",
+            "is_on": "T\u00e1 {entity_name} ar si\u00fal"
+        },
+        "extra_fields": {
+            "for": "Fad"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} casta air n\u00f3 as",
+            "turned_off": "M\u00fachadh {entity_name}",
+            "turned_on": "T\u00e1 {entity_name} casta air"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Fean",
+            "state": {
+                "off": "As",
+                "on": "Ar si\u00fal"
+            },
+            "state_attributes": {
+                "direction": {
+                    "name": "Treo",
+                    "state": {
+                        "forward": "Ar Aghaidh",
+                        "reverse": "Droim ar ais"
+                    }
+                },
+                "oscillating": {
+                    "name": "Luascach",
+                    "state": {
+                        "false": "N\u00edl",
+                        "true": "T\u00e1"
+                    }
+                },
+                "percentage": {
+                    "name": "Luas"
+                },
+                "percentage_step": {
+                    "name": "C\u00e9im luais"
+                },
+                "preset_mode": {
+                    "name": "M\u00f3d r\u00e9amhshocraithe"
+                },
+                "preset_modes": {
+                    "name": "Modhanna r\u00e9amhshocraithe at\u00e1 ar f\u00e1il"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "not_valid_preset_mode": {
+            "message": "N\u00edl an modh r\u00e9amhshocraithe {preset_mode} bail\u00ed, is iad na modhanna r\u00e9amhshocraithe bail\u00ed n\u00e1: {preset_modes}."
+        }
+    },
+    "selector": {
+        "direction": {
+            "options": {
+                "forward": "Ar Aghaidh",
+                "reverse": "Droim ar ais"
+            }
+        }
+    },
+    "services": {
+        "decrease_speed": {
+            "description": "Laghda\u00edonn s\u00e9 luas fean.",
+            "fields": {
+                "percentage_step": {
+                    "description": "C\u00e9im c\u00e9atad\u00e1in faoinar cheart an luas a laghd\u00fa.",
+                    "name": "Laghd\u00fa"
+                }
+            },
+            "sections": {
+                "additional_fields": {
+                    "name": "Roghanna breise"
+                }
+            }
+        },
+        "increase_speed": {
+            "description": "M\u00e9ada\u00edonn s\u00e9 luas fean.",
+            "fields": {
+                "percentage_step": {
+                    "description": "C\u00e9im c\u00e9atad\u00e1in faoinar cheart an luas a mh\u00e9ad\u00fa.",
+                    "name": "M\u00e9ad\u00fa"
+                }
+            },
+            "sections": {
+                "additional_fields": {
+                    "name": "Roghanna breise"
+                }
+            }
+        },
+        "oscillate": {
+            "description": "Riala\u00edonn s\u00e9 ascal\u00fa fean.",
+            "fields": {
+                "oscillating": {
+                    "description": "Casadh ascalaithe air/as.",
+                    "name": "Ag ascalaigh"
+                }
+            }
+        },
+        "set_direction": {
+            "description": "Socra\u00edonn s\u00e9 treo rothlaithe fean.",
+            "fields": {
+                "direction": {
+                    "description": "Treo rothlaithe an fean.",
+                    "name": "Treo"
+                }
+            }
+        },
+        "set_percentage": {
+            "description": "Socra\u00edonn s\u00e9 luas fean.",
+            "fields": {
+                "percentage": {
+                    "description": "Luas an fean.",
+                    "name": "C\u00e9atad\u00e1n"
+                }
+            }
+        },
+        "set_preset_mode": {
+            "fields": {
+                "preset_mode": {
+                    "description": "M\u00f3d fean \u00e9amhshocraithe.",
+                    "name": "M\u00f3d r\u00e9amhshocraithe"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Scor\u00e1naigh fean air/as."
+        },
+        "turn_on": {
+            "fields": {
+                "percentage": {
+                    "description": "Luas an fean.",
+                    "name": "C\u00e9atad\u00e1n"
+                },
+                "preset_mode": {
+                    "description": "M\u00f3d fean \u00e9amhshocraithe.",
+                    "name": "M\u00f3d r\u00e9amhshocraithe"
+                }
+            }
+        }
+    },
+    "title": "Fean",
+    "triggers": {
+        "turned_off": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        },
+        "turned_on": {
+            "fields": {
+                "for": {
+                    "name": "Ar a laghad"
+                }
+            }
+        }
+    }
+}

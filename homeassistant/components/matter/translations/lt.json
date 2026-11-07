@@ -1,0 +1,902 @@
+{
+    "config": {
+        "abort": {
+            "addon_get_discovery_info_failed": "Nepavyko gauti Matter Server program\u0117l\u0117s aptikimo informacijos.",
+            "addon_info_failed": "Nepavyko gauti Matter Server program\u0117l\u0117s informacijos.",
+            "addon_install_failed": "Nepavyko \u012fdiegti Matter Server program\u0117l\u0117s.",
+            "addon_start_failed": "Nepavyko paleisti Matter Server program\u0117l\u0117s.",
+            "already_configured": "Prietaisas jau sukonfig\u016bruotas",
+            "cannot_connect": "Nepavyko prisijungti",
+            "not_matter_addon": "Discovered program\u0117l\u0117 n\u0117ra oficiali Matter Server program\u0117l\u0117.",
+            "reconfiguration_successful": "\u201eMatter\u201c integracija s\u0117kmingai sukonfig\u016bruota."
+        },
+        "error": {
+            "cannot_connect": "Nepavyko prisijungti",
+            "invalid_server_version": "\u201eMatter\u201c serverio versija n\u0117ra tinkama",
+            "unknown": "Netik\u0117ta klaida"
+        },
+        "flow_title": "{name}",
+        "progress": {
+            "install_addon": "Palaukite, kol bus baigtas diegti Matter Server program\u0117l\u0119. Tai gali u\u017etrukti kelias minutes.",
+            "start_addon": "Palaukite, kol bus paleista Matter Server program\u0117l\u0117. \u0160i program\u0117l\u0117 maitina Matter sistem\u0105 Home Assistant sistemoje. Tai gali u\u017etrukti kelias sekundes."
+        },
+        "step": {
+            "hassio_confirm": {
+                "title": "Nustatykite Matter integracij\u0105 su Matter Server program\u0117le"
+            },
+            "install_addon": {
+                "title": "Program\u0117l\u0117s diegimas prad\u0117tas"
+            },
+            "manual": {
+                "data": {
+                    "url": "URL"
+                }
+            },
+            "on_supervisor": {
+                "data": {
+                    "use_addon": "Naudokite oficiali\u0105 Matter Server Supervisor program\u0117l\u0119"
+                },
+                "description": "Ar norite naudoti oficiali\u0105 Matter Server Superviso\u201c program\u0117l\u0119? \n \n Jei Matter Server jau naudojate kitoje program\u0117l\u0117je, pasirinktiniame konteineryje, vietoje ir pan., \u0161ios parinkties nesirinkite.",
+                "title": "Pasirinkite prisijungimo b\u016bd\u0105"
+            },
+            "start_addon": {
+                "title": "Paleid\u017eiama program\u0117l\u0117."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "active_hardware_faults": {
+                "name": "Aparatin\u0117s \u012frangos gedimai"
+            },
+            "active_network_faults": {
+                "name": "Tinklo gedimai"
+            },
+            "active_radio_faults": {
+                "name": "Radijo gedimai"
+            },
+            "actuator": {
+                "name": "Pavara"
+            },
+            "alarm_door": {
+                "name": "Dur\u0173 signalizacija"
+            },
+            "battery_alert": {
+                "name": "\u012esp\u0117jimas apie akumuliatori\u0173"
+            },
+            "boost_state": {
+                "name": "Padidinimo b\u016bsena"
+            },
+            "config_status_operational": {
+                "name": "Konfig\u016bracijos b\u016bsena"
+            },
+            "dishwasher_alarm_inflow": {
+                "name": "\u012etek\u0117jimo signalizacija"
+            },
+            "end_of_service": {
+                "name": "Tarnybos pabaiga"
+            },
+            "evse_charging_status": {
+                "name": "\u012ekrovimo b\u016bsena"
+            },
+            "evse_plug": {
+                "name": "Ki\u0161tuko b\u016bsena"
+            },
+            "evse_supply_state": {
+                "name": "\u012ekroviklio maitinimo b\u016bsena"
+            },
+            "hardware_fault": {
+                "name": "Aparatin\u0117s \u012frangos gedimas"
+            },
+            "interconnected_co_alarm": {
+                "name": "Sujungta CO signalizacija"
+            },
+            "interconnected_smoke_alarm": {
+                "name": "Sujungtas d\u016bm\u0173 signalizatorius"
+            },
+            "muted": {
+                "name": "Nutildyta"
+            },
+            "rain": {
+                "name": "Lietus"
+            },
+            "test_in_progress": {
+                "name": "Vykdomas bandymas"
+            },
+            "thermostat_remote_sensing_local_temperature": {
+                "name": "Vietinis temperat\u016bros nuotolinis steb\u0117jimas"
+            },
+            "thermostat_remote_sensing_occupancy": {
+                "name": "Nuotolinis u\u017eimtumo steb\u0117jimas"
+            },
+            "thermostat_remote_sensing_outdoor_temperature": {
+                "name": "Lauko temperat\u016bros nuotolinis steb\u0117jimas"
+            },
+            "valve_fault_blocked": {
+                "name": "Vo\u017etuvas u\u017eblokuotas"
+            },
+            "valve_fault_general_fault": {
+                "name": "Bendras gedimas"
+            },
+            "valve_fault_leaking": {
+                "name": "Vo\u017etuvo nuot\u0117kis"
+            },
+            "water_freeze": {
+                "name": "Vanduo u\u017e\u0161\u0105la"
+            },
+            "water_leak": {
+                "name": "Vandens nutek\u0117jimas"
+            }
+        },
+        "button": {
+            "cancel_boost": {
+                "name": "At\u0161aukti padidinim\u0105"
+            },
+            "pause": {
+                "name": "Pauz\u0117"
+            },
+            "reset_filter_condition": {
+                "name": "I\u0161 naujo nustatyti filtro b\u016bkl\u0119"
+            },
+            "resume": {
+                "name": "T\u0119sti"
+            },
+            "self_test_request": {
+                "name": "Savikontrol\u0117"
+            },
+            "start": {
+                "name": "Prad\u0117ti"
+            },
+            "stop": {
+                "name": "Sustabdyti"
+            },
+            "temporary_mute_request": {
+                "name": "Laikinas nutildymas"
+            }
+        },
+        "climate": {
+            "thermostat": {
+                "name": "Termostatas",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "going_to_sleep": "Einu miegoti",
+                            "vacation": "Atostogos",
+                            "wake": "Pabudimas"
+                        }
+                    }
+                }
+            }
+        },
+        "cover": {
+            "cover": {
+                "name": "Vir\u0161elis"
+            }
+        },
+        "event": {
+            "button": {
+                "name": "Mygtukas",
+                "state_attributes": {
+                    "event_type": {
+                        "state": {
+                            "initial_press": "Suspaustas",
+                            "long_press": "Laik\u0117 \u017eemyn",
+                            "long_release": "I\u0161leistas po to, kai buvo nuspaustas",
+                            "multi_press_1": "Paspausta vien\u0105 kart\u0105",
+                            "multi_press_2": "Paspaustas 2 kartus",
+                            "multi_press_3": "Paspaustas 3 kartus",
+                            "multi_press_4": "Paspaustas 4 kartus",
+                            "multi_press_5": "Paspaustas 5 kartus",
+                            "multi_press_6": "Paspaustas 6 kartus",
+                            "multi_press_7": "Paspaustas 7 kartus",
+                            "multi_press_8": "Paspaustas 8 kartus",
+                            "short_release": "I\u0161leistas paspaudus",
+                            "switch_latched": "U\u017erakintas jungiklis"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan": {
+                "name": "Ventiliatorius",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Automatinis",
+                            "high": "Auk\u0161tas",
+                            "low": "\u017demas",
+                            "medium": "Vidutinis",
+                            "natural_wind": "Nat\u016bralus v\u0117jas",
+                            "sleep_wind": "Miego v\u0117jas"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "light": {
+                "name": "Lempa"
+            }
+        },
+        "lock": {
+            "lock": {
+                "name": "U\u017eraktas"
+            }
+        },
+        "number": {
+            "altitude": {
+                "name": "Auk\u0161tis vir\u0161 j\u016bros lygio"
+            },
+            "auto_relock_timer": {
+                "name": "Automatinio u\u017erakinimo laikas"
+            },
+            "cook_time": {
+                "name": "Virimo laikas"
+            },
+            "detection_delay": {
+                "name": "Aptikimo delsa"
+            },
+            "detection_threshold": {
+                "name": "Aptikimo slenkstis"
+            },
+            "hold_time": {
+                "name": "Laikymo laikas"
+            },
+            "led_indicator_intensity_off": {
+                "name": "LED i\u0161jungimo intensyvumas"
+            },
+            "led_indicator_intensity_on": {
+                "name": "LED \u012fjungimo intensyvumas"
+            },
+            "occupied_setback": {
+                "name": "U\u017eimta nes\u0117km\u0117"
+            },
+            "off_transition_time": {
+                "name": "Per\u0117jimo laikas i\u0161jungtas"
+            },
+            "on_level": {
+                "name": "Ant lygmens"
+            },
+            "on_off_transition_time": {
+                "name": "\u012ejungimo / i\u0161jungimo per\u0117jimo laikas"
+            },
+            "on_transition_time": {
+                "name": "Per\u0117jimo metu"
+            },
+            "power_on_level": {
+                "name": "\u012ejungimo lygis"
+            },
+            "pump_setpoint": {
+                "name": "Nustatyta vert\u0117"
+            },
+            "sensitivity_level": {
+                "name": "Jautrumas"
+            },
+            "slat_rotation_time": {
+                "name": "Sluoksni\u0173 sukimosi laikas"
+            },
+            "speaker_setpoint": {
+                "name": "T\u016bris"
+            },
+            "temperature_offset": {
+                "name": "Temperat\u016bros poslinkis"
+            },
+            "temperature_setpoint": {
+                "name": "Nustatytosios temperat\u016bros reik\u0161m\u0117s"
+            },
+            "travel_time_down": {
+                "name": "Kelion\u0117s laikas trumpesnis"
+            },
+            "travel_time_up": {
+                "name": "Kelion\u0117s laikas baig\u0117si"
+            },
+            "user_code_temporary_disable_time": {
+                "name": "Vartotojo kodo laikinas i\u0161jungimo laikas"
+            },
+            "valve_configuration_and_control_default_open_duration": {
+                "name": "Numatytoji atidarymo trukm\u0117"
+            },
+            "wrong_code_entry_limit": {
+                "name": "Neteisingo kodo riba"
+            }
+        },
+        "select": {
+            "clean_mode": {
+                "name": "Valymo re\u017eimas"
+            },
+            "device_energy_management_mode": {
+                "name": "Energijos valdymo re\u017eimas"
+            },
+            "door_lock_operating_mode": {
+                "name": "Veikimo re\u017eimas",
+                "state": {
+                    "no_remote_lock_unlock": "N\u0117ra nuotolinio u\u017erakinimo/atrakinimo",
+                    "normal": "Normalus",
+                    "passage": "I\u0161trauka",
+                    "privacy": "Privatumas",
+                    "vacation": "Atostogos"
+                }
+            },
+            "door_lock_sound_volume": {
+                "name": "Garso stiprumas",
+                "state": {
+                    "high": "Auk\u0161tas",
+                    "low": "\u017demas",
+                    "medium": "Vidutinis",
+                    "silent": "Tylusis"
+                }
+            },
+            "laundry_washer_number_of_rinses": {
+                "name": "Skalavim\u0173 skai\u010dius",
+                "state": {
+                    "extra": "Papildomai",
+                    "max": "Max",
+                    "normal": "Normalus",
+                    "off": "I\u0161jungta"
+                }
+            },
+            "laundry_washer_spin_speed": {
+                "name": "Sukimo greitis"
+            },
+            "mode": {
+                "name": "Re\u017eimas"
+            },
+            "power_level": {
+                "name": "Galios lygis (W)"
+            },
+            "pump_operation_mode": {
+                "name": "re\u017eimas",
+                "state": {
+                    "local": "Vietinis",
+                    "maximum": "Maksimalus",
+                    "minimum": "Minimalus",
+                    "normal": "Normalus"
+                }
+            },
+            "selected_chime": {
+                "name": "Skambu\u010dio garsas"
+            },
+            "sensitivity_level": {
+                "name": "Jautrumas",
+                "state": {
+                    "high": "Auk\u0161tas",
+                    "low": "\u017demas",
+                    "standard": "Standartinis"
+                }
+            },
+            "startup_on_off": {
+                "name": "\u012ejungimo elgsena",
+                "state": {
+                    "off": "I\u0161jungta",
+                    "on": "\u012ejungta",
+                    "previous": "Ankstesn\u0117 b\u016bsena",
+                    "toggle": "Perjungti"
+                }
+            },
+            "switch_connection_mode": {
+                "name": "Ry\u0161io re\u017eimas",
+                "state": {
+                    "directly_connected": "Tiesiogiai prijungtas",
+                    "matter_only": "Tik svarbu"
+                }
+            },
+            "switch_type": {
+                "name": "Jungiklio tipas",
+                "state": {
+                    "button": "Mygtukas",
+                    "switch": "Jungiklis"
+                }
+            },
+            "temperature_display_mode": {
+                "name": "Temperat\u016bros rodymo re\u017eimas"
+            },
+            "temperature_level": {
+                "name": "Temperat\u016bros lygis"
+            },
+            "water_heater_mode": {
+                "name": "Vandens \u0161ildytuvo re\u017eimas"
+            }
+        },
+        "sensor": {
+            "activated_carbon_filter_condition": {
+                "name": "Aktyvintos anglies filtro b\u016bkl\u0117"
+            },
+            "active_current": {
+                "name": "Aktyvioji srov\u0117"
+            },
+            "air_quality": {
+                "name": "Oro kokyb\u0117",
+                "state": {
+                    "extremely_poor": "Itin prastas",
+                    "fair": "\u0160viesus",
+                    "good": "Geras",
+                    "moderate": "Vidutinis",
+                    "poor": "Prastas",
+                    "very_poor": "Labai prastas"
+                }
+            },
+            "apparent_current": {
+                "name": "Matoma srov\u0117"
+            },
+            "auto_close_time": {
+                "name": "Automatinio u\u017edarymo laikas"
+            },
+            "battery_charge_state": {
+                "name": "Akumuliatoriaus \u012fkrovos b\u016bsena",
+                "state": {
+                    "charging": "\u012ekrovimas",
+                    "full_charge": "Pilnas \u012fkrovimas",
+                    "not_charging": "Nekraunamas"
+                }
+            },
+            "battery_replacement_description": {
+                "name": "Baterijos tipas"
+            },
+            "battery_time_remaining": {
+                "name": "Lik\u0119s laikas"
+            },
+            "battery_time_to_full_charge": {
+                "name": "Laikas iki pilno \u012fkrovimo"
+            },
+            "battery_voltage": {
+                "name": "Akumuliatoriaus \u012ftampa"
+            },
+            "boot_reason": {
+                "name": "\u012ekrovos prie\u017eastis",
+                "state": {
+                    "brown_out_reset": "Aptemimo atstatymas",
+                    "hardware_watchdog_reset": "Aparatin\u0117s \u012frangos steb\u0117jimo sistemos atstatymas",
+                    "power_on_reboot": "Perkrovimas \u012fjungus",
+                    "software_reset": "Programin\u0117s \u012frangos atstatymas",
+                    "software_update_completed": "Programin\u0117s \u012frangos atnaujinimas baigtas",
+                    "software_watchdog_reset": "Programin\u0117s \u012frangos prie\u017ei\u016bros sistemos atstatymas",
+                    "unspecified": "Nenurodyta"
+                }
+            },
+            "contamination_state": {
+                "name": "U\u017eter\u0161tumo b\u016bsena",
+                "state": {
+                    "critical": "Kritinis",
+                    "low": "\u017demas",
+                    "normal": "Normalus",
+                    "warning": "\u012esp\u0117jimas"
+                }
+            },
+            "current_phase": {
+                "name": "Dabartin\u0117 faz\u0117"
+            },
+            "door_closed_events": {
+                "name": "U\u017edaryt\u0173 dur\u0173 \u012fvykiai"
+            },
+            "door_open_events": {
+                "name": "Dur\u0173 atidarymo renginiai"
+            },
+            "energy_exported": {
+                "name": "Eksportuota energija"
+            },
+            "esa_opt_out_state": {
+                "name": "Energijos optimizavimo atsisakymas",
+                "state": {
+                    "grid_opt_out": "Tinklelis",
+                    "local_opt_out": "Vietinis",
+                    "no_opt_out": "I\u0161jungta",
+                    "opt_out": "Vietos ir tinklo"
+                }
+            },
+            "esa_state": {
+                "name": "Prietaiso energijos b\u016bsena",
+                "state": {
+                    "fault": "Gedimas",
+                    "offline": "Neprisijung\u0119s",
+                    "online": "Prisijung\u0119s",
+                    "paused": "Pristabdyta",
+                    "power_adjust_active": "Galios reguliavimas"
+                }
+            },
+            "estimated_end_time": {
+                "name": "Numatomas pabaigos laikas"
+            },
+            "estimated_heat_required": {
+                "name": "Reikalinga \u0161ildymo energija"
+            },
+            "eve_weather_trend": {
+                "name": "Or\u0173 tendencijos",
+                "state": {
+                    "cloudy": "Debesuota",
+                    "rainy": "Lietinga",
+                    "stormy": "Audringas",
+                    "sunny": "Saul\u0117ta"
+                }
+            },
+            "evse_charge_current": {
+                "name": "\u012ekrovimo srov\u0117"
+            },
+            "evse_circuit_capacity": {
+                "name": "Grandin\u0117s talpa"
+            },
+            "evse_fault_state": {
+                "name": "Gedimo b\u016bsena",
+                "state": {
+                    "contact_dry_failure": "Kontaktinis sausas gedimas",
+                    "contact_wet_failure": "Kontaktinis \u0161lapias gedimas",
+                    "emergency_stop": "Avarinis sustojimas",
+                    "ev_disconnected": "EV atjungtas",
+                    "live_neutral_swap": "Tiesioginis/neutralus apsikeitimas",
+                    "meter_failure": "Skaitiklio gedimas",
+                    "no_error": "GERAI",
+                    "other": "Kita klaida",
+                    "over_current": "Vir\u0161\u012ftampio srov\u0117",
+                    "over_temperature": "Perkaitimas",
+                    "over_voltage": "Vir\u0161\u012ftampa",
+                    "pilot_short_circuit": "Piloto trumpasis jungimas",
+                    "power_loss": "Galios praradimas",
+                    "power_quality": "Maitinimo kokyb\u0117",
+                    "under_voltage": "Nepakankama \u012ftampa",
+                    "wrong_power_supply": "Netinkamas maitinimo \u0161altinis"
+                }
+            },
+            "evse_max_charge_current": {
+                "name": "Maksimali \u012fkrovimo srov\u0117"
+            },
+            "evse_min_charge_current": {
+                "name": "Minimali \u012fkrovimo srov\u0117"
+            },
+            "evse_soc": {
+                "name": "\u012ekrovimo b\u016bsena"
+            },
+            "evse_user_max_charge_current": {
+                "name": "Maksimali vartotojo \u012fkrovimo srov\u0117"
+            },
+            "expiry_date": {
+                "name": "Galiojimo laikas"
+            },
+            "flow": {
+                "name": "Srautas"
+            },
+            "hepa_filter_condition": {
+                "name": "HEPA filtro b\u016bkl\u0117"
+            },
+            "nitrogen_dioxide": {
+                "name": "Azoto dioksidas"
+            },
+            "operational_error": {
+                "name": "Veikimo klaida",
+                "state": {
+                    "brush_jammed": "\u0160epetys u\u017estrigo",
+                    "cannot_reach_target_area": "Nepavyksta pasiekti tikslin\u0117s zonos",
+                    "command_invalid_in_state": "Komanda dabartin\u0117je b\u016bsenoje negalioja",
+                    "dirty_water_tank_full": "Ne\u0161varaus vandens bakas pilnas",
+                    "dirty_water_tank_missing": "Tr\u016bksta ne\u0161varaus vandens bako",
+                    "dust_bin_full": "Dulki\u0173 d\u0117\u017e\u0117 pilna",
+                    "dust_bin_missing": "Tr\u016bksta dulki\u0173 konteinerio",
+                    "failed_to_find_charging_dock": "Nepavyko rasti \u012fkrovimo stotel\u0117s",
+                    "low_battery": "\u017demas akumuliatoriaus \u012fkrovos lygis",
+                    "mop_cleaning_pad_missing": "Tr\u016bksta \u0161luost\u0117s valymo pagalv\u0117l\u0117s",
+                    "navigation_sensor_obscured": "Navigacijos jutiklis u\u017edengtas",
+                    "no_error": "N\u0117ra klaidos",
+                    "stuck": "\u012estrig\u0119s",
+                    "unable_to_complete_operation": "Nepavyko u\u017ebaigti operacijos",
+                    "unable_to_start_or_resume": "Nepavyksta prad\u0117ti arba t\u0119sti",
+                    "water_tank_empty": "Vandens bakas tu\u0161\u010dias",
+                    "water_tank_lid_open": "Vandens bako dangtelis atidarytas",
+                    "water_tank_missing": "Tr\u016bksta vandens bako",
+                    "wheels_jammed": "Ratai u\u017estrig\u0119"
+                }
+            },
+            "operational_state": {
+                "name": "Veiklos b\u016bkl\u0117",
+                "state": {
+                    "charging": "\u012ekrovimas",
+                    "docked": "Prijungta prie doko",
+                    "error": "Klaida",
+                    "paused": "Pristabdyta",
+                    "running": "Veikia",
+                    "seeking_charger": "Ie\u0161kau pakrov\u0117jo",
+                    "stopped": "Sustabdyta"
+                }
+            },
+            "outdoor_temperature": {
+                "name": "Lauko temperat\u016bra"
+            },
+            "pi_heating_demand": {
+                "name": "\u0160ildymo poreikis"
+            },
+            "pump_control_mode": {
+                "name": "Valdymo re\u017eimas",
+                "state": {
+                    "automatic": "Automatinis",
+                    "constant_flow": "Pastovus srautas",
+                    "constant_pressure": "Pastovus sl\u0117gis",
+                    "constant_speed": "Pastovus greitis",
+                    "constant_temperature": "Pastovi temperat\u016bra",
+                    "proportional_pressure": "Proporcinis sl\u0117gis"
+                }
+            },
+            "pump_speed": {
+                "name": "Sukimosi greitis"
+            },
+            "radon_concentration": {
+                "name": "Radono koncentracija"
+            },
+            "reactive_current": {
+                "name": "Reaktyvioji srov\u0117"
+            },
+            "reboot_count": {
+                "name": "Perkrovim\u0173 skai\u010dius"
+            },
+            "rms_current": {
+                "name": "Efektyvi srov\u0117"
+            },
+            "rms_voltage": {
+                "name": "Efektyvi \u012ftampa"
+            },
+            "switch_current_position": {
+                "name": "Dabartin\u0117 jungiklio pad\u0117tis"
+            },
+            "tank_percentage": {
+                "name": "Kar\u0161to vandens lygis"
+            },
+            "tank_volume": {
+                "name": "Bako t\u016bris"
+            },
+            "thread_channel": {
+                "name": "Thread kanalas"
+            },
+            "thread_network_name": {
+                "name": "Thread tinklo pavadinimas"
+            },
+            "thread_routing_role": {
+                "name": "Thread nukreipimo vaidmuo",
+                "state": {
+                    "end_device": "Galutinis \u012frenginys",
+                    "leader": "Lyderis",
+                    "reed": "Mar\u0161rutizatoriaus suderinamas galinis \u012frenginys",
+                    "router": "Mar\u0161rutizatorius",
+                    "sleepy_end_device": "Mieguistas galinis \u012frenginys",
+                    "unassigned": "Nepriskirtas",
+                    "unknown": "Ne\u017einoma",
+                    "unspecified": "Nenurodyta"
+                }
+            },
+            "tvoc_level": {
+                "name": "TVOC lygis",
+                "state": {
+                    "critical": "Kritinis",
+                    "high": "Auk\u0161tas",
+                    "low": "\u017demas",
+                    "medium": "Vidutinis"
+                }
+            },
+            "uptime": {
+                "name": "Veikimo laikas"
+            },
+            "valve_position": {
+                "name": "Vo\u017etuvo pad\u0117tis"
+            },
+            "voltage": {
+                "name": "\u012etampa"
+            },
+            "wifi_rssi": {
+                "name": "Wi-Fi RSSI"
+            },
+            "window_covering_target_position": {
+                "name": "Taikinio atidarymo pad\u0117tis"
+            }
+        },
+        "siren": {
+            "siren": {
+                "name": "Sirena"
+            }
+        },
+        "switch": {
+            "audible_alarm_enabled": {
+                "name": "Garsinis signalas \u012fjungtas"
+            },
+            "child_lock": {
+                "name": "U\u017eraktas nuo vaik\u0173"
+            },
+            "display": {
+                "name": "Ekranas"
+            },
+            "evse_charging_switch": {
+                "name": "\u012ejungti \u012fkrovim\u0105"
+            },
+            "one_touch_locking": {
+                "name": "Vieno paspaudimo u\u017erakinimas"
+            },
+            "power": {
+                "name": "Galia"
+            },
+            "privacy_mode_button": {
+                "name": "Privatumo re\u017eimo mygtukas"
+            },
+            "speaker_mute": {
+                "name": "Nutildyti"
+            },
+            "switch": {
+                "name": "Jungiklis"
+            },
+            "visual_alarm_enabled": {
+                "name": "\u012ejungtas vizualinis signalas"
+            }
+        },
+        "vacuum": {
+            "vacuum": {
+                "name": "Dulki\u0173 siurblys"
+            }
+        },
+        "valve": {
+            "valve": {
+                "name": "Vo\u017etuvas"
+            }
+        },
+        "water_heater": {
+            "water_heater": {
+                "name": "Vandens \u0161ildytuvas"
+            }
+        }
+    },
+    "exceptions": {
+        "addon_not_installed": {
+            "message": "Matter Server program\u0117l\u0117 dar ne\u012fdiegta."
+        },
+        "addon_not_ready": {
+            "message": "Matter Server program\u0117l\u0117 dar n\u0117ra paruo\u0161ta."
+        },
+        "addon_not_running": {
+            "message": "Matter Server program\u0117l\u0117 dar neveikia."
+        },
+        "credential_type_not_supported": {
+            "message": "U\u017eraktas nepalaiko kredencial\u0173 tipo `{credential_type}`."
+        },
+        "invalid_credential_data": {
+            "message": "Neteisingi prisijungimo duomenys: {reason}."
+        },
+        "set_credential_failed": {
+            "message": "Nepavyko nustatyti kredencial\u0173: u\u017eraktas gr\u0105\u017eino b\u016bsen\u0105 `{status}`."
+        }
+    },
+    "issues": {
+        "ipv6_disabled": {
+            "description": "Matter naudoja IPv6, kad gal\u0117t\u0173 bendrauti su kai kuriais \u012frenginiais, ta\u010diau IPv6 yra i\u0161jungtas visose prijungtose tinklo s\u0105sajose. Vietoje prijungti Wi-Fi ir Ethernet \u012frenginiai vis tiek gali veikti, ta\u010diau tokioms funkcijoms kaip i\u0161orinio Thread border mar\u0161rutizatoriaus naudojimas turi b\u016bti \u012fjungtas IPv6. Pasirinkite \"Su\u017einokite daugiau\", kad atidarytum\u0117te tinklo nustatymus.",
+            "title": "IPv6 yra i\u0161jungtas, bet Matter reikalauja"
+        },
+        "server_version_version_too_new": {
+            "description": "\u0160iuo metu naudojama \u201eMatter Server\u201c versija yra per nauja \u0161iai \u201eHome Assistant\u201c versijai. Nor\u0117dami i\u0161spr\u0119sti \u0161i\u0105 problem\u0105, atnaujinkite \u201eHome Assistant\u201c arba gr\u0105\u017einkite \u012f senesn\u0119 \u201eMatter Server\u201c versij\u0105.",
+            "title": "Reikalinga senesn\u0117 \u201eMatter Server\u201c versija"
+        },
+        "server_version_version_too_old": {
+            "description": "\u0160iuo metu naudojama \u201eMatter Server\u201c versija yra per sena \u0161iai \u201eHome Assistant\u201c versijai. Nor\u0117dami i\u0161spr\u0119sti \u0161i\u0105 problem\u0105, atnaujinkite \u201eMatter Server\u201c \u012f naujausi\u0105 versij\u0105.",
+            "title": "Reikalinga naujesn\u0117 \u201eMatter Server\u201c versija"
+        }
+    },
+    "services": {
+        "clear_lock_credential": {
+            "description": "Pa\u0161alina kredencial\u0105 i\u0161 u\u017erakto.",
+            "fields": {
+                "credential_index": {
+                    "description": "I\u0161valomas kredencial\u0173 lizdo indeksas.",
+                    "name": "\u012egaliojim\u0173 indeksas"
+                },
+                "credential_type": {
+                    "description": "I\u0161valytin\u0173 \u012fgaliojim\u0173 tipas.",
+                    "name": "\u012egaliojimo tipas"
+                }
+            },
+            "name": "I\u0161valyti u\u017erakinimo kredencialus"
+        },
+        "clear_lock_user": {
+            "description": "I\u0161trina u\u017erakint\u0105 vartotoj\u0105 ir visus susijusius prisijungimo duomenis. Nor\u0117dami i\u0161valyti visus vartotojus, naudokite indeks\u0105 65534.",
+            "fields": {
+                "user_index": {
+                    "description": "Vartotojo lizdo indeksas (pagal 1), kur\u012f reikia i\u0161valyti, arba 65534, jei reikia i\u0161valyti visk\u0105.",
+                    "name": "Vartotoj\u0173 indeksas"
+                }
+            },
+            "name": "I\u0161valyti u\u017erakint\u0105 naudotoj\u0105"
+        },
+        "get_lock_credential_status": {
+            "description": "Gr\u0105\u017eina u\u017erakto kredencial\u0173 lizdo b\u016bsen\u0105.",
+            "fields": {
+                "credential_index": {
+                    "description": "U\u017eklausos kredencial\u0173 lizdo indeksas.",
+                    "name": "\u012egaliojim\u0173 indeksas"
+                },
+                "credential_type": {
+                    "description": "U\u017eklausos kredencial\u0173 tipas.",
+                    "name": "\u012egaliojimo tipas"
+                }
+            },
+            "name": "Gaukite u\u017erakinimo kredencial\u0173 b\u016bsen\u0105"
+        },
+        "get_lock_info": {
+            "description": "Gr\u0105\u017eina u\u017erakinimo galimybes, \u012fskaitant palaikomus kredencial\u0173 tipus, vartotoj\u0173 paj\u0117gumus ir PIN ilgio apribojimus.",
+            "name": "Gaukite informacij\u0105 apie u\u017erakt\u0105"
+        },
+        "get_lock_users": {
+            "description": "Gr\u0105\u017eina visus vartotojus, sukonfig\u016bruotus u\u017erakto sistemoje, su j\u0173 kredencialais.",
+            "name": "Gaukite u\u017erakintus vartotojus"
+        },
+        "open_commissioning_window": {
+            "description": "Leid\u017eia prid\u0117ti vien\u0105 i\u0161 j\u016bs\u0173 prietais\u0173 prie kito \u201eMatter\u201c tinklo, atidarius \u0161io \u201eMatter\u201c prietaiso paleidimo lang\u0105 60 sekund\u017ei\u0173.",
+            "fields": {
+                "device_id": {
+                    "description": "\u201eMatter\u201c prietaisas, kur\u012f norite prid\u0117ti prie kito \u201eMatter\u201c tinklo.",
+                    "name": "Prietaisas"
+                }
+            },
+            "name": "Atidarykite paleidimo lang\u0105"
+        },
+        "set_lock_credential": {
+            "description": "Prideda arba atnaujina u\u017erakto kredencialus.",
+            "fields": {
+                "credential_data": {
+                    "description": "Kredencial\u0173 duomenys. PIN kodui: tik skaitmenys. RFID kodui: \u0161e\u0161ioliktain\u0117 eilut\u0117.",
+                    "name": "\u012egaliojim\u0173 duomenys"
+                },
+                "credential_index": {
+                    "description": "Kredencial\u0173 lizdo indeksas. Palikite tu\u0161\u010di\u0105, kad sistema automati\u0161kai rast\u0173 laisv\u0105 lizd\u0105.",
+                    "name": "\u012egaliojim\u0173 indeksas"
+                },
+                "credential_type": {
+                    "description": "Kredencial\u0173 tipas (pvz., PIN kodas, RFID, pir\u0161to atspaudas).",
+                    "name": "\u012egaliojimo tipas"
+                },
+                "user_index": {
+                    "description": "Vartotojo indeksas, su kuriuo susieti kredencial\u0105. Palikite tu\u0161\u010di\u0105, jei norite, kad jis b\u016bt\u0173 priskirtas automati\u0161kai.",
+                    "name": "Vartotoj\u0173 indeksas"
+                },
+                "user_status": {
+                    "description": "Vartotojo b\u016bsena, kuri\u0105 reikia nustatyti kuriant nauj\u0105 vartotoj\u0105 \u0161iam kredencialui.",
+                    "name": "Vartotojo b\u016bsena"
+                },
+                "user_type": {
+                    "description": "Vartotojo tipas, kur\u012f reikia nustatyti kuriant nauj\u0105 vartotoj\u0105 \u0161iam kredencialui.",
+                    "name": "Vartotojo tipas"
+                }
+            },
+            "name": "Nustatyti u\u017erakto prisijungimo duomenis"
+        },
+        "set_lock_user": {
+            "description": "Sukuria arba atnaujina u\u017erakto vartotoj\u0105.",
+            "fields": {
+                "credential_rule": {
+                    "description": "Vartotojo kredencial\u0173 taisykl\u0117.",
+                    "name": "\u012egaliojim\u0173 taisykl\u0117"
+                },
+                "user_index": {
+                    "description": "Vartotojo vietos indeksas (pagr\u012fstas 1). Palikite tu\u0161\u010di\u0105, kad laisva vieta b\u016bt\u0173 automati\u0161kai rasta.",
+                    "name": "Vartotoj\u0173 indeksas"
+                },
+                "user_name": {
+                    "description": "Vartotojo vardas.",
+                    "name": "Vartotojo vardas"
+                },
+                "user_type": {
+                    "description": "Kuriamo vartotojo tipas.",
+                    "name": "Vartotojo tipas"
+                }
+            },
+            "name": "Nustatyti u\u017erakint\u0105 vartotoj\u0105"
+        },
+        "water_heater_boost": {
+            "description": "\u012ejungia vandens \u0161ildytuvo galios padidinim\u0105 tam tikr\u0105 laik\u0105.",
+            "fields": {
+                "duration": {
+                    "description": "Padidinti trukm\u0119 sekund\u0117mis.",
+                    "name": "Trukm\u0117"
+                },
+                "emergency_boost": {
+                    "description": "Ar \u012fjungti avarin\u012f padidinimo re\u017eim\u0105.",
+                    "name": "Avarinis pastiprinimas"
+                },
+                "temporary_setpoint": {
+                    "description": "Laikina nustatytoji temperat\u016bra Celsijaus laipsniais padidinimo laikotarpiu.",
+                    "name": "Laikinas nustatytas ta\u0161kas"
+                }
+            },
+            "name": "Padidinti vandens \u0161ildytuv\u0105"
+        }
+    }
+}

@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition remplie pour",
+        "condition_for_name": "Pendant au moins",
+        "trigger_behavior_name": "D\u00e9clencher pour",
+        "trigger_for_name": "Pendant au moins"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "V\u00e9rifie si une ou plusieurs sir\u00e8nes sont \u00e9teintes.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La sir\u00e8ne est \u00e9teinte"
+        },
+        "is_on": {
+            "description": "V\u00e9rifie si une ou plusieurs sir\u00e8nes sont allum\u00e9es.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition remplie pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La sir\u00e8ne est allum\u00e9e"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sir\u00e8ne",
+            "state": {
+                "off": "Inactive",
+                "on": "Active"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "Tonalit\u00e9s disponibles"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Active ou d\u00e9sactive une sir\u00e8ne.",
+            "name": "Basculer la sir\u00e8ne"
+        },
+        "turn_off": {
+            "description": "\u00c9teint une sir\u00e8ne.",
+            "name": "D\u00e9sactiver la sir\u00e8ne"
+        },
+        "turn_on": {
+            "description": "Allume une sir\u00e8ne.",
+            "fields": {
+                "duration": {
+                    "description": "Nombre de secondes pendant lesquelles le son est jou\u00e9. Doit \u00eatre pris en charge par l'int\u00e9gration.",
+                    "name": "Dur\u00e9e"
+                },
+                "tone": {
+                    "description": "La tonalit\u00e9 \u00e0 \u00e9mettre. Lorsque la propri\u00e9t\u00e9 `available_tones` est un dictionnaire, la cl\u00e9 ou la valeur peut \u00eatre utilis\u00e9e. Doit \u00eatre prise en charge par l'int\u00e9gration.",
+                    "name": "Tonalit\u00e9"
+                },
+                "volume_level": {
+                    "description": "Le volume. 0 est inaudible, 1 correspond au volume maximal. Doit \u00eatre pris en charge par l'int\u00e9gration.",
+                    "name": "Volume"
+                }
+            },
+            "name": "Activer une sir\u00e8ne"
+        }
+    },
+    "title": "Sir\u00e8ne",
+    "triggers": {
+        "turned_off": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs sir\u00e8nes s'\u00e9teignent.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La sir\u00e8ne s'est \u00e9teinte"
+        },
+        "turned_on": {
+            "description": "Se d\u00e9clenche lorsqu'une ou plusieurs sir\u00e8nes s'allument.",
+            "fields": {
+                "behavior": {
+                    "name": "D\u00e9clencher pour"
+                },
+                "for": {
+                    "name": "Pendant au moins"
+                }
+            },
+            "name": "La sir\u00e8ne s'est allum\u00e9e"
+        }
+    }
+}

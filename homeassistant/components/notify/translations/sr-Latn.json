@@ -1,0 +1,88 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Obave\u0161tenja"
+        }
+    },
+    "issues": {
+        "migrate_notify": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "{integration_title} `notify` akciju(e) su migrirane.  Dostupan je novi `notify` entitet koji zamenjuje svaku staru `notify` radnju.  \n\nA\u017eurirajte automatizacije da koriste novu akciju `notify.send_message` koju ovaj entitet izla\u017ee. Kada to uradite, re\u0161ite ovaj problem i ponovo pokrenite Home Assistant.",
+                        "title": "Migracija zastarele akcije obave\u0161tavanja za {integration_title} za domen {domain}"
+                    }
+                }
+            },
+            "title": "Migracija akcije obave\u0161tavanja za {integration_title}"
+        },
+        "migrate_notify_service": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Akcija {integration_title} `notify.{service_name}` je migrirana, ali izgleda da se i dalje koristi stara `notify` radnja.  \n\nDostupan je novi `notify` entitet koji zamenjuje svaku staru `notify` radnju.\n\nA\u017eurirajte sve automatizacije ili skripte da koriste novu radnju `notify.send_message` koju ovaj entitet izla\u017ee. Kada to uradite, izaberite Potvrdi i ponovo pokreni Home Assistant da biste re\u0161ili ovaj problem.",
+                        "title": "Migracija zastarele akcije obave\u0161tavanja za {integration_title} za domen {domain}"
+                    }
+                }
+            },
+            "title": "Zastarela akcija obave\u0161tavanja notify.{service_name} se i dalje koristi"
+        }
+    },
+    "services": {
+        "notify": {
+            "description": "\u0160alje poruku obave\u0161tenja izabranim ciljevima.",
+            "fields": {
+                "data": {
+                    "description": "Neke integracije omogu\u0107avaju pro\u0161irenu funkcionalnost putem ovog polja. Za vi\u0161e informacija, pogledajte dokumentaciju integracije.",
+                    "name": "Dodatni parametri"
+                },
+                "message": {
+                    "description": "Tekstualni sadr\u017eaj poruke predvi\u0111en za slanje u vidu obave\u0161tenja.",
+                    "name": "Sadr\u017eaj obave\u0161tenja"
+                },
+                "target": {
+                    "description": "Neke integracije omogu\u0107avaju da odredite specifi\u010dne ure\u0111aje koji primaju obave\u0161tenje. Za vi\u0161e informacija, pogledajte dokumentaciju integracije.",
+                    "name": "Identifikator primaoca (Target)"
+                },
+                "title": {
+                    "description": "Naslov obave\u0161tenja.",
+                    "name": "Naslov"
+                }
+            },
+            "name": "Po\u0161alji obave\u0161tenje"
+        },
+        "persistent_notification": {
+            "description": "\u0160alje obave\u0161tenje koje je vidljivo u panelu sa obave\u0161tenjima.",
+            "fields": {
+                "data": {
+                    "description": "Neke integracije omogu\u0107avaju pro\u0161irenu funkcionalnost putem ovog polja.",
+                    "name": "Dodatni parametri (Data)"
+                },
+                "message": {
+                    "description": "Tekstualni sadr\u017eaj poruke predvi\u0111en za prikaz u obave\u0161tenju.",
+                    "name": "Sadr\u017eaj poruke"
+                },
+                "title": {
+                    "description": "Opcioni naslov namenjen za definisanje teme obave\u0161tenja.",
+                    "name": "Naslov"
+                }
+            },
+            "name": "Po\u0161alji trajno obave\u0161tenje"
+        },
+        "send_message": {
+            "description": "\u0160alje poruku obave\u0161tenja.",
+            "fields": {
+                "message": {
+                    "description": "Tekstualni sadr\u017eaj poruke predvi\u0111en za slanje u vidu obave\u0161tenja.",
+                    "name": "Poruka"
+                },
+                "title": {
+                    "description": "Naslov za va\u0161u poruku obave\u0161tenja.",
+                    "name": "Naslov"
+                }
+            },
+            "name": "Po\u0161alji poruku obave\u0161tenja"
+        }
+    },
+    "title": "Obave\u0161tenja"
+}

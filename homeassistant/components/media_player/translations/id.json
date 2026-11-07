@@ -1,0 +1,299 @@
+{
+    "device_automation": {
+        "condition_type": {
+            "is_buffering": "{entity_name} sedang buffering",
+            "is_idle": "{entity_name} siaga",
+            "is_off": "{entity_name} mati",
+            "is_on": "{entity_name} nyala",
+            "is_paused": "{entity_name} dijeda",
+            "is_playing": "{entity_name} sedang memutar"
+        },
+        "extra_fields": {
+            "for": "Durasi"
+        },
+        "trigger_type": {
+            "buffering": "{entity_name} mulai buffering",
+            "changed_states": "{entity_name} dinyalakan atau dimatikan",
+            "idle": "{entity_name} menjadi siaga",
+            "paused": "{entity_name} dijeda",
+            "playing": "{entity_name} mulai memutar",
+            "turned_off": "{entity_name} dimatikan",
+            "turned_on": "{entity_name} dinyalakan"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Pemutar media",
+            "state": {
+                "buffering": "Buffering",
+                "idle": "Siaga",
+                "off": "Mati",
+                "on": "Nyala",
+                "paused": "Dijeda",
+                "playing": "Memutar",
+                "standby": "Siaga"
+            },
+            "state_attributes": {
+                "app_id": {
+                    "name": "ID Aplikasi"
+                },
+                "app_name": {
+                    "name": "App"
+                },
+                "entity_picture_local": {
+                    "name": "Gambar entitas yang dapat diakses lokal"
+                },
+                "groups_members": {
+                    "name": "Anggota grup"
+                },
+                "is_volume_muted": {
+                    "name": "Dibisukan",
+                    "state": {
+                        "false": "Tidak",
+                        "true": "Ya"
+                    }
+                },
+                "media_album_artist": {
+                    "name": "Artis Album"
+                },
+                "media_album_name": {
+                    "name": "Album"
+                },
+                "media_artist": {
+                    "name": "Artis"
+                },
+                "media_channel": {
+                    "name": "Kanal"
+                },
+                "media_content_id": {
+                    "name": "ID konten"
+                },
+                "media_content_type": {
+                    "name": "Jenis konten",
+                    "state": {
+                        "album": "Album",
+                        "app": "App",
+                        "artist": "Artis",
+                        "channel": "Kanal",
+                        "channels": "Kanal",
+                        "composer": "Komposer",
+                        "contributing_artist": "Artis yang berkontribusi",
+                        "episode": "Episode",
+                        "game": "Game",
+                        "genre": "Genre",
+                        "image": "Gambar",
+                        "movie": "Film",
+                        "music": "Musik",
+                        "playlist": "Daftar Putar",
+                        "podcast": "Podcast",
+                        "season": "Musim",
+                        "track": "Trek",
+                        "tvshow": "Acara TV",
+                        "url": "URL",
+                        "video": "Video"
+                    }
+                },
+                "media_duration": {
+                    "name": "Durasi"
+                },
+                "media_episode": {
+                    "name": "Episode"
+                },
+                "media_playlist": {
+                    "name": "Daftar Putar"
+                },
+                "media_position": {
+                    "name": "Posisi"
+                },
+                "media_position_updated_at": {
+                    "name": "Posisi diperbarui"
+                },
+                "media_season": {
+                    "name": "Musim"
+                },
+                "media_series_title": {
+                    "name": "Serial"
+                },
+                "media_title": {
+                    "name": "Judul"
+                },
+                "media_track": {
+                    "name": "Trek"
+                },
+                "repeat": {
+                    "name": "Berulang",
+                    "state": {
+                        "all": "Semua",
+                        "off": "Mati",
+                        "one": "Tunggal"
+                    }
+                },
+                "shuffle": {
+                    "name": "Acak",
+                    "state": {
+                        "false": "Mati",
+                        "true": "Nyala"
+                    }
+                },
+                "sound_mode": {
+                    "name": "Mode suara"
+                },
+                "sound_mode_list": {
+                    "name": "Mode suara yang tersedia"
+                },
+                "source": {
+                    "name": "Sumber"
+                },
+                "source_list": {
+                    "name": "Sumber yang tersedia"
+                },
+                "volume_level": {
+                    "name": "Volume"
+                }
+            }
+        },
+        "receiver": {
+            "name": "Penerima"
+        },
+        "speaker": {
+            "name": "Speaker"
+        },
+        "tv": {
+            "name": "TV"
+        }
+    },
+    "selector": {
+        "enqueue": {
+            "options": {
+                "add": "Tambahkan ke antrean",
+                "next": "Putar berikutnya",
+                "play": "Putar",
+                "replace": "Putar sekarang dan hapus antrean"
+            }
+        },
+        "repeat": {
+            "options": {
+                "all": "Ulangi semuanya",
+                "off": "Mati",
+                "one": "Ulangi sekali"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "description": "Menjelajahi media yang tersedia.",
+            "fields": {
+                "media_content_id": {
+                    "description": "ID konten yang akan diputar. Bergantung pada integrasi.",
+                    "name": "ID konten"
+                },
+                "media_content_type": {
+                    "name": "Jenis konten"
+                }
+            },
+            "name": "Jelajahi media"
+        },
+        "join": {
+            "description": "Mengelompokkan pemutar media untuk pemutaran sinkron. Hanya berfungsi pada sistem audio multiruangan yang didukung.",
+            "fields": {
+                "group_members": {
+                    "description": "Pemutaran yang akan disinkronkan dengan pemutaran yang ditentukan di 'Target'.",
+                    "name": "Kelompokkan anggota"
+                }
+            }
+        },
+        "media_seek": {
+            "fields": {
+                "seek_position": {
+                    "description": "Posisi target di media yang sedang diputar. Formatnya bergantung pada platform.",
+                    "name": "Posisi"
+                }
+            }
+        },
+        "play_media": {
+            "fields": {
+                "announce": {
+                    "description": "Jika media harus diputar sebagai pengumuman.",
+                    "name": "Mengumumkan"
+                },
+                "enqueue": {
+                    "description": "Jika konten tersebut harus diputar sekarang atau ditambahkan ke antrean.",
+                    "name": "Antrean"
+                }
+            }
+        },
+        "repeat_set": {
+            "fields": {
+                "repeat": {
+                    "description": "Apakah media (satu atau semua) akan diputar secara berulang atau tidak.",
+                    "name": "Mode ulangi"
+                }
+            }
+        },
+        "search_media": {
+            "description": "Mencari media yang tersedia.",
+            "fields": {
+                "media_content_id": {
+                    "description": "ID konten yang akan diputar. Bergantung pada integrasi.",
+                    "name": "ID konten"
+                },
+                "media_content_type": {
+                    "name": "Jenis konten"
+                },
+                "media_filter_classes": {
+                    "description": "Daftar kelas media untuk memfilter hasil pencarian.",
+                    "name": "Filter kelas media"
+                },
+                "search_query": {
+                    "description": "Istilah yang akan dicari.",
+                    "name": "Kueri pencarian"
+                }
+            },
+            "name": "Pencarian media"
+        },
+        "select_sound_mode": {
+            "fields": {
+                "sound_mode": {
+                    "description": "Nama mode suara yang akan dituju.",
+                    "name": "Mode suara"
+                }
+            }
+        },
+        "select_source": {
+            "fields": {
+                "source": {
+                    "description": "Nama sumber yang akan dituju. Tergantung platform.",
+                    "name": "Sumber"
+                }
+            }
+        },
+        "shuffle_set": {
+            "fields": {
+                "shuffle": {
+                    "description": "Apakah media harus diputar dalam urutan acak atau tidak.",
+                    "name": "Mode acak"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Mengaktifkan/menonaktifkan pemutar media."
+        },
+        "volume_mute": {
+            "fields": {
+                "is_volume_muted": {
+                    "description": "Menentukan apakah suara dibisukan atau tidak.",
+                    "name": "Dibisukan"
+                }
+            }
+        },
+        "volume_set": {
+            "fields": {
+                "volume_level": {
+                    "description": "Volume. 0 tidak terdengar, 1 adalah volume maksimum.",
+                    "name": "Tingkat"
+                }
+            }
+        }
+    },
+    "title": "Pemutar media"
+}

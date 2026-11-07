@@ -1,0 +1,112 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_closed": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu klappi on suletud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Klapp on suletud"
+        },
+        "is_open": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu klappi on avatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Klapp on avatud"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Ventiil",
+            "state": {
+                "closed": "Suletud",
+                "closing": "Sulgub",
+                "open": "Avatud",
+                "opening": "Avaneb",
+                "stopped": "Peatatud"
+            },
+            "state_attributes": {
+                "current_position": {
+                    "name": "Asend"
+                }
+            }
+        },
+        "gas": {
+            "name": "Gaas"
+        },
+        "water": {
+            "name": "Tarbevesi"
+        }
+    },
+    "services": {
+        "close_valve": {
+            "description": "Sulgeb ventiili.",
+            "name": "Sulge ventiil"
+        },
+        "open_valve": {
+            "description": "Avab ventiili.",
+            "name": "Ava ventiil"
+        },
+        "set_valve_position": {
+            "description": "Liigutab ventiili kindlasse asendisse.",
+            "fields": {
+                "position": {
+                    "description": "Sihtasend.",
+                    "name": "Asend"
+                }
+            },
+            "name": "M\u00e4\u00e4ra klapi asend"
+        },
+        "stop_valve": {
+            "description": "Peatab ventiili.",
+            "name": "Peata ventiili t\u00f6\u00f6"
+        },
+        "toggle": {
+            "description": "Ventiili avamine/sulgemine.",
+            "name": "Muuda klapi olekut"
+        }
+    },
+    "title": "Ventiil",
+    "triggers": {
+        "closed": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme klapi sulgumist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Klapp on suletud"
+        },
+        "opened": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme klapi avanemist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Klapp avanes"
+        }
+    }
+}

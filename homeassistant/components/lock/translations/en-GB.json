@@ -1,0 +1,188 @@
+{
+    "common": {
+        "condition_behavior_name": "Condition passes if",
+        "condition_for_name": "For at least",
+        "trigger_behavior_name": "Trigger when",
+        "trigger_for_name": "For at least"
+    },
+    "conditions": {
+        "is_jammed": {
+            "description": "Tests if one or more locks are jammed.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition passes if"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock is jammed"
+        },
+        "is_locked": {
+            "description": "Tests if one or more locks are locked.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition passes if"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock is locked"
+        },
+        "is_open": {
+            "description": "Tests if one or more locks are open.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition passes if"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock is open"
+        },
+        "is_unlocked": {
+            "description": "Tests if one or more locks are unlocked.",
+            "fields": {
+                "behavior": {
+                    "name": "Condition passes if"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock is unlocked"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "lock": "Lock {entity_name}",
+            "open": "Open {entity_name}",
+            "unlock": "Unlock {entity_name}"
+        },
+        "condition_type": {
+            "is_jammed": "{entity_name} is jammed",
+            "is_locked": "{entity_name} is locked",
+            "is_locking": "{entity_name} is locking",
+            "is_open": "{entity_name} is open",
+            "is_opening": "{entity_name} is opening",
+            "is_unlocked": "{entity_name} is unlocked",
+            "is_unlocking": "{entity_name} is unlocking"
+        },
+        "extra_fields": {
+            "for": "Duration"
+        },
+        "trigger_type": {
+            "locked": "{entity_name} locked",
+            "open": "{entity_name} opened",
+            "unlocked": "{entity_name} unlocked"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Lock",
+            "state": {
+                "jammed": "Jammed",
+                "locked": "Locked",
+                "locking": "Locking",
+                "open": "Open",
+                "opening": "Opening",
+                "unlocked": "Unlocked",
+                "unlocking": "Unlocking"
+            },
+            "state_attributes": {
+                "changed_by": {
+                    "name": "Changed by"
+                },
+                "code_format": {
+                    "name": "Code format"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "add_default_code": {
+            "message": "The code for {entity_id} doesn't match pattern {code_format}."
+        }
+    },
+    "services": {
+        "lock": {
+            "description": "Locks a lock.",
+            "fields": {
+                "code": {
+                    "description": "Code used to lock the lock.",
+                    "name": "Code"
+                }
+            },
+            "name": "Lock lock"
+        },
+        "open": {
+            "description": "Opens a lock.",
+            "fields": {
+                "code": {
+                    "description": "Code used to open the lock.",
+                    "name": "Code"
+                }
+            },
+            "name": "Open lock"
+        },
+        "unlock": {
+            "description": "Unlocks a lock.",
+            "fields": {
+                "code": {
+                    "description": "Code used to unlock the lock.",
+                    "name": "Code"
+                }
+            },
+            "name": "Unlock lock"
+        }
+    },
+    "title": "Lock",
+    "triggers": {
+        "jammed": {
+            "fields": {
+                "behavior": {
+                    "name": "Trigger when"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock jammed"
+        },
+        "locked": {
+            "fields": {
+                "behavior": {
+                    "name": "Trigger when"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock locked"
+        },
+        "opened": {
+            "fields": {
+                "behavior": {
+                    "name": "Trigger when"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock opened"
+        },
+        "unlocked": {
+            "fields": {
+                "behavior": {
+                    "name": "Trigger when"
+                },
+                "for": {
+                    "name": "For at least"
+                }
+            },
+            "name": "Lock unlocked"
+        }
+    }
+}

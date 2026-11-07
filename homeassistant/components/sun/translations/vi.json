@@ -1,0 +1,209 @@
+{
+    "common": {
+        "condition_threshold_name": "Lo\u1ea1i ng\u01b0\u1ee1ng",
+        "period_description": "Th\u1eddi \u0111i\u1ec3m trong ng\u00e0y c\u1ea7n xem x\u00e9t: bu\u1ed5i s\u00e1ng, bu\u1ed5i t\u1ed1i, ho\u1eb7c c\u1ea3 hai.",
+        "period_name": "Giai \u0111o\u1ea1n",
+        "trigger_for_name": "Trong v\u00f2ng t\u1ed1i thi\u1ec3u",
+        "trigger_offset_description": "Th\u1eddi gian \u0111\u1ec3 k\u00edch ho\u1ea1t tr\u01b0\u1edbc ho\u1eb7c sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+        "trigger_offset_name": "Ch\u00eanh",
+        "trigger_offset_type_description": "N\u00ean k\u00edch ho\u1ea1t tr\u01b0\u1edbc hay sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+        "trigger_offset_type_name": "Lo\u1ea1i ch\u00eanh",
+        "trigger_threshold_name": "Lo\u1ea1i ng\u01b0\u1ee1ng",
+        "twilight_type_description": "Giai \u0111o\u1ea1n ch\u1ea1ng v\u1ea1ng.",
+        "twilight_type_name": "Lo\u1ea1i ch\u1ea1ng v\u1ea1ng"
+    },
+    "conditions": {
+        "elevation": {
+            "description": "Ki\u1ec3m tra \u0111\u1ed9 cao c\u1ee7a m\u1eb7t tr\u1eddi so v\u1edbi ng\u01b0\u1ee1ng b\u1ea1n \u0111\u00e3 thi\u1ebft l\u1eadp.",
+            "fields": {
+                "threshold": {
+                    "name": "Lo\u1ea1i ng\u01b0\u1ee1ng"
+                }
+            },
+            "name": "\u0110\u1ed9 cao c\u1ee7a m\u1eb7t tr\u1eddi"
+        },
+        "is_ascending": {
+            "description": "Ki\u1ec3m tra xem m\u1eb7t tr\u1eddi c\u00f3 \u0111ang m\u1ecdc hay kh\u00f4ng.",
+            "name": "M\u1eb7t tr\u1eddi \u0111ang m\u1ecdc"
+        },
+        "is_blue_hour": {
+            "description": "Ki\u1ec3m tra xem c\u00f3 ph\u1ea3i l\u00e0 gi\u1edd xanh hay kh\u00f4ng, t\u00f9y ch\u1ecdn cho m\u1ed9t kho\u1ea3ng th\u1eddi gian c\u1ee5 th\u1ec3.",
+            "fields": {
+                "period": {
+                    "description": "Th\u1eddi \u0111i\u1ec3m trong ng\u00e0y c\u1ea7n xem x\u00e9t: bu\u1ed5i s\u00e1ng, bu\u1ed5i t\u1ed1i, ho\u1eb7c c\u1ea3 hai.",
+                    "name": "Giai \u0111o\u1ea1n"
+                }
+            },
+            "name": "\u0110ang l\u00e0 gi\u1edd xanh"
+        },
+        "is_descending": {
+            "description": "Ki\u1ec3m tra xem m\u1eb7t tr\u1eddi c\u00f3 \u0111ang l\u1eb7n hay kh\u00f4ng.",
+            "name": "M\u1eb7t tr\u1eddi \u0111ang l\u1eb7n"
+        },
+        "is_evening_twilight": {
+            "description": "Ki\u1ec3m tra xem \u0111\u00f3 c\u00f3 ph\u1ea3i l\u00e0 ho\u00e0ng h\u00f4n hay kh\u00f4ng, t\u00f9y ch\u1ecdn ch\u1ec9 \u0111\u1ecbnh lo\u1ea1i ho\u00e0ng h\u00f4n c\u1ee5 th\u1ec3.",
+            "fields": {
+                "type": {
+                    "description": "Giai \u0111o\u1ea1n ch\u1ea1ng v\u1ea1ng.",
+                    "name": "Lo\u1ea1i ch\u1ea1ng v\u1ea1ng"
+                }
+            },
+            "name": "Tr\u1eddi \u0111ang nh\u00e1 nhem t\u1ed1i"
+        },
+        "is_golden_hour": {
+            "description": "Ki\u1ec3m tra xem c\u00f3 ph\u1ea3i l\u00e0 gi\u1edd v\u00e0ng hay kh\u00f4ng, t\u00f9y ch\u1ecdn cho m\u1ed9t kho\u1ea3ng th\u1eddi gian c\u1ee5 th\u1ec3.",
+            "fields": {
+                "period": {
+                    "description": "Th\u1eddi \u0111i\u1ec3m trong ng\u00e0y c\u1ea7n xem x\u00e9t: bu\u1ed5i s\u00e1ng, bu\u1ed5i t\u1ed1i, ho\u1eb7c c\u1ea3 hai.",
+                    "name": "Giai \u0111o\u1ea1n"
+                }
+            },
+            "name": "\u0110ang l\u00e0 gi\u1edd v\u00e0ng"
+        }
+    },
+    "config": {
+        "step": {
+            "user": {
+                "description": "B\u1ea1n c\u00f3 mu\u1ed1n b\u1eaft \u0111\u1ea7u thi\u1ebft l\u1eadp kh\u00f4ng?"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "solar_rising": {
+                "state": {
+                    "on": "\u0110ang m\u1ecdc"
+                }
+            }
+        },
+        "sensor": {
+            "next_dawn": {
+                "name": "B\u00ecnh minh t\u1edbi"
+            },
+            "next_dusk": {
+                "name": "Ho\u00e0ng h\u00f4n t\u1edbi"
+            },
+            "next_midnight": {
+                "name": "N\u1eeda \u0111\u00eam t\u1edbi"
+            },
+            "next_noon": {
+                "name": "Ch\u00ednh ng\u1ecd t\u1edbi"
+            },
+            "next_rising": {
+                "name": "L\u1ea7n m\u1ecdc t\u1edbi"
+            },
+            "next_setting": {
+                "name": "L\u1ea7n l\u1eb7n t\u1edbi"
+            },
+            "solar_azimuth": {
+                "name": "Ph\u01b0\u01a1ng v\u1ecb m\u1eb7t tr\u1eddi"
+            },
+            "solar_elevation": {
+                "name": "\u0110\u1ed9 cao m\u1eb7t tr\u1eddi"
+            }
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "M\u1eb7t tr\u1eddi",
+            "state": {
+                "above_horizon": "Tr\u00ean \u0111\u01b0\u1eddng ch\u00e2n tr\u1eddi",
+                "below_horizon": "D\u01b0\u1edbi \u0111\u01b0\u1eddng ch\u00e2n tr\u1eddi"
+            }
+        }
+    },
+    "selector": {
+        "period": {
+            "options": {
+                "any": "B\u1ea5t k\u00ec",
+                "evening": "Bu\u1ed5i t\u1ed1i",
+                "morning": "Bu\u1ed5i s\u00e1ng"
+            }
+        },
+        "trigger_offset_type": {
+            "options": {
+                "after": "Sau",
+                "before": "Tr\u01b0\u1edbc"
+            }
+        },
+        "twilight_type": {
+            "options": {
+                "any": "B\u1ea5t k\u00ec",
+                "astronomical": "Thi\u00ean v\u0103n",
+                "civil": "D\u00e2n s\u1ef1",
+                "nautical": "H\u00e0ng h\u1ea3i"
+            }
+        }
+    },
+    "title": "M\u1eb7t tr\u1eddi",
+    "triggers": {
+        "blue_hour_ended": {
+            "description": "K\u00edch ho\u1ea1t khi gi\u1edd xanh k\u1ebft th\u00fac, v\u00e0o bu\u1ed5i s\u00e1ng, bu\u1ed5i t\u1ed1i, ho\u1eb7c c\u1ea3 hai.",
+            "fields": {
+                "offset": {
+                    "description": "Th\u1eddi gian \u0111\u1ec3 k\u00edch ho\u1ea1t tr\u01b0\u1edbc ho\u1eb7c sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+                    "name": "Ch\u00eanh"
+                },
+                "offset_type": {
+                    "description": "N\u00ean k\u00edch ho\u1ea1t tr\u01b0\u1edbc hay sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+                    "name": "Lo\u1ea1i ch\u00eanh"
+                },
+                "period": {
+                    "description": "Th\u1eddi \u0111i\u1ec3m trong ng\u00e0y c\u1ea7n xem x\u00e9t: bu\u1ed5i s\u00e1ng, bu\u1ed5i t\u1ed1i, ho\u1eb7c c\u1ea3 hai.",
+                    "name": "Giai \u0111o\u1ea1n"
+                }
+            },
+            "name": "Gi\u1edd xanh k\u1ebft th\u00fac"
+        },
+        "blue_hour_started": {
+            "description": "K\u00edch ho\u1ea1t khi gi\u1edd xanh b\u1eaft \u0111\u1ea7u, v\u00e0o bu\u1ed5i s\u00e1ng, bu\u1ed5i t\u1ed1i, ho\u1eb7c c\u1ea3 hai.",
+            "fields": {
+                "offset": {
+                    "description": "Th\u1eddi gian \u0111\u1ec3 k\u00edch ho\u1ea1t tr\u01b0\u1edbc ho\u1eb7c sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+                    "name": "Ch\u00eanh"
+                },
+                "offset_type": {
+                    "description": "N\u00ean k\u00edch ho\u1ea1t tr\u01b0\u1edbc hay sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+                    "name": "Lo\u1ea1i ch\u00eanh"
+                },
+                "period": {
+                    "description": "Th\u1eddi \u0111i\u1ec3m trong ng\u00e0y c\u1ea7n xem x\u00e9t: bu\u1ed5i s\u00e1ng, bu\u1ed5i t\u1ed1i, ho\u1eb7c c\u1ea3 hai.",
+                    "name": "Giai \u0111o\u1ea1n"
+                }
+            },
+            "name": "Gi\u1edd xanh b\u1eaft \u0111\u1ea7u"
+        },
+        "dawn": {
+            "description": "K\u00edch ho\u1ea1t v\u00e0o l\u00fac b\u00ecnh minh, khi ho\u00e0ng h\u00f4n d\u00e2n d\u1ee5ng, h\u00e0ng h\u1ea3i ho\u1eb7c thi\u00ean v\u0103n b\u1eaft \u0111\u1ea7u.",
+            "fields": {
+                "offset_type": {
+                    "description": "N\u00ean k\u00edch ho\u1ea1t tr\u01b0\u1edbc hay sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+                    "name": "Lo\u1ea1i ch\u00eanh"
+                },
+                "type": {
+                    "description": "Giai \u0111o\u1ea1n ch\u1ea1ng v\u1ea1ng.",
+                    "name": "Lo\u1ea1i ch\u1ea1ng v\u1ea1ng"
+                }
+            },
+            "name": "B\u00ecnh minh"
+        },
+        "dusk": {
+            "description": "K\u00edch ho\u1ea1t v\u00e0o l\u00fac tr\u1eddi t\u1ed1i, khi giai \u0111o\u1ea1n ch\u1ea1ng v\u1ea1ng d\u00e2n s\u1ef1, h\u00e0ng h\u1ea3i ho\u1eb7c thi\u00ean v\u0103n k\u1ebft th\u00fac.",
+            "fields": {
+                "offset": {
+                    "description": "Th\u1eddi gian \u0111\u1ec3 k\u00edch ho\u1ea1t tr\u01b0\u1edbc ho\u1eb7c sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+                    "name": "Ch\u00eanh"
+                },
+                "offset_type": {
+                    "description": "N\u00ean k\u00edch ho\u1ea1t tr\u01b0\u1edbc hay sau s\u1ef1 ki\u1ec7n m\u1eb7t tr\u1eddi.",
+                    "name": "Lo\u1ea1i ch\u00eanh"
+                },
+                "type": {
+                    "description": "Giai \u0111o\u1ea1n ch\u1ea1ng v\u1ea1ng.",
+                    "name": "Lo\u1ea1i ch\u1ea1ng v\u1ea1ng"
+                }
+            },
+            "name": "Ho\u00e0ng h\u00f4n"
+        }
+    }
+}

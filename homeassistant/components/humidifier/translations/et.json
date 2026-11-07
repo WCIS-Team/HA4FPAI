@@ -1,0 +1,278 @@
+{
+    "common": {
+        "condition_behavior_name": "Tingimus on t\u00f5ene kui",
+        "condition_for_name": "V\u00e4hemalt",
+        "condition_threshold_name": "K\u00fcnnise t\u00fc\u00fcp",
+        "trigger_behavior_name": "K\u00e4ivita kui",
+        "trigger_for_name": "V\u00e4hemalt"
+    },
+    "conditions": {
+        "is_drying": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu \u00f5huniisutajat kuivatavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "\u00d5huniisutaja kuivatab"
+        },
+        "is_humidifying": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu \u00f5huniisutajat niisutavad.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "\u00d5huniisutaja niisutab"
+        },
+        "is_mode": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu niisutajat on seatud kindlale re\u017eiimile.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "mode": {
+                    "description": "Kontrollitavad t\u00f6\u00f6re\u017eiimid.",
+                    "name": "Re\u017eiim"
+                }
+            },
+            "name": "Niisutaja on re\u017eiimis"
+        },
+        "is_off": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu niisutajat on v\u00e4lja l\u00fclitatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Niisutaja on v\u00e4lja l\u00fclitatud"
+        },
+        "is_on": {
+            "description": "Kontrollib kas \u00fcks v\u00f5i mitu niisutajat on sisse l\u00fclitatud.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Niisutaja on sisse l\u00fclitatud"
+        },
+        "is_target_humidity": {
+            "description": "Testib \u00fche v\u00f5i mitme \u00f5huniisutaja sihtniiskust.",
+            "fields": {
+                "behavior": {
+                    "name": "Tingimus on t\u00f5ene kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "threshold": {
+                    "name": "K\u00fcnnise t\u00fc\u00fcp"
+                }
+            },
+            "name": "Niisutaja sihtniiskus"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "set_humidity": "M\u00e4\u00e4ra {entity_name} niiskus",
+            "set_mode": "Muuda {entity_name} t\u00f6\u00f6re\u017eiimi",
+            "toggle": "Muuda {entity_name} olekut",
+            "turn_off": "L\u00fclita {entity_name} v\u00e4lja",
+            "turn_on": "L\u00fclita {entity_name} sisse"
+        },
+        "condition_type": {
+            "is_mode": "{entity_name} on seatud kindlale t\u00f6\u00f6re\u017eiimile",
+            "is_off": "{entity_name} on v\u00e4lja l\u00fclitatud",
+            "is_on": "{entity_name} on sisse l\u00fclitatud"
+        },
+        "extra_fields": {
+            "above": "\u00dcle",
+            "below": "Alla",
+            "for": "Kestus",
+            "humidity": "Niiskus",
+            "mode": "Re\u017eiim"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} l\u00fclitus sisse v\u00f5i v\u00e4lja",
+            "target_humidity_changed": "{entity_name} eelseatud niiskus muutus",
+            "turned_off": "{entity_name} l\u00fclitus v\u00e4lja",
+            "turned_on": "{entity_name} l\u00fclitus sisse"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "\u00d5huniisutaja",
+            "state": {
+                "off": "V\u00e4ljas",
+                "on": "Sees"
+            },
+            "state_attributes": {
+                "action": {
+                    "name": "Tegevus",
+                    "state": {
+                        "drying": "Kuivatamine",
+                        "humidifying": "Niisutamine",
+                        "idle": "Ootel",
+                        "off": "V\u00e4ljas"
+                    }
+                },
+                "available_modes": {
+                    "name": "Saadaolevad re\u017eiimid"
+                },
+                "current_humidity": {
+                    "name": "Praegune niiskus"
+                },
+                "humidity": {
+                    "name": "Soovitud niiskusem\u00e4\u00e4r"
+                },
+                "max_humidity": {
+                    "name": "Max sihtniiskus"
+                },
+                "min_humidity": {
+                    "name": "Min sihtniiskus"
+                },
+                "mode": {
+                    "name": "Re\u017eiim",
+                    "state": {
+                        "auto": "Automaatne",
+                        "away": "Eemal",
+                        "baby": "Beebi",
+                        "boost": "Turbo",
+                        "comfort": "Mugav",
+                        "eco": "\u00d6ko",
+                        "home": "Kodus",
+                        "normal": "Tavaline",
+                        "sleep": "Uneaeg"
+                    }
+                }
+            }
+        },
+        "dehumidifier": {
+            "name": "\u00d5hukuivati"
+        },
+        "humidifier": {
+            "name": "\u00d5huniisutaja"
+        }
+    },
+    "exceptions": {
+        "humidity_out_of_range": {
+            "message": "Soovitav niiskus {humidity} ei p\u00e4de. Lubatud vahemik on {min_humidity} kuni {max_humidity}."
+        }
+    },
+    "services": {
+        "set_humidity": {
+            "description": "M\u00e4\u00e4rab niisutaja sihtniiskuse.",
+            "fields": {
+                "humidity": {
+                    "description": "Soovitud niiskusem\u00e4\u00e4r.",
+                    "name": "Niiskus"
+                }
+            },
+            "name": "Niisutaja sihtniiskuse m\u00e4\u00e4ramine"
+        },
+        "set_mode": {
+            "description": "M\u00e4\u00e4rab niisutaja t\u00f6\u00f6re\u017eiimi.",
+            "fields": {
+                "mode": {
+                    "description": "T\u00f6\u00f6re\u017eiim. N\u00e4iteks \"normaalne\", \"\u00f6ko\" v\u00f5i \"eemal\". V\u00f5imalike v\u00e4\u00e4rtuste loendi leiad sidumise dokumentatsioonist.",
+                    "name": "Re\u017eiim"
+                }
+            },
+            "name": "Niisutaja re\u017eiimi seadistamine"
+        },
+        "toggle": {
+            "description": "L\u00fclitab niisutaja sisse/v\u00e4lja.",
+            "name": "Niisutaja sisse/v\u00e4lja l\u00fclitamine"
+        },
+        "turn_off": {
+            "description": "L\u00fclitab \u00f5huniisuti v\u00e4lja.",
+            "name": "L\u00fclita \u00f5huniisuti v\u00e4lja"
+        },
+        "turn_on": {
+            "description": "L\u00fclitab \u00f5huniisuti sisse.",
+            "name": "L\u00fclita \u00f5huniisuti sisse"
+        }
+    },
+    "title": "\u00d5huniisutaja",
+    "triggers": {
+        "mode_changed": {
+            "description": "K\u00e4ivitub p\u00e4rast \u00fche v\u00f5i mitme niisutaja t\u00f6\u00f6re\u017eiimi muutumist.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                },
+                "mode": {
+                    "description": "T\u00f6\u00f6re\u017eiimid mille puhul k\u00e4ivitatakse.",
+                    "name": "Re\u017eiim"
+                }
+            },
+            "name": "Niisutaja re\u017eiim on muutunud"
+        },
+        "started_drying": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu \u00f5huniisutajat hakkavad kuivatama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Niisutaja hakkas kuivatama"
+        },
+        "started_humidifying": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu \u00f5huniisutajat hakkavad niisutama.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Niisutaja alustas niisutamist"
+        },
+        "turned_off": {
+            "description": "K\u00e4ivitub kui \u00fcks v\u00f5i mitu niisutajat l\u00fclitub v\u00e4lja.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Niisutaja on v\u00e4lja l\u00fclitatud"
+        },
+        "turned_on": {
+            "description": "K\u00e4ivitub \u00fche v\u00f5i mitme \u00f5huniisutaja sissel\u00fclitamisel.",
+            "fields": {
+                "behavior": {
+                    "name": "K\u00e4ivita kui"
+                },
+                "for": {
+                    "name": "V\u00e4hemalt"
+                }
+            },
+            "name": "Niisutaja on sisse l\u00fclitatud"
+        }
+    }
+}

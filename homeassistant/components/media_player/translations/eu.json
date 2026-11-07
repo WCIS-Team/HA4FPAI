@@ -1,0 +1,185 @@
+{
+    "common": {
+        "condition_threshold_name": "Atalasea",
+        "trigger_threshold_name": "Atalasea"
+    },
+    "conditions": {
+        "is_volume": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalasea"
+                }
+            }
+        }
+    },
+    "device_automation": {
+        "condition_type": {
+            "is_idle": "{entity_name} inaktiboa dago",
+            "is_off": "{entity_name} itzalita dago",
+            "is_on": "{entity_name} piztuta dago",
+            "is_paused": "{entity_name} pausatua dago",
+            "is_playing": "{entity_name} erreproduzitzen ari da"
+        },
+        "extra_fields": {
+            "for": "Iraupena"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} piztu edo itzali da",
+            "paused": "{entity_name} pausatua dago",
+            "playing": "{entity_name} erreproduzitzen hasi da",
+            "turned_off": "{entity_name} itzali da",
+            "turned_on": "{entity_name} piztu da"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "state": {
+                "idle": "Inaktiboa",
+                "off": "Itzalita",
+                "on": "Piztuta",
+                "paused": "Pausatuta"
+            },
+            "state_attributes": {
+                "groups_members": {
+                    "name": "Taldeko kideak"
+                },
+                "is_volume_muted": {
+                    "name": "Mututa",
+                    "state": {
+                        "false": "Ez",
+                        "true": "Bai"
+                    }
+                },
+                "media_channel": {
+                    "name": "Kanala"
+                },
+                "media_content_id": {
+                    "name": "Eduki-IDa"
+                },
+                "media_content_type": {
+                    "name": "Eduki-mota",
+                    "state": {
+                        "channel": "Kanala",
+                        "channels": "Kanalak",
+                        "movie": "Filma",
+                        "url": "URL-a",
+                        "video": "Bideoa"
+                    }
+                },
+                "media_duration": {
+                    "name": "Iraupena"
+                },
+                "media_position": {
+                    "name": "Posizioa"
+                },
+                "media_position_updated_at": {
+                    "name": "Posizioa eguneratu da"
+                },
+                "media_title": {
+                    "name": "Izenburua"
+                },
+                "repeat": {
+                    "state": {
+                        "all": "Guztiak",
+                        "off": "Itzalita"
+                    }
+                },
+                "shuffle": {
+                    "state": {
+                        "false": "Itzalita",
+                        "true": "Piztuta"
+                    }
+                },
+                "volume_level": {
+                    "name": "Bolumena"
+                }
+            }
+        },
+        "speaker": {
+            "name": "Bozgorailua"
+        }
+    },
+    "selector": {
+        "repeat": {
+            "options": {
+                "off": "Itzalita"
+            }
+        }
+    },
+    "services": {
+        "browse_media": {
+            "fields": {
+                "media_content_id": {
+                    "name": "Eduki-IDa"
+                },
+                "media_content_type": {
+                    "name": "Eduki-mota"
+                }
+            }
+        },
+        "join": {
+            "fields": {
+                "group_members": {
+                    "name": "Taldeko kideak"
+                }
+            }
+        },
+        "media_seek": {
+            "fields": {
+                "seek_position": {
+                    "name": "Posizioa"
+                }
+            }
+        },
+        "play_media": {
+            "fields": {
+                "announce": {
+                    "name": "Iragarri"
+                }
+            }
+        },
+        "search_media": {
+            "fields": {
+                "media_content_id": {
+                    "name": "Eduki-IDa"
+                },
+                "media_content_type": {
+                    "name": "Eduki-mota"
+                },
+                "search_query": {
+                    "name": "Bilaketa eskaera"
+                }
+            }
+        },
+        "volume_mute": {
+            "fields": {
+                "is_volume_muted": {
+                    "name": "Mututa"
+                }
+            }
+        },
+        "volume_set": {
+            "fields": {
+                "volume_level": {
+                    "name": "Maila"
+                }
+            }
+        }
+    },
+    "triggers": {
+        "volume_changed": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalasea"
+                }
+            }
+        },
+        "volume_crossed_threshold": {
+            "fields": {
+                "threshold": {
+                    "name": "Atalasea"
+                }
+            }
+        }
+    }
+}

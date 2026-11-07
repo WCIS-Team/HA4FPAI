@@ -1,0 +1,103 @@
+{
+    "common": {
+        "condition_behavior_name": "Bedingung erf\u00fcllt, wenn",
+        "condition_for_name": "F\u00fcr mindestens",
+        "trigger_behavior_name": "Ausl\u00f6sen, sobald",
+        "trigger_for_name": "F\u00fcr mindestens"
+    },
+    "conditions": {
+        "is_off": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Sirenen ausgeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Sirene ausgeschaltet"
+        },
+        "is_on": {
+            "description": "Pr\u00fcft, ob eine oder mehrere Sirenen eingeschaltet sind.",
+            "fields": {
+                "behavior": {
+                    "name": "Bedingung erf\u00fcllt, wenn"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Sirene eingeschaltet"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Sirene",
+            "state": {
+                "off": "Aus",
+                "on": "Ein"
+            },
+            "state_attributes": {
+                "available_tones": {
+                    "name": "Verf\u00fcgbare T\u00f6ne"
+                }
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "description": "Schaltet eine Sirene zwischen ein und aus um.",
+            "name": "Sirene umschalten"
+        },
+        "turn_off": {
+            "description": "Schaltet eine Sirene aus.",
+            "name": "Sirene ausschalten"
+        },
+        "turn_on": {
+            "description": "Schaltet eine Sirene ein.",
+            "fields": {
+                "duration": {
+                    "description": "Anzahl der Sekunden, die der Ton abgespielt wird. Muss von der Integration unterst\u00fctzt werden.",
+                    "name": "Dauer"
+                },
+                "tone": {
+                    "description": "Der auszusendende Ton. Wenn die Eigenschaft `available_tones` eine Map ist, kann entweder der Schl\u00fcssel oder der Wert verwendet werden. Muss von der Integration unterst\u00fctzt werden.",
+                    "name": "Ton"
+                },
+                "volume_level": {
+                    "description": "Die Lautst\u00e4rke. 0 ist unh\u00f6rbar, 1 ist die maximale Lautst\u00e4rke. Muss von der Integration unterst\u00fctzt werden.",
+                    "name": "Lautst\u00e4rke"
+                }
+            },
+            "name": "Sirene einschalten"
+        }
+    },
+    "title": "Sirene",
+    "triggers": {
+        "turned_off": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Sirenen ausgeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Sirene ausgeschaltet"
+        },
+        "turned_on": {
+            "description": "Wird ausgel\u00f6st, sobald eine oder mehrere Sirenen eingeschaltet werden.",
+            "fields": {
+                "behavior": {
+                    "name": "Ausl\u00f6sen, sobald"
+                },
+                "for": {
+                    "name": "F\u00fcr mindestens"
+                }
+            },
+            "name": "Sirene eingeschaltet"
+        }
+    }
+}

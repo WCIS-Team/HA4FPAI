@@ -1,0 +1,94 @@
+{
+    "device_automation": {
+        "action_type": {
+            "toggle": "Preklopi {entity_name}",
+            "turn_off": "Izklopi {entity_name}",
+            "turn_on": "Vklopi {entity_name}"
+        },
+        "condition_type": {
+            "is_off": "{entity_name} je izklopljen",
+            "is_on": "{entity_name} je vklopljen"
+        },
+        "trigger_type": {
+            "changed_states": "{entity_name} je bil vklopljen ali izklopljen",
+            "turned_off": "{entity_name} je bil izklopljen",
+            "turned_on": "{entity_name} je bil vklopljen"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Daljinec",
+            "state": {
+                "off": "Izklopljeno",
+                "on": "Vklopljeno"
+            }
+        }
+    },
+    "services": {
+        "delete_command": {
+            "fields": {
+                "command": {
+                    "name": "Ukaz"
+                },
+                "device": {
+                    "description": "Naprava, iz katere bodo izbrisani ukazi.",
+                    "name": "Naprava"
+                }
+            }
+        },
+        "learn_command": {
+            "fields": {
+                "alternative": {
+                    "description": "\u010ce je treba kodo shraniti kot alternativo. To je uporabno za diskretne kode. Diskretne kode se uporabljajo za stikala, ki opravljajo samo eno funkcijo. Na primer koda za samo vklop naprave. \u010ce je \u017ee vklopljeno, po\u0161iljanje kode ne bo spremenilo stanja.",
+                    "name": "Alternativa"
+                },
+                "command": {
+                    "name": "Ukaz"
+                },
+                "command_type": {
+                    "name": "Vrsta ukaza"
+                },
+                "device": {
+                    "name": "Naprava"
+                }
+            }
+        },
+        "send_command": {
+            "description": "Po\u0161lje ukaz ali seznam ukazov v napravo.",
+            "fields": {
+                "command": {
+                    "description": "Posamezen ukaz ali seznam ukazov za po\u0161iljanje.",
+                    "name": "Ukaz"
+                },
+                "delay_secs": {
+                    "description": "\u010cas, ki ga \u017eelite po\u010dakati med ponavljajo\u010dimi se ukazi.",
+                    "name": "Zamik v sekundah"
+                },
+                "device": {
+                    "description": "ID naprave, ki ji \u017eelite poslati ukaz.",
+                    "name": "Naprava"
+                },
+                "num_repeats": {
+                    "description": "Kolikokrat \u017eelite ponoviti ukaze.",
+                    "name": "Ponovitve"
+                }
+            }
+        },
+        "toggle": {
+            "description": "Po\u0161lje ukaz za preklop"
+        },
+        "turn_off": {
+            "description": "Po\u0161lje ukaz za izklop"
+        },
+        "turn_on": {
+            "description": "Po\u0161lje ukaz za vklop",
+            "fields": {
+                "activity": {
+                    "description": "ID ali naziv aktivnosti, ki jo \u017eelite za\u010deti.",
+                    "name": "Aktivnost"
+                }
+            }
+        }
+    },
+    "title": "Daljinec"
+}

@@ -1,0 +1,100 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Ure\u0111aj je ve\u0107 pode\u0161en"
+        },
+        "error": {
+            "not_allowed": "Pristup izabranoj putanji datoteke nije dozvoljen"
+        },
+        "step": {
+            "notify": {
+                "data": {
+                    "file_path": "Putanja datoteke",
+                    "timestamp": "Vremenska oznaka"
+                },
+                "data_description": {
+                    "file_path": "Lokalna putanja datoteke u koju \u0107e se upisati obave\u0161tenje",
+                    "timestamp": "Dodajte vremensku oznaku u obave\u0161tenje"
+                },
+                "description": "Podesite uslugu koja omogu\u0107ava upisivanje obave\u0161tenja u datoteku.",
+                "title": "Servis za obave\u0161tenja o datotekama"
+            },
+            "sensor": {
+                "data": {
+                    "file_path": "Putanja datoteke",
+                    "unit_of_measurement": "Jedinica mere",
+                    "value_template": "\u0160ablon vrednosti"
+                },
+                "data_description": {
+                    "file_path": "Lokalna putanja datoteke iz koje se preuzima vrednost senzora",
+                    "unit_of_measurement": "Merna jedinica senzora",
+                    "value_template": "\u0160ablon za prikaz vrednosti senzora na osnovu sadr\u017eaja datoteke"
+                },
+                "description": "Podesite senzor zasnovan na datoteci",
+                "title": "Senzor datoteke"
+            },
+            "user": {
+                "description": "Izaberite opciju",
+                "menu_options": {
+                    "notify": "Podesite uslugu obave\u0161tenja",
+                    "sensor": "Podesite senzor zasnovan na datoteci"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "dir_not_allowed": {
+            "message": "Pristup datoteci {filename} nije dozvoljen."
+        },
+        "file_decoding": {
+            "message": "Nije mogu\u0107e pro\u010ditati datoteku {filename} u formatu {encoding}."
+        },
+        "file_not_found": {
+            "message": "Datoteka {filename} nije prona\u0111ena."
+        },
+        "file_read_error": {
+            "message": "Gre\u0161ka pri \u010ditanju datoteke {filename}."
+        },
+        "no_access_to_path": {
+            "message": "Nije mogu\u0107e pro\u010ditati {filename}, nema pristupa putanji; mo\u017eda je potrebno podesiti allowlist_external_dirs u configuration.yaml."
+        },
+        "unsupported_file_encoding": {
+            "message": "Nije mogu\u0107e pro\u010ditati {filename}, nepodr\u017eano kodiranje datoteke {encoding}."
+        },
+        "write_access_failed": {
+            "message": "Upisivanje u datoteku {filename} nije uspelo: {exc}."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "timestamp": "Vremenska oznaka",
+                    "unit_of_measurement": "Jedinica mere",
+                    "value_template": "\u0160ablon vrednosti"
+                },
+                "data_description": {
+                    "timestamp": "Dodajte vremensku oznaku u obave\u0161tenje",
+                    "unit_of_measurement": "Merna jedinica senzora",
+                    "value_template": "\u0160ablon za prikaz vrednosti senzora na osnovu sadr\u017eaja datoteke"
+                }
+            }
+        }
+    },
+    "services": {
+        "read_file": {
+            "description": "Vr\u0161u u\u010ditavanje i obradu sadr\u017eaja iz navedene datoteke.",
+            "fields": {
+                "file_encoding": {
+                    "description": "Defini\u0161e format strukture podataka unutar datoteke (npr. JSON ili YAML)",
+                    "name": "Format datoteke"
+                },
+                "file_name": {
+                    "description": "Kompletna sistemska putanja do datoteke predvi\u0111ene za o\u010ditavanje.",
+                    "name": "Putanja do datoteke"
+                }
+            },
+            "name": "Pro\u010ditaj datoteku"
+        }
+    }
+}

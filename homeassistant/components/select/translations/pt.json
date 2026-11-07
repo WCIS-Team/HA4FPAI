@@ -1,0 +1,107 @@
+{
+    "conditions": {
+        "is_option_selected": {
+            "description": "Testa se um ou mais menus suspensos t\u00eam uma op\u00e7\u00e3o espec\u00edfica selecionada.",
+            "fields": {
+                "behavior": {
+                    "name": "A condi\u00e7\u00e3o \u00e9 v\u00e1lida se"
+                },
+                "for": {
+                    "name": "Durante pelo menos"
+                },
+                "option": {
+                    "description": "As op\u00e7\u00f5es a verificar.",
+                    "name": "Op\u00e7\u00e3o"
+                }
+            },
+            "name": "A op\u00e7\u00e3o do menu suspenso est\u00e1 selecionada"
+        }
+    },
+    "device_automation": {
+        "action_type": {
+            "select_first": "Alterar {entity_name} para a primeira op\u00e7\u00e3o",
+            "select_last": "Alterar {entity_name} para a \u00faltima op\u00e7\u00e3o",
+            "select_next": "Alterar {entity_name} para a op\u00e7\u00e3o seguinte",
+            "select_option": "Alterar op\u00e7\u00e3o {entity_name}",
+            "select_previous": "Alterar {entity_name} para a op\u00e7\u00e3o anterior"
+        },
+        "condition_type": {
+            "selected_option": "Op\u00e7\u00e3o selecionada atual {entity_name}"
+        },
+        "extra_fields": {
+            "cycle": "Ciclo",
+            "for": "Dura\u00e7\u00e3o",
+            "from": "De",
+            "option": "Op\u00e7\u00e3o",
+            "to": "Para"
+        },
+        "trigger_type": {
+            "current_option_changed": "Op\u00e7\u00e3o {entity_name} alterada"
+        }
+    },
+    "entity_component": {
+        "_": {
+            "name": "Selecionar",
+            "state_attributes": {
+                "options": {
+                    "name": "Op\u00e7\u00f5es"
+                }
+            }
+        }
+    },
+    "exceptions": {
+        "no_options": {
+            "message": "A entidade {entity_id} n\u00e3o tem op\u00e7\u00f5es para selecionar."
+        },
+        "not_valid_option": {
+            "message": "A op\u00e7\u00e3o {option} n\u00e3o \u00e9 v\u00e1lida para a entidade {entity_id}, as op\u00e7\u00f5es v\u00e1lidas s\u00e3o: {options}."
+        }
+    },
+    "services": {
+        "select_first": {
+            "description": "Seleciona a primeira op\u00e7\u00e3o de uma sele\u00e7\u00e3o.",
+            "name": "Selecionar a primeira op\u00e7\u00e3o"
+        },
+        "select_last": {
+            "description": "Seleciona a \u00faltima op\u00e7\u00e3o de uma sele\u00e7\u00e3o.",
+            "name": "Selecionar a \u00faltima op\u00e7\u00e3o"
+        },
+        "select_next": {
+            "description": "Seleciona a op\u00e7\u00e3o seguinte de uma sele\u00e7\u00e3o.",
+            "fields": {
+                "cycle": {
+                    "description": "Se a op\u00e7\u00e3o deve circular da \u00faltima para a primeira.",
+                    "name": "Ciclo"
+                }
+            },
+            "name": "Selecionar a op\u00e7\u00e3o seguinte"
+        },
+        "select_option": {
+            "description": "Seleciona uma op\u00e7\u00e3o de uma sele\u00e7\u00e3o.",
+            "fields": {
+                "option": {
+                    "description": "Op\u00e7\u00e3o a ser selecionada.",
+                    "name": "Op\u00e7\u00e3o"
+                }
+            },
+            "name": "Selecionar op\u00e7\u00e3o"
+        },
+        "select_previous": {
+            "description": "Seleciona a op\u00e7\u00e3o anterior de uma sele\u00e7\u00e3o.",
+            "fields": {
+                "cycle": {
+                    "description": "Se a op\u00e7\u00e3o deve circular da primeira para a \u00faltima.",
+                    "name": "Ciclo"
+                }
+            },
+            "name": "Selecionar a op\u00e7\u00e3o anterior"
+        }
+    },
+    "title": "Selecionar",
+    "triggers": {
+        "selection_changed": {
+            "description": "Dispara quando a op\u00e7\u00e3o selecionada num ou mais menus suspensos \u00e9 alterada.",
+            "name": "A sele\u00e7\u00e3o no menu suspenso foi alterada"
+        }
+    }
+}
