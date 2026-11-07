@@ -34,6 +34,27 @@ mkdir -p /tmp/ha-lab && cp /tmp/pkg/examples/configuration.yaml /tmp/ha-lab/conf
 （pyspeex-noise、pymicro-vad）与媒体库（libturbojpeg、ffmpeg）需按 REPRODUCE 的说明准备。
 本包只含源码，不含前端 wheel 之外的 Python 依赖，安装时由 pip 按 pyproject 解析。
 
+## ARM64 依赖供给（2026-11-07 实测）
+
+| 阶段 | 结论 |
+|---|---|
+| 轮子盘点（窄标签） | 106/117，11 个"缺" |
+| 轮子盘点（真实标签组合） | **112/117**，5 个缺：pymicro_vad / pyspeex_noise / PyTurboJPEG / PyQRCode / PyRIC |
+| 源码包交叉编译 | 2 个出 `linux_aarch64` 轮；3 个是纯 Python 轮 |
+
+复现：
+
+```bash
+apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+export CC_aarch64_linux_gnu=aarch64-linux-gnu-gcc CXX_aarch64_linux_gnu=aarch64-linux-gnu-g++
+export _PYTHON_HOST_PLATFORM=linux_aarch64 AR_aarch64_linux_gnu=aarch64-linux-gnu-ar
+export LDSHARED="aarch64-linux-gnu-gcc -shared"
+pip wheel --no-deps --no-binary :all: --no-cache-dir -w /tmp/a64-w3 pymicro_vad==1.0.1 pyspeex_noise==1.0.2
+```
+
+`--no-binary :all: --no-cache-dir` 是必需的：否则 pip 会拿缓存里的 x86 轮冒充（本轮实测踩到）。
+**边界：只证明"依赖有 aarch64 产物"，没有在 ARM64 上安装或启动过。**
+
 ## 边界
 
 - 该包**不是** ARM64/deb 交付件，也未发布 Release；ARM64 有 11 个轮子在 cp314 下缺失（见 `cut/results/arm64-results.json`）。

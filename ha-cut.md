@@ -72,8 +72,9 @@
 - [x] **NEXT-01b｜继续收缩可选集成（试删验证）。** 静态导入扫描：10 个无导入点（mobile_app/plex/dhcp/ssdp/my/usage_prediction/go2rtc/map_tiles/search/homeassistant_alerts），22 个需改上游（hassio 12 处、blueprint 10、system_health 7、cloud 6…）。已按前者**试删并跑 30/30 功能回归通过**，分支由 129 降至 **119** 集成/5909 文件。证据 `cut/results/next01-imports.json`。
 - [x] **NEXT-02a｜体积统计完成。** 见上；同时确认前端资产为哈希 chunk（未删除任何被引用 chunk），资产级裁剪未做。
 - [x] **NEXT-02b｜前端资产构成分析（结论：不裁源码树内资产）。** hass_frontend 232.8 MB / 14682 文件：static 99.2、translations 69.3、frontend_es5 68.6、frontend_latest 64.1、locale-data 21.3；其中 `.map` 51.6 MB、`.gz/.br` 52.7 MB 理论上可在自建打包时剔除，属重打包上游前端包，未做。证据 `cut/results/frontend-results.json`。
-- [x] **NEXT-03a｜ARM64 轮子盘点。** 117 个 pin 中 **106 个有 aarch64/cp314 wheel**，**11 个缺**（numpy/pillow/greenlet/pycares/PyTurboJPEG/ulid-transform/pyspeex_noise/pymicro_vad/gazetteer-matcher/PyQRCode/PyRIC）。证据 `cut/results/arm64-results.json`。
-- [ ] **NEXT-03b｜ARM64 运行时实跑。** 未做：没有 ARM64 解释器，未在 ARM64 上安装或启动；11 个缺轮需在允许的构建机交叉编译或换源。
+- [x] **NEXT-03a｜ARM64 轮子盘点（两轮，修正口径）。** 首轮只试 `manylinux2014_aarch64/cp314`，报 11 个缺；改用真实 pip 解析的标签组合（`manylinux_2_28/2_17/2014_aarch64` × `cp314/abi3`）复检后**只有 5 个缺轮**：`pymicro_vad`、`pyspeex_noise`、`PyTurboJPEG`、`PyQRCode`、`PyRIC`。首轮把 numpy/pillow/greenlet/pycares/ulid-transform 误报为缺轮，原因是标签过窄——这条更正已留档。证据 `cut/results/arm64-results-v2.json`。
+- [x] **NEXT-03b｜5 个源码包的 aarch64 供给（交叉编译实测）。** 容器内装 `gcc-aarch64-linux-gnu` (14.2.0) 后按源码重建：`pymicro_vad`、`pyspeex_noise` 出 `cp314-cp314-linux_aarch64.whl`（179,801 B / 148,522 B）；`PyQRCode`、`PyRIC`、`PyTurboJPEG` 本身就是纯 Python 轮（`py3-none-any` / `py2.py3-none-any`），不需要交叉编译。**结论：117 个 pin 在 aarch64 上全部有可用产物。**证据 `cut/results/arm64-wheels-results.json`。
+- [ ] **NEXT-03c｜ARM64 上真正安装并启动。** 仍未做：本机 podman 无 qemu binfmt（`Exec format error`），板端只有 Python 3.8；**没有在 ARM64 上安装或运行过**，依赖供给已解除不等于跑通。
 - [ ] **NEXT-04｜板端并发内存与稳定性。** 未做：本机 x86 读数不能推算板端；需在板端隔离部署测启动峰值/长稳/回退。
 - [x] **NEXT-05a｜可复现源码包与wheel构建。** `git archive` 源码包 6,135,211 B（sha256 `a3d48538…`），包内 `verify_source.py` 通过（5909/119/0），`pip wheel --no-deps` 出 `homeassistant-2026.10.4-py3-none-any.whl` 8,131,064 B（sha256 `6176c274…`）。详见 `cut/BUILD.md`。
 - [ ] **NEXT-05b｜ARM64/deb/Release交付。** 未做：无 ARM64 包与 deb，未配 Actions，未建 Release，未推送。
@@ -114,7 +115,8 @@
 | 业务桥（HA rest_command→control `/v1/commands`→库中命令行） | 5/5 通过 | `cut/results/bridge-results.json` |
 | 浏览器 UI（Overview/History/Automations 编辑器/Integrations 列表） | 通过（页面级） | 会话截图 ui-01…ui-05 |
 | 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
-| ARM64 轮子盘点 | 106/117 有 cp314/aarch64 wheel，11 缺 | `cut/results/arm64-results.json` |
+| ARM64 轮子盘点（复检） | 112/117 有轮，5 缺 | `cut/results/arm64-results-v2.json` |
+| ARM64 缺轮交叉编译 | 5/5 有可用产物（2 交叉编译 + 3 纯 Python） | `cut/results/arm64-wheels-results.json` |
 | 试删 10 个无静态导入的可选集成 | 30/30 功能回归通过；129→119 集成、6158→5909 文件 | `cut/results/next01-imports.json` |
 | 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
 | 前端包构成 | 232.8 MB：static 99.2 / translations 69.3 / es5 68.6 / latest 64.1；.map 51.6、.gz+.br 52.7 | `cut/results/frontend-results.json` |
