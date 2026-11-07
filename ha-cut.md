@@ -58,7 +58,13 @@
 - [x] **CONNECT-04a｜HA→HA4FPAI控制服务协议桥。** HA `rest_command` POST `/v1/commands`（Bearer）→control 库落 `commands` 行（action=`camera.open_view`，client=`ha-small`）。证据 `cut/results/bridge-results.json`（5/5）。
 - [ ] **CONNECT-04b｜板端生产业务与真实动作。** 未做：本机 control 实例非板端部署；命令因视频服务未起而 status=failed，未做人员登记/声纹/录像业务联调。
 - [x] **CONNECT-05a｜真实浏览器UI（关键页）。** 注入真实会话令牌后：Overview 仪表盘、History 页、Automations 列表与“新建自动化”编辑器（When/And if/Then do/Save）、Integrations 页显示 MQTT/Generic Camera/RESTful Command。证据：会话内截图 ui-01…ui-05（存 workenv/MCP 输出目录）。
-- [ ] **CONNECT-05b｜浏览器全流程。** 未做：未保存自动化、未编辑 Lovelace 卡片、未测退出登录与摄像头页面播放。
+- [x] **CONNECT-05b1｜前端创建并保存自动化。** 在真实前端用编辑器（含 YAML 模式）创建自动化并保存：落盘到
+  `automations.yaml`（id `1794021359526`），实体 `automation.ui_created_cut_automation` 加载为 on，
+  状态触发后 `last_triggered` 更新（真触发，非草稿）。证据 `cut/results/ui-automation-results.json`（3/3）。
+  **顺带修掉一个真缺陷**：示例配置原先用内联 `automation:` 块，导致 UI 保存的 `automations.yaml` 从不被加载、
+  界面上"保存成功"却不产生实体；已把 `automation`/`script`/`scene` 改为 `!include` 拆文件（与官方默认一致），
+  改后 30/30 功能回归通过。
+- [ ] **CONNECT-05b2｜其余浏览器流程。** 未做：未编辑 Lovelace 卡片、未测退出登录、未做摄像头页面播放。
 
 ## 五、进一步裁剪与上板条件
 
@@ -110,6 +116,7 @@
 | 体积统计 | 源码 38.4 MB；安装 784 MB（前端 268 MB、av 100 MB、HA 72 MB） | `cut/results/size-results.json` |
 | ARM64 轮子盘点 | 106/117 有 cp314/aarch64 wheel，11 缺 | `cut/results/arm64-results.json` |
 | 试删 10 个无静态导入的可选集成 | 30/30 功能回归通过；129→119 集成、6158→5909 文件 | `cut/results/next01-imports.json` |
+| 前端创建并保存自动化（含 workspace 陷阱修复） | 3/3：落 automations.yaml、实体加载、真触发 | `cut/results/ui-automation-results.json` |
 | 前端包构成 | 232.8 MB：static 99.2 / translations 69.3 / es5 68.6 / latest 64.1；.map 51.6、.gz+.br 52.7 | `cut/results/frontend-results.json` |
 
 过程中确认的三个实现细节（供复跑）：MQTT 在现代 HA 是 config-entry（YAML `broker/port` 会被判非法），流提交需 `protocol`（3.1/3.1.1/5 之一）且 `other_settings.set_ca_cert` 用 `off`；generic 摄像头配置流在 `user_confirm` 步要 `confirmed_ok=true`；摄像头取图走 `/api/camera_proxy/<entity>?token=…`（`/api/camera/snapshot` 在本版本 404）。`rest_command` 的 payload 若含 `{{ "x": 1 }}` 会被 Jinja 误判，需写单层花括号。
