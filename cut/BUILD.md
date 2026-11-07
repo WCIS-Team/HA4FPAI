@@ -38,3 +38,5 @@ mkdir -p /tmp/ha-lab && cp /tmp/pkg/examples/configuration.yaml /tmp/ha-lab/conf
 
 - 该包**不是** ARM64/deb 交付件，也未发布 Release；ARM64 有 11 个轮子在 cp314 下缺失（见 `cut/results/arm64-results.json`）。
 - 包内 `cut/results/*` 是验证证据，不是运行时依赖。
+
+> 本包由提交  生成；其后的提交仅改文档，不影响包内容。要与最新 HEAD 完全一致请按上节重新生成并自行记录哈希。
