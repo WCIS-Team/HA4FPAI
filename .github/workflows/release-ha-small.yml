@@ -1,0 +1,79 @@
+name: Release ha-small
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 0.1.0)'
+        required: true
+        default: '0.1.0'
+      draft:
+        description: 'Create as draft?'
+        type: boolean
+        default: false
+
+jobs:
+  build-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout HA4FPAI repo (ha-small branch)
+        uses: actions/checkout@v4
+        with:
+          repository: WCIS-Team/HA4FPAI
+          ref: ha-small
+          path: repo
+
+      - name: Extract source tarball
+        run: |
+          cd repo
+          if [ -f "cut/source-audit.json" ]; then
+            echo "Source tree exists, generating tarball..."
+            # Build from commit HEAD of this workflow
+            git archive --format=tar.gz --prefix=ha-small-${{ github.event.inputs.version }}/ HEAD > ../ha-small-${{ github.event.inputs.version }}-source.tar.gz
+            sha256sum ../ha-small-${{ github.event.inputs.version }}-source.tar.gz | cut -d' ' -f1 > checksum.txt
+          else
+            echo "No source-audit found, skipping"
+          fi
+
+      - name: Build wheel (if pyproject exists)
+        run: |
+          cd repo
+          if [ -f "pyproject.toml" ] && [ -d "homeassistant/components/" ]; then
+            python -m venv .build-env
+            . .build-env/bin/activate
+            pip install build
+            python -m build --wheel --outdir dist/
+            mv dist/homeassistant-*.whl ../homeassistant-2026.10.4-py3-none-any.whl 2>/dev/null || echo "Wheel build skipped"
+            sha256sum ../homeassistant-2026.10.4-py3-none-any.whl 2>/dev/null | cut -d' ' -f1 >> checksum.txt || echo "No wheel"
+          fi
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ha-small-v${{ github.event.inputs.version }}
+          path: |
+            *.tar.gz
+            *.whl
+            checksum.txt
+          retention-days: 90
+
+  create-release:
+    needs: build-artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ha-small-v${{ github.event.inputs.version }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          name: "ha-small ${{ github.event.inputs.version }}"
+          body_path: release-notes.md
+          draft: ${{ github.event.inputs.draft }}
+          files: |
+            *.tar.gz
+            *.whl
+            checksum.txt
