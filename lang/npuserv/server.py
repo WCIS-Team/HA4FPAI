@@ -30,6 +30,7 @@ API (JSON in, JSON out; curl lines and the adapter contract in README.md):
 import argparse
 import json
 import os
+import signal
 import subprocess
 import sys
 import threading
@@ -782,6 +783,19 @@ class ResidentSupervisor(object):
             self._reap(j, why)
             self.job = None
 
+    def shutdown(self, why='server-exit'):
+        """Terminate the resident worker on server exit.
+
+        unload() only drops model sessions inside a still-running worker; without
+        this the worker survives as an orphan (ppid=1) holding device memory —
+        seen 2026-11-08 as 5 leaked workers / 311 MB (see wiki PS/ha 运行时内存RSS实测).
+        """
+        with self.lock:
+            j = self.job
+            self.job = None
+        if j is not None:
+            self._reap(j, why)
+
     def unload(self, model=None):
         with self.lock:
             j = self.job
@@ -831,15 +845,28 @@ def main():
     httpd.daemon_threads = True
     log("npuserv on http://%s:%d  models=%s  state=%s"
         % (a.host, a.port, ",".join(sorted(sv.models)), a.state_dir))
+    def _handle_term(signum, frame):
+        # shutdown() 必须在另一线程调，不能在 serve_forever 所在线程调（会自锁）
+        log("signal %s received; shutting down" % signum)
+        threading.Thread(target=httpd.shutdown, daemon=True).start()
+    try:
+        signal.signal(signal.SIGTERM, _handle_term)
+        signal.signal(signal.SIGINT, _handle_term)
+    except (ValueError, OSError, AttributeError):
+        pass                                          # 非主线程/不支持时降级
+
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
     finally:
         try:
-            sv.unload()
+            if hasattr(sv, "shutdown"):
+                sv.shutdown()                         # resident: 真杀 worker 进程
+            else:
+                sv.unload()                           # legacy slot: unload 自带 _reap
         except Exception as e:
-            log("unload on shutdown failed: %r" % (e,))
+            log("worker cleanup on shutdown failed: %r" % (e,))
         httpd.server_close()
 
 
