@@ -97,7 +97,7 @@ def build():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", help="config-dir（会写 .storage/*.json）")
+    ap.add_argument("--out", help=".storage 目录本体（直接写 core.*_registry）")
     ap.add_argument("--dry-run", action="store_true", help="只打印不写盘")
     args = ap.parse_args()
 
@@ -109,7 +109,7 @@ def main():
         print(json.dumps(area, ensure_ascii=False, indent=1))
         return 0
 
-    store = os.path.join(args.out, ".storage")
+    store = args.out  # --out is the .storage dir itself
     os.makedirs(store, exist_ok=True)
     for name, payload in (("core.entity_registry", ent), ("core.area_registry", area)):
         p = os.path.join(store, name)
