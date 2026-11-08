@@ -1,6 +1,6 @@
 # ha-cut
 
-更新：2026-11-06。本清单是ha-small的功能与裁剪步骤正本；只要求主要功能，不复制HA4FPAI的46项组件落地方案。已完成步骤当场勾选，未验证的硬件/外部服务保持空框。
+更新：2026-11-08。本清单是ha-small的功能与裁剪步骤正本；只要求主要功能，不复制HA4FPAI的46项组件落地方案。已完成步骤当场勾选，未验证的硬件/外部服务保持空框。
 
 ## 一、目标与边界
 
@@ -17,13 +17,15 @@
 - [x] **CUT-02｜取得官方源码并验签名摘要。** 下载38675928B sdist，SHA256与官方PyPI元数据一致，保留原archive及元数据。
 - [x] **CUT-03｜保留上游署名和许可。** LICENSE.md、上游README.rst及各保留文件原样；新增本项目README/来源说明，未冒称官方发行版。
 - [x] **CUT-04｜建立功能保留集。** 覆盖设备控制、状态事件、自动化、网页/API、人员/区域、历史、语音、视频与通用连接接口。
-- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；最终128个集成（2026-11-07 三轮方法修正后按三条规则删去 plex），不依靠手工猜61个名字。
-- [x] **CUT-06｜执行删除。** 删除1395个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。
-- [x] **CUT-07｜证明保留源码未改。** 6096个上游文件有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
+- [x] **CUT-05｜求依赖闭包。** 遍历manifest依赖/after_dependencies及绝对、相对静态导入，补齐基础实体域；此轮收敛到 128 个集成（2026-11-07 三轮方法修正后按三条规则删去 plex；后于 CUT-12 再删 11 叶子至 117），不依靠手工猜61个名字。
+- [x] **CUT-06｜执行删除。** 删除1395个集成及对应不保留测试、重新生成的旧发行metadata；全量删除文件清单保存在workenv，裁剪摘要保存在cut/cut-report.json。此阶段删 1395；C 阶段（CUT-12）再删 11，**累计删除 1406 个**（1523→117）。
+- [x] **CUT-07｜证明保留源码未改。** 6096→5557 个上游文件（C 阶段后保留 5557）有逐文件SHA256；修改数0，补丁清单空。新增说明、例子、锁文件与校验工具独立登记。
 - [x] **CUT-08｜不加载完整默认配置。** 保留default_config源码以满足bootstrap预导入，但实验配置不启用default_config；运行测试确认未加载。
 - [x] **CUT-09｜隔离构建与安装。** 本机Linux容器内由未改pyproject构建wheel并安装，pip check通过；不改系统Python、不影响现役HA4FPAI或板端。
 - [x] **CUT-10｜解决原生运行依赖。** 按实际报错补容器g++/make/cmake/pkg-config/libspeexdsp-dev构建两个语音依赖，并补libturbojpeg0/ffmpeg；不是修改HA源码绕过功能。
 - [x] **CUT-11｜保存来源/删除/依赖与验证说明。** 来源、逐文件审核、功能探针、锁文件和启动方法均随本目录提供；日志和临时产物留workenv。
+
+- [x] **CUT-12｜继续裁剪至依赖闭包固定点（2026-11-08，128→117）。** 全树三规则扫描（manifest 硬依赖／跨行感知静态导入／bootstrap 预导入）：111 个集成被锁、17 个为叶子；17 叶子中 6 个是已验收功能支柱（generic/mqtt/rest/rest_command/counter/wyoming），删其余 **11 个无依赖叶子**：`ai_task`、`air_quality`、`calendar`、`geo_location`、`local_file`、`radio_frequency`、`schedule`、`switch_as_x`、`todo`、`command_line`、`shell_command`。干净 venv：install rc=0、check_config 0 错、pip check 干净、30/30。**最终 1523→117，删 1406，保留上游文件 5557**。证据 `cut/cut-report.json`、`cut/results/`、`cut/removable_full_scan.py`。
 
 ## 三、主要功能验收
 
@@ -260,8 +262,6 @@
 | 断流恢复（视频） | 读会话 6→7、新分片 932,281 B、状态回 idle | `cut/results/stream-recovery.json` |
 | RTSP→stream→HLS 管线 | 5/5：H264 测试流→HA→master/variant/init.mp4/分片 143,177 B | `cut/results/rtsp-results.json` |
 | MQTT mTLS + 转接设备 + netem | mTLS 拒无证书/收证书 5/5；设备 9/9（LWT 生效）；8/8（0.8→171.1→0.8 ms） | `cut/results/mqtt-weaknet-results.json` |
-| MQTT mTLS + 转接设备 + netem | mTLS 强制 5/5；设备发现/注册表/LWT 9/9；弱网 8/8(0.8→171.1→0.8ms) | `cut/results/mqtt-weaknet-results.json` |
-| 板端真实摄像头接入 HA | 7/7 接入+8/8端到端；960x540浏览器播放实时 | `cut/results/board-stream-e2e.json` |
 | Wyoming TTS 语音链路 | 5/5 + 5/5：协议 26,460 B PCM → HA tts 实体 → 4,963 B MP3 | `cut/results/voice-results.json` |
 | ARM64 安装+校验+启动 | aarch64：install OK、check_config 零错、前端 200、API 401 | `cut/results/arm64-runtime.json` |
 | ARM64 原生轮（2 个 C++ 包） | EM_AARCH64 已核验，导入通过 | `cut/results/arm64-native-wheels.json` |
