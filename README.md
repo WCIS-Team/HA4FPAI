@@ -11,4 +11,4 @@
 | [`rebuild-uncompleted-2026-11-09`](https://github.com/WCIS-Team/HA4FPAI/tree/rebuild-uncompleted-2026-11-09) | 第一版构架优化（未完成） |
 | [WCIS-Team/loomos](https://github.com/WCIS-Team/loomos) | riir 重构目标仓库 |
 
-最新进展指针见 [`latest`](./latest.md)（指向 loomos）。
+最新进展指针见 [WCIS-Team/loomos](https://github.com/WCIS-Team/loomos)（重构目标仓库，代码在此演进）。
