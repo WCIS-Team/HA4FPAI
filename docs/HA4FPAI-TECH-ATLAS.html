@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101513">
+  <meta name="description" content="HA4FPAI 技术地图：板载语音控制栈与 ha-small Home Assistant 裁剪实验。">
+  <title>HA4FPAI · 双轨技术地图</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101513;
+      --surface: #171e1a;
+      --surface-2: #1d2721;
+      --line: rgba(235, 244, 231, .12);
+      --text: #eef4e9;
+      --muted: #9eada1;
+      --soft: #718077;
+      --lime: #c6f36a;
+      --mint: #78dfb2;
+      --blue: #84baff;
+      --amber: #ffc779;
+      --coral: #ff907a;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --max: 1180px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-width: 320px; background:
+        radial-gradient(ellipse at 82% 0%, rgba(108, 158, 95, .15), transparent 34rem),
+        radial-gradient(ellipse at 0% 40%, rgba(54, 112, 93, .10), transparent 30rem), var(--bg);
+      color: var(--text); font: 15px/1.65 var(--sans);
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .topbar { height: 66px; border-bottom: 1px solid var(--line); display:flex; align-items:center; }
+    .topbar-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:750; letter-spacing:-.03em; }
+    .brand-mark { width:26px; height:26px; border:1px solid rgba(198,243,106,.55); border-radius:8px; display:grid; place-items:center; color:var(--lime); font:700 12px var(--mono); transform:rotate(-5deg); }
+    .brand small { color:var(--muted); font:500 11px var(--mono); letter-spacing:.08em; }
+    .top-meta { color:var(--soft); font:11px var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+    .hero { padding: clamp(58px, 9vw, 112px) 0 64px; display:grid; grid-template-columns:minmax(0,1.3fr) minmax(250px,.7fr); gap:48px; align-items:end; }
+    .eyebrow { color:var(--lime); font:600 11px var(--mono); text-transform:uppercase; letter-spacing:.18em; display:flex; align-items:center; gap:10px; }
+    .eyebrow::before { content:""; width:24px; height:1px; background:currentColor; }
+    h1 { margin:18px 0 18px; max-width:790px; font-size:clamp(42px,7vw,82px); line-height:.98; letter-spacing:-.075em; font-weight:650; }
+    h1 span { color:var(--lime); }
+    .hero-copy { max-width:670px; color:#b8c5ba; font-size:17px; line-height:1.75; }
+    .hero-side { border-left:1px solid var(--line); padding:4px 0 4px 24px; color:var(--muted); font-size:13px; }
+    .hero-side b { display:block; color:var(--text); font-size:14px; margin-bottom:8px; }
+    .hero-side code { color:var(--mint); font:12px var(--mono); }
+    .hero-side p { margin:7px 0; }
+    .signal { display:flex; gap:7px; align-items:center; color:var(--muted); font:11px var(--mono); margin-top:20px; }
+    .signal i { width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 14px rgba(120,223,178,.7); }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin:0 0 22px; }
+    .section-head h2 { font-size:22px; line-height:1.25; letter-spacing:-.04em; margin:0; font-weight:620; }
+    .section-head p { color:var(--muted); margin:0; font-size:13px; }
+    .section-index { font:11px var(--mono); color:var(--soft); margin-bottom:8px; }
+    .tracks { padding: 20px 0 86px; }
+    .track-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .track { border:1px solid var(--line); background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012)); border-radius:18px; overflow:hidden; position:relative; }
+    .track::before { content:""; position:absolute; inset:0 auto 0 0; width:3px; background:var(--track-color); }
+    .track.voice { --track-color:var(--lime); }
+    .track.ha { --track-color:var(--blue); }
+    .track-head { padding:24px 25px 20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:18px; }
+    .track-kicker { color:var(--track-color); font:11px var(--mono); letter-spacing:.13em; text-transform:uppercase; }
+    .track h3 { margin:7px 0 3px; font-size:22px; letter-spacing:-.04em; }
+    .track-head p { color:var(--muted); font-size:13px; margin:0; }
+    .branch { align-self:flex-start; border:1px solid var(--line); border-radius:999px; padding:5px 9px; color:#c8d3c8; font:10px var(--mono); white-space:nowrap; }
+    .track-content { padding:22px 24px 24px; }
+    .flow { display:grid; gap:8px; }
+    .node { display:grid; grid-template-columns:35px minmax(0,1fr) auto; gap:12px; align-items:center; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.055); border-radius:11px; padding:11px 13px; }
+    .node-icon { width:31px; height:31px; display:grid; place-items:center; color:var(--track-color); border:1px solid color-mix(in srgb,var(--track-color) 35%,transparent); border-radius:9px; font:12px var(--mono); }
+    .node strong { display:block; font-size:13px; font-weight:620; }
+    .node small { display:block; color:var(--muted); font-size:11px; margin-top:1px; }
+    .node code { color:var(--soft); font:10px var(--mono); text-align:right; }
+    .connector { height:13px; width:1px; background:linear-gradient(var(--track-color),rgba(255,255,255,.1)); margin:-8px 0 -8px 29px; opacity:.65; }
+    .track-foot { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+    .pill { border:1px solid var(--line); border-radius:999px; color:#c2cec2; padding:4px 9px; font-size:10px; }
+    .pill.em { border-color:color-mix(in srgb,var(--track-color) 35%,transparent); color:var(--track-color); }
+    .boundary { margin-top:14px; padding:11px 13px; border-left:2px solid var(--amber); background:rgba(255,199,121,.07); color:#d5c6ae; font-size:11px; }
+    .boundary b { color:var(--amber); font-weight:600; }
+    .numbers { padding:22px 0 82px; border-top:1px solid var(--line); }
+    .metric-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .metric { min-height:130px; border:1px solid var(--line); border-radius:14px; padding:17px; background:rgba(255,255,255,.025); }
+    .metric-label { font:10px var(--mono); color:var(--muted); text-transform:uppercase; letter-spacing:.1em; }
+    .metric-value { margin:12px 0 4px; font-size:31px; line-height:1; letter-spacing:-.06em; font-weight:650; }
+    .metric-value em { color:var(--lime); font-style:normal; }
+    .metric-note { color:var(--soft); font-size:11px; }
+    .metric.blue .metric-value em { color:var(--blue); }
+    .metric.mint .metric-value em { color:var(--mint); }
+    .metric.amber .metric-value em { color:var(--amber); }
+    .detail { padding:22px 0 84px; border-top:1px solid var(--line); }
+    .detail-layout { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:24px; align-items:start; }
+    .detail-main,.side-card { border:1px solid var(--line); background:rgba(255,255,255,.025); border-radius:16px; }
+    .detail-main { overflow:hidden; }
+    .tabs { display:flex; gap:4px; padding:9px; border-bottom:1px solid var(--line); }
+    .tab { cursor:pointer; border:0; border-radius:8px; background:transparent; color:var(--muted); padding:8px 12px; font-size:12px; }
+    .tab[aria-selected="true"] { background:var(--surface-2); color:var(--text); }
+    .tab:focus-visible, a:focus-visible { outline:2px solid var(--lime); outline-offset:3px; }
+    .tab-panel { padding:23px; }
+    .tab-panel[hidden] { display:none; }
+    .tab-panel h3 { margin:0 0 12px; font-size:17px; letter-spacing:-.03em; }
+    .tab-panel p { margin:8px 0; color:#b7c3b9; font-size:13px; }
+    .tab-panel ul { margin:10px 0; padding-left:19px; color:#b7c3b9; font-size:13px; }
+    .tab-panel li+li { margin-top:7px; }
+    .tab-panel b { color:var(--text); }
+    .code-card { margin-top:15px; border:1px solid var(--line); border-radius:10px; padding:13px 15px; background:#0c100e; color:var(--mint); font:11px/1.8 var(--mono); overflow-x:auto; }
+    .code-card .comment { color:#718077; }
+    .side-card { padding:18px; }
+    .side-card h3 { font:11px var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 13px; }
+    .side-card dl { margin:0; }
+    .side-card dl div { display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-top:1px solid var(--line); font-size:11px; }
+    .side-card dt { color:var(--muted); }
+    .side-card dd { margin:0; color:var(--text); font:11px var(--mono); text-align:right; }
+    .side-card .warning { color:var(--amber); font-size:11px; line-height:1.6; margin:14px 0 0; }
+    .principles { padding:0 0 84px; }
+    .principle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .principle { padding:18px; border-top:1px solid var(--line); }
+    .principle span { color:var(--lime); font:11px var(--mono); }
+    .principle h3 { margin:9px 0 5px; font-size:14px; }
+    .principle p { margin:0; color:var(--muted); font-size:12px; }
+    footer { border-top:1px solid var(--line); padding:22px 0 34px; color:var(--soft); font-size:11px; }
+    .footer-row { display:flex; justify-content:space-between; gap:20px; }
+    footer code { color:var(--muted); font:10px var(--mono); }
+    @media (max-width:800px) {
+      .hero { grid-template-columns:1fr; gap:24px; }
+      .hero-side { max-width:560px; }
+      .track-grid { grid-template-columns:1fr; }
+      .metric-grid { grid-template-columns:repeat(2,1fr); }
+      .detail-layout { grid-template-columns:1fr; }
+      .side-card { display:grid; grid-template-columns:1fr 1fr; gap:0 18px; }
+      .side-card h3 { grid-column:1/-1; }
+      .side-card .warning { grid-column:1/-1; }
+    }
+    @media (max-width:520px) {
+      .wrap { width:min(100% - 28px,var(--max)); }
+      .top-meta { display:none; }
+      .hero { padding-top:55px; }
+      .hero-copy { font-size:15px; }
+      .section-head { align-items:flex-start; flex-direction:column; gap:7px; }
+      .track-head { padding:20px 18px 16px; }
+      .track-content { padding:17px 17px 19px; }
+      .node { grid-template-columns:32px minmax(0,1fr); }
+      .node code { display:none; }
+      .metric { min-height:116px; padding:14px; }
+      .metric-value { font-size:27px; }
+      .tab-panel { padding:18px; }
+      .side-card { display:block; }
+      .principle-grid { grid-template-columns:1fr; }
+      .footer-row { flex-direction:column; gap:5px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="HA4FPAI 技术地图首页"><span class="brand-mark">H4</span><span>HA4FPAI <small>FIELD NOTES / 01</small></span></a>
+      <div class="top-meta">VOICE · CONTROL · HA EXPERIMENT</div>
+    </div>
+  </header>
+  <main id="top" class="wrap">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <div class="eyebrow">A small-board systems map</div>
+        <h1 id="page-title">一块板，<br><span>两条运行轨道。</span></h1>
+        <p class="hero-copy">HA4FPAI 的主线不是把 Home Assistant 塞进受限设备，而是把语音理解、确定性执行和板端 API 串成一条轻量控制链；<code>ha-small</code> 则是另一条独立的裁剪实验线，保留 HA 原生能力用于隔离环境验证。</p>
+      </div>
+      <aside class="hero-side">
+        <b>读图口径</b>
+        <p><code>master</code>：板载语音与控制栈，不是 HA fork。</p>
+        <p><code>ha-small</code>：基于 HA Core 2026.10.4 的删除式裁剪实验；不是当前板端部署方案。</p>
+        <div class="signal"><i></i> 两条路线分开看，能力边界不混算</div>
+      </aside>
+    </section>
+
+    <section class="tracks" aria-labelledby="tracks-title">
+      <div class="section-head">
+        <div><div class="section-index">01 / TWO TRACKS</div><h2 id="tracks-title">从一句话到可验证的动作</h2></div>
+        <p>两条路线复用问题域，不代表同一套运行时。</p>
+      </div>
+      <div class="track-grid">
+        <article class="track voice">
+          <header class="track-head"><div><div class="track-kicker">Track A · device-native</div><h3>板载语音控制栈</h3><p>常驻服务少、执行路径明确、设备就是控制器。</p></div><span class="branch">master</span></header>
+          <div class="track-content">
+            <div class="flow" aria-label="板载语音链路">
+              <div class="node"><span class="node-icon">01</span><div><strong>音频前端</strong><small>48 kHz 输入 → decimate3-mavg3 → 16 kHz</small></div><code>signal</code></div>
+              <div class="connector"></div>
+              <div class="node"><span class="node-icon">02</span><div><strong>共享进程 · sherpa-onnx</strong><small>KWS 命中 → Silero VAD → Zipformer ASR</small></div><code>10300–10301</code></div>
+              <div class="connector"></div>
+              <div class="node"><span class="node-icon">03</span><div><strong>klar NLU + 双通道 executor</strong><small>直连短语，或解析 intent / slots 后映射动作</small></div><code>10500 / 10520</code></div>
+              <div class="connector"></div>
+              <div class="node"><span class="node-icon">04</span><div><strong>板端 API → TTS 回复</strong><small>控制本机服务；TTS 输出落盘等待音频硬件</small></div><code>8091–8093 / 10302</code></div>
+            </div>
+            <div class="track-foot"><span class="pill em">单进程共享推理运行时</span><span class="pill">Python 3.8 兼容业务代码</span><span class="pill">确定性命令 + NLU</span></div>
+            <div class="boundary"><b>硬件实况边界</b>：文档记录的板端没有麦克风、声卡；PAD 尚未完成安全标定，不能作为开锁依据。链路能力与可用硬件状态需分别理解。</div>
+          </div>
+        </article>
+        <article class="track ha">
+          <header class="track-head"><div><div class="track-kicker">Track B · isolated experiment</div><h3>Home Assistant · ha-small</h3><p>上游实现保留，按依赖闭包做删除式裁剪。</p></div><span class="branch">ha-small</span></header>
+          <div class="track-content">
+            <div class="flow" aria-label="ha-small 能力边界">
+              <div class="node"><span class="node-icon">01</span><div><strong>HA Core 上游基线</strong><small>Core 2026.10.4；保留原实现，不是重写</small></div><code>Python ≥3.14.2</code></div>
+              <div class="connector"></div>
+              <div class="node"><span class="node-icon">02</span><div><strong>依赖闭包裁剪</strong><small>保留 119 个集成；上游文件 0 修改</small></div><code>5,909 files</code></div>
+              <div class="connector"></div>
+              <div class="node"><span class="node-icon">03</span><div><strong>原生家庭控制能力</strong><small>状态机、自动化、实体、认证、Recorder、Assist</small></div><code>HA runtime</code></div>
+              <div class="connector"></div>
+              <div class="node"><span class="node-icon">04</span><div><strong>隔离 Linux 验证环境</strong><small>Podman / x86_64 实验，不覆盖板端现役服务</small></div><code>lab only</code></div>
+            </div>
+            <div class="track-foot"><span class="pill em">HA 原生实现</span><span class="pill">源码约减少 83.7%</span><span class="pill">功能探针 30/30</span></div>
+            <div class="boundary"><b>部署边界</b>：ha-small 需要 Python ≥3.14.2；master 记录的目标板为 Ubuntu 20.04 / Python 3.8.10。此分支是隔离实验材料，不应据此推断可直接部署到该板。</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="numbers" aria-labelledby="numbers-title">
+      <div class="section-head"><div><div class="section-index">02 / MEASURED SNAPSHOTS</div><h2 id="numbers-title">用实测数字，而不是印象</h2></div><p>口径来自仓库文档；不同环境的读数不可直接横向等同。</p></div>
+      <div class="metric-grid">
+        <article class="metric"><div class="metric-label">HA source reduction</div><div class="metric-value"><em>83.7%</em></div><div class="metric-note">ha-small 保留源码字节口径</div></article>
+        <article class="metric blue"><div class="metric-label">Retained integrations</div><div class="metric-value"><em>119</em></div><div class="metric-note">裁剪后集成依赖闭包</div></article>
+        <article class="metric mint"><div class="metric-label">Board voice service</div><div class="metric-value"><em>318</em> MB</div><div class="metric-note">语音三服务合并后的 RSS 记录</div></article>
+        <article class="metric amber"><div class="metric-label">ASR · small model</div><div class="metric-value"><em>0.40</em></div><div class="metric-note">RTF 实测；14M Zipformer</div></article>
+      </div>
+    </section>
+
+    <section class="detail" aria-labelledby="detail-title">
+      <div class="section-head"><div><div class="section-index">03 / DESIGN NOTES</div><h2 id="detail-title">关键技术如何协作</h2></div><p>切换视图了解语音链、控制语义与裁剪实验。</p></div>
+      <div class="detail-layout">
+        <div class="detail-main">
+          <div class="tabs" role="tablist" aria-label="技术说明">
+            <button class="tab" id="tab-voice" role="tab" aria-selected="true" aria-controls="panel-voice" tabindex="0">语音与 NLU</button>
+            <button class="tab" id="tab-control" role="tab" aria-selected="false" aria-controls="panel-control" tabindex="-1">命令与控制</button>
+            <button class="tab" id="tab-small" role="tab" aria-selected="false" aria-controls="panel-small" tabindex="-1">HA 裁剪实验</button>
+          </div>
+          <section class="tab-panel" id="panel-voice" role="tabpanel" aria-labelledby="tab-voice">
+            <h3>推理链拆开，资源仍尽量共享。</h3>
+            <p>唤醒词只负责触发后续识别；VAD 切出说话区间，ASR 输出中文文本。语音服务合并为单进程，共用一份 sherpa-onnx / ONNX Runtime，避免多进程重复装载。</p>
+            <ul><li><b>入口：</b>麦克风输入在设计链路中从 48 kHz 降到 16 kHz；降采样采用三点平均抗混叠。</li><li><b>理解：</b>klar 只做确定性 NLU 解析，产出 intent 与 slots；它本身不执行命令、不识别语音，也不合成语音。</li><li><b>播报：</b>TTS 产出 22.05 kHz 音频后升采样至 48 kHz；板上缺声卡，因此当前结果写入 WAV。</li></ul>
+            <div class="code-card"><span class="comment"># 概念链路，不是可直接执行的配置</span><br>audio → KWS → VAD → ASR<br>text → direct phrase | klar NLU<br>intent + slots → executor → device API → TTS</div>
+          </section>
+          <section class="tab-panel" id="panel-control" role="tabpanel" aria-labelledby="tab-control" hidden>
+            <h3>解析与执行分层，危险动作再设确认门。</h3>
+            <p>master 的执行器提供两条路径：短语表命中时走确定性直连；其余家居表达交给 klar 解析，再统一映射为动作与参数。执行器才是动作落地边界。</p>
+            <ul><li><b>通道 B：</b>完整短语匹配，适合少量确定命令，避免把问句或否定句误当执行意图。</li><li><b>通道 A：</b>klar 输出 intent / slots，由 executor 调板端服务；NLU 的安全判定不是系统鉴权。</li><li><b>开门链：</b>仓库记录口令、人脸、防伪 PAD、声纹等多道校验；PAD 未安全标定，因此不能作为开锁依据。</li></ul>
+            <div class="code-card"><span class="comment"># control 层设计原则（不是 master 当前部署状态）</span><br>interpret → proposal → command<br>idempotency key + explicit confirmation<br>unknown stays unknown; no silent legacy fallback</div>
+          </section>
+          <section class="tab-panel" id="panel-small" role="tabpanel" aria-labelledby="tab-small" hidden>
+            <h3>裁剪上游，不把裁剪误认为重写。</h3>
+            <p>ha-small 从 Home Assistant Core 上游构建保留集合：从目标功能出发，递归计算 manifest 依赖、静态导入与基础实体域。README 记录上游文件修改数为 0。</p>
+            <ul><li>保留状态机、事件总线、自动化、脚本、场景、用户认证、Recorder / SQLite、前端与 Assist 语音接口。</li><li>隔离 Linux x86_64 实验记录：30/30 功能验证通过；正常进程重启验证 4/4。</li><li>功能探针限定在带测试标记的隔离配置目录中；结果不等于板端语音硬件、长期稳定性或生产部署验证。</li></ul>
+            <div class="code-card"><span class="comment"># 仅为仓库记录的实验环境约束</span><br>Home Assistant Core 2026.10.4<br>Python &gt;= 3.14.2 · isolated Linux lab<br>board master baseline: Ubuntu 20.04 · Python 3.8.10</div>
+          </section>
+        </div>
+        <aside class="side-card" aria-label="实验边界速览">
+          <h3>Boundary / snapshot</h3>
+          <dl>
+            <div><dt>master device</dt><dd>aarch64</dd></div>
+            <div><dt>board memory</dt><dd>993 MB</dd></div>
+            <div><dt>board Python</dt><dd>3.8.10</dd></div>
+            <div><dt>ha-small Python</dt><dd>≥3.14.2</dd></div>
+            <div><dt>ha-small source</dt><dd>0 upstream edits</dd></div>
+          </dl>
+          <p class="warning">数据均为仓库 README 所述的实验或记录口径。RSS 是快照，不代表峰值；HA 测试环境与目标板不是同一硬件。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="principles" aria-labelledby="principles-title">
+      <div class="section-head"><div><div class="section-index">04 / SYSTEM PRINCIPLES</div><h2 id="principles-title">这套设计的三个取舍</h2></div><p>从分支实现提炼，不扩大到尚未验证的能力。</p></div>
+      <div class="principle-grid">
+        <article class="principle"><span>01 — BOUNDARIES</span><h3>识别、理解、执行分开</h3><p>模型服务产出文本，NLU 给出结构化提案，executor 决定如何触达设备 API。</p></article>
+        <article class="principle"><span>02 — RESOURCE</span><h3>共享重组件，轻量留常驻</h3><p>板载语音服务合并共享推理运行时；家庭控制主线不依赖完整 HA 容器栈。</p></article>
+        <article class="principle"><span>03 — EVIDENCE</span><h3>实验结论带上环境标签</h3><p>板端实测、隔离容器验证、上游文档事实分别标注，不把一种证据冒充另一种。</p></article>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-row"><span>HA4FPAI · 技术地图 / 独立研究展示页</span><code>master × ha-small · standalone HTML · no external assets</code></div></footer>
+  <script>
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+      function activate(tab, moveFocus = false) {
+        tabs.forEach(item => {
+          const selected = item === tab;
+          item.setAttribute('aria-selected', String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach(panel => { panel.hidden = panel.id !== tab.getAttribute('aria-controls'); });
+        if (moveFocus) tab.focus();
+      }
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab));
+        tab.addEventListener('keydown', event => {
+          let next = index;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = tabs.length - 1;
+          else return;
+          event.preventDefault(); activate(tabs[next], true);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
