@@ -1,0 +1,63 @@
+#!/bin/sh
+# funasr-lite —— 板端链路入口（原 funasr-lite 的整理版，路径全部相对本目录）。
+#
+#   ASR_REMOTE_URL=http://<电脑IP>:18090/api/v1/asr ./funasr-lite
+#   SRC=wav WAV=testdata/a067.wav ASR_REMOTE_URL=... ./funasr-lite
+#   TTS=none ... ./funasr-lite               # 只识别，不合成
+#
+# 默认：mic + WebRTC VAD + remote-api + ekho TTS。
+set -u
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+PY=${PY:-python3}
+SRC=${SRC:-mic}
+DEV=${DEV:-plughw:MCP01,0}
+WAV=${WAV:-}
+RATE=${RATE:-16000}
+PACE=${PACE:-realtime}
+SEG=${SEG:-webrtc}
+SIL=${SIL:-400}
+TTS=${TTS:-ekho}
+TTS_URL=${TTS_URL:-http://127.0.0.1:2046}
+TTS_DIR=${TTS_DIR:-$ROOT/tts}
+ASR_REMOTE_URL=${ASR_REMOTE_URL:-http://127.0.0.1:18090/api/v1/asr}
+OUT=${OUT:-$ROOT/out}
+SEGS=${SEGS:-$ROOT/segments}
+
+mkdir -p "$OUT" "$SEGS" "$TTS_DIR" "$ROOT/logs"
+
+if [ "$SRC" = "wav" ] && [ -z "$WAV" ]; then
+  echo "SRC=wav 必须给 WAV=<wav 路径>" >&2
+  exit 2
+fi
+
+if [ "$TTS" = "ekho" ]; then
+  EKHO_SERVER=${EKHO_SERVER:-${EKHO_ROOT:-/root/ekho-bench}/bin/ekho-server}
+  if [ ! -x "$EKHO_SERVER" ]; then
+    echo "[funasr-lite] 没找到 ekho-server（$EKHO_SERVER）；本次 TTS=none，只落 wav" >&2
+    TTS=none
+  elif ! timeout 1 bash -c "echo > /dev/tcp/127.0.0.1/2046" 2>/dev/null; then
+    echo "[funasr-lite] ekho-server 没在跑，尝试拉起……" >&2
+    EKHO_ROOT=${EKHO_ROOT:-/root/ekho-bench} bash "$ROOT/asr/start_ekho_server.sh" || {
+      echo "[funasr-lite] ekho-server 起不来，本次 TTS=none" >&2
+      TTS=none
+    }
+  fi
+fi
+
+if [ "$SRC" = "wav" ]; then
+  exec "$PY" "$ROOT/asr_chain.py" \
+    --source wav --input "$WAV" --rate "$RATE" --pace "$PACE" \
+    --backend remote-api --asr-url "$ASR_REMOTE_URL" \
+    --segmenter "$SEG" --sil-stop-ms "$SIL" \
+    --tts "$TTS" --tts-url "$TTS_URL" --tts-dir "$TTS_DIR" \
+    --jsonl "$OUT/remote_chain.jsonl" --state "$OUT/state.json" --segs-dir "$SEGS" \
+    "$@"
+else
+  exec "$PY" "$ROOT/asr_chain.py" \
+    --source mic --device "$DEV" --rate "$RATE" --pace "$PACE" \
+    --backend remote-api --asr-url "$ASR_REMOTE_URL" \
+    --segmenter "$SEG" --sil-stop-ms "$SIL" \
+    --tts "$TTS" --tts-url "$TTS_URL" --tts-dir "$TTS_DIR" \
+    --jsonl "$OUT/remote_chain.jsonl" --state "$OUT/state.json" --segs-dir "$SEGS" \
+    "$@"
+fi
