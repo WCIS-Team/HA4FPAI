@@ -99,8 +99,12 @@ install_tar() {
 
 download_release() {
   local tmp url
-  command -v python3 >/dev/null || die "需要 python3 读 GitHub Release API"
-  url=$(python3 - "$KIT_ASSET" <<'PY'
+  # 首选 releases/latest/download 固定链接：不走 API，不踩匿名 403 限流。
+  url="https://github.com/WCIS-Team/ekho-Linux-AIGC/releases/latest/download/$KIT_ASSET"
+  if ! curl -sIL --max-time 60 "$url" | grep -qi '^HTTP/.* 200\|^HTTP/.* 302'; then
+    # 兜底：查最新 Release 的资产名（匿名 API，可能被限流 403）
+    command -v python3 >/dev/null || die "需要 python3 读 GitHub Release API"
+    url=$(python3 - "$KIT_ASSET" <<'PY'
 import json, os, sys, urllib.request
 asset = sys.argv[1]
 api = "https://api.github.com/repos/WCIS-Team/ekho-Linux-AIGC/releases/latest"
@@ -115,7 +119,8 @@ for a in data.get("assets", []):
         raise SystemExit(0)
 raise SystemExit("没有找到 kit-ekho 资产（看 README 的“发布 kit”一节）")
 PY
-  ) || die "没有可下载的 kit：$url"
+    ) || die "没有可下载的 kit：$url"
+  fi
   tmp=$(mktemp -d) || die "mktemp 失败"
   trap 'rm -rf "$tmp"' EXIT
   say "下载：$url"
