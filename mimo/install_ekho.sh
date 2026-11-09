@@ -56,7 +56,7 @@ done
 ROOT=$(cd "$(dirname "$ROOT")" 2>/dev/null && pwd)/$(basename "$ROOT") || ROOT=$ROOT
 
 check_ekho() {
-  if [ -x "$ROOT/bin/ekho-server" ]; then
+  if [ -f "$ROOT/bin/ekho-server" ]; then
     say "已找到：$ROOT/bin/ekho-server"
     "$ROOT/bin/ekho-server" --help 2>&1 | head -3 | sed 's/^/  /'
     return 0
@@ -70,7 +70,9 @@ check_ekho() {
 
 install_kit_dir() {
   local src=$1
-  [ -x "$src/bin/ekho-server" ] || die "$src 里没有 bin/ekho-server"
+  # 注意用 -f 而不是 -x：kit 是在 Windows 上打的 tar，POSIX 可执行位会丢
+  # （tar -tvzf 显示 bin/ekho-server 是 -rw-rw-rw-）。存在即可，复制后下面 chmod +x。
+  [ -f "$src/bin/ekho-server" ] || die "$src 里没有 bin/ekho-server"
   if [ "$(cd "$src" && pwd)" = "$(cd "$ROOT" 2>/dev/null && pwd)" ]; then
     say "kit 已在目标位置：$ROOT"
     return 0
@@ -79,7 +81,9 @@ install_kit_dir() {
   say "复制 kit：$src -> $ROOT"
   cp -a "$src/." "$ROOT/"
   chmod +x "$ROOT"/bin/ekho* 2>/dev/null || true
-  [ -x "$ROOT/bin/ekho-server" ] || die "复制后仍找不到 $ROOT/bin/ekho-server"
+  # 同样只用 -f：Windows/NTFS 上 chmod +x 可能不体现在 test -x 里，
+  # 板端 Linux 上 chmod 一定生效；存在即可算装好。
+  [ -f "$ROOT/bin/ekho-server" ] || die "复制后仍找不到 $ROOT/bin/ekho-server"
   say "完成：$ROOT/bin/ekho-server"
 }
 
@@ -89,7 +93,9 @@ install_tar() {
   tmp=$(mktemp -d) || die "mktemp 失败"
   trap 'rm -rf "$tmp"' EXIT
   say "解包：$tar"
-  tar -xzf "$tar" -C "$tmp" || die "tar 解包失败"
+  # 用 stdin 喂 tar，绕开 GNU tar 的 "host:path" 远程解析
+  # （Windows 上 S:/... 或 C:\... 会被当成远程主机；板端 Linux 同样安全）。
+  tar -xzf - -C "$tmp" < "$tar" || die "tar 解包失败"
   src=$(find "$tmp" -type f -path '*/bin/ekho-server' -print 2>/dev/null | head -1 | sed 's|/bin/ekho-server$||')
   [ -n "$src" ] || die "tar 里没有 bin/ekho-server"
   install_kit_dir "$src"
