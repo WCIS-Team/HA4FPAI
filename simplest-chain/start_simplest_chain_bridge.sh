@@ -1,9 +1,9 @@
 #!/bin/bash
-# start_mimo_bridge.sh —— 启动 SiliconFlow ASR+LLM 桥（mimo_bridge.py）。
+# start_simplest_chain_bridge.sh —— 启动 SiliconFlow ASR+LLM 桥（simplest_chain_bridge.py）。
 #
-#   bash start_mimo_bridge.sh           # 前台，Ctrl-C 停
-#   BG=1 bash start_mimo_bridge.sh      # 后台，日志 logs/mimo_bridge.log
-#   PORT=18090 bash start_mimo_bridge.sh
+#   bash start_simplest_chain_bridge.sh           # 前台，Ctrl-C 停
+#   BG=1 bash start_simplest_chain_bridge.sh      # 后台，日志 logs/simplest_chain_bridge.log
+#   PORT=18090 bash start_simplest_chain_bridge.sh
 #
 # 密钥（不要写进文件）：
 #   export SILICONFLOW_API_KEY=...              # 优先
@@ -31,7 +31,7 @@ export HISTORY_TURNS=${HISTORY_TURNS:-2}
 export LLM_REASONING=${LLM_REASONING:-none}
 export LOG_JSONL=${LOG_JSONL:-$LOGD/bridge.jsonl}
 
-LOG=$LOGD/mimo_bridge.log
+LOG=$LOGD/simplest_chain_bridge.log
 
 port_open() {
   "$PY" - "$1" <<'PY' 2>/dev/null
@@ -49,13 +49,13 @@ PY
 
 if [ "${BG:-0}" = "1" ]; then
   if port_open "$PORT"; then
-    echo "端口 $PORT 已经有人在听（可能已在跑）；先 pkill -f mimo_bridge.py 再起" >&2
+    echo "端口 $PORT 已经有人在听（可能已在跑）；先 pkill -f simplest_chain_bridge.py 再起" >&2
     exit 3
   fi
   if command -v setsid >/dev/null 2>&1; then
-    setsid nohup "$PY" "$DIR/mimo_bridge.py" >> "$LOG" 2>&1 &
+    setsid nohup "$PY" "$DIR/simplest_chain_bridge.py" >> "$LOG" 2>&1 &
   else
-    nohup "$PY" "$DIR/mimo_bridge.py" >> "$LOG" 2>&1 &
+    nohup "$PY" "$DIR/simplest_chain_bridge.py" >> "$LOG" 2>&1 &
   fi
   echo "pid=$! port=$PORT log=$LOG"
   for i in $(seq 1 40); do
@@ -68,5 +68,5 @@ if [ "${BG:-0}" = "1" ]; then
   echo "20 秒还没起来，看日志：tail -40 $LOG" >&2
   exit 4
 else
-  exec "$PY" "$DIR/mimo_bridge.py"
+  exec "$PY" "$DIR/simplest_chain_bridge.py"
 fi

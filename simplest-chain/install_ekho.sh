@@ -1,5 +1,5 @@
 #!/bin/bash
-# install_ekho.sh —— 给 mimo 用户准备 ekho-server 的安装/引导脚本。
+# install_ekho.sh —— 给 simplest-chain 用户准备 ekho-server 的安装/引导脚本。
 #
 # 三种方式（按推荐顺序）：
 #   1) 已经有打包好的 kit（最快，113 板推荐）：
@@ -247,4 +247,4 @@ esac
 say "EKHO_ROOT=$ROOT"
 say "EKHO_SERVER=$ROOT/bin/ekho-server"
 say "测试：EKHO_ROOT=$ROOT bash asr/start_ekho_server.sh"
-say "然后在 mimo_voice.py / funasr-lite 里保持 TTS=ekho（默认）即可。"
+say "然后在 simplest_chain_voice.py / funasr-lite 里保持 TTS=ekho（默认）即可。"

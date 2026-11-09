@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""siliconflow_bridge.py —— 本地 ASR+LLM 桥（硅基流动 SiliconFlow）。
+"""simplest_chain_bridge.py —— 本地 ASR+LLM 桥（硅基流动 SiliconFlow）。
 
 一条请求里做两件事：
   收到音频 → SiliconFlow ASR (XingChenAGI/XingChenASR-V3.2-Ultra，OpenAI 兼容 /audio/transcriptions)
@@ -310,7 +310,7 @@ def pick_audio(body, ctype):
 # ---------------------------------------------------------------- HTTP
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "siliconflow-bridge/1.0"
+    server_version = "simplest-chain-bridge/1.0"
     protocol_version = "HTTP/1.1"
 
     def _send(self, code, obj, ctype="application/json; charset=utf-8"):
@@ -345,7 +345,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = self.path.split("?")[0].rstrip("/") or "/"
         if path == "/health":
-            return self._send(200, {"ok": True, "service": "siliconflow-bridge",
+            return self._send(200, {"ok": True, "service": "simplest-chain-bridge",
                                     "asr": ASR_MODEL, "llm": LLM_MODEL,
                                     "llm_enable": LLM_ENABLE,
                                     "history_turns": HISTORY_TURNS,
@@ -451,7 +451,7 @@ class Handler(BaseHTTPRequestHandler):
         return self._send(200, out)
 
 
-HELP_TEXT = """siliconflow-bridge —— 本地 ASR + LLM 桥（硅基流动 SiliconFlow，给 113 板 ASR_REMOTE_URL 用）
+HELP_TEXT = """simplest-chain-bridge —— 本地 ASR + LLM 桥（硅基流动 SiliconFlow，给 113 板 ASR_REMOTE_URL 用）
 
 板端起链：
   ASR_REMOTE_URL=http://<本机IP>:%d/api/v1/asr ASR_REMOTE_TIMEOUT=60 /funasr-lite

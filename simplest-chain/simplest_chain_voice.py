@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""mimo_voice.py —— 板端最小语音回环：录音 → MiMo ASR+LLM → ekho 念出来。
+"""simplest_chain_voice.py —— 板端最小语音回环：录音 → SiliconFlow ASR+LLM → ekho 念出来。
 
 一句话：按一下（或常驻），对着麦克风说一句，脚本自己断句，把 wav POST 给
-`mimo_bridge.py` 的 `/api/v1/asr`，拿回 LLM 回复文本，再 POST 给
+`simplest_chain_bridge.py` 的 `/api/v1/asr`，拿回 LLM 回复文本，再 POST 给
 `ekho-server` 的 `/tts?wait=1`，有喇叭就播、没有就落盘。
 
 用法：
-  python3 mimo_voice.py                         # 常驻：说一句、答一句
-  python3 mimo_voice.py --once                  # 只跑一轮
-  python3 mimo_voice.py --input ask.wav --tts none   # 不录音，只测上传与回答
-  python3 mimo_voice.py --check                 # 只看 bridge / ekho 健康
+  python3 simplest_chain_voice.py                         # 常驻：说一句、答一句
+  python3 simplest_chain_voice.py --once                  # 只跑一轮
+  python3 simplest_chain_voice.py --input ask.wav --tts none   # 不录音，只测上传与回答
+  python3 simplest_chain_voice.py --check                 # 只看 bridge / ekho 健康
 
 环境变量：
-  MIMO_BRIDGE_URL   默认 http://127.0.0.1:18090/api/v1/asr
+  SIMPLEST_CHAIN_BRIDGE_URL   默认 http://127.0.0.1:18090/api/v1/asr
   TTS_EKHO_URL      默认 http://127.0.0.1:2046
   DEV               默认 plughw:MCP01,0
 """
@@ -132,8 +132,8 @@ def record_turn(device, rate=16000, frame_ms=100, start_rms=0.012,
 
 
 def post_audio(bridge_url, wav_bytes, timeout=120.0):
-    """multipart POST 到 mimo_bridge /api/v1/asr，返回解析后的 JSON。"""
-    boundary = "----mimo" + uuid.uuid4().hex
+    """multipart POST 到 simplest_chain_bridge /api/v1/asr，返回解析后的 JSON。"""
+    boundary = "----simplestchain" + uuid.uuid4().hex
     body = (
         ("--%s\r\n" % boundary).encode()
         + b'Content-Disposition: form-data; name="audio"; filename="seg.wav"\r\n'
@@ -212,9 +212,9 @@ def check_health(bridge_url, ekho_url):
 
 def main(argv=None):
     _init_stdout()
-    ap = argparse.ArgumentParser(description="MiMo ASR+LLM + ekho 最小语音回环")
+    ap = argparse.ArgumentParser(description="SiliconFlow ASR+LLM + ekho 最小语音回环")
     ap.add_argument("--bridge-url", default=os.environ.get(
-        "MIMO_BRIDGE_URL", "http://127.0.0.1:18090/api/v1/asr"))
+        "SIMPLEST_CHAIN_BRIDGE_URL", "http://127.0.0.1:18090/api/v1/asr"))
     ap.add_argument("--ekho-url", default=os.environ.get(
         "TTS_EKHO_URL", "http://127.0.0.1:2046"))
     ap.add_argument("--device", default=os.environ.get("DEV", "plughw:MCP01,0"))

@@ -1,11 +1,11 @@
-# mimo —— 极简 SiliconFlow ASR+LLM + ekho 语音回环
+# simplest-chain —— 极简 SiliconFlow ASR+LLM + ekho 语音回环
 
 这是从板端旧 `/root/funasr` 链路整理出来的独立小包：**一个桥 + 一个板端脚本**，不依赖
 `lang/server` 那一整套编排框架，也不需要 ONNX/模型权重。云端 API 走**硅基流动 SiliconFlow**
-（原 MiMo `mimo-v2.5-asr` / `mimo-v2.6-flash` 已替换）。
+（云端 API 现走硅基流动 SiliconFlow）。
 
 ```
-板载麦克风 --arecord--> [mimo_voice.py] --multipart POST--> [mimo_bridge.py :18090]
+板载麦克风 --arecord--> [simplest_chain_voice.py] --multipart POST--> [simplest_chain_bridge.py :18090]
                                                      │  SiliconFlow ASR (XingChenAGI/XingChenASR-V3.2-Ultra)
                                                      │  SiliconFlow LLM (Qwen/Qwen2.5-7B-Instruct)
 板载喇叭 <--aplay-- [ekho-server :2046] <--POST /tts--  LLM 回复文本
@@ -17,7 +17,7 @@
 
 ```bash
 export SILICONFLOW_API_KEY=你的key
-bash start_mimo_bridge.sh          # 前台；或 BG=1 bash start_mimo_bridge.sh 后台
+bash start_simplest_chain_bridge.sh          # 前台；或 BG=1 bash start_simplest_chain_bridge.sh 后台
 curl -s http://127.0.0.1:18090/health
 ```
 
@@ -26,7 +26,7 @@ curl -s http://127.0.0.1:18090/health
 ### 2. 板端录音、上传、ekho 念出来
 
 ```bash
-python3 mimo_voice.py \
+python3 simplest_chain_voice.py \
   --bridge-url http://192.168.1.107:18090/api/v1/asr \
   --device plughw:MCP01,0
 ```
@@ -53,9 +53,9 @@ SRC=wav WAV=testdata/a067.wav ASR_REMOTE_URL=http://127.0.0.1:18095/api/v1/asr T
 
 | 文件/目录 | 作用 |
 |---|---|
-| `mimo_bridge.py` | SiliconFlow ASR+LLM 桥：`POST /api/v1/asr`（multipart 字段 `audio`），回 `{"code":0,"text":"...","asr_text":"..."}` |
-| `start_mimo_bridge.sh` | 起桥（相对本目录，支持 `BG=1`、`PORT`、`SILICONFLOW_API_KEY`/`.siliconflow-key`） |
-| `mimo_voice.py` | **最小板端脚本**：录音→上传→ekho→aplay |
+| `simplest_chain_bridge.py` | SiliconFlow ASR+LLM 桥：`POST /api/v1/asr`（multipart 字段 `audio`），回 `{"code":0,"text":"...","asr_text":"..."}` |
+| `start_simplest_chain_bridge.sh` | 起桥（相对本目录，支持 `BG=1`、`PORT`、`SILICONFLOW_API_KEY`/`.siliconflow-key`） |
+| `simplest_chain_voice.py` | **最小板端脚本**：录音→上传→ekho→aplay |
 | `install_ekho.sh` | ekho-server 安装器：支持 `--kit`/`--tar`/`--release`/`--build` |
 | `funasr-lite` | 原完整链路入口（`asr_chain.py`） |
 | `asr_chain.py` | 完整链路：采集/分段/远程 ASR/TTS/JSONL/状态 |
@@ -68,7 +68,7 @@ SRC=wav WAV=testdata/a067.wav ASR_REMOTE_URL=http://127.0.0.1:18095/api/v1/asr T
 
 ## 依赖 / requirements
 
-默认路径（`mimo_bridge.py` + `mimo_voice.py` + `asr_chain.py --backend remote-api`）**只用 Python 标准库**，
+默认路径（`simplest_chain_bridge.py` + `simplest_chain_voice.py` + `asr_chain.py --backend remote-api`）**只用 Python 标准库**，
 没有 numpy / onnxruntime / requests 依赖。Python 版本要求见 `requirements.txt`：
 板端 3.8.10、本机 3.13 都可跑。
 
@@ -86,7 +86,7 @@ python3 -m pip install -r requirements.txt
 | `--tts piper` | `piper-tts`（本包不带 piper，默认 ekho） |
 
 `ekho-server` 是单独的 C++ kit（默认 `/root/ekho-bench`），不是 pip 包；没有它时链路仍可跑
-`TTS=none`，`mimo_voice.py` 也可以只打印回答。
+`TTS=none`，`simplest_chain_voice.py` 也可以只打印回答。
 
 ## ekho-server 从哪来 / 怎么装
 
@@ -98,7 +98,7 @@ python3 -m pip install -r requirements.txt
 - 源码：`src/ekho_server_main.cpp` + `src/http_server.cpp`
 - 上游 `hgneng/ekho` 没有这个二进制、没有 `/tts`、没有 `/health`
 
-### 给 MiMo 用户的三条路
+### 给 simplest-chain 用户的四条路
 
 | 场景 | 命令 |
 |---|---|
@@ -108,7 +108,7 @@ python3 -m pip install -r requirements.txt
 | 本机 Linux 从源码构建（较慢） | `bash install_ekho.sh --build` |
 
 `install_ekho.sh` 会把 kit 安装到 `$HOME/.local/ekho`（可用 `--root` 或 `EKHO_ROOT` 改），
-装完打印 `EKHO_ROOT` / `EKHO_SERVER` 两个变量；之后 `funasr-lite` 和 `mimo_voice.py`
+装完打印 `EKHO_ROOT` / `EKHO_SERVER` 两个变量；之后 `funasr-lite` 和 `simplest_chain_voice.py`
 默认走 `TTS=ekho` 就能直接用。
 
 ### 维护者：发布一个 kit 给 `--release` 用
@@ -131,9 +131,9 @@ gh release create ekho-kit-20261109 kit-ekho-aarch64.tar.gz \
 之后任何人执行 `bash install_ekho.sh --release`，脚本会从最新 Release 里自动找
 `kit-ekho*.tar.gz` 并安装。
 
-## SiliconFlow Bridge（替代原 MiMo Bridge）
+## SiliconFlow Bridge
 
-原 `mimo_bridge.py` 已改为 **`siliconflow_bridge.py`**（文件名仍为 `mimo_bridge.py`），
+桥脚本为 `simplest_chain_bridge.py`，
 使用硅基流动 SiliconFlow API：
 
 - **ASR**：`XingChenAGI/XingChenASR-V3.2-Ultra`，OpenAI 兼容 `/audio/transcriptions`
@@ -141,20 +141,20 @@ gh release create ekho-kit-20261109 kit-ekho-aarch64.tar.gz \
 - Base URL：`https://api.siliconflow.cn/v1`
 - 密钥：`SILICONFLOW_API_KEY` 环境变量（或 `.siliconflow-key` 文件，`chmod 600`）
 
-环境变量对照表（原来 `MIMO_*` → 现在 `SILICONFLOW_*` / 通用名）：
+环境变量（现用）：
 
-| 旧环境变量 | 新环境变量 | 说明 |
+| 环境变量 | 说明 |
 |---|---|---|
-| `MIMO_API_KEY` | `SILICONFLOW_API_KEY` | **必填**，硅基流动 API Key |
-| `MIMO_BASE_URL` | `SILICONFLOW_BASE_URL` | 默认 `https://api.siliconflow.cn/v1` |
-| `MIMO_ASR_MODEL` | `ASR_MODEL` | 默认 `XingChenAGI/XingChenASR-V3.2-Ultra` |
-| `MIMO_LLM_MODEL` | `LLM_MODEL` | 默认 `Qwen/Qwen2.5-7B-Instruct` |
-| `MIMO_ASR_LANG` | `ASR_LANG` | 默认 `zh` |
-| `LLM_ENABLE` | `LLM_ENABLE` | 1=接 LLM，0=只做 ASR |
-| `HISTORY_TURNS` | `HISTORY_TURNS` | 多轮上下文轮数，默认 2 |
-| `LLM_REASONING` | `LLM_REASONING` | 推理强度，默认 `none`（关思考链） |
-| `LLM_MAX_TOKENS` | `LLM_MAX_TOKENS` | 最大生成 token，默认 128 |
-| `SYSTEM_PROMPT` | `SYSTEM_PROMPT` | 系统提示词 |
+| `SILICONFLOW_API_KEY` | **必填**，硅基流动 API Key |
+| `SILICONFLOW_BASE_URL` | 默认 `https://api.siliconflow.cn/v1` |
+| `ASR_MODEL` | 默认 `XingChenAGI/XingChenASR-V3.2-Ultra` |
+| `LLM_MODEL` | 默认 `Qwen/Qwen2.5-7B-Instruct` |
+| `ASR_LANG` | 默认 `zh` |
+| `LLM_ENABLE` | 1=接 LLM，0=只做 ASR |
+| `HISTORY_TURNS` | 多轮上下文轮数，默认 2 |
+| `LLM_REASONING` | 推理强度，默认 `none`（关思考链） |
+| `LLM_MAX_TOKENS` | 最大生成 token，默认 128 |
+| `SYSTEM_PROMPT` | 系统提示词 |
 
 **板端完全不用改**：`ASR_REMOTE_URL=http://<本机IP>:18090/api/v1/asr` 依然有效，
 `/funasr-lite`、`/api/v1/asr?llm=0`、`/llm`、`/health` 等端点都保持兼容。
@@ -165,7 +165,7 @@ gh release create ekho-kit-20261109 kit-ekho-aarch64.tar.gz \
 # 1) 起假 ASR 服务（兼容 openai /audio/transcriptions）
 python3 asr/mock_asr_server.py --port 18095 &
 # 2) 用现成 wav 走一遍最小脚本（不录音、不 TTS）
-python3 mimo_voice.py --input testdata/a067.wav \
+python3 simplest_chain_voice.py --input testdata/a067.wav \
   --bridge-url http://127.0.0.1:18095/api/v1/asr --tts none --once
 # 3) 原链路（rms 分段，避免非 aarch64 机器加载 .so）
 python3 asr_chain.py --source wav --input testdata/a067.wav \
@@ -176,13 +176,13 @@ python3 asr_chain.py --source wav --input testdata/a067.wav \
 
 ## 发布 / 历史
 
-- 2026-10-29：`asr_chain.py`、`mimo_bridge.py`、`tts_ekho.py` 等来自板端 `/root/funasr` 的整目录备份
+- 2026-10-29：`asr_chain.py`、桥脚本、`tts_ekho.py` 等来自板端 `/root/funasr` 的整目录备份
   （`workenv/backup-asr`）；其中 `asr_chain.py` 的 md5 `1ff8815c…` 是当年板上现役件。
-- 2026-11-09 白天：整理出 `S:\work\WCIS\repos\mimo`，补相对路径启动器、最小 `mimo_voice.py`、
+- 2026-11-09 白天：整理出 `S:\work\WCIS\repos\HA4FPAI\simplest-chain`（初版代号 mimo，2026-11-10 改名 simplest-chain），补相对路径启动器、最小 `simplest_chain_voice.py`、
   `requirements.txt`、ekho 安装器与自测说明，不再依赖 `/root/funasr` 绝对前缀。
-- 2026-11-09 晚：云端 API 从 MiMo 换成硅基流动 SiliconFlow
+- 2026-11-09 晚：云端 API 换成硅基流动 SiliconFlow
   （`XingChenAGI/XingChenASR-V3.2-Ultra` + `Qwen/Qwen2.5-7B-Instruct`）；
   `/health`、`/llm`、整条 `/api/v1/asr` 均已实测通过（ASR 6.5 s / LLM 0.36 s）。
 - 2026-11-09 晚：ekho aarch64 kit 打进
   [WCIS-Team/ekho-Linux-AIGC Release `ekho-kit-20261109`](https://github.com/WCIS-Team/ekho-Linux-AIGC/releases/tag/ekho-kit-20261109)。
-- 本目录作为 `WCIS-Team/HA4FPAI` 的 **`mimo` 分支** 发布（从 `riir` 拉出，只新增 `mimo/` 目录）。
+- 本目录作为 `WCIS-Team/HA4FPAI` 的 **`simplest-chain` 分支** 发布（从 `riir` 拉出，只新增 `simplest-chain/` 目录）。
